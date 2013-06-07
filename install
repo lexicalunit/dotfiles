@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Installs bin and env from this repository.
+
 set -e
 
 pushd bin

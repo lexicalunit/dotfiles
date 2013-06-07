@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Configures OS X preferences.
+
 echo "Enable repeat on keydown"
 defaults write -g ApplePressAndHoldEnabled -bool false
 

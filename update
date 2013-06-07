@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# updates the bin and env directories with whatever new changes are found in the current environment
+# Updates the bin and env directories with whatever new changes are found in the current environment
 
 set -e
 

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Caputres a window for a screen shot on X11 systems.
+
+set -e
+
+echo -n "click window to capture... "
+INFO="$(xwininfo)"
+XID="$(echo "$INFO" | grep "Window id" | awk '{print $4}')"
+CAPS=~/captures
+FILE="$CAPS/$XID.ping"
+
+mkdir -p "$CAPS"
+import -window "$XID" "$FILE"
+echo "imported to $FILE"
+eog "$FILE" &

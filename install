@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+pushd bin
+./install
+popd
+
+pushd env
+./install
+popd

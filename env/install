@@ -1,0 +1,65 @@
+#!/bin/bash
+
+function sync()
+{
+	CMD="rsync -avl \"$1\" \"$2/$1\""
+	echo "+ $CMD"
+	eval $CMD
+}
+
+for I in dot_*; do
+	if [[ -f $I ]]; then
+		if [[ -n "$(echo $I | grep bashrc_)" ]]; then
+			read -p "install $I? (y/n) [n] ... "
+		else
+			REPLY="y"
+		fi
+		if [[ "$REPLY" == "y" ]]; then
+			CMD="rsync -avl $I ~/.$(echo $(basename $I) | sed s/^dot_//)"
+			echo "+ $CMD"
+			eval $CMD
+		fi
+	elif [[ -d $I ]]; then
+		CMD="rsync -avl $I/* ~/.$(echo $(basename $I) | sed s/^dot_//)"
+		echo "+ $CMD"
+		eval $CMD
+	else
+		echo "error: could not install '$I'" >&2
+	fi
+done
+
+function grab_package()
+{
+	URL="$1"
+	NAME="$2"
+
+	pushd ~/"Library/Application Support/Sublime Text 2/Packages"
+	if [[ -d "$NAME" ]]; then
+		pushd "$NAME"
+		git pull -u
+		popd
+	else
+		git clone "$URL" "$NAME"
+	fi
+	popd
+}
+
+if [[ -d ~/.bash-completion ]]; then
+	cd ~/.bash-completion
+	git pull git://git.debian.org/git/bash-completion/bash-completion -u
+	cd -
+else
+	cd ~
+	git clone git://git.debian.org/git/bash-completion/bash-completion .bash-completion
+	cd -
+fi
+
+if [[ -d "$HOME/Library/Application Support/Sublime Text 2/Packages/User" ]]; then
+	sync "Preferences.sublime-settings" ~/"Library/Application Support/Sublime Text 2/Packages/User"
+	sync "SublimeClang.sublime-settings" ~/"Library/Application Support/Sublime Text 2/Packages/User"
+
+	grab_package https://github.com/netatoo/phoenix-theme/ "Theme - Phoenix"
+	grab_package https://github.com/quarnster/SublimeClang.git "SublimeClang"
+	grab_package https://github.com/JulianEberius/SublimeRope.git "sublimelint"
+	grab_package https://github.com/lunixbochs/sublimelint.git "SublimeRope"
+fi

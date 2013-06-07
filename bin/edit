@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Opens files in Sublime Text editor or vim if that's not available.
+
+NEWWINDOW=""
+if [[ $1 = "-n" ]]; then
+	shift
+	NEWWINDOW="-n"
+fi
+
+if [[ -f ~/bin/subl ]]; then
+	if [[ -n $NEWWINDOW ]]; then
+		~/bin/subl $NEWWINDOW "$@"
+	else
+		~/bin/subl
+		~/bin/subl "$@"
+	fi
+else
+	vim "$@"
+fi

@@ -1,0 +1,341 @@
+#!/bin/bash
+
+# Installs development environment on OS X machines.
+
+################################################################################
+# Settings
+################################################################################
+HOMEBREW_FORMULAS="git git-flow cmake wget mercurial highlight spark ncftp cppunit tclap yaml-cpp pcre plotutils boost freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed freetds gfortran ipopt fltk mongodb scons"
+PIP_PACKAGES="ipython nose pyyaml flask pyodbc pymongo fabric Pygments iniparse psycopg2 sqlbuilder SQLAlchemy pandas xlrd openpyxl BeautifulSoup suds pyzmq matplotlib pycurl"
+GEM_PACKAGES="cap_gun capistrano railsless-deploy jekyll lolcat"
+
+################################################################################
+# Utilities
+################################################################################
+function abort()
+{
+	echo "error: $1" >&2
+	exit 1
+}
+
+function show()
+{
+	echo $'\e[1;34m==>\e[0m\e[31m' $1 $'\e[0m'
+}
+
+function run()
+{
+	show "$1"
+	eval "$1"
+	return $?
+}
+
+function ask()
+{
+	echo -n $'\n\e[1;35m'
+	read -p "$1 (y/n) [n] ... "
+	echo -n $'\e[0;0m'
+}
+
+function install_brew_formula()
+{
+	if [[ -z "$(brew ls | grep $1)" ]]; then
+		run "brew install $1"
+	else
+		show "brew formula $1 already installed"
+	fi
+}
+
+################################################################################
+# Steps
+################################################################################
+function step_setup_xcode()
+{
+	export SELECT="select"
+	if [[ -z "$(which xcode-$SELECT)" ]]; then
+		abort "install Xcode Command Line Tools first"
+	fi
+	if [[ "$(xcode-$SELECT -print-path)" != "/Applications/Xcode.app/Contents/Developer" ]]; then
+		run "sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer" || abort "failed to select xcode properly"
+	else
+		show "Xcode already selected to /Applications/Xcode.app/Contents/Developer"
+	fi
+}
+
+function step_install_homebrew()
+{
+	if [[ -z "$(which brew)" ]]; then
+		run "ruby <(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
+	else
+		show "Homebrew already installed"
+	fi
+
+	if [[ -z "$(which brew)" ]]; then
+		abort "failed to install Homebrew"
+	fi
+
+	run "brew update"
+
+	# Force install libtiff (ghostscript dependency).
+	# There was some weird problem with this so I added a workaround, it may no longer be necessary.
+	run "brew install libtiff"
+	run "brew unlink libtiff && brew link --overwrite libtiff"
+
+	# Installing bison dupe.
+	run "brew untap homebrew/dupes"
+	run "brew tap homebrew/dupes"
+	run "brew install bison"
+	run "brew upgrade bison"
+	run "brew link bison --force"
+	run "brew untap homebrew/dupes"
+	
+	for I in $HOMEBREW_FORMULAS; do
+		install_brew_formula $I
+	done
+
+	# cmake's bundling utility fails in completely reasonable cases, the following steps are necessary
+	run "chmod +w /usr/local/Cellar/freetds/*/lib/*.dylib 2>/dev/null"
+	run "chmod +w /usr/local/Cellar/pcre/*/lib/*.dylib 2>/dev/null"
+	run "chmod +w /usr/local/Cellar/fltk/*/lib/*.dylib 2>/dev/null" # the default fltk recipe doesn't install dynamic libraries 
+
+	# The gfortran formula doesn't symlink libraries into /usr/local/lib, do it manually.
+	local LIBGFORTRAN="$(brew ls -v gfortran | grep libgfortran.a | egrep -m 1 -v "x86_64|i386")"
+	if [[ $? == 0 ]]; then
+		ln -sf "$LIBGFORTRAN" /usr/local/lib/.
+	fi
+
+	run "brew upgrade"
+}
+
+function step_install_bash()
+{
+	if [[ -z "$(which brew)" ]]; then
+		abort "please install Homebrew first"
+	fi
+
+	run "brew update"
+	if [[ -z "$(brew ls | grep bash)" ]]; then
+		run "brew install bash"
+	else
+		run "brew upgrade bash"
+	fi
+
+	local BASH_BINARY="$(brew ls bash | grep '^.*/bin/.*bash$')"
+	local INSTALLED="$(grep "$BASH_BINARY" /etc/shells)"
+	if [[ "$INSTALLED" == "" ]]; then
+		run "echo \"$BASH_BINARY\" | sudo tee -a /etc/shells"
+	fi
+
+	show "Please set your terminal shell to \"$BASH_BINARY\""
+}
+
+function step_install_pip
+{
+	if [[ -z "$(which pip)" ]]; then
+		local tempdir="$(mktemp -d)" || abort "can't create temp directory"
+		run "cd $tempdir" || abort "can't enter temp directory"
+		run "curl -s http://python-distribute.org/distribute_setup.py | sudo python" || abort "install step failed"
+		run "curl -s https://raw.github.com/pypa/pip/master/contrib/get-pip.py | sudo python" || abort "install step failed"
+		run "rm -rf $tempdir"
+	else
+		run "sudo easy_install -U pip"
+	fi
+	if [[ -z "$(which pip)" ]]; then
+		abort "failed to install pip"
+	fi
+
+	for I in $PIP_PACKAGES; do
+		run "sudo pip install -vU $I"
+	done
+
+	# Note that `pip install readline` generally DOES NOT WORK, because
+	# it installs to site-packages, which come *after* lib-dynload in sys.path,
+	# where readline is located.  It must be `easy_install readline`, or to a custom
+	# location on your PYTHONPATH (even --user comes after lib-dyload).
+	run "sudo easy_install -U readline"
+
+	# Fix annoying ipython settings
+	run "ipython profile create"
+	run "perl -pi -e 's/.*confirm_exit.*/c.TerminalInteractiveShell.confirm_exit = False/' $HOME/.ipython/profile_default/ipython_config.py"
+	run "perl -pi -e 's/.*display_banner.*/c.TerminalIPythonApp.display_banner = False/' $HOME/.ipython/profile_default/ipython_config.py"
+}
+
+function step_install_gem()
+{
+	run "sudo update_rubygems"
+	run "sudo gem update --system"
+
+	for I in $GEM_PACKAGES; do
+		if [[ -z "$(gem list $I | grep $I)" ]]; then
+			run "sudo gem install $I"
+		fi
+	done
+
+	run "sudo gem update"
+}
+
+function step_install_libpqxx_3()
+{
+	if [[ -f "/usr/local/lib/libpqxx.a" ]]; then
+		show "a libpqxx is already installed..."
+		ask "Force re-install?"
+		[[ "$REPLY" == "y" ]] || return
+	fi
+
+	local tempdir="$(mktemp -d)" || abort "can't create temp directory"
+	run "cd $tempdir" || abort "can't enter temp directory"
+	run "svn co svn://pqxx.org/libpqxx/tags/3.0.3 libpqxx" || abort "can't acquire source"
+	run "cd libpqxx" || abort "can't enter source directory"
+	run "CC='' CXX='' ./configure --enable-shared" || abort "build step failed"
+	run "make" || abort "build step failed"
+	run "sudo make install" || abort "build step failed"
+	run "rm -rf $tempdir"
+}
+
+function step_install_mongo_c_driver_071()
+{
+	if [[ -f "/usr/local/lib/libmongoc.a" ]]; then
+		show "a mongo-c-driver is already installed..."
+		ask "Force re-install?"
+		[[ "$REPLY" == "y" ]] || return
+	fi
+
+	local tempdir="$(mktemp -d)" || abort "can't create temp directory"
+	type scons >/dev/null 2>&1 || abort "scons must be installed first (brew install scons)"
+	run "cd $tempdir" || abort "can't enter temp directory"
+	run "git clone https://github.com/mongodb/mongo-c-driver.git" || abort "can't acquire source"
+	run "cd mongo-c-driver" || abort "can't enter source directory"
+	run "git checkout v0.7.1" || abort "build step failed"
+	run "scons" || abort "build step failed"
+	run "sudo make install" || abort "build step failed"
+	run "rm -rf $tempdir"
+}
+
+function step_install_xls_160()
+{
+	local tempdir="$(mktemp -d)" || abort "can't create temp directory"
+	run "cd $tempdir" || abort "can't enter temp directory"
+	run "svn checkout svn://svn.code.sf.net/p/xlslib/code/trunk xlslib-code" || abort "can't acquire source"
+	run "cd xlslib-code/xlslib" || abort "can't enter source directory"
+	run "svn up -r78" || abort "build step failed" # version 1.6.0 
+	run "ksh ./configure" || abort "build step failed"
+	run "make" || abort "build step failed"
+	run "sudo make install" || abort "build step failed"
+	run "rm -rf $tempdir"
+}
+
+function step_install_petsc_33()
+{
+	local tempdir="$(mktemp -d)" || abort "can't create temp directory"
+	run "cd $tempdir" || abort "can't enter temp directory"
+	run "curl -O http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.3-p7.tar.gz" || abort "can't acquire source"
+	run "tar xvzf petsc-lite-3.3-p7.tar.gz"
+	run "cd petsc-3.3-p7" || abort "can't enter source directory"
+	run "CC='' CXX='' ./configure --with-cc=clang --with-fc=0 --download-f2cblaslapack --download-mpich --prefix=/usr/local" || abort "build step failed"
+	run "make all" || abort "build step failed"
+	run "sudo make install" || abort "build step failed"
+	run "rm -rf $tempdir"
+}
+
+function step_install_slepc_33()
+{
+	local tempdir="$(mktemp -d)" || abort "can't create temp directory"
+	run "cd $tempdir" || abort "can't enter temp directory"
+	run "svn checkout http://www.grycap.upv.es/slepc/svn/tags/slepc-3_3-3 slepc" || abort "can't acquire source"
+	run "cd slepc" || abort "can't enter source directory"
+	run "./configure --prefix=/usr/local" || abort "build step failed"
+	run "make SLEPC_DIR=$PWD PETSC_DIR=/usr/local PETSC_ARCH=arch-installed-petsc" || abort "build step failed"
+	run "sudo make SLEPC_DIR=$PWD PETSC_DIR=/usr/local PETSC_ARCH=arch-installed-petsc install" || abort "build step failed"
+	run "rm -rf $tempdir"
+}
+
+function step_install_mimetic()
+{
+	local tempdir="$(mktemp -d)" || abort "can't create temp directory"
+	run "cd $tempdir" || abort "can't enter temp directory"
+	run "git clone https://github.com/hoozecn/mimetic.git" || abort "can't acquire source"
+	run "cd mimetic" || abort "can't enter source directory"
+	run "git checkout 4661b086b8e8b8ccec47c4c5035f5f077122b598" || abort "build step failed" # version 0.9.7
+
+	# there are some bugs in version 0.7.9 that need to be patched
+	show "Generating tokenizer.h.patch..."
+	cat >"tokenizer.h.patch" <<EOF
+--- a/mimetic/tokenizer.h
++++ b/mimetic/tokenizer.h
+@@ -140,14 +140,14 @@ struct ContTokenizer: public ItTokenizer<typename Container::const_iterator,type
+     // so "cont" MUST be in scope for all following calls
+     // to next(...). 
+     ContTokenizer(const Container* cont)
+-    : ItTokenizer<const_iterator, value_type>(cont.begin(), cont.end())
++    : ItTokenizer<const_iterator, value_type>(cont->begin(), cont->end())
+     {
+     }
+     template<typename DelimCont>
+     ContTokenizer(const Container* cont, const DelimCont& delims)
+     : ItTokenizer<const_iterator,value_type>(cont->begin(), cont->end())
+     {
+-        setDelimList(delims);
++        this->setDelimList(delims);
+     }
+     void setSource(const Container* cont)
+     {
+EOF
+	run "cat tokenizer.h.patch"
+	run "patch -p1 < tokenizer.h.patch" || abort "failed to apply patch"
+
+	run "./configure" || abort "build step failed"
+	run "make" || abort "build step failed"
+	run "sudo make install" || abort "build step failed"
+	run "rm -rf $tempdir"
+}
+
+################################################################################
+# Main
+################################################################################
+if [[ -n "$1" && "$1" == "-h" ]]; then
+	echo "usage: $(basename $0) [-l | step-name]"
+	echo "options:"
+	echo "    -l: list available step names"
+	echo "    step-name: if given only execute that step, otherwise execute all steps"
+	exit 0
+fi
+
+if [[ -n "$1" || "$1" != "-l" ]]; then
+	echo "$(tput bold)Prerequisite: Install \"Command Line Tools\" from $(tput smul)http://developer.apple.com/downloads$(tput rmul) or X Code preferences$(tput sgr0)"
+	ask "Are the \"Command Line Tools\" installed?"
+	[[ "$REPLY" == "y" ]] || exit 1
+fi
+
+# key; question; function
+steps=("xcode;sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer?;step_setup_xcode
+brew;Upgrade/Install Homebrew, formulas: $HOMEBREW_FORMULAS bison?;step_install_homebrew
+bash;Install latest version of bash from Homebrew?;step_install_bash
+pip;Upgrade/Install Pip, packages: $PIP_PACKAGES readline?;step_install_pip
+gem;Upgrade/Install gem packages: $GEM_PACKAGES?;step_install_gem
+libpqxx;Install libpqxx 3.0 from source?;step_install_libpqxx_3
+mongo;Install mongo-c-driver v0.7.1 from source?;step_install_mongo_c_driver_071
+xlslib;Install xlslib v1.6.0 from source?;step_install_xls_160
+petsc;Install petsc v3.3 from source?;step_install_petsc_33
+slepc;Install slepc v3.3 from source?;step_install_slepc_33
+mimetic;Install mimetic 0.9.7 from source?;step_install_mimetic")
+
+IFS=$'\n'
+for step in $steps; do
+	key="$(echo $step | cut -d';' -f1)"
+	question="$(echo $step | cut -d';' -f2)"
+	function="$(echo $step | cut -d';' -f3)"
+
+	if [[ -n "$1" && "$1" == "-l" ]]; then
+		echo "$(tput bold)$key$(tput sgr0)	=> $question"
+		continue
+	fi
+
+	if [[ -n "$1" && "$1" != "$key" ]]; then
+			continue
+	fi
+	
+	ask "[$key] $question"
+	[[ "$REPLY" == "y" ]] && eval "$function"
+done
+
+exit 0

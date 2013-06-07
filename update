@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# updates the bin and env directories with whatever new changes are found in the current environment
+
+set -e
+
+if [[ -n "$(git status -s)" ]]; then
+	echo "cowardly refusing to overwrite existing changes" >&2
+	exit 1
+fi
+
+pushd bin
+./update_bin
+popd
+
+pushd env
+./update_env
+popd

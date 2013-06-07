@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# find all -- search source files
+
+grin -d 'CVS,RCS,.svn,.hg,.bzr,build,dist,CMakeFiles' -e '.pyc,.pyo,.so,.o,.a,.tgz,.tar.gz,.rar,.zip,~,#,.bak,.png,.jpg,.gif,.bmp,.tif,.tiff,.pyd,.dll,.exe,.obj,.lib,cmake,Makefile' "$@"

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Updates the SublimeClang preferences file with the current preferences.
+
+function die()
+{
+	echo "error: $1" >&2
+	exit 1
+}
+
+pushd ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/SublimeClang || die "can't change to SublimeClang repository"
+git pull || die "can't pull latest updates"
+git submodule foreach --recursive git pull origin master || die "can't pull latest modules"

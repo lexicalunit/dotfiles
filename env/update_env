@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# updates env with whatever new changes are found in the current environment
+
+function backup()
+{
+	rsync -avl "$1/$2" "$2"
+}
+
+rsync -avl ~/.bash_profile ./dot_bash_profile
+rsync -avl ~/.bashrc ./dot_bashrc
+for I in ~/.bashrc*; do
+	rsync -avl $I ./$(echo $(basename $I) | sed s/^./dot_/)
+done
+rsync -avl ~/.dircolors ./dot_dircolors
+rsync -avl ~/.inputrc ./dot_inputrc
+rsync -avl ~/.vimrc ./dot_vimrc
+rsync -avl ~/.hgignore ./dot_hgignore
+rsync -avl ~/.hgrc ./dot_hgrc
+
+backup ~/"Library/Application Support/Sublime Text 2/Packages/User" "Preferences.sublime-settings"
+backup ~/"Library/Application Support/Sublime Text 2/Packages/User" "SublimeClang.sublime-settings"

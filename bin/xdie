@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Kills processes based on their window title.
+
+if [ "#1" = "-p" ]; then
+	PRETEND=1
+	shift
+fi
+
+if [ ! "$1" ]; then
+	echo "usage: $0 [-p] REGEX
+	echo "kills all windows matching REGEX. -p enables pretend mode."
+	exit 1
+fi
+
+LIST="`xlsclients -l | egrep "^Window 0x([0-9]|[a-z])*:$|^\W*Name:\W*.*$" | sed 'N;s/:\n/ /g' | grep "$1"`"
+if [ "$LIST" = "" ]; then
+	echo "no windows found"
+	exit 0
+fi
+
+echo "`echo "$LIST" | wc -l` windows found:"
+echo "$LIST"
+
+KCMD="kill -9 `echo "$LIST" | sed "s/^ *//g" | cut -d" " -f1 | tr '\n' ' '`"
+
+if [ -z "$PRETEND" ]; then
+	echo -n "Killing windows... "
+	echo "LIST" | awk '{print $2}' | xargs -I{} xkill -id {}
+else
+	echo -n "Pretending to kill windows... "
+	echo "LIST" | awk '{print $2}' | xargs -I{} echo "xkill -id {}"
+fi
+echo "done"
+exit 0

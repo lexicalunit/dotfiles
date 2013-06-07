@@ -1,0 +1,16 @@
+#!/usr/bin/python
+
+# converts yaml input to json output
+
+import sys
+import json
+from yaml import load_all
+try:
+    from yaml import CLoader as Loader
+except ImportError:
+    from yaml import Loader
+
+for d in load_all(sys.stdin, Loader=Loader):
+    sys.stdout.write(json.dumps(d, indent=4))
+    break
+sys.stdout.write('\n')

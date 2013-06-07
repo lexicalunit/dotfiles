@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# prints the current link quality as a terminal spark graph.
+
+if [ $(ifconfig en1 | grep UP | wc -l) -eq 1 ]; then
+    # qual="`iwconfig en1 | grep Quality | cut -d'=' -f2 | cut -d' ' -f1 | cut -d'/' -f1`"
+    qual="$(( - $(airport -I | grep -i agrCtlRSSI | cut -d: -f2) ))"
+
+    if [ $qual -gt 52 ]; then # >75% link qual
+        spark=$(spark 1 2 3 4)
+    elif [ $qual -gt 35 ]; then # >50% link qual
+        spark=$(spark 1 2 3 0)
+    elif [ $qual -gt 17 ]; then # 25% link qual
+        spark=$(spark 1 2 0 0)
+    elif [ $qual -gt 7 ]; then # 25% link qual
+        spark=$(spark 1 0 0 0)
+    else # < 25%
+        spark=$(spark 0 0 0 0)
+    fi
+
+    echo $spark $qual
+fi

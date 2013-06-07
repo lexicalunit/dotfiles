@@ -1,0 +1,8 @@
+#!/bin/bash -ue
+
+# Requests a web API resource and pretty prints resulting JSON.
+
+cmd="curl -sH 'Accept: application/json' '$*'"
+echo "time $cmd | python -mjson.tool"
+time eval "$cmd" | python -mjson.tool
+echo $cmd

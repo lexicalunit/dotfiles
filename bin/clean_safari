@@ -1,0 +1,81 @@
+#!/bin/bash
+
+# Cleans Safari caches and saved data on OS X.
+
+function error()
+{
+	echo $'\e[1;34m==> \e[0m\e[7;30m'$1$'\e[0m'
+}
+
+function good()
+{
+	echo $'\e[1;34m==> \e[0m\e[32m'$1$'\e[0m'
+}
+
+function info()
+{
+	echo $'\e[1;34m==> \e[0m\e[31m'$1$'\e[0m'
+}
+
+function run()
+{
+	info "$1"
+	eval "$1"
+	return $?
+}
+
+function ask()
+{
+	echo -n $'\n\e[1;35m'
+	read -p "$1 (y/n) [y] ... "
+	echo -n $'\e[0;0m'
+}
+
+function step()
+{
+	# ask "$@"
+	[[ "$REPLY" != "n" ]] && run "$@"
+	if [ $? -eq 0 ]; then
+		good "ok"
+		return 0
+	else
+		error "command unsuccessful"
+		return 1
+	fi
+}
+
+step "killall Safari"
+step "killall cookied"
+
+step "cd ~/Library/Caches" || exit 1
+step "rm -rf Adobe"
+step "rm -rf com.adobe.flashplayer.installmanager"
+step "rm -rf com.apple.Safari"
+step "rm -rf com.apple.safaridavclient"
+step "rm -rf Metadata/Safari"
+step "rm -rf QuickTime"
+
+step "cd ~/Library" || exit 1
+step "rm -rf Cookies"
+step "rm -rf Containers/com.mint.quickview/Data/Library/Cookies"
+step "rm -rf Databases"
+step "rm -rf Preferences/Macromedia/Flash\ Player"
+
+step "cd ~/Library/Saved\ Application\ State" || exit 1
+step "rm -rf com.adobe.flashplayer.installmanager.savedState"
+step "rm -rf com.apple.Safari.savedState"
+
+step "cd ~/Library/Safari" || exit 1
+step "rm -rf Databases"
+step "rm -rf Downloads.plist"
+step "rm -rf Form\ Values"
+step "rm -rf History*"
+step "rm -rf LastSession.plist"
+step "rm -rf LocalStorage"
+step "rm -rf TopSites.plist"
+step "rm -rf WebpageIcons.db"
+
+step "cd /var/folders" || exit 1
+step "find . -name com.apple.Safari 2>/dev/null | xargs rm -rf"
+
+step "defaults delete com.apple.safari RecentSearchStrings"

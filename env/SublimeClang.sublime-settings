@@ -1,0 +1,36 @@
+{
+    "enabled": false,
+
+    "hide_output_when_empty": true,
+
+    "additional_language_options":
+    {
+        "c++" : ["-std=c++11"],
+        "c": [],
+        "objc": [],
+        "objc++": []
+    },
+
+    "options":
+    [
+    	// General
+        "-Wall",
+
+        // Mac OS X
+        "-I/usr/lib/gcc/i686-apple-darwin10/4.2.1/include/",
+        "-I/usr/lib/gcc/i686-apple-darwin11/4.2.1/include/",
+
+        // iPhone
+        // "-isysroot",
+        // "/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.3.sdk",
+        // "-D__IPHONE_OS_VERSION_MIN_REQUIRED=40300",
+
+        // Cygwin
+        "-IC:/MinGW/include",
+
+        // Boost
+        "-I/opt/local/include",
+    ],
+
+    "debug_options": true
+}

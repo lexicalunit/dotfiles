@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Installs everything to ~/bin.
+
+mkdir -p ~/bin
+
+for I in *; do
+	if [[ "$I" != "install" && "$I" != "update_bin" ]]; then
+		rsync -avl $I ~/bin/$I
+	fi
+done

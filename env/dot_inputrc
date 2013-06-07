@@ -1,0 +1,5 @@
+set bell-style none
+"\e[3~": delete-char
+set show-all-if-ambiguous on
+"\e[B": history-search-forward
+"\e[A": history-search-backward

@@ -1,0 +1,45 @@
+# .bashrc_pdfman
+
+# MAN_PDF_DIR=`mktemp -d -t man_pdf.XXXX`
+MAN_PDF_DIR=/tmp
+
+# Would be nice to be able to change the font and whatnot.
+man_pdf_helper() {
+    # Attempt to get the name and section number of the man page we'll display:
+    local THEFILE="$(man -w "$@")"
+    # There's no way to determine the section number (as displayed on the man
+    # page) reliably without checking the .TH macro in the man page, because
+    # different packages have different conventions as to whether section
+    # suffixes in the filename are reflected in the section number in the .TH
+    # macro. (Minimal pair of packages: Perl modules vs. OpenSSL.) This way
+    # includes any suffixes in the filename.
+    local CMDSECT=`basename "$THEFILE" | perl -e '<> =~ /^(.+)\.([\dn]\w*)(|\.\w+)$/; print "$1($2)"'`
+
+    # Make a PDF called name(sectionnumber).pdf:
+    local OUTPUT_FILE="$MAN_PDF_DIR/$CMDSECT.pdf"
+    if [ ! -r "$OUTPUT_FILE" ]; then
+        man -t "$@" | ps2pdf - "$OUTPUT_FILE"
+    fi
+    echo $OUTPUT_FILE
+}
+
+if [ -z $MAN_PDF_VIEWER ]; then
+    for v in xdg-open open; do
+        if which $v >/dev/null; then
+            MAN_PDF_VIEWER="$v"
+            break
+        fi
+    done
+fi
+if [ $MAN_PDF_VIEWER ]; then
+    eval 'pman() {
+        ' $MAN_PDF_VIEWER '"`man_pdf_helper "$@"`"
+    }'
+fi
+unset MAN_PDF_VIEWER
+
+if which qlmanage >/dev/null; then
+    eval 'qman() {
+       qlmanage -p "`man_pdf_helper "$@"`" > /dev/null 2>&1 &
+    }'
+fi

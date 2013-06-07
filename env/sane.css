@@ -1,0 +1,24 @@
+html marquee
+{
+	white-space: inherit !important;
+	overflow: visible !important;
+	overflow-x: inherit !important;
+	overflow-y: inherit !important;
+	-moz-binding: none !important;
+	overflow: auto !important;
+	display: block !important;
+}
+
+html blink
+{
+	-webkit-animation: inherit !important;
+	-webkit-font-smoothing: inherit !important;
+	text-decoration: inherit !important;
+}
+
+/* Fix youtube background being an retina burning bright white */
+body #page-container #content, #page-container #comments-view, #page-container #watch7-content, #feed, #feed-container
+{
+	background-color: #493D26 !important;
+	color: #F2EBCE !important;
+}

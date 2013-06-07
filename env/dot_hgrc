@@ -1,0 +1,28 @@
+[ui]
+#username = Your Name <Your.Name@address.com>
+ignore = ~/.hgignore
+
+merge = diffmerge
+
+[extensions]
+fetch =
+rebase =
+extdiff = 
+convert = 
+hgext.convert =
+
+[extdiff]
+cmd.interdiff = hg-interdiff
+cmd.opendiff = opendiff-w
+cmd.diffmerge = /usr/bin/diffmerge
+cmd.ksdiff = /usr/local/bin/ksdiff-wrapper
+opts.ksdiff = hg
+
+[merge-tools]
+filemerge.executable = opendiff-w
+filemerge.args = $local $other -ancestor $base -merge $output
+diffmerge.executable = /usr/bin/diffmerge
+diffmerge.args = -merge -result=$output -t1="Local Version" -t2=$output -t3="Other Version" -caption=$output $local $base $other
+diffmerge.binary = False
+diffmerge.symlinks = False
+diffmerge.gui = True

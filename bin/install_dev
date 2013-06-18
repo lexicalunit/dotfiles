@@ -5,19 +5,13 @@
 ################################################################################
 # Settings
 ################################################################################
-HOMEBREW_FORMULAS="git git-flow cmake wget mercurial highlight spark ncftp cppunit tclap yaml-cpp pcre plotutils boost freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed freetds gfortran ipopt fltk mongodb scons"
+HOMEBREW_FORMULAS="git git-flow autoconf libtool cmake wget mercurial highlight spark ncftp cppunit tclap yaml-cpp pcre plotutils boost freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed freetds gfortran ipopt fltk mongodb scons"
 PIP_PACKAGES="ipython nose pyyaml flask pyodbc pymongo fabric Pygments iniparse psycopg2 sqlbuilder SQLAlchemy pandas openpyxl BeautifulSoup suds pyzmq matplotlib pycurl"
 GEM_PACKAGES="cap_gun capistrano railsless-deploy jekyll lolcat"
 
 ################################################################################
 # Utilities
 ################################################################################
-function abort()
-{
-	echo "error: $1" >&2
-	exit 1
-}
-
 function show()
 {
 	echo $'\e[1;34m==>\e[0m\e[31m' $1 $'\e[0m'
@@ -28,6 +22,15 @@ function run()
 	show "$1"
 	eval "$1"
 	return $?
+}
+
+function abort()
+{
+	if [[ -n "$2" ]]; then
+		run "$2"
+	fi
+	echo $'\e[1;31merror:' $1 $'\e[0m' >&2
+	exit 1
 }
 
 function ask()
@@ -98,6 +101,10 @@ function step_install_homebrew()
 	run "chmod +w /usr/local/Cellar/pcre/*/lib/*.dylib 2>/dev/null"
 	run "chmod +w /usr/local/Cellar/fltk/*/lib/*.dylib 2>/dev/null" # the default fltk recipe doesn't install dynamic libraries 
 
+	# install glibtool and glibtoolize as the defaults
+	run "ln -s /usr/local/bin/glibtool /usr/local/bin/libtool"
+	run "ln -s /usr/local/bin/glibtoolize /usr/local/bin/libtoolize"
+
 	# The gfortran formula doesn't symlink libraries into /usr/local/lib, do it manually.
 	local LIBGFORTRAN="$(brew ls -v gfortran | grep libgfortran.a | egrep -m 1 -v "x86_64|i386")"
 	if [[ $? == 0 ]]; then
@@ -132,11 +139,14 @@ function step_install_bash()
 function step_install_pip
 {
 	if [[ -z "$(which pip)" ]]; then
-		local tempdir="$(mktemp -d)" || abort "can't create temp directory"
-		run "cd $tempdir" || abort "can't enter temp directory"
-		run "curl -s http://python-distribute.org/distribute_setup.py | sudo python" || abort "install step failed"
-		run "curl -s https://raw.github.com/pypa/pip/master/contrib/get-pip.py | sudo python" || abort "install step failed"
-		run "rm -rf $tempdir"
+		local tempdir="$(mktemp -d -t tmp.XXXXXXXXXX)" || abort "can't create temp directory"
+		local cleanup="rm -rf $tempdir"
+		run "cd $tempdir" || abort "can't enter temp directory" "$cleanup"
+		run "curl -sO http://python-distribute.org/distribute_setup.py" || abort "install step failed" "$cleanup"
+		run "sudo python distribute_setup.py" || abort "install step failed" "$cleanup"
+		run "curl -sO https://raw.github.com/pypa/pip/master/contrib/get-pip.py" || abort "install step failed" "$cleanup"
+		run "asdasdsadassudo python get-pip.py" || abort "install step failed" "$cleanup"
+		run "$cleanup"
 	else
 		run "sudo easy_install -U pip"
 	fi
@@ -185,7 +195,7 @@ if [[ -n "$1" && "$1" == "-h" ]]; then
 	exit 0
 fi
 
-if [[ -n "$1" || "$1" != "-l" ]]; then
+if [[ -z "$1" && "$1" != "-l" ]]; then
 	echo "$(tput bold)Prerequisite: Install \"Command Line Tools\" from $(tput smul)http://developer.apple.com/downloads$(tput rmul) or X Code preferences$(tput sgr0)"
 	ask "Are the \"Command Line Tools\" installed?"
 	[[ "$REPLY" == "y" ]] || exit 1

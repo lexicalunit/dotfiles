@@ -12,6 +12,15 @@ GEM_PACKAGES="cap_gun capistrano railsless-deploy jekyll lolcat"
 ################################################################################
 # Utilities
 ################################################################################
+function usage()
+{
+	echo "usage: $(basename $0) [-l | step-name]"
+	echo "options:"
+	echo "    -l: list available step names"
+	echo "    step-name: if given only execute that step, otherwise execute all steps"
+	exit 0
+}
+
 function show()
 {
 	echo $'\e[1;34m==>\e[0m\e[31m' $1 $'\e[0m'
@@ -187,12 +196,8 @@ function step_install_gem()
 ################################################################################
 # Main
 ################################################################################
-if [[ -n "$1" && "$1" == "-h" ]]; then
-	echo "usage: $(basename $0) [-l | step-name]"
-	echo "options:"
-	echo "    -l: list available step names"
-	echo "    step-name: if given only execute that step, otherwise execute all steps"
-	exit 0
+if [[ -n "$1" && ("$1" == "-h" || "$1" == "--help") ]]; then
+	usage
 fi
 
 if [[ -z "$1" && "$1" != "-l" ]]; then
@@ -209,6 +214,7 @@ pip;Upgrade/Install Pip, packages: $PIP_PACKAGES readline?;step_install_pip
 gem;Upgrade/Install gem packages: $GEM_PACKAGES?;step_install_gem")
 
 IFS=$'\n'
+let steps_taken=0
 for step in $steps; do
 	key="$(echo $step | cut -d';' -f1)"
 	question="$(echo $step | cut -d';' -f2)"
@@ -223,8 +229,13 @@ for step in $steps; do
 			continue
 	fi
 	
+	let steps_taken=$(($steps_taken + 1))
 	ask "[$key] $question"
 	[[ "$REPLY" == "y" ]] && eval "$function"
 done
+
+if [[ $steps_taken == 0 ]]; then
+	abort "invalid step name(s): $@"
+fi
 
 exit 0

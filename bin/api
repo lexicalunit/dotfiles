@@ -1,15 +1,68 @@
-#!/bin/bash -u
+#!/bin/bash
 
 # Requests a web API resource and pretty prints resulting JSON.
 
-json_output=$(mktemp -t tmp.XXXXXXXXXX)
-trap "rm -f $json_output" EXIT
-cmd="curl -s '$*'"
-echo "$cmd"
-time eval "$cmd" >$json_output 2>&1
-echo
-cat $json_output | python -mjson.tool 2>/dev/null
-if [[ $? != 0 ]]; then
-	cat $json_output >&2
+query="$*"
+
+curl_cmd="curl -s"
+python_cmd="python -mjson.tool"
+pygmentize_cmd="pygmentize -l json -f terminal256"
+
+function abort()
+{
+	if [[ -n "$1" ]]; then
+		echo $'\n'"$(tput bold)error: $curl_cmd$(tput sgr0)"
+		cat $1 >&2
+	fi
+
+	if [[ -n "$2" ]]; then
+		echo $'\n'"$(tput bold)error: $python_cmd$(tput sgr0)"
+		cat $2 >&2
+	fi
+
+	if [[ -n "$3" ]]; then
+		echo $'\n'"$(tput bold)error: $pygmentize_cmd$(tput sgr0)"
+		cat $3 >&2
+	fi
+
 	exit 1
+}
+
+let token_count=0
+IFS='?&' read -ra arr <<< "$query"
+for token in "${arr[@]}"; do
+	let token_count=$(($token_count + 1))
+	if [[ $token_count == 1 ]]; then
+		curl_cmd="$curl_cmd '$token'" # url
+		continue
+	fi
+	curl_cmd="$curl_cmd --data-urlencode '$token'" # params
+done
+echo $'\n'"$curl_cmd"
+
+curl_output=$(mktemp -t tmp.XXXXXXXXXX.curl.log)
+trap "rm -f $curl_output" EXIT
+time eval "$curl_cmd" >$curl_output 2>&1
+if [[ $? != 0 ]]; then
+	abort "$curl_output"
+fi
+
+python_output=$(mktemp -t tmp.XXXXXXXXXX.python.log)
+trap "rm -f $python_output" EXIT
+cat $curl_output | eval "$python_cmd" >$python_output 2>&1
+if [[ $? != 0 ]]; then
+	abort "$curl_output" "$python_output"
+fi
+
+if [[ -t 1 ]] ; then
+	pygmentize_output=$(mktemp -t tmp.XXXXXXXXXX.pygmentize.log)
+	trap "rm -f $pygmentize_output" EXIT
+	cat $python_output | eval "$pygmentize_cmd" >$pygmentize_output 2>&1
+	if [[ $? != 0 ]]; then
+		abort "$curl_output" "$python_output" "$pygmentize_output"
+	fi
+	echo
+	cat $pygmentize_output
+else
+	cat $python_output
 fi

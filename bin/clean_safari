@@ -75,7 +75,8 @@ step "rm -rf LocalStorage"
 step "rm -rf TopSites.plist"
 step "rm -rf WebpageIcons.db"
 
-step "cd /var/folders" || exit 1
-step "find . -name com.apple.Safari 2>/dev/null | xargs rm -rf"
-
 step "defaults delete com.apple.safari RecentSearchStrings"
+step "dscacheutil -flushcache"
+
+step "cd $(getconf DARWIN_USER_CACHE_DIR)" || exit 1
+step "find . -name com.apple.Safari 2>/dev/null | xargs rm -rf"

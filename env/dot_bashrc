@@ -210,6 +210,10 @@ alias profile='valgrind --tool=callgrind --dump-instr=yes --simulate-cache=yes -
 alias memcheck='valgrind --tool=memcheck --leak-check=yes -show-reachable=yes -fno-inline --logfile=memcheck.log '
 alias hist='history '
 
+# moving back and forth between out-of-source and source
+alias ins='pushd $(pwd | sed "s@/build/@/@g") '
+alias oos='popd '
+
 # setup ssh
 export RSYNC_RSH=rsh
 alias ssh='ssh -Y -C '

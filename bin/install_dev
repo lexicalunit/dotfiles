@@ -6,7 +6,7 @@
 # Settings
 ################################################################################
 HOMEBREW_FORMULAS="git git-flow autoconf libtool cmake wget mercurial highlight spark ncftp cppunit tclap yaml-cpp pcre plotutils boost freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed freetds gfortran ipopt fltk mongodb scons"
-PIP_PACKAGES="ipython nose pyyaml flask pyodbc pymongo fabric Pygments iniparse psycopg2 sqlbuilder SQLAlchemy pandas openpyxl BeautifulSoup suds pyzmq matplotlib pycurl"
+PIP_PACKAGES="ipython nose pyyaml flask pyodbc pymongo fabric Pygments iniparse psycopg2 sqlbuilder SQLAlchemy pandas xlrd openpyxl BeautifulSoup suds pyzmq matplotlib pycurl"
 GEM_PACKAGES="cap_gun capistrano railsless-deploy jekyll lolcat"
 
 ################################################################################
@@ -154,7 +154,7 @@ function step_install_pip
 		run "curl -sO http://python-distribute.org/distribute_setup.py" || abort "install step failed" "$cleanup"
 		run "sudo python distribute_setup.py" || abort "install step failed" "$cleanup"
 		run "curl -sO https://raw.github.com/pypa/pip/master/contrib/get-pip.py" || abort "install step failed" "$cleanup"
-		run "asdasdsadassudo python get-pip.py" || abort "install step failed" "$cleanup"
+		run "sudo python get-pip.py" || abort "install step failed" "$cleanup"
 		run "$cleanup"
 	else
 		run "sudo easy_install -U pip"
@@ -228,7 +228,7 @@ for step in $steps; do
 	if [[ -n "$1" && "$1" != "$key" ]]; then
 			continue
 	fi
-	
+
 	let steps_taken=$(($steps_taken + 1))
 	ask "[$key] $question"
 	[[ "$REPLY" == "y" ]] && eval "$function"

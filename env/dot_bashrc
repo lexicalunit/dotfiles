@@ -5,7 +5,9 @@ if [[ $- == *i* ]]; then
 	INTERACTIVE=true
 fi
 
+################################################################################
 # setup paths
+################################################################################
 PATH=""
 [[ -d "$HOME/bin" ]] && PATH="$HOME/bin"
 [[ -d /usr/local/bin ]] && PATH="$PATH:/usr/local/bin"
@@ -41,21 +43,26 @@ export HOST="$(uname -n)"
 
 if $INTERACTIVE; then
 
+################################################################################
 # interactive settings
-echo "$(date +%H:%M:%S.%N) - interactive settings"
+################################################################################
+# print imestamp and given message
+function _bashrc_log
+{
+	echo "$(date +%H:%M:%S.%N) - $@"
+}
+
+_bashrc_log "interactive settings"
+
 stty erase '^?' eol ^@ start ^q stop ^s intr ^c
 shopt -s checkwinsize
 set -o emacs
 set filec
 
-# dummy function
-function _set_color_and_title
-{
-	echo -n ""
-}
-
+################################################################################
 # history setup
-echo "$(date +%H:%M:%S.%N) - history setup"
+################################################################################
+_bashrc_log "history setup"
 export HISTFILE="$HOME/.bash_history.$(uname -s)"
 export HISTCONTROL=ignoredups:erasedups
 export HISTSIZE=100000
@@ -64,6 +71,7 @@ shopt -s histappend
 shopt -s histreedit
 shopt -s histverify
 
+# syncs bash history from all shells
 function _bash_history_sync
 {
 	builtin history -a
@@ -72,6 +80,7 @@ function _bash_history_sync
 	builtin history -r
 }
 
+# syncs history then forwards to builtin
 function history
 {
 	_bash_history_sync
@@ -84,6 +93,32 @@ function _bash_history_append
 	builtin history -a
 }
 
+################################################################################
+# setup bash completions
+################################################################################
+_bashrc_log "setup bash completions"
+function _source_completions
+{
+	if [[ -d "$1" ]]; then
+		for I in "$1"/*; do
+			source "$I" 2>/dev/null
+		done
+	elif [[ -f "$1" ]]; then
+		source "$1" 2>/dev/null
+	fi
+}
+_source_completions /usr/local/etc/bash_completion.d 2>/dev/null
+_source_completions ~/.bash_completion.d 2>/dev/null
+_source_completions /etc/bash_completion 2>/dev/null
+_source_completions ~/.bash-completion/bash_completion 2>/dev/null # git.debian.org/git/bash-completion
+complete -cf sudo
+
+################################################################################
+# setup command prompt
+################################################################################
+_bashrc_log "setup command prompt"
+
+# prints OS type
 function ostype
 {
 	if [ -n "$OS" ]; then
@@ -113,25 +148,7 @@ function ostype
 	return 0
 }
 
-# setup bash completions
-echo "$(date +%H:%M:%S.%N) - setup bash completions"
-function _source_completions
-{
-	if [[ -d "$1" ]]; then
-		for I in "$1"/*; do
-			source "$I" 2>/dev/null
-		done
-	elif [[ -f "$1" ]]; then
-		source "$1" 2>/dev/null
-	fi
-}
-_source_completions /usr/local/etc/bash_completion.d 2>/dev/null
-_source_completions ~/.bash_completion.d 2>/dev/null
-_source_completions /etc/bash_completion 2>/dev/null
-_source_completions ~/.bash-completion/bash_completion 2>/dev/null # git.debian.org/git/bash-completion
-complete -cf sudo
-
-# setup PROMPT_COMMAND
+# prints repository information
 function _repo
 {
 	branch=$(type __git_ps1 &>/dev/null && __git_ps1 "%s")
@@ -159,6 +176,7 @@ function _repo
 	fi
 }
 
+# prints terminal note if one is set
 function _prompt_usernote
 {
 	if [[ -n "$PROMPT_USER_NOTE" ]]; then
@@ -166,6 +184,7 @@ function _prompt_usernote
 	fi
 }
 
+# prints command prompt
 function _set_color_and_title
 {
 local   BLUE="\[\e[0;34m\]"
@@ -201,7 +220,10 @@ function note
 	export PROMPT_USER_NOTE="$@"
 }
 
-# setup aliases
+################################################################################
+# setup aliases and functions
+################################################################################
+_bashrc_log "setup aliases and functions"
 alias wchmod="stat -c '%A %a %n' "
 alias st='stree '
 alias bc='bc -l '
@@ -209,14 +231,14 @@ alias ftp='ncftp '
 alias profile='valgrind --tool=callgrind --dump-instr=yes --simulate-cache=yes --collect-jumps=yes '
 alias memcheck='valgrind --tool=memcheck --leak-check=yes -show-reachable=yes -fno-inline --logfile=memcheck.log '
 alias hist='history '
+alias emake="rdmd $(which emake.d) "
 
 # moving back and forth between out-of-source and source
 alias ins='pushd $(pwd | sed "s@/build/@/@g") '
 alias oos='popd '
 
-# setup ssh
-export RSYNC_RSH=rsh
-alias ssh='ssh -Y -C '
+export RSYNC_RSH=rsh # use ssh over rsync
+alias ssh='ssh -Y -C ' # use compression over ssh connections
 
 function ip
 {
@@ -242,11 +264,6 @@ function eman
 	man "$@" | col -bx | subl --stay &
 }
 
-function pdfman
-{
-	man -t $@ | pstopdf -i -o /tmp/$1.pdf && open /tmp/$1.pdf
-}
-
 function fawk
 {
 	awk "{print \$$1}"
@@ -259,8 +276,15 @@ function ew
 	fi
 }
 
-# setup ls
-echo "$(date +%H:%M:%S.%N) - setup ls"
+# use gnu-sed if available
+if type gsed >/dev/null 2>&1; then
+	alias sed='gsed '
+fi
+
+################################################################################
+# setup bash colors and editors
+################################################################################
+_bashrc_log "setup bash colors and editors"
 if type dircolors >/dev/null 2>&1; then
 	eval `dircolors -b ~/.dircolors`
 	alias ls='ls -hF --color=auto'
@@ -268,11 +292,6 @@ fi
 export CLICOLOR=1
 alias l='ls '
 alias ll='ls -l '
-
-# use gnu-sed if available
-if type gsed >/dev/null 2>&1; then
-	alias sed='gsed '
-fi
 
 # setup grep
 export GREP_OPTIONS='--color=auto' GREP_COLOR='7;35'
@@ -292,12 +311,14 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
+################################################################################
 # source any local configuration files
+################################################################################
 for I in `/bin/ls -1 ~/.bashrc_* 2>/dev/null` ; do
-	echo "$(date +%H:%M:%S.%N) - sourcing $I"
+	_bashrc_log "sourcing $I"
 	. "$I"
 done
 
-echo "$(date +%H:%M:%S.%N) - environment setup complete"
+_bashrc_log "environment setup complete"
 
-fi # if $INTERACTIVE; then
+fi # if $INTERACTIVE

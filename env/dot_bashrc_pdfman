@@ -43,3 +43,10 @@ if which qlmanage >/dev/null; then
        qlmanage -p "`man_pdf_helper "$@"`" > /dev/null 2>&1 &
     }'
 fi
+
+# alternative solution:
+# function pdfman
+# {
+#     man -t $@ | pstopdf -i -o /tmp/$1.pdf && open /tmp/$1.pdf
+# }
+

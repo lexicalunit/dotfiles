@@ -1,4 +1,4 @@
-#!/usr/local/bin/rdmd
+#!/usr/bin/env rdmd
 
 import std.file;
 import std.path;

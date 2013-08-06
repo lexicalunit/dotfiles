@@ -5,7 +5,7 @@
 ################################################################################
 # Settings
 ################################################################################
-HOMEBREW_FORMULAS="git git-flow autoconf libtool cmake wget mercurial highlight spark ncftp cppunit tclap yaml-cpp pcre plotutils boost freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed freetds gfortran ipopt fltk mongodb scons"
+HOMEBREW_FORMULAS="git git-flow autoconf libtiff libtool cmake wget mercurial highlight spark ncftp cppunit tclap yaml-cpp pcre plotutils boost freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed freetds gfortran ipopt fltk mongodb scons"
 PIP_PACKAGES="ipython nose pyyaml flask pyodbc pymongo fabric Pygments iniparse psycopg2 sqlbuilder SQLAlchemy pandas xlrd openpyxl BeautifulSoup suds pyzmq matplotlib pycurl"
 GEM_PACKAGES="cap_gun capistrano railsless-deploy jekyll lolcat"
 
@@ -14,10 +14,11 @@ GEM_PACKAGES="cap_gun capistrano railsless-deploy jekyll lolcat"
 ################################################################################
 function usage()
 {
-	echo "usage: $(basename $0) [-l | step-name]"
+	echo "usage: $(basename $0) [-l | all | step-name ]"
 	echo "options:"
 	echo "    -l: list available step names"
-	echo "    step-name: if given only execute that step, otherwise execute all steps"
+	echo "    all: executes all steps"
+	echo "    step-name: execute only the given step"
 	exit 0
 }
 
@@ -56,6 +57,9 @@ function install_brew_formula()
 	else
 		show "brew formula $1 already installed"
 	fi
+
+	# force link the most recent versions
+	run "brew unlink $1 && brew link --overwrite $1"
 }
 
 ################################################################################
@@ -87,20 +91,8 @@ function step_install_homebrew()
 	fi
 
 	run "brew update"
+	run "brew upgrade"
 
-	# Force install libtiff (ghostscript dependency).
-	# There was some weird problem with this so I added a workaround, it may no longer be necessary.
-	run "brew install libtiff"
-	run "brew unlink libtiff && brew link --overwrite libtiff"
-
-	# Installing bison dupe.
-	run "brew untap homebrew/dupes"
-	run "brew tap homebrew/dupes"
-	run "brew install bison"
-	run "brew upgrade bison"
-	run "brew link bison --force"
-	run "brew untap homebrew/dupes"
-	
 	for I in $HOMEBREW_FORMULAS; do
 		install_brew_formula $I
 	done
@@ -111,16 +103,14 @@ function step_install_homebrew()
 	run "chmod +w /usr/local/Cellar/fltk/*/lib/*.dylib 2>/dev/null" # the default fltk recipe doesn't install dynamic libraries 
 
 	# install glibtool and glibtoolize as the defaults
-	run "ln -s /usr/local/bin/glibtool /usr/local/bin/libtool"
-	run "ln -s /usr/local/bin/glibtoolize /usr/local/bin/libtoolize"
+	run "ln -sf /usr/local/bin/glibtool /usr/local/bin/libtool"
+	run "ln -sf /usr/local/bin/glibtoolize /usr/local/bin/libtoolize"
 
 	# The gfortran formula doesn't symlink libraries into /usr/local/lib, do it manually.
 	local LIBGFORTRAN="$(brew ls -v gfortran | grep libgfortran.a | egrep -m 1 -v "x86_64|i386")"
 	if [[ $? == 0 ]]; then
 		ln -sf "$LIBGFORTRAN" /usr/local/lib/.
 	fi
-
-	run "brew upgrade"
 }
 
 function step_install_bash()
@@ -175,8 +165,8 @@ function step_install_pip
 
 	# Fix annoying ipython settings
 	run "ipython profile create"
-	run "perl -pi -e 's/.*confirm_exit.*/c.TerminalInteractiveShell.confirm_exit = False/' $HOME/.ipython/profile_default/ipython_config.py"
-	run "perl -pi -e 's/.*display_banner.*/c.TerminalIPythonApp.display_banner = False/' $HOME/.ipython/profile_default/ipython_config.py"
+	run "perl -pie 's/.*confirm_exit.*/c.TerminalInteractiveShell.confirm_exit = False/' $HOME/.ipython/profile_default/ipython_config.py"
+	run "perl -pie 's/.*display_banner.*/c.TerminalIPythonApp.display_banner = False/' $HOME/.ipython/profile_default/ipython_config.py"
 }
 
 function step_install_gem()
@@ -193,25 +183,79 @@ function step_install_gem()
 	run "sudo gem update"
 }
 
+function step_install_ccache_319()
+{
+	local tempdir="$(mktemp -d -t tmp.XXXXXXXXXX)" || abort "can't create temp directory"
+	local cleanup="rm -rf $tempdir"
+	run "cd $tempdir" || abort "can't enter temp directory" "$cleanup"
+	if [[ ! -f /tmp/.install_dev/ccache-3.1.9.tar.gz ]] ; then
+		run "wget http://samba.org/ftp/ccache/ccache-3.1.9.tar.gz" || abort "can't acquire source" "$cleanup"
+		run "cp ccache-3.1.9.tar.gz /tmp/.install_dev/ccache-3.1.9.tar.gz"
+	else
+		run "cp /tmp/.install_dev/ccache-3.1.9.tar.gz ."
+	fi
+	run "tar xvzf ccache-3.1.9.tar.gz" || abort "build step failed" "$cleanup"
+	run "cd ccache-3.1.9" || abort "build step failed" "$cleanup"
+	run "./configure CFLAGS=-O3 && make" || abort "build step failed" "$cleanup"
+	run "sudo make install" || abort "build step failed" "$cleanup"
+	run "sudo ln -fs /usr/local/bin/ccache /usr/local/bin/gcc" || abort "unable to symlink ccache" "$cleanup"
+	run "sudo ln -fs /usr/local/bin/ccache /usr/local/bin/g++" || abort "unable to symlink ccache" "$cleanup"
+	run "sudo ln -fs /usr/local/bin/ccache /usr/local/bin/clang" || abort "unable to symlink ccache" "$cleanup"
+	run "sudo ln -fs /usr/local/bin/ccache /usr/local/bin/clang++" || abort "unable to symlink ccache" "$cleanup"
+	run "$cleanup"
+}
+
+function step_install_xquartz_274()
+{
+	local tempdir="$(mktemp -d -t tmp.XXXXXXXXXX)" || abort "can't create temp directory"
+	local cleanup="umount /Volumes/XQuartz-2.7.4; rm -rf $tempdir"
+	run "cd $tempdir" || abort "can't enter temp directory" "$cleanup"
+	if [[ ! -f /tmp/.install_dev/XQuartz-2.7.4.dmg ]] ; then
+		run "wget http://xquartz.macosforge.org/downloads/SL/XQuartz-2.7.4.dmg" || abort "can't acquire XQuartz-2.7.4.dmg" "$cleanup"
+		run "cp XQuartz-2.7.4.dmg /tmp/.install_dev/XQuartz-2.7.4.dmg"
+	else
+		run "cp /tmp/.install_dev/XQuartz-2.7.4.dmg ."
+	fi
+	run "hdiutil mount XQuartz-2.7.4.dmg" || abort "can't mount XQuartz-2.7.4.dmg on /Volumes/XQuartz-2.7.4" "$cleanup"
+	run "sudo installer -pkg /Volumes/XQuartz-2.7.4/XQuartz.pkg -target /" || abort "installer failed" "$cleanup"
+	run "$cleanup"
+}
+
 ################################################################################
 # Main
 ################################################################################
-if [[ -n "$1" && ("$1" == "-h" || "$1" == "--help") ]]; then
+OPTIND=1
+LISTING=0
+ALL=0
+while getopts "hl" opt; do
+	case "$opt" in
+		h) usage;;
+		l) LISTING=1;;
+	esac
+done
+shift $((OPTIND - 1))
+
+if [[ $LISTING == 0 && -z "$1" ]]; then
 	usage
 fi
 
-if [[ -z "$1" && "$1" != "-l" ]]; then
+[[ $1 == all ]] && ALL=1
+
+if [[ "$LISTING" != "1" ]]; then
 	echo "$(tput bold)Prerequisite: Install \"Command Line Tools\" from $(tput smul)http://developer.apple.com/downloads$(tput rmul) or X Code preferences$(tput sgr0)"
 	ask "Are the \"Command Line Tools\" installed?"
 	[[ "$REPLY" == "y" ]] || exit 1
+	mkdir -p /tmp/.install_dev # download cache
 fi
 
 # key; question; function
 steps=("xcode;sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer?;step_setup_xcode
-brew;Upgrade/Install Homebrew, formulas: $HOMEBREW_FORMULAS bison?;step_install_homebrew
-bash;Install latest version of bash from Homebrew?;step_install_bash
+brew;Upgrade/Install Homebrew, formulas: $HOMEBREW_FORMULAS?;step_install_homebrew
 pip;Upgrade/Install Pip, packages: $PIP_PACKAGES readline?;step_install_pip
-gem;Upgrade/Install gem packages: $GEM_PACKAGES?;step_install_gem")
+gem;Upgrade/Install gem packages: $GEM_PACKAGES?;step_install_gem
+XQuartz;Install XQuartz 2.7.4 package?;step_install_xquartz_274
+bash;Install latest version of bash from Homebrew?;step_install_bash
+ccache;Install ccache 3.1.9 from source?;step_install_ccache_319")
 
 IFS=$'\n'
 let steps_taken=0
@@ -220,12 +264,12 @@ for step in $steps; do
 	question="$(echo $step | cut -d';' -f2)"
 	function="$(echo $step | cut -d';' -f3)"
 
-	if [[ -n "$1" && "$1" == "-l" ]]; then
+	if [[ $LISTING == 1 ]]; then
 		echo "$(tput bold)$key$(tput sgr0)	=> $question"
 		continue
 	fi
 
-	if [[ -n "$1" && "$1" != "$key" ]]; then
+	if [[ $ALL == 0 && -n "$1" && "$1" != "$key" ]]; then
 			continue
 	fi
 
@@ -234,7 +278,7 @@ for step in $steps; do
 	[[ "$REPLY" == "y" ]] && eval "$function"
 done
 
-if [[ $steps_taken == 0 ]]; then
+if [[ $LISTING == 0 && $steps_taken == 0 ]]; then
 	abort "invalid step name(s): $@"
 fi
 

@@ -5,7 +5,7 @@
 ################################################################################
 # Settings
 ################################################################################
-HOMEBREW_FORMULAS="git git-flow autoconf libtiff libtool cmake wget mercurial highlight spark ncftp cppunit tclap yaml-cpp pcre plotutils boost freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed freetds gfortran ipopt fltk mongodb scons"
+HOMEBREW_FORMULAS="git git-flow ruby autoconf libtiff libtool cmake wget mercurial highlight spark ncftp cppunit tclap yaml-cpp pcre plotutils boost freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed freetds gfortran ipopt fltk mongodb scons"
 PIP_PACKAGES="ipython nose pyyaml flask pyodbc pymongo fabric Pygments iniparse psycopg2 sqlbuilder SQLAlchemy pandas xlrd openpyxl BeautifulSoup suds pyzmq matplotlib pycurl"
 GEM_PACKAGES="cap_gun capistrano railsless-deploy jekyll lolcat"
 
@@ -179,14 +179,12 @@ function step_install_gem()
 {
 	run "sudo update_rubygems"
 	run "sudo gem update --system"
-
+	run "sudo gem update"
 	for I in $GEM_PACKAGES; do
 		if [[ -z "$(gem list $I | grep $I)" ]]; then
 			run "sudo gem install $I"
 		fi
 	done
-
-	run "sudo gem update"
 }
 
 function step_install_ccache_319()

@@ -28,6 +28,7 @@ local_run "chmod go-w ~/"
 local_run "chmod go-rwx ~/.ssh"
 local_run "chmod go-rwx ~/.ssh/authorized_keys"
 
+echo "you will be asked for your password twice..."
 local_run "scp ~/.ssh/id_dsa.pub \"$1\":\"~\""
 
 ssh "$1" "bash -s" << EOF

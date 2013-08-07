@@ -16,7 +16,9 @@ function usage()
 {
 	echo "usage: $(basename $0) [-l | all | step-name ]"
 	echo "options:"
+	echo "    -h: show usage help"
 	echo "    -l: list available step names"
+	echo "    -f: force install, do not ask for any confirmation"
 	echo "    all: executes all steps"
 	echo "    step-name: execute only the given step"
 	exit 0
@@ -45,6 +47,10 @@ function abort()
 
 function ask()
 {
+	if [[ $FORCE = 1 ]]; then
+		REPLY='y'
+		return 0
+	fi
 	echo -n $'\n\e[1;35m'
 	read -p "$1 (y/n) [n] ... "
 	echo -n $'\e[0;0m'
@@ -226,11 +232,13 @@ function step_install_xquartz_274()
 ################################################################################
 OPTIND=1
 LISTING=0
+FORCE=0
 ALL=0
-while getopts "hl" opt; do
+while getopts "hlf" opt; do
 	case "$opt" in
 		h) usage;;
 		l) LISTING=1;;
+		f) FORCE=1;;
 	esac
 done
 shift $((OPTIND - 1))
@@ -241,7 +249,9 @@ fi
 
 [[ $1 == all ]] && ALL=1
 
-if [[ "$LISTING" != "1" ]]; then
+echo "$(tput bold)NOTE: This script is interactive, you will need to babysit it. Even in -f (force) mode you will still need to input your sudo password when asked for it.$(tput sgr0)"
+
+if [[ $LISTING == 0 ]]; then
 	echo "$(tput bold)Prerequisite: Install \"Command Line Tools\" from $(tput smul)http://developer.apple.com/downloads$(tput rmul) or X Code preferences$(tput sgr0)"
 	ask "Are the \"Command Line Tools\" installed?"
 	[[ "$REPLY" == "y" ]] || exit 1

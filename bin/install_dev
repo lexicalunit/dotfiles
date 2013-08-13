@@ -5,8 +5,8 @@
 ################################################################################
 # Settings
 ################################################################################
-HOMEBREW_FORMULAS="git git-flow ruby autoconf libtiff libtool cmake wget mercurial highlight spark ncftp cppunit tclap yaml-cpp pcre plotutils boost freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed freetds gfortran ipopt fltk mongodb scons"
-PIP_PACKAGES="ipython nose pyyaml flask pyodbc pymongo fabric Pygments iniparse psycopg2 sqlbuilder SQLAlchemy pandas xlrd openpyxl BeautifulSoup suds pyzmq matplotlib pycurl"
+HOMEBREW_FORMULAS="git git-flow ruby autoconf libtiff libtool cmake wget mercurial freetds spark ncftp cppunit tclap pcre plotutils freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed freetds gfortran ipopt fltk mongodb scons boost dmd yaml-cpp"
+PIP_PACKAGES="ipython grin nose bson pyyaml flask pyodbc pymongo fabric Pygments iniparse psycopg2 SQLAlchemy pandas xlrd openpyxl BeautifulSoup suds pyzmq matplotlib pycurl"
 GEM_PACKAGES="cap_gun capistrano railsless-deploy jekyll lolcat"
 
 ################################################################################
@@ -18,6 +18,7 @@ function usage()
 	echo "options:"
 	echo "    -h: show usage help"
 	echo "    -l: list available step names"
+	echo "    -d: dry-run"
 	echo "    -f: force install, do not ask for any confirmation"
 	echo "    all: executes all steps"
 	echo "    step-name: execute only the given step"
@@ -32,8 +33,12 @@ function show()
 function run()
 {
 	show "$1"
-	eval "$1"
-	return $?
+	if [[ $DRYRUN == 0 ]]; then
+		eval "$1"
+		return $?
+	else
+		return 0
+	fi
 }
 
 function abort()
@@ -65,7 +70,7 @@ function install_brew_formula()
 	fi
 
 	# force link the most recent versions
-	run "brew unlink $1 && brew link --overwrite $1"
+	run "brew unlink $1 && brew link --force --overwrite $1"
 }
 
 ################################################################################
@@ -160,7 +165,7 @@ function step_install_pip
 	fi
 
 	for I in $PIP_PACKAGES; do
-		run "sudo pip install -vU $I"
+		run "sudo pip install -U $I"
 	done
 
 	# Note that `pip install readline` generally DOES NOT WORK, because
@@ -177,12 +182,13 @@ function step_install_pip
 
 function step_install_gem()
 {
-	run "sudo update_rubygems"
-	run "sudo gem update --system"
-	run "sudo gem update"
+	run "yes | sudo gem install rubygems-update"
+	run "yes | sudo update_rubygems"
+	run "yes | sudo gem update -q --system"
+	run "yes | sudo gem update -q"
 	for I in $GEM_PACKAGES; do
 		if [[ -z "$(gem list $I | grep $I)" ]]; then
-			run "sudo gem install $I"
+			run "yes | sudo gem install -q $I"
 		fi
 	done
 }
@@ -244,11 +250,13 @@ OPTIND=1
 LISTING=0
 FORCE=0
 ALL=0
-while getopts "hlf" opt; do
+DRYRUN=0
+while getopts "hlfd" opt; do
 	case "$opt" in
 		h) usage;;
 		l) LISTING=1;;
 		f) FORCE=1;;
+		d) DRYRUN=1;;
 	esac
 done
 shift $((OPTIND - 1))
@@ -269,13 +277,13 @@ if [[ $LISTING == 0 ]]; then
 fi
 
 # key; question; function
-steps=("xcode;sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer?;step_setup_xcode
-brew;Upgrade/Install Homebrew, formulas: $HOMEBREW_FORMULAS?;step_install_homebrew
-pip;Upgrade/Install Pip, packages: $PIP_PACKAGES readline?;step_install_pip
-gem;Upgrade/Install gem packages: $GEM_PACKAGES?;step_install_gem
-XQuartz;Install XQuartz 2.7.4 package?;step_install_xquartz_274
-bash;Install latest version of bash from Homebrew?;step_install_bash
-ccache;Install ccache 3.1.9 from source?;step_install_ccache_319")
+steps=("xcode;sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer? [starfish prerequisite];step_setup_xcode
+brew;Upgrade/Install Homebrew, formulas: $HOMEBREW_FORMULAS? [starfish prerequisite];step_install_homebrew
+pip;Upgrade/Install Pip, packages: $PIP_PACKAGES readline? [starfish prerequisite];step_install_pip
+gem;Upgrade/Install gem packages: rubygems-update $GEM_PACKAGES? [starfish prerequisite];step_install_gem
+XQuartz;Install XQuartz 2.7.4 package? [starfish prerequisite];step_install_xquartz_274
+bash;Install latest version of bash from Homebrew? [optional];step_install_bash
+ccache;Install ccache 3.1.9 from source? [optional];step_install_ccache_319")
 
 IFS=$'\n'
 let steps_taken=0
@@ -289,7 +297,7 @@ for step in $steps; do
 		continue
 	fi
 
-	if [[ $ALL == 0 && -n "$1" && "$1" != "$key" ]]; then
+	if [[ $ALL == 0 && -z "$(echo $@ | egrep "\b$key\b")" ]]; then
 			continue
 	fi
 

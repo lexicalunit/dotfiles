@@ -19,9 +19,9 @@ set -e
 local_run "mkdir -p ~/.ssh"
 local_run "touch ~/.ssh/authorized_keys"
 
-if [[ ! -f ~/.ssh/id_dsa.pub ]]; then
-	local_run "ssh-keygen -t dsa"
-	local_run "cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys"
+if [[ ! -f ~/.ssh/id_rsa.pub ]]; then
+	local_run "ssh-keygen -t rsa"
+	local_run "cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys"
 fi
 
 local_run "chmod go-w ~/"
@@ -29,7 +29,7 @@ local_run "chmod go-rwx ~/.ssh"
 local_run "chmod go-rwx ~/.ssh/authorized_keys"
 
 echo "you will be asked for your password twice..."
-local_run "scp ~/.ssh/id_dsa.pub \"$1\":\"~\""
+local_run "scp ~/.ssh/id_rsa.pub \"$1\":\"~\""
 
 ssh "$1" "bash -s" << EOF
 	function remote_run()
@@ -41,9 +41,9 @@ ssh "$1" "bash -s" << EOF
 
 	remote_run "mkdir -p ~/.ssh"
 	remote_run "touch ~/.ssh/authorized_keys"
-	remote_run "cat id_dsa.pub >> ~/.ssh/authorized_keys"
+	remote_run "cat id_rsa.pub >> ~/.ssh/authorized_keys"
 	remote_run "chmod go-w ~/"
 	remote_run "chmod go-rwx ~/.ssh"
 	remote_run "chmod go-rwx ~/.ssh/authorized_keys"
-	remote_run "rm ~/id_dsa.pub"
+	remote_run "rm ~/id_rsa.pub"
 EOF

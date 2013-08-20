@@ -5,7 +5,7 @@
 ################################################################################
 # Settings
 ################################################################################
-HOMEBREW_FORMULAS="git git-flow ruby openssl autoconf libtiff libtool cmake wget mercurial freetds spark ncftp cppunit tclap pcre plotutils freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed freetds gfortran ipopt fltk mongodb scons boost dmd yaml-cpp"
+HOMEBREW_FORMULAS="git git-flow ruby openssl autoconf libtiff libtool cmake wget mercurial freetds spark ncftp cppunit tclap pcre plotutils freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed freetds gfortran ipopt mongodb scons boost dmd yaml-cpp"
 PIP_PACKAGES="ipython grin nose bson pyyaml flask pyodbc pymongo fabric Pygments iniparse psycopg2 SQLAlchemy pandas xlrd openpyxl BeautifulSoup suds pyzmq matplotlib pycurl"
 GEM_PACKAGES="cap_gun capistrano railsless-deploy jekyll lolcat"
 
@@ -111,7 +111,6 @@ function step_install_homebrew()
 	# cmake's bundling utility fails in completely reasonable cases, the following steps are necessary
 	run "chmod +w /usr/local/Cellar/freetds/*/lib/*.dylib 2>/dev/null"
 	run "chmod +w /usr/local/Cellar/pcre/*/lib/*.dylib 2>/dev/null"
-	run "chmod +w /usr/local/Cellar/fltk/*/lib/*.dylib 2>/dev/null" # the default fltk recipe doesn't install dynamic libraries 
 
 	# install glibtool and glibtoolize as the defaults
 	run "ln -sf /usr/local/bin/glibtool /usr/local/bin/libtool"

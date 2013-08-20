@@ -277,13 +277,13 @@ if [[ $LISTING == 0 ]]; then
 fi
 
 # key; question; function
-steps=("xcode;sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer? [starfish prerequisite];step_setup_xcode
-brew;Upgrade/Install Homebrew, formulas: $HOMEBREW_FORMULAS? [starfish prerequisite];step_install_homebrew
-pip;Upgrade/Install Pip, packages: $PIP_PACKAGES readline? [starfish prerequisite];step_install_pip
-gem;Upgrade/Install gem packages: rubygems-update $GEM_PACKAGES? [starfish prerequisite];step_install_gem
-XQuartz;Install XQuartz 2.7.4 package? [starfish prerequisite];step_install_xquartz_274
-bash;Install latest version of bash from Homebrew? [optional];step_install_bash
-ccache;Install ccache 3.1.9 from source? [optional];step_install_ccache_319")
+steps=("xcode;sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer?;step_setup_xcode
+brew;Upgrade/Install Homebrew, formulas: $HOMEBREW_FORMULAS?;step_install_homebrew
+pip;Upgrade/Install Pip, packages: $PIP_PACKAGES readline?;step_install_pip
+gem;Upgrade/Install gem packages: rubygems-update $GEM_PACKAGES?;step_install_gem
+XQuartz;Install XQuartz 2.7.4 package?;step_install_xquartz_274
+bash;Install latest version of bash from Homebrew?;step_install_bash
+ccache;Install ccache 3.1.9 from source?;step_install_ccache_319")
 
 IFS=$'\n'
 let steps_taken=0

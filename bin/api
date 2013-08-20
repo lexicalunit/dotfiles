@@ -62,7 +62,9 @@ if [[ -t 1 ]] ; then
 		abort "$curl_output" "$python_output" "$pygmentize_output"
 	fi
 	echo
-	cat $pygmentize_output
+	cat $pygmentize_output | sed 's/\\"/"/g' | sed 's/\\n/\
+	/g'
 else
-	cat $python_output
+	cat $python_output | sed 's/\\"/"/g' | sed 's/\\n/\
+	/g'
 fi

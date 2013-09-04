@@ -6,7 +6,7 @@
 # Settings
 ################################################################################
 HOMEBREW_FORMULAS="git git-flow ruby openssl autoconf libtiff libtool cmake wget mercurial freetds spark ncftp cppunit tclap pcre plotutils freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed freetds gfortran ipopt mongodb scons boost dmd yaml-cpp"
-PIP_PACKAGES="ipython grin nose bson pyyaml flask pyodbc pymongo fabric Pygments iniparse psycopg2 SQLAlchemy pandas xlrd openpyxl BeautifulSoup suds pyzmq matplotlib pycurl"
+PIP_PACKAGES="ipython grin nose bson pyyaml flask pyodbc pymongo fabric Pygments iniparse psycopg2 SQLAlchemy numpy pandas xlrd openpyxl BeautifulSoup suds pyzmq matplotlib pycurl"
 GEM_PACKAGES="cap_gun capistrano railsless-deploy jekyll lolcat"
 
 ################################################################################

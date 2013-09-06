@@ -1,8 +1,6 @@
 {
     "enabled": false,
 
-    "hide_output_when_empty": true,
-
     "additional_language_options":
     {
         "c++" : ["-std=c++11"],

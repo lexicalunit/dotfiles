@@ -181,7 +181,7 @@ function _repo
 function _prompt_usernote
 {
 	if [[ -n "$PROMPT_USER_NOTE" ]]; then
-		echo -n "# $PROMPT_USER_NOTE"
+		echo -n "#" $PROMPT_USER_NOTE
 	fi
 }
 

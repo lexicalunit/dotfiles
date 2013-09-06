@@ -38,7 +38,7 @@ for token in "${arr[@]}"; do
 	fi
 	curl_cmd="$curl_cmd --data-urlencode '$token'" # params
 done
-echo $'\n'"time $curl_cmd | $python_cmd | $pygmentize_cmd"
+echo $'\n'"time $curl_cmd | $python_cmd | $pygmentize_cmd" >&2
 
 curl_output=$(mktemp -t tmp.XXXXXXXXXX.curl.log)
 trap "rm -f $curl_output" EXIT

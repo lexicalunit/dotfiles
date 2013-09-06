@@ -111,7 +111,7 @@ function step_install_homebrew()
 	# cmake's bundling utility fails in completely reasonable cases, the following steps are necessary
 	run "chmod +w /usr/local/Cellar/freetds/*/lib/*.dylib 2>/dev/null"
 	run "chmod +w /usr/local/Cellar/pcre/*/lib/*.dylib 2>/dev/null"
-
+	
 	# install glibtool and glibtoolize as the defaults
 	run "ln -sf /usr/local/bin/glibtool /usr/local/bin/libtool"
 	run "ln -sf /usr/local/bin/glibtoolize /usr/local/bin/libtoolize"

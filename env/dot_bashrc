@@ -233,6 +233,8 @@ alias profile='valgrind --tool=callgrind --dump-instr=yes --simulate-cache=yes -
 alias memcheck='valgrind --tool=memcheck --leak-check=yes -show-reachable=yes -fno-inline --logfile=memcheck.log '
 alias hist='history '
 alias emake="rdmd $(which emake.d) "
+alias taskc='fa "#[^ T\!#\n]" '
+alias tasks='fa "#T" '
 
 # moving back and forth between out-of-source and source
 alias ins='pushd $(pwd | sed "s@/build/@/@g") '

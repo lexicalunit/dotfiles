@@ -8,6 +8,14 @@ curl_cmd="curl -s"
 python_cmd="python -mjson.tool"
 pygmentize_cmd="pygmentize -l json -f terminal256"
 
+function cleanup()
+{
+	[[ -n "$curl_output" ]] && rm -f "$curl_output"
+	[[ -n "$time_output" ]] && rm -f "$time_output"
+	[[ -n "$python_output" ]] && rm -f "$python_output"
+	[[ -n "$pygmentize_output" ]] && rm -f "$pygmentize_output"
+}
+
 function abort()
 {
 	if [[ -n "$1" ]]; then
@@ -25,6 +33,8 @@ function abort()
 		cat $3 >&2
 	fi
 
+	cleanup
+	
 	exit 1
 }
 
@@ -38,17 +48,23 @@ for token in "${arr[@]}"; do
 	fi
 	curl_cmd="$curl_cmd --data-urlencode '$token'" # params
 done
-echo $'\n'"time $curl_cmd | $python_cmd | $pygmentize_cmd" >&2
+echo $'\n'"$curl_cmd | $python_cmd | $pygmentize_cmd" >&2
 
 curl_output=$(mktemp -t tmp.XXXXXXXXXX.curl.log)
 trap "rm -f $curl_output" EXIT
-time eval "$curl_cmd" >$curl_output 2>&1
+
+time_output=$(mktemp -t tmp.XXXXXXXXXX.time.log)
+trap "rm -f $time_output" EXIT
+
+timed_cmd="time eval \"$curl_cmd\""
+bash -c "eval $timed_cmd" >$curl_output 2>"$time_output"
 if [[ $? != 0 ]]; then
 	abort "$curl_output"
 fi
 
 python_output=$(mktemp -t tmp.XXXXXXXXXX.python.log)
 trap "rm -f $python_output" EXIT
+
 cat $curl_output | eval "$python_cmd" >$python_output 2>&1
 if [[ $? != 0 ]]; then
 	abort "$curl_output" "$python_output"
@@ -57,6 +73,7 @@ fi
 if [[ -t 1 ]] ; then
 	pygmentize_output=$(mktemp -t tmp.XXXXXXXXXX.pygmentize.log)
 	trap "rm -f $pygmentize_output" EXIT
+
 	cat $python_output | eval "$pygmentize_cmd" >$pygmentize_output 2>&1
 	if [[ $? != 0 ]]; then
 		abort "$curl_output" "$python_output" "$pygmentize_output"
@@ -68,3 +85,7 @@ else
 	cat $python_output | sed 's/\\"/"/g' | sed 's/\\n/\
 	/g'
 fi
+
+cat "$time_output" >&2
+
+cleanup

@@ -112,6 +112,9 @@ _source_completions /usr/local/etc/bash_completion.d 2>/dev/null
 _source_completions ~/.bash_completion.d 2>/dev/null
 _source_completions /etc/bash_completion 2>/dev/null
 _source_completions ~/.bash-completion/bash_completion 2>/dev/null # git.debian.org/git/bash-completion
+if type brew >/dev/null 2>&1; then
+	source `brew --repository`/Library/Contributions/brew_bash_completion.sh
+fi
 complete -cf sudo
 
 ################################################################################

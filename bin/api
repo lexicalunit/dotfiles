@@ -56,8 +56,9 @@ trap "rm -f $curl_output" EXIT
 time_output=$(mktemp -t tmp.XXXXXXXXXX.time.log)
 trap "rm -f $time_output" EXIT
 
-timed_cmd="time eval \"$curl_cmd\""
-bash -c "eval $timed_cmd" >$curl_output 2>"$time_output"
+timed_cmd=$"time $curl_cmd"
+bash -c $"$timed_cmd" >$curl_output 2>"$time_output"
+
 if [[ $? != 0 ]]; then
 	abort "$curl_output"
 fi

@@ -1,0 +1,40 @@
+#!/bin/bash
+
+function abort()
+{
+    echo "unknown" 1>&2
+    exit 1
+}
+
+if [[ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]]; then
+    source /usr/local/etc/bash_completion.d/git-prompt.sh
+else
+    abort
+fi
+
+branch=$(type __git_ps1 &>/dev/null && __git_ps1 "%s")
+
+if [[ -n "$branch" ]]; then
+    vcs=git
+else
+    branch=$(type -P hg &>/dev/null && hg branch 2>/dev/null)
+    if [[ -n "$branch" ]]; then
+        vcs=hg
+    elif [[ -e .bzr ]]; then
+        vcs=bzr
+    elif [[ -e .svn ]]; then
+        vcs=svn
+    else
+        vcs=
+    fi
+fi
+
+if [[ -n "$vcs" ]]; then
+    if [[ "$vcs" == "hg" ]]; then
+        hg root
+    elif [[ "$vcs" == "git" ]]; then
+        git rev-parse --show-toplevel
+    else
+        abort
+    fi
+fi

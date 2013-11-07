@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Find in CMake files
+
+find . -name CMakeLists.txt -exec grep -HIin "$@" {} \; 2>/dev/null

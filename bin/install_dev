@@ -121,6 +121,9 @@ function step_install_homebrew()
 	if [[ $? == 0 ]]; then
 		ln -sf "$LIBGFORTRAN" /usr/local/lib/.
 	fi
+
+	# install the git remote-hg helper
+	ln -sf $(brew ls -v git | grep git-remote-hg) /usr/local/bin
 }
 
 function step_install_bash()

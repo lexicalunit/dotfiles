@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Configures OS X preferences.
-
 echo "Enable repeat on keydown"
 defaults write -g ApplePressAndHoldEnabled -bool false
 
@@ -51,6 +49,10 @@ defaults write com.apple.iTunes hide-ping-dropdown true
 
 echo "Disable app_to_run for XQuartz X11"
 defaults write org.macosforge.xquartz.X11 app_to_run /usr/bin/true
+
+echo "Configuring git"
+git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+git config --global alias.s "status -uno"
 
 HOST="$(uname -n)"
 read -p "Set hostname... [$HOST]: "

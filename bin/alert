@@ -24,7 +24,7 @@ on run argv
 
     -- only show Dismiss button if Terminal isn't the current app
     set dialog_buttons to {"OK"}
-    if not calling_app as text contains "Terminal.app" then
+    if calling_app as text doesn't contain "Terminal.app" then
         set dialog_buttons to dialog_buttons & "Dismiss"
     end if
 

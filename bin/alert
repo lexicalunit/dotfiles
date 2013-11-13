@@ -1,0 +1,35 @@
+#!/usr/bin/osascript
+
+on app_running(name)
+    tell application "System Events" to (name of processes) contains name
+end app_running 
+
+on run argv
+    if not app_running("Finder") then
+        return
+    end if
+
+    set message to ""
+    repeat with arg in argv
+        set message to message & " " & arg
+    end repeat
+
+    set calling_app to (path to frontmost application as Unicode text)
+
+    if calling_app as string contains "Terminal.app" then
+        set dialog_buttons to {"OK"}
+    else
+        set dialog_buttons to {"OK", "Dismiss"}
+    end if
+
+    tell application "Finder" to activate
+        display dialog message buttons dialog_buttons default button last item of dialog_buttons with title "Alert" with icon stop
+
+    if result = {button returned: "OK"} 
+        if app_running("Terminal") then
+            tell application "Terminal" to activate
+        end if
+    else if result = {button returned: "Dismiss"}
+        tell application calling_app to activate
+    end if
+end run

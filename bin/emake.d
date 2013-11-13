@@ -26,25 +26,31 @@ int main(char[][] args)
 		backout ~= "../";
 	}
 
+	string oos;
 	if(std.file.exists("build/debug"))
 	{
-		string oos = "build/debug";
-		foreach(directory; range[$ - depth .. $])
-			oos ~= "/" ~ directory;
-		std.stdio.write("cd ", backout, oos, " && ");
-		std.file.chdir(oos);
-
-		string cmd = "make";
-		foreach(param; args[1 .. $])
-			cmd ~= " " ~ param;
-		std.stdio.writeln(cmd);
-		std.c.process.system(cstring(cmd));
+		oos = "build/debug";
+	}
+	else if(std.file.exists("build"))
+	{
+		oos = "build";
 	}
 	else
 	{
 		std.stdio.fprintf(std.stdio.stderr.getFP(), "error: build directory not found\n");
 		return 1;
 	}
+
+	foreach(directory; range[$ - depth .. $])
+		oos ~= "/" ~ directory;
+	std.stdio.write("cd ", backout, oos, " && ");
+	std.file.chdir(oos);
+
+	string cmd = "make";
+	foreach(param; args[1 .. $])
+		cmd ~= " " ~ param;
+	std.stdio.writeln(cmd);
+	std.c.process.system(cstring(cmd));
 
 	return 0;
 }

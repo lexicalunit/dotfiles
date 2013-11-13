@@ -18,6 +18,7 @@ on run argv
     repeat with arg in argv
         set message to message & " " & arg
     end repeat
+
     -- get currently active app
     set calling_app to (path to frontmost application as Unicode text)
 
@@ -31,8 +32,7 @@ on run argv
     set default_button to last item of dialog_buttons
 
     -- create an alert dialog message
-    tell application calling_app to activate
-        display dialog message buttons dialog_buttons default button default_button with title "Alert" with icon stop
+    tell application "SystemUIServer" to display dialog message buttons dialog_buttons default button default_button with title "Alert" with icon stop
 
     -- only change focus if OK is pressed
     if result = {button returned: "OK"} 

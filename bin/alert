@@ -1,35 +1,41 @@
 #!/usr/bin/osascript
 
-on app_running(name)
+-- returns true iff an app with the given name is running
+on is_app_running(name)
     tell application "System Events" to (name of processes) contains name
-end app_running 
+end is_app_running
+
+-- raises an app with the given name if it's running
+on raise_app(name)
+    if is_app_running(name) then
+        tell application name to activate
+    end if
+end raise_app
 
 on run argv
-    if not app_running("Finder") then
-        return
-    end if
-
+    -- convert argv to string
     set message to ""
     repeat with arg in argv
         set message to message & " " & arg
     end repeat
-
+    -- get currently active app
     set calling_app to (path to frontmost application as Unicode text)
 
-    if calling_app as string contains "Terminal.app" then
-        set dialog_buttons to {"OK"}
-    else
-        set dialog_buttons to {"OK", "Dismiss"}
+    -- only show Dismiss button if Terminal isn't the current app
+    set dialog_buttons to {"OK"}
+    if not calling_app as string contains "Terminal.app" then
+        set dialog_buttons to dialog_buttons & "Dismiss"
     end if
 
-    tell application "Finder" to activate
-        display dialog message buttons dialog_buttons default button last item of dialog_buttons with title "Alert" with icon stop
+    -- rightmost button should always be default
+    set default_button to last item of dialog_buttons
 
+    -- create an alert dialog message
+    tell application calling_app to activate
+        display dialog message buttons dialog_buttons default button default_button with title "Alert" with icon stop
+
+    -- only change focus if OK is pressed
     if result = {button returned: "OK"} 
-        if app_running("Terminal") then
-            tell application "Terminal" to activate
-        end if
-    else if result = {button returned: "Dismiss"}
-        tell application calling_app to activate
+        raise_app("Terminal")
     end if
 end run

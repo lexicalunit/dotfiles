@@ -13,18 +13,18 @@ on raise_app(name)
 end raise_app
 
 on run argv
-    -- convert argv to string
+    -- convert argv to text
     set message to ""
     repeat with arg in argv
         set message to message & " " & arg
     end repeat
 
     -- get currently active app
-    set calling_app to (path to frontmost application as Unicode text)
+    set calling_app to (path to frontmost application as text)
 
     -- only show Dismiss button if Terminal isn't the current app
     set dialog_buttons to {"OK"}
-    if not calling_app as string contains "Terminal.app" then
+    if not calling_app as text contains "Terminal.app" then
         set dialog_buttons to dialog_buttons & "Dismiss"
     end if
 
@@ -32,8 +32,9 @@ on run argv
     set default_button to last item of dialog_buttons
 
     -- create an alert dialog message
-    tell application "SystemUIServer" to display dialog message buttons dialog_buttons default button default_button with title "Alert" with icon stop
-
+    tell application "SystemUIServer" to display dialog message ¬
+        buttons dialog_buttons default button default_button with title "Alert" with icon stop
+    
     -- only change focus if OK is pressed
     if result = {button returned: "OK"} 
         raise_app("Terminal")

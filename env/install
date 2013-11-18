@@ -33,7 +33,7 @@ function grab_package()
 	URL="$1"
 	NAME="$2"
 
-	pushd ~/"Library/Application Support/Sublime Text 2/Packages"
+	pushd ~/"Library/Application Support/Sublime Text 3/Packages"
 	if [[ -d "$NAME" ]]; then
 		pushd "$NAME"
 		git pull -u
@@ -54,12 +54,13 @@ else
 	cd -
 fi
 
-if [[ -d "$HOME/Library/Application Support/Sublime Text 2/Packages/User" ]]; then
-	sync "Preferences.sublime-settings" ~/"Library/Application Support/Sublime Text 2/Packages/User"
-	sync "SublimeClang.sublime-settings" ~/"Library/Application Support/Sublime Text 2/Packages/User"
+if [[ -d "$HOME/Library/Application Support/Sublime Text 3/Packages/User" ]]; then
+	sync "Preferences.sublime-settings" ~/"Library/Application Support/Sublime Text 3/Packages/User"
+	sync "SublimeClang.sublime-settings" ~/"Library/Application Support/Sublime Text 3/Packages/User"
 
 	grab_package https://github.com/netatoo/phoenix-theme/ "Theme - Phoenix"
-	grab_package https://github.com/quarnster/SublimeClang.git "SublimeClang"
-	grab_package https://github.com/JulianEberius/SublimeRope.git "sublimelint"
-	grab_package https://github.com/lunixbochs/sublimelint.git "SublimeRope"
+	grab_package https://github.com/JulianEberius/SublimePythonIDE.git "SublimePythonIDE"
+
+	# SublimeClang not supported in Sublime Text 3 and also not in current development anymore
+	# grab_package https://github.com/quarnster/SublimeClang.git "SublimeClang"
 fi

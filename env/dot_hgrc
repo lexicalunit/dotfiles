@@ -1,5 +1,4 @@
 [ui]
-username = Your Name <Your@Email>
 ignore = ~/.hgignore
 merge = diffmerge
 

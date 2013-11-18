@@ -1,0 +1,19 @@
+[core]
+	excludesfile = ~/.gitignore_global
+
+[push]
+	default = simple
+
+[difftool "diffmerge"]
+	cmd = diffmerge $LOCAL $REMOTE
+
+[mergetool "diffmerge"]
+	cmd = diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE
+	trustExitCode = true
+
+[merge]
+	tool = diffmerge
+
+[alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	s = status -uno

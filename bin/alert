@@ -13,11 +13,37 @@ on raise_app(name)
 end raise_app
 
 on run argv
-    -- convert argv to text
-    set message to ""
+    set quiet_flag to false
+    set ignore_flag to false
+
+    -- parse out flags
+    set params to {}
     repeat with arg in argv
-        set message to message & " " & arg
+        repeat 1 times -- inner loop to allow continuation of outer loop
+            set arg to arg as text
+
+            if not ignore_flag and arg = "--" then
+                set ignore_flag to true
+                exit repeat -- continue
+            end if
+
+            if not ignore_flag and arg = "-q" then
+                set quiet_flag to false
+                exit repeat -- continue
+            end if
+
+            copy arg to end of params
+        end repeat
     end repeat
+
+    -- convert params to message
+    set AppleScript's text item delimiters to " "
+    set message to params as string
+
+    -- report message to audio
+    if not quiet_flag then
+        do shell script "say -- " & quoted form of message
+    end if
 
     -- get currently active app
     set calling_app to (path to frontmost application as text)
@@ -39,4 +65,7 @@ on run argv
     if result = {button returned: "OK"} 
         raise_app("Terminal")
     end if
+
+    -- report message to terminal
+    return "alert: " & message
 end run

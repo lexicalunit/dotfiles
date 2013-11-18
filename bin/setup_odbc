@@ -1,0 +1,139 @@
+#!/bin/bash
+ 
+function show()
+{
+	echo $'\e[1;34m==>\e[0m\e[31m' $1 $'\e[0m'
+}
+
+function run()
+{
+	show "$1"
+	eval "$1"
+	return $?
+}
+
+function abort()
+{
+	if [[ -n "$2" ]]; then
+		run "$2"
+	fi
+	echo $'\e[1;31merror:' $1 $'\e[0m' >&2
+	exit 1
+}
+
+function ask()
+{
+	echo -n $'\n\e[1;35m'
+	read -p "$1 (y/n) [n] ... "
+	echo -n $'\e[0;0m'
+}
+
+if ! type brew >/dev/null; then
+	abort "prerequisite homebrew not installed"
+fi
+
+if ! brew list freetds >/dev/null 2>&1; then
+	run "brew install freetds unixodbc" || abort "could not install freetds and/or unixodbc formulas"
+fi
+
+if [[ -d /opt/vertica/lib64 ]]; then
+	VERTICA_LIBRARY_PATH="/opt/vertica/lib64"
+elif [[ -d /opt/vertica/lib ]]; then
+	VERTICA_LIBRARY_PATH="/opt/vertica/lib"
+fi
+VERTICA_DRIVER="$(find $VERTICA_LIBRARY_PATH -name "libverticaodbc.*" | egrep "$VERTICA_LIBRARY_PATH/libverticaodbc.(dylib|so)$")"
+
+if [[ -n "\$(uname -s | grep 'Darwin')" ]]; then # OS X
+	THREADING=0
+	COLUMNSASCHAR="true"
+else # Linux
+	THREADING=1
+	COLUMNSASCHAR="false"
+fi
+
+show "creating ~/.odbcinst.ini..."
+cat > "$HOME/.odbcinst.ini" <<EOF
+[ODBC Drivers]
+
+[vertica]
+Driver = $VERTICA_DRIVER
+ColumnsAsChar = $COLUMNSASCHAR
+EOF
+run "cat $HOME/.odbcinst.ini"
+
+show "creating ~/.odbc.ini..."
+cat > "$HOME/.odbc.ini" <<EOF
+[ODBC Data Sources]
+vertica = "Vertica DSN"
+
+[ODBC]
+Threading = $THREADING
+Trace = 1
+TraceFile = /tmp/odbctrace.log
+Debug = 1
+DebugFile = /tmp/odbcdebug.log
+EOF
+run "cat $HOME/.odbc.ini"
+
+run "sudo mkdir -p /Library/ODBC" || abort "can't create directory /Library/ODBC/"
+run "sudo cp -vf $HOME/.odbcinst.ini /Library/ODBC/odbcinst.ini" || abort "can't install /Library/ODBC/odbcinst.ini"
+run "sudo cp -vf $HOME/.odbc.ini /Library/ODBC/odbc.ini" || abort "can't install /Library/ODBC/odbc.ini"
+ 
+ask "You will need to install the following into your bash profile, do you understand?"
+[[ "$REPLY" != "y" ]] && abort "Please seek out an IT person or a developer."
+cat <<ENDOFBASHRC
+################################################################################
+# Vertica Setup
+################################################################################
+
+# prefer lib64 over lib
+if [[ -d /opt/vertica/lib64 ]]; then
+	VERTICA_LIBRARY_PATH="/opt/vertica/lib64"
+	VERTICA_ERRORMESSAGESPATH="/opt/vertica/lib64"
+elif [[ -d /opt/vertica/lib ]]; then
+	VERTICA_LIBRARY_PATH="/opt/vertica/lib"
+	VERTICA_ERRORMESSAGESPATH="/opt/vertica/lib"
+fi
+
+# install ~/.vertica.ini
+if [[ -n "\$(uname -s | grep 'Darwin')" ]]; then # OS X
+	ODBC_LIB="\$(find /usr -name libodbcinst.dylib -print -quit)"
+	cat >"\$HOME/.vertica.ini" <<EOF
+[Driver]
+DriverManagerEncoding=UTF-32
+ODBCInstLib=\$ODBC_LIB
+ErrorMessagesPath=\$VERTICA_ERRORMESSAGESPATH
+LogLevel=4
+LogPath=/tmp
+EOF
+else # Linux
+	ODBC_LIB="\$(find /usr -name libodbcinst.so -print -quit)"
+	cat >"\$HOME/.vertica.ini" <<EOF
+[Driver]
+DriverManagerEncoding=UTF-16
+ODBCInstLib=\$ODBC_LIB
+ErrorMessagesPath=\$VERTICA_ERRORMESSAGESPATH
+LogLevel=4
+LogPath=/tmp
+EOF
+fi
+
+# setup vertica environment
+export VERTICAINI="\$HOME/.vertica.ini"
+export DYLD_LIBRARY_PATH="\$VERTICA_LIBRARY_PATH:\$DYLD_LIBRARY_PATH"
+
+# add client to PATH
+[[ -d /opt/vertica/bin ]] && export PATH="\$PATH:/opt/vertica/bin"
+
+# make compile flags handy
+ODBC_FLAGS="-I/opt/vertica/include -lverticaodbc"
+if [[ -d /opt/vertica/lib64 ]]; then
+	ODBC_FLAGS="$ODBC_FLAGS -L/opt/vertica/lib64"
+elif [[ -d /opt/vertica/lib ]]; then
+	ODBC_FLAGS="$ODBC_FLAGS -L/opt/vertica/lib"
+fi
+export ODBC_FLAGS
+export VERTICA_FLAGS="$ODBC_FLAGS"
+export ODBC_CONFIG="odbc_config" # unixOBDC's config binary
+
+ENDOFBASHRC

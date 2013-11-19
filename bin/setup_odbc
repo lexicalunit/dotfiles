@@ -76,6 +76,12 @@ run "chmod +x $MSSQL_DRIVER"
 ###############################################################################
 show "creating ~/.odbcinst.ini..."
 cat > "$HOME/.odbcinst.ini" <<EOF
+[ODBC]
+Threading = No
+Trace = Yes
+Debug = Yes
+TraceFile = /tmp/odbctrace.log
+DebugFile = /tmp/odbcdebug.log
 
 EOF
 run "cat $HOME/.odbcinst.ini"
@@ -91,14 +97,11 @@ ColumnsAsChar = true
 
 [mssql]
 Driver = $MSSQL_DRIVER
+Setup = $MSSQL_DRIVER
+UsageCount = 1
 TDS_Version = 8.0
-
-[ODBC]
-Threading = No
-Trace = Yes
-Debug = Yes
-TraceFile = /tmp/odbctrace.log
-DebugFile = /tmp/odbcdebug.log
+Server = aacube01
+Port = 1433
 
 EOF
 run "cat $HOME/.odbc.ini"

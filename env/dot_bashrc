@@ -188,6 +188,18 @@ function _prompt_usernote
 	fi
 }
 
+# prints build directory name if one is set
+function _prompt_build_directory_name
+{
+	if [[ -n "$BUILD_DIRECTORY_NAME" ]]; then
+		if [[ -z "$(pwd | grep "/$BUILD_DIRECTORY_NAME/")" ]]; then
+			echo -n "# ($SOURCE_DIRECTORY_ROOT:$BUILD_DIRECTORY_NAME)"
+		else
+			echo -n "# [$SOURCE_DIRECTORY_ROOT:$BUILD_DIRECTORY_NAME]"
+		fi
+	fi
+}
+
 # prints command prompt
 function _set_color_and_title
 {
@@ -199,7 +211,7 @@ local  BLACK="\[\e[0m\]"
 local   GREY="\[\e[0;38;5;241m\]"
 
 local TERMINAL_TITLE="$TERMINAL_TITLE_USER`if [[ -n \"$TERMINAL_TITLE_USER\" ]]; then printf ' '; fi`$USER@$HOST:${PWD/#$HOME/~}"
-local PROMPT_LINE_1="$RED${PWD/#$HOME/~} $GREY$(_repo) $BLUE$(_prompt_usernote)"
+local PROMPT_LINE_1="$RED${PWD/#$HOME/~} $GREY$(_repo) $BLACK$(_prompt_build_directory_name) $BLUE$(_prompt_usernote)"
 local PROMPT_LINE_2="$RED$(date +%H%M) $(ostype | sed 's/Linux-//g') \u@\h\`if [ \$? = 0 ]; then echo \"$BGREEN\$\"; else echo \"$BRED>\"; fi\`$BLACK"
 
 PS1="\e]2;${TERMINAL_TITLE}\a\
@@ -222,6 +234,44 @@ function title
 function note
 {
 	export PROMPT_USER_NOTE="$@"
+}
+
+# change to or set build directory name
+function bld
+{
+	if [[ -n "$@" ]]; then
+		export BUILD_DIRECTORY_NAME="$@"	
+		return 0
+	fi
+
+	if [[ -n "$(pwd | grep "/$BUILD_DIRECTORY_NAME/")" ]]; then
+		return 0
+	fi
+
+	if [[ -z "$SOURCE_DIRECTORY_ROOT" ]]; then
+		echo "error: source directory root unknown" >&2
+	fi
+
+	cd "$SOURCE_DIRECTORY_ROOT/$BUILD_DIRECTORY_NAME${PWD##$SOURCE_DIRECTORY_ROOT}" || return 1
+}
+
+# change to or set source directory root
+function src()
+{
+	if [[ -n "$@" ]]; then
+		export SOURCE_DIRECTORY_ROOT="$@"	
+		return 0
+	fi
+
+	if [[ -z "$BUILD_DIRECTORY_NAME" ]]; then
+		echo "error: build directory name unknown" >&2
+	fi
+
+	if [[ -z "$(pwd | grep "/$BUILD_DIRECTORY_NAME/")" ]]; then
+		return 0
+	fi
+
+	cd $(pwd | sed "s@$BUILD_DIRECTORY_NAME/@@g") || return 1
 }
 
 ################################################################################

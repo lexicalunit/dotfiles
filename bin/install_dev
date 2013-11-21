@@ -211,7 +211,7 @@ function step_install_pyodbc()
 	run "cd $tempdir" || abort "can't enter temp directory" "$cleanup"
 	run "git clone https://code.google.com/p/pyodbc/" || abort "can't acquire source" "$cleanup"
 	run "cd pyodbc" || abort "can't enter source directory" "$cleanup"
-	run "perl -pi -e 's/iodbc/odbc/g' setup.py" || abort "can't apply patch to use unixODBC on OS X"
+	run "perl -pi -e \"s/append\\('iodbc'\\)/extend\\(['iodbc', 'odbc']\\)/g\" setup.py" || abort "can't apply patch to use unixODBC on OS X"
 	run "sudo python setup.py build install" || abort "build or install step failed" "$cleanup"
 	run "$cleanup"
 }

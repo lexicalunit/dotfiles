@@ -76,12 +76,17 @@ run "chmod +x $MSSQL_DRIVER"
 ###############################################################################
 show "creating ~/.odbcinst.ini..."
 cat > "$HOME/.odbcinst.ini" <<EOF
-[ODBC]
-Threading = No
-Trace = Yes
-Debug = Yes
-TraceFile = /tmp/odbctrace.log
-DebugFile = /tmp/odbcdebug.log
+[vertica]
+Description             = Vertica ODBC Driver
+Driver                  = $VERTICA_DRIVER
+ColumnsAsChar           = true
+Threading               = 1
+
+[mssql]
+Description             = Microsoft SQL Server ODBC Driver
+Driver                  = $MSSQL_DRIVER
+Threading               = 1
+UsageCount              = 2
 
 EOF
 run "cat $HOME/.odbcinst.ini"
@@ -91,17 +96,11 @@ run "cat $HOME/.odbcinst.ini"
 ###############################################################################
 show "creating ~/.odbc.ini..."
 cat > "$HOME/.odbc.ini" <<EOF
-[vertica]
-Driver = $VERTICA_DRIVER
-ColumnsAsChar = true
-
-[mssql]
-Driver = $MSSQL_DRIVER
-Setup = $MSSQL_DRIVER
-UsageCount = 1
-TDS_Version = 8.0
-Server = aacube01
-Port = 1433
+[ODBC]
+Trace       = 1
+TraceFile   = /tmp/odbctrace.log
+Debug       = 1
+DebugFile   = /tmp/odbcdebug.log
 
 EOF
 run "cat $HOME/.odbc.ini"

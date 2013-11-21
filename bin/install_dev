@@ -6,7 +6,7 @@
 # Settings
 ################################################################################
 HOMEBREW_FORMULAS="git git-flow mpfr ruby openssl autoconf libtiff libtool cmake wget mercurial unixodbc postgresql spark ncftp cppunit tclap pcre plotutils jpeg libpng freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed gfortran ipopt mongodb scons boost dmd yaml-cpp pidof"
-PIP_PACKAGES="ipython grin nose bson pyyaml flask pyodbc pymongo fabric Pygments iniparse psycopg2 SQLAlchemy numpy pandas xlrd openpyxl BeautifulSoup suds pyzmq matplotlib pycurl"
+PIP_PACKAGES="ipython grin nose bson pyyaml flask pymongo fabric Pygments iniparse psycopg2 SQLAlchemy numpy pandas xlrd openpyxl BeautifulSoup suds pyzmq matplotlib pycurl"
 GEM_PACKAGES="cap_gun capistrano railsless-deploy jekyll lolcat"
 
 ################################################################################
@@ -195,6 +195,27 @@ function step_install_gem()
 	done
 }
 
+function step_install_pyodbc()
+{
+	if [[ -n "$(pip freeze | grep pyodbc)" ]]; then
+		show "a pyodbc package is already installed..."
+		ask "Force re-install?"
+		[[ "$REPLY" == "y" ]] || return
+		run "yes | sudo pip uninstall pyodbc"
+	fi
+
+	local tempdir="$(mktemp -d -t tmp.XXXXXXXXXX)" || abort "can't create temp directory"
+	local cleanup="rm -rf $tempdir"
+
+	type git >/dev/null 2>&1 || abort "git must be installed first (brew install git)" "$cleanup"
+	run "cd $tempdir" || abort "can't enter temp directory" "$cleanup"
+	run "git clone https://code.google.com/p/pyodbc/" || abort "can't acquire source" "$cleanup"
+	run "cd pyodbc" || abort "can't enter source directory" "$cleanup"
+	run "perl -pi -e 's/iodbc/odbc/g' setup.py" || abort "can't apply patch to use unixODBC on OS X"
+	run "sudo python setup.py build install" || abort "build or install step failed" "$cleanup"
+	run "$cleanup"
+}
+
 function step_install_ccache_319()
 {
 	if [[ -n "$(ccache -V | head -n 1 | grep 3.1.9)" ]]; then
@@ -283,6 +304,7 @@ steps=("xcode;sudo xcode-select -switch /Applications/Xcode.app/Contents/Develop
 brew;Upgrade/Install Homebrew, formulas: $HOMEBREW_FORMULAS?;step_install_homebrew
 pip;Upgrade/Install Pip, packages: $PIP_PACKAGES readline?;step_install_pip
 gem;Upgrade/Install gem packages: rubygems-update $GEM_PACKAGES?;step_install_gem
+pyodbc;Install pyodbc (patched for unixODBC on OS X)?;step_install_pyodbc
 XQuartz;Install XQuartz 2.7.4 package?;step_install_xquartz_274
 bash;Install latest version of bash from Homebrew?;step_install_bash
 ccache;Install ccache 3.1.9 from source?;step_install_ccache_319")

@@ -149,7 +149,7 @@ fi
 
 # install ~/.vertica.ini
 if [[ -n "\$(uname -s | grep 'Darwin')" ]]; then # OS X
-	ODBC_LIB="\$(find /usr -name libodbcinst.dylib -print -quit)"
+	ODBC_LIB="\$(find /usr/lib /usr/local/lib -maxdepth 1 -type l -name libodbcinst.dylib -print -quit)"
 	cat >"\$HOME/.vertica.ini" <<EOF
 [Driver]
 DriverManagerEncoding=UTF-32
@@ -159,7 +159,7 @@ LogLevel=4
 LogPath=/tmp
 EOF
 else # Linux
-	ODBC_LIB="\$(find /usr -name libodbcinst.so -print -quit)"
+	ODBC_LIB="\$(find /usr/lib /usr/local/lib -maxdepth 1 -type l -name libodbcinst.so -print -quit)"
 	cat >"\$HOME/.vertica.ini" <<EOF
 [Driver]
 DriverManagerEncoding=UTF-16
@@ -180,12 +180,12 @@ export DYLD_LIBRARY_PATH="\$VERTICA_LIBRARY_PATH:\$DYLD_LIBRARY_PATH"
 # make compile flags handy
 ODBC_FLAGS="-I/opt/vertica/include -lverticaodbc"
 if [[ -d /opt/vertica/lib64 ]]; then
-	ODBC_FLAGS="$ODBC_FLAGS -L/opt/vertica/lib64"
+	ODBC_FLAGS="\$ODBC_FLAGS -L/opt/vertica/lib64"
 elif [[ -d /opt/vertica/lib ]]; then
-	ODBC_FLAGS="$ODBC_FLAGS -L/opt/vertica/lib"
+	ODBC_FLAGS="\$ODBC_FLAGS -L/opt/vertica/lib"
 fi
 export ODBC_FLAGS
-export VERTICA_FLAGS="$ODBC_FLAGS"
+export VERTICA_FLAGS="\$ODBC_FLAGS"
 export ODBC_CONFIG="odbc_config" # unixOBDC's config binary
 
 ENDOFBASHRC

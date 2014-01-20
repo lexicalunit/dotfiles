@@ -88,6 +88,18 @@ Driver                  = $MSSQL_DRIVER
 Threading               = 1
 UsageCount              = 2
 
+[SQL Server]
+Description             = Microsoft SQL Server ODBC Driver
+Driver                  = $MSSQL_DRIVER
+Threading               = 1
+UsageCount              = 2
+
+[sqlite]
+Description             = SQLite ODBC Driver
+Driver                  = /usr/lib/libsqlite3odbc-0.93.dylib
+Setup                   = /usr/lib/libsqlite3odbc-0.93.dylib
+Threading               = 2
+
 EOF
 run "cat $HOME/.odbcinst.ini"
 

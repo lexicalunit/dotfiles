@@ -41,7 +41,7 @@ on run argv
     set message to params as string
 
     -- report message to audio
-    if not quiet_flag then
+    if not quiet_flag and not message equal "" then
         do shell script "say -- " & quoted form of message
     end if
 
@@ -56,6 +56,11 @@ on run argv
 
     -- rightmost button should always be default
     set default_button to last item of dialog_buttons
+
+    -- default message (not spoken) if no message was given
+    if message equal "" then
+        set message to "process complete"
+    end if
 
     -- create an alert dialog message
     tell application "SystemUIServer" to display dialog message ¬

@@ -30,7 +30,7 @@ if type brew >/dev/null 2>&1; then
 		[[ -d $BREW_COREUTILS_PREFIX/libexec/gnuman ]] && MANPATH="$BREW_COREUTILS_PREFIX/libexec/gnuman:$MANPATH"
 	fi
 	BREW_PREFIX="$(brew --prefix)"
-	PATH="$PATH:$BREW_PREFIX/share/python:$BREW_PREFIX/bin:$BREW_PREFIX/sbin"
+	PATH="$PATH:$BREW_PREFIX/bin:$BREW_PREFIX/sbin"
 	PYTHONPATH="$BREW_PREFIX/lib/python2.7/site-packages:$PYTHONPATH"
 fi
 PYTHONPATH="$HOME/clickforensics/Common/Python:$PYTHONPATH"
@@ -55,8 +55,15 @@ function _bashrc_log
 
 _bashrc_log "interactive settings"
 
+# Make backspace work correctly.
 stty erase '^?' eol ^@ start ^q stop ^s intr ^c
+
+# Bash won't get SIGWINCH if another process is in the foreground.
+# Enable checkwinsize so that bash will check the terminal size when
+# it regains control.  #65623
+# http://cnswww.cns.cwru.edu/~chet/bash/FAQ (E11)
 shopt -s checkwinsize
+
 set -o emacs
 set filec
 

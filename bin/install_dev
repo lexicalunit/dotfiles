@@ -5,9 +5,9 @@
 ################################################################################
 # Settings
 ################################################################################
-HOMEBREW_FORMULAS="git git-flow mpfr ruby openssl autoconf libtiff libtool cmake wget mercurial unixodbc postgresql spark ncftp cppunit tclap pcre plotutils jpeg libpng freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed gfortran ipopt mongodb scons boost dmd yaml-cpp pidof"
-PIP_PACKAGES="ipython grin nose bson pyyaml flask pymongo fabric Pygments iniparse psycopg2 SQLAlchemy numpy pandas xlrd openpyxl BeautifulSoup suds pyzmq matplotlib pycurl"
-GEM_PACKAGES="cap_gun capistrano railsless-deploy jekyll lolcat"
+HOMEBREW_FORMULAS="git git-flow mpfr ruby openssl autoconf libtiff libtool cmake wget mercurial unixodbc postgresql spark ncftp cppunit tclap pcre plotutils jpeg libpng freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed gfortran ipopt mongodb scons boost dmd yaml-cpp pidof ansible mysql unrar"
+PIP_PACKAGES="ipython grin nose bson pyyaml flask pymongo fabric Pygments iniparse psycopg2 SQLAlchemy numpy pandas xlrd openpyxl BeautifulSoup suds pyzmq matplotlib pycurl publicsuffix"
+GEM_PACKAGES="cap_gun railsless-deploy jekyll lolcat"
 
 ################################################################################
 # Utilities
@@ -92,7 +92,7 @@ function step_setup_xcode()
 function step_install_homebrew()
 {
 	if [[ -z "$(which brew)" ]]; then
-		run "ruby <(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
+		run "ruby -e \"$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)\""
 	else
 		show "Homebrew already installed"
 	fi
@@ -124,6 +124,9 @@ function step_install_homebrew()
 
 	# install the git remote-hg helper
 	ln -sf $(brew ls -v git | grep git-remote-hg) /usr/local/bin
+
+	# unlink keg-only formulas which should not be not symlinked into /usr/local
+	run "brew unlink openssl"
 }
 
 function step_install_bash()
@@ -211,8 +214,33 @@ function step_install_pyodbc()
 	run "cd $tempdir" || abort "can't enter temp directory" "$cleanup"
 	run "git clone https://code.google.com/p/pyodbc/" || abort "can't acquire source" "$cleanup"
 	run "cd pyodbc" || abort "can't enter source directory" "$cleanup"
-	run "perl -pi -e \"s/append\\('iodbc'\\)/extend\\(['iodbc', 'odbc']\\)/g\" setup.py" || abort "can't apply patch to use unixODBC on OS X"
+
+	# Theoretically we can just add odbc to the list, but that doesn't seem to work correctly,
+	# so I've commented that line out and replaced it with a line that simply overrides to use unixODBC.
+	# run "perl -pi -e \"s/append\\('iodbc'\\)/extend\\(['iodbc', 'odbc']\\)/g\" setup.py" || abort "can't apply patch to use unixODBC on OS X"
+	run "perl -pi -e \"s/append\\('iodbc'\\)/extend\\(['odbc']\\)/g\" setup.py" || abort "can't apply patch to use unixODBC on OS X"
+
 	run "sudo python setup.py build install" || abort "build or install step failed" "$cleanup"
+	run "$cleanup"
+}
+
+function step_install_mongo_c_driver_071()
+{
+	if [[ -f "/usr/local/lib/libmongoc.a" ]]; then
+		show "a mongo-c-driver is already installed..."
+		ask "Force re-install?"
+		[[ "$REPLY" == "y" ]] || return
+	fi
+
+	local tempdir="$(mktemp -d -t tmp.XXXXXXXXXX)" || abort "can't create temp directory"
+	local cleanup="rm -rf $tempdir"
+	type scons >/dev/null 2>&1 || abort "scons must be installed first (brew install scons)" "$cleanup"
+	run "cd $tempdir" || abort "can't enter temp directory" "$cleanup"
+	run "git clone https://github.com/mongodb/mongo-c-driver.git" || abort "can't acquire source" "$cleanup"
+	run "cd mongo-c-driver" || abort "can't enter source directory" "$cleanup"
+	run "git checkout v0.7.1" || abort "build step failed" "$cleanup"
+	run "scons" || abort "build step failed" "$cleanup"
+	run "sudo make install" || abort "build step failed" "$cleanup"
 	run "$cleanup"
 }
 
@@ -244,7 +272,55 @@ function step_install_ccache_319()
 	run "$cleanup"
 }
 
-function step_install_xquartz_274()
+function step_install_bison_3()
+{
+	if [[ -n "$(bison -V | head -n 1 | grep 3.0)" ]]; then
+		show "a bison 3.0 is already installed..."
+		ask "Force re-install?"
+		[[ "$REPLY" == "y" ]] || return
+	fi
+
+	local tempdir="$(mktemp -d -t tmp.XXXXXXXXXX)" || abort "can't create temp directory"
+	local cleanup="rm -rf $tempdir"
+	run "cd $tempdir" || abort "can't enter temp directory" "$cleanup"
+	if [[ ! -f /tmp/.install_dev/bison-3.0.tar.gz ]] ; then
+		run "wget -c http://ftp.gnu.org/gnu/bison/bison-3.0.tar.gz" || abort "can't acquire source" "$cleanup"
+		run "cp bison-3.0.tar.gz /tmp/.install_dev/bison-3.0.tar.gz"
+	else
+		run "cp /tmp/.install_dev/bison-3.0.tar.gz ."
+	fi
+	run "tar zfx bison-3.0.tar.gz" || abort "build step failed" "$cleanup"
+	run "cd bison-3.0" || abort "build step failed" "$cleanup"
+		run "./configure --prefix=/usr CFLAGS=-O3 && make" || abort "build step failed" "$cleanup"
+		run "sudo make install" || abort "build step failed" "$cleanup"
+	run "$cleanup"
+}
+
+function step_install_flex_2537()
+{
+	if [[ -n "$(flex -V | head -n 1 | grep 2.5.37)" ]]; then
+		show "a flex 2.5.37 is already installed..."
+		ask "Force re-install?"
+		[[ "$REPLY" == "y" ]] || return
+	fi
+
+	local tempdir="$(mktemp -d -t tmp.XXXXXXXXXX)" || abort "can't create temp directory"
+	local cleanup="rm -rf $tempdir"
+	run "cd $tempdir" || abort "can't enter temp directory" "$cleanup"
+	if [[ ! -f /tmp/.install_dev/flex-2.5.37.tar.gz ]] ; then
+		run "wget -c http://hivelocity.dl.sourceforge.net/project/flex/flex-2.5.37.tar.gz" || abort "can't acquire source" "$cleanup"
+		run "cp flex-2.5.37.tar.gz /tmp/.install_dev/flex-2.5.37.tar.gz"
+	else
+		run "cp /tmp/.install_dev/flex-2.5.37.tar.gz ."
+	fi
+	run "tar zfx flex-2.5.37.tar.gz" || abort "build step failed" "$cleanup"
+	run "cd flex-2.5.37" || abort "build step failed" "$cleanup"
+		run "./configure --prefix=/usr CFLAGS=-O3 && make" || abort "build step failed" "$cleanup"
+		run "sudo make install" || abort "build step failed" "$cleanup"
+	run "$cleanup"
+}
+
+function step_install_xquartz_275()
 {
 	if type Xquartz >/dev/null 2>&1; then
 		show "a Xquartz is already installed..."
@@ -253,16 +329,16 @@ function step_install_xquartz_274()
 	fi
 
 	local tempdir="$(mktemp -d -t tmp.XXXXXXXXXX)" || abort "can't create temp directory"
-	local cleanup="umount /Volumes/XQuartz-2.7.4; rm -rf $tempdir"
+	local cleanup="umount /Volumes/XQuartz-2.7.5; rm -rf $tempdir"
 	run "cd $tempdir" || abort "can't enter temp directory" "$cleanup"
-	if [[ ! -f /tmp/.install_dev/XQuartz-2.7.4.dmg ]] ; then
-		run "wget -c http://xquartz.macosforge.org/downloads/SL/XQuartz-2.7.4.dmg" || abort "can't acquire XQuartz-2.7.4.dmg" "$cleanup"
-		run "cp XQuartz-2.7.4.dmg /tmp/.install_dev/XQuartz-2.7.4.dmg"
+	if [[ ! -f /tmp/.install_dev/XQuartz-2.7.5.dmg ]] ; then
+		run "wget -c http://xquartz.macosforge.org/downloads/SL/XQuartz-2.7.5.dmg" || abort "can't acquire XQuartz-2.7.5.dmg" "$cleanup"
+		run "cp XQuartz-2.7.5.dmg /tmp/.install_dev/XQuartz-2.7.5.dmg"
 	else
-		run "cp /tmp/.install_dev/XQuartz-2.7.4.dmg ."
+		run "cp /tmp/.install_dev/XQuartz-2.7.5.dmg ."
 	fi
-	run "hdiutil mount XQuartz-2.7.4.dmg" || abort "can't mount XQuartz-2.7.4.dmg on /Volumes/XQuartz-2.7.4" "$cleanup"
-	run "sudo installer -pkg /Volumes/XQuartz-2.7.4/XQuartz.pkg -target /" || abort "installer failed" "$cleanup"
+	run "hdiutil mount XQuartz-2.7.5.dmg" || abort "can't mount XQuartz-2.7.5.dmg on /Volumes/XQuartz-2.7.5" "$cleanup"
+	run "sudo installer -pkg /Volumes/XQuartz-2.7.5/XQuartz.pkg -target /" || abort "installer failed" "$cleanup"
 	run "$cleanup"
 }
 
@@ -303,9 +379,12 @@ fi
 steps=("xcode;sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer?;step_setup_xcode
 brew;Upgrade/Install Homebrew, formulas: $HOMEBREW_FORMULAS?;step_install_homebrew
 pip;Upgrade/Install Pip, packages: $PIP_PACKAGES readline?;step_install_pip
-gem;Upgrade/Install gem packages: rubygems-update $GEM_PACKAGES?;step_install_gem
+gem;Upgrade/Install gem packages: rubygems-update capistrano-v2.15.5 $GEM_PACKAGES?;step_install_gem
 pyodbc;Install pyodbc (patched for unixODBC on OS X)?;step_install_pyodbc
-XQuartz;Install XQuartz 2.7.4 package?;step_install_xquartz_274
+flex;Install flex 2.5.37 from source?;step_install_flex_2537
+bison;Install bison 3.0 from source?;step_install_bison_3
+XQuartz;Install XQuartz 2.7.5 package?;step_install_xquartz_275
+mongo;Install mongo-c-driver v0.7.1 from source?;step_install_mongo_c_driver_071
 bash;Install latest version of bash from Homebrew?;step_install_bash
 ccache;Install ccache 3.1.9 from source?;step_install_ccache_319")
 

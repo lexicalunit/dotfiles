@@ -7,7 +7,7 @@
 ################################################################################
 HOMEBREW_FORMULAS="git git-flow mpfr ruby openssl autoconf libtiff libtool cmake wget mercurial unixodbc postgresql spark ncftp cppunit tclap pcre plotutils jpeg libpng freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed gfortran ipopt mongodb scons boost dmd yaml-cpp pidof ansible mysql unrar"
 PIP_PACKAGES="ipython grin nose bson pyyaml flask pymongo fabric Pygments iniparse psycopg2 SQLAlchemy numpy pandas xlrd openpyxl BeautifulSoup suds pyzmq matplotlib pycurl publicsuffix"
-GEM_PACKAGES="cap_gun railsless-deploy jekyll lolcat"
+GEM_PACKAGES="cap_gun railsless-deploy jekyll lolcat shotgun capistrano"
 
 ################################################################################
 # Utilities
@@ -104,6 +104,7 @@ function step_install_homebrew()
 	run "brew update"
 	run "brew upgrade"
 
+	IFS=$" "
 	for I in $HOMEBREW_FORMULAS; do
 		install_brew_formula $I
 	done
@@ -169,6 +170,7 @@ function step_install_pip
 		abort "failed to install pip"
 	fi
 
+	IFS=$" "
 	for I in $PIP_PACKAGES; do
 		run "sudo pip install -U $I"
 	done
@@ -190,8 +192,10 @@ function step_install_gem()
 	run "yes | sudo gem install rubygems-update"
 	run "yes | sudo update_rubygems"
 	run "yes | sudo gem update -q --system"
-	run "yes | sudo gem update -q"
+
+	IFS=$" "
 	for I in $GEM_PACKAGES; do
+		run "yes | sudo gem update -q $I"
 		if [[ -z "$(gem list $I | grep $I)" ]]; then
 			run "yes | sudo gem install -q $I"
 		fi

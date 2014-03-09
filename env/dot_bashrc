@@ -33,7 +33,6 @@ if type brew >/dev/null 2>&1; then
 	PATH="$PATH:$BREW_PREFIX/bin:$BREW_PREFIX/sbin"
 	PYTHONPATH="$BREW_PREFIX/lib/python2.7/site-packages:$PYTHONPATH"
 fi
-PYTHONPATH="$HOME/clickforensics/Common/Python:$PYTHONPATH"
 
 export PATH
 export MANPATH

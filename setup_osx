@@ -1,5 +1,13 @@
 #!/bin/bash
 
+if [[ ! -f /Library/Fonts/Inconsolata.otf ]]; then
+	echo "Installing Inconsolata font"
+	pushd /tmp
+	curl -vO http://levien.com/type/myfonts/Inconsolata.otf
+	mv -vf Inconsolata.otf /Library/Fonts
+	popd
+fi
+
 echo "Enable repeat on keydown"
 defaults write -g ApplePressAndHoldEnabled -bool false
 

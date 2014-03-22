@@ -76,11 +76,11 @@
 		".hg",
 		"CVS"
 	],
-	"font_face": "consolas",
+	"font_face": "Inconsolata",
 	"font_options":
 	[
 	],
-	"font_size": 13.0,
+	"font_size": 15.0,
 	"gutter": true,
 	"highlight_line": false,
 	"hot_exit": true,

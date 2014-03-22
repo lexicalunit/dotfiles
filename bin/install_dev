@@ -6,7 +6,7 @@
 # Settings
 ################################################################################
 HOMEBREW_FORMULAS="git git-flow mpfr ruby openssl autoconf libtiff libtool cmake wget mercurial unixodbc postgresql spark ncftp cppunit tclap pcre plotutils jpeg libpng freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed gfortran ipopt mongodb scons boost dmd yaml-cpp pidof ansible mysql unrar"
-PIP_PACKAGES="ipython grin nose bson pyyaml flask pymongo fabric Pygments iniparse psycopg2 SQLAlchemy numpy pandas xlrd openpyxl BeautifulSoup suds pyzmq matplotlib pycurl publicsuffix requests jsonschema"
+PIP_PACKAGES="ipython grin nose bson pyyaml flask pymongo fabric Pygments iniparse psycopg2 SQLAlchemy numpy pandas xlrd openpyxl BeautifulSoup suds pyzmq matplotlib pycurl publicsuffix requests jsonschema beautifulsoup4 oauth2client google-api-python-client"
 GEM_PACKAGES="cap_gun archive-tar-minitar bson bson_ext bundler bundler-unload childprocess cuba erector gem-wrappers jekyll jewelbox log4r lolcat mongo net-ldap rack rack-protection railsless-deploy rubygems-bundler rvm shotgun tiny_tds vagrant yajl-ruby"
 
 ################################################################################
@@ -405,7 +405,7 @@ for step in $steps; do
 	fi
 
 	if [[ $ALL == 0 && -z "$(echo $@ | egrep "\b$key\b")" ]]; then
-			continue
+		continue
 	fi
 
 	let steps_taken=$(($steps_taken + 1))

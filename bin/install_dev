@@ -350,7 +350,7 @@ if [[ $LISTING == 0 ]]; then
 fi
 
 # key; question; function
-steps=("xcode;sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer?;step_setup_xcode
+steps=("xcode;Check that Command Line Tools are installed?;step_setup_xcode
 brew;Upgrade/Install Homebrew, formulas: $HOMEBREW_FORMULAS?;step_install_homebrew
 python;Upgrade/Install Anaconda, pip packages: $PIP_PACKAGES?;step_install_python
 gem;Upgrade/Install gem packages: rubygems-update $GEM_PACKAGES?;step_install_gem

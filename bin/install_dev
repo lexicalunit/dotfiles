@@ -5,8 +5,8 @@
 ################################################################################
 # Settings
 ################################################################################
-HOMEBREW_FORMULAS="git git-flow mpfr ruby openssl autoconf libtiff libtool cmake wget mercurial unixodbc postgresql spark ncftp cppunit tclap pcre plotutils jpeg libpng freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed gfortran ipopt mongodb scons boost dmd yaml-cpp pidof ansible mysql unrar"
-PIP_PACKAGES="ipython grin nose bson pyyaml flask pymongo fabric Pygments iniparse psycopg2 SQLAlchemy numpy pandas xlrd openpyxl BeautifulSoup suds pyzmq matplotlib pycurl publicsuffix requests jsonschema beautifulsoup4 oauth2client google-api-python-client"
+HOMEBREW_FORMULAS="git git-flow mpfr ruby openssl autoconf libtiff libtool cmake wget mercurial unixodbc postgresql spark ncftp cppunit tclap pcre plotutils jpeg libpng freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed gfortran ipopt mongodb scons boost dmd yaml-cpp pidof ansible mysql unrar sqlite"
+PIP_PACKAGES="bson pymongo fabric iniparse psycopg2 suds pyzmq oauth2client google-api-python-client httplib2"
 GEM_PACKAGES="cap_gun archive-tar-minitar bson bson_ext bundler bundler-unload childprocess cuba erector gem-wrappers jekyll jewelbox log4r lolcat mongo net-ldap rack rack-protection railsless-deploy rubygems-bundler rvm shotgun tiny_tds vagrant yajl-ruby"
 
 ################################################################################
@@ -152,34 +152,31 @@ function step_install_bash()
 	show "Please set your terminal shell to \"$BASH_BINARY\""
 }
 
-function step_install_pip
+function cleanup_install_anaconda()
 {
-	if [[ -z "$(which pip)" ]]; then
-		local tempdir="$(mktemp -d -t tmp.XXXXXXXXXX)" || abort "can't create temp directory"
-		local cleanup="rm -rf $tempdir"
-		run "cd $tempdir" || abort "can't enter temp directory" "$cleanup"
-		run "curl -sO http://python-distribute.org/distribute_setup.py" || abort "install step failed" "$cleanup"
-		run "sudo python distribute_setup.py" || abort "install step failed" "$cleanup"
-		run "curl -sO https://raw.github.com/pypa/pip/master/contrib/get-pip.py" || abort "install step failed" "$cleanup"
-		run "sudo python get-pip.py" || abort "install step failed" "$cleanup"
-		run "$cleanup"
+	[[ -n "$curl_output" ]] && rm -f "$curl_output"
+}
+
+function step_install_python
+{
+	if type conda >/dev/null 2>&1; then
+		conda update --yes --prefix /Users/amy/anaconda anaconda
 	else
-		run "sudo easy_install -U pip"
-	fi
-	if [[ -z "$(which pip)" ]]; then
-		abort "failed to install pip"
+		curl_output=$(mktemp -t tmp.XXXXXXXXXX.curl.log)
+		trap "rm -f $curl_output" EXIT
+
+		latest="http://repo.continuum.io/archive/$(curl -s http://repo.continuum.io/archive/index.html | grep MacOSX-x86_64.sh | perl -nl -e 'm@<a.*? href="(.+)">(.+)</a@ig; print "$2\0$1"' | sort -nr | head -n 1 | cut -d '' -f2 | sed 's@./@@')"
+		curl -o "$curl_output/anaconda.sh" "$latest"
+		bash "$curl_output/anaconda.sh -b"
+
+		cleanup_install_anaconda
 	fi
 
+	# Install python packages that don't come with Anaconda... yet!
 	IFS=$" "
 	for I in $PIP_PACKAGES; do
 		run "sudo pip install -U $I"
 	done
-
-	# Note that `pip install readline` generally DOES NOT WORK, because
-	# it installs to site-packages, which come *after* lib-dynload in sys.path,
-	# where readline is located.  It must be `easy_install readline`, or to a custom
-	# location on your PYTHONPATH (even --user comes after lib-dyload).
-	run "sudo easy_install -U readline"
 
 	# Fix annoying ipython settings
 	run "ipython profile create"
@@ -382,7 +379,7 @@ fi
 # key; question; function
 steps=("xcode;sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer?;step_setup_xcode
 brew;Upgrade/Install Homebrew, formulas: $HOMEBREW_FORMULAS?;step_install_homebrew
-pip;Upgrade/Install Pip, packages: $PIP_PACKAGES readline?;step_install_pip
+python;Upgrade/Install Anaconda, pip packages: $PIP_PACKAGES?;step_install_python
 gem;Upgrade/Install gem packages: rubygems-update capistrano-v2.15.5 $GEM_PACKAGES?;step_install_gem
 pyodbc;Install pyodbc (patched for unixODBC on OS X)?;step_install_pyodbc
 flex;Install flex 2.5.37 from source?;step_install_flex_2537

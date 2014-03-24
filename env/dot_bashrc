@@ -10,6 +10,8 @@ fi
 ################################################################################
 PATH=""
 [[ -d "$HOME/bin" ]] && PATH="$HOME/bin"
+[[ -d "$HOME/anaconda/bin" ]] && PATH="$PATH:$HOME/anaconda/bin"
+[[ -d "$HOME/anaconda/share/man" ]] && MANPATH="$HOME/anaconda/share/man:$MANPATH"
 [[ -d /usr/local/bin ]] && PATH="$PATH:/usr/local/bin"
 [[ -d /usr/local/sbin ]] && PATH="$PATH:/usr/local/sbin"
 [[ -d /opt/local/bin ]] && PATH="$PATH:/opt/local/bin"

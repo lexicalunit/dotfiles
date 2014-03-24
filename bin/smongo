@@ -1,0 +1,37 @@
+#!/usr/bin/env python
+
+from __future__ import print_function
+import subprocess
+import sys
+
+
+def trim(s):
+    return str(s).replace('\n', ' ').strip()
+
+
+def assert_has_mongo_utilities():
+    """Checks that the mongo command line utilites have been installed or exists with code 1."""
+    if subprocess.call('type mongo 1>/dev/null 2>&1', shell=True) != 0:
+        print('error: mongo command line utilities not installed', file=sys.stderr)
+        sys.exit(1)
+
+
+def get_master(node):
+    """Returns the MongoDB master node given one node in a replica set."""
+    assert_has_mongo_utilities()
+    try:
+        cmd = "mongo --host {} --eval \"printjson(rs.isMaster())\""
+        cmd += " | grep primary | cut -d: -f2 | tr -d \\\" | tr -d ' '".format(node)
+        return trim(subprocess.check_output(cmd, shell=True))
+    except Exception as e:
+        print('error: {}'.format(e), file=sys.stderr)
+
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print('usage: smongo HOST', file=sys.stderr)
+        sys.exit(1)
+    cmd = 'mongo --host {} {}'.format(
+        get_master(sys.argv[1]),
+        ' '.join(trim(_) for _ in sys.argv[1:]) if len(sys.argv) > 1 else '')
+    print(cmd)
+    subprocess.call(cmd, shell=True)

@@ -293,7 +293,6 @@ alias ftp='ncftp '
 alias profile='valgrind --tool=callgrind --dump-instr=yes --simulate-cache=yes --collect-jumps=yes '
 alias memcheck='valgrind --tool=memcheck --leak-check=yes -show-reachable=yes -fno-inline --logfile=memcheck.log '
 alias hist='history '
-alias emake="rdmd $(which emake.d) "
 alias taskc='fa "#[^ T\!#\n]" '
 alias tasks='fa "#T" '
 
@@ -350,7 +349,7 @@ fi
 ################################################################################
 _bashrc_log "setup bash colors and editors"
 if type dircolors >/dev/null 2>&1; then
-	eval `dircolors -b ~/.dircolors`
+	eval `dircolors -b ~/.dircolors 2>/dev/null`
 	alias ls='ls -hF --color=auto'
 fi
 export CLICOLOR=1

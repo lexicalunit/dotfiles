@@ -46,7 +46,7 @@ function grab_package()
 
 if [[ -d ~/.bash-completion ]]; then
 	cd ~/.bash-completion
-	git pull git://git.debian.org/git/bash-completion/bash-completion -u
+	git pull -u
 	cd -
 else
 	cd ~

@@ -18,6 +18,7 @@ rsync -avl ~/.vimrc ./dot_vimrc
 rsync -avl ~/.hgignore ./dot_hgignore
 rsync -avl ~/.hgrc ./dot_hgrc
 rsync -avl ~/.gitconfig ./dot_gitconfig
+rsync -avl ~/.pythonrc.py ./dot_pythonrc.py
 
 backup ~/"Library/Application Support/Sublime Text 3/Packages/User" "Preferences.sublime-settings"
 backup ~/"Library/Application Support/Sublime Text 3/Packages/User" "SublimeClang.sublime-settings"

@@ -89,7 +89,8 @@ function install_brew_formula()
 function step_install_homebrew()
 {
 	if [[ -z "$(which brew)" ]]; then
-		run "ruby -e \"$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)\""
+		show "installing homebrew..."
+		ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 	else
 		show "Homebrew already installed"
 	fi
@@ -127,25 +128,23 @@ function step_install_homebrew()
 	run "brew unlink openssl"
 }
 
-function cleanup_install_anaconda()
-{
-	[[ -n "$curl_output" ]] && rm -f "$curl_output"
-}
 
 function step_install_python
 {
 	if type conda >/dev/null 2>&1; then
-		conda update --yes --prefix /Users/amy/anaconda anaconda
+		conda update --yes --prefix "$HOME/anaconda" anaconda
 	else
-		curl_output=$(mktemp -t tmp.XXXXXXXXXX.curl.log)
-		trap "rm -f $curl_output" EXIT
+		curl_output=$(mktemp -d -t tmp.XXXXXXXXXX)
+		trap "rm -rf $curl_output" EXIT
 
 		latest="http://repo.continuum.io/archive/$(curl -s http://repo.continuum.io/archive/index.html | grep MacOSX-x86_64.sh | perl -nl -e 'm@<a.*? href="(.+)">(.+)</a@ig; print "$2\0$1"' | sort -nr | head -n 1 | cut -d '' -f2 | sed 's@./@@')"
 		curl -o "$curl_output/anaconda.sh" "$latest"
-		bash "$curl_output/anaconda.sh -b"
+		bash "$curl_output/anaconda.sh" -b
 
-		cleanup_install_anaconda
+		rm -rf "$curl_output"
 	fi
+
+	. ~/.bashrc # reload env after anaconda is installed
 
 	# Install python packages that don't come with Anaconda... yet!
 	IFS=$" "

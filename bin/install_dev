@@ -5,7 +5,7 @@
 ################################################################################
 # Settings
 ################################################################################
-HOMEBREW_FORMULAS="git git-flow mpfr ruby openssl autoconf libtiff libtool cmake wget mercurial unixodbc postgresql spark ncftp cppunit tclap pcre plotutils jpeg libpng freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed gfortran mongodb scons boost dmd yaml-cpp pidof ansible mysql unrar sqlite"
+HOMEBREW_FORMULAS="git git-flow mpfr ruby openssl autoconf libtiff libtool cmake wget mercurial unixodbc postgresql spark ncftp cppunit tclap pcre plotutils jpeg libpng freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed gfortran mongodb scons boost dmd yaml-cpp pidof ansible mysql unrar sqlite maven"
 PIP_PACKAGES="bson pymongo fabric iniparse psycopg2 suds oauth2client google-api-python-client httplib2 tinycss"
 CONDA_PACKAGES="dateutil pyzmq"
 GEM_PACKAGES="cap_gun archive-tar-minitar bson bson_ext bundler bundler-unload childprocess cuba erector gem-wrappers jekyll jewelbox log4r lolcat mongo net-ldap rack rack-protection railsless-deploy rubygems-bundler rvm shotgun tiny_tds vagrant yajl-ruby capistrano"
@@ -72,6 +72,12 @@ function step_setup_xcode()
 		abort "install Xcode Command Line Tools first"
 	fi
 	show "Xcode Command Line Tools properly installed."
+}
+
+function step_check_java()
+{
+	show "Checking if java's installed..."
+	java -version
 }
 
 function install_brew_formula()
@@ -359,6 +365,7 @@ fi
 steps=("xcode;Check that Command Line Tools are installed?;step_setup_xcode
 brew;Upgrade/Install Homebrew, formulas: $HOMEBREW_FORMULAS?;step_install_homebrew
 python;Upgrade/Install Anaconda, pip packages: $PIP_PACKAGES, conda packages: $CONDA_PACKAGES?;step_install_python
+java;Check that java is installed (will prompt to install if not);step_check_java
 gem;Upgrade/Install gem packages: rubygems-update $GEM_PACKAGES?;step_install_gem
 pyodbc;Install pyodbc (patched for unixODBC on OS X)?;step_install_pyodbc
 bison;Install bison 3.0 from source?;step_install_bison_3

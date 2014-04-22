@@ -36,6 +36,10 @@ if type brew >/dev/null 2>&1; then
 	PYTHONPATH="$BREW_PREFIX/lib/python2.7/site-packages:$PYTHONPATH"
 fi
 
+if type virtualenvwrapper.sh >/dev/null 2>&1; then
+	source "$(which virtualenvwrapper.sh)"
+fi
+
 export PATH
 export MANPATH
 export PYTHONPATH

@@ -221,11 +221,17 @@ local   BRED="\[\e[1;38;5;160m\]"
 local BGREEN="\[\e[1;32m\]"
 local  BLACK="\[\e[0m\]"
 local   GREY="\[\e[0;38;5;241m\]"
+local COLOR_NONE="\[\e[0m\]"
+
+if test -z "$VIRTUAL_ENV" ; then
+	PYTHON_VIRTUALENV=""
+else
+	PYTHON_VIRTUALENV="${BLUE}# [`basename \"$VIRTUAL_ENV\"`]${COLOR_NONE} "
+fi
 
 # "\w" or "${PWD/#$HOME/~}" not sure which to go with...
-
 local TERMINAL_TITLE="$TERMINAL_TITLE_USER`if [[ -n \"$TERMINAL_TITLE_USER\" ]]; then printf ' '; fi`$USER@$HOST:\w"
-local PROMPT_LINE_1="$RED\w $GREY$(_repo) $BLACK$(_prompt_build_directory_name) $BLUE$(_prompt_usernote)"
+local PROMPT_LINE_1="$RED\w $PYTHON_VIRTUALENV$GREY$(_repo) $BLACK$(_prompt_build_directory_name) $BLUE$(_prompt_usernote)"
 local PROMPT_LINE_2="$RED$(date +%H%M) $(ostype | sed 's/Linux-//g') \u@\h\`if [ \$? = 0 ]; then echo \"$BGREEN\$\"; else echo \"$BRED>\"; fi\`$BLACK"
 
 PS1="\e]2;${TERMINAL_TITLE}\a\

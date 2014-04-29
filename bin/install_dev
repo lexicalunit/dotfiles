@@ -92,6 +92,16 @@ function install_brew_formula()
 	run "brew unlink $1 && brew link --force --overwrite $1"
 }
 
+function ensure_homebrew_updated()
+{
+	if [[ -z "$(which brew)" ]]; then
+		abort "please install Homebrew first"
+	fi
+
+	run "brew update"
+	run "brew upgrade"
+}
+
 function step_install_homebrew()
 {
 	if [[ -z "$(which brew)" ]]; then
@@ -105,8 +115,7 @@ function step_install_homebrew()
 		abort "failed to install Homebrew"
 	fi
 
-	run "brew update"
-	run "brew upgrade"
+	ensure_homebrew_updated
 
 	IFS=$" "
 	for I in $HOMEBREW_FORMULAS; do
@@ -133,7 +142,6 @@ function step_install_homebrew()
 	# unlink keg-only formulas which should not be not symlinked into /usr/local
 	run "brew unlink openssl"
 }
-
 
 function step_install_python
 {
@@ -279,16 +287,8 @@ function step_install_mongo_c_driver_071()
 
 function step_install_bash()
 {
-	if [[ -z "$(which brew)" ]]; then
-		abort "please install Homebrew first"
-	fi
-
-	run "brew update"
-	if [[ -z "$(brew ls | grep bash)" ]]; then
-		run "brew install bash"
-	else
-		run "brew upgrade bash"
-	fi
+	ensure_homebrew_updated
+	install_brew_formula bash
 
 	local BASH_BINARY="$(brew ls bash | grep '^.*/bin/.*bash$')"
 	local INSTALLED="$(grep "$BASH_BINARY" /etc/shells)"
@@ -297,6 +297,56 @@ function step_install_bash()
 	fi
 
 	show "Please set your terminal shell to \"$BASH_BINARY\""
+}
+
+function step_install_tiddlywiki()
+{
+	ensure_homebrew_updated
+	install_brew_formula node
+	run "npm install -g tiddlywiki"
+	run "mkdir -p ~/Library/LaunchDaemons"
+	run "cd $HOME"
+	run "tiddlywiki notes --init"
+
+	local TIDDLYWIKI_DOMAIN="org.tiddlywiki.server"
+	show "Creating $HOME/Library/LaunchDaemons/org.tiddlywiki.server.plist..."
+	cat >"$HOME/Library/LaunchDaemons/$TIDDLYWIKI_DOMAIN.plist" <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Label</key>
+		<string>$TIDDLYWIKI_DOMAIN</string>
+
+		<key>WorkingDirectory</key>
+		<string>$HOME</string>
+
+		<key>ProgramArguments</key>
+		<array>
+			<string>$(which tiddlywiki)</string>
+			<string>notes</string>
+			<string>--server</string>
+		</array>
+
+		<key>RunAtLoad</key>
+		<true/>
+
+		<key>KeepAlive</key>
+		<true/>
+	</dict>
+</plist>
+EOF
+
+	show "Creating /etc/launchd.conf..."
+	sudo cat >/etc/launchd.conf <<EOF
+setenv PATH "/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
+EOF
+
+	run "launchctl unload ~/Library/LaunchDaemons/org.tiddlywiki.server.plist"
+	run "launchctl load -w ~/Library/LaunchDaemons/org.tiddlywiki.server.plist"
+
+	show "Empty TiddlyWiki setup at $HOME/notes"
+	show "Server running at http://127.0.0.1:8080/"
 }
 
 function step_install_ccache_319()
@@ -372,6 +422,7 @@ bison;Install bison 3.0 from source?;step_install_bison_3
 XQuartz;Install XQuartz 2.7.5 package?;step_install_xquartz_275
 mongo;Install mongo-c-driver v0.7.1 from source?;step_install_mongo_c_driver_071
 bash;Install latest version of bash from Homebrew?;step_install_bash
+tiddlywiki;Install and setup latest TiddlyWiki from Homebrew?;step_install_tiddlywiki
 ccache;Install ccache 3.1.9 from source?;step_install_ccache_319")
 
 IFS=$'\n'

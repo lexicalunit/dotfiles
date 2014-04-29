@@ -306,7 +306,7 @@ function step_install_tiddlywiki()
 	run "npm install -g tiddlywiki"
 	run "mkdir -p ~/Library/LaunchDaemons"
 	run "cd $HOME"
-	run "tiddlywiki notes --init"
+	run "tiddlywiki notes --init server"
 
 	local TIDDLYWIKI_DOMAIN="org.tiddlywiki.server"
 	show "Creating $HOME/Library/LaunchDaemons/org.tiddlywiki.server.plist..."

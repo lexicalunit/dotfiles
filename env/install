@@ -7,6 +7,7 @@ function sync()
 	eval $CMD
 }
 
+# install dot files
 for I in dot_*; do
 	if [[ -f $I ]]; then
 		if [[ -n "$(echo $I | grep bashrc_)" ]]; then

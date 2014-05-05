@@ -25,14 +25,18 @@ function abort()
 
 CMD="git status -uno"
 if [[ -n "$1" ]]; then
-	CMD="$1"
+	CMD="$@"
 fi
 
 IFS=$'\n'
 for I in $(find . -not -path . -maxdepth 1 -type d); do
 	cd "$I" || abort "can't enter $I"
-	show "$(tput bold)========== $I ==========$(tput sgr0)"
-	run "$CMD"
+
+	if [[ -d .git ]]; then
+		show "$(tput bold)========== $I ==========$(tput sgr0)"
+		run "$CMD"
+		echo -ne $"\n\n"
+	fi
+
 	cd - >/dev/null
-	echo -ne $"\n\n"
 done

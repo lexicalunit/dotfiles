@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Show git status for all directories in current directory.
+
+function show()
+{
+	echo $'\e[31m'$1 $'\e[0m'
+}
+
+function run()
+{
+	show "\$ $1"
+	eval "$1"
+	return $?
+}
+
+function abort()
+{
+	if [[ -n "$2" ]]; then
+		run "$2"
+	fi
+	echo $'\e[1;31merror:' $1 $'\e[0m' >&2
+	exit 1
+}
+
+CMD="git status -uno"
+if [[ -n "$1" ]]; then
+	CMD="$1"
+fi
+
+IFS=$'\n'
+for I in $(find . -not -path . -maxdepth 1 -type d); do
+	cd "$I" || abort "can't enter $I"
+	show "$(tput bold)========== $I ==========$(tput sgr0)"
+	run "$CMD"
+	cd - >/dev/null
+	echo -ne $"\n\n"
+done

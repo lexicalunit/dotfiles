@@ -82,26 +82,34 @@ Driver                  = $VERTICA_DRIVER
 ColumnsAsChar           = true
 Threading               = 1
 
-[mssql]
-Description             = Microsoft SQL Server ODBC Driver
-Driver                  = $MSSQL_DRIVER
-Threading               = 1
-UsageCount              = 2
-
-[SQL Server]
-Description             = Microsoft SQL Server ODBC Driver
-Driver                  = $MSSQL_DRIVER
-Threading               = 1
-UsageCount              = 2
-
 [sqlite]
 Description             = SQLite ODBC Driver
 Driver                  = /usr/lib/libsqlite3odbc-0.93.dylib
 Setup                   = /usr/lib/libsqlite3odbc-0.93.dylib
 Threading               = 2
 
+[sqlitew]
+Description             = SQLite ODBC Driver (Unicode)
+Driver                  = /usr/lib/libsqlite3odbc-0.93.dylib
+Setup                   = /usr/lib/libsqlite3odbc-0.93.dylib
+Threading               = 2
+
 EOF
 run "cat $HOME/.odbcinst.ini"
+
+# Additional example odbcinst.ini sections:
+#
+# [mssql]
+# Description             = Microsoft SQL Server ODBC Driver
+# Driver                  = $MSSQL_DRIVER
+# Threading               = 1
+# UsageCount              = 2
+#
+# [SQL Server]
+# Description             = Microsoft SQL Server ODBC Driver
+# Driver                  = $MSSQL_DRIVER
+# Threading               = 1
+# UsageCount              = 2
 
 ###############################################################################
 # odbc.ini
@@ -158,6 +166,9 @@ elif [[ -d /opt/vertica/lib ]]; then
 	VERTICA_LIBRARY_PATH="/opt/vertica/lib"
 	VERTICA_ERRORMESSAGESPATH="/opt/vertica/lib"
 fi
+
+# update PATH
+[[ -d /opt/vertica/bin ]] && export PATH="$PATH:/opt/vertica/bin"
 
 # install ~/.vertica.ini
 if [[ -n "\$(uname -s | grep 'Darwin')" ]]; then # OS X

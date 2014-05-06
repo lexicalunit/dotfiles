@@ -158,7 +158,7 @@ function step_install_python
 		rm -rf "$curl_output"
 	fi
 
-	. ~/.bashrc # reload env after anaconda is installed
+	. "$HOME/.bashrc" # reload env after anaconda is installed
 
 	# Install python packages that don't come with Anaconda... yet!
 	IFS=$" "
@@ -304,7 +304,7 @@ function step_install_tiddlywiki()
 	ensure_homebrew_updated
 	install_brew_formula node
 	run "npm install -g tiddlywiki"
-	run "mkdir -p ~/Library/LaunchDaemons"
+	run "mkdir -p $HOME/Library/LaunchDaemons"
 	run "cd $HOME"
 	run "tiddlywiki notes --init server"
 
@@ -342,8 +342,8 @@ EOF
 setenv PATH "/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 EOF
 
-	run "launchctl unload ~/Library/LaunchDaemons/org.tiddlywiki.server.plist"
-	run "launchctl load -w ~/Library/LaunchDaemons/org.tiddlywiki.server.plist"
+	run "launchctl unload $HOME/Library/LaunchDaemons/org.tiddlywiki.server.plist"
+	run "launchctl load -w $HOME/Library/LaunchDaemons/org.tiddlywiki.server.plist"
 
 	show "Empty TiddlyWiki setup at $HOME/notes"
 	show "Server running at http://127.0.0.1:8080/"

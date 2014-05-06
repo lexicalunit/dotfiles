@@ -8,7 +8,7 @@ if [ "#1" = "-p" ]; then
 fi
 
 if [ ! "$1" ]; then
-	echo "usage: $0 [-p] REGEX
+	echo "usage: $0 [-p] REGEX"
 	echo "kills all processes matching REGEX. -p enables pretend mode."
 	exit 1
 fi

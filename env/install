@@ -58,6 +58,7 @@ fi
 if [[ -d "$HOME/Library/Application Support/Sublime Text 3/Packages/User" ]]; then
 	sync "Preferences.sublime-settings" ~/"Library/Application Support/Sublime Text 3/Packages/User"
 	sync "SublimeClang.sublime-settings" ~/"Library/Application Support/Sublime Text 3/Packages/User"
+	sync "SublimePython.sublime-settings" ~/"Library/Application Support/Sublime Text 3/Packages/User"
 
 	grab_package https://github.com/netatoo/phoenix-theme/ "Theme - Phoenix"
 	grab_package https://github.com/JulianEberius/SublimePythonIDE.git "SublimePythonIDE"

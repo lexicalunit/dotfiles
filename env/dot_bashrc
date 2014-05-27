@@ -10,8 +10,6 @@ fi
 ################################################################################
 PATH=""
 [[ -d "$HOME/bin" ]] && PATH="$HOME/bin"
-[[ -d "$HOME/anaconda/bin" ]] && PATH="$PATH:$HOME/anaconda/bin"
-[[ -d "$HOME/anaconda/share/man" ]] && MANPATH="$HOME/anaconda/share/man:$MANPATH"
 [[ -d /usr/local/bin ]] && PATH="$PATH:/usr/local/bin"
 [[ -d /usr/local/sbin ]] && PATH="$PATH:/usr/local/sbin"
 [[ -d /opt/local/bin ]] && PATH="$PATH:/opt/local/bin"
@@ -39,6 +37,16 @@ fi
 if type virtualenvwrapper.sh >/dev/null 2>&1; then
 	source "$(which virtualenvwrapper.sh)"
 fi
+
+# enter an anaconda environment if available
+function enterconda
+{
+	[[ -d "$HOME/anaconda/bin" ]] && PATH="$HOME/anaconda/bin:$PATH"
+	[[ -d "$HOME/anaconda/share/man" ]] && MANPATH="$HOME/anaconda/share/man:$MANPATH"
+	export PATH
+	export MANPATH
+	export VIRTUAL_ENV="anaconda"
+}
 
 export PATH
 export MANPATH

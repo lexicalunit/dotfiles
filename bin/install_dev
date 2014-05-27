@@ -6,7 +6,7 @@
 # Settings
 ################################################################################
 HOMEBREW_FORMULAS="git git-flow mpfr ruby openssl autoconf libtiff libtool cmake wget mercurial unixodbc postgresql spark ncftp cppunit tclap pcre plotutils jpeg libpng freetype fontconfig ghostscript imagemagick doxygen coreutils gnu-sed gfortran mongodb scons boost dmd yaml-cpp pidof ansible mysql unrar sqlite maven"
-PIP_PACKAGES="bson pymongo fabric iniparse psycopg2 suds oauth2client google-api-python-client httplib2 tinycss virtualenv virtualenvwrapper"
+PIP_PACKAGES="bson pymongo fabric iniparse psycopg2 suds oauth2client google-api-python-client httplib2 tinycss termcolor"
 CONDA_PACKAGES="dateutil pyzmq"
 GEM_PACKAGES="cap_gun archive-tar-minitar bson bson_ext bundler bundler-unload childprocess cuba erector gem-wrappers jekyll jewelbox log4r lolcat mongo net-ldap rack rack-protection railsless-deploy rubygems-bundler rvm shotgun tiny_tds vagrant yajl-ruby capistrano"
 
@@ -152,6 +152,7 @@ function step_install_python
 		trap "rm -rf $curl_output" EXIT
 
 		latest="http://repo.continuum.io/archive/$(curl -s http://repo.continuum.io/archive/index.html | grep MacOSX-x86_64.sh | perl -nl -e 'm@<a.*? href="(.+)">(.+)</a@ig; print "$2\0$1"' | sort -nr | head -n 1 | cut -d '' -f2 | sed 's@./@@')"
+		show "downloading $latest ..."
 		curl -o "$curl_output/anaconda.sh" "$latest"
 		bash "$curl_output/anaconda.sh" -b
 

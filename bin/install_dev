@@ -155,6 +155,7 @@ function step_install_python
 		show "downloading $latest ..."
 		curl -o "$curl_output/anaconda.sh" "$latest"
 		bash "$curl_output/anaconda.sh" -b
+		rm -f "$HOME/Desktop/Launcher.app" # get rid of junk application on Desktop
 
 		rm -rf "$curl_output"
 	fi

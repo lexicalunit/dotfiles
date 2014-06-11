@@ -161,7 +161,8 @@ function step_install_python
 		rm -rf "$curl_output"
 	fi
 
-	. "$HOME/.bashrc" # reload env after anaconda is installed
+	# enter anaconda environment now that it's installed
+	export PATH="$HOME/anaconda/bin:$PATH"
 
 	# Install python packages that don't come with Anaconda... yet!
 	IFS=$" "

@@ -46,7 +46,7 @@ if $INTERACTIVE; then
 ################################################################################
 # interactive settings
 ################################################################################
-# print imestamp and given message
+# print timestamp and given message
 function _bashrc_log
 {
 	echo "$(date +%H:%M:%S.%N) - $@"

@@ -34,20 +34,6 @@ if type brew >/dev/null 2>&1; then
 	PYTHONPATH="$BREW_PREFIX/lib/python2.7/site-packages:$PYTHONPATH"
 fi
 
-if type virtualenvwrapper.sh >/dev/null 2>&1; then
-	source "$(which virtualenvwrapper.sh)"
-fi
-
-# enter an anaconda environment if available
-function enterconda
-{
-	[[ -d "$HOME/anaconda/bin" ]] && PATH="$HOME/anaconda/bin:$PATH"
-	[[ -d "$HOME/anaconda/share/man" ]] && MANPATH="$HOME/anaconda/share/man:$MANPATH"
-	export PATH
-	export MANPATH
-	export VIRTUAL_ENV="anaconda"
-}
-
 export PATH
 export MANPATH
 export PYTHONPATH
@@ -77,8 +63,44 @@ stty erase '^?' eol ^@ start ^q stop ^s intr ^c
 # http://cnswww.cns.cwru.edu/~chet/bash/FAQ (E11)
 shopt -s checkwinsize
 
-set -o emacs
-set filec
+################################################################################
+# python environment control
+################################################################################
+
+function entervirtualenv
+{
+	if type virtualenvwrapper.sh >/dev/null 2>&1; then
+		source "$(which virtualenvwrapper.sh)"
+	fi
+	export VIRTUAL_ENV="virtualenv"
+}
+
+function exitvirtualenv
+{
+	if type deactivate >/dev/null 2>&1; then
+		deactivate
+	fi
+	unset VIRTUAL_ENV
+}
+
+function enterconda
+{
+	[[ -d "$HOME/anaconda/bin" ]] && PATH="$HOME/anaconda/bin:$PATH"
+	[[ -d "$HOME/anaconda/share/man" ]] && MANPATH="$HOME/anaconda/share/man:$MANPATH"
+	export PATH
+	export MANPATH
+	export VIRTUAL_ENV="anaconda"
+}
+
+function exitconda
+{
+	if which deactivate >/dev/null 2>&1; then
+		source deactivate
+	fi
+	export PATH="$(echo "$PATH" | sed "s@$HOME/anaconda/bin@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
+	export MANPATH="$(echo "$PATH" | sed "s@$HOME/anaconda/share/man@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
+	unset VIRTUAL_ENV
+}
 
 ################################################################################
 # history setup
@@ -264,44 +286,6 @@ function note
 	export PROMPT_USER_NOTE="$@"
 }
 
-# change to or set build directory name
-function bld
-{
-	if [[ -n "$@" ]]; then
-		export BUILD_DIRECTORY_NAME="$@"	
-		return 0
-	fi
-
-	if [[ -n "$(pwd | grep "/$BUILD_DIRECTORY_NAME/")" ]]; then
-		return 0
-	fi
-
-	if [[ -z "$SOURCE_DIRECTORY_ROOT" ]]; then
-		echo "error: source directory root unknown" >&2
-	fi
-
-	cd "$SOURCE_DIRECTORY_ROOT/$BUILD_DIRECTORY_NAME${PWD##$SOURCE_DIRECTORY_ROOT}" || return 1
-}
-
-# change to or set source directory root
-function src()
-{
-	if [[ -n "$@" ]]; then
-		export SOURCE_DIRECTORY_ROOT="$@"	
-		return 0
-	fi
-
-	if [[ -z "$BUILD_DIRECTORY_NAME" ]]; then
-		echo "error: build directory name unknown" >&2
-	fi
-
-	if [[ -z "$(pwd | grep "/$BUILD_DIRECTORY_NAME/")" ]]; then
-		return 0
-	fi
-
-	cd $(pwd | sed "s@$BUILD_DIRECTORY_NAME/@@g") || return 1
-}
-
 ################################################################################
 # setup aliases and functions
 ################################################################################
@@ -315,10 +299,6 @@ alias memcheck='valgrind --tool=memcheck --leak-check=yes -show-reachable=yes -f
 alias hist='history '
 alias taskc='fa "#[^ T\!#\n]" '
 alias tasks='fa "#T" '
-
-# moving back and forth between out-of-source and source
-alias ins='pushd $(pwd | sed "s@/build/@/@g") '
-alias oos='popd '
 
 export RSYNC_RSH=rsh # use ssh over rsync
 alias ssh='ssh -Y -C ' # use compression over ssh connections

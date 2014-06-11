@@ -1,3 +1,5 @@
+set -o emacs
+set filec
 set bell-style none
 "\e[3~": delete-char
 set show-all-if-ambiguous on

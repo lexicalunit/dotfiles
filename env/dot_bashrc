@@ -85,8 +85,15 @@ function exitvirtualenv
 
 function enterconda
 {
-	[[ -d "$HOME/anaconda/bin" ]] && PATH="$HOME/anaconda/bin:$PATH"
-	[[ -d "$HOME/anaconda/share/man" ]] && MANPATH="$HOME/anaconda/share/man:$MANPATH"
+	# assume anaconda is installed in your home directory unless specified
+	if [[ -z "$1" ]]; then
+		export ANACONDA_ROOT="$HOME/anaconda"
+	else
+		export ANACONDA_ROOT="$1"
+	fi
+
+	[[ -d "$ANACONDA_ROOT/bin" ]] && PATH="$ANACONDA_ROOT/bin:$PATH"
+	[[ -d "$ANACONDA_ROOT/share/man" ]] && MANPATH="$ANACONDA_ROOT/share/man:$MANPATH"
 	export PATH
 	export MANPATH
 	export VIRTUAL_ENV="anaconda"
@@ -97,8 +104,8 @@ function exitconda
 	if which deactivate >/dev/null 2>&1; then
 		source deactivate
 	fi
-	export PATH="$(echo "$PATH" | sed "s@$HOME/anaconda/bin@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
-	export MANPATH="$(echo "$PATH" | sed "s@$HOME/anaconda/share/man@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
+	export PATH="$(echo "$PATH" | sed "s@$ANACONDA_ROOT/bin@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
+	export MANPATH="$(echo "$PATH" | sed "s@$ANACONDA_ROOT/share/man@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
 	unset VIRTUAL_ENV
 }
 

@@ -66,13 +66,14 @@ shopt -s checkwinsize
 ################################################################################
 # python environment control
 ################################################################################
+export PYTHON_ENV=""
 
 function entervirtualenv
 {
 	if type virtualenvwrapper.sh >/dev/null 2>&1; then
 		source "$(which virtualenvwrapper.sh)"
 	fi
-	export VIRTUAL_ENV="virtualenv"
+	export PYTHON_ENV="virtualenv"
 }
 
 function exitvirtualenv
@@ -80,7 +81,7 @@ function exitvirtualenv
 	if type deactivate >/dev/null 2>&1; then
 		deactivate
 	fi
-	unset VIRTUAL_ENV
+	unset PYTHON_ENV
 }
 
 function enterconda
@@ -96,7 +97,7 @@ function enterconda
 	[[ -d "$ANACONDA_ROOT/share/man" ]] && MANPATH="$ANACONDA_ROOT/share/man:$MANPATH"
 	export PATH
 	export MANPATH
-	export VIRTUAL_ENV="anaconda"
+	export PYTHON_ENV="anaconda"
 }
 
 function exitconda
@@ -106,7 +107,7 @@ function exitconda
 	fi
 	export PATH="$(echo "$PATH" | sed "s@$ANACONDA_ROOT/bin@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
 	export MANPATH="$(echo "$PATH" | sed "s@$ANACONDA_ROOT/share/man@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
-	unset VIRTUAL_ENV
+	unset PYTHON_ENV
 }
 
 ################################################################################
@@ -260,15 +261,21 @@ local  BLACK="\[\e[0m\]"
 local   GREY="\[\e[0;38;5;241m\]"
 local COLOR_NONE="\[\e[0m\]"
 
-if test -z "$VIRTUAL_ENV" ; then
-	PYTHON_VIRTUALENV=""
+if [[ -n "$PYTHON_ENV" ]]; then
+	local DISPLAY_PYTHON_ENV="${BLUE} [$PYTHON_ENV]${COLOR_NONE} "
 else
-	PYTHON_VIRTUALENV="${BLUE}# [`basename \"$VIRTUAL_ENV\"`]${COLOR_NONE} "
+	local DISPLAY_PYTHON_ENV=""
+fi
+
+if [[ -n "$VIRTUAL_ENV" ]]; then
+	DISPLAY_PYTHON_ENV="${BLUE}# [`basename \"$VIRTUAL_ENV\"`]${COLOR_NONE} "
+elif [[ -n "$CONDA_DEFAULT_ENV" ]]; then
+	DISPLAY_PYTHON_ENV="${BLUE}# [$CONDA_DEFAULT_ENV]${COLOR_NONE} "
 fi
 
 # "\w" or "${PWD/#$HOME/~}" not sure which to go with...
 local TERMINAL_TITLE="$TERMINAL_TITLE_USER`if [[ -n \"$TERMINAL_TITLE_USER\" ]]; then printf ' '; fi`$USER@$HOST:\w"
-local PROMPT_LINE_1="$RED\w $PYTHON_VIRTUALENV$GREY$(_repo) $BLACK$(_prompt_build_directory_name) $BLUE$(_prompt_usernote)"
+local PROMPT_LINE_1="$RED\w $DISPLAY_PYTHON_ENV$GREY$(_repo) $BLACK$(_prompt_build_directory_name) $BLUE$(_prompt_usernote)"
 local PROMPT_LINE_2="$RED$(date +%H%M) $(ostype | sed 's/Linux-//g') \u@\h\`if [ \$? = 0 ]; then echo \"$BGREEN\$\"; else echo \"$BRED>\"; fi\`$BLACK"
 
 PS1="\e]2;${TERMINAL_TITLE}\a\

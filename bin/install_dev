@@ -145,6 +145,9 @@ function step_install_homebrew()
 
 function step_install_python
 {
+	# enter existing anaconda environment if it's detected
+	[[ -d "$HOME/anaconda/bin" ]] && export PATH="$HOME/anaconda/bin:$PATH"
+
 	if type conda >/dev/null 2>&1; then
 		conda update --yes --prefix "$HOME/anaconda" anaconda
 	else
@@ -156,13 +159,13 @@ function step_install_python
 		curl -o "$curl_output/anaconda.sh" "$latest"
 		bash "$curl_output/anaconda.sh" -b
 		conda config --set changeps1 no # prevent conda from setting my PS1
-		rm -f "$HOME/Desktop/Launcher.app" # get rid of junk application on Desktop
+		rm -f "$HOME/Desktop/Launcher.app" # get rid of Launcher.app on Desktop
+
+		# enter anaconda environment now that it's installed
+		export PATH="$HOME/anaconda/bin:$PATH"
 
 		rm -rf "$curl_output"
 	fi
-
-	# enter anaconda environment now that it's installed
-	export PATH="$HOME/anaconda/bin:$PATH"
 
 	# Install python packages that don't come with Anaconda... yet!
 	IFS=$" "

@@ -318,6 +318,7 @@ alias memcheck='valgrind --tool=memcheck --leak-check=yes -show-reachable=yes -f
 alias hist='history '
 alias taskc='fa "#[^ T\!#\n]" '
 alias tasks='fa "#T" '
+alias unmerged='git ls-files -u | cut -f2 | sort -u '
 
 export RSYNC_RSH=rsh # use ssh over rsync
 alias ssh='ssh -Y -C ' # use compression over ssh connections

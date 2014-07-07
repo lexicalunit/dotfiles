@@ -359,6 +359,16 @@ function ew
 	fi
 }
 
+function fuck
+{
+	die -q $2
+	if [[ $? == 0 ]]; then
+		echo
+		echo " (╯°□°）╯︵$(echo $2|flip &2>/dev/null)"
+		echo
+	fi
+}
+
 # use gnu-sed if available
 if type gsed >/dev/null 2>&1; then
 	alias sed='gsed '

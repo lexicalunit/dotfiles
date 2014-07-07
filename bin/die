@@ -2,33 +2,50 @@
 
 # Kills processes based on process name.
 
-if [ "#1" = "-p" ]; then
-	PRETEND=1
-	shift
-fi
-
-if [ ! "$1" ]; then
-	echo "usage: $0 [-p] REGEX"
-	echo "kills all processes matching REGEX. -p enables pretend mode."
+function usage()
+{
+	echo "usage: $0 -[nq] REGEX"
+	echo "kills all processes matching REGEX. -n enables dryrun mode and -q enables quiet mode."
 	exit 1
-fi
+}
+
+DRYRUN=0
+QUIET=0
+while getopts "hqn" opt; do
+	case "$opt" in
+		h) usage;;
+		n) DRYRUN=1;;
+		q) QUIET=1;;
+	esac
+done
+shift $((OPTIND - 1))
 
 LIST="`ps -ww -w -o pid,user,command | egrep -v "bin/die|grep" | grep "$1"`"
 if [ "$LIST" = "" ]; then
-	echo "no processes found"
+	if [[ "$QUIET" == 0 ]]; then
+		echo "no processes found"
+	fi
 	exit 0
 fi
 
-echo "`echo "$LIST" | wc -l` processes found:"
-echo "$LIST"
+if [[ "$QUIET" == 0 ]]; then
+	echo "`echo "$LIST" | wc -l` processes found:"
+	echo "$LIST"
+fi
 
 KCMD="kill -9 `echo "$LIST" | sed "s/^ *//g" | cut -d" " -f1 | tr '\n' ' '`"
 
-if [ -z "$PRETEND" ]; then
-	echo -n "running '$KCMD' ... "
+if [[ "$DRYRUN" == 0 ]]; then
+	if [[ "$QUIET" == 0 ]]; then
+		echo -n "running '$KCMD' ... "
+	fi
 	eval "$KCMD"
 else
-	echo -n "pretend '$KCMD' ... "
+	if [[ "$QUIET" == 0 ]]; then
+		echo -n "dryrun '$KCMD' ... "
+	fi
 fi
-echo "done"
+if [[ "$QUIET" == 0 ]]; then
+	echo "done"
+fi
 exit 0

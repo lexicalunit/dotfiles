@@ -361,7 +361,7 @@ function ew
 
 function fuck
 {
-	die -q $2
+	die $2
 	if [[ $? == 0 ]]; then
 		echo
 		echo " (╯°□°）╯︵$(echo $2|flip &2>/dev/null)"

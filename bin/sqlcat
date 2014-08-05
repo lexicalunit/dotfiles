@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Print colorized input as SQL.
+
+if [[ -n "$@" ]]; then
+	pygmentize -lsql <<EOF
+$@
+EOF
+else
+	pygmentize -lsql </dev/stdin
+fi

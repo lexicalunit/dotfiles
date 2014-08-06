@@ -66,6 +66,8 @@ shopt -s checkwinsize
 ################################################################################
 # python environment control
 ################################################################################
+[[ -f "$HOME/.pythonrc.py" ]] && export PYTHONSTARTUP="$HOME/.pythonrc.py"
+
 export PYTHON_ENV=""
 
 function entervirtualenv

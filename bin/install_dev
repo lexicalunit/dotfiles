@@ -7,7 +7,7 @@
 ################################################################################
 HOMEBREW_FORMULAS="ansible autoconf boost cloog cmake coreutils cppunit dmd doxygen fontconfig freetype gdbm gfortran ghostscript git git-flow gmp gnu-sed imagemagick isl jbig2dec jpeg libevent libmpc libpng libtiff libtool libyaml little-cms2 maven memcached mercurial mongodb mpfr ncftp node openssl openssl ossp-uuid pcre pidof pkg-config plotutils postgresql readline ruby s3cmd scons spark sqlite tclap unixodbc unrar watch wget xz yaml-cpp"
 PIP_PACKAGES="bson pymongo fabric iniparse psycopg2 suds oauth2client google-api-python-client httplib2 tinycss termcolor"
-CONDA_PACKAGES="dateutil pyzmq"
+CONDA_PACKAGES="dateutil pyzmq argcomplete"
 GEM_PACKAGES="cap_gun archive-tar-minitar bson bson_ext bundler bundler-unload childprocess cuba erector gem-wrappers jekyll jewelbox log4r lolcat mongo net-ldap rack rack-protection railsless-deploy rubygems-bundler rvm shotgun tiny_tds yajl-ruby capistrano"
 
 ################################################################################

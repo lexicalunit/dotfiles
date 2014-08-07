@@ -2,53 +2,89 @@
 
 # Requests a web API resource and pretty prints resulting JSON.
 
-query="$*"
+function usage()
+{
+    echo "usage: $(basename $0) [options] [curl options] \"URI\""
+    echo ""
+    echo "Hits the given URI and returns the result as prettified JSON."
+    echo "options:"
+    echo "    -h: show this usage help"
+    echo "    -n: dry run"
+    echo "    -j: use curl option \"-H 'content-type: application/json'\""
+    echo ""
+    echo "curl options:"
+    echo "The first option that can not be parsed as an option to this script"
+    echo "will be interpreted as the beginning of options to be passed to curl."
+    echo "Or force the beginning of curl option parsing by passing -- first."
+    exit 1
+}
 
-curl_cmd="curl -s"
+OPT_DRYRUN=0
+OPT_APPJSON=0
+IGNORE_BAD_OPT=0
+while getopts "hnj" opt 2>/dev/null; do
+    case "$opt" in
+        h) usage;;
+        n) OPT_DRYRUN=1;;
+        j) OPT_APPJSON=1;;
+        \?) IGNORE_BAD_OPT=1;;
+    esac
+done
+shift $((OPTIND - 1 - $IGNORE_BAD_OPT))
+
+args=("$@")
+query="${args[${#args[@]} - 1]}"
+unset args[${#args[@]}-1] # pop query off end of args
+curl_opts="${args[*]}"
+
+curl_cmd="curl -s $curl_opts"
+[[ $OPT_APPJSON == 1 ]] && curl_cmd="$curl_cmd -H 'content-type: application/json'"
 python_cmd="python -mjson.tool"
 pygmentize_cmd="pygmentize -l json -f terminal256"
 
 function cleanup()
 {
-	[[ -n "$curl_output" ]] && rm -f "$curl_output"
-	[[ -n "$time_output" ]] && rm -f "$time_output"
-	[[ -n "$python_output" ]] && rm -f "$python_output"
-	[[ -n "$pygmentize_output" ]] && rm -f "$pygmentize_output"
+    [[ -n "$curl_output" ]] && rm -f "$curl_output"
+    [[ -n "$time_output" ]] && rm -f "$time_output"
+    [[ -n "$python_output" ]] && rm -f "$python_output"
+    [[ -n "$pygmentize_output" ]] && rm -f "$pygmentize_output"
 }
 
 function abort()
 {
-	if [[ -n "$1" ]]; then
-		echo $'\n'"$(tput bold)error: $curl_cmd$(tput sgr0)"
-		cat $1 >&2
-	fi
+    if [[ -n "$1" ]]; then
+        echo $'\n'"$(tput bold)error: $curl_cmd$(tput sgr0)"
+        cat $1 >&2
+    fi
 
-	if [[ -n "$2" ]]; then
-		echo $'\n'"$(tput bold)error: $python_cmd$(tput sgr0)"
-		cat $2 >&2
-	fi
+    if [[ -n "$2" ]]; then
+        echo $'\n'"$(tput bold)error: $python_cmd$(tput sgr0)"
+        cat $2 >&2
+    fi
 
-	if [[ -n "$3" ]]; then
-		echo $'\n'"$(tput bold)error: $pygmentize_cmd$(tput sgr0)"
-		cat $3 >&2
-	fi
+    if [[ -n "$3" ]]; then
+        echo $'\n'"$(tput bold)error: $pygmentize_cmd$(tput sgr0)"
+        cat $3 >&2
+    fi
 
-	cleanup
-	
-	exit 1
+    cleanup
+    
+    exit 1
 }
 
 let token_count=0
 IFS='?&' read -ra arr <<< "$query"
 for token in "${arr[@]}"; do
-	let token_count=$(($token_count + 1))
-	if [[ $token_count == 1 ]]; then
-		curl_cmd="$curl_cmd '$token'" # url
-		continue
-	fi
-	curl_cmd="$curl_cmd --data-urlencode '$token'" # params
+    let token_count=$(($token_count + 1))
+    if [[ $token_count == 1 ]]; then
+        curl_cmd="$curl_cmd '$token'" # url
+        continue
+    fi
+    curl_cmd="$curl_cmd --data-urlencode '$token'" # params
 done
 echo $'\n'"$curl_cmd | $python_cmd | $pygmentize_cmd" >&2
+
+[[ $OPT_DRYRUN == 1 ]] && exit 0
 
 curl_output=$(mktemp -t tmp.XXXXXXXXXX.curl.log)
 trap "rm -f $curl_output" EXIT
@@ -60,7 +96,7 @@ timed_cmd=$"time $curl_cmd"
 bash -c $"$timed_cmd" >$curl_output 2>"$time_output"
 
 if [[ $? != 0 ]]; then
-	abort "$curl_output"
+    abort "$curl_output"
 fi
 
 python_output=$(mktemp -t tmp.XXXXXXXXXX.python.log)
@@ -68,23 +104,23 @@ trap "rm -f $python_output" EXIT
 
 cat $curl_output | eval "$python_cmd" >$python_output 2>&1
 if [[ $? != 0 ]]; then
-	abort "$curl_output" "$python_output"
+    abort "$curl_output" "$python_output"
 fi
 
 if [[ -t 1 ]] ; then
-	pygmentize_output=$(mktemp -t tmp.XXXXXXXXXX.pygmentize.log)
-	trap "rm -f $pygmentize_output" EXIT
+    pygmentize_output=$(mktemp -t tmp.XXXXXXXXXX.pygmentize.log)
+    trap "rm -f $pygmentize_output" EXIT
 
-	cat $python_output | eval "$pygmentize_cmd" >$pygmentize_output 2>&1
-	if [[ $? != 0 ]]; then
-		abort "$curl_output" "$python_output" "$pygmentize_output"
-	fi
-	echo
-	cat $pygmentize_output | sed 's/\\"/"/g' | sed 's/\\n/\
-	/g'
+    cat $python_output | eval "$pygmentize_cmd" >$pygmentize_output 2>&1
+    if [[ $? != 0 ]]; then
+        abort "$curl_output" "$python_output" "$pygmentize_output"
+    fi
+    echo
+    cat $pygmentize_output | sed 's/\\"/"/g' | sed 's/\\n/\
+    /g'
 else
-	cat $python_output | sed 's/\\"/"/g' | sed 's/\\n/\
-	/g'
+    cat $python_output | sed 's/\\"/"/g' | sed 's/\\n/\
+    /g'
 fi
 
 cat "$time_output" >&2

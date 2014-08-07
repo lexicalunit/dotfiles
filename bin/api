@@ -37,7 +37,7 @@ query="${args[${#args[@]} - 1]}"
 unset args[${#args[@]}-1] # pop query off end of args
 curl_opts="${args[*]}"
 
-curl_cmd="curl -s $curl_opts"
+curl_cmd="curl --silent --show-error $curl_opts"
 [[ $OPT_APPJSON == 1 ]] && curl_cmd="$curl_cmd -H 'content-type: application/json'"
 python_cmd="python -mjson.tool"
 pygmentize_cmd="pygmentize -l json -f terminal256"
@@ -93,10 +93,13 @@ time_output=$(mktemp -t tmp.XXXXXXXXXX.time.log)
 trap "rm -f $time_output" EXIT
 
 timed_cmd=$"time $curl_cmd"
-bash -c $"$timed_cmd" >$curl_output 2>"$time_output"
+bash -c $"$timed_cmd" >$curl_output 2>"$time_output" # time command sends output to stderr
 
 if [[ $? != 0 ]]; then
-    abort "$curl_output"
+    # Due to the way redirection is set up here, time_output will contain
+    # the curl error message (as well as any relevant time output) when
+    # the evaluation of timed_cmd fails.
+    abort "$time_output"
 fi
 
 python_output=$(mktemp -t tmp.XXXXXXXXXX.python.log)

@@ -20,6 +20,7 @@
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
     s = status -uno
     push-topic = !bash git_push_topic
+    wdiff = diff --color-words --word-diff
 
 [color]
     ui = auto

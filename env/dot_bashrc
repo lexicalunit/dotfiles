@@ -72,6 +72,8 @@ export PYTHON_ENV=""
 
 function entervirtualenv
 {
+	exitconda
+
 	if type virtualenvwrapper.sh >/dev/null 2>&1; then
 		source "$(which virtualenvwrapper.sh)"
 	fi
@@ -90,6 +92,9 @@ function exitvirtualenv
 
 function enterconda
 {
+	# should be safe to exitvirtualenv just in case we're in a virtualenv
+	exitvirtualenv
+
 	# assume anaconda is installed in your home directory unless specified
 	if [[ -z "$1" ]]; then
 		export ANACONDA_ROOT="$HOME/anaconda"
@@ -114,8 +119,11 @@ function exitconda
 			source deactivate
 		fi
 	fi
-	export PATH="$(echo "$PATH" | sed "s@$ANACONDA_ROOT/bin@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
-	export MANPATH="$(echo "$PATH" | sed "s@$ANACONDA_ROOT/share/man@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
+
+	if [[ -n "$ANACONDA_ROOT" ]]; then
+		export PATH="$(echo "$PATH" | sed "s@$ANACONDA_ROOT/bin@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
+		export MANPATH="$(echo "$PATH" | sed "s@$ANACONDA_ROOT/share/man@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
+	fi
 	unset PYTHON_ENV
 }
 

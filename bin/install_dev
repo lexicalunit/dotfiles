@@ -164,11 +164,12 @@ function step_install_python
 		show "downloading $latest ..."
 		curl -o "$curl_output/anaconda.sh" "$latest"
 		bash "$curl_output/anaconda.sh" -b
-		conda config --set changeps1 no # prevent conda from setting my PS1
-		rm -f "$HOME/Desktop/Launcher.app" # get rid of Launcher.app on Desktop
 
 		# enter anaconda environment now that it's installed
 		export PATH="$HOME/anaconda/bin:$PATH"
+
+		conda config --set changeps1 no # prevent conda from setting my PS1
+		rm -f "$HOME/Desktop/Launcher.app" # get rid of Launcher.app on Desktop
 
 		rm -rf "$curl_output"
 	fi

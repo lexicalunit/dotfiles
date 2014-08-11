@@ -112,6 +112,7 @@ function step_install_homebrew()
 	if [[ -z "$(which brew)" ]]; then
 		show "installing homebrew..."
 		ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+		export PATH="$PATH:/usr/local/bin" # make sure brew is in your PATH before continuing
 	else
 		show "Homebrew already installed"
 	fi

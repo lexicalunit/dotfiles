@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -e
+
+function show()
+{
+	echo $'\e[1;34m==>\e[0m\e[31m' $1 $'\e[0m'
+}
+
+function run()
+{
+	show "$1"
+	eval "$1"
+	return $?
+}
+
+if [ ! "$1" ]; then
+	echo "usage: $0 HOST"
+	echo "deploys setup source code to remote HOST."
+	exit 1
+fi
+
+HOST="$1"
+REPO="$(basename $(pwd))"
+
+run "tar zcvf - \"../$REPO\" | ssh $HOST \"tar xvzf -\""
+run "ssh $HOST \"cd '$REPO'; yes | ./install\""

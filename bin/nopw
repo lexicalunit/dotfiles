@@ -7,7 +7,8 @@ if [[ -z "$1" ]]; then
 	exit 1
 fi
 
-KEY="id_rsa"
+KEY_TYPE="rsa"
+KEY="id_$KEY_TYPE"
 if [[ -n "$2" ]]; then
 	echo "using key $2"
 	KEY="$2"
@@ -26,7 +27,7 @@ local_run "mkdir -p ~/.ssh"
 local_run "touch ~/.ssh/authorized_keys"
 
 if [[ ! -f "$HOME/.ssh/$KEY.pub" ]]; then
-	local_run "ssh-keygen -t rsa"
+	local_run "ssh-keygen -t $KEY_TYPE"
 	local_run "cat ~/.ssh/$KEY.pub >> ~/.ssh/authorized_keys"
 fi
 

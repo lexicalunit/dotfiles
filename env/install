@@ -7,7 +7,10 @@ function sync()
 	eval $CMD
 }
 
+###############################################################################
 # install dot files
+###############################################################################
+
 for I in dot_*; do
 	if [[ -f $I ]]; then
 		if [[ -n "$(echo $I | grep bashrc_)" ]]; then
@@ -29,6 +32,35 @@ for I in dot_*; do
 	fi
 done
 
+###############################################################################
+# Install bash-completion form debian:
+###############################################################################
+
+# From git:
+
+# if [[ -d ~/.bash-completion ]]; then
+# 	cd ~/.bash-completion
+# 	git pull -u
+# 	cd -
+# else
+# 	cd ~
+# 	git clone git://git.debian.org/git/bash-completion/bash-completion .bash-completion
+# 	cd -
+# fi
+
+# From tarball:
+
+CURL_OUTPUT=$(mktemp -d -t tmp.XXXXXXXXXX)
+trap "rm -rf $CURL_OUTPUT" EXIT
+LATEST_BASH_COMPLETION="$(curl -s --show-error http://bash-completion.alioth.debian.org/files/ | sed 's/.*href="\([^"]*\)">[^<]*<\/a><\/td><td align="right">\([^<]*\).*/\1 \2/g' | egrep "^bash-completion.*tar.gz " | sort -k2 -d | tail -n 1 | cut -f1 -d' ')"
+pushd "$CURL_OUTPUT"
+curl -s --show-error -O "http://bash-completion.alioth.debian.org/files/$LATEST_BASH_COMPLETION"
+mkdir -p "$HOME/.bash-completion"; tar xvzf "$LATEST_BASH_COMPLETION" -C "$HOME/.bash-completion" --strip-components=1
+popd
+
+###############################################################################
+# Install Sublime Text packages
+###############################################################################
 function grab_package()
 {
 	URL="$1"
@@ -44,16 +76,6 @@ function grab_package()
 	fi
 	popd
 }
-
-if [[ -d ~/.bash-completion ]]; then
-	cd ~/.bash-completion
-	git pull -u
-	cd -
-else
-	cd ~
-	git clone git://git.debian.org/git/bash-completion/bash-completion .bash-completion
-	cd -
-fi
 
 if [[ -d "$HOME/Library/Application Support/Sublime Text 3/Packages/User" ]]; then
 	sync "Preferences.sublime-settings" ~/"Library/Application Support/Sublime Text 3/Packages/User"

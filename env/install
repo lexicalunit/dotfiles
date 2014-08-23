@@ -35,28 +35,29 @@ done
 ###############################################################################
 # Install bash-completion form debian:
 ###############################################################################
-
-# From git:
-
-# if [[ -d ~/.bash-completion ]]; then
-# 	cd ~/.bash-completion
-# 	git pull -u
-# 	cd -
-# else
-# 	cd ~
-# 	git clone git://git.debian.org/git/bash-completion/bash-completion .bash-completion
-# 	cd -
-# fi
-
-# From tarball:
-
-CURL_OUTPUT=$(mktemp -d -t tmp.XXXXXXXXXX)
-trap "rm -rf $CURL_OUTPUT" EXIT
-LATEST_BASH_COMPLETION="$(curl -s --show-error http://bash-completion.alioth.debian.org/files/ | sed 's/.*href="\([^"]*\)">[^<]*<\/a><\/td><td align="right">\([^<]*\).*/\1 \2/g' | egrep "^bash-completion.*tar.gz " | sort -k2 -d | tail -n 1 | cut -f1 -d' ')"
-pushd "$CURL_OUTPUT"
-curl -s --show-error -O "http://bash-completion.alioth.debian.org/files/$LATEST_BASH_COMPLETION"
-mkdir -p "$HOME/.bash-completion"; tar xvzf "$LATEST_BASH_COMPLETION" -C "$HOME/.bash-completion" --strip-components=1
-popd
+if type git 2>/dev/null; then
+	# From git:
+	if [[ -d ~/.bash-completion ]]; then
+		cd ~/.bash-completion
+		git fetch 
+		git clean -f 
+		git reset --hard origin/master
+		cd -
+	else
+		cd ~
+		git clone git://git.debian.org/git/bash-completion/bash-completion .bash-completion
+		cd -
+	fi
+else
+	# From tarball:
+	CURL_OUTPUT=$(mktemp -d -t tmp.XXXXXXXXXX)
+	trap "rm -rf $CURL_OUTPUT" EXIT
+	LATEST_BASH_COMPLETION="$(curl -s --show-error http://bash-completion.alioth.debian.org/files/ | sed 's/.*href="\([^"]*\)">[^<]*<\/a><\/td><td align="right">\([^<]*\).*/\1 \2/g' | egrep "^bash-completion.*tar.gz " | sort -k2 -d | tail -n 1 | cut -f1 -d' ')"
+	pushd "$CURL_OUTPUT"
+	curl -s --show-error -O "http://bash-completion.alioth.debian.org/files/$LATEST_BASH_COMPLETION"
+	mkdir -p "$HOME/.bash-completion"; tar xvzf "$LATEST_BASH_COMPLETION" -C "$HOME/.bash-completion" --strip-components=1
+	popd
+fi
 
 ###############################################################################
 # Install Sublime Text packages

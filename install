@@ -11,3 +11,5 @@ popd
 pushd env
 ./install
 popd
+
+echo "Install complete!"

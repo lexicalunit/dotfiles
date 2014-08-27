@@ -89,3 +89,5 @@ if [[ -d "$HOME/Library/Application Support/Sublime Text 3/Packages/User" ]]; th
 	# SublimeClang not supported in Sublime Text 3 and also not in current development anymore
 	# grab_package https://github.com/quarnster/SublimeClang.git "SublimeClang"
 fi
+
+echo "~/bin install complete!"

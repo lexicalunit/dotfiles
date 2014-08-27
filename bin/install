@@ -9,3 +9,5 @@ for I in *; do
 		rsync -avl $I ~/bin/$I
 	fi
 done
+
+echo "~/bin install complete!"

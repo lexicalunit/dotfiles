@@ -4,6 +4,6 @@
 
 SKIP_DIRS="CVS,RCS,.svn,.hg,.bzr,build,dist,CMakeFiles"
 SKIP_EXTS=".pyc,.pyo,.so,.o,.a,.tgz,.tar.gz,.rar,.zip,~,#,.bak,.png,.jpg,.gif,.bmp,.tif,.tiff,.pyd,.dll,.exe,.obj,.lib,cmake,Makefile"
-CMD="grin -d '$SKIP_DIRS' -e '$SKIP_EXTS' $@"
+CMD="grin -d '$SKIP_DIRS' -e '$SKIP_EXTS' \"$@\""
 echo $CMD
 eval $CMD

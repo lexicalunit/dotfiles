@@ -62,6 +62,9 @@ echo "Configuring git"
 git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 git config --global alias.s "status -uno"
 
+echo "Disable two finger gesture navigation on Chrome"
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool FALSE
+
 HOST="$(uname -n)"
 read -p "Set hostname... [$HOST]: "
 [[ -z "$REPLY" ]] && REPLY="$HOST"

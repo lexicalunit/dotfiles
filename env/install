@@ -7,30 +7,51 @@ function sync()
 	eval $CMD
 }
 
+function contains()
+{
+	local e
+	for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 0; done
+	return 1
+}
+
 ###############################################################################
 # install dot files
 ###############################################################################
 
+declare -a DOT_FILES
+DOT_FILES=($(ls dot_*))
+if [[ -n "$1" ]]; then
+	DOT_FILES=("$@")
+fi
+echo "installing dot files: ${DOT_FILES[@]}..."
+
 for I in dot_*; do
-	if [[ -f $I ]]; then
-		if [[ -n "$(echo $I | grep bashrc_)" ]]; then
-			read -p "install $I? (y/n) [n] ... "
-		else
-			REPLY="y"
-		fi
-		if [[ "$REPLY" == "y" ]]; then
-			CMD="rsync -avl $I ~/.$(echo $(basename $I) | sed s/^dot_//)"
+	if contains "$I" "${DOT_FILES[@]}"; then
+		if [[ -f $I ]]; then
+			if [[ -n "$(echo $I | grep bashrc_)" ]]; then
+				read -p "install $I? (y/n) [n] ... "
+			else
+				REPLY="y"
+			fi
+			if [[ "$REPLY" == "y" ]]; then
+				CMD="rsync -avl $I ~/.$(echo $(basename $I) | sed s/^dot_//)"
+				echo "+ $CMD"
+				eval $CMD
+			fi
+		elif [[ -d $I ]]; then
+			CMD="rsync -avl $I/* ~/.$(echo $(basename $I) | sed s/^dot_//)"
 			echo "+ $CMD"
 			eval $CMD
+		else
+			echo "error: could not install '$I'" >&2
 		fi
-	elif [[ -d $I ]]; then
-		CMD="rsync -avl $I/* ~/.$(echo $(basename $I) | sed s/^dot_//)"
-		echo "+ $CMD"
-		eval $CMD
-	else
-		echo "error: could not install '$I'" >&2
 	fi
 done
+
+if [[ -n "$1" ]]; then
+	echo "dot file install complete!"
+	exit 0
+fi
 
 ###############################################################################
 # Install bash-completion form debian:
@@ -93,4 +114,4 @@ if [[ -d "$HOME/Library/Application Support/Sublime Text 3/Packages/User" ]]; th
 	# grab_package https://github.com/quarnster/SublimeClang.git "SublimeClang"
 fi
 
-echo "~/bin install complete!"
+echo "env install complete!"

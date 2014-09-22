@@ -5,7 +5,7 @@
 ################################################################################
 # Settings
 ################################################################################
-HOMEBREW_FORMULAS="autoconf boost cloog cmake coreutils cppunit dmd doxygen fontconfig freetype gdbm gfortran ghostscript git git-flow gmp gnu-sed imagemagick isl jbig2dec jpeg libevent libmpc libpng libtiff libtool libyaml little-cms2 maven memcached mercurial mongodb mpfr ncftp node openssl openssl ossp-uuid pcre pidof pkg-config plotutils postgresql readline ruby s3cmd scons spark sqlite tclap unixodbc unrar watch wget xz yaml-cpp"
+HOMEBREW_FORMULAS="autoconf boost cloog cmake coreutils cppunit dmd doxygen fontconfig freetype gdbm ghostscript git git-flow gmp gnu-sed imagemagick isl jbig2dec jpeg libevent libmpc libpng libtiff libtool libyaml little-cms2 maven memcached mercurial mongodb mpfr ncftp node openssl openssl ossp-uuid pcre pidof pkg-config plotutils postgresql readline ruby s3cmd scons spark sqlite tclap unixodbc unrar watch wget xz yaml-cpp"
 PIP_PACKAGES="bson pymongo fabric iniparse psycopg2 suds oauth2client google-api-python-client httplib2 tinycss termcolor"
 CONDA_PACKAGES="dateutil pyzmq argcomplete"
 GEM_PACKAGES="cap_gun archive-tar-minitar bson bson_ext bundler bundler-unload childprocess cuba erector gem-wrappers jekyll jewelbox log4r lolcat mongo net-ldap rack rack-protection railsless-deploy rubygems-bundler rvm shotgun tiny_tds yajl-ruby capistrano"
@@ -137,10 +137,10 @@ function step_install_homebrew()
 	run "ln -sf /usr/local/bin/glibtoolize /usr/local/bin/libtoolize"
 
 	# The gfortran formula doesn't symlink libraries into /usr/local/lib, do it manually.
-	local LIBGFORTRAN="$(brew ls -v gfortran | grep libgfortran.a | egrep -m 1 -v "x86_64|i386")"
-	if [[ $? == 0 ]]; then
-		ln -sf "$LIBGFORTRAN" /usr/local/lib/.
-	fi
+	# local LIBGFORTRAN="$(brew ls -v gfortran | grep libgfortran.a | egrep -m 1 -v "x86_64|i386")"
+	# if [[ $? == 0 ]]; then
+	# 	ln -sf "$LIBGFORTRAN" /usr/local/lib/.
+	# fi
 
 	# install the git remote-hg helper
 	ln -sf $(brew ls -v git | grep git-remote-hg) /usr/local/bin
@@ -299,18 +299,26 @@ function step_install_mongo_c_driver_071()
 	run "$cleanup"
 }
 
+function ensure_install_shell()
+{
+	local BINARY="$1"
+	local INSTALLED="$(grep "$BINARY" /etc/shells)"
+	if [[ "$INSTALLED" == "" ]]; then
+		run "echo \"$BINARY\" | sudo tee -a /etc/shells"
+	fi
+}
+
 function step_install_bash()
 {
 	ensure_homebrew_updated
 	install_brew_formula bash
 
-	local BASH_BINARY="$(brew ls bash | grep '^.*/bin/.*bash$')"
-	local INSTALLED="$(grep "$BASH_BINARY" /etc/shells)"
-	if [[ "$INSTALLED" == "" ]]; then
-		run "echo \"$BASH_BINARY\" | sudo tee -a /etc/shells"
-	fi
+	BASH_BINARY="$(brew ls bash | grep '^.*/bin/.*bash$')"
+	ensure_install_shell "$BASH_BINARY"
 
-	show "Please set your terminal shell to \"$BASH_BINARY\""
+	HB_BASH_BINARY="/usr/local/bin/bash"
+	ensure_install_shell "$HB_BASH_BINARY"
+	chsh -s "$HB_BASH_BINARY" "$(whoami)"
 }
 
 function step_install_tiddlywiki()

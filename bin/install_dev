@@ -5,7 +5,7 @@
 ################################################################################
 # Settings
 ################################################################################
-HOMEBREW_FORMULAS="autoconf boost cmake coreutils cppunit dmd doxygen fontconfig freetype ghostscript git gnu-sed imagemagick jbig2dec jpeg libevent libmpc libpng libtiff libtool libyaml little-cms2 maven memcached mercurial mongodb ncftp node openssl ossp-uuid pcre pidof pkg-config plotutils postgresql readline ruby s3cmd scons spark sqlite unixodbc unrar watch wget xz yaml-cpp"
+HOMEBREW_FORMULAS="autoconf boost cmake coreutils cppunit dmd doxygen fontconfig freetype ghostscript git gnu-sed imagemagick jbig2dec jpeg libevent libmpc libpng libtiff libtool libyaml little-cms2 maven memcached mercurial mongodb ncftp node openssl ossp-uuid pcre pidof pkg-config plotutils postgresql readline ruby s3cmd scons spark sqlite unixodbc unrar watch wget xz yaml-cpp geoip"
 PIP_PACKAGES="bson pymongo fabric iniparse psycopg2 suds oauth2client google-api-python-client httplib2 tinycss termcolor"
 CONDA_PACKAGES="dateutil pyzmq argcomplete"
 GEM_PACKAGES="cap_gun archive-tar-minitar bson bson_ext bundler bundler-unload childprocess cuba erector gem-wrappers jekyll jewelbox log4r lolcat mongo net-ldap rack rack-protection railsless-deploy rubygems-bundler rvm shotgun yajl-ruby capistrano"

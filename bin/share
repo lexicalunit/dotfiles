@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Easy way to quickly manage temporary web shares.
+
+function usage()
+{
+    echo "usage $0 [ls|ssh|get <name>|put <file>|rm <name>]" 1>&2
+    echo "Requires ~/.webshare script to set env vars, edit this script for details."
+    exit 1
+}
+
+[[ -f "$HOME/.webshare" ]] || usage
+
+# The ~/.webshare script must set environment variables:
+#   * USER - user to use when connecting to HOST
+#   * HOST - the hostname to connect to
+#   * DEST_ROOT - the root of the www_html directory on HOST
+#   * DEST_DIR - the shares directory within the www_html directory
+source "$HOME/.webshare"
+
+DEST="$DEST_ROOT/$DEST_DIR"
+BASE_URL="http://$HOST/$DEST_DIR"
+
+[[ -n "$1" ]] || usage
+
+case $1 in
+    list|ls|l|ll|find|f|l*|f*)
+        ssh "$USER"@"$HOST" "find $DEST -type f | sed 's@$DEST/@$BASE_URL/@g'"
+        ;;
+
+    put|p|up|p*|u*)
+        [[ -n "$2" ]] || usage
+        FILE="$2"
+        NAME="$(basename $FILE)"
+        rsync -v --chmod=a+r --rsh="ssh -c blowfish" "$FILE" "$USER"@"$HOST":"$DEST/$NAME"
+        echo "$BASE_URL/$NAME"
+        ;;
+
+    get|g*)
+        [[ -n "$2" ]] || usage
+        NAME="$2"
+        scp "$USER"@"$HOST":"$DEST/$NAME" .
+        ;;
+
+    ssh|open|shell|s*)
+        ssh "$USER"@"$HOST"
+        ;;
+
+    del|delete|rm)
+        [[ -n "$2" ]] || usage
+        NAME="$2"
+        ssh "$USER"@"$HOST" "rm -fv $DEST/$NAME"
+        ;;
+esac

@@ -1,0 +1,15 @@
+# share(1) completion                                      -*- shell-script -*-
+
+_share ()
+{
+    local cur prev words cword
+    COMPREPLY=()
+
+    IFS=$'\n'
+    case $cur in
+        *) COMPREPLY=($(compgen -W '$(share names)' -- "$cur" )) ;;
+    esac
+} &&
+complete -F _share share
+
+# ex: ts=4 sw=4 et filetype=sh

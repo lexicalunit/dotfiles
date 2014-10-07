@@ -19,7 +19,7 @@ function contains()
 ###############################################################################
 
 declare -a DOT_FILES
-DOT_FILES=($(ls dot_*))
+DOT_FILES=($(find * -maxdepth 1 -name "dot_*"))
 if [[ -n "$1" ]]; then
 	DOT_FILES=("$@")
 fi
@@ -39,7 +39,7 @@ for I in dot_*; do
 				eval $CMD
 			fi
 		elif [[ -d $I ]]; then
-			CMD="rsync -avl $I/* ~/.$(echo $(basename $I) | sed s/^dot_//)"
+			CMD="rsync -avl $I/* ~/.$(echo $(basename $I) | sed s/^dot_//)/"
 			echo "+ $CMD"
 			eval $CMD
 		else

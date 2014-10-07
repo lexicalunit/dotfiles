@@ -4,7 +4,7 @@
 
 function usage()
 {
-    echo "usage $0 [ls|ssh|get <name>|put <file>|rm <name>]" 1>&2
+    echo "usage $0 [ls|names|ssh|get <name>|put <file>|rm <name>]" 1>&2
     echo "Requires ~/.webshare script to set env vars, edit this script for details."
     exit 1
 }
@@ -24,6 +24,10 @@ BASE_URL="http://$HOST/$DEST_DIR"
 [[ -n "$1" ]] || usage
 
 case $1 in
+    names|n*)
+        ssh "$USER"@"$HOST" "ls -1 $DEST"
+        ;;
+
     list|ls|l|ll|find|f|l*|f*)
         ssh "$USER"@"$HOST" "find $DEST -type f | sed 's@$DEST/@$BASE_URL/@g'"
         ;;

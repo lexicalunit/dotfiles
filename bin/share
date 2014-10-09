@@ -1,29 +1,47 @@
 #!/bin/bash
 
 # Easy way to quickly manage temporary web shares.
-
-function usage()
-{
-    echo "usage $0 [ls|names|ssh|get <name>|put <file>|rm <name>]" 1>&2
-    echo "Requires ~/.webshare script to set env vars, edit this script for details."
-    exit 1
-}
-
-[[ -f "$HOME/.webshare" ]] || usage
-
+#
 # The ~/.webshare script must set environment variables:
 #   * USER - user to use when connecting to HOST
 #   * HOST - the hostname to connect to
 #   * DEST_ROOT - the root of the www_html directory on HOST
 #   * DEST_DIR - the shares directory within the www_html directory
+
+function usage()
+{
+    echo "usage $0 [<file>|ls|names|ssh|get <name>|put <file>|rm <name>]" 1>&2
+    echo "Requires ~/.webshare script to set env vars, edit this script for details."
+    exit 1
+}
+
+[[ -f "$HOME/.webshare" ]] || usage
 source "$HOME/.webshare"
 
 DEST="$DEST_ROOT/$DEST_DIR"
 BASE_URL="http://$HOST/$DEST_DIR"
 
+function share_put()
+{
+    FILE="$1"
+    NAME="$(basename $FILE)"
+    rsync -v --chmod=a+r --rsh="ssh -c blowfish" "$FILE" "$USER"@"$HOST":"$DEST/$NAME"
+    echo "$BASE_URL/$NAME"
+}
+
 [[ -n "$1" ]] || usage
 
+# shortcut for put
+if [[ -f "$1" ]]; then
+    share_put "$1"
+    exit 0
+fi
+
 case $1 in
+    help|-h|--help|h*|-*)
+        usage
+        ;;
+
     names|n*)
         ssh "$USER"@"$HOST" "ls -1 $DEST"
         ;;
@@ -34,10 +52,7 @@ case $1 in
 
     put|p|up|p*|u*)
         [[ -n "$2" ]] || usage
-        FILE="$2"
-        NAME="$(basename $FILE)"
-        rsync -v --chmod=a+r --rsh="ssh -c blowfish" "$FILE" "$USER"@"$HOST":"$DEST/$NAME"
-        echo "$BASE_URL/$NAME"
+        share_put "$2"
         ;;
 
     get|g*)

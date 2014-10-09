@@ -1,15 +1,34 @@
-# share(1) completion                                      -*- shell-script -*-
+#!/bin/bash
+
+# share completion
 
 _share ()
 {
-    local cur prev words cword
+    local cur prev opts
     COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    opts=("ls" "names" "ssh" "get" "put" "rm" "help")
+
+    # autocomplete share commands
+    if [[ -z "$prev" || $COMP_CWORD == 1 ]]; then
+        COMPREPLY=($(compgen -W '${opts[@]}' -- ${cur}))
+        return 0
+    fi
 
     IFS=$'\n'
-    case $cur in
-        *) COMPREPLY=($(compgen -W '$(share names)' -- "$cur" )) ;;
+    case $prev in
+        put|p|up|p*|u*)
+            COMPREPLY=($(compgen -f "$cur"))
+            ;;
+
+        get|g*)
+            COMPREPLY=($(compgen -W '$(share names)' -- "$cur" ))
+            ;;
+
+        del|delete|rm)
+            COMPREPLY=($(compgen -W '$(share names)' -- "$cur" ))
+            ;;
     esac
 } &&
 complete -F _share share
-
-# ex: ts=4 sw=4 et filetype=sh

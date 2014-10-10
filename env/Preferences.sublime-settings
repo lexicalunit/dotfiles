@@ -32,7 +32,7 @@
 	],
 	"caret_style": "smooth",
 	"close_windows_when_empty": false,
-	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+	"color_scheme": "Packages/User/Monokai (SublimePythonIDE).tmTheme",
 	"default_encoding": "UTF-8",
 	"default_line_ending": "system",
 	"detect_indentation": true,

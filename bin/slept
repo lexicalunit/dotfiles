@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Get time OS X system last went to sleep.
+
+sysctl -a | grep sleeptime | sed 's/.*} //'

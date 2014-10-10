@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Get time OS X system last woke from sleep.
+
+sysctl -a | grep waketime | sed 's/.*} //'

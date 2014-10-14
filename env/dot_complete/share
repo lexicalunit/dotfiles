@@ -13,6 +13,11 @@ _share ()
     # autocomplete share commands
     if [[ -z "$prev" || $COMP_CWORD == 1 ]]; then
         COMPREPLY=($(compgen -W '${opts[@]}' -- ${cur}))
+
+        # fallback to filenames
+        if [[ $? != 0 ]]; then
+            COMPREPLY=($(compgen -f "$cur"))
+        fi
         return 0
     fi
 

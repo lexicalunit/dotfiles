@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Run shell command with a timeout.
 # usage: timeout_test "program -options" [SECONDS]
 
 timeout_test()

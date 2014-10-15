@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Uninstalls MacPorts completely.
 # see http://guide.macports.org/chunked/installing.macports.uninstalling.html
 
 sudo port -fp uninstall installed

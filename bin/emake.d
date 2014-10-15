@@ -1,5 +1,7 @@
 #!/usr/bin/env rdmd
 
+// Builds codebase externally.
+
 import std.file;
 import std.path;
 import std.stdio;

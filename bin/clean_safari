@@ -2,6 +2,12 @@
 
 # Cleans Safari caches and saved data on OS X.
 
+if [[ "$1" == "--help" ]]; then
+	echo "usage: $0" 1>&2
+	echo "Cleans Safari caches and saved data on OS X." 1>&2
+	exit 1
+fi
+
 function error()
 {
 	echo $'\e[1;34m==> \e[0m\e[7;30m'$1$'\e[0m'

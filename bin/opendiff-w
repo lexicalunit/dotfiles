@@ -1,4 +1,7 @@
 #!/bin/sh
+
+# Provides tooling for OpenDiff.
+
 # opendiff returns immediately, without waiting for FileMerge to exit.
 # Piping the output makes opendiff wait for FileMerge.
 opendiff "$@" | cat

@@ -1,5 +1,7 @@
 #!/usr/bin/osascript
 
+-- Provides shell level windowed alerting system.
+
 -- returns true iff an app with the given name is running
 on is_app_running(name)
     tell application "System Events" to (name of processes) contains name

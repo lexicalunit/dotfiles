@@ -1,4 +1,7 @@
 #!/bin/sh
+
+# Shows current Safari cache.
+
 echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN\"" > ~/Desktop/cache.html
 echo "    \"http://www.w3.org/TR/html4/strict.dtd\">" >> ~/Desktop/cache.html
 echo "<html lang=\"en\">" >> ~/Desktop/cache.html

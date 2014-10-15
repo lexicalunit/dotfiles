@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# converts yaml input to json output
+# converts yaml input to json output.
 
 import sys
 import json

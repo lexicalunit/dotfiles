@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Prints the root of the current repository.
+
 function abort()
 {
     echo "unknown" 1>&2

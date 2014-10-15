@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Uninstalls Homebrew completely.
 # see https://gist.github.com/1173223
 
 function abort {

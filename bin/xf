@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Extract common file formats
+# Extract common file formats.
  
 # Display usage if no parameters given
 if [[ -z "$@" ]]; then

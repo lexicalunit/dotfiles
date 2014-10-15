@@ -1,4 +1,7 @@
 #!/usr/bin/env perl
+
+# Count Lines of Code.
+
 # cloc -- Count Lines of Code {{{1
 # Copyright (C) 2006-2011 Northrop Grumman Corporation
 # Author:  Al Danial <al.danial@gmail.com>

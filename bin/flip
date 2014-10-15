@@ -1,5 +1,6 @@
 #!/usr/bin/env perl
 # Script by Lars Noodén
+# Flips input upside down.
 
 use strict;
 use warnings;

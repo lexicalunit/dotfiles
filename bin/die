@@ -9,6 +9,11 @@ function usage()
 	exit 1
 }
 
+if [[ "$1" == "--help" ]]; then
+	usage
+fi
+
+
 DRYRUN=0
 QUIET=0
 while getopts "hqn" opt; do

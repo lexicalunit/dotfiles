@@ -1,6 +1,12 @@
 #!/bin/bash
 
-# Caputres a window for a screen shot on X11 systems.
+# Captures a window for a screen shot on X11 systems.
+
+if [[ "$1" == "--help" ]]; then
+	echo "usage: $0" 1>&2
+	echo "Captures a window for a screen shot on X11 systems." 1>&2
+	exit 1
+fi
 
 set -e
 

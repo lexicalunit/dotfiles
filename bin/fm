@@ -1,5 +1,11 @@
 #!/bin/bash
 
-# Find in CMake files
+# Find in CMake files.
+
+if [[ "$1" == "--help" ]]; then
+	echo "usage: $0 [grep pattern]" 1>&2
+	echo "Find in CMake files." 1>&2
+	exit 1
+fi
 
 find . -name CMakeLists.txt -exec grep -HIin "$@" {} \; 2>/dev/null

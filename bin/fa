@@ -1,6 +1,12 @@
 #!/bin/bash
 
-# find all -- search source files
+# Find All -- uses grin to search source files.
+
+if [[ "$1" == "--help" ]]; then
+	echo "usage: $0 [python regex]" 1>&2
+	echo "Find All -- uses grin to search source files." 1>&2
+	exit 1
+fi
 
 SKIP_DIRS="CVS,RCS,.svn,.hg,.bzr,.git,build,dist,CMakeFiles"
 SKIP_EXTS=".pyc,.pyo,.so,.o,.a,.tgz,.tar.gz,.rar,.zip,~,#,.bak,.png,.jpg,.gif,.bmp,.tif,.tiff,.pyd,.dll,.exe,.obj,.lib,cmake,Makefile"

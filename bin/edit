@@ -2,6 +2,12 @@
 
 # Opens files in Sublime Text editor or vim if that's not available.
 
+if [[ "$1" == "--help" ]]; then
+	echo "usage: $0 [-n]" 1>&2
+	echo "Opens files in Sublime Text editor or vim if that's not available." 1>&2
+	exit 1
+fi
+
 NEWWINDOW=""
 if [[ $1 = "-n" ]]; then
 	shift

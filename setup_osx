@@ -65,6 +65,14 @@ git config --global alias.s "status -uno"
 echo "Disable two finger gesture navigation on Chrome"
 defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool FALSE
 
+echo "Disable recent items"
+defaults delete org.videolan.vlc.LSSharedFileList RecentDocuments
+defaults write org.videolan.vlc NSRecentDocumentsLimit 0
+defaults write org.videolan.vlc.LSSharedFileList RecentDocuments -dict-add MaxAmount 0
+defaults delete com.apple.QuickTimePlayerX.LSSharedFileList RecentDocuments
+defaults write com.apple.QuickTimePlayerX NSRecentDocumentsLimit 0
+defaults write com.apple.QuickTimePlayerX.LSSharedFileList RecentDocuments -dict-add MaxAmount 0
+
 HOST="$(uname -n)"
 read -p "Set hostname... [$HOST]: "
 [[ -z "$REPLY" ]] && REPLY="$HOST"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Updates the SublimeClang preferences file with the current preferences.
+# Updates stored SublimeClang config with current preferences.
 
 function die()
 {

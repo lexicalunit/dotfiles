@@ -1,5 +1,5 @@
 #!/bin/bash
 
-# updates bin with whatever new changes are found in the current environment.
+# Syncs ./bin with ~/bin.
 
 rsync -avl --exclude install --exclude thg --exclude macosver --exclude update_bin --delete ~/bin/ .

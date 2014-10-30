@@ -5,7 +5,7 @@
 mkdir -p ~/bin
 
 for I in *; do
-	if [[ "$I" != "install" && "$I" != "update_bin" ]]; then
+	if [[ "$I" != "install" && "$I" != "update_bin" && "$I" != "usages" ]]; then
 		rsync -avl $I ~/bin/$I
 	fi
 done

@@ -2,12 +2,40 @@
 
 # Prints out usages for ~/bin tools.
 
+# -t or --table enabled table mode for generating markdown output
+if [[ "$1" == "--table" || "$1" == "-t" ]]; then
+    TABLE=1
+    echo "| Tool | Usage |"
+    echo "| --- | --- |"
+fi
+
 for I in *; do
-	if [[ "$I" == "macosver" ]]; then
-		echo "$I - Prints current OS X version information."
-	elif [[ -n "$(file -h $I | grep 'symbolic link to')" ]]; then
-		echo "$I - Symbolic link to '$(ls -l $I | sed 's@.* -> \(.*\)@\1@')'"
-	else
-		echo "$I - $(cat $I | head -n 3 | tail -n 1 | sed 's@[^ ]* \(.*\)@\1@')"
-	fi
+    # tool name
+    if [[ $TABLE ]]; then
+        echo -en $"| [\`$I\`](bin/$I) | "
+    else
+        echo -n "$I - "
+    fi
+
+    # describe tool or symbolic link
+    if [[ "$I" == "macosver" ]]; then
+        DESC="Prints current OS X version information."
+    elif [[ -n "$(file -h $I | grep 'symbolic link to')" ]]; then
+        DESC="Symbolic link to '$(ls -l $I | sed 's@.* -> \(.*\)@\1@')'"
+    else
+        DESC="$(cat $I | head -n 3 | tail -n 1 | sed 's@[^ ]* \(.*\)@\1@')"
+    fi
+
+    # truncate long descriptions
+    if [[ $TABLE ]]; then
+        DESC="$(echo "$DESC" | awk -v len=70 '{ if (length($0) > len) print substr($0, 1, len-3) "..."; else print; }')"
+    fi
+
+    echo -n "$DESC"
+
+    if [[ $TABLE ]]; then
+        echo " |"
+    else
+        echo
+    fi
 done

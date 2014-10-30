@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Sets up passwordless login TO the given username@remotehost FROM the current system.
+# Enables password-less ssh TO username@remotehost FROM localhost.
 
 if [[ -z "$1" ]]; then
 	echo "usage: $0 username@remotehost" 1>&2

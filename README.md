@@ -54,7 +54,6 @@ The following tools are installed into your `~/bin` directory by the root level 
 | [`uninstall_homebrew`](bin/uninstall_homebrew) | Uninstalls Homebrew completely. |
 | [`uninstall_macports`](bin/uninstall_macports) | Uninstalls MacPorts completely. |
 | [`update_bin`](bin/update_bin) | Syncs ./bin with ~/bin. |
-| [`update_sublimeclang`](bin/update_sublimeclang) | Updates stored SublimeClang config with current preferences. |
 | [`usages`](bin/usages) | Prints out usages for ~/bin tools. |
 | [`woke`](bin/woke) | Get time OS X system last woke from sleep. |
 | [`xdie`](bin/xdie) | Kills processes based on their window title. |

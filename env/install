@@ -101,17 +101,10 @@ function grab_package()
 
 if [[ -d "$HOME/Library/Application Support/Sublime Text 3/Packages/User" ]]; then
 	sync "Preferences.sublime-settings" ~/"Library/Application Support/Sublime Text 3/Packages/User"
-	sync "SublimeClang.sublime-settings" ~/"Library/Application Support/Sublime Text 3/Packages/User"
 	sync "SublimePython.sublime-settings" ~/"Library/Application Support/Sublime Text 3/Packages/User"
 
 	grab_package https://github.com/buymeasoda/soda-theme.git "Theme - Soda"
 	grab_package https://github.com/JulianEberius/SublimePythonIDE.git "SublimePythonIDE"
-
-	# Soda seems more maintained than Phoenix, which is a Soda fork.
-	# grab_package https://github.com/netatoo/phoenix-theme/ "Theme - Phoenix"
-
-	# SublimeClang not supported in Sublime Text 3 and also not in current development anymore.
-	# grab_package https://github.com/quarnster/SublimeClang.git "SublimeClang"
 fi
 
 echo "env install complete!"

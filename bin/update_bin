@@ -2,4 +2,9 @@
 
 # Syncs ./bin with ~/bin.
 
-rsync -avl --exclude install --exclude thg --exclude macosver --exclude update_bin --delete ~/bin/ .
+rsync -avl \
+    --exclude install \
+    --exclude usages \
+    --exclude macosver \
+    --exclude update_bin \
+    --delete ~/bin/ .

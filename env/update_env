@@ -23,4 +23,4 @@ rsync -avl ~/.toprc ./dot_toprc
 rsync -avl ~/.complete/ ./dot_complete
 
 backup ~/"Library/Application Support/Sublime Text 3/Packages/User" "Preferences.sublime-settings"
-backup ~/"Library/Application Support/Sublime Text 3/Packages/User" "SublimeClang.sublime-settings"
+backup ~/"Library/Application Support/Sublime Text 3/Packages/User" "SublimePython.sublime-settings"

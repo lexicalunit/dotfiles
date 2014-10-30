@@ -100,11 +100,11 @@ function grab_package()
 }
 
 if [[ -d "$HOME/Library/Application Support/Sublime Text 3/Packages/User" ]]; then
-	sync "Preferences.sublime-settings" ~/"Library/Application Support/Sublime Text 3/Packages/User"
-	sync "SublimePython.sublime-settings" ~/"Library/Application Support/Sublime Text 3/Packages/User"
-
 	grab_package https://github.com/buymeasoda/soda-theme.git "Theme - Soda"
 	grab_package https://github.com/JulianEberius/SublimePythonIDE.git "SublimePythonIDE"
+
+	sync "Preferences.sublime-settings" ~/"Library/Application Support/Sublime Text 3/Packages/User"
+	sync "SublimePython.sublime-settings" ~/"Library/Application Support/Sublime Text 3/Packages/User"
 fi
 
 echo "env install complete!"

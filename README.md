@@ -8,7 +8,7 @@ You can also use the root level `deploy` script to automatically run the root le
 
 # Maintenance
 * The root level `update` script can be used periodically to update the repository with any changes.
-* Run `install_dev` to update development invronment.
+* Run `install_dev` to update development environment.
 
 # Environment
 * `My.terminal` and `Tomorrow Night.terminal` themes to use in `Terminal.app`.
@@ -17,7 +17,7 @@ You can also use the root level `deploy` script to automatically run the root le
 * `sane.css` style sheet for annoying websites.
 
 # ~/bin
-The following tools are installed into your `~/bin` directory by the root level `install` script, or by the `bin/install` script. These tools will be on your `PATH` if you have ran the root level `install` script of the `env/install` script which will properly configure your shell's envrionment.
+The following tools are installed into your `~/bin` directory by the root level `install` script, or by the `bin/install` script. These tools will be on your `PATH` if you have ran the root level `install` script of the `env/install` script which will properly configure your shell's environment.
 
 | Tool | Usage |
 | --- | --- |

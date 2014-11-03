@@ -1,0 +1,120 @@
+#!/bin/bash
+
+# Installs Atom IDE with custom style and packages.
+
+# This script will install Atom and the following apm packages:
+ATOM_PACKAGES="
+    minimap
+    minimap-git-diff
+    minimap-selection
+    tabs-to-spaces
+    autocomplete-plus
+    red-wavy-underline
+    monokai-soda
+    atom-soda-dark-ui
+"
+
+function show()
+{
+    echo $'\e[1;34m==>\e[0m\e[31m' $1 $'\e[0m'
+}
+
+function run()
+{
+    show "$1"
+    eval "$1"
+    return $?
+}
+
+function abort()
+{
+    echo $'\e[1;31merror:' $1 $'\e[0m' >&2
+    exit 1
+}
+
+function ask()
+{
+    echo -n $'\n\e[1;35m'
+    read -p "$1 (y/n) [n] ... "
+    echo -n $'\e[0;0m'
+}
+
+# Download Atom
+ATOM_ZIP="/tmp/atom.zip"
+run "wget -c 'https://atom.io/download/mac' -O $ATOM_ZIP" || abort "can't download Atom"
+
+# Install Atom
+function unzip_atom_into_applications()
+{
+    run "unzip /tmp/atom.zip -d /Applications 1>/dev/null" || abort "can't install Atom"
+}
+
+if [[ -d "/Applications/Atom.app" ]]; then
+    ask "Uninstall existing Atom?"
+    if [[ "$REPLY" == "y" ]]; then
+        run "rm -rf '/Applications/Atom.app'" || abort "can't uninstall existing Atom"
+        run "rm -f /usr/local/bin/atom" || abort "can't uninstall existing Atom"
+        run "rm -f /usr/local/bin/apm" || abort "can't uninstall existing Atom"
+        unzip_atom_into_applications
+    fi
+else
+    unzip_atom_into_applications
+fi
+
+# Make sure Atom command line tools are installed
+if ! apm --help >/dev/null 2>&1; then
+    # Start Atom for the first time
+    ATOM_INSTALL_NOTICE="/tmp/atom-install-notice"
+    cat > $ATOM_INSTALL_NOTICE <<EOF
+Atom packages are currently being installed. Atom will restart shortly...
+EOF
+    run "open -Fg /Applications/Atom.app --args $ATOM_INSTALL_NOTICE" || abort "can't launch Atom"
+
+    # Wait for Atom to install command lines tools
+    show "waiting on Atom..."
+    while ! apm --help >/dev/null 2>&1; do :; done
+    while ! atom --help >/dev/null 2>&1; do :; done
+fi
+
+# Install desired Atom packages
+show "installing Atom packages..."
+for I in $ATOM_PACKAGES; do
+    run "apm install $I" || abort "can not install package '$I'"
+done
+
+# Restart Atom
+show "restarting Atom..."
+run "osascript -e 'tell application \"Atom\" to quit'"
+run "sleep 1" # give application time to quit
+
+# Apply custom CSS
+show "applying custom Atom style..."
+cat > "$HOME/.atom/style.css" <<EOF
+atom-text-editor {
+    font-family: Inconsolata;
+    text-size: 16pt;
+}
+.tree-view { }
+atom-text-editor .cursor { }
+EOF
+
+# Configure Atom IDE
+show "configuring IDE settings..."
+cat > "$HOME/.atom/config.cson" <<EOF
+'global':
+  'minimap':
+    'plugins':
+      'selection': true
+      'git-diff': true
+  'welcome':
+    'showOnStartup': false
+  'core':
+    'themes': [
+      'atom-soda-dark-ui'
+      'monokai-soda'
+    ]
+  'editor':
+    'invisibles': {}
+EOF
+
+run "open -F /Applications/Atom.app"

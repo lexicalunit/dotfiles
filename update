@@ -11,6 +11,8 @@ fi
 
 pushd bin
 ./update_bin
+perl -ni -e 'print unless /^\|.*/' ../README.md 
+./usages -t >>../README.md 
 popd
 
 pushd env

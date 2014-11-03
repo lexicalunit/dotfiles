@@ -3,16 +3,22 @@
 # Enables password-less ssh TO username@remotehost FROM localhost.
 
 if [[ -z "$1" ]]; then
-	echo "usage: $0 username@remotehost" 1>&2
+	echo "usage: $0 [ssh connection options] username@remotehost" 1>&2
 	exit 1
 fi
 
-KEY_TYPE="rsa"
-KEY="id_$KEY_TYPE"
-if [[ -n "$2" ]]; then
-	echo "using key $2"
-	KEY="$2"
-fi
+function show()
+{
+	echo -e $'\e[1;34m' "$1" $'\e[0m'
+}
+
+KEY_TYPE="${KEY_TYPE:-rsa}"
+KEY="${KEY:-id_$KEY_TYPE}"
+
+echo
+show "*** KEY_TYPE set to ${KEY_TYPE} ***"
+show "*** KEY set to ${KEY} ***"
+echo
 
 function local_run()
 {
@@ -23,22 +29,26 @@ function local_run()
 
 set -e
 
-local_run "mkdir -p ~/.ssh"
-local_run "touch ~/.ssh/authorized_keys"
+[[ -d "$HOME/.ssh" ]] || local_run "mkdir -p '$HOME/.ssh'"
+[[ -f "$HOME/.ssh/authorized_keys" ]] || local_run "touch '$HOME/.ssh/authorized_keys'"
 
 if [[ ! -f "$HOME/.ssh/$KEY.pub" ]]; then
-	local_run "ssh-keygen -t $KEY_TYPE"
-	local_run "cat ~/.ssh/$KEY.pub >> ~/.ssh/authorized_keys"
+	local_run "ssh-keygen -t '$KEY_TYPE'"
+	local_run "cat '$HOME/.ssh/$KEY.pub' >> '$HOME/.ssh/authorized_keys'"
 fi
 
-local_run "chmod go-w ~/"
-local_run "chmod go-rwx ~/.ssh"
-local_run "chmod go-rwx ~/.ssh/authorized_keys"
+# SSH requires certain permissions on home directory, .ssh directory, and authorized_keys file
+local_run "chmod go-w $HOME"
+local_run "chmod go-rwx $HOME/.ssh"
+local_run "chmod go-rwx $HOME/.ssh/authorized_keys"
 
-echo "you will be asked for your password twice..."
-local_run "scp ~/.ssh/$KEY.pub \"$1\":\"~\""
+echo
+show "*** You will be asked for your password twice... ***"
+echo
 
-ssh "$1" "bash -s" << EOF
+local_run "cat '$HOME/.ssh/$KEY.pub' | ssh $@ 'cat > \"$KEY.pub\"'"
+
+ssh "$@" "bash -s" << EOF
 	function remote_run()
 	{
 		echo $'\e[1;34mremote ==>\e[0m\e[31m' \$1 $'\e[0m'
@@ -46,11 +56,13 @@ ssh "$1" "bash -s" << EOF
 		return \$?
 	}
 
-	remote_run "mkdir -p ~/.ssh"
-	remote_run "touch ~/.ssh/authorized_keys"
-	remote_run "cat $KEY.pub >> ~/.ssh/authorized_keys"
-	remote_run "chmod go-w ~/"
-	remote_run "chmod go-rwx ~/.ssh"
-	remote_run "chmod go-rwx ~/.ssh/authorized_keys"
-	remote_run "rm ~/$KEY.pub"
+	set -e
+	remote_run "cd ~"
+	[[ -d ".ssh" ]] || remote_run "mkdir -p .ssh"
+	[[ -f ".ssh/authorized_keys" ]] || remote_run "touch .ssh/authorized_keys"
+	remote_run "cat '$KEY.pub' >> .ssh/authorized_keys"
+	remote_run "chmod go-w ."
+	remote_run "chmod go-rwx .ssh"
+	remote_run "chmod go-rwx .ssh/authorized_keys"
+	[[ -f "$KEY.pub" ]] && remote_run "rm '$KEY.pub'"
 EOF

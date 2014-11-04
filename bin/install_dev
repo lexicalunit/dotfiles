@@ -5,10 +5,23 @@
 ################################################################################
 # Settings
 ################################################################################
-HOMEBREW_FORMULAS="autoconf boost cmake coreutils cppunit dmd doxygen fontconfig freetype ghostscript git gnu-sed imagemagick jbig2dec jpeg libevent libmpc libpng libtiff libtool libyaml little-cms2 maven memcached mercurial mongodb ncftp node openssl ossp-uuid pcre pidof pkg-config plotutils postgresql readline ruby s3cmd scons spark sqlite unixodbc unrar watch wget xz yaml-cpp geoip"
-PIP_PACKAGES="bson pymongo fabric iniparse psycopg2 suds oauth2client google-api-python-client httplib2 tinycss termcolor"
+
+HOMEBREW_FORMULAS="autoconf boost cmake coreutils cppunit dmd doxygen fontconfig \
+    freetype ghostscript git gnu-sed imagemagick jbig2dec jpeg libevent yaml-cpp \
+    libpng libtiff libtool libyaml little-cms2 maven memcached mercurial mongodb \
+    ncftp node openssl ossp-uuid pcre pidof pkg-config plotutils postgresql wget \
+    readline ruby s3cmd scons spark sqlite unixodbc unrar watch xz libmpc geoip"
+
+PIP_PACKAGES="bson pymongo fabric iniparse psycopg2 oauth2client pytz suds       \
+    google-api-python-client httplib2 tinycss termcolor requests uritemplate     \
+    beautifulsoup4"
+
 CONDA_PACKAGES="dateutil pyzmq argcomplete"
-GEM_PACKAGES="cap_gun archive-tar-minitar bson bson_ext bundler bundler-unload childprocess cuba erector gem-wrappers jekyll jewelbox log4r lolcat mongo net-ldap rack rack-protection railsless-deploy rubygems-bundler rvm shotgun yajl-ruby capistrano"
+
+GEM_PACKAGES="cap_gun archive-tar-minitar bson bson_ext bundler bundler-unload   \
+    childprocess cuba erector gem-wrappers jekyll jewelbox log4r lolcat mongo    \
+    net-ldap rack rack-protection railsless-deploy rubygems-bundler rvm shotgun  \
+    yajl-ruby capistrano"
 
 ################################################################################
 # Utilities
@@ -71,7 +84,7 @@ function step_setup_xcode() # xcode
     if [[ -z "$(which xcode-$SELECT)" ]]; then
         abort "install Xcode Command Line Tools first"
     fi
-    if cc --version 2>/dev/null 1>&2; then
+    if run "cc --version 2>/dev/null 1>&2"; then
         show "Xcode agreement is accepted."
     else
         show "Xcode agreement not accepted..."
@@ -83,7 +96,7 @@ function step_setup_xcode() # xcode
 function step_check_java() # java
 {
     show "Checking if java's installed..."
-    java -version
+    run "java -version"
 }
 
 function step_check_homebrew() # checkbrew
@@ -125,7 +138,7 @@ function step_install_homebrew() # brew
 {
     if [[ -z "$(which brew)" ]]; then
         show "installing homebrew..."
-        ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+        run "ruby -e \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
         export PATH="$PATH:/usr/local/bin" # make sure brew is in your PATH before continuing
     else
         show "Homebrew already installed"
@@ -151,7 +164,7 @@ function step_install_homebrew() # brew
     run "ln -sf /usr/local/bin/glibtoolize /usr/local/bin/libtoolize"
 
     # install the git remote-hg helper
-    ln -sf $(brew ls -v git | grep git-remote-hg) /usr/local/bin
+    run "ln -sf $(brew ls -v git | grep git-remote-hg) /usr/local/bin"
 
     # unlink keg-only formulas which should not be not symlinked into /usr/local
     run "brew unlink openssl readline sqlite"
@@ -162,8 +175,8 @@ function step_install_python() # python
     # enter existing anaconda environment if it's detected
     [[ -d "$HOME/anaconda/bin" ]] && export PATH="$HOME/anaconda/bin:$PATH"
 
-    if type conda >/dev/null 2>&1; then
-        conda update --yes --prefix "$HOME/anaconda" anaconda
+    if run "type conda >/dev/null 2>&1"; then
+        run "conda update --yes --prefix \"$HOME/anaconda\" anaconda"
     else
         curl_output=$(mktemp -d -t tmp.XXXXXXXXXX)
         trap "rm -rf $curl_output" EXIT
@@ -176,16 +189,16 @@ function step_install_python() # python
             | cut -d '' -f2 \
             | sed 's@./@@')"
         show "downloading $latest ..."
-        curl -o "$curl_output/anaconda.sh" "$latest"
-        bash "$curl_output/anaconda.sh" -b
+        run "curl -o \"$curl_output/anaconda.sh\" \"$latest\""
+        run "bash \"$curl_output/anaconda.sh\" -b"
 
         # enter anaconda environment now that it's installed
         export PATH="$HOME/anaconda/bin:$PATH"
 
-        conda config --set changeps1 no # prevent conda from setting my PS1
-        rm -f "$HOME/Desktop/Launcher.app" # get rid of Launcher.app on Desktop
+        run "conda config --set changeps1 no" # prevent conda from setting my PS1
+        run "rm -f \"$HOME/Desktop/Launcher.app\"" # get rid of Launcher.app on Desktop
 
-        rm -rf "$curl_output"
+        run "rm -rf \"$curl_output\""
     fi
 
     # Install python packages that don't come with Anaconda... yet!
@@ -271,7 +284,7 @@ function step_install_bash() # bash
 
     HB_BASH_BINARY="/usr/local/bin/bash"
     ensure_install_shell "$HB_BASH_BINARY"
-    chsh -s "$HB_BASH_BINARY" "$(whoami)"
+    run "chsh -s \"$HB_BASH_BINARY\" \"$(whoami)\""
 }
 
 function step_install_tiddlywiki() # tiddlywiki
@@ -289,7 +302,8 @@ function step_install_tiddlywiki() # tiddlywiki
 
     local TIDDLYWIKI_DOMAIN="org.tiddlywiki.server"
     show "Creating $HOME/Library/LaunchDaemons/org.tiddlywiki.server.plist..."
-    cat >"$HOME/Library/LaunchDaemons/$TIDDLYWIKI_DOMAIN.plist" <<EOF
+    if [[ $DRYRUN == 0 ]]; then
+        cat >"$HOME/Library/LaunchDaemons/$TIDDLYWIKI_DOMAIN.plist" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -315,9 +329,10 @@ function step_install_tiddlywiki() # tiddlywiki
     </dict>
 </plist>
 EOF
+    fi
 
     show "Creating /etc/launchd.conf..."
-    echo 'setenv PATH "/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"' | sudo tee /etc/launchd.config
+    run "echo 'setenv PATH \"/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin\"' | sudo tee /etc/launchd.config"
 
     run "launchctl unload $HOME/Library/LaunchAgents/org.tiddlywiki.server.plist"
     run "launchctl load -w $HOME/Library/LaunchAgents/org.tiddlywiki.server.plist"

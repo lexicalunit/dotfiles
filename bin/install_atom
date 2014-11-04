@@ -77,14 +77,25 @@ EOF
 fi
 
 # Install desired Atom packages
+function install_pkg()
+{
+    local PKG="$1"
+    local INSTALLED="$(apm list --installed --bare | grep "$PKG")"
+    if [[ -z "$INSTALLED" ]]; then
+        run "apm install $PKG" || abort "can not install package '$PKG'"
+    else
+        show "skipping $PKG: already installed"
+    fi
+}
+
 show "installing Atom packages..."
 for I in $ATOM_PACKAGES; do
-    run "apm install $I" || abort "can not install package '$I'"
+    install_pkg "$I"
 done
 
 # Restart Atom
 show "restarting Atom..."
-run "osascript -e 'tell application \"Atom\" to quit'"
+run "osascript -e 'tell application \"Atom\" to quit' 2>/dev/null"
 run "sleep 1" # give application time to quit
 
 # Apply custom CSS

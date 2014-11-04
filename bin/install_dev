@@ -109,7 +109,7 @@ function step_check_homebrew() # checkbrew
         | sort -u \
         | sed "s@^>@added:  @g;s@<@missing:@g" \
         | egrep -v "^missing:\s*openssl$|^missing:\s*readline$^missing:\s*sqlite$"
-            # we expect openssl, readlin, and sqlite to be unlinked
+            # we expect openssl, readline, and sqlite to be unlinked
 }
 
 function install_brew_formula()

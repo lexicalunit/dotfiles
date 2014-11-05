@@ -28,7 +28,7 @@ echo "installing dot files: ${DOT_FILES[@]}..."
 for I in dot_*; do
 	if contains "$I" "${DOT_FILES[@]}"; then
 		if [[ -f $I ]]; then
-			if [[ -n "$(echo $I | grep bashrc_)" ]]; then
+			if [[ -n "$(echo $I | grep profile_)" ]]; then
 				read -p "install $I? (y/n) [n] ... "
 			else
 				REPLY="y"

@@ -287,6 +287,20 @@ function step_install_bash() # bash
     run "chsh -s \"$HB_BASH_BINARY\" \"$(whoami)\""
 }
 
+function step_install_zsh() # zsh
+{
+    ensure_homebrew_updated
+    install_brew_formula zsh
+    install_brew_formula zsh-completions
+
+    ZSH_BINARY="$(brew ls zsh | grep '^.*/bin/.*zsh$')"
+    ensure_install_shell "$ZSH_BINARY"
+
+    HB_ZSH_BINARY="/usr/local/bin/zsh"
+    ensure_install_shell "$HB_ZSH_BINARY"
+    run "chsh -s \"$HB_ZSH_BINARY\" \"$(whoami)\""
+}
+
 function step_install_tiddlywiki() # tiddlywiki
 {
     ensure_homebrew_updated
@@ -379,6 +393,7 @@ java;Check that java is installed (will prompt to install if not);step_check_jav
 gem;Upgrade/Install gem packages: rubygems-update $GEM_PACKAGES?;step_install_gem
 xquartz;Install latest XQuartz package?;step_install_xquartz
 bash;Install latest version of bash from Homebrew?;step_install_bash
+zsh;Install latest version of zsh from Homebrew?;step_install_zsh
 tiddlywiki;Install and setup latest TiddlyWiki from Homebrew?;step_install_tiddlywiki")
 
 IFS=$'\n'

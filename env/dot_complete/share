@@ -1,9 +1,11 @@
-#!/bin/bash
-
-# share completion
+# share completion (targets bash and zsh's bashcompinit module)
 
 _share ()
 {
+    if type emulate 1>/dev/null 2>&1; then
+        emulate -L ksh
+    fi
+
     local cur prev opts
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
@@ -12,7 +14,7 @@ _share ()
 
     # autocomplete share commands
     if [[ -z "$prev" || $COMP_CWORD == 1 ]]; then
-        COMPREPLY=($(compgen -W '${opts[@]}' -- ${cur}))
+        COMPREPLY=($(compgen -W "$(echo -n ${opts[@]})" -- "${cur}"))
 
         # fallback to filenames
         if [[ $? != 0 ]]; then
@@ -28,12 +30,12 @@ _share ()
             ;;
 
         get|g*)
-            COMPREPLY=($(compgen -W '$(share names)' -- "$cur" ))
+            COMPREPLY=($(compgen -W "$(share names)" -- "$cur" ))
             ;;
 
         del|delete|rm)
-            COMPREPLY=($(compgen -W '$(share names)' -- "$cur" ))
+            COMPREPLY=($(compgen -W "$(share names)" -- "$cur" ))
             ;;
     esac
 } &&
-complete -F _share share
+complete -o default -F _share share

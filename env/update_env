@@ -7,11 +7,20 @@ function backup()
 	rsync -avl "$1/$2" "$2"
 }
 
-rsync -avl ~/.bash_profile ./dot_bash_profile
-rsync -avl ~/.bashrc ./dot_bashrc
-for I in ~/.bashrc*; do
+# profile
+rsync -avl ~/.profile ./dot_profile
+for I in ~/.profile*; do
 	rsync -avl $I ./$(echo $(basename $I) | sed s/^./dot_/)
 done
+
+# bash
+rsync -avl ~/.bash_profile ./dot_bash_profile
+rsync -avl ~/.bashrc ./dot_bashrc
+
+# zsh
+rsync -avl ~/.zshrc ./dot_zshrc
+
+# tools
 rsync -avl ~/.dircolors ./dot_dircolors
 rsync -avl ~/.inputrc ./dot_inputrc
 rsync -avl ~/.vimrc ./dot_vimrc

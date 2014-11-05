@@ -1,4 +1,4 @@
-# .bashrc_pdfman
+# .profile_pdfman
 
 # MAN_PDF_DIR=`mktemp -d -t man_pdf.XXXX`
 MAN_PDF_DIR=/tmp

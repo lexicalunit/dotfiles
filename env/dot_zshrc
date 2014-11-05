@@ -1,6 +1,6 @@
-# .bash_profile
+# .zshrc
 
-SHELL="$(which bash)"
+SHELL="$(which zsh)"
 
 if [[ -f ~/.profile ]]; then
 	. ~/.profile

@@ -13,6 +13,9 @@ ATOM_PACKAGES="
     monokai-soda
     atom-soda-dark-ui
     set-syntax
+    merge-conflicts
+    linter
+    linter-pep8
 "
 
 function show()
@@ -40,13 +43,12 @@ function ask()
     echo -n $'\e[0;0m'
 }
 
-# Download Atom
-ATOM_ZIP="/tmp/atom.zip"
-run "wget -c 'https://atom.io/download/mac' -O $ATOM_ZIP" || abort "can't download Atom"
-
 # Install Atom
+ATOM_ZIP="/tmp/atom.zip"
+
 function unzip_atom_into_applications()
 {
+    run "wget -c 'https://atom.io/download/mac' -O $ATOM_ZIP" || abort "can't download Atom"
     run "unzip /tmp/atom.zip -d /Applications 1>/dev/null" || abort "can't install Atom"
 }
 
@@ -127,6 +129,8 @@ cat > "$HOME/.atom/config.cson" <<EOF
     ]
   'editor':
     'invisibles': {}
+  'linter-pep8':
+    'maxLineLength': 120
 EOF
 
 run "open -F /Applications/Atom.app"

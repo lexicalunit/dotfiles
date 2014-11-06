@@ -12,7 +12,7 @@ fi
 for I in *; do
     # tool name
     if [[ $TABLE ]]; then
-        echo -en $"| [\`$I\`](bin/$I) | "
+        echo -en "| [\`$I\`](bin/$I) | "
     else
         echo -n "$I - "
     fi
@@ -20,10 +20,10 @@ for I in *; do
     # describe tool or symbolic link
     if [[ "$I" == "macosver" ]]; then
         DESC="Prints current OS X version information."
-    elif [[ -n "$(file -h $I | grep 'symbolic link to')" ]]; then
-        DESC="Symbolic link to '$(ls -l $I | sed 's@.* -> \(.*\)@\1@')'"
+    elif [[ -n "$(file -h "$I" | grep 'symbolic link to')" ]]; then
+        DESC="Symbolic link to '$(ls -l "$I" | sed 's@.* -> \(.*\)@\1@')'"
     else
-        DESC="$(cat $I | head -n 3 | tail -n 1 | sed 's@[^ ]* \(.*\)@\1@')"
+        DESC="$(head -n 3 "$I" | tail -n 1 | sed 's@[^ ]* \(.*\)@\1@')"
     fi
 
     # truncate long descriptions

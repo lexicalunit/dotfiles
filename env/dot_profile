@@ -346,25 +346,25 @@ function ostype
         echo $OS
         return 0
     fi
-    
+
     local OS="$(uname -s)"
     local CHIP=unknown
-    
+
     case "$OS" in
         SunOS|IRIX64|Darwin)
             local CHIP="$(uname -p)"
             ;;
-        
+
         Linux|machten)
             local CHIP="$(uname -m)"
             ;;
-        
+
         "Mac OS")
             local OS="MacOS"
             local CHIP="$(uname -p)"
             ;;
     esac
-    
+
     echo "$OS-$CHIP"
     return 0
 }
@@ -521,6 +521,8 @@ alias taskc='fa "#[^ T\!#\n]" '
 alias tasks='fa "#T" '
 alias unmerged='git ls-files -u | cut -f2 | sort -u '
 alias pygmentize='pygmentize -O bg=dark'
+alias gits='git s '
+alias gitsu='git s -u '
 
 export RSYNC_RSH=rsh # use ssh over rsync
 alias ssh='ssh -Y -C ' # use compression over ssh connections
@@ -533,13 +535,6 @@ function eman
 function fawk
 {
     awk "{print \$$1}"
-}
-
-function ew
-{
-    if which $1 2>&1 >/dev/null; then
-        edit $(which $1)
-    fi
 }
 
 function fuck
@@ -573,17 +568,31 @@ alias ll='ls -l '
 export GREP_OPTIONS='--color=auto' GREP_COLOR='7;35'
 
 # setup editor
-export EDITOR=vim
-export CVSEDITOR=vim
-export XEDITOR=edit
+if type atom >/dev/null 2>&1; then
+    alias edit='atom '
+    function ew { atom "$(which $1)" }
+    export EDITOR='atom -w'
+    export CVSEDITOR='atom -w'
+elif type subl >/dev/null 2>&1; then
+    alias edit='subl '
+    function ew { subl "$(which $1)" }
+    export EDITOR='subl -w'
+    export CVSEDITOR='subl -w'
+elif type vim >/dev/null 2>&1; then
+    alias edit='vim '
+    function ew { vim "$(which $1)" }
+    export EDITOR=vim
+    export CVSEDITOR=vim
+fi
+export XEDITOR=vim
 export IGNOREEOF=0
 
 # setup man
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;31m'
 export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'                           
-export LESS_TERMCAP_so=$'\E[01;44;33m'                                 
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 

@@ -12,6 +12,7 @@ ATOM_PACKAGES="
     red-wavy-underline
     monokai-soda
     atom-soda-dark-ui
+    set-syntax
 "
 
 function show()

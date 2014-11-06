@@ -9,8 +9,12 @@ function backup()
 
 # profile
 rsync -avl ~/.profile ./dot_profile
-for I in ~/.profile*; do
-	rsync -avl $I ./$(echo $(basename $I) | sed s/^./dot_/)
+for I in ~/.profile_*; do
+    echo "considering: $I"
+    if [[ -z "$(grep "$(basename "$I")" ignore)" ]]; then
+        echo "adding: $I"
+        rsync -avl "$I" "./$(basename "$I" | sed 's/^./dot_/')"
+    fi
 done
 
 # bash

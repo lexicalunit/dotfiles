@@ -2,9 +2,17 @@
 
 # Syncs ./bin with ~/bin.
 
-rsync -avl \
-    --exclude install \
-    --exclude usages \
-    --exclude macosver \
-    --exclude update_bin \
-    --delete ~/bin/ .
+EXCLUDES=(install usages macosver update_bin ignore)
+
+while read I; do EXCLUDES+=("$I"); done < ignore
+
+CMD="rsync -avl"
+
+for I in "${EXCLUDES[@]}"; do
+	CMD="$CMD --exclude '$I'"
+done
+
+CMD="$CMD --delete ~/bin/ ."
+
+echo "$CMD"
+eval "$CMD"

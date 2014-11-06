@@ -10,6 +10,10 @@ if [[ "$1" == "--table" || "$1" == "-t" ]]; then
 fi
 
 for I in *; do
+    if [[ "$I" == "ignore" ]]; then
+        continue
+    fi
+
     # tool name
     if [[ $TABLE ]]; then
         echo -en "| [\`$I\`](bin/$I) | "

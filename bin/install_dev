@@ -10,11 +10,12 @@ HOMEBREW_FORMULAS="autoconf boost cmake coreutils cppunit dmd doxygen fontconfig
     freetype ghostscript git gnu-sed imagemagick jbig2dec jpeg libevent yaml-cpp \
     libpng libtiff libtool libyaml little-cms2 maven memcached mercurial mongodb \
     ncftp node openssl ossp-uuid pcre pidof pkg-config plotutils postgresql wget \
-    readline ruby s3cmd scons spark sqlite unixodbc unrar watch xz libmpc geoip"
+    readline ruby s3cmd scons spark sqlite unixodbc unrar watch xz libmpc geoip  \
+    shellcheck"
 
 PIP_PACKAGES="bson pymongo fabric iniparse psycopg2 oauth2client pytz suds       \
     google-api-python-client httplib2 tinycss termcolor requests uritemplate     \
-    beautifulsoup4"
+    beautifulsoup4 pyflakes pep8 flake8"
 
 CONDA_PACKAGES="dateutil pyzmq argcomplete"
 
@@ -28,7 +29,7 @@ GEM_PACKAGES="cap_gun archive-tar-minitar bson bson_ext bundler bundler-unload  
 ################################################################################
 function usage()
 {
-    echo "usage: $(basename $0) [-l | all | step-name ]"
+    echo "usage: $(basename "$0") [-l | all | step-name ]"
     echo "options:"
     echo "    -h: show usage help"
     echo "    -l: list available step names"
@@ -41,7 +42,7 @@ function usage()
 
 function show()
 {
-    echo $'\e[1;34m==>\e[0m\e[31m' $1 $'\e[0m'
+    echo $'\e[1;34m==>\e[0m\e[31m' "$1" $'\e[0m'
 }
 
 function run()
@@ -60,7 +61,7 @@ function abort()
     if [[ -n "$2" ]]; then
         run "$2"
     fi
-    echo $'\e[1;31merror:' $1 $'\e[0m' >&2
+    echo $'\e[1;31merror:' "$1" $'\e[0m' >&2
     exit 1
 }
 
@@ -108,13 +109,13 @@ function step_check_homebrew() # checkbrew
         | grep '[<>]' \
         | sort -u \
         | sed "s@^>@added:  @g;s@<@missing:@g" \
-        | egrep -v "^missing:\s*openssl$|^missing:\s*readline$^missing:\s*sqlite$"
+        | egrep -v "^missing:\s*openssl\$|^missing:\s*readline\$^missing:\s*sqlite\$"
             # we expect openssl, readline, and sqlite to be unlinked
 }
 
 function install_brew_formula()
 {
-    if [[ -z "$(brew ls | grep $1)" ]]; then
+    if [[ -z "$(brew ls | grep "$1")" ]]; then
         run "brew install $1"
     else
         show "brew formula $1 already installed"
@@ -152,13 +153,13 @@ function step_install_homebrew() # brew
 
     IFS=$" "
     for I in $HOMEBREW_FORMULAS; do
-        install_brew_formula $I
+        install_brew_formula "$I"
     done
 
     # cmake's bundling utility fails in completely reasonable cases, the following steps are necessary
     run "chmod +w /usr/local/Cellar/freetds/*/lib/*.dylib 2>/dev/null"
     run "chmod +w /usr/local/Cellar/pcre/*/lib/*.dylib 2>/dev/null"
-    
+
     # install glibtool and glibtoolize as the defaults
     run "ln -sf /usr/local/bin/glibtool /usr/local/bin/libtool"
     run "ln -sf /usr/local/bin/glibtoolize /usr/local/bin/libtoolize"
@@ -179,7 +180,7 @@ function step_install_python() # python
         run "conda update --yes --prefix \"$HOME/anaconda\" anaconda"
     else
         curl_output=$(mktemp -d -t tmp.XXXXXXXXXX)
-        trap "rm -rf $curl_output" EXIT
+        trap 'rm -rf $curl_output' EXIT
 
         latest="http://repo.continuum.io/archive/$(curl -s http://repo.continuum.io/archive/index.html \
             | grep MacOSX-x86_64.sh \
@@ -228,7 +229,7 @@ function step_install_gem() # gem
     IFS=$" "
     for I in $GEM_PACKAGES; do
         run "yes | sudo gem update -q $I"
-        if [[ -z "$(gem list $I | grep $I)" ]]; then
+        if [[ -z "$(gem list "$I" | grep "$I")" ]]; then
             run "yes | sudo gem install -q $I"
         fi
     done
@@ -252,7 +253,7 @@ function step_install_xquartz() # xquartz
     show "found latest XQuartz as \"$latest\""
 
     local tempdir="$(mktemp -d -t tmp.XXXXXXXXXX)" || abort "can't create temp directory"
-    local cleanup="umount /Volumes/$(basename $latest .dmg); rm -rf $tempdir"
+    local cleanup="umount /Volumes/$(basename "$latest" .dmg); rm -rf $tempdir"
     run "cd $tempdir" || abort "can't enter temp directory" "$cleanup"
     if [[ ! -f "/tmp/.install_dev/$latest" ]] ; then
         run "wget -c http://xquartz.macosforge.org/downloads/SL/$latest" || abort "can't acquire $latest" "$cleanup"
@@ -260,8 +261,8 @@ function step_install_xquartz() # xquartz
     else
         run "cp /tmp/.install_dev/$latest ."
     fi
-    run "hdiutil mount $latest" || abort "can't mount $latest at /Volumes/$(basename $latest .dmg)" "$cleanup"
-    run "sudo installer -pkg /Volumes/$(basename $latest .dmg)/XQuartz.pkg -target /" || abort "installer failed" "$cleanup"
+    run "hdiutil mount $latest" || abort "can't mount $latest at /Volumes/$(basename "$latest" .dmg)" "$cleanup"
+    run "sudo installer -pkg /Volumes/$(basename "$latest" .dmg)/XQuartz.pkg -target /" || abort "installer failed" "$cleanup"
     run "$cleanup"
 }
 
@@ -408,11 +409,11 @@ for step in $steps; do
         continue
     fi
 
-    if [[ $ALL == 0 && -z "$(echo $@ | egrep "\b$key\b")" ]]; then
+    if [[ $ALL == 0 && -z "$(echo "$@" | egrep "\b$key\b")" ]]; then
         continue
     fi
 
-    let steps_taken=$(($steps_taken + 1))
+    let steps_taken=$((steps_taken + 1))
     ask "[$key] $question"
     if [[ "$REPLY" == "y" ]]; then
         show "Beginning step [$key]"

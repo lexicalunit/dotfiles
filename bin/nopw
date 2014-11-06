@@ -22,7 +22,7 @@ echo
 
 function local_run()
 {
-	echo $'\e[1;34mlocal ==>\e[0m\e[31m' $1 $'\e[0m'
+	echo $'\e[1;34mlocal ==>\e[0m\e[31m' "$1" $'\e[0m'
 	eval "$1"
 	return $?
 }
@@ -51,7 +51,7 @@ local_run "cat '$HOME/.ssh/$KEY.pub' | ssh $@ 'cat > \"$KEY.pub\"'"
 ssh "$@" "bash -s" << EOF
 	function remote_run()
 	{
-		echo $'\e[1;34mremote ==>\e[0m\e[31m' \$1 $'\e[0m'
+		echo $'\e[1;34mremote ==>\e[0m\e[31m' "\$1" $'\e[0m'
 		eval "\$1"
 		return \$?
 	}

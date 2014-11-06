@@ -4,7 +4,7 @@
 
 function usage()
 {
-    echo "usage: $(basename $0) [options] [curl options] \"URI\""
+    echo "usage: $(basename "$0") [options] [curl options] \"URI\""
     echo ""
     echo "Hits the given URI and returns the result as prettified JSON."
     echo "options:"
@@ -30,7 +30,7 @@ while getopts "hnj" opt 2>/dev/null; do
         \?) IGNORE_BAD_OPT=1;;
     esac
 done
-shift $((OPTIND - 1 - $IGNORE_BAD_OPT))
+shift $((OPTIND - 1 - IGNORE_BAD_OPT))
 
 args=("$@")
 query="${args[${#args[@]} - 1]}"
@@ -54,28 +54,28 @@ function abort()
 {
     if [[ -n "$1" ]]; then
         echo $'\n'"$(tput bold)error: $curl_cmd$(tput sgr0)"
-        cat $1 >&2
+        cat "$1" >&2
     fi
 
     if [[ -n "$2" ]]; then
         echo $'\n'"$(tput bold)error: $python_cmd$(tput sgr0)"
-        cat $2 >&2
+        cat "$2" >&2
     fi
 
     if [[ -n "$3" ]]; then
         echo $'\n'"$(tput bold)error: $pygmentize_cmd$(tput sgr0)"
-        cat $3 >&2
+        cat "$3" >&2
     fi
 
     cleanup
-    
+
     exit 1
 }
 
 let token_count=0
 IFS='?&' read -ra arr <<< "$query"
 for token in "${arr[@]}"; do
-    let token_count=$(($token_count + 1))
+    let token_count=$((token_count + 1))
     if [[ $token_count == 1 ]]; then
         curl_cmd="$curl_cmd '$token'" # url
         continue
@@ -87,13 +87,13 @@ echo $'\n'"$curl_cmd | $python_cmd | $pygmentize_cmd" >&2
 [[ $OPT_DRYRUN == 1 ]] && exit 0
 
 curl_output=$(mktemp -t tmp.XXXXXXXXXX.curl.log)
-trap "rm -f $curl_output" EXIT
+trap 'rm -f $curl_output' EXIT
 
 time_output=$(mktemp -t tmp.XXXXXXXXXX.time.log)
-trap "rm -f $time_output" EXIT
+trap 'rm -f $time_output' EXIT
 
 timed_cmd=$"time $curl_cmd"
-bash -c $"$timed_cmd" >$curl_output 2>"$time_output" # time command sends output to stderr
+bash -c $"$timed_cmd" >"$curl_output" 2>"$time_output" # time command sends output to stderr
 
 if [[ $? != 0 ]]; then
     # Due to the way redirection is set up here, time_output will contain
@@ -103,27 +103,27 @@ if [[ $? != 0 ]]; then
 fi
 
 python_output=$(mktemp -t tmp.XXXXXXXXXX.python.log)
-trap "rm -f $python_output" EXIT
+trap 'rm -f $python_output' EXIT
 
-cat $curl_output | eval "$python_cmd" >$python_output 2>&1
+eval "$python_cmd" <"$curl_output" >"$python_output" 2>&1
 if [[ $? != 0 ]]; then
     abort "$curl_output" "$python_output"
 fi
 
 if [[ -t 1 ]] ; then
     pygmentize_output=$(mktemp -t tmp.XXXXXXXXXX.pygmentize.log)
-    trap "rm -f $pygmentize_output" EXIT
+    trap 'rm -f $pygmentize_output' EXIT
 
-    cat $python_output | eval "$pygmentize_cmd" >$pygmentize_output 2>&1
+    eval "$pygmentize_cmd" <"$python_output" >"$pygmentize_output" 2>&1
     if [[ $? != 0 ]]; then
         abort "$curl_output" "$python_output" "$pygmentize_output"
     fi
     echo
-    cat $pygmentize_output | sed 's/\\"/"/g' | sed 's/\\n/\
-    /g'
+    sed 's/\\"/"/g' < "$pygmentize_output" | sed "s/\\n/\
+    /g"
 else
-    cat $python_output | sed 's/\\"/"/g' | sed 's/\\n/\
-    /g'
+    sed 's/\\"/"/g' <"$python_output" | sed "s/\\n/\
+    /g"
 fi
 
 cat "$time_output" >&2

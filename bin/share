@@ -24,7 +24,7 @@ BASE_URL="http://$HOST/$DEST_DIR"
 function share_put()
 {
     FILE="$1"
-    NAME="$(basename $FILE)"
+    NAME="$(basename "$FILE")"
     rsync -v --chmod=a+r --rsh="ssh -c blowfish" "$FILE" "$USER"@"$HOST":"$DEST/$NAME"
     echo "$BASE_URL/$NAME"
 }

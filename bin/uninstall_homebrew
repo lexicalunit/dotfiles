@@ -3,7 +3,7 @@
 # Uninstalls Homebrew completely.
 # see https://gist.github.com/1173223
 
-function abort {
+abort() {
   echo "$1"
   exit 1
 }
@@ -13,13 +13,13 @@ set -e
 /usr/bin/which -s git || abort "brew install git first!"
 test -d /usr/local/.git || abort "brew update first!"
 
-cd `brew --prefix` || abort "can't cd to `brew --prefix`"
+cd "$(brew --prefix)" || abort "can't cd to $(brew --prefix)"
 git checkout master
 git ls-files -z | pbcopy
 rm -rf Cellar
 bin/brew prune
 pbpaste | xargs -0 rm
-rm -r Library/Homebrew Library/Aliases Library/Formula Library/Contributions 
+rm -r Library/Homebrew Library/Aliases Library/Formula Library/Contributions
 test -d Library/LinkedKegs && rm -r Library/LinkedKegs
 rmdir -p bin Library share/man/man1 2> /dev/null
 rm -rf .git

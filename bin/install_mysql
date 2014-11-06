@@ -21,7 +21,7 @@ if [[ "$1" == 'uninstall' ]]; then
 	sudo rm -rf /var/db/receipts/com.mysql.*
 	rm -rf ~/Library/PreferencePanes/MySQL*
 	cp /etc/hostconfig /tmp/hostconfig
-	cat /tmp/hostconfig | grep -v "MYSQLCOM" | sudo tee /tmp/hostconfig	
+	grep -v "MYSQLCOM" /tmp/hostconfig | sudo tee /tmp/hostconfig
 	exit 0
 fi
 
@@ -33,7 +33,7 @@ curl -O "$URI"
 hdiutil mount "$IMG"
 sudo installer -pkg "/Volumes/$IMG/$IMG.pkg" -target /
 
-sudo cat >/etc/my.conf <<EOF
+sudo tee /etc/my.cnf <<EOF
 [client]
 default-character-set=utf8
 

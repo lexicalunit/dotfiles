@@ -28,7 +28,6 @@ The following tools are installed into your `~/bin` directory by the root level 
 | [`cloc`](bin/cloc) | Count Lines of Code. |
 | [`colortest`](bin/colortest) | Prints out a terminal color test. |
 | [`die`](bin/die) | Kills processes based on process name. |
-| [`edit`](bin/edit) | Opens files in Sublime Text editor or vim if that's not available. |
 | [`emake.d`](bin/emake.d) | Builds codebase externally. |
 | [`fa`](bin/fa) | Find All -- uses grin to search source files. |
 | [`ff`](bin/ff) | Symbolic link to '/usr/local/bin/grind' |

@@ -1,5 +1,5 @@
 #!/bin/bash
- 
+
 # Sets up ODBC.
 
 ###############################################################################
@@ -7,7 +7,7 @@
 ###############################################################################
 function show
 {
-	echo $'\e[1;34m==>\e[0m\e[31m' $1 $'\e[0m'
+	echo $'\e[1;34m==>\e[0m\e[31m' "$1" $'\e[0m'
 }
 
 function run
@@ -22,7 +22,7 @@ function abort
 	if [[ -n "$2" ]]; then
 		run "$2"
 	fi
-	echo $'\e[1;31merror:' $1 $'\e[0m' >&2
+	echo $'\e[1;31merror:' "$1" $'\e[0m' >&2
 	exit 1
 }
 
@@ -66,7 +66,7 @@ if [[ -d /opt/vertica/lib64 ]]; then
 elif [[ -d /opt/vertica/lib ]]; then
 	VERTICA_LIBRARY_PATH="/opt/vertica/lib"
 fi
-VERTICA_DRIVER="$(find $VERTICA_LIBRARY_PATH -name "libverticaodbc.*" | egrep "$VERTICA_LIBRARY_PATH/libverticaodbc.(dylib|so)$")"
+VERTICA_DRIVER="$(find $VERTICA_LIBRARY_PATH -name "libverticaodbc.*" | egrep "$VERTICA_LIBRARY_PATH/libverticaodbc.(dylib|so)\$")"
 MSSQL_DRIVER="$(brew ls -v freetds | grep libtdsodbc.so)"
 
 # osql requires drivers be executable

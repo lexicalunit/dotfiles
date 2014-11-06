@@ -4,12 +4,12 @@
 
 function show()
 {
-	echo $'\e[1;34m==>\e[0m\e[31m' $1 $'\e[0m'
+	echo $'\e[1;34m==>\e[0m\e[31m' "$1" $'\e[0m'
 }
 
 function abort()
 {
-	echo $'\e[1;31merror:' $1 $'\e[0m' >&2
+	echo $'\e[1;31merror:' "$1" $'\e[0m' >&2
 	exit 1
 }
 

@@ -47,7 +47,7 @@ if $INTERACTIVE; then
 # interactive settings
 ################################################################################
 # print timestamp and given message
-function _interactive_log
+_interactive_log()
 {
     echo "$(date +%H:%M:%S.%N) - $@"
 }
@@ -73,7 +73,7 @@ fi
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export PYTHON_ENV=""
 
-function entervirtualenv
+entervirtualenv()
 {
     exitconda
 
@@ -83,7 +83,7 @@ function entervirtualenv
     export PYTHON_ENV="virtualenv"
 }
 
-function exitvirtualenv
+exitvirtualenv()
 {
     if [[ -n "$VIRTUAL_ENV" ]]; then
         if type deactivate >/dev/null 2>&1; then
@@ -93,7 +93,7 @@ function exitvirtualenv
     unset PYTHON_ENV
 }
 
-function enterconda
+enterconda()
 {
     # should be safe to exitvirtualenv just in case we're in a virtualenv
     exitvirtualenv
@@ -117,7 +117,7 @@ function enterconda
     fi
 }
 
-function exitconda
+exitconda()
 {
     if [[ -n "$CONDA_DEFAULT_ENV" ]]; then
         if which deactivate >/dev/null 2>&1; then
@@ -143,7 +143,7 @@ if [[ -n "$(echo "$SHELL" | grep bash)" ]]; then
     shopt -s histverify
 
     # syncs bash history from all shells
-    function _bash_history_sync
+    _bash_history_sync()
     {
         builtin history -a
         HISTFILESIZE=$HISTSIZE
@@ -152,14 +152,14 @@ if [[ -n "$(echo "$SHELL" | grep bash)" ]]; then
     }
 
     # syncs history then forwards to builtin
-    function history
+    history()
     {
         _bash_history_sync
         builtin history "$@"
     }
 
     # for PROMPT_COMMAND, see below
-    function _bash_history_append
+    _bash_history_append()
     {
         builtin history -a
     }
@@ -182,7 +182,7 @@ export SAVEHIST="$TERMINAL_HISTORY_SIZE"
 ################################################################################
 if [[ -n "$(echo "$SHELL" | grep bash)" ]]; then
     _interactive_log "setup bash completions"
-    function _source_completions
+    _source_completions()
     {
         if [[ -d "$1" ]]; then
             for I in "$1"/*; do
@@ -321,7 +321,7 @@ elif [[ -n "$(echo "$SHELL" | grep zsh)" ]]; then
 
     # env
     autoload -Uz bashcompinit && bashcompinit
-    function _source_completions
+    _source_completions()
     {
       if [[ -d "$1" ]]; then
           for I in "$1"/*; do
@@ -340,7 +340,7 @@ fi
 _interactive_log "setup command prompt"
 
 # prints OS type
-function ostype
+ostype()
 {
     if [ -n "$OS" ]; then
         echo $OS
@@ -370,19 +370,19 @@ function ostype
 }
 
 # allow user to provide override for terminal title
-function title
+title()
 {
     export TERMINAL_TITLE_USER="$(echo "$@")"
 }
 
 # allow user to provide override for terminal prompt note
-function note
+note()
 {
     export PROMPT_USER_NOTE="$(echo "$@")"
 }
 
 # prints terminal note if one is set
-function _prompt_usernote
+_prompt_usernote()
 {
     if [[ -n "$PROMPT_USER_NOTE" ]]; then
         echo -n " #" $PROMPT_USER_NOTE
@@ -390,7 +390,7 @@ function _prompt_usernote
 }
 
 # prints python environment information
-function _prompt_python_env
+_prompt_python_env()
 {
     local PROMPT_PYTHON_ENV=""
     if [[ -n "$PYTHON_ENV" ]]; then
@@ -409,7 +409,7 @@ function _prompt_python_env
 
 if [[ -n "$(echo "$SHELL" | grep bash)" ]]; then
     # prints repository information, bash only
-    function _prompt_repo
+    _prompt_repo()
     {
         branch=$(type __git_ps1 &>/dev/null && __git_ps1 "%s")
         if [[ -n "$branch" ]]; then
@@ -436,7 +436,7 @@ if [[ -n "$(echo "$SHELL" | grep bash)" ]]; then
         fi
     }
 
-    function _prompt_command
+    _prompt_command()
     {
         local   BLUE="\[\e[0;34m\]"
         local    RED="\[\e[0;31m\]"
@@ -457,7 +457,7 @@ ${PROMPT_LINE_2} "
         PS2="> "
         PS3="#? "
         PS4="$0:$LINENO: "
-    } # function _prompt_command
+    }
 
     export PROMPT_COMMAND='_bash_history_append; _prompt_command ' # single quotes to avoid variable expansion
 elif [[ -n "$(echo "$SHELL" | grep zsh)" ]]; then
@@ -469,7 +469,7 @@ elif [[ -n "$(echo "$SHELL" | grep zsh)" ]]; then
     zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
     zstyle ':vcs_info:*' enable git cvs svn hg
 
-    function _prompt_repo
+    _prompt_repo()
     {
         vcs_info
         if [[ -n "$vcs_info_msg_0_" ]]; then
@@ -477,25 +477,25 @@ elif [[ -n "$(echo "$SHELL" | grep zsh)" ]]; then
         fi
     }
 
-    function _prompt_terminal_title
+    _prompt_terminal_title()
     {
         echo -n "\e]2;"
         [[ -n "$TERMINAL_TITLE_USER" ]] && echo -n "${TERMINAL_TITLE_USER} - "
         echo -n "%n@%m:%~\a"
     }
 
-    function _prompt_first_line
+    _prompt_first_line()
     {
         local PROMPT_FIRST_LINE="%{$fg[red]%}%~%{$reset_color%}%{$fg[blue]%}$(_prompt_python_env)%{$reset_color%}$(_prompt_repo)"
         echo -n "$PROMPT_FIRST_LINE"
     }
 
-    function _prompt_cursor
+    _prompt_cursor()
     {
         echo -n "%(?|%2F|%1F)%(?|$|>)%{$reset_color%} "
     }
 
-    function _prompt_second_line
+    _prompt_second_line()
     {
         local PROMPT_SECOND_LINE="%{$fg[red]%}%D{%H%M} $(ostype | sed 's/Linux-//g') %n@%m%{$reset_color%}"
         echo -n "$PROMPT_SECOND_LINE"
@@ -527,17 +527,17 @@ alias gitsu='git s -u '
 export RSYNC_RSH=rsh # use ssh over rsync
 alias ssh='ssh -Y -C ' # use compression over ssh connections
 
-function eman
+eman()
 {
     man "$@" | col -bx | subl --stay &
 }
 
-function fawk
+fawk()
 {
     awk "{print \$$1}"
 }
 
-function fuck
+fuck()
 {
     die $1
     if [[ $? == 0 ]]; then
@@ -568,24 +568,24 @@ alias ll='ls -l '
 export GREP_OPTIONS='--color=auto' GREP_COLOR='7;35'
 
 # setup editor
-if type atom >/dev/null 2>&1; then
-    alias edit='atom '
-    function ew { atom "$(which $1)" }
-    export EDITOR='atom -w'
-    export CVSEDITOR='atom -w'
-elif type subl >/dev/null 2>&1; then
-    alias edit='subl '
-    function ew { subl "$(which $1)" }
-    export EDITOR='subl -w'
-    export CVSEDITOR='subl -w'
-elif type vim >/dev/null 2>&1; then
-    alias edit='vim '
-    function ew { vim "$(which $1)" }
-    export EDITOR=vim
-    export CVSEDITOR=vim
-fi
+export EDITOR=vim
+export CVSEDITOR=vim
 export XEDITOR=vim
 export IGNOREEOF=0
+if type atom >/dev/null 2>&1; then
+    # export EDITOR='atom -w'
+    # export CVSEDITOR='atom -w'
+    alias edit='atom '
+    ew() { atom "$(which "$1")"; }
+elif type subl >/dev/null 2>&1; then
+    # export EDITOR='subl -w'
+    # export CVSEDITOR='subl -w'
+    alias edit='subl '
+    ew() { subl "$(which "$1")"; }
+elif type vim >/dev/null 2>&1; then
+    alias edit='vim '
+    ew() { vim "$(which "$1")"; }
+fi
 
 # setup man
 export LESS_TERMCAP_mb=$'\E[01;31m'

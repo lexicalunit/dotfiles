@@ -516,7 +516,6 @@ alias bc='bc -l '
 alias ftp='ncftp '
 alias profile='valgrind --tool=callgrind --dump-instr=yes --simulate-cache=yes --collect-jumps=yes '
 alias memcheck='valgrind --tool=memcheck --leak-check=yes -show-reachable=yes -fno-inline --logfile=memcheck.log '
-alias hist='history '
 alias taskc='fa "#[^ T\!#\n]" '
 alias tasks='fa "#T" '
 alias unmerged='git ls-files -u | cut -f2 | sort -u '
@@ -535,6 +534,28 @@ eman()
 fawk()
 {
     awk "{print \$$1}"
+}
+
+hist()
+{
+    if [[ -n "$(echo "$SHELL" | grep zsh)" ]]; then
+        if [[ -n "$*" ]]; then
+            history "$@"
+        else
+            history 1
+        fi
+    elif [[ -n "$(echo "$SHELL" | grep bash)" ]]; then
+        history "$@"
+    fi
+}
+
+h()
+{
+    if [[ -z "$*" ]]; then
+        hist
+    else
+        hist | egrep "$@"
+    fi
 }
 
 fuck()

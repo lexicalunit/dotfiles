@@ -4,17 +4,24 @@
     autocrlf = false
 
 [push]
-	default = tracking
+    default = tracking
 
-[difftool "diffmerge"]
-    cmd = diffmerge $LOCAL $REMOTE
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path "$MERGED" -- "$LOCAL" "$REMOTE"
 
-[mergetool "diffmerge"]
-    cmd = diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE
+[diff]
+    prompt = false
+    renames = copies
+	tool = Kaleidoscope
+
+[mergetool "kaleidoscope"]
+    prompt = false
+    cmd = ksdiff --merge --output "$MERGED" --base "$BASE" -- "$LOCAL" --snapshot "$REMOTE" --snapshot
     trustExitCode = true
 
 [merge]
-    tool = diffmerge
+    stat = true
+	tool = Kaleidoscope
 
 [alias]
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
@@ -41,22 +48,8 @@
     changed = green
     untracked = cyan
 
-[diff]
-    renames = copies
-
-[merge]
-    stat = true
-
 [advice]
     pushNonFastForward = false
 
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-
 [branch]
-	autosetuprebase = always
+    autosetuprebase = always

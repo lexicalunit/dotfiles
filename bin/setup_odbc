@@ -2,36 +2,7 @@
 
 # Sets up ODBC.
 
-###############################################################################
-# utilities
-###############################################################################
-function show
-{
-	echo $'\e[1;34m==>\e[0m\e[31m' "$1" $'\e[0m'
-}
-
-function run
-{
-	show "$1"
-	eval "$1"
-	return $?
-}
-
-function abort
-{
-	if [[ -n "$2" ]]; then
-		run "$2"
-	fi
-	echo $'\e[1;31merror:' "$1" $'\e[0m' >&2
-	exit 1
-}
-
-function ask
-{
-	echo -n $'\n\e[1;35m'
-	read -p "$1 (y/n) [n] ... "
-	echo -n $'\e[0;0m'
-}
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 ###############################################################################
 # installing freetds with unixodbc
@@ -40,7 +11,7 @@ if ! type brew >/dev/null; then
 	abort "prerequisite homebrew not installed"
 fi
 
-function install_freetds
+install_freetds()
 {
 	run "brew install unixodbc" || abort "could not install unixodbc"
 	run "brew install --with-unixodbc freetds" || abort "could not install freetds with unixodbc"
@@ -130,7 +101,7 @@ run "cat $HOME/.odbc.ini"
 ###############################################################################
 # installing configuration files
 ###############################################################################
-function install_to
+install_to()
 {
 	local install_to_path="$@"
 	run "sudo mkdir -p $install_to_path/" || abort "can't create directory $install_to_path"

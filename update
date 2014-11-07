@@ -2,19 +2,22 @@
 
 # Updates the bin and env directories with whatever new changes are found in the current environment
 
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
 set -e
 
 if [[ -n "$(git status -s)" ]]; then
-	echo "cowardly refusing to overwrite existing changes" >&2
-	exit 1
+	abort "cowardly refusing to overwrite existing changes"
 fi
 
-pushd bin
-./update_bin
-perl -ni -e 'print unless /^\|.*/' ../README.md 
-./usages -t >>../README.md 
-popd
+(
+	run "pushd bin"
+	run "./update_bin"
+	run "perl -ni -e 'print unless /^\|.*/' ../README.md"
+	run "./usages -t >>../README.md"
+)
 
-pushd env
-./update_env
-popd
+(
+	run "pushd env"
+	run "./update_env"
+)

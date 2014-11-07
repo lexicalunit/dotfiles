@@ -3,17 +3,12 @@
 # Uninstalls Homebrew completely.
 # see https://gist.github.com/1173223
 
-abort() {
-  echo "$1"
-  exit 1
-}
-
 set -e
 
-/usr/bin/which -s git || abort "brew install git first!"
-test -d /usr/local/.git || abort "brew update first!"
+/usr/bin/which -s git
+test -d /usr/local/.git
 
-cd "$(brew --prefix)" || abort "can't cd to $(brew --prefix)"
+cd "$(brew --prefix)"
 git checkout master
 git ls-files -z | pbcopy
 rm -rf Cellar

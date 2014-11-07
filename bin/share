@@ -8,7 +8,7 @@
 #   * DEST_ROOT - the root of the www_html directory on HOST
 #   * DEST_DIR - the shares directory within the www_html directory
 
-function usage()
+usage()
 {
     echo "usage $0 [<file>|ls|names|ssh|get <name>|put <file>|rm <name>]" 1>&2
     echo "Requires ~/.webshare script to set env vars, edit this script for details."
@@ -21,7 +21,7 @@ source "$HOME/.webshare"
 DEST="$DEST_ROOT/$DEST_DIR"
 BASE_URL="http://$HOST/$DEST_DIR"
 
-function share_put()
+share_put()
 {
     FILE="$1"
     NAME="$(basename "$FILE")"

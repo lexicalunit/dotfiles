@@ -27,7 +27,7 @@ GEM_PACKAGES="cap_gun archive-tar-minitar bson bson_ext bundler bundler-unload  
 ################################################################################
 # Utilities
 ################################################################################
-function usage()
+usage()
 {
     echo "usage: $(basename "$0") [-l | all | step-name ]"
     echo "options:"
@@ -40,46 +40,12 @@ function usage()
     exit 0
 }
 
-function show()
-{
-    echo $'\e[1;34m==>\e[0m\e[31m' "$1" $'\e[0m'
-}
-
-function run()
-{
-    show "$1"
-    if [[ $DRYRUN == 0 ]]; then
-        eval "$1"
-        return $?
-    else
-        return 0
-    fi
-}
-
-function abort()
-{
-    if [[ -n "$2" ]]; then
-        run "$2"
-    fi
-    echo $'\e[1;31merror:' "$1" $'\e[0m' >&2
-    exit 1
-}
-
-function ask()
-{
-    if [[ $FORCE = 1 ]]; then
-        REPLY='y'
-        return 0
-    fi
-    echo -n $'\n\e[1;35m'
-    read -p "$1 (y/n) [n] ... "
-    echo -n $'\e[0;0m'
-}
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 ################################################################################
 # Steps
 ################################################################################
-function step_setup_xcode() # xcode
+step_setup_xcode() # xcode
 {
     export SELECT="select"
     if [[ -z "$(which xcode-$SELECT)" ]]; then
@@ -94,13 +60,13 @@ function step_setup_xcode() # xcode
     show "Xcode Command Line Tools properly installed."
 }
 
-function step_check_java() # java
+step_check_java() # java
 {
     show "Checking if java's installed..."
     run "java -version"
 }
 
-function step_check_homebrew() # checkbrew
+step_check_homebrew() # checkbrew
 {
     diff <(echo "$HOMEBREW_FORMULAS" \
         | sort -u \
@@ -113,7 +79,7 @@ function step_check_homebrew() # checkbrew
             # we expect openssl, readline, and sqlite to be unlinked
 }
 
-function install_brew_formula()
+install_brew_formula()
 {
     if [[ -z "$(brew ls | grep "$1")" ]]; then
         run "brew install $1"
@@ -125,7 +91,7 @@ function install_brew_formula()
     run "brew unlink $1 && brew link --force --overwrite $1"
 }
 
-function ensure_homebrew_updated()
+ensure_homebrew_updated()
 {
     if [[ -z "$(which brew)" ]]; then
         abort "please install Homebrew first"
@@ -135,7 +101,7 @@ function ensure_homebrew_updated()
     run "brew upgrade"
 }
 
-function step_install_homebrew() # brew
+step_install_homebrew() # brew
 {
     if [[ -z "$(which brew)" ]]; then
         show "installing homebrew..."
@@ -171,7 +137,7 @@ function step_install_homebrew() # brew
     run "brew unlink openssl readline sqlite"
 }
 
-function step_install_python() # python
+step_install_python() # python
 {
     # enter existing anaconda environment if it's detected
     [[ -d "$HOME/anaconda/bin" ]] && export PATH="$HOME/anaconda/bin:$PATH"
@@ -220,7 +186,7 @@ function step_install_python() # python
     run "perl -pi -e 's/.*display_banner.*/c.TerminalIPythonApp.display_banner = False/' $HOME/.ipython/profile_default/ipython_config.py"
 }
 
-function step_install_gem() # gem
+step_install_gem() # gem
 {
     run "yes | sudo gem install rubygems-update"
     run "yes | sudo update_rubygems"
@@ -235,7 +201,7 @@ function step_install_gem() # gem
     done
 }
 
-function step_install_xquartz() # xquartz
+step_install_xquartz() # xquartz
 {
     if type Xquartz >/dev/null 2>&1; then
         show "a Xquartz is already installed..."
@@ -266,7 +232,7 @@ function step_install_xquartz() # xquartz
     run "$cleanup"
 }
 
-function ensure_install_shell()
+ensure_install_shell()
 {
     local BINARY="$1"
     local INSTALLED="$(grep "$BINARY" /etc/shells)"
@@ -275,7 +241,7 @@ function ensure_install_shell()
     fi
 }
 
-function step_install_bash() # bash
+step_install_bash() # bash
 {
     ensure_homebrew_updated
     install_brew_formula bash
@@ -288,7 +254,7 @@ function step_install_bash() # bash
     run "chsh -s \"$HB_BASH_BINARY\" \"$(whoami)\""
 }
 
-function step_install_zsh() # zsh
+step_install_zsh() # zsh
 {
     ensure_homebrew_updated
     install_brew_formula zsh
@@ -302,7 +268,7 @@ function step_install_zsh() # zsh
     run "chsh -s \"$HB_ZSH_BINARY\" \"$(whoami)\""
 }
 
-function step_install_tiddlywiki() # tiddlywiki
+step_install_tiddlywiki() # tiddlywiki
 {
     ensure_homebrew_updated
     install_brew_formula node
@@ -373,6 +339,10 @@ while getopts "hlfd" opt; do
     esac
 done
 shift $((OPTIND - 1))
+
+# export force/dryrun settings to shell control variables (see ~/.shell_control)
+export SC_FORCE="$FORCE"
+export SC_DRYRUN="$DRYRUN"
 
 if [[ $LISTING == 0 && -z "$1" ]]; then
     usage

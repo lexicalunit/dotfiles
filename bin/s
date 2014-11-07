@@ -2,26 +2,7 @@
 
 # Show git status for all directories in current directory.
 
-function show()
-{
-	echo $'\e[31m'"$1" $'\e[0m'
-}
-
-function run()
-{
-	show "\$ $1"
-	eval "$1"
-	return $?
-}
-
-function abort()
-{
-	if [[ -n "$2" ]]; then
-		run "$2"
-	fi
-	echo $'\e[1;31merror:' "$1" $'\e[0m' >&2
-	exit 1
-}
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 CMD="git status -uno"
 if [[ -n "$1" ]]; then

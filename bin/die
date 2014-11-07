@@ -2,7 +2,7 @@
 
 # Kills processes based on process name.
 
-function usage()
+usage()
 {
 	echo "usage: $0 -[nq] REGEX"
 	echo "kills all processes matching REGEX. -n enables dryrun mode and -q enables quiet mode."

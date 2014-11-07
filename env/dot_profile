@@ -198,7 +198,7 @@ if [[ -n "$(echo "$SHELL" | grep bash)" ]]; then
     _source_completions ~/.bash-completion/bash_completion 2>/dev/null # git.debian.org/git/bash-completion
     _source_completions ~/.complete 2>/dev/null # setup env
     if type brew >/dev/null 2>&1; then
-        source `brew --repository`/Library/Contributions/brew_bash_completion.sh
+        source "$(brew --repository)/Library/Contributions/brew_bash_completion.sh"
     fi
     complete -cf sudo
 elif [[ -n "$(echo "$SHELL" | grep zsh)" ]]; then
@@ -254,7 +254,7 @@ elif [[ -n "$(echo "$SHELL" | grep zsh)" ]]; then
     zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
     # Directories
-    zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+    zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
     zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
     zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
     zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
@@ -267,7 +267,7 @@ elif [[ -n "$(echo "$SHELL" | grep zsh)" ]]; then
     zstyle ':completion:*:history-words' menu yes
 
     # Environmental Variables
-    zstyle ':completion::*:(-command-|export):*' fake-parameters ${${${_comps[(I)-value-*]#*,}%%,*}:#-*-}
+    zstyle ':completion::*:(-command-|export):*' fake-parameters "${${${_comps[(I)-value-*]#*,}%%,*}:#-*-}"
 
     # Populate hostname completion.
     zstyle -e ':completion:*:hosts' hosts 'reply=(
@@ -294,7 +294,7 @@ elif [[ -n "$(echo "$SHELL" | grep zsh)" ]]; then
     zstyle ':completion:*:rm:*' file-patterns '*:all-files'
 
     # Kill
-    zstyle ':completion:*:*:*:*:processes' command 'ps -u $USER -o pid,user,command -w'
+    zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,command -w"
     zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;36=0=01'
     zstyle ':completion:*:*:kill:*' menu yes select
     zstyle ':completion:*:*:kill:*' force-list always
@@ -343,7 +343,7 @@ _interactive_log "setup command prompt"
 ostype()
 {
     if [ -n "$OS" ]; then
-        echo $OS
+        echo "$OS"
         return 0
     fi
 
@@ -372,20 +372,20 @@ ostype()
 # allow user to provide override for terminal title
 title()
 {
-    export TERMINAL_TITLE_USER="$(echo "$@")"
+    export TERMINAL_TITLE_USER="$*"
 }
 
 # allow user to provide override for terminal prompt note
 note()
 {
-    export PROMPT_USER_NOTE="$(echo "$@")"
+    export PROMPT_USER_NOTE="$*"
 }
 
 # prints terminal note if one is set
 _prompt_usernote()
 {
     if [[ -n "$PROMPT_USER_NOTE" ]]; then
-        echo -n " #" $PROMPT_USER_NOTE
+        echo -n " #" "$PROMPT_USER_NOTE"
     fi
 }
 
@@ -397,7 +397,7 @@ _prompt_python_env()
         PROMPT_PYTHON_ENV=" # [$PYTHON_ENV"
 
         if [[ -n "$VIRTUAL_ENV" ]]; then
-            PROMPT_PYTHON_ENV="$PROMPT_PYTHON_ENV:`basename \"$VIRTUAL_ENV\"`"
+            PROMPT_PYTHON_ENV="$PROMPT_PYTHON_ENV:$(basename "$VIRTUAL_ENV")"
         elif [[ -n "$CONDA_DEFAULT_ENV" ]]; then
             PROMPT_PYTHON_ENV="$PROMPT_PYTHON_ENV:$CONDA_DEFAULT_ENV"
         fi
@@ -444,14 +444,13 @@ if [[ -n "$(echo "$SHELL" | grep bash)" ]]; then
         local BGREEN="\[\e[1;32m\]"
         local  BLACK="\[\e[0m\]"
         local   GREY="\[\e[0;38;5;241m\]"
-        local COLOR_NONE="\[\e[0m\]"
 
         # "\w" or "${PWD/#$HOME/~}" not sure which to go with...
-        local TERMINAL_TITLE="$TERMINAL_TITLE_USER`if [[ -n \"$TERMINAL_TITLE_USER\" ]]; then printf ' '; fi`$USER@$HOST:\w"
+        local TERMINAL_TITLE="$TERMINAL_TITLE_USER$(if [[ -n \"$TERMINAL_TITLE_USER\" ]]; then printf ' '; fi)$USER@$HOST:\w"
         local PROMPT_LINE_1="$RED\w${BLUE}$(_prompt_python_env)$GREY$(_prompt_repo)$BLUE$(_prompt_usernote)"
         local PROMPT_LINE_2="$RED$(date +%H%M) $(ostype | sed 's/Linux-//g') \u@\h\`if [ \$? = 0 ]; then echo \"$BGREEN\$\"; else echo \"$BRED>\"; fi\`$BLACK"
 
-        PS1="\e]2;${TERMINAL_TITLE}\a\
+        PS1="\[\e]2;\]${TERMINAL_TITLE}\a\
 ${PROMPT_LINE_1}\n\
 ${PROMPT_LINE_2} "
         PS2="> "
@@ -492,7 +491,7 @@ elif [[ -n "$(echo "$SHELL" | grep zsh)" ]]; then
 
     _prompt_cursor()
     {
-        echo -n "%(?|%2F|%1F)%(?|$|>)%{$reset_color%} "
+        echo -n "%(?|%2F|%1F)%(?|\$|>)%{$reset_color%} "
     }
 
     _prompt_second_line()
@@ -558,16 +557,6 @@ h()
     fi
 }
 
-fuck()
-{
-    die $1
-    if [[ $? == 0 ]]; then
-        echo
-        echo " (╯°□°）╯︵$(echo $1|flip 2>/dev/null)"
-        echo
-    fi
-}
-
 # use gnu-sed if available
 if type gsed >/dev/null 2>&1; then
     alias sed='gsed '
@@ -578,7 +567,7 @@ fi
 ################################################################################
 _interactive_log "setup terminal colors and editors"
 if type dircolors >/dev/null 2>&1; then
-    eval `dircolors -b ~/.dircolors 2>/dev/null`
+    eval "$(dircolors -b "$HOME/.dircolors" 2>/dev/null)"
     alias ls='ls -hF --color=auto'
 fi
 export CLICOLOR=1
@@ -620,10 +609,13 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 ################################################################################
 # source any local configuration files
 ################################################################################
-for I in `/bin/ls -1 ~/.profile_* 2>/dev/null` ; do
+IFS=$'\n'
+for I in $(/bin/ls -1 ~/.profile_* 2>/dev/null) ; do
     _interactive_log "sourcing $I"
-    . "$I"
+    source "$I"
 done
+
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 _interactive_log "environment setup complete"
 

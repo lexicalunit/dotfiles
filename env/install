@@ -1,13 +1,13 @@
 #!/bin/bash
 
-function sync()
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
+sync()
 {
-	CMD="rsync -avl \"$1\" \"$2/$1\""
-	echo "+ $CMD"
-	eval $CMD
+	run "rsync -apl '$1' '$2/$1'"
 }
 
-function contains()
+contains()
 {
 	local e
 	for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 0; done
@@ -19,92 +19,90 @@ function contains()
 ###############################################################################
 
 declare -a DOT_FILES
-DOT_FILES=($(find * -maxdepth 1 -name "dot_*"))
+DOT_FILES=($(find ./* -maxdepth 1 -name "dot_*"))
 if [[ -n "$1" ]]; then
 	DOT_FILES=("$@")
 fi
-echo "installing dot files: ${DOT_FILES[@]}..."
+show "installing dot files: ${DOT_FILES[@]}..."
 
 for I in dot_*; do
-	if contains "$I" "${DOT_FILES[@]}"; then
+	if contains "./$I" "${DOT_FILES[@]}"; then
 		if [[ -f $I ]]; then
-			if [[ -n "$(echo $I | grep profile_)" ]]; then
-				read -p "install $I? (y/n) [n] ... "
+			if [[ -n "$(echo "$I" | grep profile_)" ]]; then
+				ask "install $I?"
 			else
 				REPLY="y"
 			fi
 			if [[ "$REPLY" == "y" ]]; then
-				CMD="rsync -avl $I ~/.$(echo $(basename $I) | sed s/^dot_//)"
-				echo "+ $CMD"
-				eval $CMD
+				run "rsync -apl '$I' '$HOME/.$(basename "$I" | sed s/^dot_//)'"
 			fi
 		elif [[ -d $I ]]; then
-			CMD="rsync -avl $I/* ~/.$(echo $(basename $I) | sed s/^dot_//)/"
-			echo "+ $CMD"
-			eval $CMD
+			run "rsync -apl '$I/'* '$HOME/.$(basename "$I" | sed s/^dot_//)/'"
 		else
-			echo "error: could not install '$I'" >&2
+			abort "could not install '$I'"
 		fi
 	fi
 done
 
 if [[ -n "$1" ]]; then
-	echo "dot file install complete!"
+	show "dot file install complete!"
 	exit 0
 fi
 
 ###############################################################################
 # Install bash-completion form debian:
 ###############################################################################
-if type git 2>/dev/null; then
+if type git 1>/dev/null 2>&1; then
 	# From git:
 	if [[ -d ~/.bash-completion ]]; then
-		cd ~/.bash-completion
-		git fetch 
-		git clean -f 
-		git reset --hard origin/master
-		cd -
+		(
+			run "pushd '$HOME/.bash-completion'"
+		  	run "git fetch"
+		  	run "git clean -f"
+		  	run "git reset --hard origin/master"
+		)
 	else
-		cd ~
-		git clone git://git.debian.org/git/bash-completion/bash-completion .bash-completion
-		cd -
+		(
+			run "pushd '$HOME'"
+		  	run "git clone git://git.debian.org/git/bash-completion/bash-completion .bash-completion"
+		)
 	fi
 else
 	# From tarball:
 	CURL_OUTPUT=$(mktemp -d -t tmp.XXXXXXXXXX)
-	trap "rm -rf $CURL_OUTPUT" EXIT
+	trap 'rm -rf $CURL_OUTPUT' EXIT
 	LATEST_BASH_COMPLETION="$(curl -s --show-error http://bash-completion.alioth.debian.org/files/ | sed 's/.*href="\([^"]*\)">[^<]*<\/a><\/td><td align="right">\([^<]*\).*/\1 \2/g' | egrep "^bash-completion.*tar.gz " | sort -k2 -d | tail -n 1 | cut -f1 -d' ')"
-	pushd "$CURL_OUTPUT"
-	curl -s --show-error -O "http://bash-completion.alioth.debian.org/files/$LATEST_BASH_COMPLETION"
-	mkdir -p "$HOME/.bash-completion"; tar xvzf "$LATEST_BASH_COMPLETION" -C "$HOME/.bash-completion" --strip-components=1
-	popd
+	(
+		run "pushd '$CURL_OUTPUT'"
+	  	run "curl -s --show-error -O 'http://bash-completion.alioth.debian.org/files/$LATEST_BASH_COMPLETION'"
+      	run "mkdir -p '$HOME/.bash-completion'"
+	  	run "tar xvzf '$LATEST_BASH_COMPLETION' -C '$HOME/.bash-completion' --strip-components=1"
+	)
 fi
 
 ###############################################################################
 # Install Sublime Text packages
 ###############################################################################
-function grab_package()
+grab_package()
 {
 	URL="$1"
 	NAME="$2"
 
-	pushd ~/"Library/Application Support/Sublime Text 3/Packages"
-	if [[ -d "$NAME" ]]; then
-		pushd "$NAME"
-		git pull -u
-		popd
-	else
-		git clone "$URL" "$NAME"
-	fi
-	popd
+	(
+		run "pushd '$HOME/Library/Application Support/Sublime Text 3/Packages'"
+		if [[ -d "$NAME" ]]; then
+			( run "pushd '$NAME'"; run "git pull -u" )
+		else
+			run "git clone '$URL' '$NAME'"
+		fi
+	)
 }
 
 if [[ -d "$HOME/Library/Application Support/Sublime Text 3/Packages/User" ]]; then
-	grab_package https://github.com/buymeasoda/soda-theme.git "Theme - Soda"
-	grab_package https://github.com/JulianEberius/SublimePythonIDE.git "SublimePythonIDE"
-
-	sync "Preferences.sublime-settings" ~/"Library/Application Support/Sublime Text 3/Packages/User"
-	sync "SublimePython.sublime-settings" ~/"Library/Application Support/Sublime Text 3/Packages/User"
+	grab_package "https://github.com/buymeasoda/soda-theme.git" "Theme - Soda"
+	grab_package "https://github.com/JulianEberius/SublimePythonIDE.git" "SublimePythonIDE"
+	sync "Preferences.sublime-settings" "$HOME/Library/Application Support/Sublime Text 3/Packages/User"
+	sync "SublimePython.sublime-settings" "$HOME/Library/Application Support/Sublime Text 3/Packages/User"
 fi
 
-echo "env install complete!"
+show "env install complete!"

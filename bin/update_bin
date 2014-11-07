@@ -2,17 +2,16 @@
 
 # Syncs ./bin with ~/bin.
 
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
 EXCLUDES=(install usages macosver update_bin ignore)
 
 while read I; do EXCLUDES+=("$I"); done < ignore
 
-CMD="rsync -avl"
+CMD="rsync -apl"
 
 for I in "${EXCLUDES[@]}"; do
 	CMD="$CMD --exclude '$I'"
 done
 
-CMD="$CMD --delete ~/bin/ ."
-
-echo "$CMD"
-eval "$CMD"
+run "$CMD --delete ~/bin/ ." || abort "could not update bin"

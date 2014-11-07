@@ -2,7 +2,7 @@
 
 # Prints the root of the current repository.
 
-function abort()
+function abort_root()
 {
     echo "unknown" 1>&2
     exit 1
@@ -11,7 +11,7 @@ function abort()
 if [[ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]]; then
     source /usr/local/etc/bash_completion.d/git-prompt.sh
 else
-    abort
+    abort_root
 fi
 
 branch=$(type __git_ps1 &>/dev/null && __git_ps1 "%s")
@@ -37,6 +37,6 @@ if [[ -n "$vcs" ]]; then
     elif [[ "$vcs" == "git" ]]; then
         git rev-parse --show-toplevel
     else
-        abort
+        abort_root
     fi
 fi

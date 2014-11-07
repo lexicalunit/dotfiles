@@ -7,10 +7,7 @@ if [[ -z "$1" ]]; then
 	exit 1
 fi
 
-function show()
-{
-	echo -e $'\e[1;34m' "$1" $'\e[0m'
-}
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 KEY_TYPE="${KEY_TYPE:-rsa}"
 KEY="${KEY:-id_$KEY_TYPE}"
@@ -20,7 +17,7 @@ show "*** KEY_TYPE set to ${KEY_TYPE} ***"
 show "*** KEY set to ${KEY} ***"
 echo
 
-function local_run()
+run_local()
 {
 	echo $'\e[1;34mlocal ==>\e[0m\e[31m' "$1" $'\e[0m'
 	eval "$1"
@@ -29,27 +26,27 @@ function local_run()
 
 set -e
 
-[[ -d "$HOME/.ssh" ]] || local_run "mkdir -p '$HOME/.ssh'"
-[[ -f "$HOME/.ssh/authorized_keys" ]] || local_run "touch '$HOME/.ssh/authorized_keys'"
+[[ -d "$HOME/.ssh" ]] || run_local "mkdir -p '$HOME/.ssh'"
+[[ -f "$HOME/.ssh/authorized_keys" ]] || run_local "touch '$HOME/.ssh/authorized_keys'"
 
 if [[ ! -f "$HOME/.ssh/$KEY.pub" ]]; then
-	local_run "ssh-keygen -t '$KEY_TYPE'"
-	local_run "cat '$HOME/.ssh/$KEY.pub' >> '$HOME/.ssh/authorized_keys'"
+	run_local "ssh-keygen -t '$KEY_TYPE'"
+	run_local "cat '$HOME/.ssh/$KEY.pub' >> '$HOME/.ssh/authorized_keys'"
 fi
 
 # SSH requires certain permissions on home directory, .ssh directory, and authorized_keys file
-local_run "chmod go-w $HOME"
-local_run "chmod go-rwx $HOME/.ssh"
-local_run "chmod go-rwx $HOME/.ssh/authorized_keys"
+run_local "chmod go-w $HOME"
+run_local "chmod go-rwx $HOME/.ssh"
+run_local "chmod go-rwx $HOME/.ssh/authorized_keys"
 
 echo
 show "*** You will be asked for your password twice... ***"
 echo
 
-local_run "cat '$HOME/.ssh/$KEY.pub' | ssh $@ 'cat > \"$KEY.pub\"'"
+run_local "cat '$HOME/.ssh/$KEY.pub' | ssh $@ 'cat > \"$KEY.pub\"'"
 
 ssh "$@" "bash -s" << EOF
-	function remote_run()
+	remote_run()
 	{
 		echo $'\e[1;34mremote ==>\e[0m\e[31m' "\$1" $'\e[0m'
 		eval "\$1"

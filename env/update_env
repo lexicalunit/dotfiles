@@ -2,38 +2,38 @@
 
 # updates env with whatever new changes are found in the current environment
 
-function backup()
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
+backup()
 {
-	rsync -avl "$1/$2" "$2"
+	run "rsync -apl '$1/$2' '$2'"
 }
 
 # profile
-rsync -avl ~/.profile ./dot_profile
-for I in ~/.profile_*; do
-    echo "considering: $I"
+run "rsync -apl '$HOME/.profile' ./dot_profile"
+for I in "$HOME/".profile_*; do
     if [[ -z "$(grep "$(basename "$I")" ignore)" ]]; then
-        echo "adding: $I"
-        rsync -avl "$I" "./$(basename "$I" | sed 's/^./dot_/')"
+        run "rsync -apl '$I' './$(basename "$I" | sed 's/^./dot_/')'"
     fi
 done
 
 # bash
-rsync -avl ~/.bash_profile ./dot_bash_profile
-rsync -avl ~/.bashrc ./dot_bashrc
+run "rsync -apl '$HOME/.bash_profile' ./dot_bash_profile"
+run "rsync -apl '$HOME/.bashrc' ./dot_bashrc"
 
 # zsh
-rsync -avl ~/.zshrc ./dot_zshrc
+run "rsync -apl '$HOME/.zshrc' ./dot_zshrc"
 
 # tools
-rsync -avl ~/.dircolors ./dot_dircolors
-rsync -avl ~/.inputrc ./dot_inputrc
-rsync -avl ~/.vimrc ./dot_vimrc
-rsync -avl ~/.hgignore ./dot_hgignore
-rsync -avl ~/.hgrc ./dot_hgrc
-rsync -avl ~/.gitconfig ./dot_gitconfig
-rsync -avl ~/.pythonrc.py ./dot_pythonrc.py
-rsync -avl ~/.toprc ./dot_toprc
-rsync -avl ~/.complete/ ./dot_complete
+run "rsync -apl '$HOME/.dircolors' ./dot_dircolors"
+run "rsync -apl '$HOME/.inputrc' ./dot_inputrc"
+run "rsync -apl '$HOME/.vimrc' ./dot_vimrc"
+run "rsync -apl '$HOME/.hgignore' ./dot_hgignore"
+run "rsync -apl '$HOME/.hgrc' ./dot_hgrc"
+run "rsync -apl '$HOME/.gitconfig' ./dot_gitconfig"
+run "rsync -apl '$HOME/.pythonrc'.py ./dot_pythonrc.py"
+run "rsync -apl '$HOME/.toprc' ./dot_toprc"
+run "rsync -apl '$HOME/.complete/' ./dot_complete"
 
-backup ~/"Library/Application Support/Sublime Text 3/Packages/User" "Preferences.sublime-settings"
-backup ~/"Library/Application Support/Sublime Text 3/Packages/User" "SublimePython.sublime-settings"
+backup "$HOME/Library/Application Support/Sublime Text 3/Packages/User" "Preferences.sublime-settings"
+backup "$HOME/Library/Application Support/Sublime Text 3/Packages/User" "SublimePython.sublime-settings"

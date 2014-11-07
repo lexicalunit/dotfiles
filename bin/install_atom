@@ -19,35 +19,12 @@ ATOM_PACKAGES="
     linter-shellcheck
 "
 
-function show()
-{
-    echo $'\e[1;34m==>\e[0m\e[31m' "$1" $'\e[0m'
-}
-
-function run()
-{
-    show "$1"
-    eval "$1"
-    return $?
-}
-
-function abort()
-{
-    echo $'\e[1;31merror:' "$1" $'\e[0m' >&2
-    exit 1
-}
-
-function ask()
-{
-    echo -n $'\n\e[1;35m'
-    read -p "$1 (y/n) [n] ... "
-    echo -n $'\e[0;0m'
-}
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 # Install Atom
 ATOM_ZIP="/tmp/atom.zip"
 
-function unzip_atom_into_applications()
+unzip_atom_into_applications()
 {
     run "wget -c 'https://atom.io/download/mac' -O $ATOM_ZIP" || abort "can't download Atom"
     run "unzip /tmp/atom.zip -d /Applications 1>/dev/null" || abort "can't install Atom"
@@ -81,7 +58,7 @@ EOF
 fi
 
 # Install desired Atom packages
-function install_pkg()
+install_pkg()
 {
     local PKG="$1"
     local INSTALLED="$(apm list --installed --bare | grep "$PKG")"

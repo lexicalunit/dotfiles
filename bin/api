@@ -2,7 +2,7 @@
 
 # Requests a web API resource and pretty prints resulting JSON.
 
-function usage()
+usage()
 {
     echo "usage: $(basename "$0") [options] [curl options] \"URI\""
     echo ""
@@ -42,7 +42,7 @@ curl_cmd="curl --silent --show-error $curl_opts"
 python_cmd="python -mjson.tool"
 pygmentize_cmd="pygmentize -l json -f terminal256"
 
-function cleanup()
+cleanup_api()
 {
     [[ -n "$curl_output" ]] && rm -f "$curl_output"
     [[ -n "$time_output" ]] && rm -f "$time_output"
@@ -50,7 +50,7 @@ function cleanup()
     [[ -n "$pygmentize_output" ]] && rm -f "$pygmentize_output"
 }
 
-function abort()
+abort_api()
 {
     if [[ -n "$1" ]]; then
         echo $'\n'"$(tput bold)error: $curl_cmd$(tput sgr0)"
@@ -67,7 +67,7 @@ function abort()
         cat "$3" >&2
     fi
 
-    cleanup
+    cleanup_api
 
     exit 1
 }
@@ -99,7 +99,7 @@ if [[ $? != 0 ]]; then
     # Due to the way redirection is set up here, time_output will contain
     # the curl error message (as well as any relevant time output) when
     # the evaluation of timed_cmd fails.
-    abort "$time_output"
+    abort_api "$time_output"
 fi
 
 python_output=$(mktemp -t tmp.XXXXXXXXXX.python.log)
@@ -107,7 +107,7 @@ trap 'rm -f $python_output' EXIT
 
 eval "$python_cmd" <"$curl_output" >"$python_output" 2>&1
 if [[ $? != 0 ]]; then
-    abort "$curl_output" "$python_output"
+    abort_api "$curl_output" "$python_output"
 fi
 
 if [[ -t 1 ]] ; then
@@ -116,7 +116,7 @@ if [[ -t 1 ]] ; then
 
     eval "$pygmentize_cmd" <"$python_output" >"$pygmentize_output" 2>&1
     if [[ $? != 0 ]]; then
-        abort "$curl_output" "$python_output" "$pygmentize_output"
+        abort_api "$curl_output" "$python_output" "$pygmentize_output"
     fi
     echo
     sed 's/\\"/"/g' < "$pygmentize_output" | sed "s/\\n/\
@@ -128,4 +128,4 @@ fi
 
 cat "$time_output" >&2
 
-cleanup
+cleanup_api

@@ -4,13 +4,13 @@
 
 usage()
 {
-    echo "usage: $(basename "$0") [options] [curl options] \"URI\""
+    echo "usage: $(basename "$0") [options] [curl options] 'URI'"
     echo ""
     echo "Hits the given URI and returns the result as prettified JSON."
     echo "options:"
     echo "    -h: show this usage help"
     echo "    -n: dry run"
-    echo "    -j: use curl option \"-H 'content-type: application/json'\""
+    echo "    -j: use curl option: -H 'content-type: application/json'"
     echo ""
     echo "curl options:"
     echo "The first option that can not be parsed as an option to this script"

@@ -251,7 +251,7 @@ step_install_bash() # bash
 
     HB_BASH_BINARY="/usr/local/bin/bash"
     ensure_install_shell "$HB_BASH_BINARY"
-    run "chsh -s \"$HB_BASH_BINARY\" \"$(whoami)\""
+    run "chsh -s '$HB_BASH_BINARY' '$(whoami)'"
 }
 
 step_install_zsh() # zsh
@@ -265,7 +265,7 @@ step_install_zsh() # zsh
 
     HB_ZSH_BINARY="/usr/local/bin/zsh"
     ensure_install_shell "$HB_ZSH_BINARY"
-    run "chsh -s \"$HB_ZSH_BINARY\" \"$(whoami)\""
+    run "chsh -s '$HB_ZSH_BINARY' '$(whoami)'"
 }
 
 step_install_tiddlywiki() # tiddlywiki
@@ -276,7 +276,7 @@ step_install_tiddlywiki() # tiddlywiki
     run "mkdir -p $HOME/Library/LaunchDaemons"
     run "cd $HOME"
     if [[ -d notes ]]; then
-        show "$(tput smul)WARNING$(tput sgr0): NOT overwriting \"$HOME/notes\", assuming tiddlywiki already installed there!"
+        show "$(tput smul)WARNING$(tput sgr0): NOT overwriting '$HOME/notes', assuming tiddlywiki already installed there!"
     else
         run "tiddlywiki notes --init server"
     fi
@@ -351,7 +351,7 @@ fi
 [[ $1 == all ]] && ALL=1
 
 echo "$(tput bold)NOTE: This script is interactive, you will need to babysit it. Even in -f (force) mode you will still need to input your sudo password when asked for it.$(tput sgr0)"
-echo "$(tput bold)Prerequisite: Install \"Command Line Tools\" from $(tput smul)http://developer.apple.com/downloads$(tput rmul) or from X Code preferences$(tput sgr0)"
+echo "$(tput bold)Prerequisite: Install 'Command Line Tools' from $(tput smul)http://developer.apple.com/downloads$(tput rmul) or from X Code preferences$(tput sgr0)"
 
 mkdir -p /tmp/.install_dev # download cache
 
@@ -394,5 +394,3 @@ done
 if [[ $LISTING == 0 && $steps_taken == 0 ]]; then
     abort "invalid step name(s): $@"
 fi
-
-exit 0

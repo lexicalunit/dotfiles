@@ -6,6 +6,4 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 [[ "$BRANCH" != "master" ]] || abort "$BRANCH isn't a topic branch, dummy!"
-CMD="git push -fu origin $BRANCH"
-show "$CMD"
-eval "$CMD"
+run "git push -fu origin $BRANCH"

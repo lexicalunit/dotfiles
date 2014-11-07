@@ -2,6 +2,7 @@
 
 # Installs everything to ~/bin.
 
+rsync -apl ../env/dot_shell_control "$HOME/.shell_control"
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 run "mkdir -p '$HOME/bin'"

@@ -19,4 +19,7 @@ FILE="$CAPS/$XID.ping"
 mkdir -p "$CAPS"
 import -window "$XID" "$FILE"
 echo "imported to $FILE"
-eog "$FILE" &
+
+if type eog >/dev/null 2>&1; then
+	nohup eog "$FILE" &
+fi

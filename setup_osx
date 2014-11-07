@@ -76,4 +76,4 @@ defaults write com.apple.QuickTimePlayerX.LSSharedFileList RecentDocuments -dict
 HOST="$(uname -n)"
 read -p "Set hostname... [$HOST]: "
 [[ -z "$REPLY" ]] && REPLY="$HOST"
-sudo scutil --set HostName $REPLY
+sudo scutil --set HostName "$REPLY"

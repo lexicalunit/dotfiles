@@ -2,7 +2,9 @@
 
 # Installs Atom IDE with custom style and packages.
 
+################################################################################
 # This script will install Atom and the following apm packages:
+################################################################################
 ATOM_PACKAGES="
     minimap
     minimap-git-diff
@@ -19,9 +21,14 @@ ATOM_PACKAGES="
     linter-shellcheck
 "
 
+################################################################################
+# Utilities
+################################################################################
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
+################################################################################
 # Install Atom
+################################################################################
 ATOM_ZIP="/tmp/atom.zip"
 
 unzip_atom_into_applications()
@@ -42,7 +49,9 @@ else
     unzip_atom_into_applications
 fi
 
+################################################################################
 # Make sure Atom command line tools are installed
+################################################################################
 if ! apm --help >/dev/null 2>&1; then
     # Start Atom for the first time
     ATOM_INSTALL_NOTICE="/tmp/atom-install-notice"
@@ -57,7 +66,9 @@ EOF
     while ! atom --help >/dev/null 2>&1; do :; done
 fi
 
+################################################################################
 # Install desired Atom packages
+################################################################################
 install_pkg()
 {
     local PKG="$1"
@@ -74,7 +85,9 @@ for I in $ATOM_PACKAGES; do
     install_pkg "$I"
 done
 
+################################################################################
 # Restart Atom
+################################################################################
 show "restarting Atom..."
 run "osascript -e 'tell application \"Atom\" to quit' 2>/dev/null"
 run "sleep 1" # give application time to quit

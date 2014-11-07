@@ -13,6 +13,6 @@ fi
 HOST="$1"
 REPO="$(basename "$(pwd)")"
 
-run "tar zcvf - \"../$REPO\" | ssh $HOST \"tar xvzf -\""
-run "ssh $HOST \"cd '$REPO'; yes | ./install\""
+run "tar zcvf - '../$REPO' | ssh $HOST 'tar xvzf -'"
+run "ssh $HOST 'cd '$REPO'; yes | ./install'"
 show "deployment complete!"

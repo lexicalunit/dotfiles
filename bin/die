@@ -13,7 +13,6 @@ if [[ "$1" == "--help" ]]; then
 	usage
 fi
 
-
 DRYRUN=0
 QUIET=0
 while getopts "hqn" opt; do
@@ -53,4 +52,3 @@ fi
 if [[ "$QUIET" == 0 ]]; then
 	echo "done"
 fi
-exit 0

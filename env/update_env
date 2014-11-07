@@ -12,9 +12,9 @@ backup()
 # profile
 run "rsync -apl '$HOME/.profile' ./dot_profile"
 for I in "$HOME/".profile_*; do
-    if [[ -z "$(grep "$(basename "$I")" ignore)" ]]; then
-        run "rsync -apl '$I' './$(basename "$I" | sed 's/^./dot_/')'"
-    fi
+	if [[ ! -f ignore || -z "$(grep "$(basename "$I")" ignore)" ]]; then
+    	run "rsync -apl '$I' './$(basename "$I" | sed 's/^./dot_/')'"
+	fi
 done
 
 # bash

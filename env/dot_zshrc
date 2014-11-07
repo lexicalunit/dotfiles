@@ -2,6 +2,6 @@
 
 SHELL="$(which zsh)"
 
-if [[ -f ~/.profile ]]; then
-	. ~/.profile
+if [[ -f "$HOME/.profile" ]]; then
+	source "$HOME/.profile"
 fi

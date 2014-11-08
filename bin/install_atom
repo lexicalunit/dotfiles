@@ -6,19 +6,20 @@
 # This script will install Atom and the following apm packages:
 ################################################################################
 ATOM_PACKAGES="
-    minimap
-    minimap-git-diff
-    minimap-selection
-    tabs-to-spaces
-    autocomplete-plus
-    red-wavy-underline
-    monokai-soda
     atom-soda-dark-ui
-    set-syntax
-    merge-conflicts
+    autocomplete-plus
     linter
     linter-flake8
     linter-shellcheck
+    merge-conflicts
+    minimap
+    minimap-git-diff
+    minimap-selection
+    monokai-soda
+    red-wavy-underline
+    set-syntax
+    sort-lines
+    tabs-to-spaces
 "
 
 ################################################################################

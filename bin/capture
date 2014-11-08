@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# Captures a window for a screen shot on X11 systems.
+# Creates a screenshot of selected window on X11.
 
-if [[ "$1" == "--help" ]]; then
-	echo "usage: $0" 1>&2
-	echo "Captures a window for a screen shot on X11 systems." 1>&2
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+	echo "usage: ${0##*/} [-h|--help]" 1>&2
+	echo "" 1>&2
+	echo "Creates a screenshot of selected window on X11." 1>&2
 	exit 1
 fi
 

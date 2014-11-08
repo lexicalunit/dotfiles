@@ -2,6 +2,12 @@
 # Script by Lars Noodén
 # Flips input upside down.
 
+if($ARGV[0] eq "-h" or $ARGV[0] eq "--help")
+{
+    print STDERR "usage: echo 'text' | flip\n\nLiterally flips input upside down, printing words so they appear to be flipped over.\n";
+    exit 1;
+}
+
 use strict;
 use warnings;
 use utf8;
@@ -11,13 +17,13 @@ binmode(STDOUT, ":utf8");
 my %flipTable = (
     "a" => "\x{0250}",
     "b" => "q",
-    "c" => "\x{0254}", 
+    "c" => "\x{0254}",
     "d" => "p",
     "e" => "\x{01DD}",
-    "f" => "\x{025F}", 
+    "f" => "\x{025F}",
     "g" => "\x{0183}",
     "h" => "\x{0265}",
-    "i" => "\x{0131}", 
+    "i" => "\x{0131}",
     "j" => "\x{027E}",
     "k" => "\x{029E}",
     "l" => "|",
@@ -37,13 +43,13 @@ my %flipTable = (
     "z" => "z",
     "A" => "\x{0250}",
     "B" => "q",
-    "C" => "\x{0254}", 
+    "C" => "\x{0254}",
     "D" => "p",
     "E" => "\x{01DD}",
-    "F" => "\x{025F}", 
+    "F" => "\x{025F}",
     "G" => "\x{0183}",
     "H" => "\x{0265}",
-    "I" => "\x{0131}", 
+    "I" => "\x{0131}",
     "J" => "\x{027E}",
     "K" => "\x{029E}",
     "L" => "|",
@@ -67,7 +73,7 @@ my %flipTable = (
     "," => "'",
     "(" => ")",
     "{" => "}",
-    "?" => "\x{00BF}", 
+    "?" => "\x{00BF}",
     "!" => "\x{00A1}",
     "\"" => ",",
     "<" => ">",

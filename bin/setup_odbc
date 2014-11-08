@@ -2,6 +2,14 @@
 
 # Sets up ODBC.
 
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+	echo "usage: ${0##*/} [-h|--help]" 1>&2
+	echo "Attempts to install a working ODBC configuration to OS X." 1>&2
+	echo "Uses unixODBC with FreeTDS from Homebrew." 1>&2
+	echo "Requires hand editing to support your specific installation." 1>&2
+	exit 1
+fi
+
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 ###############################################################################

@@ -2,6 +2,12 @@
 
 # Show git status for all directories in current directory.
 
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+	echo "usage: ${0##*/} [-h|--help] [git command]" 1>&2
+	echo "Print out the git status, or given command, of all subdirectories of the current directory." 1>&2
+	exit 1
+fi
+
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 CMD="git status -uno"

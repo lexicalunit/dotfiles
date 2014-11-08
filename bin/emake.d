@@ -2,11 +2,12 @@
 
 // Builds codebase externally.
 
+import std.algorithm;
 import std.file;
 import std.path;
 import std.stdio;
 
-const char* cstring(string s)
+char* cstring(string s)
 {
 	auto cstring = new char[](s.length + 1);
 	cstring[0 .. s.length] = s[];
@@ -16,6 +17,14 @@ const char* cstring(string s)
 
 int main(char[][] args)
 {
+	foreach(param; args[1 .. $])
+		if(param == "-h" || param == "--help")
+		{
+			std.stdio.writeln("usage: emake [make arguments]");
+			std.stdio.writeln("Searches for a 'build' directory in parent directories, then runs make in that directory.");
+			return 1;
+		}
+
 	const string cwd = std.path.absolutePath(".");
 	auto const range = std.array.split(std.path.dirName(cwd), "/");
 

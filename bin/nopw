@@ -2,8 +2,9 @@
 
 # Enables password-less ssh TO username@remotehost FROM localhost.
 
-if [[ -z "$1" ]]; then
-	echo "usage: $0 [ssh connection options] username@remotehost" 1>&2
+if [[ -z "$1" || "$1" == "--help" || "$1" == "-h" ]]; then
+	echo "usage: ${0##*/} [-h|-help] [ssh connection options] username@remotehost" 1>&2
+	echo "Puts your public ssh key in the authorized_keys on the remote host."
 	exit 1
 fi
 

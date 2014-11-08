@@ -2,4 +2,10 @@
 
 # Get time OS X system last woke from sleep.
 
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+	echo "usage: $(basename "$0") [-h|--help]" 1>&2
+	echo "Uses sysctl to discover when the last time OS X woke was." 1>&2
+	exit 1
+fi
+
 sysctl -a | grep waketime | sed 's/.*} //'

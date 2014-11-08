@@ -4,12 +4,18 @@
 
 usage()
 {
-	echo "usage: $0 -[nq] REGEX"
-	echo "kills all processes matching REGEX. -n enables dryrun mode and -q enables quiet mode."
+	echo "usage: ${0##*/} [options] REGEX" 1>&2
+	echo "" 1>&2
+	echo "kills all processes matching REGEX." 1>&2
+	echo ""
+	echo "options:"
+	echo " -n enables dryrun mode" 1>&2
+	echo " -q enables quite mode" 1>&2
+	echo " -h or --help shows usage help" 1>&2
 	exit 1
 }
 
-if [[ "$1" == "--help" ]]; then
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
 	usage
 fi
 

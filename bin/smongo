@@ -29,7 +29,7 @@ def get_master(node):
         print('error: {}'.format(e), file=sys.stderr)
 
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
+    if len(sys.argv) or any(arg in sys.argv for arg in ['-h', '--help']) < 2:
         print('usage: smongo HOST', file=sys.stderr)
         sys.exit(1)
     cmd = 'mongo --host {} {}'.format(

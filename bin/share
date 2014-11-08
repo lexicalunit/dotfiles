@@ -1,17 +1,17 @@
 #!/bin/bash
 
 # Easy way to quickly manage temporary web shares.
-#
-# The ~/.webshare script must set environment variables:
-#   * USER - user to use when connecting to HOST
-#   * HOST - the hostname to connect to
-#   * DEST_ROOT - the root of the www_html directory on HOST
-#   * DEST_DIR - the shares directory within the www_html directory
 
 usage()
 {
-    echo "usage $0 [<file>|ls|names|ssh|get <name>|put <file>|rm <name>]" 1>&2
-    echo "Requires ~/.webshare script to set env vars, edit this script for details."
+    echo "usage ${0##*/} [<file>|ls|names|ssh|get <name>|put <file>|rm <name>]" 1>&2
+    echo "Requires ~/.webshare script be created for your webshare configuration."
+    echo
+    echo "The ~/.webshare script must set environment variables:"
+    echo " * USER - user to use when connecting to HOST"
+    echo " * HOST - the hostname to connect to"
+    echo " * DEST_ROOT - the root of the www_html directory on HOST"
+    echo " * DEST_DIR - the shares directory within the www_html directory"
     exit 1
 }
 
@@ -37,7 +37,7 @@ if [[ -f "$1" ]]; then
     exit 0
 fi
 
-case $1 in
+case "$1" in
     help|-h|--help|h*|-*)
         usage
         ;;

@@ -34,6 +34,13 @@ on run argv
                 exit repeat -- continue
             end if
 
+            if not ignore_flag and (arg = "-h" or arg = "--help") then
+                return "usage: alert [-qh] [message]
+
+    -h: print usage help
+    -q: enable quiet mode (do not generate any sound)"
+            end if
+
             copy arg to end of params
         end repeat
     end repeat
@@ -67,9 +74,9 @@ on run argv
     -- create an alert dialog message
     tell application "SystemUIServer" to display dialog message ¬
         buttons dialog_buttons default button default_button with title "Alert" with icon stop
-    
+
     -- only change focus if OK is pressed
-    if result = {button returned: "OK"} 
+    if result = {button returned: "OK"}
         raise_app("Terminal")
     end if
 

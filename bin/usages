@@ -1,43 +1,70 @@
 #!/bin/bash
 
-# Prints out usages for ~/bin tools.
+# Prints out documentation and usages for utilities.
+
+if [[ -n $(echo "$*" | egrep -- "--help|-h") ]]; then
+	echo "usage: ${0##*/} [-h|--help]" 1>&2
+    echo "Prints out documentation and usage information for everything in current directory." 1>&2
+	exit 1
+fi
 
 # -t or --table enabled table mode for generating markdown output
-if [[ "$1" == "--table" || "$1" == "-t" ]]; then
+TABLE=0
+if [[ -n $(echo "$*" | egrep -- "--table|-t") ]]; then
     TABLE=1
     echo "| Tool | Usage |"
     echo "| --- | --- |"
 fi
 
+VERBOSE=0
+if [[ -n $(echo "$*" | egrep -- "--verbose|-v") ]]; then
+	VERBOSE=1
+fi
+
 for I in *; do
-    if [[ "$I" == "ignore" ]]; then
+    if [[ "$I" == "ignore" || "$I" == "README.md" ]]; then
         continue
     fi
 
     # tool name
-    if [[ $TABLE ]]; then
+	if [[ $VERBOSE == 1 ]]; then
+		echo "* * *"
+        echo -en "### [\`$I\`](bin/$I)"
+    elif [[ $TABLE == 1 ]]; then
         echo -en "| [\`$I\`](bin/$I) | "
     else
         echo -n "$I - "
     fi
 
     # describe tool or symbolic link
+	DESC=""
     if [[ "$I" == "macosver" ]]; then
-        DESC="Prints current OS X version information."
+		if [[ $VERBOSE == 1 ]]; then
+			DESC=$'\n```\n'"usage: macosver"$'\n\n'"Simply prints out the OS X major and minor version."$'\n```\n'
+		else
+	        DESC="Prints current OS X version information."
+		fi
     elif [[ -n "$(file -h "$I" | grep 'symbolic link to')" ]]; then
-        DESC="Symbolic link to '$(ls -l "$I" | sed 's@.* -> \(.*\)@\1@')'"
-    else
+		if [[ $VERBOSE == 1 ]]; then
+			echo
+		fi
+    	DESC="Symbolic link to '$(ls -l "$I" | sed 's@.* -> \(.*\)@\1@')'"
+    elif [[ $VERBOSE == 0 ]]; then
         DESC="$(head -n 3 "$I" | tail -n 1 | sed 's@[^ ]* \(.*\)@\1@')"
     fi
 
+	if [[ $VERBOSE == 1 && "$I" != "macosver" ]]; then
+		DESC="$DESC"$'\n```\n'"$("./$I" --help 2>&1)"$'\n```\n'
+	fi
+
     # truncate long descriptions
-    if [[ $TABLE ]]; then
+    if [[ $TABLE == 1 ]]; then
         DESC="$(echo "$DESC" | awk -v len=70 '{ if (length($0) > len) print substr($0, 1, len-3) "..."; else print; }')"
     fi
 
     echo -n "$DESC"
 
-    if [[ $TABLE ]]; then
+    if [[ $TABLE == 1 ]]; then
         echo " |"
     else
         echo

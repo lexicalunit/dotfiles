@@ -4,7 +4,7 @@
 
 usage()
 {
-    echo "usage: $(basename "$0") [options] [curl options] 'URI'"
+    echo "usage: ${0##*/} [options] [curl options] 'URI'"
     echo ""
     echo "Hits the given URI and returns the result as prettified JSON."
     echo "options:"

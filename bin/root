@@ -2,6 +2,12 @@
 
 # Prints the root of the current repository.
 
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+	echo "usage: ${0##*/} [-h|--help]" 1>&2
+	echo "Prints the root directory of the current source repository." 1>&2
+	exit 1
+fi
+
 function abort_root()
 {
     echo "unknown" 1>&2

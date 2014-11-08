@@ -25,6 +25,14 @@ ATOM_PACKAGES="
 ################################################################################
 # Utilities
 ################################################################################
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+	echo "usage: ${0##*/} [-h|--help]"
+	echo "Installs Atom IDE including packages and editor configuration."
+    echo "The following atom packages are included:"
+    echo "$ATOM_PACKAGES"
+	exit 1
+fi
+
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 ################################################################################

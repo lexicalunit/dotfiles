@@ -1,7 +1,12 @@
 #!/bin/bash
 
 # Uninstalls MacPorts completely.
-# see http://guide.macports.org/chunked/installing.macports.uninstalling.html
+
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+	echo "usage: ${0##*/} [-h|--help]" 1>&2
+    echo "See http://guide.macports.org/chunked/installing.macports.uninstalling.html for details." 1>&2
+	exit 1
+fi
 
 sudo port -fp uninstall installed
 
@@ -15,4 +20,4 @@ sudo rm -rf \
     /Library/StartupItems/DarwinPortsStartup \
     /Library/Tcl/darwinports1.0 \
     /Library/Tcl/macports1.0 \
-    ~/.macports
+    "$HOME/.macports"

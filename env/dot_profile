@@ -166,8 +166,8 @@ if [[ -n "$(echo "$SHELL" | grep bash)" ]]; then
 elif [[ -n "$(echo "$SHELL" | grep zsh)" ]]; then
     setopt APPEND_HISTORY
     setopt SHARE_HISTORY
-    bindkey "^[[A" history-search-backward
-    bindkey "^[[B" history-search-forward
+    bindkey "^[[A" history-beginning-search-backward
+    bindkey "^[[B" history-beginning-search-forward
 fi
 
 export HISTFILE="$HOME/.$(basename "$SHELL")_history.$(uname -s)"

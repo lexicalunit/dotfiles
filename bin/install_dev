@@ -29,14 +29,24 @@ GEM_PACKAGES="cap_gun archive-tar-minitar bson bson_ext bundler bundler-unload  
 ################################################################################
 usage()
 {
-    echo "usage: $(basename "$0") [-l | all | step-name ]"
+    echo "usage: ${0##*/} [-l|-d|-f|-h|--help] [all|step-name]"
+    echo "Automatically installs and configures a complete OS X developer environment."
+    echo
     echo "options:"
-    echo "    -h: show usage help"
+    echo "    -h, --help: show usage help"
     echo "    -l: list available step names"
     echo "    -d: dry-run"
     echo "    -f: force install, do not ask for any confirmation"
     echo "    all: executes all steps"
     echo "    step-name: execute only the given step"
+    echo
+    echo "Homebrew Formulas: $(echo "$HOMEBREW_FORMULAS" | sed "s/  */, /g")"
+    echo
+    echo "Pip Packages: $(echo "$PIP_PACKAGES" | sed "s/  */, /g")"
+    echo
+    echo "Conda Packages: $(echo "$CONDA_PACKAGES" | sed "s/  */, /g")"
+    echo
+    echo "Gem Packages: $(echo "$GEM_PACKAGES" | sed "s/  */, /g")"
     exit 0
 }
 
@@ -325,6 +335,10 @@ EOF
 ################################################################################
 # Main
 ################################################################################
+if [[ -n "$(echo "$*" | grep -- "--help")" ]]; then
+    usage
+fi
+
 OPTIND=1
 LISTING=0
 FORCE=0

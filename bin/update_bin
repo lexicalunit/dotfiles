@@ -2,6 +2,12 @@
 
 # Syncs ./bin with ~/bin.
 
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+	echo "usage: ${0##*/} [-h|--help]" 1>&2
+    echo "Copies scripts in ~/bin into ./bin. Honors ignore file." 1>&2
+	exit 1
+fi
+
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 EXCLUDES=(install usages macosver update_bin ignore)
@@ -17,3 +23,4 @@ for I in "${EXCLUDES[@]}"; do
 done
 
 run "$CMD --delete ~/bin/ ." || abort "could not update bin"
+run "./usages -v >README.md"

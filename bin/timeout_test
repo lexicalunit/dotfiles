@@ -1,7 +1,11 @@
 #!/bin/bash
 
 # Run shell command with a timeout.
-# usage: timeout_test "program -options" [SECONDS]
+
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+	echo "usage: ${0##*/} program [-options] [seconds=3]" 1>&2
+	exit 1
+fi
 
 timeout_test()
 {

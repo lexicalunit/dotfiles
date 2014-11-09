@@ -29,25 +29,28 @@ GEM_PACKAGES="cap_gun archive-tar-minitar bson bson_ext bundler bundler-unload  
 ################################################################################
 usage()
 {
-    echo "usage: ${0##*/} [-l|-d|-f|-h|--help] [all|step-name]"
-    echo "Automatically installs and configures a complete OS X developer environment."
-    echo
-    echo "options:"
-    echo "    -h, --help: show usage help"
-    echo "    -l: list available step names"
-    echo "    -d: dry-run"
-    echo "    -f: force install, do not ask for any confirmation"
-    echo "    all: executes all steps"
-    echo "    step-name: execute only the given step"
-    echo
-    echo "Homebrew Formulas: $(echo "$HOMEBREW_FORMULAS" | sed "s/  */, /g")"
-    echo
-    echo "Pip Packages: $(echo "$PIP_PACKAGES" | sed "s/  */, /g")"
-    echo
-    echo "Conda Packages: $(echo "$CONDA_PACKAGES" | sed "s/  */, /g")"
-    echo
-    echo "Gem Packages: $(echo "$GEM_PACKAGES" | sed "s/  */, /g")"
-    exit 0
+    echo "usage: ${0##*/} [-l|-d|-f|-h|--help] [all|step-name]" >&2
+    echo "Automatically installs and configures a complete OS X developer environment." >&2
+    echo "" >&2
+    echo "options:" >&2
+    echo "    -h, --help: show usage help" >&2
+    echo "    -l: list available step names" >&2
+    echo "    -d: dry-run" >&2
+    echo "    -f: force install, do not ask for any confirmation" >&2
+    echo "    all: executes all steps" >&2
+    echo "    step-name: execute only the given step" >&2
+    echo "" >&2
+    echo "steps:" >&2
+    "$0" -l | sed 's/^/    /g' >&2
+    echo "" >&2
+    echo "Homebrew Formulas: $(echo "$HOMEBREW_FORMULAS" | sed "s/  */, /g" | fold -w 80 -s)" >&2
+    echo "" >&2
+    echo "Pip Packages: $(echo "$PIP_PACKAGES" | sed "s/  */, /g" | fold -w 80 -s)" >&2
+    echo "" >&2
+    echo "Conda Packages: $(echo "$CONDA_PACKAGES" | sed "s/  */, /g" | fold -w 80 -s)" >&2
+    echo "" >&2
+    echo "Gem Packages: $(echo "$GEM_PACKAGES" | sed "s/  */, /g" | fold -w 80 -s)" >&2
+    exit 1
 }
 
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
@@ -364,22 +367,24 @@ fi
 
 [[ $1 == all ]] && ALL=1
 
-echo "$(tput bold)NOTE: This script is interactive, you will need to babysit it. Even in -f (force) mode you will still need to input your sudo password when asked for it.$(tput sgr0)"
-echo "$(tput bold)Prerequisite: Install 'Command Line Tools' from $(tput smul)http://developer.apple.com/downloads$(tput rmul) or from X Code preferences$(tput sgr0)"
+if [[ $LISTING == 0 ]]; then
+    echo "$(tput bold)NOTE: This script is interactive, you will need to babysit it. Even in -f (force) mode you will still need to input your sudo password when asked for it.$(tput sgr0)"
+    echo "$(tput bold)Prerequisite: Install 'Command Line Tools' from $(tput smul)http://developer.apple.com/downloads$(tput rmul) or from X Code preferences$(tput sgr0)"
+fi
 
 mkdir -p /tmp/.install_dev # download cache
 
 # key; question; function
-steps=("xcode;Check that Command Line Tools are installed?;step_setup_xcode
-brew;Upgrade/Install Homebrew, formulas: $HOMEBREW_FORMULAS?;step_install_homebrew
-checkbrew;Check for additional or missing Homebrew packages?;step_check_homebrew
-python;Upgrade/Install Anaconda, pip packages: $PIP_PACKAGES, conda packages: $CONDA_PACKAGES?;step_install_python
+steps=("xcode;Check that Command Line Tools are installed;step_setup_xcode
+brew;Upgrade/Install Homebrew formulas;step_install_homebrew
+checkbrew;Check for additional or missing Homebrew packages;step_check_homebrew
+python;Upgrade/Install Anaconda, pip packages, and conda packages;step_install_python
 java;Check that java is installed (will prompt to install if not);step_check_java
-gem;Upgrade/Install gem packages: rubygems-update $GEM_PACKAGES?;step_install_gem
-xquartz;Install latest XQuartz package?;step_install_xquartz
-bash;Install latest version of bash from Homebrew?;step_install_bash
-zsh;Install latest version of zsh from Homebrew?;step_install_zsh
-tiddlywiki;Install and setup latest TiddlyWiki from Homebrew?;step_install_tiddlywiki")
+gem;Upgrade/Install gem packages + rubygems-update package;step_install_gem
+xquartz;Install latest XQuartz package;step_install_xquartz
+bash;Install latest version of bash from Homebrew;step_install_bash
+zsh;Install latest version of zsh from Homebrew;step_install_zsh
+tiddlywiki;Install and setup latest TiddlyWiki from Homebrew;step_install_tiddlywiki")
 
 IFS=$'\n'
 let steps_taken=0
@@ -389,7 +394,7 @@ for step in $steps; do
     function="$(echo $step | cut -d';' -f3)"
 
     if [[ $LISTING == 1 ]]; then
-        echo "$(tput bold)$key$(tput sgr0)  => $question"
+        echo "$key: $question"
         continue
     fi
 
@@ -398,7 +403,7 @@ for step in $steps; do
     fi
 
     let steps_taken=$((steps_taken + 1))
-    ask "[$key] $question"
+    ask "[$key] $question?"
     if [[ "$REPLY" == "y" ]]; then
         show "Beginning step [$key]"
         eval "$function"

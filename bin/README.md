@@ -518,13 +518,35 @@ options:
     all: executes all steps
     step-name: execute only the given step
 
-Homebrew Formulas: autoconf, boost, cmake, coreutils, cppunit, dmd, doxygen, fontconfig, freetype, ghostscript, git, gnu-sed, imagemagick, jbig2dec, jpeg, libevent, yaml-cpp, libpng, libtiff, libtool, libyaml, little-cms2, maven, memcached, mercurial, mongodb, ncftp, node, openssl, ossp-uuid, pcre, pidof, pkg-config, plotutils, postgresql, wget, readline, ruby, s3cmd, scons, spark, sqlite, unixodbc, unrar, watch, xz, libmpc, geoip, shellcheck
+steps:
+    xcode: Check that Command Line Tools are installed
+    brew: Upgrade/Install Homebrew formulas
+    checkbrew: Check for additional or missing Homebrew packages
+    python: Upgrade/Install Anaconda, pip packages, and conda packages
+    java: Check that java is installed (will prompt to install if not)
+    gem: Upgrade/Install gem packages + rubygems-update package
+    xquartz: Install latest XQuartz package
+    bash: Install latest version of bash from Homebrew
+    zsh: Install latest version of zsh from Homebrew
+    tiddlywiki: Install and setup latest TiddlyWiki from Homebrew
 
-Pip Packages: bson, pymongo, fabric, iniparse, psycopg2, oauth2client, pytz, suds, google-api-python-client, httplib2, tinycss, termcolor, requests, uritemplate, beautifulsoup4, pyflakes, pep8, flake8
+Homebrew Formulas: autoconf, boost, cmake, coreutils, cppunit, dmd, doxygen, fontconfig, freetype, 
+ghostscript, git, gnu-sed, imagemagick, jbig2dec, jpeg, libevent, yaml-cpp, 
+libpng, libtiff, libtool, libyaml, little-cms2, maven, memcached, mercurial, 
+mongodb, ncftp, node, openssl, ossp-uuid, pcre, pidof, pkg-config, plotutils, 
+postgresql, wget, readline, ruby, s3cmd, scons, spark, sqlite, unixodbc, unrar, 
+watch, xz, libmpc, geoip, shellcheck
+
+Pip Packages: bson, pymongo, fabric, iniparse, psycopg2, oauth2client, pytz, suds, 
+google-api-python-client, httplib2, tinycss, termcolor, requests, uritemplate, 
+beautifulsoup4, pyflakes, pep8, flake8
 
 Conda Packages: dateutil, pyzmq, argcomplete
 
-Gem Packages: cap_gun, archive-tar-minitar, bson, bson_ext, bundler, bundler-unload, childprocess, cuba, erector, gem-wrappers, jekyll, jewelbox, log4r, lolcat, mongo, net-ldap, rack, rack-protection, railsless-deploy, rubygems-bundler, rvm, shotgun, yajl-ruby, capistrano
+Gem Packages: cap_gun, archive-tar-minitar, bson, bson_ext, bundler, bundler-unload, 
+childprocess, cuba, erector, gem-wrappers, jekyll, jewelbox, log4r, lolcat, 
+mongo, net-ldap, rack, rack-protection, railsless-deploy, rubygems-bundler, 
+rvm, shotgun, yajl-ruby, capistrano
 ```
 
 * * *

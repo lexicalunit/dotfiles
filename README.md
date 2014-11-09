@@ -40,6 +40,7 @@ The following tools are installed into your [`~/bin`](bin) directory by the root
 | [`jsc`](bin/jsc) | Symbolic link to '/System/Library/Frameworks/JavaScriptCore.framewo... |
 | [`macosver`](bin/macosver) | Prints current OS X version information. |
 | [`nopw`](bin/nopw) | Enables password-less ssh TO username@remotehost FROM localhost. |
+| [`reauthor`](bin/reauthor) | In git, change the author name and/or email of a single commit. |
 | [`root`](bin/root) | Prints the root of the current repository. |
 | [`s`](bin/s) | Show git status for all directories in current directory. |
 | [`safari_cache`](bin/safari_cache) | Shows current Safari cache. |

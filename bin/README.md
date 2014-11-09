@@ -591,6 +591,21 @@ Puts your public ssh key in the authorized_keys on the remote host.
 ```
 
 * * *
+### [`reauthor`](bin/reauthor)
+```
+usage: reauthor [-f] commit-to-change [branch-to-rewrite [new-name [new-email]]]
+
+  If -f is supplied it is passed to 'git filter-branch'.
+
+  If <branch-to-rewrite> is not provided or is empty HEAD will be used.
+  Use '--all' or a space separated list (e.g. 'master next') to rewrite
+  multiple branches.
+
+  If <new-name> (or <new-email>) is not provided or is empty, the normal
+  user.name (user.email) Git configuration value will be used.
+```
+
+* * *
 ### [`root`](bin/root)
 ```
 usage: root [-h|--help]

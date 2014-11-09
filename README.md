@@ -1,3 +1,6 @@
+# Synopsis
+I hate installing, configuring, and updating software on my computer. Especially when I'm using a new machine, or sshing into a remote system. I've automated as much of that processes as I can, keeping everything a lightweight as possible.
+
 # Usage
 1. Run the root level [`install`](install) script first to setup your environment and [`~/bin`](bin) directory.
 1. Run the root level [`setup_osx`](setup_osx) script to configure OS X preferences.

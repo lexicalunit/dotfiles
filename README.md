@@ -1,23 +1,23 @@
 # Usage
-1. Run the root level `install` script first to setup your environment and `~/bin` directory.
-1. Run the root level `setup_osx` script to configure OS X preferences.
+1. Run the root level [`install`](install) script first to setup your environment and [`~/bin`](bin) directory.
+1. Run the root level [`setup_osx`](setup_osx) script to configure OS X preferences.
 1. Install Apple's Command Line Tools directly, or install Xcode and enable Command Line Tools in the application preferences.
-1. Run the `~/bin/install_dev` script to install a complete developer environment.
+1. Run the [`~/bin/install_dev`](bin/install_dev) script to install a complete developer environment.
 
-You can also use the root level `deploy` script to automatically run the root level `install` script on a remote host.
+You can also use the root level [`deploy`](deploy) script to automatically run the root level [`install`](install) script on a remote host.
 
 # Maintenance
-* The root level `update` script can be used periodically to update the repository with any changes.
-* Run `install_dev` to update development environment.
+* The root level [`update`](update) script can be used periodically to update the repository with any changes.
+* Re-run [`install_dev`](bin/install_dev) to update development environment.
 
 # Environment
-* `My.terminal` and `Tomorrow Night.terminal` themes to use in `Terminal.app` or `iTerm.app`.
-* Application configuration such as Sublime Text settings.
+* [`My.terminal`](env/My.terminal) and [`Tomorrow Night.terminal`](env/Tomorrow Night.terminal) themes to use in `Terminal.app` or `iTerm.app`.
+* Application configuration such as Atom and Sublime Text settings.
 * Dot files for zsh, bash, dircolors, git, mercurial, vim, python, etc...
-* `sane.css` style sheet for annoying websites.
+* [`sane.css`](env/sane.css) style sheet for annoying websites.
 
-# ~/bin
-The following tools are installed into your `~/bin` directory by the root level `install` script, or by the `bin/install` script. These tools will be on your `PATH` if you have ran the root level `install` script or the `env/install` script successfully.
+# Utilities
+The following tools are installed into your [`~/bin`](bin) directory by the root level [`install`](install) script, or by the [`bin/install`](bin/install) script. These tools will be on your `PATH` if you have ran the root level [`install`](install) script or the [`env/install`](env/install) script. For detailed usage documentation the [`README.md` for `~/bin`](bin/README.md), or of course just run the tools with argument `--help`.
 
 | Tool | Usage |
 | --- | --- |

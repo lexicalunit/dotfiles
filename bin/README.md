@@ -652,6 +652,8 @@ Uses sysctl to discover when the last time OS X slept was.
 ### [`smongo`](bin/smongo)
 ```
 usage: smongo HOST
+
+Discovers and then connects mongo shell to the cluster master node.
 ```
 
 * * *

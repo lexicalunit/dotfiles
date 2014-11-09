@@ -31,6 +31,7 @@ def get_master(node):
 if __name__ == '__main__':
     if len(sys.argv) or any(arg in sys.argv for arg in ['-h', '--help']) < 2:
         print('usage: smongo HOST', file=sys.stderr)
+        print('\nDiscovers and then connects mongo shell to the cluster master node.', file=sys.stderr)
         sys.exit(1)
     cmd = 'mongo --host {} {}'.format(
         get_master(sys.argv[1]),

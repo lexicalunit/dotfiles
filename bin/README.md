@@ -305,13 +305,6 @@ options:
 ```
 
 * * *
-### [`emake.d`](bin/emake.d)
-```
-usage: emake [make arguments]
-Searches for a 'build' directory in parent directories, then runs make in that directory.
-```
-
-* * *
 ### [`fa`](bin/fa)
 ```
 usage: fa [-h|--help] [python regex]

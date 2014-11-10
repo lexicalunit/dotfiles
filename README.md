@@ -30,7 +30,6 @@ The following tools are installed into your [`~/bin`](bin) directory by the root
 | [`cloc`](bin/cloc) | cloc -- Count Lines of Code |
 | [`colortest`](bin/colortest) | Prints out an entire color palette of terminal color codes. |
 | [`die`](bin/die) | Kills processes based on process name. |
-| [`emake.d`](bin/emake.d) | Builds codebase externally. |
 | [`fa`](bin/fa) | Searches a codebase for given pattern. |
 | [`ff`](bin/ff) | Symbolic link to '/usr/local/bin/grind' |
 | [`flip`](bin/flip) | Flips input upside down. |

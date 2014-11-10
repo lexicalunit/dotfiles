@@ -14,8 +14,12 @@ run "mkdir -p '$HOME/bin'"
 
 for I in *; do
 	case "$I" in
-		*) run "rsync -apl '$I' '$HOME/bin/$I'" ;;
-		install|update_bin|usages|ignore) ;; # don't install these files
+		install|update_bin|usages|ignore|README.md) ;; # don't install these files
+		*)
+			if [[ ! -f ignore || -z "$(grep "$(basename "$I")" ignore)" ]]; then
+				run "rsync -apl '$I' '$HOME/bin/$I'"
+			fi
+		;;
 	esac
 done
 

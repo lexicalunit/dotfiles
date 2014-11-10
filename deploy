@@ -14,5 +14,5 @@ HOST="$1"
 REPO="$(basename "$(pwd)")"
 
 run "tar zcf - --exclude .git '../$REPO' | ssh $HOST 'tar xzf -'"
-run "ssh $HOST 'pushd '$REPO'; yes | ./install; popd; rm -rf setup'"
+run "ssh $HOST 'set -e; pushd '$REPO'; yes | ./install; popd; rm -rf setup'"
 show "deployment complete!"

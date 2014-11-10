@@ -27,21 +27,31 @@ fi
 show "installing dot files: ${DOT_FILES[@]}..."
 
 for I in dot_*; do
-	if contains "./$I" "${DOT_FILES[@]}"; then
-		if [[ -f $I ]]; then
-			if [[ -n "$(echo "$I" | grep profile_)" ]]; then
-				ask "install $I?"
-			else
-				REPLY="y"
-			fi
-			if [[ "$REPLY" == "y" ]]; then
-				run "rsync -apl '$I' '$HOME/.$(basename "$I" | sed s/^dot_//)'"
-			fi
-		elif [[ -d $I ]]; then
-			run "rsync -apl '$I/'* '$HOME/.$(basename "$I" | sed s/^dot_//)/'"
+	# don't install ignored files
+	if [[ -f ignore && -n "$(grep "$(basename "$I")" ignore)" ]]; then
+		continue
+	fi
+
+	# don't install files that aren't dot files
+	if ! contains "./$I" "${DOT_FILES[@]}"; then
+		continue
+	fi
+
+	if [[ -f $I ]]; then
+		# ask before installing .profile_* extension files
+		if [[ -n "$(echo "$I" | grep profile_)" ]]; then
+			ask "install $I?"
 		else
-			abort "could not install '$I'"
+			REPLY="y"
 		fi
+		if [[ "$REPLY" == "y" ]]; then
+			run "rsync -apl '$I' '$HOME/.$(basename "$I" | sed s/^dot_//)'"
+		fi
+	elif [[ -d $I ]]; then
+		# always install directory, todo: ask to install directories too?
+		run "rsync -apl '$I/'* '$HOME/.$(basename "$I" | sed s/^dot_//)/'"
+	else
+		abort "could not install '$I'"
 	fi
 done
 

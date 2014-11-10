@@ -13,32 +13,34 @@ man_pdf_helper() {
     # suffixes in the filename are reflected in the section number in the .TH
     # macro. (Minimal pair of packages: Perl modules vs. OpenSSL.) This way
     # includes any suffixes in the filename.
-    local CMDSECT=`basename "$THEFILE" | perl -e '<> =~ /^(.+)\.([\dn]\w*)(|\.\w+)$/; print "$1($2)"'`
+    local CMDSECT=$(basename "$THEFILE" | perl -e '<> =~ /^(.+)\.([\dn]\w*)(|\.\w+)$/; print "$1($2)"')
 
     # Make a PDF called name(sectionnumber).pdf:
     local OUTPUT_FILE="$MAN_PDF_DIR/$CMDSECT.pdf"
     if [ ! -r "$OUTPUT_FILE" ]; then
         man -t "$@" | ps2pdf - "$OUTPUT_FILE"
     fi
-    echo $OUTPUT_FILE
+    echo "$OUTPUT_FILE"
 }
 
-if [ -z $MAN_PDF_VIEWER ]; then
-    for v in xdg-open open; do
-        if which $v >/dev/null; then
-            MAN_PDF_VIEWER="$v"
-            break
-        fi
-    done
+if [[ -z "$MAN_PDF_VIEWER" ]]; then
+    if type xdg-open >/dev/null 2>&1; then
+        for v in xdg-open open; do
+            if which $v >/dev/null; then
+                MAN_PDF_VIEWER="$v"
+                break
+            fi
+        done
+    fi
 fi
-if [ $MAN_PDF_VIEWER ]; then
+if [[ "$MAN_PDF_VIEWER" ]]; then
     eval 'pman() {
         ' $MAN_PDF_VIEWER '"`man_pdf_helper "$@"`"
     }'
 fi
 unset MAN_PDF_VIEWER
 
-if which qlmanage >/dev/null; then
+if type qlmanage >/dev/null 2>&1; then
     eval 'qman() {
        qlmanage -p "`man_pdf_helper "$@"`" > /dev/null 2>&1 &
     }'
@@ -49,4 +51,3 @@ fi
 # {
 #     man -t $@ | pstopdf -i -o /tmp/$1.pdf && open /tmp/$1.pdf
 # }
-

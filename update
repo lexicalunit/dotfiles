@@ -11,13 +11,13 @@ if [[ -n "$(git status -s)" ]]; then
 fi
 
 (
-	run "pushd bin"
+	run "pushd bin >/dev/null"
 	run "./update_bin"
 	run "perl -ni -e 'print unless /^\|.*/' ../README.md"
 	run "./usages -t >>../README.md"
 )
 
 (
-	run "pushd env"
+	run "pushd env >/dev/null"
 	run "./update_env"
 )

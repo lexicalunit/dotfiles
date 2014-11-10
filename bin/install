@@ -3,9 +3,9 @@
 # Installs everything to ~/bin.
 
 if [[ "$1" == "--help" || "$1" == "-h" ]]; then
-	echo "usage: ${0##*/}"
-	echo "Installs setup/bin tools into user's ~/bin directory."
-	exit 1
+    echo "usage: ${0##*/}"
+    echo "Installs setup/bin tools into user's ~/bin directory."
+    exit 1
 fi
 
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
@@ -13,14 +13,14 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 run "mkdir -p '$HOME/bin'"
 
 for I in *; do
-	case "$I" in
-		install|update_bin|usages|ignore|README.md) ;; # don't install these files
-		*)
-			if [[ ! -f ignore || -z "$(grep "$(basename "$I")" ignore)" ]]; then
-				run "rsync -apl '$I' '$HOME/bin/$I'"
-			fi
-		;;
-	esac
+    case "$I" in
+        install|update_bin|usages|ignore|README.md) ;; # don't install these files
+        *)
+            if [[ ! -f ignore || -z "$(grep "$(basename "$I")" ignore)" ]]; then
+                run "rsync -apl '$I' '$HOME/bin/$I'"
+            fi
+        ;;
+    esac
 done
 
 show "$HOME/bin install complete!"

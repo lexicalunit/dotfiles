@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# Run shell command with a timeout.
+
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+	echo "usage: ${0##*/} DURATION CMD [ARG]" 1>&2
+	echo "" 1>&2
+	echo "A limited bash version of the GNU tool timeout. Use timeout if you have it." 1>&2
+	exit 1
+fi
+
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
+timeout_test()
+{
+	DURATION="$1"
+	shift
+	CMD="$@"
+
+	err_file=$(mktemp err_file.XXXXXXXXXX) || abort "can not make temp file"
+	out_file=$(mktemp out_file.XXXXXXXXXX) || abort "can not make temp file"
+	rm -f "$err_file" "$out_file" 1>/dev/null 2>&1
+
+	eval "$CMD" 1>"$out_file" 2>"$err_file" &
+	p=$!
+	( sleep "$DURATION"; kill -1 "$p" 1>/dev/null 2>&1 ) 1>/dev/null 2>&1 &
+	k=$1
+	wait "$p" 1>/dev/null 2>&1
+	exitvalue=$?
+
+	case $exitvalue in
+		129)
+			rm -f "$err_file" "$out_file" 1>/dev/null 2>&1
+			return 1
+			;;
+
+		0|1)
+			# normal exit
+			;;
+
+		*)
+			# unknown exit, make sure it's killed
+			kill "$k" 1>/devnull 2>&1
+			wait "$k" 1>/dev/null 2>&1
+			;;
+	esac
+
+	ERR="$(cat "$err_file")"
+	OUT="$(cat "$out_file")"
+	rm -f "$err_file" "$out_file" 1>/dev/null 2>&1
+
+	echo "$OUT"
+
+	if [ ! "$ERR" = "" ]; then
+		echo "$ERR" 1>&2
+		return 1
+	fi
+
+	return 0
+}
+
+timeout_test "$@"
+exit $?

@@ -569,6 +569,14 @@ Usage: jsc [options] [files] [-- arguments]
 ```
 
 * * *
+### [`lt`](bin/lt)
+```
+usage: lt DURATION CMD [ARG]
+
+A limited bash version of the GNU tool timeout. Use timeout if you have it.
+```
+
+* * *
 ### [`macosver`](bin/macosver)
 ```
 usage: macosver
@@ -690,12 +698,6 @@ to the terminal when a file is closed (only relevant if waiting for a file).
 
 Filenames may be given a :line or :line:column suffix to open at a specific
 location.
-```
-
-* * *
-### [`timeout_test`](bin/timeout_test)
-```
-usage: timeout_test program [-options] [seconds=3]
 ```
 
 * * *

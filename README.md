@@ -40,6 +40,7 @@ The following tools are installed into your [`~/bin`](bin) directory by the root
 | [`install_dev`](bin/install_dev) | Installs development environment on OS X machines. |
 | [`install_mysql`](bin/install_mysql) | Installs/uninstalls mysql from package. |
 | [`jsc`](bin/jsc) | Symbolic link to '/System/Library/Frameworks/JavaScriptCore.framewo... |
+| [`lt`](bin/lt) | Run shell command with a timeout. |
 | [`macosver`](bin/macosver) | Prints current OS X version information. |
 | [`nopw`](bin/nopw) | Enables password-less ssh TO username@remotehost FROM localhost. |
 | [`reauthor`](bin/reauthor) | In git, change the author name and/or email of a single commit. |
@@ -52,7 +53,6 @@ The following tools are installed into your [`~/bin`](bin) directory by the root
 | [`slept`](bin/slept) | Get time OS X system last went to sleep. |
 | [`smongo`](bin/smongo) | Opens mongo shell to master node. |
 | [`subl`](bin/subl) | Symbolic link to '/Applications/Sublime Text.app/Contents/SharedSup... |
-| [`timeout_test`](bin/timeout_test) | Run shell command with a timeout. |
 | [`uninstall_homebrew`](bin/uninstall_homebrew) | Uninstalls Homebrew completely. |
 | [`uninstall_macports`](bin/uninstall_macports) | Uninstalls MacPorts completely. |
 | [`update_bin`](bin/update_bin) | Syncs ./bin with ~/bin. |

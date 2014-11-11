@@ -29,6 +29,13 @@ share_put()
     echo "$BASE_URL/$NAME"
 }
 
+list_files()
+{
+    # Note that we do want to expand $DEST locally here.
+    local cmd="find $DEST -maxdepth 1 -type f -not -name '.*' -not -name index.php -print0 | xargs -0 ls -1tr"
+    ssh "$USER"@"$HOST" "$cmd"
+}
+
 [[ -n "$1" ]] || usage
 
 # shortcut for put
@@ -43,20 +50,38 @@ case "$1" in
         ;;
 
     names|n*)
-        ssh "$USER"@"$HOST" "ls -1 $DEST"
+        if [[ -n "$(echo "$*" | egrep -- "-p|--private")" ]]; then
+            DEST="$DEST/private"
+            BASE_URL="$BASE_URL/private"
+        fi
+        list_files | sed "s@$DEST/@@g"
         ;;
 
     list|ls|l|ll|find|f|l*|f*)
-        ssh "$USER"@"$HOST" "find $DEST -type f | sed 's@$DEST/@$BASE_URL/@g'"
+        if [[ -n "$(echo "$*" | egrep -- "-p|--private")" ]]; then
+            DEST="$DEST/private"
+            BASE_URL="$BASE_URL/private"
+        fi
+        list_files | sed "s@$DEST/@$BASE_URL/@g"
         ;;
 
     put|p|up|p*|u*)
         [[ -n "$2" ]] || usage
+        if [[ -n "$(echo "$2" | egrep -- "-p|--private")" ]]; then
+            shift
+            DEST="$DEST/private"
+            BASE_URL="$BASE_URL/private"
+        fi
         share_put "$2"
         ;;
 
     get|g*)
         [[ -n "$2" ]] || usage
+        if [[ -n "$(echo "$2" | egrep -- "-p|--private")" ]]; then
+            shift
+            DEST="$DEST/private"
+            BASE_URL="$BASE_URL/private"
+        fi
         NAME="$2"
         scp "$USER"@"$HOST":"$DEST/$NAME" .
         ;;
@@ -67,6 +92,11 @@ case "$1" in
 
     del|delete|rm)
         [[ -n "$2" ]] || usage
+        if [[ -n "$(echo "$2" | egrep -- "-p|--private")" ]]; then
+            shift
+            DEST="$DEST/private"
+            BASE_URL="$BASE_URL/private"
+        fi
         NAME="$2"
         ssh "$USER"@"$HOST" "rm -fv $DEST/$NAME"
         ;;

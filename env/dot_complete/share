@@ -6,15 +6,45 @@ _share ()
         emulate -L ksh
     fi
 
-    local cur prev opts
-    COMPREPLY=()
+    # vaild command options
+    local opts
+    opts=("ls" "names" "ssh" "get" "put" "rm" "help")
+
+    # typical completion script boilerplate
+    local cur prev
+    COMPREPLY=() # required
+
+    # default to not using private shares
+    local removeitem linetmp use_private
+    use_private=0
+
+    # detect and remove -p
+    removeitem=(-p)
+    linetmp="${COMP_WORDS[@]}"
+    COMP_WORDS=("${COMP_WORDS[@]/$removeitem}")
+    if [[ "${COMP_WORDS[@]}" != "$linetmp" ]]; then
+        COMP_CWORD=$((COMP_CWORD - 1))
+        linetmp="${COMP_WORDS[@]}"
+        use_private=1
+    fi
+
+    # detect and remove --private
+    removeitem=(--private)
+    linetmp="${COMP_WORDS[@]}"
+    COMP_WORDS=("${COMP_WORDS[@]/$removeitem}")
+    if [[ "${COMP_WORDS[@]}" != "$linetmp" ]]; then
+        COMP_CWORD=$((COMP_CWORD - 1))
+        linetmp="${COMP_WORDS[@]}"
+        use_private=1
+    fi
+
+    # get current and previous words
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
-    opts=("ls" "names" "ssh" "get" "put" "rm" "help")
 
     # autocomplete share commands
     if [[ -z "$prev" || $COMP_CWORD == 1 ]]; then
-        COMPREPLY=($(compgen -W "$(echo -n ${opts[@]})" -- "${cur}"))
+        COMPREPLY=($(compgen -W "$(echo -n "${opts[@]}")" -- "${cur}"))
 
         # fallback to filenames
         if [[ $? != 0 ]]; then
@@ -23,18 +53,21 @@ _share ()
         return 0
     fi
 
+    # list either public or private names
+    local namelist_cmd
+    namelist_cmd="share names"
+    [[ $use_private == 1 ]] && namelist_cmd="$namelist_cmd -p"
+
     IFS=$'\n'
     case $prev in
         put|p|up|p*|u*)
+            # complete partly typed out share command
             COMPREPLY=($(compgen -f "$cur"))
             ;;
 
-        get|g*)
-            COMPREPLY=($(compgen -W "$(share names)" -- "$cur" ))
-            ;;
-
-        del|delete|rm)
-            COMPREPLY=($(compgen -W "$(share names)" -- "$cur" ))
+        get|g*|del|delete|rm)
+            # complete with list of remote files
+            COMPREPLY=($(compgen -W "$(eval "$namelist_cmd")" -- "$cur" ))
             ;;
     esac
 } &&

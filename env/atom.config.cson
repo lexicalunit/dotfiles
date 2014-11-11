@@ -17,6 +17,7 @@
   'editor':
     'tabLength': 4
     'invisibles': {}
+    'normalizeIndentOnPaste': false
   'spell-check':
     'grammars': [
       'source.gfm'

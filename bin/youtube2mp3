@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Downloads the audio from a youtube video given the URL.
+
+usage()
+{
+    echo "usage: ${0##*/} [-h|--help] [youtube-dl options] <youtube URL>"
+    echo ""
+    echo "Downloads the youtube video at the given URL and creates corresponding mp3."
+    echo "Uses the tool youtube-dl to do it's dirty work, so make sure that it's installed and up to date."
+    echo ""
+    youtube-dl --help
+}
+
+if [[ -n "$(echo "$*" | egrep -- "--help|-h")" ]]; then
+    usage >&2
+    exit 1
+fi
+
+if ! type youtube-dl >/dev/null 2>&1; then
+    echo "error: youtube-dl not found, please install it (e.g. on OS X: brew install youtube-dl)" >&2
+    exit 1
+fi
+
+youtube-dl -x -k --audio-format mp3 "$@"

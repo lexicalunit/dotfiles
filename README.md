@@ -61,3 +61,4 @@ The following tools are installed into your [`~/bin`](bin) directory by the root
 | [`xdie`](bin/xdie) | Kills processes based on their window title. |
 | [`xf`](bin/xf) | Extract common file formats. |
 | [`yaml2json`](bin/yaml2json) | Converts yaml input to json output. |
+| [`youtube2mp3`](bin/youtube2mp3) | Downloads the audio from a youtube video given the URL. |

@@ -92,7 +92,7 @@ else
 fi
 
 ###############################################################################
-# Install Sublime Text packages
+# Install Sublime Text Packages and Settings
 ###############################################################################
 grab_package()
 {
@@ -114,6 +114,14 @@ if [[ -d "$HOME/Library/Application Support/Sublime Text 3/Packages/User" ]]; th
     grab_package "https://github.com/JulianEberius/SublimePythonIDE.git" "SublimePythonIDE"
     sync "Preferences.sublime-settings" "$HOME/Library/Application Support/Sublime Text 3/Packages/User"
     sync "SublimePython.sublime-settings" "$HOME/Library/Application Support/Sublime Text 3/Packages/User"
+fi
+
+###############################################################################
+# Install Atom Editor Settings
+###############################################################################
+if [[ -d "$HOME/.atom" ]]; then
+    run "rsync -apl 'atom.styles.less' '$HOME/.atom/styles.less'"
+    run "rsync -apl 'atom.config.cson' '$HOME/.atom/config.cson'"
 fi
 
 show "env install complete!"

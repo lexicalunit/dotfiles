@@ -1,0 +1,125 @@
+'global':
+  'minimap':
+    'plugins':
+      'selection': true
+      'git-diff': true
+  'welcome':
+    'showOnStartup': false
+  'core':
+    'themes': [
+      'atom-soda-dark-ui'
+      'monokai-soda'
+    ]
+  'linter-flake8':
+    'maxLineLength': 120
+  'exception-reporting':
+    'userId': '772afc40-7579-582e-4c2f-ff65dd824377'
+  'editor':
+    'tabLength': 4
+    'invisibles': {}
+  'spell-check':
+    'grammars': [
+      'source.gfm'
+      'text.plain.null-grammar'
+      'source.c++'
+      'source.litcoffee'
+      'source.css'
+      'text.git-commit'
+      'source.go'
+      'text.html.basic'
+      'source.java'
+      'source.js'
+      'source.json'
+      'source.css.less'
+      'source.makefile'
+      'source.plist'
+      'source.python'
+      'text.html.erb'
+      'source.shell'
+      'source.sql'
+      'text.plain'
+      'text.todo'
+      'source.yaml'
+    ]
+'.python.text.traceback':
+  'editor': {}
+'.basic.html.text':
+  'editor': {}
+'.gohtml.html.text':
+  'editor': {}
+'.html.jsp.text':
+  'editor': {}
+'.js.regexp.source':
+  'editor': {}
+'.css.less.source':
+  'editor': {}
+'.plist.text.xml':
+  'editor': {}
+'.python.regexp.source':
+  'editor': {}
+'.erb.html.text':
+  'editor': {}
+'.text.xml.xsl':
+  'editor': {}
+'.c.source ++ *':
+  'editor': {}
+'.objc.source ++ *':
+  'editor': {}
+'.source.yaml':
+  'editor': {}
+'.text.xml':
+  'editor': {}
+'.source.toml':
+  'editor': {}
+'.text.todo':
+  'editor': {}
+'.plain.text':
+  'editor': {}
+'.source.sql':
+  'editor': {}
+'.shell.source':
+  'editor': {}
+'.ruby.source':
+  'editor': {}
+'.plist.source':
+  'editor': {}
+'.perl.source':
+  'editor': {}
+'.source.strings':
+  'editor': {}
+'.js.source':
+  'editor': {}
+'.junit-test-report.text':
+  'editor': {}
+'.java-properties.source':
+  'editor': {}
+'.java.source':
+  'editor': {}
+'.git-commit.text':
+  'editor': {}
+'.gfm.source':
+  'editor': {}
+'.css.source':
+  'editor': {}
+'.litcoffee.source':
+  'editor': {}
+'.coffee.source':
+  'editor': {}
+'.c.source':
+  'editor': {}
+'.git-config.source':
+  'editor': {}
+'.git-rebase.text':
+  'editor': {}
+'.go.source':
+  'editor': {}
+'.gotemplate.source':
+  'editor': {}
+'.json.source':
+  'editor': {}
+'.makefile.source':
+  'editor': {}
+'.objc.source':
+  'editor': {}
+'.python.source':
+  'editor': {}

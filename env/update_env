@@ -6,7 +6,9 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 
 backup()
 {
-	run "rsync -apl '$1/$2' '$2'"
+	if [[ -e "$1/$2" ]]; then
+		run "rsync -apl '$1/$2' '$2'"
+	fi
 }
 
 # profile
@@ -18,22 +20,27 @@ for I in "$HOME/".profile_*; do
 done
 
 # bash
-run "rsync -apl '$HOME/.bash_profile' ./dot_bash_profile"
-run "rsync -apl '$HOME/.bashrc' ./dot_bashrc"
+[[ -f "$HOME/.bash_profile" ]] && run "rsync -apl '$HOME/.bash_profile' ./dot_bash_profile"
+[[ -f "$HOME/.bashrc" ]] && run "rsync -apl '$HOME/.bashrc' ./dot_bashrc"
 
 # zsh
-run "rsync -apl '$HOME/.zshrc' ./dot_zshrc"
+[[ -f "$HOME/.zshrc" ]] && run "rsync -apl '$HOME/.zshrc' ./dot_zshrc"
 
 # tools
-run "rsync -apl '$HOME/.dircolors' ./dot_dircolors"
-run "rsync -apl '$HOME/.inputrc' ./dot_inputrc"
-run "rsync -apl '$HOME/.vimrc' ./dot_vimrc"
-run "rsync -apl '$HOME/.hgignore' ./dot_hgignore"
-run "rsync -apl '$HOME/.hgrc' ./dot_hgrc"
-run "rsync -apl '$HOME/.gitconfig' ./dot_gitconfig"
-run "rsync -apl '$HOME/.pythonrc'.py ./dot_pythonrc.py"
-run "rsync -apl '$HOME/.toprc' ./dot_toprc"
-run "rsync -apl '$HOME/.complete/' ./dot_complete"
+[[ -f "$HOME/.dircolors" ]] && run "rsync -apl '$HOME/.dircolors' ./dot_dircolors"
+[[ -f "$HOME/.inputrc" ]] && run "rsync -apl '$HOME/.inputrc' ./dot_inputrc"
+[[ -f "$HOME/.vimrc" ]] && run "rsync -apl '$HOME/.vimrc' ./dot_vimrc"
+[[ -f "$HOME/.hgignore" ]] && run "rsync -apl '$HOME/.hgignore' ./dot_hgignore"
+[[ -f "$HOME/.hgrc" ]] && run "rsync -apl '$HOME/.hgrc' ./dot_hgrc"
+[[ -f "$HOME/.gitconfig" ]] && run "rsync -apl '$HOME/.gitconfig' ./dot_gitconfig"
+[[ -f "$HOME/.pythonrc" ]] && run "rsync -apl '$HOME/.pythonrc'.py ./dot_pythonrc.py"
+[[ -f "$HOME/.toprc" ]] && run "rsync -apl '$HOME/.toprc' ./dot_toprc"
+[[ -d "$HOME/.complete/" ]] && run "rsync -apl '$HOME/.complete/' ./dot_complete"
 
+# atom
+[[ -f "$HOME/.atom/styles.less" ]] && run "rsync -apl '$HOME/.atom/styles.less' ./atom.styles.less"
+[[ -f "$HOME/.atom/config.cson" ]] && run "rsync -apl '$HOME/.atom/config.cson' ./atom.config.cson"
+
+# sublime text
 backup "$HOME/Library/Application Support/Sublime Text 3/Packages/User" "Preferences.sublime-settings"
 backup "$HOME/Library/Application Support/Sublime Text 3/Packages/User" "SublimePython.sublime-settings"

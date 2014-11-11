@@ -100,37 +100,4 @@ done
 show "restarting Atom..."
 run "osascript -e 'tell application \"Atom\" to quit' 2>/dev/null"
 run "sleep 1" # give application time to quit
-
-# Apply custom CSS
-show "applying custom Atom style..."
-cat > "$HOME/.atom/style.css" <<EOF
-atom-text-editor {
-    font-family: Inconsolata;
-    text-size: 16pt;
-}
-.tree-view { }
-atom-text-editor .cursor { }
-EOF
-
-# Configure Atom IDE
-show "configuring IDE settings..."
-cat > "$HOME/.atom/config.cson" <<EOF
-'global':
-  'minimap':
-    'plugins':
-      'selection': true
-      'git-diff': true
-  'welcome':
-    'showOnStartup': false
-  'core':
-    'themes': [
-      'atom-soda-dark-ui'
-      'monokai-soda'
-    ]
-  'editor':
-    'invisibles': {}
-  'linter-flake8':
-    'maxLineLength': 120
-EOF
-
 run "open -F /Applications/Atom.app"

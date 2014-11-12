@@ -1,37 +1,4 @@
-#!/bin/bash
-
-# Updates the bin and env directories with whatever new changes are found in the current environment
-
-source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
-
-set -e
-
-if [[ -n "$(git status -s)" ]]; then
-	abort "cowardly refusing to overwrite existing changes"
-fi
-
-(
-	run "pushd bin >/dev/null"
-	run "./update_bin"
-
-	show "Generating README.md..."
-	USAGEBEGIN="$(./usages -t 2>&1 | head -n 1)"
-	READMECONTENT="$(sed -n "/$USAGEBEGIN/q;p" ../README.md)"
-	cat >../README.md <<EOF
-$READMECONTENT
-
-$(./usages -t)
-EOF
-)
-
-(
-	run "pushd env >/dev/null"
-	run "./update_env"
-)
-
-show "Generating LICENSE..."
-cat >LICENSE <<EOF
-Copyright (c) $(date "+%Y"), amy@lexicalunit.com
+Copyright (c) 2014, amy@lexicalunit.com
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -58,11 +25,3 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 Inconsolata font Created by Raph Levien using his own tools and FontForge.
 Copyright 2006 Raph Levien. Released under the SIL Open Font License.
-EOF
-
-show "Adding license to README.md..."
-cat >>README.md <<EOF
-
-# License
-$(cat LICENSE)
-EOF

@@ -525,6 +525,20 @@ alias gitsu='git s -u '
 export RSYNC_RSH=rsh # use ssh over rsync
 alias ssh='ssh -Y -C ' # use compression over ssh connections
 
+lw()
+{
+    local LOC="$(which "$1")"
+    echo "$LOC"
+    local FINFO="$(file -h "$LOC")"
+    if [[ -n "$(echo "$FINFO" | grep 'symbolic link to')" ]]; then
+        LOC="$(dirname "$LOC")/$(echo "$FINFO" | sed 's@.*symbolic link to\s*\(.*\)@\1@')"
+        echo "$LOC"
+        if type realpath >/dev/null 2>&1; then
+            realpath "$LOC"
+        fi
+    fi
+}
+
 eman()
 {
     man "$@" | col -bx | subl --stay &

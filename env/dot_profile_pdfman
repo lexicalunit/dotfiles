@@ -33,21 +33,19 @@ if [[ -z "$MAN_PDF_VIEWER" ]]; then
         done
     fi
 fi
-if [[ "$MAN_PDF_VIEWER" ]]; then
+if [[ -n "$MAN_PDF_VIEWER" ]]; then
     eval 'pman() {
         ' $MAN_PDF_VIEWER '"`man_pdf_helper "$@"`"
     }'
+else
+    pman() {
+        man -t "$@" | pstopdf -i -o "/tmp/$1.pdf" && open "/tmp/$1.pdf"
+    }
 fi
 unset MAN_PDF_VIEWER
 
 if type qlmanage >/dev/null 2>&1; then
-    eval 'qman() {
-       qlmanage -p "`man_pdf_helper "$@"`" > /dev/null 2>&1 &
-    }'
+    qman() {
+       qlmanage -p "$(man_pdf_helper "$@")" > /dev/null 2>&1 &
+    }
 fi
-
-# alternative solution:
-# function pdfman
-# {
-#     man -t $@ | pstopdf -i -o /tmp/$1.pdf && open /tmp/$1.pdf
-# }

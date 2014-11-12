@@ -2,10 +2,7 @@
 
 if [[ ! -f /Library/Fonts/Inconsolata.otf ]]; then
 	echo "Installing Inconsolata font"
-	pushd /tmp
-	curl -vO http://levien.com/type/myfonts/Inconsolata.otf
-	mv -vf Inconsolata.otf /Library/Fonts
-	popd
+	mv -vf env/Inconsolata.otf /Library/Fonts
 fi
 
 echo "Enable repeat on keydown"

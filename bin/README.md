@@ -396,7 +396,7 @@ Requires hand editing to support your specific installation.
 * * *
 ### [`share`](bin/share)
 ```
-usage share [<file>|ls|names|ssh|get <name>|put <file>|rm <name>]
+usage share [<file>|ls|names|ssh|get <name(s)>|put <file(s)>|rm <name>]
 Requires ~/.webshare script be created for your webshare configuration.
 
 The ~/.webshare script must set environment variables:

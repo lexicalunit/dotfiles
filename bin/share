@@ -4,7 +4,7 @@
 
 usage()
 {
-    echo "usage ${0##*/} [<file>|ls|names|ssh|get <name>|put <file>|rm <name>]" 1>&2
+    echo "usage ${0##*/} [<file>|ls|names|ssh|get <name(s)>|put <file(s)>|rm <name>]" 1>&2
     echo "Requires ~/.webshare script be created for your webshare configuration."
     echo
     echo "The ~/.webshare script must set environment variables:"
@@ -23,10 +23,13 @@ BASE_URL="http://$HOST/$DEST_DIR"
 
 share_put()
 {
-    FILE="$1"
-    NAME="$(basename "$FILE")"
-    rsync -v --chmod=a+r --rsh="ssh -c blowfish" "$FILE" "$USER"@"$HOST":"$DEST/$NAME"
-    echo "$BASE_URL/$NAME"
+    for I in "$@"; do
+        NAME="$(basename "$I")"
+        rsync --chmod=a+r --rsh="ssh -c blowfish" "$I" "$USER"@"$HOST":"$DEST/$NAME"
+        if [[ $? == 0 ]]; then
+            echo "$BASE_URL/$NAME"
+        fi
+    done
 }
 
 list_files()
@@ -72,7 +75,8 @@ case "$1" in
             DEST="$DEST/private"
             BASE_URL="$BASE_URL/private"
         fi
-        share_put "$2"
+        shift
+        share_put "$@"
         ;;
 
     get|g*)
@@ -82,8 +86,10 @@ case "$1" in
             DEST="$DEST/private"
             BASE_URL="$BASE_URL/private"
         fi
-        NAME="$2"
-        scp "$USER"@"$HOST":"$DEST/$NAME" .
+        shift
+        for I in "$@"; do
+            scp "$USER"@"$HOST":"$DEST/$I" .
+        done
         ;;
 
     ssh|open|shell|s*)

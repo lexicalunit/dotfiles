@@ -525,6 +525,11 @@ alias gitsu='git s -u '
 export RSYNC_RSH=rsh # use ssh over rsync
 alias ssh='ssh -Y -C ' # use compression over ssh connections
 
+fpdf()
+{
+     pdf2ps "$1" - | ps2pdf - "f$1"
+}
+
 lw()
 {
     local LOC="$(which "$1")"

@@ -277,7 +277,10 @@ ghostscript, git, gnu-sed, imagemagick, jbig2dec, jpeg, libevent, yaml-cpp,
 libpng, libtiff, libtool, libyaml, little-cms2, maven, memcached, mercurial, 
 mongodb, ncftp, node, openssl, ossp-uuid, pcre, pidof, pkg-config, plotutils, 
 postgresql, wget, readline, ruby, s3cmd, scons, spark, sqlite, unixodbc, unrar, 
-watch, xz, libmpc, geoip, shellcheck, tree, youtube-dl, sloccount
+watch, xz, libmpc, geoip, shellcheck, tree, youtube-dl, sloccount, jhead, 
+caskroom/cask/brew-cask
+
+Homebrew Casks: google-chrome, pdftk
 
 Pip Packages: bson, pymongo, fabric, iniparse, psycopg2, oauth2client, pytz, suds, 
 google-api-python-client, httplib2, tinycss, termcolor, requests, uritemplate, 

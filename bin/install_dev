@@ -11,7 +11,9 @@ HOMEBREW_FORMULAS="autoconf boost cmake coreutils cppunit dmd doxygen fontconfig
     libpng libtiff libtool libyaml little-cms2 maven memcached mercurial mongodb \
     ncftp node openssl ossp-uuid pcre pidof pkg-config plotutils postgresql wget \
     readline ruby s3cmd scons spark sqlite unixodbc unrar watch xz libmpc geoip  \
-    shellcheck tree youtube-dl sloccount"
+    shellcheck tree youtube-dl sloccount jhead caskroom/cask/brew-cask"
+
+HOMEBREW_CASKS="google-chrome pdftk"
 
 PIP_PACKAGES="bson pymongo fabric iniparse psycopg2 oauth2client pytz suds       \
     google-api-python-client httplib2 tinycss termcolor requests uritemplate     \
@@ -44,6 +46,8 @@ usage()
     "$0" -l | sed 's/^/    /g' >&2
     echo "" >&2
     echo "Homebrew Formulas: $(echo "$HOMEBREW_FORMULAS" | sed "s/  */, /g" | fold -w 80 -s)" >&2
+    echo "" >&2
+    echo "Homebrew Casks: $(echo "$HOMEBREW_CASKS" | sed "s/  */, /g" | fold -w 80 -s)" >&2
     echo "" >&2
     echo "Pip Packages: $(echo "$PIP_PACKAGES" | sed "s/  */, /g" | fold -w 80 -s)" >&2
     echo "" >&2
@@ -94,14 +98,23 @@ step_check_homebrew() # checkbrew
 
 install_brew_formula()
 {
-    if [[ -z "$(brew ls | grep "$1")" ]]; then
-        run "brew install $1"
+    if ! brew ls | grep -q "$1"; then
+        run "brew install '$1'"
     else
-        show "brew formula $1 already installed"
+        show "brew formula '$1' already installed"
     fi
 
     # force link the most recent versions
     run "brew unlink $1 && brew link --force --overwrite $1"
+}
+
+install_brew_cask()
+{
+    if ! brew ls | grep -q "$1"; then
+        run "brew cask install  '$1'"
+    else
+        show "brew formula '$1' already installed"
+    fi
 }
 
 ensure_homebrew_updated()
@@ -134,6 +147,9 @@ step_install_homebrew() # brew
     for I in $HOMEBREW_FORMULAS; do
         install_brew_formula "$I"
     done
+    for I in $HOMEBREW_CASKS; do
+        install_brew_cask "$I"
+    done
 
     # cmake's bundling utility fails in completely reasonable cases, the following steps are necessary
     run "chmod +w /usr/local/Cellar/freetds/*/lib/*.dylib 2>/dev/null"
@@ -148,6 +164,10 @@ step_install_homebrew() # brew
 
     # unlink keg-only formulas which should not be not symlinked into /usr/local
     run "brew unlink openssl readline sqlite"
+
+    # cleanup
+    run "brew cleanup"
+    run "brew cask cleanup"
 }
 
 step_install_python() # python
@@ -208,7 +228,7 @@ step_install_gem() # gem
     IFS=$" "
     for I in $GEM_PACKAGES; do
         run "yes | sudo gem update -q $I"
-        if [[ -z "$(gem list "$I" | grep "$I")" ]]; then
+        if ! gem list "$I" | grep -q "$I"; then
             run "yes | sudo gem install -q $I"
         fi
     done
@@ -338,7 +358,7 @@ EOF
 ################################################################################
 # Main
 ################################################################################
-if [[ -n "$(echo "$*" | egrep -- "--help|-h")" ]]; then
+if echo "$*" | egrep -q -- "--help|-h"; then
     usage
 fi
 
@@ -387,7 +407,7 @@ tiddlywiki;Install and setup latest TiddlyWiki from Homebrew;step_install_tiddly
 
 IFS=$'\n'
 let steps_taken=0
-for step in $steps; do
+for step in ${steps[@]}; do
     key="$(echo $step | cut -d';' -f1)"
     question="$(echo $step | cut -d';' -f2)"
     function="$(echo $step | cut -d';' -f3)"
@@ -397,7 +417,7 @@ for step in $steps; do
         continue
     fi
 
-    if [[ $ALL == 0 && -z "$(echo "$@" | egrep "\b$key\b")" ]]; then
+    if [[ $ALL = 0 ]] && ! echo "$@" | egrep -q "\b$key\b"; then
         continue
     fi
 
@@ -410,5 +430,5 @@ for step in $steps; do
 done
 
 if [[ $LISTING == 0 && $steps_taken == 0 ]]; then
-    abort "invalid step name(s): $@"
+    abort "invalid step name(s): $*"
 fi

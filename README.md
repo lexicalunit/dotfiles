@@ -13,13 +13,14 @@ You can also use the root level [`deploy`](deploy) script to automatically run t
 * The root level [`update`](update) script can be used periodically to update the repository with any changes.
 * Re-run [`install_dev`](bin/install_dev) to update development environment.
 
-# Environment
+# Environment: [`~/env`](env)
+Provides installation and configuration of many utilities and applications. Running [`env/install`](env/install) will provide the following features, as well as additional configuration. For more details on what is provided see [the `README.md` for [`~/env`](env)](env/README.md).
 * [`My.terminal`](env/My.terminal) and [`Tomorrow Night.terminal`](env/Tomorrow Night.terminal) themes to use in `Terminal.app` or [`iTerm.app`](http://iterm2.com/).
 * Application configuration such as Atom and Sublime Text settings.
 * Dot files for zsh, bash, dircolors, git, mercurial, vim, python, etc...
 * [`sane.css`](env/sane.css) style sheet for annoying websites.
 
-# Utilities
+# Utilities: [`~/bin`](bin)
 The following tools are installed into your [`~/bin`](bin) directory by the root level [`install`](install) script, or by the [`bin/install`](bin/install) script. These tools will be on your `PATH` if you have ran the root level [`install`](install) script or the [`env/install`](env/install) script. For detailed usage documentation see the [`README.md` for `~/bin`](bin/README.md), or of course just run the tools with the argument `--help`.
 
 | Tool | Usage |

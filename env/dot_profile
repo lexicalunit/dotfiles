@@ -8,7 +8,7 @@ fi
 ################################################################################
 # setup paths
 ################################################################################
-PATH=""
+export PATH=""
 [[ -d "$HOME/bin" ]] && PATH="$HOME/bin"
 [[ -d /usr/local/bin ]] && PATH="$PATH:/usr/local/bin"
 [[ -d /usr/local/sbin ]] && PATH="$PATH:/usr/local/sbin"
@@ -33,6 +33,13 @@ if type brew >/dev/null 2>&1; then
     PATH="$PATH:$BREW_PREFIX/bin:$BREW_PREFIX/sbin"
     PYTHONPATH="$BREW_PREFIX/lib/python2.7/site-packages:$PYTHONPATH"
 fi
+if [[ -d "/usr/local/texlive" ]]; then
+    TEXLIVEBIN="$(find /usr/local/texlive -maxdepth 2 -type d -name bin)"
+    TEXLIVEBIN="$(find /usr/local/texlive/2013/bin -type d -maxdepth 1 | grep -i "$(uname -m)")"
+    if [[ -n "$TEXLIVEBIN" ]]; then
+        PATH="$TEXLIVEBIN:$PATH"
+    fi
+fi
 
 export PATH
 export MANPATH
@@ -49,7 +56,7 @@ if $INTERACTIVE; then
 # print timestamp and given message
 _interactive_log()
 {
-    echo "$(date +%H:%M:%S.%N) - $@"
+    echo "$(date +%H:%M:%S.%N) - $*"
 }
 
 _interactive_log "interactive settings"
@@ -57,7 +64,7 @@ _interactive_log "interactive settings"
 # Make backspace work correctly.
 stty erase '^?' eol ^@ start ^q stop ^s intr ^c
 
-if [[ -n "$(echo "$SHELL" | grep bash)" ]]; then
+if echo "$SHELL" | grep -q bash; then
     # Bash won't get SIGWINCH if another process is in the foreground.
     # Enable checkwinsize so that bash will check the terminal size when
     # it regains control.  #65623
@@ -112,7 +119,7 @@ enterconda()
     export PYTHON_ENV="conda"
 
     # provide bash completion for conda
-    if [[ -n "$(echo "$SHELL" | grep bash)" ]]; then
+    if echo "$SHELL" | grep -q bash; then
         eval "$(register-python-argcomplete conda)"
     fi
 }
@@ -137,7 +144,7 @@ exitconda()
 ################################################################################
 _interactive_log "history setup"
 
-if [[ -n "$(echo "$SHELL" | grep bash)" ]]; then
+if echo "$SHELL" | grep -q bash; then
     shopt -s histappend
     shopt -s histreedit
     shopt -s histverify
@@ -163,7 +170,7 @@ if [[ -n "$(echo "$SHELL" | grep bash)" ]]; then
     {
         builtin history -a
     }
-elif [[ -n "$(echo "$SHELL" | grep zsh)" ]]; then
+elif echo "$SHELL" | grep -q zsh; then
     setopt APPEND_HISTORY
     setopt SHARE_HISTORY
     bindkey "^[[A" history-beginning-search-backward
@@ -180,7 +187,7 @@ export SAVEHIST="$TERMINAL_HISTORY_SIZE"
 ################################################################################
 # setup bash completions
 ################################################################################
-if [[ -n "$(echo "$SHELL" | grep bash)" ]]; then
+if echo "$SHELL" | grep -q bash; then
     _interactive_log "setup bash completions"
     _source_completions()
     {
@@ -201,7 +208,7 @@ if [[ -n "$(echo "$SHELL" | grep bash)" ]]; then
         source "$(brew --repository)/Library/Contributions/brew_bash_completion.sh"
     fi
     complete -cf sudo
-elif [[ -n "$(echo "$SHELL" | grep zsh)" ]]; then
+elif echo "$SHELL" | grep -q zsh; then
     if [[ -d /usr/local/share/zsh-completions ]]; then
         fpath=(/usr/local/share/zsh-completions $fpath)
     fi
@@ -245,7 +252,7 @@ elif [[ -n "$(echo "$SHELL" | grep zsh)" ]]; then
     zstyle ':completion:*:approximate:*' max-errors 1 numeric
 
     # Increase the number of errors based on the length of the typed word.
-    zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3))numeric)'
+    # zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3))numeric)'
 
     # Don't complete unavailable commands.
     zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
@@ -407,7 +414,7 @@ _prompt_python_env()
     echo -n "$PROMPT_PYTHON_ENV"
 }
 
-if [[ -n "$(echo "$SHELL" | grep bash)" ]]; then
+if echo "$SHELL" | grep -q bash; then
     # prints repository information, bash only
     _prompt_repo()
     {
@@ -459,7 +466,7 @@ ${PROMPT_LINE_2} "
     }
 
     export PROMPT_COMMAND='_bash_history_append; _prompt_command ' # single quotes to avoid variable expansion
-elif [[ -n "$(echo "$SHELL" | grep zsh)" ]]; then
+elif echo "$SHELL" | grep -q zsh; then
     autoload -U colors && colors
     autoload -Uz vcs_info
 
@@ -535,11 +542,14 @@ lw()
     local LOC="$(which "$1")"
     echo "$LOC"
     local FINFO="$(file -h "$LOC")"
-    if [[ -n "$(echo "$FINFO" | grep 'symbolic link to')" ]]; then
+    if echo "$FINFO" | grep -q 'symbolic link to'; then
         LOC="$(dirname "$LOC")/$(echo "$FINFO" | sed 's@.*symbolic link to\s*\(.*\)@\1@')"
         echo "$LOC"
         if type realpath >/dev/null 2>&1; then
-            realpath "$LOC"
+            local REAL="$(realpath "$LOC")"
+            if [[ "$REAL" != "$LOC" ]]; then
+                echo "$REAL"
+            fi
         fi
     fi
 }
@@ -556,13 +566,13 @@ fawk()
 
 hist()
 {
-    if [[ -n "$(echo "$SHELL" | grep zsh)" ]]; then
+    if echo "$SHELL" | grep -q zsh; then
         if [[ -n "$*" ]]; then
             history "$@"
         else
             history 1
         fi
-    elif [[ -n "$(echo "$SHELL" | grep bash)" ]]; then
+    elif echo "$SHELL" | grep -q bash; then
         history "$@"
     fi
 }

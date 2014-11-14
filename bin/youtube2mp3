@@ -12,7 +12,7 @@ usage()
     youtube-dl --help
 }
 
-if [[ -n "$(echo "$*" | egrep -- "--help|-h")" ]]; then
+if echo "$*" | egrep -q -- "--help|-h"; then
     usage >&2
     exit 1
 fi

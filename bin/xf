@@ -17,8 +17,8 @@ for p in ${req_progs[*]}; do
 done
 
 # Test if file exists
-if [ ! -f "$@" ]; then
-    echo "File $@ doesn't exist"
+if [ ! -f "$*" ]; then
+    echo "File $* doesn't exist"
     exit
 fi
 

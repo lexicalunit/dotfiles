@@ -2,7 +2,7 @@
 
 # Prints out documentation and usages for utilities.
 
-if [[ -n $(echo "$*" | egrep -- "--help|-h") ]]; then
+if echo "$*" | egrep -q -- "--help|-h"; then
 	echo "usage: ${0##*/} [-h|--help]" 1>&2
     echo "Prints out documentation and usage information for everything in current directory." 1>&2
 	exit 1
@@ -10,14 +10,14 @@ fi
 
 # -t or --table enabled table mode for generating markdown output
 TABLE=0
-if [[ -n $(echo "$*" | egrep -- "--table|-t") ]]; then
+if echo "$*" | egrep -q -- "--table|-t"; then
     TABLE=1
     echo "| Tool | Usage |"
     echo "| --- | --- |"
 fi
 
 VERBOSE=0
-if [[ -n $(echo "$*" | egrep -- "--verbose|-v") ]]; then
+if echo "$*" | egrep -q -- "--verbose|-v"; then
 	VERBOSE=1
 fi
 
@@ -44,7 +44,7 @@ for I in *; do
 		else
 	        DESC="Prints current OS X version information."
 		fi
-    elif [[ -n "$(file -h "$I" | grep 'symbolic link to')" ]]; then
+    elif file -h "$I" | grep -q 'symbolic link to'; then
 		if [[ $VERBOSE == 1 ]]; then
 			echo
 		fi

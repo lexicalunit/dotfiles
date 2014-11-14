@@ -31,7 +31,7 @@ if ! brew list freetds >/dev/null 2>&1; then
 	install_freetds
 fi
 
-if [[ -z $(brew info freetds 2>&1  | grep "Built from source with" | grep -- "--with-unixodbc") ]]; then
+if ! brew info freetds 2>&1 | grep "Built from source with" | grep -q -- "--with-unixodbc"; then
 	show "installed freetds not build with unixodbc, reinstalling..."
 	run "brew uninstall freetds" || abort "could not uninstall freetds"
 	install_freetds

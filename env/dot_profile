@@ -519,7 +519,6 @@ _interactive_log "setup aliases and functions"
 alias wchmod="stat -c '%A %a %n' "
 alias st='stree '
 alias bc='bc -l '
-alias ftp='ncftp '
 alias profile='valgrind --tool=callgrind --dump-instr=yes --simulate-cache=yes --collect-jumps=yes '
 alias memcheck='valgrind --tool=memcheck --leak-check=yes -show-reachable=yes -fno-inline --logfile=memcheck.log '
 alias taskc='fa "#[^ T\!#\n]" '
@@ -528,6 +527,10 @@ alias unmerged='git ls-files -u | cut -f2 | sort -u '
 alias pygmentize='pygmentize -O bg=dark'
 alias gits='git s '
 alias gitsu='git s -u '
+
+if type ncftp >/dev/null 2>&1; then alias ftp='ncftp '; fi
+if type share >/dev/null 2>&1; then alias shares='share '; fi
+if type htop >/dev/null 2>&1; then alias top='htop '; fi
 
 export RSYNC_RSH=rsh # use ssh over rsync
 alias ssh='ssh -Y -C ' # use compression over ssh connections

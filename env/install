@@ -24,11 +24,11 @@ DOT_FILES=($(find ./* -maxdepth 1 -name "dot_*"))
 if [[ -n "$1" ]]; then
     DOT_FILES=("$@")
 fi
-show "installing dot files: ${DOT_FILES[@]}..."
+show "installing dot files: ${DOT_FILES[*]}..."
 
 for I in dot_*; do
     # don't install ignored files
-    if [[ -f ignore && -n "$(grep "$(basename "$I")" ignore)" ]]; then
+    if [[ -f ignore ]] && grep -q "$(basename "$I")" ignore; then
         continue
     fi
 
@@ -39,7 +39,7 @@ for I in dot_*; do
 
     if [[ -f $I ]]; then
         # ask before installing .profile_* extension files
-        if [[ -n "$(echo "$I" | grep profile_)" ]]; then
+        if echo "$I" | grep -q profile_; then
             ask "install $I?"
         else
             REPLY="y"
@@ -120,8 +120,9 @@ fi
 # Install Atom Editor Settings
 ###############################################################################
 if [[ -d "$HOME/.atom" ]]; then
-    run "rsync -apl 'atom.styles.less' '$HOME/.atom/styles.less'"
-    run "rsync -apl 'atom.config.cson' '$HOME/.atom/config.cson'"
+    for I in atom.*; do
+        run "rsync -apl '$I' '$HOME/.atom/$(echo "$I" | sed 's/^atom\.//g')'"
+    done
 fi
 
 show "env install complete!"

@@ -16,8 +16,8 @@
     'userId': '772afc40-7579-582e-4c2f-ff65dd824377'
   'editor':
     'tabLength': 4
-    'invisibles': {}
     'normalizeIndentOnPaste': false
+    'invisibles': {}
   'spell-check':
     'grammars': [
       'source.gfm'

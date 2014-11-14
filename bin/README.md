@@ -403,10 +403,10 @@ usage share [<file>|ls|names|ssh|get <name(s)>|put <file(s)>|rm <name>]
 Requires ~/.webshare script be created for your webshare configuration.
 
 The ~/.webshare script must set environment variables:
- * USER - user to use when connecting to HOST
- * HOST - the hostname to connect to
- * DEST_ROOT - the root of the www_html directory on HOST
- * DEST_DIR - the shares directory within the www_html directory
+ * SHARE_USER - user to use when connecting to SHARE_HOST
+ * SHARE_HOST - the hostname to connect to
+ * SHARE_DEST - the root of the shares directory on SHARE_HOST
+ * SHARE_URI  - the base URI for shared files
 ```
 
 * * *

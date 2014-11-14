@@ -8,35 +8,43 @@ usage()
     echo "Requires ~/.webshare script be created for your webshare configuration."
     echo
     echo "The ~/.webshare script must set environment variables:"
-    echo " * USER - user to use when connecting to HOST"
-    echo " * HOST - the hostname to connect to"
-    echo " * DEST_ROOT - the root of the www_html directory on HOST"
-    echo " * DEST_DIR - the shares directory within the www_html directory"
+    echo " * SHARE_USER - user to use when connecting to SHARE_HOST"
+    echo " * SHARE_HOST - the hostname to connect to"
+    echo " * SHARE_DEST - the root of the shares directory on SHARE_HOST"
+    echo " * SHARE_URI  - the base URI for shared files"
     exit 1
+export SHARE_DEST="/home/imnotbob/mainwebsite_html/shares"
+export SHARE_URI="http://shares.lexicalunit.com"
+
 }
 
 [[ -f "$HOME/.webshare" ]] || usage
 source "$HOME/.webshare"
 
-DEST="$DEST_ROOT/$DEST_DIR"
-BASE_URL="http://$HOST/$DEST_DIR"
-
 share_put()
 {
     for I in "$@"; do
         NAME="$(basename "$I")"
-        rsync --chmod=a+r --rsh="ssh -c blowfish" "$I" "$USER"@"$HOST":"$DEST/$NAME"
+        rsync --chmod=a+r --rsh="ssh -c blowfish" "$I" "$SHARE_USER@$SHARE_HOST:$SHARE_DEST/$NAME"
         if [[ $? == 0 ]]; then
-            echo "$BASE_URL/$NAME"
+            echo "$SHARE_URI/$NAME"
         fi
     done
 }
 
 list_files()
 {
-    # Note that we do want to expand $DEST locally here.
-    local cmd="find $DEST -maxdepth 1 -type f -not -name '.*' -not -name index.php -print0 | xargs -0 ls -1tr"
-    ssh "$USER"@"$HOST" "$cmd"
+    # Note that we DO want to expand $SHARE_DEST locally here.
+    local cmd="                     \
+        find $SHARE_DEST            \
+            -maxdepth 1             \
+            -type f                 \
+            -not -name '.*'         \
+            -not -name index.php    \
+            -print0                 \
+        | xargs -0 ls -1tr          \
+    "
+    ssh "$SHARE_USER@$SHARE_HOST" "$cmd"
 }
 
 [[ -n "$1" ]] || usage
@@ -53,27 +61,27 @@ case "$1" in
         ;;
 
     names|n*)
-        if [[ -n "$(echo "$*" | egrep -- "-p|--private")" ]]; then
-            DEST="$DEST/private"
-            BASE_URL="$BASE_URL/private"
+        if echo "$*" | egrep -q -- "-p|--private"; then
+            SHARE_DEST="$SHARE_DEST/private"
+            SHARE_URI="$SHARE_URI/private"
         fi
-        list_files | sed "s@$DEST/@@g"
+        list_files | sed "s@$SHARE_DEST/@@g"
         ;;
 
     list|ls|l|ll|find|f|l*|f*)
-        if [[ -n "$(echo "$*" | egrep -- "-p|--private")" ]]; then
-            DEST="$DEST/private"
-            BASE_URL="$BASE_URL/private"
+        if echo "$*" | egrep -q -- "-p|--private"; then
+            SHARE_DEST="$SHARE_DEST/private"
+            SHARE_URI="$SHARE_URI/private"
         fi
-        list_files | sed "s@$DEST/@$BASE_URL/@g"
+        list_files | sed "s@$SHARE_DEST/@$SHARE_URI/@g"
         ;;
 
     put|p|up|p*|u*)
         [[ -n "$2" ]] || usage
-        if [[ -n "$(echo "$2" | egrep -- "-p|--private")" ]]; then
+        if echo "$2" | egrep -q -- "-p|--private"; then
             shift
-            DEST="$DEST/private"
-            BASE_URL="$BASE_URL/private"
+            SHARE_DEST="$SHARE_DEST/private"
+            SHARE_URI="$SHARE_URI/private"
         fi
         shift
         share_put "$@"
@@ -81,29 +89,30 @@ case "$1" in
 
     get|g*)
         [[ -n "$2" ]] || usage
-        if [[ -n "$(echo "$2" | egrep -- "-p|--private")" ]]; then
+        if echo "$2" | egrep -q -- "-p|--private"; then
             shift
-            DEST="$DEST/private"
-            BASE_URL="$BASE_URL/private"
+            SHARE_DEST="$SHARE_DEST/private"
+            SHARE_URI="$SHARE_URI/private"
         fi
         shift
         for I in "$@"; do
-            scp "$USER"@"$HOST":"$DEST/$I" .
+            scp "$SHARE_USER@$SHARE_HOST:$SHARE_DEST/$I" .
         done
         ;;
 
     ssh|open|shell|s*)
-        ssh "$USER"@"$HOST"
+        ssh "$SHARE_USER@$SHARE_HOST"
         ;;
 
     del|delete|rm)
         [[ -n "$2" ]] || usage
-        if [[ -n "$(echo "$2" | egrep -- "-p|--private")" ]]; then
+        if echo "$2" | egrep -q -- "-p|--private"; then
             shift
-            DEST="$DEST/private"
-            BASE_URL="$BASE_URL/private"
+            SHARE_DEST="$SHARE_DEST/private"
+            SHARE_URI="$SHARE_URI/private"
         fi
         NAME="$2"
-        ssh "$USER"@"$HOST" "rm -fv $DEST/$NAME"
+        # Note that we DO want to expand $SHARE_DEST/$NAME locally here.
+        ssh "$SHARE_USER@$SHARE_HOST" "rm -fv $SHARE_DEST/$NAME"
         ;;
 esac

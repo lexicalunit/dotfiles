@@ -30,7 +30,7 @@ while getopts "hqn" opt; do
 done
 shift $((OPTIND - 1))
 
-LIST="$(ps -ww -w -o pid,user,command | egrep -v "bin/die|grep" | grep "$1")"
+LIST="$(ps -ww -ew -o pid,user,command | egrep -v "bin/die|grep" | grep -i "$1")"
 if [ "$LIST" = "" ]; then
 	if [[ "$QUIET" == 0 ]]; then
 		echo "no processes found"

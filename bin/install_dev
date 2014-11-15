@@ -11,7 +11,8 @@ HOMEBREW_FORMULAS="autoconf boost cmake coreutils cppunit dmd doxygen fontconfig
     libpng libtiff libtool libyaml little-cms2 maven memcached mercurial mongodb \
     ncftp node openssl ossp-uuid pcre pidof pkg-config plotutils postgresql wget \
     readline ruby s3cmd scons spark sqlite unixodbc unrar watch xz libmpc geoip  \
-    shellcheck tree youtube-dl sloccount jhead pandoc caskroom/cask/brew-cask"
+    shellcheck tree youtube-dl sloccount jhead pandoc pngquant                   \
+    caskroom/cask/brew-cask"
 
 HOMEBREW_CASKS="google-chrome pdftk"
 

@@ -278,7 +278,7 @@ libpng, libtiff, libtool, libyaml, little-cms2, maven, memcached, mercurial,
 mongodb, ncftp, node, openssl, ossp-uuid, pcre, pidof, pkg-config, plotutils, 
 postgresql, wget, readline, ruby, s3cmd, scons, spark, sqlite, unixodbc, unrar, 
 watch, xz, libmpc, geoip, shellcheck, tree, youtube-dl, sloccount, jhead, 
-pandoc, caskroom/cask/brew-cask
+pandoc, pngquant, caskroom/cask/brew-cask
 
 Homebrew Casks: google-chrome, pdftk
 

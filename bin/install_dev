@@ -15,8 +15,10 @@ HOMEBREW_FORMULAS="autoconf boost cmake coreutils cppunit dmd doxygen fontconfig
     caskroom/cask/brew-cask"
 
 HOMEBREW_CASKS="google-chrome pdftk caffeine skype firefox gimp-lisanet iterm2   \
-    kaleidoscope mysqlworkbench dbvisualizer evernote pycharm-ce steam mactex    \
-    sourcetree texshop istumbler adium atom flux"
+    kaleidoscope mysqlworkbench dbvisualizer evernote pycharm steam mactex kvirc \
+    sourcetree istumbler adium atom flux xquartz amazon-music audacity spotify   \
+    chromecast clamxav disk-inventory-x dropbox google-hangouts hipchat graphviz \
+    robomongo snes9x transmission vlc intellij-idea"
 
 ATOM_PACKAGES=" atom-soda-dark-ui autocomplete-plus linter linter-flake8         \
     linter-shellcheck merge-conflicts minimap minimap-git-diff minimap-selection \
@@ -67,10 +69,6 @@ usage()
 }
 
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
-
-# create download cache
-DL_CACHE="$HOME/.install_dev"
-mkdir -p "$DL_CACHE"
 
 ################################################################################
 # Steps
@@ -157,9 +155,6 @@ step_install_homebrew() # brew
     ensure_homebrew_updated
 
     IFS=$" "
-    for I in $HOMEBREW_FORMULAS; do
-        install_brew_formula "$I"
-    done
     for I in $HOMEBREW_CASKS; do
         install_brew_cask "$I"
     done
@@ -177,10 +172,18 @@ step_install_homebrew() # brew
 
     # unlink keg-only formulas which should not be not symlinked into /usr/local
     run "brew unlink openssl readline sqlite"
+}
 
-    # cleanup
-    run "brew cleanup"
-    run "brew cask cleanup"
+step_install_cask() # cask
+{
+    echo "$(tput bold)NOTE: This step is ESPECIALLY interactive, you will need to babysit it. Many Casks require additional manual steps after being installed by homebrew-cask.$(tput sgr0)"
+
+    ensure_homebrew_updated
+
+    IFS=$" "
+    for I in $HOMEBREW_CASKS; do
+        install_brew_cask "$I"
+    done
 }
 
 step_install_python() # python
@@ -245,37 +248,6 @@ step_install_gem() # gem
             run "yes | sudo gem install -q $I"
         fi
     done
-}
-
-step_install_xquartz() # xquartz
-{
-    if type Xquartz >/dev/null 2>&1; then
-        show "a Xquartz is already installed..."
-        ask "Force re-install?"
-        [[ "$REPLY" == "y" ]] || return
-    fi
-
-    # assuming the last file that's not alpha, beta, or rc is the latest xquartz installer
-    local latest="$(curl -s "http://xquartz-dl.macosforge.org/SL/" \
-        | grep ".dmg<" \
-        | sed 's@^.*>XQuartz@XQuartz@g' \
-        | sed 's@\(XQuartz-[^<]*\)</a></td><td[^>]*>\([^<]*\).*@\1@g' \
-        | egrep -v "beta|alpha|_rc" \
-        | tail -n 1)"
-    show "found latest XQuartz as \"$latest\""
-
-    local tempdir="$(mktemp -d -t tmp.XXXXXXXXXX)" || abort "can't create temp directory"
-    local cleanup="umount /Volumes/$(basename "$latest" .dmg); rm -rf $tempdir"
-    run "cd $tempdir" || abort "can't enter temp directory" "$cleanup"
-    if [[ ! -f "$DL_CACHE/$latest" ]] ; then
-        run "wget -c http://xquartz.macosforge.org/downloads/SL/$latest" || abort "can't acquire $latest" "$cleanup"
-        run "cp $latest '$DL_CACHE/$latest'"
-    else
-        run "cp '$DL_CACHE/$latest' ."
-    fi
-    run "hdiutil mount $latest" || abort "can't mount $latest at /Volumes/$(basename "$latest" .dmg)" "$cleanup"
-    run "sudo installer -pkg /Volumes/$(basename "$latest" .dmg)/XQuartz.pkg -target /" || abort "installer failed" "$cleanup"
-    run "$cleanup"
 }
 
 ensure_install_shell()
@@ -427,6 +399,7 @@ fi
 # key; question; function
 steps=("xcode;Check that Command Line Tools are installed;step_setup_xcode
 brew;Upgrade/Install Homebrew formulas;step_install_homebrew
+cask;Ensure Homebrew Casks are installed;step_install_cask
 checkbrew;Check for additional or missing Homebrew packages;step_check_homebrew
 python;Upgrade/Install Anaconda, pip packages, and conda packages;step_install_python
 java;Check that java is installed (will prompt to install if not);step_check_java

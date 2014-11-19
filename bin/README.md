@@ -240,6 +240,7 @@ options:
 steps:
     xcode: Check that Command Line Tools are installed
     brew: Upgrade/Install Homebrew formulas
+    cask: Ensure Homebrew Casks are installed
     checkbrew: Check for additional or missing Homebrew packages
     python: Upgrade/Install Anaconda, pip packages, and conda packages
     java: Check that java is installed (will prompt to install if not)
@@ -259,8 +260,11 @@ watch, xz, libmpc, geoip, shellcheck, tree, youtube-dl, sloccount, jhead,
 pandoc, pngquant, caskroom/cask/brew-cask
 
 Homebrew Casks: google-chrome, pdftk, caffeine, skype, firefox, gimp-lisanet, iterm2, 
-kaleidoscope, mysqlworkbench, dbvisualizer, evernote, pycharm-ce, steam, 
-mactex, sourcetree, texshop, istumbler, adium, atom, flux
+kaleidoscope, mysqlworkbench, dbvisualizer, evernote, pycharm, steam, mactex, 
+kvirc, sourcetree, istumbler, adium, atom, flux, xquartz, amazon-music, 
+audacity, spotify, chromecast, clamxav, disk-inventory-x, dropbox, 
+google-hangouts, hipchat, graphviz, robomongo, snes9x, transmission, vlc, 
+intellij-idea
 
 Atom Packages: , atom-soda-dark-ui, autocomplete-plus, linter, linter-flake8, 
 linter-shellcheck, merge-conflicts, minimap, minimap-git-diff, 

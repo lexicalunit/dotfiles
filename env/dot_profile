@@ -10,14 +10,23 @@ fi
 ################################################################################
 export PATH=""
 
-# Allow OS X tool to discover typical PATH items first.
+# Allow OS X tool to discover typical PATH items first, if possible.
 if [[ -e /usr/libexec/path_helper ]]; then
     eval "$(/usr/libexec/path_helper -s)"
+else
+    [[ -d /usr/bin ]] && PATH="$PATH:/usr/bin"
+    [[ -d /bin ]] && PATH="$PATH:/bin"
+    [[ -d /usr/sbin ]] && PATH="$PATH:/usr/sbin"
+    [[ -d /sbin ]] && PATH="$PATH:/sbin"
+    [[ -d /usr/local/bin ]] && PATH="$PATH:/usr/local/bin"
+    [[ -d /opt/X11/bin ]] && PATH="$PATH:/opt/X11/bin"
 fi
 
 # Then add specific paths that I use.
 [[ -d "$HOME/bin" ]] && PATH="$PATH:$HOME/bin"
 [[ -d /usr/local/opt/ruby/bin ]] && PATH="$PATH:/usr/local/opt/ruby/bin"
+[[ -d /opt/local/bin ]] && PATH="$PATH:/opt/local/bin"
+[[ -d /opt/local/sbin ]] && PATH="$PATH:/opt/local/sbin"
 
 # Export currently built PATH so the rest of this script has access to them.
 if [[ -e /usr/libexec/path_helper ]]; then
@@ -65,6 +74,8 @@ _interactive_log()
 }
 
 _interactive_log "interactive settings"
+
+set -o emacs
 
 # Make backspace work correctly.
 stty erase '^?' eol ^@ start ^q stop ^s intr ^c

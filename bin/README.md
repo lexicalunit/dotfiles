@@ -224,29 +224,6 @@ Installs setup/bin tools into user's ~/bin directory.
 ```
 
 * * *
-### [`install_atom`](bin/install_atom)
-```
-usage: install_atom [-h|--help]
-Installs Atom IDE including packages and editor configuration.
-The following atom packages are included:
-
-    atom-soda-dark-ui
-    autocomplete-plus
-    linter
-    linter-flake8
-    linter-shellcheck
-    merge-conflicts
-    minimap
-    minimap-git-diff
-    minimap-selection
-    monokai-soda
-    red-wavy-underline
-    set-syntax
-    sort-lines
-    tabs-to-spaces
-```
-
-* * *
 ### [`install_dev`](bin/install_dev)
 ```
 usage: install_dev [-l|-d|-f|-h|--help] [all|step-name]
@@ -268,6 +245,7 @@ steps:
     java: Check that java is installed (will prompt to install if not)
     gem: Upgrade/Install gem packages + rubygems-update package
     xquartz: Install latest XQuartz package
+    atom: Upgrade/Install latest Atom and packages from Homebrew Cask
     bash: Install latest version of bash from Homebrew
     zsh: Install latest version of zsh from Homebrew
     tiddlywiki: Install and setup latest TiddlyWiki from Homebrew
@@ -282,7 +260,12 @@ pandoc, pngquant, caskroom/cask/brew-cask
 
 Homebrew Casks: google-chrome, pdftk, caffeine, skype, firefox, gimp-lisanet, iterm2, 
 kaleidoscope, mysqlworkbench, dbvisualizer, evernote, pycharm-ce, steam, 
-mactex, sourcetree, texshop, istumbler
+mactex, sourcetree, texshop, istumbler, adium, atom, flux
+
+Atom Packages: , atom-soda-dark-ui, autocomplete-plus, linter, linter-flake8, 
+linter-shellcheck, merge-conflicts, minimap, minimap-git-diff, 
+minimap-selection, monokai-soda, red-wavy-underline, set-syntax, sort-lines, 
+tabs-to-spaces
 
 Pip Packages: bson, pymongo, fabric, iniparse, psycopg2, oauth2client, pytz, suds, 
 google-api-python-client, httplib2, tinycss, termcolor, requests, uritemplate, 
@@ -424,34 +407,6 @@ Uses sysctl to discover when the last time OS X slept was.
 usage: smongo HOST
 
 Discovers and then connects mongo shell to the cluster master node.
-```
-
-* * *
-### [`subl`](bin/subl)
-Symbolic link to '/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'
-```
-Sublime Text build 3065
-
-Usage: subl [arguments] [files]         edit the given files
-   or: subl [arguments] [directories]   open the given directories
-   or: subl [arguments] -               edit stdin
-
-Arguments:
-  --project <project>: Load the given project
-  --command <command>: Run the given command
-  -n or --new-window:  Open a new window
-  -a or --add:         Add folders to the current window
-  -w or --wait:        Wait for the files to be closed before returning
-  -b or --background:  Don't activate the application
-  -s or --stay:        Keep the application activated after closing the file
-  -h or --help:        Show help (this message) and exit
-  -v or --version:     Show version and exit
-
---wait is implied if reading from stdin. Use --stay to not switch back
-to the terminal when a file is closed (only relevant if waiting for a file).
-
-Filenames may be given a :line or :line:column suffix to open at a specific
-location.
 ```
 
 * * *

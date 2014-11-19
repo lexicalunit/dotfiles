@@ -36,7 +36,6 @@ The following tools are installed into your [`~/bin`](bin) directory by the root
 | [`fm`](bin/fm) | Find in CMake files. |
 | [`git_push_topic`](bin/git_push_topic) | Force updates remote topic branch with local branch. |
 | [`install`](bin/install) | Installs everything to ~/bin. |
-| [`install_atom`](bin/install_atom) | Installs Atom IDE with custom style and packages. |
 | [`install_dev`](bin/install_dev) | Installs development environment on OS X machines. |
 | [`install_mysql`](bin/install_mysql) | Installs/uninstalls mysql from package. |
 | [`jsc`](bin/jsc) | Symbolic link to '/System/Library/Frameworks/JavaScriptCore.framewo... |
@@ -52,7 +51,6 @@ The following tools are installed into your [`~/bin`](bin) directory by the root
 | [`share`](bin/share) | Easy way to quickly manage temporary web shares. |
 | [`slept`](bin/slept) | Get time OS X system last went to sleep. |
 | [`smongo`](bin/smongo) | Opens mongo shell to master node. |
-| [`subl`](bin/subl) | Symbolic link to '/Applications/Sublime Text.app/Contents/SharedSup... |
 | [`uninstall_homebrew`](bin/uninstall_homebrew) | Uninstalls Homebrew completely. |
 | [`uninstall_macports`](bin/uninstall_macports) | Uninstalls MacPorts completely. |
 | [`update_bin`](bin/update_bin) | Syncs ./bin with ~/bin. |

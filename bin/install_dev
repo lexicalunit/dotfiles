@@ -94,19 +94,6 @@ step_check_java() # java
     run "java -version"
 }
 
-step_check_homebrew() # checkbrew
-{
-    diff <(echo "$HOMEBREW_FORMULAS" \
-        | sort -u \
-        | tr ' ' '\n') <(brew ls -1 \
-        | sort -u) \
-        | grep '[<>]' \
-        | sort -u \
-        | sed "s@^>@added:  @g;s@<@missing:@g" \
-        | egrep -v "^missing:\s*openssl\$|^missing:\s*readline\$^missing:\s*sqlite\$"
-            # we expect openssl, readline, and sqlite to be unlinked
-}
-
 install_brew_formula()
 {
     if ! brew ls | grep -q "$1"; then
@@ -155,8 +142,8 @@ step_install_homebrew() # brew
     ensure_homebrew_updated
 
     IFS=$" "
-    for I in $HOMEBREW_CASKS; do
-        install_brew_cask "$I"
+    for I in $HOMEBREW_FORMULAS; do
+        install_brew_formula "$I"
     done
 
     # cmake's bundling utility fails in completely reasonable cases, the following steps are necessary
@@ -400,7 +387,6 @@ fi
 steps=("xcode;Check that Command Line Tools are installed;step_setup_xcode
 brew;Upgrade/Install Homebrew formulas;step_install_homebrew
 cask;Ensure Homebrew Casks are installed;step_install_cask
-checkbrew;Check for additional or missing Homebrew packages;step_check_homebrew
 python;Upgrade/Install Anaconda, pip packages, and conda packages;step_install_python
 java;Check that java is installed (will prompt to install if not);step_check_java
 gem;Upgrade/Install gem packages + rubygems-update package;step_install_gem

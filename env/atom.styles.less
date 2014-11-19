@@ -1,6 +1,27 @@
+// use better font
 atom-text-editor {
     font-family: Inconsolata;
     text-size: 16pt;
 }
-.tree-view { }
-atom-text-editor .cursor { }
+
+// decrease tree view items height
+.list-item, .list-group .selected:before, .list-tree .selected:before {
+    line-height: 20px !important;
+    height: 20px !important;
+}
+
+// hide tab bar if no tabs
+.tab-bar:empty {
+    display: none;
+}
+
+// more subtle invisibles
+.editor {
+    .invisible-character {
+        color: #504949;
+        opacity: 0.5;
+    }
+    .indent-guide {
+        opacity: .5;
+    }
+}

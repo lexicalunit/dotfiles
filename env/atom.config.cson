@@ -18,6 +18,8 @@
     'tabLength': 4
     'normalizeIndentOnPaste': false
     'invisibles': {}
+    'showInvisibles': true
+    'showIndentGuide': true
   'spell-check':
     'grammars': [
       'source.gfm'

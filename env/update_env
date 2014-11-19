@@ -18,6 +18,7 @@ done
 
 # zsh
 [[ -f "$HOME/.zshrc" ]] && run "rsync -apl '$HOME/.zshrc' ./dot_zshrc"
+[[ -f "$HOME/.zprofile" ]] && run "rsync -apl '$HOME/.zprofile' ./dot_zprofile"
 
 # tools
 [[ -f "$HOME/.dircolors" ]] && run "rsync -apl '$HOME/.dircolors' ./dot_dircolors"

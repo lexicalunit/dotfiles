@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Installs development environment on OS X machines.
+# Install applications and development environment on an OS X machine.
 
 ################################################################################
 # Settings
@@ -20,9 +20,9 @@ HOMEBREW_CASKS="google-chrome pdftk caffeine skype firefox gimp-lisanet iterm2  
     chromecast clamxav disk-inventory-x dropbox google-hangouts hipchat graphviz \
     robomongo snes9x transmission vlc intellij-idea"
 
-ATOM_PACKAGES=" atom-soda-dark-ui autocomplete-plus linter linter-flake8         \
-    linter-shellcheck merge-conflicts minimap minimap-git-diff minimap-selection \
-    monokai-soda red-wavy-underline set-syntax sort-lines tabs-to-spaces"
+ATOM_PACKAGES="atom-soda-dark-ui autocomplete-plus linter linter-flake8 minimap \
+    linter-shellcheck merge-conflicts minimap-selection set-syntax sort-lines   \
+    monokai-soda red-wavy-underline minimap-git-diff tabs-to-spaces"
 
 PIP_PACKAGES="bson pymongo fabric iniparse psycopg2 oauth2client pytz suds       \
     google-api-python-client httplib2 tinycss termcolor requests uritemplate     \

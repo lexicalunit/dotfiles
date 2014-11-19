@@ -224,9 +224,9 @@ Installs setup/bin tools into user's ~/bin directory.
 ```
 
 * * *
-### [`install_dev`](bin/install_dev)
+### [`install_apps`](bin/install_apps)
 ```
-usage: install_dev [-l|-d|-f|-h|--help] [all|step-name]
+usage: install_apps [-l|-d|-f|-h|--help] [all|step-name]
 Automatically installs and configures a complete OS X developer environment.
 
 options:
@@ -265,10 +265,9 @@ audacity, spotify, chromecast, clamxav, disk-inventory-x, dropbox,
 google-hangouts, hipchat, graphviz, robomongo, snes9x, transmission, vlc, 
 intellij-idea
 
-Atom Packages: , atom-soda-dark-ui, autocomplete-plus, linter, linter-flake8, 
-linter-shellcheck, merge-conflicts, minimap, minimap-git-diff, 
-minimap-selection, monokai-soda, red-wavy-underline, set-syntax, sort-lines, 
-tabs-to-spaces
+Atom Packages: atom-soda-dark-ui, autocomplete-plus, linter, linter-flake8, minimap, 
+linter-shellcheck, merge-conflicts, minimap-selection, set-syntax, sort-lines, 
+monokai-soda, red-wavy-underline, minimap-git-diff, tabs-to-spaces
 
 Pip Packages: bson, pymongo, fabric, iniparse, psycopg2, oauth2client, pytz, suds, 
 google-api-python-client, httplib2, tinycss, termcolor, requests, uritemplate, 

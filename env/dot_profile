@@ -9,42 +9,47 @@ fi
 # setup paths
 ################################################################################
 export PATH=""
-[[ -d "$HOME/bin" ]] && PATH="$HOME/bin"
-[[ -d /usr/local/bin ]] && PATH="$PATH:/usr/local/bin"
-[[ -d /usr/local/sbin ]] && PATH="$PATH:/usr/local/sbin"
-[[ -d /opt/local/bin ]] && PATH="$PATH:/opt/local/bin"
+
+# Allow OS X tool to discover typical PATH items first.
+if [[ -e /usr/libexec/path_helper ]]; then
+    eval "$(/usr/libexec/path_helper -s)"
+fi
+
+# Then add specific paths that I use.
+[[ -d "$HOME/bin" ]] && PATH="$PATH:$HOME/bin"
 [[ -d /usr/local/opt/ruby/bin ]] && PATH="$PATH:/usr/local/opt/ruby/bin"
-[[ -d /opt/local/sbin ]] && PATH="$PATH:/opt/local/sbin"
-[[ -d /usr/bin ]] && PATH="$PATH:/usr/bin"
-[[ -d /usr/sbin ]] && PATH="$PATH:/usr/sbin"
-[[ -d /sbin ]] && PATH="$PATH:/sbin"
-[[ -d /bin ]] && PATH="$PATH:/bin"
-[[ -d /usr/X11R6/bin ]] && PATH="$PATH:/usr/X11R6/bin"
+
+# Export currently built PATH so the rest of this script has access to them.
+if [[ -e /usr/libexec/path_helper ]]; then
+    eval "$(/usr/libexec/path_helper -s)"
+else
+    export PATH
+    export MANPATH
+fi
+
+# Make sure Homebrew utilities override system utilities.
+if type brew >/dev/null 2>&1; then
+    BREW_PREFIX="$(brew --prefix)"
+    [[ -d "$BREW_PREFIX/bin" ]] && PATH="$BREW_PREFIX/bin:$PATH"
+    [[ -d "$BREW_PREFIX/sbin" ]] && PATH="$BREW_PREFIX/sbin:$PATH"
+    [[ -d "$BREW_PREFIX/lib/python2.7/site-packages" ]] && PYTHONPATH="$PYTHONPATH:$BREW_PREFIX/lib/python2.7/site-packages"
+    BREW_COREUTILS_PREFIX="$(brew --prefix coreutils 2>/dev/null)"
+    if [[ $? == 0 ]]; then
+        [[ -d "$BREW_COREUTILS_PREFIX/libexec/gnubin" ]] && PATH="$BREW_COREUTILS_PREFIX/libexec/gnubin:$PATH"
+        [[ -d "$BREW_COREUTILS_PREFIX/libexec/gnuman" ]] && MANPATH="$BREW_COREUTILS_PREFIX/libexec/gnuman:$MANPATH"
+    fi
+    export PATH
+    export MANPATH
+    export PYTHONPATH
+fi
+
+# Add specific application paths, such as Python.
 [[ -d /usr/local/lib/svn-python ]] && PYTHONPATH="/usr/local/lib/svn-python:$PYTHONPATH"
 [[ -d /opt/local/lib/pkgconfig ]] && PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 [[ -d /usr/local/lib/pkgconfig ]] && PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
-if type brew >/dev/null 2>&1; then
-    BREW_COREUTILS_PREFIX="$(brew --prefix coreutils 2>/dev/null)"
-    if [[ $? == 0 ]]; then
-        [[ -d $BREW_COREUTILS_PREFIX/libexec/gnubin ]] && PATH="$BREW_COREUTILS_PREFIX/libexec/gnubin:$PATH"
-        [[ -d $BREW_COREUTILS_PREFIX/libexec/gnuman ]] && MANPATH="$BREW_COREUTILS_PREFIX/libexec/gnuman:$MANPATH"
-    fi
-    BREW_PREFIX="$(brew --prefix)"
-    PATH="$PATH:$BREW_PREFIX/bin:$BREW_PREFIX/sbin"
-    PYTHONPATH="$BREW_PREFIX/lib/python2.7/site-packages:$PYTHONPATH"
-fi
-if [[ -d "/usr/local/texlive" ]]; then
-    TEXLIVEBIN="$(find /usr/local/texlive -maxdepth 2 -type d -name bin)"
-    TEXLIVEBIN="$(find /usr/local/texlive/2013/bin -type d -maxdepth 1 | grep -i "$(uname -m)")"
-    if [[ -n "$TEXLIVEBIN" ]]; then
-        PATH="$TEXLIVEBIN:$PATH"
-    fi
-fi
-
-export PATH
-export MANPATH
 export PYTHONPATH
 export PKG_CONFIG_PATH
+
 export USER="$(whoami)"
 export HOST="$(uname -n)"
 

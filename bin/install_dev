@@ -14,7 +14,9 @@ HOMEBREW_FORMULAS="autoconf boost cmake coreutils cppunit dmd doxygen fontconfig
     shellcheck tree youtube-dl sloccount jhead pandoc pngquant                   \
     caskroom/cask/brew-cask"
 
-HOMEBREW_CASKS="google-chrome pdftk"
+HOMEBREW_CASKS="google-chrome pdftk caffeine skype firefox gimp-lisanet iterm2   \
+    kaleidoscope mysqlworkbench dbvisualizer evernote pycharm-ce steam mactex    \
+    sourcetree texshop istumbler"
 
 PIP_PACKAGES="bson pymongo fabric iniparse psycopg2 oauth2client pytz suds       \
     google-api-python-client httplib2 tinycss termcolor requests uritemplate     \

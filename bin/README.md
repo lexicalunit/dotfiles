@@ -280,7 +280,9 @@ postgresql, wget, readline, ruby, s3cmd, scons, spark, sqlite, unixodbc, unrar,
 watch, xz, libmpc, geoip, shellcheck, tree, youtube-dl, sloccount, jhead, 
 pandoc, pngquant, caskroom/cask/brew-cask
 
-Homebrew Casks: google-chrome, pdftk
+Homebrew Casks: google-chrome, pdftk, caffeine, skype, firefox, gimp-lisanet, iterm2, 
+kaleidoscope, mysqlworkbench, dbvisualizer, evernote, pycharm-ce, steam, 
+mactex, sourcetree, texshop, istumbler
 
 Pip Packages: bson, pymongo, fabric, iniparse, psycopg2, oauth2client, pytz, suds, 
 google-api-python-client, httplib2, tinycss, termcolor, requests, uritemplate, 
@@ -577,11 +579,12 @@ Options:
                                      format description (like "22 - 1280x720" or "HD"), %(format_id)s for the unique id of the
                                      format (like Youtube's itags: "137"), %(upload_date)s for the upload date (YYYYMMDD),
                                      %(extractor)s for the provider (youtube, metacafe, etc), %(id)s for the video id,
-                                     %(playlist)s for the playlist the video is in, %(playlist_index)s for the position in the
-                                     playlist and %% for a literal percent. %(height)s and %(width)s for the width and height of
-                                     the video format. %(resolution)s for a textual description of the resolution of the video
-                                     format. Use - to output to stdout. Can also be used to download to a different directory, for
-                                     example with -o '/my/downloads/%(uploader)s/%(title)s-%(id)s.%(ext)s' .
+                                     %(playlist_title)s, %(playlist_id)s, or %(playlist)s (=title if present, ID otherwise) for
+                                     the playlist the video is in, %(playlist_index)s for the position in the playlist. %(height)s
+                                     and %(width)s for the width and height of the video format. %(resolution)s for a textual
+                                     description of the resolution of the video format. %% for a literal percent. Use - to output
+                                     to stdout. Can also be used to download to a different directory, for example with -o
+                                     '/my/downloads/%(uploader)s/%(title)s-%(id)s.%(ext)s' .
     --autonumber-size NUMBER         Specifies the number of digits in %(autonumber)s when it is present in output filename
                                      template or --auto-number option is given
     --restrict-filenames             Restrict filenames to only ASCII characters, and avoid "&" and spaces in filenames
@@ -646,8 +649,10 @@ Options:
     -f, --format FORMAT              video format code, specify the order of preference using slashes: -f 22/17/18 .  -f mp4 , -f
                                      m4a and  -f flv  are also supported. You can also use the special names "best", "bestvideo",
                                      "bestaudio", "worst", "worstvideo" and "worstaudio". By default, youtube-dl will pick the
-                                     best quality. Use commas to download multiple audio formats, such as  -f
-                                     136/137/mp4/bestvideo,140/m4a/bestaudio
+                                     best quality. Use commas to download multiple audio formats, such as -f
+                                     136/137/mp4/bestvideo,140/m4a/bestaudio. You can merge the video and audio of two formats
+                                     into a single file using -f <video-format>+<audio-format> (requires ffmpeg or avconv), for
+                                     example -f bestvideo+bestaudio.
     --all-formats                    download all available video formats
     --prefer-free-formats            prefer free video formats unless a specific one is requested
     --max-quality FORMAT             highest quality format to download

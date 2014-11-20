@@ -26,3 +26,7 @@
 
 'atom-text-editor:not(.mini)':
     'shift-tab': 'editor:force-tab'
+
+'.editor':
+    'alt-shift-cmd-f': 'next-occurrence:prev'
+    'shift-cmd-f': 'next-occurrence:next'

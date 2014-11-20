@@ -360,7 +360,7 @@ intellij-idea
 Atom Packages: atom-soda-dark-ui, autocomplete-plus, linter, linter-flake8, minimap, 
 linter-shellcheck, merge-conflicts, minimap-selection, set-syntax, sort-lines, 
 monokai-soda, red-wavy-underline, minimap-git-diff, tabs-to-spaces, 
-tab-control, highlight-selected
+tab-control, highlight-selected, next-occurrence
 
 Pip Packages: bson, pymongo, fabric, iniparse, psycopg2, oauth2client, pytz, suds, 
 google-api-python-client, httplib2, tinycss, termcolor, requests, uritemplate, 

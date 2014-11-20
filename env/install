@@ -65,7 +65,7 @@ fi
 ###############################################################################
 if type git 1>/dev/null 2>&1; then
     # From git:
-    if [[ -d ~/.bash-completion ]]; then
+    if [[ -d "$HOME/.bash-completion" ]]; then
         (
             run "pushd '$HOME/.bash-completion' >/dev/null"
               run "git fetch >/dev/null"

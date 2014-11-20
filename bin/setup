@@ -22,7 +22,7 @@ HOMEBREW_CASKS="google-chrome pdftk caffeine skype firefox gimp-lisanet iterm2  
 
 ATOM_PACKAGES="atom-soda-dark-ui autocomplete-plus linter linter-flake8 minimap \
     linter-shellcheck merge-conflicts minimap-selection set-syntax sort-lines   \
-    monokai-soda red-wavy-underline minimap-git-diff tabs-to-spaces"
+    monokai-soda red-wavy-underline minimap-git-diff tabs-to-spaces tab-control"
 
 PIP_PACKAGES="bson pymongo fabric iniparse psycopg2 oauth2client pytz suds       \
     google-api-python-client httplib2 tinycss termcolor requests uritemplate     \
@@ -164,10 +164,10 @@ step_install_homebrew() # brew
 step_install_cask() # cask
 {
     echo ""
-    echo $'\e[38;5;51m'"$(tput bold)======================================================================================$(tput sgr0)"$'\e[0m'
-    echo $'\e[38;5;51m'"$(tput bold)= Installing Casks is ESPECIALLY interactive, you will need to babysit this step!    =$(tput sgr0)"$'\e[0m'
-    echo $'\e[38;5;51m'"$(tput bold)= Many Casks require additional manual steps after being installed by homebrew-cask. =$(tput sgr0)"$'\e[0m'
-    echo $'\e[38;5;51m'"$(tput bold)======================================================================================$(tput sgr0)"$'\e[0m'
+    echo $'\e[38;5;51m'"$(tput bold)================================================================================$(tput sgr0)"$'\e[0m'
+    echo $'\e[38;5;51m'"$(tput bold)= Installing Casks is ESPECIALLY interactive, you WILL need to babysit this!   =$(tput sgr0)"$'\e[0m'
+    echo $'\e[38;5;51m'"$(tput bold)= For example, many Casks require additional manual steps after installation.  =$(tput sgr0)"$'\e[0m'
+    echo $'\e[38;5;51m'"$(tput bold)================================================================================$(tput sgr0)"$'\e[0m'
     echo ""
 
     ensure_homebrew_updated
@@ -359,6 +359,76 @@ EOF
     show "Server running at http://127.0.0.1:8080/"
 }
 
+step_osx() # osx
+{
+    show "Enable repeat on keydown"
+    defaults write -g ApplePressAndHoldEnabled -bool false
+
+    show "Use current directory as default search scope in Finder"
+    defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+    show "Show Path bar in Finder"
+    defaults write com.apple.finder ShowPathbar -bool true
+
+    show "Show Status bar in Finder"
+    defaults write com.apple.finder ShowStatusBar -bool true
+
+    show "Show indicator lights for open applications in the Dock"
+    defaults write com.apple.dock show-process-indicators -bool true
+
+    show "Enable AirDrop over Ethernet and on unsupported Macs running Lion"
+    defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
+
+    show "Set a blazingly fast keyboard repeat rate"
+    defaults write NSGlobalDomain KeyRepeat -int 0.02
+
+    show "Set a shorter Delay until key repeat"
+    defaults write NSGlobalDomain InitialKeyRepeat -int 12
+
+    show "Disable disk image verification"
+    defaults write com.apple.frameworks.diskimages skip-verify -bool true &&
+    defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true &&
+    defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
+
+    show "Disable Safari’s thumbnail cache for History and Top Sites"
+    defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
+
+    show "Enable Safari’s debug menu"
+    defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+
+    show "Disable the Ping sidebar in iTunes"
+    defaults write com.apple.iTunes disablePingSidebar -bool true
+
+    show "Add a context menu item for showing the Web Inspector in web views"
+    defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+
+    show "Show the ~/Library folder"
+    chflags nohidden "$HOME/Library"
+
+    show "Disable ping dropdowns"
+    defaults write com.apple.iTunes hide-ping-dropdown true
+
+    show "Disable app_to_run for XQuartz X11"
+    defaults write org.macosforge.xquartz.X11 app_to_run /usr/bin/true
+
+    show "Disable two finger gesture navigation on Chrome"
+    defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool FALSE
+
+    show "Disable recent items"
+    defaults delete org.videolan.vlc.LSSharedFileList RecentDocuments
+    defaults write org.videolan.vlc NSRecentDocumentsLimit 0
+    defaults write org.videolan.vlc.LSSharedFileList RecentDocuments -dict-add MaxAmount 0
+    defaults delete com.apple.QuickTimePlayerX.LSSharedFileList RecentDocuments
+    defaults write com.apple.QuickTimePlayerX NSRecentDocumentsLimit 0
+    defaults write com.apple.QuickTimePlayerX.LSSharedFileList RecentDocuments -dict-add MaxAmount 0
+
+    HOST="$(uname -n)"
+    query "Set hostname [$HOST]"
+    if [[ -n "$REPLY" ]]; then
+        sudo scutil --set HostName "$REPLY"
+    fi
+}
+
 ################################################################################
 # Main
 ################################################################################
@@ -391,20 +461,27 @@ fi
 [[ $1 == all ]] && ALL=1
 
 if [[ $LISTING == 0 ]]; then
-    echo "$(tput bold)NOTE: This script is interactive, you will need to babysit it. Even in -f (force) mode you will still need to input your sudo password when asked for it.$(tput sgr0)"
-    echo "$(tput bold)Prerequisite: Install 'Command Line Tools' from $(tput smul)http://developer.apple.com/downloads$(tput rmul) or from X Code preferences$(tput sgr0)"
+    echo ""
+    echo "$(tput bold)===============================================================================$(tput sgr0)"
+    echo "$(tput bold)= NOTE: This script is interactive, you will need to babysit it. Even in      =$(tput sgr0)"
+    echo "$(tput bold)=     -f (force) mode you may need to input your sudo password, for example.  =$(tput sgr0)"
+    echo "$(tput bold)= Prerequisite: Install 'Command Line Tools' from                             =$(tput sgr0)"
+    echo "$(tput bold)=     $(tput smul)http://developer.apple.com/downloads$(tput rmul) or via X Code.                     =$(tput sgr0)"
+    echo "$(tput bold)===============================================================================$(tput sgr0)"
+    echo ""
 fi
 
 # key; question; function
-steps=("xcode;Check that Command Line Tools are installed;step_setup_xcode
+steps=("osx;Override OS X defaults settings and configuration;step_osx
+xcode;Check that Command Line Tools are installed;step_setup_xcode
 java;Check that java is installed (will prompt to install if not);step_check_java
 brew;Upgrade/Install Homebrew formulas;step_install_homebrew
 cask;Ensure Homebrew Casks are installed;step_install_cask
 python;Upgrade/Install Anaconda, pip packages, and conda packages;step_install_python
-gem;Upgrade/Install gem packages + rubygems-update package;step_install_gem
-atom;Upgrade/Install latest Atom and packages from Homebrew Cask;step_install_atom
-zsh;Install latest version of zsh from Homebrew;step_install_zsh
-#bash;Install latest version of bash from Homebrew;step_install_bash
+gem;Upgrade/Install gem packages and rubygems-update package;step_install_gem
+atom;Ensure Atom and apm packages are installed from Homebrew Cask;step_install_atom
+zsh;Ensure your shell is latest version of zsh from Homebrew;step_install_zsh
+#bash;Ensure your shell is latest version of bash from Homebrew;step_install_bash
 tiddlywiki;Install and setup latest TiddlyWiki from Homebrew;step_install_tiddlywiki")
 
 IFS=$'\n'

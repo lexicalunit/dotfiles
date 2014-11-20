@@ -36,5 +36,12 @@ ask()
     echo -n $'\e[0;0m'
 }
 
+query()
+{
+    echo -n $'\n\e[1;35m'
+    read -p "$1 ... "
+    echo -n $'\e[0;0m'
+}
+
 export SC_DRYRUN=0
 export SC_FORCE=0

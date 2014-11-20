@@ -3,15 +3,14 @@ I hate installing, configuring, and updating software on my computer. Especially
 
 # Usage
 1. Run the root level [`install`](install) script first to setup your environment and [`~/bin`](bin) directory.
-1. Run the root level [`setup_osx`](setup_osx) script to configure OS X preferences.
 1. Install Apple's Command Line Tools directly, or install Xcode and enable Command Line Tools in the application preferences.
-1. Run the [`~/bin/install_apps`](bin/install_apps) script to install applications an a complete developer environment.
+1. Run the [`~/bin/setup`](bin/setup) script to configure system settings, download and install user applications, and essentially build a complete developer environment.
 
 You can also use the root level [`deploy`](deploy) script to automatically run the root level [`install`](install) script on a remote host.
 
 # Maintenance
-* The root level [`update`](update) script can be used periodically to update the repository with any changes.
-* Re-run [`install_apps`](bin/install_apps) to update applications and your development environment.
+* The root level [`update`](update) script can be used periodically to update this repository with any changes made to the system scripts or environment.
+* Re-run [`bin/setup`](bin/setup) to update applications and ensure environment settings are configured properly.
 
 # Environment: [`~/env`](env)
 Provides installation and configuration of many utilities and applications. Running [`env/install`](env/install) will provide the following features, as well as additional configuration. For more details on what is provided see [the `README.md` for [`~/env`](env)](env/README.md).
@@ -36,7 +35,6 @@ The following tools are installed into your [`~/bin`](bin) directory by the root
 | [`fm`](bin/fm) | Find in CMake files. |
 | [`git_push_topic`](bin/git_push_topic) | Force updates remote topic branch with local branch. |
 | [`install`](bin/install) | Installs everything to ~/bin. |
-| [`install_apps`](bin/install_apps) | Install applications and development environment on an OS X machine. |
 | [`install_mysql`](bin/install_mysql) | Installs/uninstalls mysql from package. |
 | [`jsc`](bin/jsc) | Symbolic link to '/System/Library/Frameworks/JavaScriptCore.framewo... |
 | [`lt`](bin/lt) | Run shell command with a timeout. |
@@ -47,6 +45,7 @@ The following tools are installed into your [`~/bin`](bin) directory by the root
 | [`s`](bin/s) | Show git status for all directories in current directory. |
 | [`safari_cache`](bin/safari_cache) | Shows current Safari cache. |
 | [`safari_clean`](bin/safari_clean) | Cleans Safari caches and saved data on OS X. |
+| [`setup`](bin/setup) | Install applications and development environment on an OS X machine. |
 | [`setup_odbc`](bin/setup_odbc) | Sets up ODBC. |
 | [`share`](bin/share) | Easy way to quickly manage temporary web shares. |
 | [`slept`](bin/slept) | Get time OS X system last went to sleep. |

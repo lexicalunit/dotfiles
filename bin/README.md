@@ -239,14 +239,12 @@ options:
 
 steps:
     xcode: Check that Command Line Tools are installed
+    java: Check that java is installed (will prompt to install if not)
     brew: Upgrade/Install Homebrew formulas
     cask: Ensure Homebrew Casks are installed
     python: Upgrade/Install Anaconda, pip packages, and conda packages
-    java: Check that java is installed (will prompt to install if not)
     gem: Upgrade/Install gem packages + rubygems-update package
-    xquartz: Install latest XQuartz package
     atom: Upgrade/Install latest Atom and packages from Homebrew Cask
-    bash: Install latest version of bash from Homebrew
     zsh: Install latest version of zsh from Homebrew
     tiddlywiki: Install and setup latest TiddlyWiki from Homebrew
 

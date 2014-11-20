@@ -163,7 +163,12 @@ step_install_homebrew() # brew
 
 step_install_cask() # cask
 {
-    echo "$(tput bold)NOTE: This step is ESPECIALLY interactive, you will need to babysit it. Many Casks require additional manual steps after being installed by homebrew-cask.$(tput sgr0)"
+    echo ""
+    echo $'\e[38;5;51m'"$(tput bold)======================================================================================$(tput sgr0)"$'\e[0m'
+    echo $'\e[38;5;51m'"$(tput bold)= Installing Casks is ESPECIALLY interactive, you will need to babysit this step!    =$(tput sgr0)"$'\e[0m'
+    echo $'\e[38;5;51m'"$(tput bold)= Many Casks require additional manual steps after being installed by homebrew-cask. =$(tput sgr0)"$'\e[0m'
+    echo $'\e[38;5;51m'"$(tput bold)======================================================================================$(tput sgr0)"$'\e[0m'
+    echo ""
 
     ensure_homebrew_updated
 
@@ -179,7 +184,7 @@ step_install_python() # python
     [[ -d "$HOME/anaconda/bin" ]] && export PATH="$HOME/anaconda/bin:$PATH"
 
     if run "type conda >/dev/null 2>&1"; then
-        run "conda update --yes --prefix \"$HOME/anaconda\" anaconda"
+        run "conda update --yes --prefix '$HOME/anaconda' anaconda"
     else
         curl_output=$(mktemp -d -t tmp.XXXXXXXXXX)
         trap 'rm -rf $curl_output' EXIT
@@ -192,16 +197,19 @@ step_install_python() # python
             | cut -d '' -f2 \
             | sed 's@./@@')"
         show "downloading $latest ..."
-        run "curl -o \"$curl_output/anaconda.sh\" \"$latest\""
-        run "bash \"$curl_output/anaconda.sh\" -b"
+        run "curl -o '$curl_output/anaconda.sh' '$latest'"
+        run "bash '$curl_output/anaconda.sh' -b"
 
         # enter anaconda environment now that it's installed
         export PATH="$HOME/anaconda/bin:$PATH"
 
-        run "conda config --set changeps1 no" # prevent conda from setting my PS1
-        run "rm -f \"$HOME/Desktop/Launcher.app\"" # get rid of Launcher.app on Desktop
+        # prevent conda from setting my PS1
+        run "conda config --set changeps1 no"
 
-        run "rm -rf \"$curl_output\""
+        # get rid of Launcher.app on Desktop
+        [[ -d "$HOME/Desktop/Launcher.app" ]] && run "rm -rf '$HOME/Desktop/Launcher.app'"
+
+        run "rm -rf '$curl_output'"
     fi
 
     # Install python packages that don't come with Anaconda... yet!
@@ -242,35 +250,39 @@ ensure_install_shell()
     local BINARY="$1"
     local INSTALLED="$(grep "$BINARY" /etc/shells)"
     if [[ "$INSTALLED" == "" ]]; then
-        run "echo \"$BINARY\" | sudo tee -a /etc/shells"
+        run "echo '$BINARY' | sudo tee -a /etc/shells"
     fi
+}
+
+install_shell()
+{
+    NAME="$1"
+    shift
+
+    ensure_homebrew_updated
+    for FORMULA in "$@"; do
+        install_brew_formula "$FORMULA"
+    done
+
+    SHELL_BINARY="$(brew ls "$NAME" | grep "^.*/bin/.*$NAME\$")"
+    ensure_install_shell "$SHELL_BINARY"
+
+    BREW_SHELL_BINARY="$(brew --prefix)/bin/$NAME"
+    ensure_install_shell "$BREW_SHELL_BINARY"
+    run "chsh -s '$BREW_SHELL_BINARY' '$(whoami)'"
 }
 
 step_install_bash() # bash
 {
-    ensure_homebrew_updated
-    install_brew_formula bash
-
-    BASH_BINARY="$(brew ls bash | grep '^.*/bin/.*bash$')"
-    ensure_install_shell "$BASH_BINARY"
-
-    HB_BASH_BINARY="/usr/local/bin/bash"
-    ensure_install_shell "$HB_BASH_BINARY"
-    run "chsh -s '$HB_BASH_BINARY' '$(whoami)'"
+    # Not installing formula bash-completion here, because that is installed
+    # by env/install. This is to get the most up to date development version
+    # with git (if able), or to install from a tarball if git is not available.
+    install_shell bash bash
 }
 
 step_install_zsh() # zsh
 {
-    ensure_homebrew_updated
-    install_brew_formula zsh
-    install_brew_formula zsh-completions
-
-    ZSH_BINARY="$(brew ls zsh | grep '^.*/bin/.*zsh$')"
-    ensure_install_shell "$ZSH_BINARY"
-
-    HB_ZSH_BINARY="/usr/local/bin/zsh"
-    ensure_install_shell "$HB_ZSH_BINARY"
-    run "chsh -s '$HB_ZSH_BINARY' '$(whoami)'"
+    install_shell zsh zsh zsh-completions
 }
 
 install_atom_pkg()
@@ -385,15 +397,14 @@ fi
 
 # key; question; function
 steps=("xcode;Check that Command Line Tools are installed;step_setup_xcode
+java;Check that java is installed (will prompt to install if not);step_check_java
 brew;Upgrade/Install Homebrew formulas;step_install_homebrew
 cask;Ensure Homebrew Casks are installed;step_install_cask
 python;Upgrade/Install Anaconda, pip packages, and conda packages;step_install_python
-java;Check that java is installed (will prompt to install if not);step_check_java
 gem;Upgrade/Install gem packages + rubygems-update package;step_install_gem
-xquartz;Install latest XQuartz package;step_install_xquartz
 atom;Upgrade/Install latest Atom and packages from Homebrew Cask;step_install_atom
-bash;Install latest version of bash from Homebrew;step_install_bash
 zsh;Install latest version of zsh from Homebrew;step_install_zsh
+#bash;Install latest version of bash from Homebrew;step_install_bash
 tiddlywiki;Install and setup latest TiddlyWiki from Homebrew;step_install_tiddlywiki")
 
 IFS=$'\n'
@@ -403,12 +414,17 @@ for step in ${steps[@]}; do
     question="$(echo $step | cut -d';' -f2)"
     function="$(echo $step | cut -d';' -f3)"
 
+    # ignore disabled keys
+    if [[ $key == "#"* ]]; then
+        continue
+    fi
+
     if [[ $LISTING == 1 ]]; then
         echo "$key: $question"
         continue
     fi
 
-    if [[ $ALL = 0 ]] && ! echo "$@" | egrep -q "\b$key\b"; then
+    if [[ $ALL == 0 ]] && ! echo "$@" | egrep -q "\b$key\b"; then
         continue
     fi
 

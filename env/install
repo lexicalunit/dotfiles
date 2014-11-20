@@ -1,8 +1,15 @@
 #!/bin/bash
 
-rsync -apl dot_shell_control "$HOME/.shell_control"
-source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+###############################################################################
+# install shell control utilities
+###############################################################################
 
+rsync -apl dot_shell_control "$HOME/.shell_control"
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control could not be installed!$(tput sgr0)" >&2
+
+###############################################################################
+# install dot files
+###############################################################################
 sync()
 {
     run "rsync -apl '$1' '$2/$1'"
@@ -14,10 +21,6 @@ contains()
     for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 0; done
     return 1
 }
-
-###############################################################################
-# install dot files
-###############################################################################
 
 declare -a DOT_FILES
 DOT_FILES=($(find ./* -maxdepth 1 -name "dot_*"))
@@ -125,4 +128,21 @@ if [[ -d "$HOME/.atom" ]]; then
     done
 fi
 
+###############################################################################
+# Install System Fonts
+###############################################################################
+ensure_font_installed()
+{
+    NAME="$1"
+    [[ -d "$HOME/.fonts" ]] || run "mkdir -p '$HOME/.fonts'"
+    [[ -f "$HOME/.fonts/$NAME" ]] || run "cp -vf '$NAME' '$HOME/.fonts'"
+    if [[ -d "/Library/Fonts" && ! -f "/Library/Fonts/$NAME" ]]; then
+        run "cp -vf '$NAME' /Library/Fonts"
+    fi
+}
+ensure_font_installed Inconsolata.otf
+
+###############################################################################
+# Done!
+###############################################################################
 show "env install complete!"

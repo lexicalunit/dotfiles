@@ -21,6 +21,7 @@ done
 [[ -f "$HOME/.zprofile" ]] && run "rsync -apl '$HOME/.zprofile' ./dot_zprofile"
 
 # tools
+[[ -f "$HOME/.shell_control" ]] && run "rsync -apl '$HOME/.shell_control' ./dot_shell_control"
 [[ -f "$HOME/.dircolors" ]] && run "rsync -apl '$HOME/.dircolors' ./dot_dircolors"
 [[ -f "$HOME/.inputrc" ]] && run "rsync -apl '$HOME/.inputrc' ./dot_inputrc"
 [[ -f "$HOME/.vimrc" ]] && run "rsync -apl '$HOME/.vimrc' ./dot_vimrc"

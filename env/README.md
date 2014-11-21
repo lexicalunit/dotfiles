@@ -2,7 +2,7 @@
 These dot files will be copied to `~/` with the `dot_` prefix replaced with a `.`. The [`dot_profile`](dot_profile) script is suitable for use with both `zsh` and `bash`. Other profile and rc scripts simply source the main [`dot_profile`](dot_profile) script.
 
 ## `dot_profile_*`
-These files are not installed by default by the [`install`](install) script. Each will will requires confirmation before it is installed. The intent is that these script provide utilities that either won't work are aren't desired on all platforms.
+These files are not installed by default by the [`install`](install) script. Each one requires confirmation before it is installed. The intent is that these script provide utilities that are simply not desired on all platforms.
 
 ### [`dot_profile_fuck`](dot_profile_fuck)
 Installs the `fuck()` shell function which hilariously kills a running process by process name.
@@ -32,7 +32,7 @@ Configures the readline settings for `bash`. Not used for `zsh`.
 Configures interactive Python interpreters.
 
 ## [`dot_shell_control`](dot_shell_control)
-This file is not sourced by [`dot_profile`](dot_profile), but it is used by a number of utilities in [`~/bin`](../bin) as well as install and update scripts. It provides useful functions such as `run()`, `show()`, `ask()`, and `abort()` common to many shell scripts.
+This file is not sourced by [`dot_profile`](dot_profile), but it is used by a number of utilities in [`~/bin`](../bin) as well as install and update scripts. It provides useful functions such as `run()`, `show()`, `ask()`, `query()`, and `abort()` common to many shell scripts.
 
 ## [`dot_toprc`](dot_toprc)
 Makes top output much more useful on Linux systems. On OS X another tool like `htop` should be used instead.

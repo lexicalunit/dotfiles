@@ -46,13 +46,14 @@ GEM_PACKAGES="cap_gun archive-tar-minitar bson bson_ext bundler bundler-unload  
 ################################################################################
 show_items()
 {
-    echo "$1" | sed "s/^ *//g;s/  */, /g" | fold -w 80 -s
+    echo "$1: $(echo "$2" | sed "s/^ *//g;s/  */, /g")" | fold -w 80 -s
+    echo
 }
 
 usage()
 {
     (
-        echo "usage: ${0##*/} [-l|-d|-f|-h|--help] [all|step-name]"
+        echo "usage: ${0##*/} [-l|-d|-f|-h|--help] [all|step-name(s)]"
         echo "Automatically installs and configures a complete OS X developer environment."
         echo
         echo "options:"
@@ -62,23 +63,18 @@ usage()
             echo "    -d: dry-run"
             echo "    -f: force install, do not ask for any confirmation"
             echo "    all: executes all steps"
-            echo "    step-name: execute only the given step"
+            echo "    step-name(s): execute the given step(s)"
         ) | column -ts:
         echo
         echo "steps:"
         "$0" -l | sed 's/^/    /g'
         echo
-        echo "Homebrew Formulas: $(show_items "$HOMEBREW_FORMULAS")"
-        echo
-        echo "Homebrew Casks: $(show_items "$HOMEBREW_CASKS")"
-        echo
-        echo "Atom Packages: $(show_items "$ATOM_PACKAGES")"
-        echo
-        echo "Pip Packages: $(show_items "$PIP_PACKAGES")"
-        echo
-        echo "Conda Packages: $(show_items "$CONDA_PACKAGES")"
-        echo
-        echo "Gem Packages: $(show_items "$GEM_PACKAGES")"
+        show_items "Homebrew Formulas" "$HOMEBREW_FORMULAS"
+        show_items "Homebrew Casks" "$HOMEBREW_CASKS"
+        show_items "Atom Packages" "$ATOM_PACKAGES"
+        show_items "Pip Packages" "$PIP_PACKAGES"
+        show_items "Conda Packages" "$CONDA_PACKAGES"
+        show_items "Gem Packages" "$GEM_PACKAGES"
     ) >&2
     exit 1
 }

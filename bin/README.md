@@ -319,16 +319,16 @@ Use 'yes | safari_clean' to auto-confirm the cleaning of everything.
 * * *
 ### [`setup`](bin/setup)
 ```
-usage: setup [-l|-d|-f|-h|--help] [all|step-name]
+usage: setup [-l|-d|-f|-h|--help] [all|step-name(s)]
 Automatically installs and configures a complete OS X developer environment.
 
 options:
-    -h, --help   show usage help
-    -l           list available step names
-    -d           dry-run
-    -f           force install, do not ask for any confirmation
-    all          executes all steps
-    step-name    execute only the given step
+    -h, --help     show usage help
+    -l             list available step names
+    -d             dry-run
+    -f             force install, do not ask for any confirmation
+    all            executes all steps
+    step-name(s)   execute the given step(s)
 
 steps:
     osx          Override OS X defaults settings and configuration
@@ -342,36 +342,36 @@ steps:
     zsh          Ensure your shell is latest version of zsh from Homebrew
     tiddlywiki   Install and setup latest TiddlyWiki from Homebrew
 
-Homebrew Formulas: autoconf, boost, caskroom/cask/brew-cask, cmake, coreutils, cppunit, dmd, 
-doxygen, fontconfig, freetype, geoip, ghostscript, git, gnu-sed, imagemagick, 
-jbig2dec, jhead, jpeg, libevent, libmpc, libpng, libtiff, libtool, libyaml, 
-little-cms2, maven, memcached, mercurial, mongodb, ncftp, node, openssl, 
-ossp-uuid, pandoc, pcre, pidof, pkg-config, plotutils, pngquant, postgresql, 
-readline, ruby, s3cmd, scons, shellcheck, sloccount, spark, sqlite, tree, 
-unixodbc, unrar, watch, wget, xz, yaml-cpp, youtube-dl
+Homebrew Formulas: autoconf, boost, caskroom/cask/brew-cask, cmake, coreutils, 
+cppunit, dmd, doxygen, fontconfig, freetype, geoip, ghostscript, git, gnu-sed, 
+imagemagick, jbig2dec, jhead, jpeg, libevent, libmpc, libpng, libtiff, libtool, 
+libyaml, little-cms2, maven, memcached, mercurial, mongodb, ncftp, node, 
+openssl, ossp-uuid, pandoc, pcre, pidof, pkg-config, plotutils, pngquant, 
+postgresql, readline, ruby, s3cmd, scons, shellcheck, sloccount, spark, sqlite, 
+tree, unixodbc, unrar, watch, wget, xz, yaml-cpp, youtube-dl
 
-Homebrew Casks: adium, amazon-music, atom, audacity, caffeine, caskroom/versions/java7, 
-chromecast, clamxav, dbvisualizer, disk-inventory-x, dropbox, evernote, 
-firefox, flux, gimp-lisanet, google-chrome, google-hangouts, graphviz, hipchat, 
-intellij-idea, istumbler, iterm2, kaleidoscope, kvirc, mactex, mysqlworkbench, 
-pdftk, pycharm, robomongo, silverlight, skype, snes9x, soundflower, sourcetree, 
-spotify, steam, teamviewer, transmission, vlc, xquartz
+Homebrew Casks: adium, amazon-music, atom, audacity, caffeine, 
+caskroom/versions/java7, chromecast, clamxav, dbvisualizer, disk-inventory-x, 
+dropbox, evernote, firefox, flux, gimp-lisanet, google-chrome, google-hangouts, 
+graphviz, hipchat, intellij-idea, istumbler, iterm2, kaleidoscope, kvirc, 
+mactex, mysqlworkbench, pdftk, pycharm, robomongo, silverlight, skype, snes9x, 
+soundflower, sourcetree, spotify, steam, teamviewer, transmission, vlc, xquartz
 
-Atom Packages: atom-soda-dark-ui, autocomplete-plus, highlight-selected, linter, 
-linter-flake8, linter-shellcheck, merge-conflicts, minimap, minimap-git-diff, 
-minimap-selection, monokai-soda, next-occurrence, red-wavy-underline, 
-set-syntax, sort-lines, tab-control, tabs-to-spaces
+Atom Packages: atom-soda-dark-ui, autocomplete-plus, highlight-selected, 
+linter, linter-flake8, linter-shellcheck, merge-conflicts, minimap, 
+minimap-git-diff, minimap-selection, monokai-soda, next-occurrence, 
+red-wavy-underline, set-syntax, sort-lines, tab-control, tabs-to-spaces
 
-Pip Packages: beautifulsoup4, bson, fabric, flake8, google-api-python-client, httplib2, 
-iniparse, oauth2client, pep8, psycopg2, pyflakes, pymongo, pytz, requests, 
-suds, termcolor, tinycss, uritemplate
+Pip Packages: beautifulsoup4, bson, fabric, flake8, google-api-python-client, 
+httplib2, iniparse, oauth2client, pep8, psycopg2, pyflakes, pymongo, pytz, 
+requests, suds, termcolor, tinycss, uritemplate
 
 Conda Packages: dateutil, pyzmq, argcomplete
 
-Gem Packages: cap_gun, archive-tar-minitar, bson, bson_ext, bundler, bundler-unload, 
-childprocess, cuba, erector, gem-wrappers, jekyll, jewelbox, log4r, lolcat, 
-mongo, net-ldap, rack, rack-protection, railsless-deploy, rubygems-bundler, 
-rvm, shotgun, yajl-ruby, capistrano
+Gem Packages: cap_gun, archive-tar-minitar, bson, bson_ext, bundler, 
+bundler-unload, childprocess, cuba, erector, gem-wrappers, jekyll, jewelbox, 
+log4r, lolcat, mongo, net-ldap, rack, rack-protection, railsless-deploy, 
+rubygems-bundler, rvm, shotgun, yajl-ruby, capistrano
 ```
 
 * * *

@@ -323,49 +323,48 @@ usage: setup [-l|-d|-f|-h|--help] [all|step-name]
 Automatically installs and configures a complete OS X developer environment.
 
 options:
-    -h, --help: show usage help
-    -l: list available step names
-    -d: dry-run
-    -f: force install, do not ask for any confirmation
-    all: executes all steps
-    step-name: execute only the given step
+    -h, --help   show usage help
+    -l           list available step names
+    -d           dry-run
+    -f           force install, do not ask for any confirmation
+    all          executes all steps
+    step-name    execute only the given step
 
 steps:
-    osx: Override OS X defaults settings and configuration
-    xcode: Check that Command Line Tools are installed
-    java: Check that java is installed (will prompt to install if not)
-    brew: Upgrade/Install Homebrew formulas
-    cask: Ensure Homebrew Casks are installed
-    python: Upgrade/Install Anaconda, pip packages, and conda packages
-    gem: Upgrade/Install gem packages and rubygems-update package
-    atom: Ensure Atom and apm packages are installed from Homebrew Cask
-    zsh: Ensure your shell is latest version of zsh from Homebrew
-    tiddlywiki: Install and setup latest TiddlyWiki from Homebrew
+    osx          Override OS X defaults settings and configuration
+    xcode        Check that Command Line Tools are installed
+    java         Check that java is installed (will prompt to install if not)
+    brew         Upgrade/Install Homebrew formulas
+    cask         Ensure Homebrew Casks are installed
+    python       Upgrade/Install Anaconda, pip packages, and conda packages
+    gem          Upgrade/Install gem packages and rubygems-update package
+    atom         Ensure Atom and apm packages are installed from Homebrew Cask
+    zsh          Ensure your shell is latest version of zsh from Homebrew
+    tiddlywiki   Install and setup latest TiddlyWiki from Homebrew
 
-Homebrew Formulas: autoconf, boost, cmake, coreutils, cppunit, dmd, doxygen, fontconfig, freetype, 
-ghostscript, git, gnu-sed, imagemagick, jbig2dec, jpeg, libevent, yaml-cpp, 
-libpng, libtiff, libtool, libyaml, little-cms2, maven, memcached, mercurial, 
-mongodb, ncftp, node, openssl, ossp-uuid, pcre, pidof, pkg-config, plotutils, 
-postgresql, wget, readline, ruby, s3cmd, scons, spark, sqlite, unixodbc, unrar, 
-watch, xz, libmpc, geoip, shellcheck, tree, youtube-dl, sloccount, jhead, 
-pandoc, pngquant, caskroom/cask/brew-cask
+Homebrew Formulas: autoconf, boost, caskroom/cask/brew-cask, cmake, coreutils, cppunit, dmd, 
+doxygen, fontconfig, freetype, geoip, ghostscript, git, gnu-sed, imagemagick, 
+jbig2dec, jhead, jpeg, libevent, libmpc, libpng, libtiff, libtool, libyaml, 
+little-cms2, maven, memcached, mercurial, mongodb, ncftp, node, openssl, 
+ossp-uuid, pandoc, pcre, pidof, pkg-config, plotutils, pngquant, postgresql, 
+readline, ruby, s3cmd, scons, shellcheck, sloccount, spark, sqlite, tree, 
+unixodbc, unrar, watch, wget, xz, yaml-cpp, youtube-dl
 
-Homebrew Casks: google-chrome, pdftk, caffeine, skype, firefox, gimp-lisanet, iterm2, 
-kaleidoscope, mysqlworkbench, dbvisualizer, evernote, pycharm, steam, mactex, 
-kvirc, sourcetree, istumbler, adium, atom, flux, xquartz, amazon-music, 
-audacity, spotify, chromecast, clamxav, disk-inventory-x, dropbox, 
-google-hangouts, hipchat, graphviz, robomongo, snes9x, transmission, vlc, 
-caskroom/versions/java7, intellij-idea
-, teamviewer
+Homebrew Casks: adium, amazon-music, atom, audacity, caffeine, caskroom/versions/java7, 
+chromecast, clamxav, dbvisualizer, disk-inventory-x, dropbox, evernote, 
+firefox, flux, gimp-lisanet, google-chrome, google-hangouts, graphviz, hipchat, 
+intellij-idea, istumbler, iterm2, kaleidoscope, kvirc, mactex, mysqlworkbench, 
+pdftk, pycharm, robomongo, silverlight, skype, snes9x, soundflower, sourcetree, 
+spotify, steam, teamviewer, transmission, vlc, xquartz
 
-Atom Packages: atom-soda-dark-ui, autocomplete-plus, linter, linter-flake8, minimap, 
-linter-shellcheck, merge-conflicts, minimap-selection, set-syntax, sort-lines, 
-monokai-soda, red-wavy-underline, minimap-git-diff, tabs-to-spaces, 
-tab-control, highlight-selected, next-occurrence
+Atom Packages: atom-soda-dark-ui, autocomplete-plus, highlight-selected, linter, 
+linter-flake8, linter-shellcheck, merge-conflicts, minimap, minimap-git-diff, 
+minimap-selection, monokai-soda, next-occurrence, red-wavy-underline, 
+set-syntax, sort-lines, tab-control, tabs-to-spaces
 
-Pip Packages: bson, pymongo, fabric, iniparse, psycopg2, oauth2client, pytz, suds, 
-google-api-python-client, httplib2, tinycss, termcolor, requests, uritemplate, 
-beautifulsoup4, pyflakes, pep8, flake8
+Pip Packages: beautifulsoup4, bson, fabric, flake8, google-api-python-client, httplib2, 
+iniparse, oauth2client, pep8, psycopg2, pyflakes, pymongo, pytz, requests, 
+suds, termcolor, tinycss, uritemplate
 
 Conda Packages: dateutil, pyzmq, argcomplete
 

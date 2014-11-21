@@ -6,29 +6,33 @@
 # Settings
 ################################################################################
 
-HOMEBREW_FORMULAS="autoconf boost cmake coreutils cppunit dmd doxygen fontconfig \
-    freetype ghostscript git gnu-sed imagemagick jbig2dec jpeg libevent yaml-cpp \
-    libpng libtiff libtool libyaml little-cms2 maven memcached mercurial mongodb \
-    ncftp node openssl ossp-uuid pcre pidof pkg-config plotutils postgresql wget \
-    readline ruby s3cmd scons spark sqlite unixodbc unrar watch xz libmpc geoip  \
-    shellcheck tree youtube-dl sloccount jhead pandoc pngquant                   \
-    caskroom/cask/brew-cask"
+HOMEBREW_FORMULAS="                                                             \
+    autoconf boost caskroom/cask/brew-cask cmake coreutils cppunit dmd          \
+    doxygen fontconfig freetype geoip ghostscript git gnu-sed imagemagick       \
+    jbig2dec jhead jpeg libevent libmpc libpng libtiff libtool libyaml          \
+    little-cms2 maven memcached mercurial mongodb ncftp node openssl            \
+    ossp-uuid pandoc pcre pidof pkg-config plotutils pngquant postgresql        \
+    readline ruby s3cmd scons shellcheck sloccount spark sqlite tree unixodbc   \
+    unrar watch wget xz yaml-cpp youtube-dl"
 
-HOMEBREW_CASKS="google-chrome pdftk caffeine skype firefox gimp-lisanet iterm2   \
-    kaleidoscope mysqlworkbench dbvisualizer evernote pycharm steam mactex kvirc \
-    sourcetree istumbler adium atom flux xquartz amazon-music audacity spotify   \
-    chromecast clamxav disk-inventory-x dropbox google-hangouts hipchat graphviz \
-    robomongo snes9x transmission vlc caskroom/versions/java7 intellij-idea
-    teamviewer"
+HOMEBREW_CASKS="                                                                \
+    adium amazon-music atom audacity caffeine caskroom/versions/java7           \
+    chromecast clamxav dbvisualizer disk-inventory-x dropbox evernote firefox   \
+    flux gimp-lisanet google-chrome google-hangouts graphviz hipchat            \
+    intellij-idea istumbler iterm2 kaleidoscope kvirc mactex mysqlworkbench     \
+    pdftk pycharm robomongo silverlight skype snes9x soundflower sourcetree     \
+    spotify steam teamviewer transmission vlc xquartz"
 
-ATOM_PACKAGES="atom-soda-dark-ui autocomplete-plus linter linter-flake8 minimap \
-    linter-shellcheck merge-conflicts minimap-selection set-syntax sort-lines   \
-    monokai-soda red-wavy-underline minimap-git-diff tabs-to-spaces tab-control \
-    highlight-selected next-occurrence"
+ATOM_PACKAGES="                                                                 \
+    atom-soda-dark-ui autocomplete-plus highlight-selected linter               \
+    linter-flake8 linter-shellcheck merge-conflicts minimap minimap-git-diff    \
+    minimap-selection monokai-soda next-occurrence red-wavy-underline           \
+    set-syntax sort-lines tab-control tabs-to-spaces"
 
-PIP_PACKAGES="bson pymongo fabric iniparse psycopg2 oauth2client pytz suds       \
-    google-api-python-client httplib2 tinycss termcolor requests uritemplate     \
-    beautifulsoup4 pyflakes pep8 flake8"
+PIP_PACKAGES="                                                                  \
+    beautifulsoup4 bson fabric flake8 google-api-python-client httplib2         \
+    iniparse oauth2client pep8 psycopg2 pyflakes pymongo pytz requests suds     \
+    termcolor tinycss uritemplate"
 
 CONDA_PACKAGES="dateutil pyzmq argcomplete"
 
@@ -40,33 +44,42 @@ GEM_PACKAGES="cap_gun archive-tar-minitar bson bson_ext bundler bundler-unload  
 ################################################################################
 # Utilities
 ################################################################################
+show_items()
+{
+    echo "$1" | sed "s/^ *//g;s/  */, /g" | fold -w 80 -s
+}
+
 usage()
 {
-    echo "usage: ${0##*/} [-l|-d|-f|-h|--help] [all|step-name]" >&2
-    echo "Automatically installs and configures a complete OS X developer environment." >&2
-    echo "" >&2
-    echo "options:" >&2
-    echo "    -h, --help: show usage help" >&2
-    echo "    -l: list available step names" >&2
-    echo "    -d: dry-run" >&2
-    echo "    -f: force install, do not ask for any confirmation" >&2
-    echo "    all: executes all steps" >&2
-    echo "    step-name: execute only the given step" >&2
-    echo "" >&2
-    echo "steps:" >&2
-    "$0" -l | sed 's/^/    /g' >&2
-    echo "" >&2
-    echo "Homebrew Formulas: $(echo "$HOMEBREW_FORMULAS" | sed "s/  */, /g" | fold -w 80 -s)" >&2
-    echo "" >&2
-    echo "Homebrew Casks: $(echo "$HOMEBREW_CASKS" | sed "s/  */, /g" | fold -w 80 -s)" >&2
-    echo "" >&2
-    echo "Atom Packages: $(echo "$ATOM_PACKAGES" | sed "s/  */, /g" | fold -w 80 -s)" >&2
-    echo "" >&2
-    echo "Pip Packages: $(echo "$PIP_PACKAGES" | sed "s/  */, /g" | fold -w 80 -s)" >&2
-    echo "" >&2
-    echo "Conda Packages: $(echo "$CONDA_PACKAGES" | sed "s/  */, /g" | fold -w 80 -s)" >&2
-    echo "" >&2
-    echo "Gem Packages: $(echo "$GEM_PACKAGES" | sed "s/  */, /g" | fold -w 80 -s)" >&2
+    (
+        echo "usage: ${0##*/} [-l|-d|-f|-h|--help] [all|step-name]"
+        echo "Automatically installs and configures a complete OS X developer environment."
+        echo
+        echo "options:"
+        (
+            echo "    -h, --help: show usage help"
+            echo "    -l: list available step names"
+            echo "    -d: dry-run"
+            echo "    -f: force install, do not ask for any confirmation"
+            echo "    all: executes all steps"
+            echo "    step-name: execute only the given step"
+        ) | column -ts:
+        echo
+        echo "steps:"
+        "$0" -l | sed 's/^/    /g'
+        echo
+        echo "Homebrew Formulas: $(show_items "$HOMEBREW_FORMULAS")"
+        echo
+        echo "Homebrew Casks: $(show_items "$HOMEBREW_CASKS")"
+        echo
+        echo "Atom Packages: $(show_items "$ATOM_PACKAGES")"
+        echo
+        echo "Pip Packages: $(show_items "$PIP_PACKAGES")"
+        echo
+        echo "Conda Packages: $(show_items "$CONDA_PACKAGES")"
+        echo
+        echo "Gem Packages: $(show_items "$GEM_PACKAGES")"
+    ) >&2
     exit 1
 }
 
@@ -486,6 +499,8 @@ zsh;Ensure your shell is latest version of zsh from Homebrew;step_install_zsh
 #bash;Ensure your shell is latest version of bash from Homebrew;step_install_bash
 tiddlywiki;Install and setup latest TiddlyWiki from Homebrew;step_install_tiddlywiki")
 
+LISTING_OUTPUT=""
+
 IFS=$'\n'
 let steps_taken=0
 for step in ${steps[@]}; do
@@ -499,7 +514,7 @@ for step in ${steps[@]}; do
     fi
 
     if [[ $LISTING == 1 ]]; then
-        echo "$key: $question"
+        LISTING_OUTPUT="$LISTING_OUTPUT$key: $question"$'\n'
         continue
     fi
 
@@ -515,6 +530,10 @@ for step in ${steps[@]}; do
     fi
 done
 
+if [[ $LISTING == 1 ]]; then
+    echo -n "$LISTING_OUTPUT" | column -ts:
+fi
+
 if [[ $LISTING == 0 && $steps_taken == 0 ]]; then
-    abort "invalid step name(s): $*"
+    abort "invalid step name(s): $(echo "$*" | tr '\n' ' ')"
 fi

@@ -86,17 +86,17 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 ################################################################################
 step_setup_xcode() # xcode
 {
-    export SELECT="select"
-    if [[ -z "$(which xcode-$SELECT)" ]]; then
-        abort "install Xcode Command Line Tools first"
-    fi
-    if run "cc --version 2>/dev/null 1>&2"; then
-        show "Xcode agreement is accepted."
+    if ! type xcode-select >/dev/null; then
+        run "xcode-select --install"
     else
-        show "Xcode agreement not accepted..."
-        run "sudo cc --version" || abort "Xcode agreement NOT accepted"
+        if run "cc --version 2>/dev/null 1>&2"; then
+            show "Xcode agreement is accepted."
+        else
+            show "Xcode agreement not accepted..."
+            run "sudo cc --version" || abort "Xcode agreement NOT accepted"
+        fi
     fi
-    show "Xcode Command Line Tools properly installed."
+    show "Xcode Command Line Tools are properly installed."
 }
 
 step_check_java() # java
@@ -476,15 +476,13 @@ if [[ $LISTING == 0 ]]; then
     echo "$(tput bold)===============================================================================$(tput sgr0)"
     echo "$(tput bold)= NOTE: This script is interactive, you will need to babysit it. Even in      =$(tput sgr0)"
     echo "$(tput bold)=     -f (force) mode you may need to input your sudo password, for example.  =$(tput sgr0)"
-    echo "$(tput bold)= Prerequisite: Install 'Command Line Tools' from                             =$(tput sgr0)"
-    echo "$(tput bold)=     $(tput smul)http://developer.apple.com/downloads$(tput rmul) or via X Code.                     =$(tput sgr0)"
     echo "$(tput bold)===============================================================================$(tput sgr0)"
     echo ""
 fi
 
 # key; question; function
 steps=("osx;Override OS X defaults settings and configuration;step_osx
-xcode;Check that Command Line Tools are installed;step_setup_xcode
+xcode;Ensure that Xcode Command Line Tools are installed;step_setup_xcode
 java;Check that java is installed (will prompt to install if not);step_check_java
 brew;Upgrade/Install Homebrew formulas;step_install_homebrew
 cask;Ensure Homebrew Casks are installed;step_install_cask

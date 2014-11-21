@@ -1,5 +1,5 @@
 # Synopsis
-I hate installing, configuring, and updating software on my computer. Especially when I'm using a new machine, or sshing into a remote system. I've automated as much of that processes as I can, keeping everything a lightweight as possible.
+I hate installing, configuring, and updating software on my computer. Especially when I'm using a new machine, or sshing into a remote system. I've automated as much of that process as I can, keeping everything as lightweight as possible.
 
 # Usage
 1. Run the root level [`install`](install) script first to setup your environment and [`~/bin`](bin) directory.

@@ -562,7 +562,12 @@ lw()
     echo "$LOC"
     local FINFO="$(file -h "$LOC")"
     if echo "$FINFO" | grep -q 'symbolic link to'; then
-        LOC="$(dirname "$LOC")/$(echo "$FINFO" | sed 's@.*symbolic link to\s*\(.*\)@\1@')"
+        SYLOC="$(echo "$FINFO" | sed 's@.*symbolic link to\s*\(.*\)@\1@')"
+        if [[ "$SYLOC" != /* ]]; then
+            LOC="$(dirname "$LOC")/$SYLOC"
+        else
+            LOC="$SYLOC"
+        fi
         echo "$LOC"
         if type realpath >/dev/null 2>&1; then
             local REAL="$(realpath "$LOC")"

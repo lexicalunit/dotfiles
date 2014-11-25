@@ -152,7 +152,7 @@ step_install_homebrew() # brew
 
     ensure_homebrew_updated
 
-    IFS=$" "
+    IFS=$' '
     for I in $HOMEBREW_FORMULAS; do
         install_brew_formula "$I"
     done
@@ -183,7 +183,7 @@ step_install_cask() # cask
 
     ensure_homebrew_updated
 
-    IFS=$" "
+    IFS=$' '
     for I in $HOMEBREW_CASKS; do
         install_brew_cask "$I"
     done
@@ -224,7 +224,7 @@ step_install_python() # python
     fi
 
     # Install python packages that don't come with Anaconda... yet!
-    IFS=$" "
+    IFS=$' '
     for I in $PIP_PACKAGES; do
         run "pip install -U $I"
     done
@@ -247,7 +247,7 @@ step_install_gem() # gem
     run "yes | sudo update_rubygems"
     run "yes | sudo gem update -q --system"
 
-    IFS=$" "
+    IFS=$' '
     for I in $GEM_PACKAGES; do
         run "yes | sudo gem update -q $I"
         if ! gem list "$I" | grep -q "$I"; then
@@ -310,7 +310,7 @@ install_atom_pkg()
 step_install_atom() # atom
 {
     install_brew_cask atom || abort "can't install atom via brew-cask"
-    IFS=$" "
+    IFS=$' '
     for I in $ATOM_PACKAGES; do
         install_atom_pkg "$I"
     done

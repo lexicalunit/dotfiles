@@ -8,6 +8,8 @@ I hate installing, configuring, and updating software on my computer. Especially
 
 You can also use the root level [`deploy`](deploy) script to automatically run the root level [`install`](install) script on a remote host. If you want to also remotely run [`bin/setup`](bin/setup), you will have to do that by hand as it's an occasionally interactive script.
 
+You can uninstall everything that the root level [`install`](install) script installs by running the root level [`uninstall`](uninstall) script. This won't uninstall anything that you might have installed by running the [`bin/setup`](bin/setup) script.
+
 # Maintenance
 * The root level [`update`](update) script can be used periodically to update this repository with any changes made to the system scripts or environment.
 * Re-run [`bin/setup all`](bin/setup) to update applications and ensure environment settings are configured properly.

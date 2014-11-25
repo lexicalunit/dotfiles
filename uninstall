@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Uninstalls bin and env for the current user.
+
+rsync -apl env/dot_shell_control "$HOME/.shell_control"
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
+( run "pushd bin >/dev/null"; run "./install uninstall" )
+( run "pushd env >/dev/null"; run "./install uninstall" )
+
+show "Uninstall complete!"

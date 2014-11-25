@@ -219,7 +219,7 @@ Preforms command 'git push -fu origin $BRANCH', force pushing feature branch up 
 * * *
 ### [`install`](bin/install)
 ```
-usage: install
+usage: install [uninstall]
 Installs setup/bin tools into user's ~/bin directory.
 ```
 

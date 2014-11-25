@@ -344,9 +344,9 @@ steps:
 
 Homebrew Formulas: autoconf, boost, caskroom/cask/brew-cask, cmake, coreutils, 
 cppunit, dmd, doxygen, fontconfig, freetype, geoip, ghostscript, git, gnu-sed, 
-imagemagick, jbig2dec, jhead, jpeg, libevent, libmpc, libpng, libtiff, libtool, 
-libyaml, little-cms2, maven, memcached, mercurial, mongodb, ncftp, node, 
-openssl, ossp-uuid, pandoc, pcre, pidof, pkg-config, plotutils, pngquant, 
+imagemagick, jbig2dec, jhead, jpeg, jq, libevent, libmpc, libpng, libtiff, 
+libtool, libyaml, little-cms2, maven, memcached, mercurial, mongodb, ncftp, 
+node, openssl, ossp-uuid, pandoc, pcre, pidof, pkg-config, plotutils, pngquant, 
 postgresql, readline, ruby, s3cmd, scons, shellcheck, sloccount, spark, sqlite, 
 tree, unixodbc, unrar, watch, wget, xz, yaml-cpp, youtube-dl
 

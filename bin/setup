@@ -9,7 +9,7 @@
 HOMEBREW_FORMULAS="                                                             \
     autoconf boost caskroom/cask/brew-cask cmake coreutils cppunit dmd          \
     doxygen fontconfig freetype geoip ghostscript git gnu-sed imagemagick       \
-    jbig2dec jhead jpeg libevent libmpc libpng libtiff libtool libyaml          \
+    jbig2dec jhead jpeg jq libevent libmpc libpng libtiff libtool libyaml       \
     little-cms2 maven memcached mercurial mongodb ncftp node openssl            \
     ossp-uuid pandoc pcre pidof pkg-config plotutils pngquant postgresql        \
     readline ruby s3cmd scons shellcheck sloccount spark sqlite tree unixodbc   \
@@ -200,16 +200,14 @@ step_install_python() # python
         curl_output=$(mktemp -d -t tmp.XXXXXXXXXX)
         trap 'rm -rf $curl_output' EXIT
 
-        latest="http://repo.continuum.io/archive/$(curl -s http://repo.continuum.io/archive/index.html \
-            | grep MacOSX-x86_64.sh \
-            | perl -nl -e 'm@<a.*? href="(.+)">(.+)</a@ig; print "$2\0$1"' \
-            | sort -nr \
-            | head -n 1 \
-            | cut -d '' -f2 \
-            | sed 's@./@@')"
+        local latest
+        latest="$(curl -s http://repo.continuum.io/archive/.files.json \
+                  | jq 'to_entries | sort_by(.value.mtime) | reverse | .[].key' \
+                  | grep -m 1 MacOSX-x86_64.sh)" || abort "could not find latest Anaconda installer"
+        latest="http://repo.continuum.io/archive/$latest"
         show "downloading $latest ..."
-        run "curl -o '$curl_output/anaconda.sh' '$latest'"
-        run "bash '$curl_output/anaconda.sh' -b"
+        run "curl -o '$curl_output/anaconda.sh' '$latest'" || abort "could not download Anaconda installer"
+        run "bash '$curl_output/anaconda.sh' -b" || abort "could not install Anaconda"
 
         # enter anaconda environment now that it's installed
         export PATH="$HOME/anaconda/bin:$PATH"

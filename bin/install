@@ -8,6 +8,11 @@ if [[ "$1" == "--help" || "$1" == "-h" ]]; then
     exit 1
 fi
 
+# Also install .shell_control here so that bin/install
+# doesn't depend on env/install having been run first.
+if [[ ! -f "$HOME/.shell_control" ]]; then
+    rsync -apl ../env/dot_shell_control "$HOME/.shell_control"
+fi
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 INSTALL=1

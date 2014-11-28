@@ -492,8 +492,8 @@ EOF
     show "Creating /etc/launchd.conf..."
     run "echo 'setenv PATH \"/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin\"' | sudo tee /etc/launchd.config"
 
-    run "launchctl unload $HOME/Library/LaunchAgents/org.tiddlywiki.server.plist"
-    run "launchctl load -w $HOME/Library/LaunchAgents/org.tiddlywiki.server.plist"
+    run "launchctl unload $HOME/Library/LaunchDaemons/org.tiddlywiki.server.plist"
+    run "launchctl load -w $HOME/Library/LaunchDaemons/org.tiddlywiki.server.plist"
 
     show "TiddlyWiki setup at $HOME/notes"
     show "Server running at http://127.0.0.1:8080/"

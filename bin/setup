@@ -6,40 +6,71 @@
 # Settings
 ################################################################################
 
-HOMEBREW_FORMULAS="                                                             \
-    autoconf boost caskroom/cask/brew-cask cmake coreutils cppunit dmd          \
-    doxygen fontconfig freetype geoip ghostscript git gnu-sed imagemagick       \
-    jbig2dec jhead jpeg jq libevent libmpc libpng libtiff libtool libyaml       \
-    little-cms2 maven memcached mercurial mongodb ncftp node openssl            \
-    ossp-uuid pandoc pcre pidof pkg-config plotutils pngquant postgresql        \
-    readline ruby s3cmd scons shellcheck sloccount spark sqlite tree unixodbc   \
+HOMEBREW_FORMULAS="                                                           \
+    autoconf boost caskroom/cask/brew-cask cmake coreutils cppunit dmd        \
+    doxygen fontconfig freetype geoip ghostscript git gnu-sed imagemagick     \
+    jbig2dec jhead jpeg jq libevent libmpc libpng libtiff libtool libyaml     \
+    little-cms2 maven memcached mercurial mongodb ncftp node openssl          \
+    ossp-uuid pandoc pcre pidof pkg-config plotutils pngquant postgresql      \
+    readline ruby s3cmd scons shellcheck sloccount spark sqlite tree unixodbc \
     unrar watch wget xz yaml-cpp youtube-dl"
 
-HOMEBREW_CASKS="                                                                \
-    adium amazon-music atom audacity caffeine caskroom/versions/java7           \
-    chromecast clamxav dbvisualizer disk-inventory-x dropbox evernote firefox   \
-    flux gimp-lisanet google-chrome google-hangouts graphviz hipchat            \
-    intellij-idea istumbler iterm2 kaleidoscope kvirc mactex mysqlworkbench     \
-    pdftk pycharm robomongo silverlight skype snes9x soundflower sourcetree     \
+HOMEBREW_CASKS="                                                              \
+    adium amazon-music atom audacity caffeine caskroom/versions/java7         \
+    chromecast clamxav dbvisualizer disk-inventory-x dropbox evernote firefox \
+    flux gimp-lisanet google-chrome google-hangouts graphviz hipchat          \
+    intellij-idea istumbler iterm2 kaleidoscope kvirc mactex mysqlworkbench   \
+    pdftk pycharm robomongo silverlight skype snes9x soundflower sourcetree   \
     spotify steam teamviewer transmission vlc xquartz"
 
-ATOM_PACKAGES="                                                                 \
-    atom-soda-dark-ui autocomplete-plus highlight-selected linter               \
-    linter-flake8 linter-shellcheck merge-conflicts minimap minimap-git-diff    \
-    minimap-selection monokai-soda next-occurrence red-wavy-underline           \
-    set-syntax sort-lines tab-control tabs-to-spaces"
+ATOM_PACKAGES="                                                               \
+    atom-soda-dark-ui autocomplete-plus highlight-selected linter             \
+    linter-flake8 linter-shellcheck merge-conflicts minimap minimap-git-diff  \
+    minimap-selection monokai-soda next-occurrence red-wavy-underline         \
+    set-syntax sort-lines tab-control tabs-to-spaces select-line              \
+    rainbow-selection"
 
-PIP_PACKAGES="                                                                  \
-    beautifulsoup4 bson fabric flake8 google-api-python-client httplib2         \
-    iniparse oauth2client pep8 psycopg2 pyflakes pymongo pytz requests suds     \
+PIP_PACKAGES="                                                                \
+    beautifulsoup4 bson fabric flake8 google-api-python-client httplib2       \
+    iniparse oauth2client pep8 psycopg2 pyflakes pymongo pytz requests suds   \
     termcolor tinycss uritemplate"
 
-CONDA_PACKAGES="dateutil pyzmq argcomplete"
+CONDA_PACKAGES="                                                              \
+    dateutil pyzmq argcomplete"
 
-GEM_PACKAGES="cap_gun archive-tar-minitar bson bson_ext bundler bundler-unload   \
-    childprocess cuba erector gem-wrappers jekyll jewelbox log4r lolcat mongo    \
-    net-ldap rack rack-protection railsless-deploy rubygems-bundler rvm shotgun  \
-    yajl-ruby capistrano"
+GEM_PACKAGES="                                                                \
+    cap_gun archive-tar-minitar bson bson_ext bundler bundler-unload          \
+    childprocess cuba erector gem-wrappers jekyll jewelbox log4r lolcat mongo \
+    net-ldap rack rack-protection railsless-deploy rubygems-bundler rvm       \
+    shotgun yajl-ruby capistrano"
+
+# A useful function for cleaning up the above item lists.
+cleanup_item_list()
+{
+    local items_var lines leftover
+    declare -a lines
+    items_var="$1"
+    IFS=$'\n'
+    lines=("$items_var=\"")
+    lines+=($(eval "echo \$$items_var"  \
+        | sed "s/  */ /g;s/^ *//g;"     \
+        | fold -w 74 -s                 \
+        | sed 's/^/    /g'))
+    for ((n=0;n<${#lines[@]};n++)); do
+        line="${lines[$n]}"
+        leftover="$((80 - ${#line} - 2))"
+        echo -n "$line"
+        if [[ $((n + 1)) != ${#lines[@]} ]]; then
+            for ((i=1;i<=leftover;i++)); do
+                echo -n ' '
+            done
+            echo "\\"
+        else
+            echo "\""
+        fi
+    done
+    echo
+}
 
 ################################################################################
 # Utilities
@@ -445,6 +476,16 @@ if echo "$*" | egrep -q -- "--help|-h"; then
     usage
 fi
 
+if echo "$*" | egrep -q -- "--items"; then
+    cleanup_item_list HOMEBREW_FORMULAS
+    cleanup_item_list HOMEBREW_CASKS
+    cleanup_item_list ATOM_PACKAGES
+    cleanup_item_list PIP_PACKAGES
+    cleanup_item_list CONDA_PACKAGES
+    cleanup_item_list GEM_PACKAGES
+    exit 0
+fi
+
 OPTIND=1
 LISTING=0
 FORCE=0
@@ -479,23 +520,25 @@ if [[ $LISTING == 0 ]]; then
 fi
 
 # key; question; function
-steps=("osx;Override OS X defaults settings and configuration;step_osx
-xcode;Ensure that Xcode Command Line Tools are installed;step_setup_xcode
-java;Check that java is installed (will prompt to install if not);step_check_java
-brew;Upgrade/Install Homebrew formulas;step_install_homebrew
-cask;Ensure Homebrew Casks are installed;step_install_cask
-python;Upgrade/Install Anaconda, pip packages, and conda packages;step_install_python
-gem;Upgrade/Install gem packages and rubygems-update package;step_install_gem
-atom;Ensure Atom and apm packages are installed from Homebrew Cask;step_install_atom
-zsh;Ensure your shell is latest version of zsh from Homebrew;step_install_zsh
-#bash;Ensure your shell is latest version of bash from Homebrew;step_install_bash
-tiddlywiki;Install and setup latest TiddlyWiki from Homebrew;step_install_tiddlywiki")
+steps=(
+    "osx;Override OS X defaults settings and configuration;step_osx"
+    "xcode;Ensure that Xcode Command Line Tools are installed;step_setup_xcode"
+    "java;Check that java is installed (will prompt to install if not);step_check_java"
+    "brew;Upgrade/Install Homebrew formulas;step_install_homebrew"
+    "cask;Ensure Homebrew Casks are installed;step_install_cask"
+    "python;Upgrade/Install Anaconda, pip packages, and conda packages;step_install_python"
+    "gem;Upgrade/Install gem packages and rubygems-update package;step_install_gem"
+    "atom;Ensure Atom and apm packages are installed from Homebrew Cask;step_install_atom"
+    "zsh;Ensure your shell is latest version of zsh from Homebrew;step_install_zsh"
+    "#bash;Ensure your shell is latest version of bash from Homebrew;step_install_bash"
+    "tiddlywiki;Install and setup latest TiddlyWiki from Homebrew;step_install_tiddlywiki"
+)
 
 LISTING_OUTPUT=""
 
 IFS=$'\n'
 let steps_taken=0
-for step in ${steps[@]}; do
+for step in "${steps[@]}"; do
     key="$(echo $step | cut -d';' -f1)"
     question="$(echo $step | cut -d';' -f2)"
     function="$(echo $step | cut -d';' -f3)"

@@ -10,6 +10,9 @@
       'atom-soda-dark-ui'
       'monokai-soda'
     ]
+    'disabledPackages': [
+      'autocomplete'
+    ]
   'linter-flake8':
     'maxLineLength': 120
   'exception-reporting':
@@ -19,8 +22,8 @@
     'normalizeIndentOnPaste': false
     'showInvisibles': true
     'showIndentGuide': true
-    'invisibles': {}
     'autoIndentOnPaste': false
+    'invisibles': {}
   'spell-check':
     'grammars': [
       'source.gfm'
@@ -45,6 +48,11 @@
       'text.todo'
       'source.yaml'
     ]
+  'autocomplete-plus': {}
+  'fuzzy-finder': {}
+  'linter': {}
+  'markdown-preview': {}
+  'merge-conflicts': {}
 '.python.text.traceback':
   'editor': {}
 '.basic.html.text':

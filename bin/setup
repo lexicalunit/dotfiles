@@ -113,293 +113,9 @@ usage()
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 ################################################################################
-# Steps
+# Step osx
 ################################################################################
-step_setup_xcode() # xcode
-{
-    if ! type xcode-select >/dev/null; then
-        run "xcode-select --install"
-    else
-        if run "cc --version 2>/dev/null 1>&2"; then
-            show "Xcode agreement is accepted."
-        else
-            show "Xcode agreement not accepted..."
-            run "sudo cc --version" || abort "Xcode agreement NOT accepted"
-        fi
-    fi
-    show "Xcode Command Line Tools are properly installed."
-}
-
-step_check_java() # java
-{
-    show "Checking if java's installed..."
-    run "java -version"
-}
-
-install_brew_formula()
-{
-    if ! brew ls | grep -q "$1"; then
-        run "brew install '$1'"
-    else
-        show "brew formula '$1' already installed"
-    fi
-
-    # force link the most recent versions
-    run "brew unlink $1 && brew link --force --overwrite $1"
-}
-
-install_brew_cask()
-{
-    if ! brew ls | grep -q "$1"; then
-        run "brew cask install '$1'"
-    else
-        show "brew formula '$1' already installed"
-    fi
-}
-
-ensure_homebrew_updated()
-{
-    if [[ -z "$(which brew)" ]]; then
-        abort "please install Homebrew first"
-    fi
-
-    run "brew update"
-    run "brew upgrade"
-}
-
-step_install_homebrew() # brew
-{
-    if [[ -z "$(which brew)" ]]; then
-        show "installing homebrew..."
-        run "ruby -e \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
-        export PATH="$PATH:/usr/local/bin" # make sure brew is in your PATH before continuing
-    else
-        show "Homebrew already installed"
-    fi
-
-    if [[ -z "$(which brew)" ]]; then
-        abort "failed to install Homebrew"
-    fi
-
-    ensure_homebrew_updated
-
-    IFS=' '
-    for I in $HOMEBREW_FORMULAS; do
-        install_brew_formula "$I"
-    done
-
-    # cmake's bundling utility fails in completely reasonable cases, the following steps are necessary
-    run "chmod +w /usr/local/Cellar/freetds/*/lib/*.dylib 2>/dev/null"
-    run "chmod +w /usr/local/Cellar/pcre/*/lib/*.dylib 2>/dev/null"
-
-    # install glibtool and glibtoolize as the defaults
-    run "ln -sf /usr/local/bin/glibtool /usr/local/bin/libtool"
-    run "ln -sf /usr/local/bin/glibtoolize /usr/local/bin/libtoolize"
-
-    # install the git remote-hg helper
-    run "ln -sf $(brew ls -v git | grep git-remote-hg) /usr/local/bin"
-
-    # unlink keg-only formulas which should not be not symlinked into /usr/local
-    run "brew unlink openssl readline sqlite"
-}
-
-step_install_cask() # cask
-{
-    echo ""
-    echo $'\e[38;5;51m'"$(tput bold)================================================================================$(tput sgr0)"$'\e[0m'
-    echo $'\e[38;5;51m'"$(tput bold)= Installing Casks is ESPECIALLY interactive, you WILL need to babysit this!   =$(tput sgr0)"$'\e[0m'
-    echo $'\e[38;5;51m'"$(tput bold)= For example, many Casks require additional manual steps after installation.  =$(tput sgr0)"$'\e[0m'
-    echo $'\e[38;5;51m'"$(tput bold)================================================================================$(tput sgr0)"$'\e[0m'
-    echo ""
-
-    ensure_homebrew_updated
-
-    IFS=' '
-    for I in $HOMEBREW_CASKS; do
-        install_brew_cask "$I"
-    done
-}
-
-step_install_python() # python
-{
-    # enter existing anaconda environment if it's detected
-    [[ -d "$HOME/anaconda/bin" ]] && export PATH="$HOME/anaconda/bin:$PATH"
-
-    if run "type conda >/dev/null 2>&1"; then
-        run "conda update --yes --prefix '$HOME/anaconda' anaconda"
-    else
-        curl_output="$(mktemp -d -t tmp.XXXXXXXXXX)"
-        trap 'rm -rf $curl_output' EXIT
-
-        local latest
-        latest="$(curl -s http://repo.continuum.io/archive/.files.json \
-                  | jq 'to_entries | sort_by(.value.mtime) | reverse | .[].key' \
-                  | grep -m 1 MacOSX-x86_64.sh)" || abort "could not find latest Anaconda installer"
-        latest="http://repo.continuum.io/archive/$latest"
-        show "downloading $latest ..."
-        run "curl -o '$curl_output/anaconda.sh' '$latest'" || abort "could not download Anaconda installer"
-        run "bash '$curl_output/anaconda.sh' -b" || abort "could not install Anaconda"
-
-        # enter anaconda environment now that it's installed
-        export PATH="$HOME/anaconda/bin:$PATH"
-
-        # prevent conda from setting my PS1
-        run "conda config --set changeps1 no"
-
-        # get rid of Launcher.app on Desktop
-        [[ -d "$HOME/Desktop/Launcher.app" ]] && run "rm -rf '$HOME/Desktop/Launcher.app'"
-
-        run "rm -rf '$curl_output'"
-    fi
-
-    # Install python packages that don't come with Anaconda... yet!
-    IFS=' '
-    for I in $PIP_PACKAGES; do
-        run "pip install -U $I"
-    done
-
-    # Install conda packages that don't come pre-installed with Anaconda
-    for I in $CONDA_PACKAGES; do
-        run "conda install -f --yes $I"
-        run "conda update -f --yes $I"
-    done
-
-    # Fix annoying ipython settings
-    run "ipython profile create"
-    run "perl -pi -e 's/.*confirm_exit.*/c.TerminalInteractiveShell.confirm_exit = False/' $HOME/.ipython/profile_default/ipython_config.py"
-    run "perl -pi -e 's/.*display_banner.*/c.TerminalIPythonApp.display_banner = False/' $HOME/.ipython/profile_default/ipython_config.py"
-}
-
-step_install_gem() # gem
-{
-    run "yes | sudo gem install rubygems-update"
-    run "yes | sudo update_rubygems"
-    run "yes | sudo gem update -q --system"
-
-    IFS=' '
-    for I in $GEM_PACKAGES; do
-        run "yes | sudo gem update -q $I"
-        if ! gem list "$I" | grep -q "$I"; then
-            run "yes | sudo gem install -q $I"
-        fi
-    done
-}
-
-ensure_install_shell()
-{
-    local BINARY="$1"
-    local INSTALLED="$(grep "$BINARY" /etc/shells)"
-    if [[ "$INSTALLED" == "" ]]; then
-        run "echo '$BINARY' | sudo tee -a /etc/shells"
-    fi
-}
-
-install_shell()
-{
-    NAME="$1"
-    shift
-
-    ensure_homebrew_updated
-    for FORMULA in "$@"; do
-        install_brew_formula "$FORMULA"
-    done
-
-    SHELL_BINARY="$(brew ls "$NAME" | grep "^.*/bin/.*$NAME\$")"
-    ensure_install_shell "$SHELL_BINARY"
-
-    BREW_SHELL_BINARY="$(brew --prefix)/bin/$NAME"
-    ensure_install_shell "$BREW_SHELL_BINARY"
-    run "chsh -s '$BREW_SHELL_BINARY' '$(whoami)'"
-}
-
-step_install_bash() # bash
-{
-    # Not installing formula bash-completion here, because that is installed
-    # by env/install. This is to get the most up to date development version
-    # with git (if able), or to install from a tarball if git is not available.
-    install_shell bash bash
-}
-
-step_install_zsh() # zsh
-{
-    install_shell zsh zsh zsh-completions
-}
-
-install_atom_pkg()
-{
-    local PKG="$1"
-    local INSTALLED="$(apm list --installed --bare | grep "$PKG")"
-    if [[ -z "$INSTALLED" ]]; then
-        run "apm install $PKG" || abort "can not install package '$PKG'"
-    else
-        show "skipping $PKG: already installed"
-    fi
-}
-
-step_install_atom() # atom
-{
-    install_brew_cask atom || abort "can't install atom via brew-cask"
-    IFS=' '
-    for I in $ATOM_PACKAGES; do
-        install_atom_pkg "$I"
-    done
-}
-
-step_install_tiddlywiki() # tiddlywiki
-{
-    ensure_homebrew_updated
-    install_brew_formula node
-    run "npm install -g tiddlywiki"
-    run "mkdir -p $HOME/Library/LaunchDaemons"
-    run "cd $HOME"
-    if [[ -d notes ]]; then
-        show "$(tput smul)WARNING$(tput sgr0): NOT overwriting '$HOME/notes', assuming tiddlywiki already installed there!"
-    else
-        run "tiddlywiki notes --init server"
-    fi
-
-    local TIDDLYWIKI_DOMAIN="org.tiddlywiki.server"
-    show "Creating $HOME/Library/LaunchDaemons/org.tiddlywiki.server.plist..."
-    if [[ $DRYRUN == 0 ]]; then
-        cat >"$HOME/Library/LaunchDaemons/$TIDDLYWIKI_DOMAIN.plist" <<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-    <dict>
-        <key>Label</key>
-        <string>$TIDDLYWIKI_DOMAIN</string>
-
-        <key>WorkingDirectory</key>
-        <string>$HOME</string>
-
-        <key>ProgramArguments</key>
-        <array>
-            <string>$(which tiddlywiki)</string>
-            <string>notes</string>
-            <string>--server</string>
-        </array>
-
-        <key>RunAtLoad</key>
-        <true/>
-
-        <key>KeepAlive</key>
-        <true/>
-    </dict>
-</plist>
-EOF
-    fi
-
-    show "Creating /etc/launchd.conf..."
-    run "echo 'setenv PATH \"/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin\"' | sudo tee /etc/launchd.config"
-
-    run "launchctl unload $HOME/Library/LaunchAgents/org.tiddlywiki.server.plist"
-    run "launchctl load -w $HOME/Library/LaunchAgents/org.tiddlywiki.server.plist"
-
-    show "TiddlyWiki setup at $HOME/notes"
-    show "Server running at http://127.0.0.1:8080/"
-}
-
-step_osx() # osx
+step_osx()
 {
     show "Enable repeat on keydown"
     defaults write -g ApplePressAndHoldEnabled -bool false
@@ -470,6 +186,320 @@ step_osx() # osx
 }
 
 ################################################################################
+# Step xcode
+################################################################################
+step_xcode()
+{
+    if ! type xcode-select >/dev/null; then
+        run "xcode-select --install"
+    else
+        if run "cc --version 2>/dev/null 1>&2"; then
+            show "Xcode agreement is accepted."
+        else
+            show "Xcode agreement not accepted..."
+            run "sudo cc --version" || abort "Xcode agreement NOT accepted"
+        fi
+    fi
+    show "Xcode Command Line Tools are properly installed."
+}
+
+################################################################################
+# Step java
+################################################################################
+step_java()
+{
+    show "Checking if java's installed..."
+    run "java -version"
+}
+
+################################################################################
+# Step brew
+################################################################################
+ensure_homebrew_updated()
+{
+    if [[ -z "$(which brew)" ]]; then
+        abort "please install Homebrew first"
+    fi
+
+    run "brew update"
+    run "brew upgrade"
+}
+
+install_brew_formula()
+{
+    if ! brew ls | grep -q "$1"; then
+        run "brew install '$1'"
+    else
+        show "brew formula '$1' already installed"
+    fi
+
+    # force link the most recent versions
+    run "brew unlink $1 && brew link --force --overwrite $1"
+}
+
+step_brew()
+{
+    if [[ -z "$(which brew)" ]]; then
+        show "installing homebrew..."
+        run "ruby -e \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
+        export PATH="$PATH:/usr/local/bin" # make sure brew is in your PATH before continuing
+    else
+        show "Homebrew already installed"
+    fi
+
+    if [[ -z "$(which brew)" ]]; then
+        abort "failed to install Homebrew"
+    fi
+
+    ensure_homebrew_updated
+
+    IFS=' '
+    for I in $HOMEBREW_FORMULAS; do
+        install_brew_formula "$I"
+    done
+
+    # cmake's bundling utility fails in completely reasonable cases, the following steps are necessary
+    run "chmod +w /usr/local/Cellar/freetds/*/lib/*.dylib 2>/dev/null"
+    run "chmod +w /usr/local/Cellar/pcre/*/lib/*.dylib 2>/dev/null"
+
+    # install glibtool and glibtoolize as the defaults
+    run "ln -sf /usr/local/bin/glibtool /usr/local/bin/libtool"
+    run "ln -sf /usr/local/bin/glibtoolize /usr/local/bin/libtoolize"
+
+    # install the git remote-hg helper
+    run "ln -sf $(brew ls -v git | grep git-remote-hg) /usr/local/bin"
+
+    # unlink keg-only formulas which should not be not symlinked into /usr/local
+    run "brew unlink openssl readline sqlite"
+}
+
+################################################################################
+# Step cask
+################################################################################
+install_brew_cask()
+{
+    if ! brew ls | grep -q "$1"; then
+        run "brew cask install '$1'"
+    else
+        show "brew formula '$1' already installed"
+    fi
+}
+
+step_cask()
+{
+    echo ""
+    echo $'\e[38;5;51m'"$(tput bold)================================================================================$(tput sgr0)"$'\e[0m'
+    echo $'\e[38;5;51m'"$(tput bold)= Installing Casks is ESPECIALLY interactive, you WILL need to babysit this!   =$(tput sgr0)"$'\e[0m'
+    echo $'\e[38;5;51m'"$(tput bold)= For example, many Casks require additional manual steps after installation.  =$(tput sgr0)"$'\e[0m'
+    echo $'\e[38;5;51m'"$(tput bold)================================================================================$(tput sgr0)"$'\e[0m'
+    echo ""
+
+    ensure_homebrew_updated
+
+    IFS=' '
+    for I in $HOMEBREW_CASKS; do
+        install_brew_cask "$I"
+    done
+}
+
+################################################################################
+# Step atom
+################################################################################
+install_atom_pkg()
+{
+    local PKG="$1"
+    local INSTALLED="$(apm list --installed --bare | grep "$PKG")"
+    if [[ -z "$INSTALLED" ]]; then
+        run "apm install $PKG" || abort "can not install package '$PKG'"
+    else
+        show "skipping $PKG: already installed"
+    fi
+}
+
+step_atom()
+{
+    install_brew_cask atom || abort "can't install atom via brew-cask"
+    IFS=' '
+    for I in $ATOM_PACKAGES; do
+        install_atom_pkg "$I"
+    done
+}
+
+################################################################################
+# Step zsh
+################################################################################
+ensure_add_shell()
+{
+    local BINARY="$1"
+    local INSTALLED="$(grep "$BINARY" /etc/shells)"
+    if [[ "$INSTALLED" == "" ]]; then
+        run "echo '$BINARY' | sudo tee -a /etc/shells"
+    fi
+}
+
+ensure_shell()
+{
+    NAME="$1"
+    shift
+
+    ensure_homebrew_updated
+    for FORMULA in "$@"; do
+        install_brew_formula "$FORMULA"
+    done
+
+    SHELL_BINARY="$(brew ls "$NAME" | grep "^.*/bin/.*$NAME\$")"
+    ensure_add_shell "$SHELL_BINARY"
+
+    BREW_SHELL_BINARY="$(brew --prefix)/bin/$NAME"
+    ensure_add_shell "$BREW_SHELL_BINARY"
+    run "chsh -s '$BREW_SHELL_BINARY' '$(whoami)'"
+}
+
+step_zsh()
+{
+    ensure_shell zsh zsh zsh-completions
+}
+
+################################################################################
+# Step bash
+################################################################################
+step_bash()
+{
+    # Not installing formula bash-completion here, because that is installed
+    # by env/install. This is to get the most up to date development version
+    # with git (if able), or to install from a tarball if git is not available.
+    ensure_shell bash bash
+}
+
+################################################################################
+# Step python
+################################################################################
+step_python()
+{
+    # enter existing anaconda environment if it's detected
+    [[ -d "$HOME/anaconda/bin" ]] && export PATH="$HOME/anaconda/bin:$PATH"
+
+    if run "type conda >/dev/null 2>&1"; then
+        run "conda update --yes --prefix '$HOME/anaconda' anaconda"
+    else
+        curl_output="$(mktemp -d -t tmp.XXXXXXXXXX)"
+        trap 'rm -rf $curl_output' EXIT
+
+        local latest
+        latest="$(curl -s http://repo.continuum.io/archive/.files.json \
+                  | jq 'to_entries | sort_by(.value.mtime) | reverse | .[].key' \
+                  | grep -m 1 MacOSX-x86_64.sh)" || abort "could not find latest Anaconda installer"
+        latest="http://repo.continuum.io/archive/$latest"
+        show "downloading $latest ..."
+        run "curl -o '$curl_output/anaconda.sh' '$latest'" || abort "could not download Anaconda installer"
+        run "bash '$curl_output/anaconda.sh' -b" || abort "could not install Anaconda"
+
+        # enter anaconda environment now that it's installed
+        export PATH="$HOME/anaconda/bin:$PATH"
+
+        # prevent conda from setting my PS1
+        run "conda config --set changeps1 no"
+
+        # get rid of Launcher.app on Desktop
+        [[ -d "$HOME/Desktop/Launcher.app" ]] && run "rm -rf '$HOME/Desktop/Launcher.app'"
+
+        run "rm -rf '$curl_output'"
+    fi
+
+    # Install python packages that don't come with Anaconda... yet!
+    IFS=' '
+    for I in $PIP_PACKAGES; do
+        run "pip install -U $I"
+    done
+
+    # Install conda packages that don't come pre-installed with Anaconda
+    for I in $CONDA_PACKAGES; do
+        run "conda install -f --yes $I"
+        run "conda update -f --yes $I"
+    done
+
+    # Fix annoying ipython settings
+    run "ipython profile create"
+    run "perl -pi -e 's/.*confirm_exit.*/c.TerminalInteractiveShell.confirm_exit = False/' $HOME/.ipython/profile_default/ipython_config.py"
+    run "perl -pi -e 's/.*display_banner.*/c.TerminalIPythonApp.display_banner = False/' $HOME/.ipython/profile_default/ipython_config.py"
+}
+
+################################################################################
+# Step gem
+################################################################################
+step_gem()
+{
+    run "yes | sudo gem install rubygems-update"
+    run "yes | sudo update_rubygems"
+    run "yes | sudo gem update -q --system"
+
+    IFS=' '
+    for I in $GEM_PACKAGES; do
+        run "yes | sudo gem update -q $I"
+        if ! gem list "$I" | grep -q "$I"; then
+            run "yes | sudo gem install -q $I"
+        fi
+    done
+}
+
+################################################################################
+# Step tiddlywiki
+################################################################################
+step_tiddlywiki()
+{
+    ensure_homebrew_updated
+    install_brew_formula node
+    run "npm install -g tiddlywiki"
+    run "mkdir -p $HOME/Library/LaunchDaemons"
+    run "cd $HOME"
+    if [[ -d notes ]]; then
+        show "$(tput smul)WARNING$(tput sgr0): NOT overwriting '$HOME/notes', assuming tiddlywiki already installed there!"
+    else
+        run "tiddlywiki notes --init server"
+    fi
+
+    local TIDDLYWIKI_DOMAIN="org.tiddlywiki.server"
+    show "Creating $HOME/Library/LaunchDaemons/org.tiddlywiki.server.plist..."
+    if [[ $DRYRUN == 0 ]]; then
+        cat >"$HOME/Library/LaunchDaemons/$TIDDLYWIKI_DOMAIN.plist" <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>Label</key>
+        <string>$TIDDLYWIKI_DOMAIN</string>
+
+        <key>WorkingDirectory</key>
+        <string>$HOME</string>
+
+        <key>ProgramArguments</key>
+        <array>
+            <string>$(which tiddlywiki)</string>
+            <string>notes</string>
+            <string>--server</string>
+        </array>
+
+        <key>RunAtLoad</key>
+        <true/>
+
+        <key>KeepAlive</key>
+        <true/>
+    </dict>
+</plist>
+EOF
+    fi
+
+    show "Creating /etc/launchd.conf..."
+    run "echo 'setenv PATH \"/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin\"' | sudo tee /etc/launchd.config"
+
+    run "launchctl unload $HOME/Library/LaunchAgents/org.tiddlywiki.server.plist"
+    run "launchctl load -w $HOME/Library/LaunchAgents/org.tiddlywiki.server.plist"
+
+    show "TiddlyWiki setup at $HOME/notes"
+    show "Server running at http://127.0.0.1:8080/"
+}
+
+################################################################################
 # Main
 ################################################################################
 if echo "$*" | egrep -q -- "--help|-h"; then
@@ -519,19 +549,19 @@ if [[ $LISTING == 0 ]]; then
     echo ""
 fi
 
-# key; question; function
+# key;  question
 steps=(
-    "osx;Override OS X defaults settings and configuration;step_osx"
-    "xcode;Ensure that Xcode Command Line Tools are installed;step_setup_xcode"
-    "java;Check that java is installed (will prompt to install if not);step_check_java"
-    "brew;Upgrade/Install Homebrew formulas;step_install_homebrew"
-    "cask;Ensure Homebrew Casks are installed;step_install_cask"
-    "python;Upgrade/Install Anaconda, pip packages, and conda packages;step_install_python"
-    "gem;Upgrade/Install gem packages and rubygems-update package;step_install_gem"
-    "atom;Ensure Atom and apm packages are installed from Homebrew Cask;step_install_atom"
-    "zsh;Ensure your shell is latest version of zsh from Homebrew;step_install_zsh"
-    "#bash;Ensure your shell is latest version of bash from Homebrew;step_install_bash"
-    "tiddlywiki;Install and setup latest TiddlyWiki from Homebrew;step_install_tiddlywiki"
+    "osx;           Override OS X defaults settings and configuration"
+    "xcode;         Ensure that Xcode Command Line Tools are installed"
+    "java;          Ensure that Apple's java for OS X is installed"
+    "brew;          Ensure Homebrew installed and formulas upgraded"
+    "cask;          Ensure Homebrew Casks are installed"
+    "atom;          Ensure Atom installed via Homebrew Cask and apm packages are upgraded"
+    "zsh;           Ensure shell is latest version of zsh from Homebrew"
+    # "bash;         Ensure shell is latest version of bash from Homebrew"
+    "python;        Upgrade/Install Anaconda, pip packages, and conda packages"
+    "gem;           Upgrade/Install gem packages and rubygems-update package"
+    "tiddlywiki;   Install and setup latest TiddlyWiki from Homebrew"
 )
 
 LISTING_OUTPUT=""
@@ -540,20 +570,15 @@ IFS=$'\n'
 let steps_taken=0
 for step in "${steps[@]}"; do
     key="$(echo $step | cut -d';' -f1)"
-    question="$(echo $step | cut -d';' -f2)"
-    function="$(echo $step | cut -d';' -f3)"
-
-    # ignore disabled keys
-    if [[ $key == "#"* ]]; then
-        continue
-    fi
+    question="$(echo $step | cut -d';' -f2 | sed 's/^ *//g')"
+    function="step_$key"
 
     if [[ $LISTING == 1 ]]; then
         LISTING_OUTPUT="$LISTING_OUTPUT$key: $question"$'\n'
         continue
     fi
 
-    if [[ $ALL == 0 ]] && ! echo "$@" | egrep -q "\b$key\b"; then
+    if [[ $ALL == 0 ]] && ! echo "$*" | egrep -q "\b$key\b"; then
         continue
     fi
 

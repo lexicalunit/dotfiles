@@ -59,8 +59,8 @@ on run argv
 
     -- only show Dismiss button if Terminal isn't the current app
     set dialog_buttons to {"OK"}
-    if calling_app as text doesn't contain "Terminal.app" then
-        set dialog_buttons to dialog_buttons & "Dismiss"
+    if calling_app as text doesn't contain "Term" then
+        set dialog_buttons to {"Dismiss"}
     end if
 
     -- rightmost button should always be default
@@ -74,11 +74,6 @@ on run argv
     -- create an alert dialog message
     tell application "SystemUIServer" to display dialog message ¬
         buttons dialog_buttons default button default_button with title "Alert" with icon stop
-
-    -- only change focus if OK is pressed
-    if result = {button returned: "OK"}
-        raise_app("Terminal")
-    end if
 
     -- report message to terminal
     return "alert: " & message

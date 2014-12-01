@@ -1,6 +1,4 @@
 'global':
-  'minimap':
-    'plugins': {}
   'welcome':
     'showOnStartup': false
   'core':
@@ -14,7 +12,6 @@
     ]
   'linter-flake8':
     'maxLineLength': 120
-  'exception-reporting': {}
   'editor':
     'tabLength': 4
     'normalizeIndentOnPaste': false
@@ -46,15 +43,15 @@
       'text.todo'
       'source.yaml'
     ]
-  'linter': {}
-  'autocomplete-plus': {}
-  'fuzzy-finder': {}
   'git-diff':
     'showIconsInEditorGutter': true
-  'markdown-preview': {}
   'merge-conflicts':
     'gitPath': '/usr/local/bin/git'
-  'tabs': {}
+  'minimap':
+    'plugins':
+      'selection': true
+      'git-diff': true
+  'linter': {}
 '.js.rails.source source.jquery.js':
   'editor':
     'preferredLineLength': 120
@@ -118,6 +115,10 @@
 '.objc.source ++ *':
   'editor':
     'preferredLineLength': 120
+'.puppet.source':
+  'editor':
+    'preferredLineLength': 120
+    'tabLength': 2
 '.source.yaml':
   'editor':
     'preferredLineLength': 120
@@ -155,10 +156,6 @@
   'editor':
     'preferredLineLength': 120
 '.ruby.source':
-  'editor':
-    'preferredLineLength': 120
-    'tabLength': 2
-'.puppet.source':
   'editor':
     'preferredLineLength': 120
     'tabLength': 2

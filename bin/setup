@@ -24,11 +24,11 @@ HOMEBREW_CASKS="                                                              \
     spotify steam teamviewer transmission vlc xquartz"
 
 ATOM_PACKAGES="                                                               \
-    atom-soda-dark-ui autocomplete-plus highlight-selected linter             \
-    linter-flake8 linter-shellcheck merge-conflicts minimap minimap-git-diff  \
-    minimap-selection monokai-soda next-occurrence red-wavy-underline         \
-    rainbow-selection language-puppet linter-puppet linter-puppet-lint        \
-    set-syntax sort-lines tab-control tabs-to-spaces select-line "
+    atom-soda-dark-ui autocomplete-plus highlight-selected language-puppet    \
+    linter linter-flake8 linter-puppet linter-puppet-lint linter-shellcheck   \
+    merge-conflicts minimap minimap-git-diff minimap-selection monokai-soda   \
+    next-occurrence rainbow-selection red-wavy-underline select-line          \
+    set-syntax sort-lines tab-control tabs-to-spaces"
 
 PIP_PACKAGES="                                                                \
     beautifulsoup4 bson fabric flake8 google-api-python-client httplib2       \
@@ -36,13 +36,13 @@ PIP_PACKAGES="                                                                \
     termcolor tinycss uritemplate"
 
 CONDA_PACKAGES="                                                              \
-    dateutil pyzmq argcomplete"
+    argcomplete dateutil pyzmq"
 
 GEM_PACKAGES="                                                                \
-    cap_gun archive-tar-minitar bson bson_ext bundler bundler-unload          \
-    childprocess cuba erector gem-wrappers jekyll jewelbox log4r lolcat mongo \
-    net-ldap rack rack-protection railsless-deploy rubygems-bundler rvm       \
-    shotgun yajl-ruby capistrano"
+    archive-tar-minitar bson bson_ext bundler bundler-unload cap_gun          \
+    capistrano childprocess cuba erector gem-wrappers jekyll jewelbox log4r   \
+    lolcat mongo net-ldap puppet-lint rack rack-protection railsless-deploy   \
+    rubygems-bundler rvm shotgun yajl-ruby"
 
 # A useful function for cleaning up the above item lists.
 # Usage: setup -i (aka --items)
@@ -55,9 +55,11 @@ cleanup_item_list()
     lines=("$items_var=\"")
     lines+=($(eval "echo \$$items_var"  \
         | sed "s/  */ /g;s/^ *//g;"     \
+        | tr ' ' '\n'                   \
+        | sort -u                       \
+        | tr '\n' ' '                   \
         | fold -w 74 -s                 \
-        | sed 's/^/    /g'              \
-        | sort -u))
+        | sed 's/^/    /g;s/ $//g'))
     for ((n=0;n<${#lines[@]};n++)); do
         line="${lines[$n]}"
         leftover="$((80 - ${#line} - 2))"

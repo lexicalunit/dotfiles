@@ -2,7 +2,24 @@
 
 show()
 {
-    echo $'\e[1;34m==>\e[0m\e[31m' "$1" $'\e[0m'
+    local important=0
+    if [[ "$1" == "-i" ]]; then
+        shift
+        important=1
+        echo -n $'\e[38;5;51m'"$(tput bold)/!\\ "
+    else
+        echo -n $'\e[1;34m==>\e[0m\e[31m '
+    fi
+
+    echo -n "$1"
+
+    if [[ "$important" == "1" ]]; then
+        echo -n " /!\\$(tput sgr0)"$'\e[0m'
+    else
+        echo -n $'\e[0m'
+    fi
+
+    echo
 }
 
 run()
@@ -38,6 +55,10 @@ ask()
 
 query()
 {
+    if [[ $SC_FORCE = 1 ]]; then
+        REPLY="$2" # fallback used
+        return 0
+    fi
     echo -n $'\n\e[1;35m'
     read -p "$1 ... "
     echo -n $'\e[0;0m'

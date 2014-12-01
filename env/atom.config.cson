@@ -10,6 +10,7 @@
     ]
     'disabledPackages': [
       'autocomplete'
+      'exception-reporting'
     ]
   'linter-flake8':
     'maxLineLength': 120
@@ -47,6 +48,7 @@
       'source.yaml'
     ]
   'linter': {}
+  'autocomplete-plus': {}
 '.js.rails.source source.jquery.js':
   'editor':
     'preferredLineLength': 120

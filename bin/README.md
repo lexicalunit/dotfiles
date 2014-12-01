@@ -360,8 +360,9 @@ soundflower, sourcetree, spotify, steam, teamviewer, transmission, vlc, xquartz
 Atom Packages: atom-soda-dark-ui, autocomplete-plus, highlight-selected, 
 linter, linter-flake8, linter-shellcheck, merge-conflicts, minimap, 
 minimap-git-diff, minimap-selection, monokai-soda, next-occurrence, 
-red-wavy-underline, set-syntax, sort-lines, tab-control, tabs-to-spaces, 
-select-line, rainbow-selection
+red-wavy-underline, rainbow-selection, language-puppet, linter-puppet, 
+linter-puppet-lint, set-syntax, sort-lines, tab-control, tabs-to-spaces, 
+select-line, 
 
 Pip Packages: beautifulsoup4, bson, fabric, flake8, google-api-python-client, 
 httplib2, iniparse, oauth2client, pep8, psycopg2, pyflakes, pymongo, pytz, 

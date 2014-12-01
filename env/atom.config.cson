@@ -1,8 +1,6 @@
 'global':
   'minimap':
-    'plugins':
-      'selection': true
-      'git-diff': true
+    'plugins': {}
   'welcome':
     'showOnStartup': false
   'core':
@@ -48,90 +46,164 @@
       'text.todo'
       'source.yaml'
     ]
-  'autocomplete-plus': {}
-  'fuzzy-finder': {}
   'linter': {}
-  'markdown-preview': {}
-  'merge-conflicts': {}
-'.python.text.traceback':
-  'editor': {}
+'.js.rails.source source.jquery.js':
+  'editor':
+    'preferredLineLength': 120
+'.rails.rjs.ruby.source':
+  'editor':
+    'preferredLineLength': 120
+'.text.xml.xsl':
+  'editor':
+    'preferredLineLength': 120
+'.ruby.source.sql':
+  'editor':
+    'preferredLineLength': 120
+'.rails.ruby.source':
+  'editor':
+    'preferredLineLength': 120
+'.html.ruby.text':
+  'editor':
+    'preferredLineLength': 120
+'.mustache.source.sql':
+  'editor':
+    'preferredLineLength': 120
+'.html.jsp.text':
+  'editor':
+    'preferredLineLength': 120
 '.basic.html.text':
-  'editor': {}
+  'editor':
+    'preferredLineLength': 120
+'.python.regexp.source':
+  'editor':
+    'preferredLineLength': 120
+'.erb.html.text':
+  'editor':
+    'preferredLineLength': 120
+    'tabLength': 2
 '.gohtml.html.text':
   'editor': {}
-'.html.jsp.text':
-  'editor': {}
+'.python.text.traceback':
+  'editor':
+    'preferredLineLength': 120
 '.js.regexp.source':
-  'editor': {}
+  'editor':
+    'preferredLineLength': 120
 '.css.less.source':
-  'editor': {}
+  'editor':
+    'preferredLineLength': 120
+'.html.mustache.text':
+  'editor':
+    'preferredLineLength': 120
+'.html.php.text':
+  'editor':
+    'preferredLineLength': 120
 '.plist.text.xml':
-  'editor': {}
-'.python.regexp.source':
-  'editor': {}
-'.erb.html.text':
-  'editor': {}
-'.text.xml.xsl':
-  'editor': {}
+  'editor':
+    'preferredLineLength': 120
+'.css.scss.source':
+  'editor':
+    'preferredLineLength': 120
 '.c.source ++ *':
-  'editor': {}
+  'editor':
+    'preferredLineLength': 120
 '.objc.source ++ *':
-  'editor': {}
-'.source.yaml':
-  'editor': {}
-'.text.xml':
-  'editor': {}
+  'editor':
+    'preferredLineLength': 120
 '.source.toml':
-  'editor': {}
-'.text.todo':
-  'editor': {}
-'.plain.text':
-  'editor': {}
-'.source.sql':
-  'editor': {}
-'.shell.source':
-  'editor': {}
-'.ruby.source':
-  'editor': {}
+  'editor':
+    'preferredLineLength': 120
+'.sass.source':
+  'editor':
+    'preferredLineLength': 120
 '.plist.source':
-  'editor': {}
+  'editor':
+    'preferredLineLength': 120
 '.perl.source':
-  'editor': {}
-'.source.strings':
-  'editor': {}
+  'editor':
+    'preferredLineLength': 120
+'.objc.source':
+  'editor':
+    'preferredLineLength': 120
+'.makefile.source':
+  'editor':
+    'preferredLineLength': 120
+'.json.source':
+  'editor':
+    'preferredLineLength': 120
 '.js.source':
-  'editor': {}
-'.junit-test-report.text':
-  'editor': {}
-'.java-properties.source':
-  'editor': {}
+  'editor':
+    'preferredLineLength': 120
 '.java.source':
-  'editor': {}
-'.git-commit.text':
-  'editor': {}
+  'editor':
+    'preferredLineLength': 120
 '.gfm.source':
-  'editor': {}
-'.css.source':
-  'editor': {}
-'.litcoffee.source':
-  'editor': {}
+  'editor':
+    'preferredLineLength': 120
 '.coffee.source':
-  'editor': {}
-'.c.source':
-  'editor': {}
-'.git-config.source':
+  'editor':
+    'preferredLineLength': 120
+'.source.sql':
+  'editor':
+    'preferredLineLength': 120
+'.shell.source':
+  'editor':
+    'preferredLineLength': 120
+'.python.source':
+  'editor':
+    'preferredLineLength': 120
+'.gotemplate.source':
   'editor': {}
 '.git-rebase.text':
   'editor': {}
+'.git-config.source':
+  'editor': {}
+'.git-commit.text':
+  'editor': {}
+'.puppet.source':
+  'editor':
+    'preferredLineLength': 120
+    'tabLength': 2
+'.ruby.source':
+  'editor':
+    'preferredLineLength': 120
+    'tabLength': 2
+'.c.source':
+  'editor':
+    'preferredLineLength': 120
+'.css.source':
+  'editor':
+    'preferredLineLength': 120
+'.shell-session.text':
+  'editor':
+    'preferredLineLength': 120
+'.plain.text':
+  'editor':
+    'preferredLineLength': 120
+'.litcoffee.source':
+  'editor':
+    'preferredLineLength': 120
 '.go.source':
-  'editor': {}
-'.gotemplate.source':
-  'editor': {}
-'.json.source':
-  'editor': {}
-'.makefile.source':
-  'editor': {}
-'.objc.source':
-  'editor': {}
-'.python.source':
-  'editor': {}
+  'editor':
+    'preferredLineLength': 120
+'.hyperlink.text':
+  'editor':
+    'preferredLineLength': 120
+'.java-properties.source':
+  'editor':
+    'preferredLineLength': 120
+'.junit-test-report.text':
+  'editor':
+    'preferredLineLength': 120
+'.source.strings':
+  'editor':
+    'preferredLineLength': 120
+'.text.todo':
+  'editor':
+    'preferredLineLength': 120
+'.text.xml':
+  'editor':
+    'preferredLineLength': 120
+'.source.yaml':
+  'editor':
+    'preferredLineLength': 120

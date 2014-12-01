@@ -73,19 +73,22 @@ done
 if [[ $INSTALL == 1 ]] && echo "$SHELL" | grep -q bash; then
     if type git 1>/dev/null 2>&1; then
         # From git:
-        if [[ -d "$HOME/.bash-completion" ]]; then
-            (
-                run "pushd '$HOME/.bash-completion' >/dev/null"
-                run "git fetch >/dev/null"
-                run "git clean -f >/dev/null"
-                run "git reset --hard origin/master >/dev/null"
-            )
-        else
-            (
+        if [[ -d "$HOME/.bash-completion/.git" ]]; then (
+            # exists and is a repo, update it
+            run "pushd '$HOME/.bash-completion' >/dev/null"
+            run "git fetch >/dev/null"
+            run "git clean -f >/dev/null"
+            run "git reset --hard origin/master >/dev/null"
+        ) else (
+            if [[ -d "$HOME/.bash-completion" ]]; then (
+                # exists and isn't a repo, blow it away
                 run "pushd '$HOME' >/dev/null"
-                run "git clone git://git.debian.org/git/bash-completion/bash-completion .bash-completion >/dev/null"
-            )
-        fi
+                run "rm -rf .bash-completion"
+            ) fi
+            # doesn't exist, clone it
+            run "pushd '$HOME' >/dev/null"
+            run "git clone git://git.debian.org/git/bash-completion/bash-completion .bash-completion >/dev/null"
+        ) fi
     else
         # From tarball:
         CURL_OUTPUT=$(mktemp -d -t tmp.XXXXXXXXXX)

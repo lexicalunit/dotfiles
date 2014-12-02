@@ -346,34 +346,35 @@ Homebrew Formulas: autoconf, boost, caskroom/cask/brew-cask, cmake, coreutils,
 cppunit, dmd, doxygen, fontconfig, freetype, geoip, ghostscript, git, gnu-sed, 
 imagemagick, jbig2dec, jhead, jpeg, jq, libevent, libmpc, libpng, libtiff, 
 libtool, libyaml, little-cms2, maven, memcached, mercurial, mongodb, ncftp, 
-node, openssl, ossp-uuid, pandoc, pcre, pidof, pkg-config, plotutils, pngquant, 
-postgresql, readline, ruby, s3cmd, scons, shellcheck, sloccount, spark, sqlite, 
-tree, unixodbc, unrar, watch, wget, xz, yaml-cpp, youtube-dl
+node, onepass, openssl, ossp-uuid, pandoc, pcre, pidof, pkg-config, plotutils, 
+pngquant, postgresql, readline, ruby, s3cmd, scons, shellcheck, sloccount, 
+spark, sqlite, tree, unixodbc, unrar, watch, wget, xz, yaml-cpp, youtube-dl
 
 Homebrew Casks: adium, amazon-music, atom, audacity, caffeine, 
 caskroom/versions/java7, chromecast, clamxav, dbvisualizer, disk-inventory-x, 
 dropbox, evernote, firefox, flux, gimp-lisanet, google-chrome, google-hangouts, 
 graphviz, hipchat, intellij-idea, istumbler, iterm2, kaleidoscope, kvirc, 
-mactex, mysqlworkbench, pdftk, pycharm, robomongo, silverlight, skype, snes9x, 
-soundflower, sourcetree, spotify, steam, teamviewer, transmission, vlc, xquartz
+mactex, mysqlworkbench, onepassword, pdftk, pycharm, robomongo, silverlight, 
+skype, snes9x, soundflower, sourcetree, spotify, steam, teamviewer, 
+transmission, vlc, xquartz
 
 Atom Packages: atom-soda-dark-ui, autocomplete-plus, highlight-selected, 
-linter, linter-flake8, linter-shellcheck, merge-conflicts, minimap, 
-minimap-git-diff, minimap-selection, monokai-soda, next-occurrence, 
-red-wavy-underline, rainbow-selection, language-puppet, linter-puppet, 
-linter-puppet-lint, set-syntax, sort-lines, tab-control, tabs-to-spaces, 
-select-line, 
+language-puppet, linter, linter-flake8, linter-puppet, linter-puppet-lint, 
+linter-shellcheck, merge-conflicts, minimap, minimap-git-diff, 
+minimap-selection, monokai-soda, next-occurrence, rainbow-selection, 
+red-wavy-underline, select-line, set-syntax, sort-lines, tab-control, 
+tabs-to-spaces
 
 Pip Packages: beautifulsoup4, bson, fabric, flake8, google-api-python-client, 
 httplib2, iniparse, oauth2client, pep8, psycopg2, pyflakes, pymongo, pytz, 
 requests, suds, termcolor, tinycss, uritemplate
 
-Conda Packages: dateutil, pyzmq, argcomplete
+Conda Packages: argcomplete, dateutil, pyzmq
 
-Gem Packages: cap_gun, archive-tar-minitar, bson, bson_ext, bundler, 
-bundler-unload, childprocess, cuba, erector, gem-wrappers, jekyll, jewelbox, 
-log4r, lolcat, mongo, net-ldap, rack, rack-protection, railsless-deploy, 
-rubygems-bundler, rvm, shotgun, yajl-ruby, capistrano
+Gem Packages: archive-tar-minitar, bson, bson_ext, bundler, bundler-unload, 
+cap_gun, capistrano, childprocess, cuba, erector, gem-wrappers, jekyll, 
+jewelbox, log4r, lolcat, mongo, net-ldap, puppet-lint, rack, rack-protection, 
+railsless-deploy, rubygems-bundler, rvm, shotgun, yajl-ruby
 ```
 
 * * *

@@ -5,49 +5,51 @@
 ################################################################################
 # Settings
 ################################################################################
+HOMEBREW_FORMULAS="                                                            \
+    autoconf boost caskroom/cask/brew-cask cmake coreutils cppunit dmd doxygen \
+    fontconfig freetype geoip ghostscript git gnu-sed imagemagick jbig2dec     \
+    jhead jpeg jq libevent libmpc libpng libtiff libtool libyaml little-cms2   \
+    maven memcached mercurial mongodb ncftp node onepass openssl ossp-uuid     \
+    pandoc pcre pidof pkg-config plotutils pngquant postgresql readline ruby   \
+    s3cmd scons shellcheck sloccount spark sqlite tree unixodbc unrar watch    \
+    wget xz yaml-cpp youtube-dl"
 
-HOMEBREW_FORMULAS="                                                           \
-    autoconf boost caskroom/cask/brew-cask cmake coreutils cppunit dmd        \
-    doxygen fontconfig freetype geoip ghostscript git gnu-sed imagemagick     \
-    jbig2dec jhead jpeg jq libevent libmpc libpng libtiff libtool libyaml     \
-    little-cms2 maven memcached mercurial mongodb ncftp node openssl          \
-    ossp-uuid pandoc pcre pidof pkg-config plotutils pngquant postgresql      \
-    readline ruby s3cmd scons shellcheck sloccount spark sqlite tree unixodbc \
-    unrar watch wget xz yaml-cpp youtube-dl"
+HOMEBREW_CASKS="                                                               \
+    adium amazon-music atom audacity caffeine caskroom/versions/java7          \
+    chromecast clamxav dbvisualizer disk-inventory-x dropbox evernote firefox  \
+    flux gimp-lisanet google-chrome google-hangouts graphviz hipchat           \
+    intellij-idea istumbler iterm2 kaleidoscope kvirc mactex mysqlworkbench    \
+    onepassword pdftk pycharm robomongo silverlight skype snes9x soundflower   \
+    sourcetree spotify steam teamviewer transmission vlc xquartz"
 
-HOMEBREW_CASKS="                                                              \
-    adium amazon-music atom audacity caffeine caskroom/versions/java7         \
-    chromecast clamxav dbvisualizer disk-inventory-x dropbox evernote firefox \
-    flux gimp-lisanet google-chrome google-hangouts graphviz hipchat          \
-    intellij-idea istumbler iterm2 kaleidoscope kvirc mactex mysqlworkbench   \
-    pdftk pycharm robomongo silverlight skype snes9x soundflower sourcetree   \
-    spotify steam teamviewer transmission vlc xquartz"
-
-ATOM_PACKAGES="                                                               \
-    atom-soda-dark-ui autocomplete-plus highlight-selected language-puppet    \
-    linter linter-flake8 linter-puppet linter-puppet-lint linter-shellcheck   \
-    merge-conflicts minimap minimap-git-diff minimap-selection monokai-soda   \
-    next-occurrence rainbow-selection red-wavy-underline select-line          \
+ATOM_PACKAGES="                                                                \
+    atom-soda-dark-ui autocomplete-plus highlight-selected language-puppet     \
+    linter linter-flake8 linter-puppet linter-puppet-lint linter-shellcheck    \
+    merge-conflicts minimap minimap-git-diff minimap-selection monokai-soda    \
+    next-occurrence rainbow-selection red-wavy-underline select-line           \
     set-syntax sort-lines tab-control tabs-to-spaces"
 
-PIP_PACKAGES="                                                                \
-    beautifulsoup4 bson fabric flake8 google-api-python-client httplib2       \
-    iniparse oauth2client pep8 psycopg2 pyflakes pymongo pytz requests suds   \
+PIP_PACKAGES="                                                                 \
+    beautifulsoup4 bson fabric flake8 google-api-python-client httplib2        \
+    iniparse oauth2client pep8 psycopg2 pyflakes pymongo pytz requests suds    \
     termcolor tinycss uritemplate"
 
-CONDA_PACKAGES="                                                              \
+CONDA_PACKAGES="                                                               \
     argcomplete dateutil pyzmq"
 
-GEM_PACKAGES="                                                                \
-    archive-tar-minitar bson bson_ext bundler bundler-unload cap_gun          \
-    capistrano childprocess cuba erector gem-wrappers jekyll jewelbox log4r   \
-    lolcat mongo net-ldap puppet-lint rack rack-protection railsless-deploy   \
+GEM_PACKAGES="                                                                 \
+    archive-tar-minitar bson bson_ext bundler bundler-unload cap_gun           \
+    capistrano childprocess cuba erector gem-wrappers jekyll jewelbox log4r    \
+    lolcat mongo net-ldap puppet-lint rack rack-protection railsless-deploy    \
     rubygems-bundler rvm shotgun yajl-ruby"
 
-# A useful function for cleaning up the above item lists.
-# Usage: setup -i (aka --items)
+################################################################################
+# Utilities
+################################################################################
 cleanup_item_list()
 {
+    # A useful function for cleaning up the above item lists.
+    # Usage: setup -i (aka --items)
     local items_var lines leftover
     declare -a lines
     items_var="$1"
@@ -58,11 +60,11 @@ cleanup_item_list()
         | tr ' ' '\n'                   \
         | sort -u                       \
         | tr '\n' ' '                   \
-        | fold -w 74 -s                 \
+        | fold -w 75 -s                 \
         | sed 's/^/    /g;s/ $//g'))
     for ((n=0;n<${#lines[@]};n++)); do
         line="${lines[$n]}"
-        leftover="$((80 - ${#line} - 2))"
+        leftover="$((80 - ${#line} - 1))"
         echo -n "$line"
         if [[ $((n + 1)) != ${#lines[@]} ]]; then
             for ((i=1;i<=leftover;i++)); do
@@ -76,11 +78,9 @@ cleanup_item_list()
     echo
 }
 
-################################################################################
-# Utilities
-################################################################################
 show_items()
 {
+    # Pretty prints an item list suitable for usage help.
     echo "$1: $(echo "$2" | sed "s/^ *//g;s/  */, /g")" | fold -w 80 -s
     echo
 }
@@ -307,10 +307,12 @@ step_osx()
     show "Show item info to the right of the icons on the desktop"
     run "/usr/libexec/PlistBuddy -c 'Set DesktopViewSettings:IconViewSettings:labelOnBottom false' '$HOME/Library/Preferences/com.apple.finder.plist'"
 
-    show "Enable snap-to-grid for icons on the desktop and in other icon views"
-    run "/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:arrangeBy grid' '$HOME/Library/Preferences/com.apple.finder.plist'"
+    show "Enable snap-to-grid for icons in finder views"
     run "/usr/libexec/PlistBuddy -c 'Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid' '$HOME/Library/Preferences/com.apple.finder.plist'"
     run "/usr/libexec/PlistBuddy -c 'Set :StandardViewSettings:IconViewSettings:arrangeBy grid' '$HOME/Library/Preferences/com.apple.finder.plist'"
+
+    show "Sort icons on the desktop by date modified"
+    run "/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:arrangeBy dateModified' '$HOME/Library/Preferences/com.apple.finder.plist'"
 
     show "Increase grid spacing for icons on the desktop and in other icon views"
     run "/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:gridSpacing 100' '$HOME/Library/Preferences/com.apple.finder.plist'"

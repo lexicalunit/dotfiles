@@ -7,9 +7,9 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 # profile
 run "rsync -apl '$HOME/.profile' ./dot_profile"
 for I in "$HOME/".profile_*; do
-	if [[ ! -f ignore ]] || ! grep -q "$(basename "$I")" ignore; then
-    	run "rsync -apl '$I' './$(basename "$I" | sed 's/^./dot_/')'"
-	fi
+    if [[ ! -f ignore ]] || ! grep -q "$(basename "$I")" ignore; then
+        run "rsync -apl '$I' './$(basename "$I" | sed 's/^./dot_/')'"
+    fi
 done
 
 # bash
@@ -35,7 +35,22 @@ done
 # atom
 backup_atom()
 {
-	[[ -f "$HOME/.atom/$1" ]] && run "rsync -apl '$HOME/.atom/$1' ./atom.$1"
+    local atom_file="$1"
+    local atom_file_path="$HOME/.atom/$atom_file"
+    if [[ -f "$atom_file_path" ]]; then
+        if [[ "$atom_file" == "config.cson" ]]                                 \
+            && type jq >/dev/null                                              \
+            && type cson2json >/dev/null                                       \
+            && type json2cson >/dev/null; then
+            # sort config.cson keys for consistency between updates
+            local tempfile="$(mktemp -t tmp.XXXXXXXXXX.config.json)"
+            run "cson2json '$atom_file_path' | jq -S '.' >'$tempfile'"
+            run "json2cson '$tempfile' >'./atom.$atom_file'"
+            run "rm '$tempfile'"
+        else
+            run "rsync -apl '$atom_file_path' ./atom.$atom_file"
+        fi
+    fi
 }
 backup_atom "config.cson"
 backup_atom "keymap.cson"
@@ -45,9 +60,9 @@ backup_atom "styles.less"
 # sublime text
 backup_st()
 {
-	if [[ -e "$1/$2" ]]; then
-		run "rsync -apl '$1/$2' '$2'"
-	fi
+    if [[ -e "$1/$2" ]]; then
+        run "rsync -apl '$1/$2' '$2'"
+    fi
 }
 backup_st "$HOME/Library/Application Support/Sublime Text 3/Packages/User" "Preferences.sublime-settings"
 backup_st "$HOME/Library/Application Support/Sublime Text 3/Packages/User" "SublimePython.sublime-settings"

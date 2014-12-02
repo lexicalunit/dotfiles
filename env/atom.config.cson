@@ -1,213 +1,277 @@
-'global':
-  'welcome':
-    'showOnStartup': false
-  'core':
-    'themes': [
-      'atom-soda-dark-ui'
-      'monokai-soda'
-    ]
-    'disabledPackages': [
-      'autocomplete'
-      'exception-reporting'
-    ]
-  'linter-flake8':
-    'maxLineLength': 120
-  'editor':
-    'tabLength': 4
-    'normalizeIndentOnPaste': false
-    'showInvisibles': true
-    'showIndentGuide': true
-    'autoIndentOnPaste': false
-  'spell-check':
-    'grammars': [
-      'source.gfm'
-      'text.plain.null-grammar'
-      'source.c++'
-      'source.litcoffee'
-      'source.css'
-      'text.git-commit'
-      'source.go'
-      'text.html.basic'
-      'source.java'
-      'source.js'
-      'source.json'
-      'source.css.less'
-      'source.makefile'
-      'source.plist'
-      'source.python'
-      'text.html.erb'
-      'source.shell'
-      'source.sql'
-      'text.plain'
-      'text.todo'
-      'source.yaml'
-    ]
-  'git-diff':
-    'showIconsInEditorGutter': true
-  'merge-conflicts':
-    'gitPath': '/usr/local/bin/git'
-  'minimap':
-    'plugins':
-      'selection': true
-      'git-diff': true
-  'linter': {}
-'.js.rails.source source.jquery.js':
-  'editor':
-    'preferredLineLength': 120
-'.rails.rjs.ruby.source':
-  'editor':
-    'preferredLineLength': 120
-'.text.xml.xsl':
-  'editor':
-    'preferredLineLength': 120
-'.ruby.source.sql':
-  'editor':
-    'preferredLineLength': 120
-'.rails.ruby.source':
-  'editor':
-    'preferredLineLength': 120
-'.html.ruby.text':
-  'editor':
-    'preferredLineLength': 120
-'.mustache.source.sql':
-  'editor':
-    'preferredLineLength': 120
-'.html.jsp.text':
-  'editor':
-    'preferredLineLength': 120
-'.basic.html.text':
-  'editor':
-    'preferredLineLength': 120
-'.python.regexp.source':
-  'editor':
-    'preferredLineLength': 120
-'.erb.html.text':
-  'editor':
-    'preferredLineLength': 120
-    'tabLength': 2
-'.gohtml.html.text':
-  'editor': {}
-'.python.text.traceback':
-  'editor':
-    'preferredLineLength': 120
-'.js.regexp.source':
-  'editor':
-    'preferredLineLength': 120
-'.css.less.source':
-  'editor':
-    'preferredLineLength': 120
-'.html.mustache.text':
-  'editor':
-    'preferredLineLength': 120
-'.html.php.text':
-  'editor':
-    'preferredLineLength': 120
-'.plist.text.xml':
-  'editor':
-    'preferredLineLength': 120
-'.css.scss.source':
-  'editor':
-    'preferredLineLength': 120
-'.objc.source ++ *':
-  'editor':
-    'preferredLineLength': 120
-'.c.source ++ *':
-  'editor':
-    'preferredLineLength': 80
-'.c.source':
-  'editor':
-    'preferredLineLength': 80
-'.source.toml':
-  'editor':
-    'preferredLineLength': 120
-'.sass.source':
-  'editor':
-    'preferredLineLength': 120
-'.plist.source':
-  'editor':
-    'preferredLineLength': 120
-'.perl.source':
-  'editor':
-    'preferredLineLength': 120
-'.objc.source':
-  'editor':
-    'preferredLineLength': 120
-'.makefile.source':
-  'editor':
-    'preferredLineLength': 120
-'.json.source':
-  'editor':
-    'preferredLineLength': 120
-'.js.source':
-  'editor':
-    'preferredLineLength': 120
-'.java.source':
-  'editor':
-    'preferredLineLength': 120
-'.gfm.source':
-  'editor':
-    'preferredLineLength': 120
-'.coffee.source':
-  'editor':
-    'preferredLineLength': 120
-'.source.sql':
-  'editor':
-    'preferredLineLength': 120
-'.shell.source':
-  'editor':
-    'preferredLineLength': 120
-'.python.source':
-  'editor':
-    'preferredLineLength': 120
-'.gotemplate.source':
-  'editor': {}
-'.git-rebase.text':
-  'editor': {}
-'.git-config.source':
-  'editor': {}
-'.git-commit.text':
-  'editor': {}
-'.ruby.source':
-  'editor':
-    'preferredLineLength': 120
-    'tabLength': 2
-'.css.source':
-  'editor':
-    'preferredLineLength': 120
-'.shell-session.text':
-  'editor':
-    'preferredLineLength': 120
-'.plain.text':
-  'editor':
-    'preferredLineLength': 120
-'.litcoffee.source':
-  'editor':
-    'preferredLineLength': 120
-'.go.source':
-  'editor':
-    'preferredLineLength': 120
-'.hyperlink.text':
-  'editor':
-    'preferredLineLength': 120
-'.java-properties.source':
-  'editor':
-    'preferredLineLength': 120
-'.junit-test-report.text':
-  'editor':
-    'preferredLineLength': 120
-'.source.strings':
-  'editor':
-    'preferredLineLength': 120
-'.text.todo':
-  'editor':
-    'preferredLineLength': 120
-'.text.xml':
-  'editor':
-    'preferredLineLength': 120
-'.source.yaml':
-  'editor':
-    'preferredLineLength': 120
-'.puppet.source':
-  'editor':
-    'preferredLineLength': 120
-    'tabLength': 2
+{
+  ".basic.html.text":
+    editor:
+      preferredLineLength: 120
+
+  ".c.source":
+    editor:
+      preferredLineLength: 80
+
+  ".c.source ++ *":
+    editor:
+      preferredLineLength: 80
+
+  ".coffee.source":
+    editor:
+      preferredLineLength: 120
+
+  ".css.less.source":
+    editor:
+      preferredLineLength: 120
+
+  ".css.scss.source":
+    editor:
+      preferredLineLength: 120
+
+  ".css.source":
+    editor:
+      preferredLineLength: 120
+
+  ".erb.html.text":
+    editor:
+      preferredLineLength: 120
+      tabLength: 2
+
+  ".gfm.source":
+    editor:
+      preferredLineLength: 120
+
+  ".git-commit.text":
+    editor: {}
+
+  ".git-config.source":
+    editor: {}
+
+  ".git-rebase.text":
+    editor: {}
+
+  ".go.source":
+    editor:
+      preferredLineLength: 120
+
+  ".gohtml.html.text":
+    editor: {}
+
+  ".gotemplate.source":
+    editor: {}
+
+  ".html.jsp.text":
+    editor:
+      preferredLineLength: 120
+
+  ".html.mustache.text":
+    editor:
+      preferredLineLength: 120
+
+  ".html.php.text":
+    editor:
+      preferredLineLength: 120
+
+  ".html.ruby.text":
+    editor:
+      preferredLineLength: 120
+
+  ".hyperlink.text":
+    editor:
+      preferredLineLength: 120
+
+  ".java-properties.source":
+    editor:
+      preferredLineLength: 120
+
+  ".java.source":
+    editor:
+      preferredLineLength: 120
+
+  ".js.rails.source source.jquery.js":
+    editor:
+      preferredLineLength: 120
+
+  ".js.regexp.source":
+    editor:
+      preferredLineLength: 120
+
+  ".js.source":
+    editor:
+      preferredLineLength: 120
+
+  ".json.source":
+    editor:
+      preferredLineLength: 120
+
+  ".junit-test-report.text":
+    editor:
+      preferredLineLength: 120
+
+  ".litcoffee.source":
+    editor:
+      preferredLineLength: 120
+
+  ".makefile.source":
+    editor:
+      preferredLineLength: 120
+
+  ".mustache.source.sql":
+    editor:
+      preferredLineLength: 120
+
+  ".objc.source":
+    editor:
+      preferredLineLength: 120
+
+  ".objc.source ++ *":
+    editor:
+      preferredLineLength: 120
+
+  ".perl.source":
+    editor:
+      preferredLineLength: 120
+
+  ".plain.text":
+    editor:
+      preferredLineLength: 120
+
+  ".plist.source":
+    editor:
+      preferredLineLength: 120
+
+  ".plist.text.xml":
+    editor:
+      preferredLineLength: 120
+
+  ".puppet.source":
+    editor:
+      preferredLineLength: 120
+      tabLength: 2
+
+  ".python.regexp.source":
+    editor:
+      preferredLineLength: 120
+
+  ".python.source":
+    editor:
+      preferredLineLength: 120
+
+  ".python.text.traceback":
+    editor:
+      preferredLineLength: 120
+
+  ".rails.rjs.ruby.source":
+    editor:
+      preferredLineLength: 120
+
+  ".rails.ruby.source":
+    editor:
+      preferredLineLength: 120
+
+  ".ruby.source":
+    editor:
+      preferredLineLength: 120
+      tabLength: 2
+
+  ".ruby.source.sql":
+    editor:
+      preferredLineLength: 120
+
+  ".sass.source":
+    editor:
+      preferredLineLength: 120
+
+  ".shell-session.text":
+    editor:
+      preferredLineLength: 120
+
+  ".shell.source":
+    editor:
+      preferredLineLength: 120
+
+  ".source.sql":
+    editor:
+      preferredLineLength: 120
+
+  ".source.strings":
+    editor:
+      preferredLineLength: 120
+
+  ".source.toml":
+    editor:
+      preferredLineLength: 120
+
+  ".source.yaml":
+    editor:
+      preferredLineLength: 120
+
+  ".text.todo":
+    editor:
+      preferredLineLength: 120
+
+  ".text.xml":
+    editor:
+      preferredLineLength: 120
+
+  ".text.xml.xsl":
+    editor:
+      preferredLineLength: 120
+
+  global:
+    core:
+      disabledPackages: [
+        "autocomplete"
+        "exception-reporting"
+      ]
+      themes: [
+        "atom-soda-dark-ui"
+        "monokai-soda"
+      ]
+
+    editor:
+      autoIndentOnPaste: false
+      invisibles: {}
+      normalizeIndentOnPaste: false
+      showIndentGuide: true
+      showInvisibles: true
+      tabLength: 4
+
+    "git-diff":
+      showIconsInEditorGutter: true
+
+    linter: {}
+    "linter-flake8":
+      maxLineLength: 120
+
+    "merge-conflicts":
+      gitPath: "/usr/local/bin/git"
+
+    minimap:
+      plugins:
+        "git-diff": true
+        selection: true
+
+    "spell-check":
+      grammars: [
+        "source.gfm"
+        "text.plain.null-grammar"
+        "source.c++"
+        "source.litcoffee"
+        "source.css"
+        "text.git-commit"
+        "source.go"
+        "text.html.basic"
+        "source.java"
+        "source.js"
+        "source.json"
+        "source.css.less"
+        "source.makefile"
+        "source.plist"
+        "source.python"
+        "text.html.erb"
+        "source.shell"
+        "source.sql"
+        "text.plain"
+        "text.todo"
+        "source.yaml"
+      ]
+
+    welcome:
+      showOnStartup: false
+}

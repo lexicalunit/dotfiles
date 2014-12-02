@@ -43,6 +43,12 @@ GEM_PACKAGES="                                                                 \
     lolcat mongo net-ldap puppet-lint rack rack-protection railsless-deploy    \
     rubygems-bundler rvm shotgun yajl-ruby"
 
+NODE_MODULES="                                                                 \
+    coffee-script cson tiddlywiki"
+
+ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS ATOM_PACKAGES PIP_PACKAGES
+    CONDA_PACKAGES GEM_PACKAGES NODE_MODULES)
+
 ################################################################################
 # Utilities
 ################################################################################
@@ -81,7 +87,15 @@ cleanup_item_list()
 show_items()
 {
     # Pretty prints an item list suitable for usage help.
-    echo "$1: $(echo "$2" | sed "s/^ *//g;s/  */, /g")" | fold -w 80 -s
+    local list_name="$1"
+    local list_title="$(echo "$list_name"                                      \
+        | tr '[:upper:]' '[:lower:]'                                           \
+        | tr '_' ' '                                                           \
+        | awk '{for (i=1;i <= NF;i++) {
+            sub(".",substr(toupper($i),1,1),$i)} print}')"
+    local output="$list_title:"
+    output="$output $(eval "echo \$$list_name" | sed "s/^ *//g;s/  */, /g")"
+    echo "$output" | fold -w 80 -s
     echo
 }
 
@@ -104,12 +118,10 @@ usage()
         echo "steps:"
         "$0" -l | sed 's/^/    /g'
         echo
-        show_items "Homebrew Formulas" "$HOMEBREW_FORMULAS"
-        show_items "Homebrew Casks" "$HOMEBREW_CASKS"
-        show_items "Atom Packages" "$ATOM_PACKAGES"
-        show_items "Pip Packages" "$PIP_PACKAGES"
-        show_items "Conda Packages" "$CONDA_PACKAGES"
-        show_items "Gem Packages" "$GEM_PACKAGES"
+        IFS=' '
+        for I in "${ITEM_LISTS[@]}"; do
+            show_items "$I"
+        done
     ) >&2
     exit 1
 }
@@ -546,7 +558,7 @@ step_java()
 ensure_homebrew_updated()
 {
     if [[ -z "$(which brew)" ]]; then
-        abort "please install Homebrew first"
+        abort "Please run step brew first"
     fi
 
     run "brew update"
@@ -772,13 +784,28 @@ step_gem()
 }
 
 ################################################################################
+# Step node
+################################################################################
+step_node()
+{
+    ensure_homebrew_updated
+    install_brew_formula node
+    run "npm update -g"
+    IFS=' '
+    for I in $NODE_MODULES; do
+        run "npm install -g $I"
+    done
+}
+
+################################################################################
 # Step tiddlywiki
 ################################################################################
 step_tiddlywiki()
 {
-    ensure_homebrew_updated
-    install_brew_formula node
-    run "npm install -g tiddlywiki"
+    if ! npm list -g tiddlywiki >/dev/null 2>&1; then
+        abort "Please run step node first"
+    fi
+
     run "mkdir -p $HOME/Library/LaunchDaemons"
     run "cd $HOME"
     if [[ -d notes ]]; then
@@ -836,12 +863,10 @@ if echo "$*" | egrep -q -- "--help|-h"; then
 fi
 
 if echo "$*" | egrep -q -- "--items|-i"; then
-    cleanup_item_list HOMEBREW_FORMULAS
-    cleanup_item_list HOMEBREW_CASKS
-    cleanup_item_list ATOM_PACKAGES
-    cleanup_item_list PIP_PACKAGES
-    cleanup_item_list CONDA_PACKAGES
-    cleanup_item_list GEM_PACKAGES
+    IFS=' '
+    for I in "${ITEM_LISTS[@]}"; do
+        cleanup_item_list "$I"
+    done
     exit 0
 fi
 
@@ -887,10 +912,11 @@ steps=(
     "cask;          Ensure Homebrew Casks are installed"
     "atom;          Ensure Atom installed via Homebrew Cask and apm packages are upgraded"
     "zsh;           Ensure shell is latest version of zsh from Homebrew"
-    # "bash;         Ensure shell is latest version of bash from Homebrew"
+    # "bash;          Ensure shell is latest version of bash from Homebrew"
     "python;        Upgrade/Install Anaconda, pip packages, and conda packages"
     "gem;           Upgrade/Install gem packages and rubygems-update package"
-    "tiddlywiki;   Install and setup latest TiddlyWiki from Homebrew"
+    "node;          Ensure Node modules are installed"
+    "tiddlywiki;    Install and setup latest TiddlyWiki from Homebrew"
 )
 
 LISTING_OUTPUT=""

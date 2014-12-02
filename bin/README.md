@@ -340,6 +340,7 @@ steps:
     zsh          Ensure shell is latest version of zsh from Homebrew
     python       Upgrade/Install Anaconda, pip packages, and conda packages
     gem          Upgrade/Install gem packages and rubygems-update package
+    node         Ensure Node modules are installed
     tiddlywiki   Install and setup latest TiddlyWiki from Homebrew
 
 Homebrew Formulas: autoconf, boost, caskroom/cask/brew-cask, cmake, coreutils, 
@@ -375,6 +376,8 @@ Gem Packages: archive-tar-minitar, bson, bson_ext, bundler, bundler-unload,
 cap_gun, capistrano, childprocess, cuba, erector, gem-wrappers, jekyll, 
 jewelbox, log4r, lolcat, mongo, net-ldap, puppet-lint, rack, rack-protection, 
 railsless-deploy, rubygems-bundler, rvm, shotgun, yajl-ruby
+
+Node Modules: coffee-script, cson, tiddlywiki
 ```
 
 * * *

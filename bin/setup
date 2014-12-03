@@ -44,7 +44,7 @@ GEM_PACKAGES="                                                                 \
     rubygems-bundler rvm shotgun yajl-ruby"
 
 NODE_MODULES="                                                                 \
-    coffee-script cson tiddlywiki"
+    coffee-script cson tiddlywiki tmpin"
 
 ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS ATOM_PACKAGES PIP_PACKAGES
     CONDA_PACKAGES GEM_PACKAGES NODE_MODULES)

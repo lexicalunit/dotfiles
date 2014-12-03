@@ -578,11 +578,6 @@ lw()
     fi
 }
 
-eman()
-{
-    man "$@" | col -bx | subl --stay &
-}
-
 fawk()
 {
     awk "{print \$$1}"
@@ -638,17 +633,24 @@ export IGNOREEOF=0
 if type atom >/dev/null 2>&1; then
     # export EDITOR='atom -w'
     # export CVSEDITOR='atom -w'
+    export OSXEDITOR='atom -w'
     alias edit='atom '
     ew() { atom "$(which "$1")"; }
+    eman() { man "$@" | col -bx | tmpin atom -w & }
 elif type subl >/dev/null 2>&1; then
     # export EDITOR='subl -w'
     # export CVSEDITOR='subl -w'
+    export OSXEDITOR='subl -w'
     alias edit='subl '
     ew() { subl "$(which "$1")"; }
+    eman() { man "$@" | col -bx | subl -w & }
 elif type vim >/dev/null 2>&1; then
     alias edit='vim '
     ew() { vim "$(which "$1")"; }
+    eman() { man "$@" | col -bx | vim -; }
 fi
+
+vman() { man "$@" | col -bx | vim -; }
 
 # setup man
 export LESS_TERMCAP_mb=$'\E[01;31m'

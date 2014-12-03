@@ -377,7 +377,7 @@ cap_gun, capistrano, childprocess, cuba, erector, gem-wrappers, jekyll,
 jewelbox, log4r, lolcat, mongo, net-ldap, puppet-lint, rack, rack-protection, 
 railsless-deploy, rubygems-bundler, rvm, shotgun, yajl-ruby
 
-Node Modules: coffee-script, cson, tiddlywiki
+Node Modules: coffee-script, cson, tiddlywiki, tmpin
 ```
 
 * * *

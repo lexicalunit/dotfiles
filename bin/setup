@@ -900,7 +900,7 @@ if [[ $LISTING == 0 ]]; then
     show -i "This script is occasionally interactive, even in -f force mode."
     show -i "Asking for sudo access once at the start, you should not be asked again."
     sudo -v
-    while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+    while true; do sudo -n true; sleep 30; kill -0 "$$" || exit; done 2>/dev/null &
 fi
 
 # key;  question

@@ -519,7 +519,7 @@ Options:
     --dateafter DATE                 download only videos uploaded on or after this date (i.e. inclusive)
     --min-views COUNT                Do not download any videos with less than COUNT views
     --max-views COUNT                Do not download any videos with more than COUNT views
-    --no-playlist                    download only the currently playing video
+    --no-playlist                    If the URL refers to a video and a playlist, download only the video.
     --age-limit YEARS                download only videos suitable for the given age
     --download-archive FILE          Download only videos not listed in the archive file. Record the IDs of all downloaded videos
                                      in it.

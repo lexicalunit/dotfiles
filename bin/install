@@ -8,6 +8,8 @@ if [[ "$1" == "--help" || "$1" == "-h" ]]; then
     exit 1
 fi
 
+pushd "$(dirname "$0")" >/dev/null
+
 # Also install .shell_control here so that bin/install
 # doesn't depend on env/install having been run first.
 if [[ ! -f "$HOME/.shell_control" ]]; then

@@ -4,6 +4,9 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 
 set -e
 
+pushd "$(dirname "$0")" >/dev/null
+
+
 if [ ! "$1" ]; then
 	echo "usage: $0 HOST"
 	echo "deploys setup source code to remote HOST."

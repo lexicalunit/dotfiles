@@ -1,10 +1,27 @@
 # Synopsis
 I hate installing, configuring, and updating software on my computer. Especially when I'm using a new machine, or sshing into a remote system. I've automated as much of that process as I can, keeping everything as lightweight as possible.
 
+### Do Everything:
+
+```bash
+git clone https://github.com/lexicalunit/setup.git
+setup/install
+setup/bin/setup -f all
+```
+
+If you don't even have `git` yet, try something like:
+
+```bash
+curl -LOks https://github.com/lexicalunit/setup/tarball/master
+mkdir setup && tar xvzf master --strip 1 -C setup
+setup/install
+setup/bin/setup -f all
+```
+
 # Usage
-1. Change directories into this repository and run [`./install`](install) first to setup your environment and [`~/bin`](bin) directory.
-1. Source your new environment by opening a new terminal or running [`source ~/.profile`](env/dot_profile).
-1. Execute the command [`~/bin/setup all`](bin/setup) to step through configuration of system settings, application installations, and creation of your complete OS X developer environment.
+1. Clone this repository and change directories into it and then run [`./install`](install) first to setup your environment (dotfiles and other items) and [`~/bin`](bin) directory and scripts.
+1. Source your new environment by opening a new terminal or running [`. ~/.profile`](env/dot_profile).
+1. Execute the command [`setup all`](bin/setup) to step through configuration of system settings, installation of applications, and creation of your complete OS X developer environment.
 
 You can also use the root level [`deploy`](deploy) script to automatically run the root level [`install`](install) script on a remote host. If you want to also remotely run [`bin/setup`](bin/setup), you will have to do that by hand as it's an occasionally interactive script.
 
@@ -12,7 +29,10 @@ You can uninstall everything that the root level [`install`](install) script ins
 
 # Maintenance
 * The root level [`update`](update) script can be used periodically to update this repository with any changes made to the system scripts or environment.
-* Re-run [`bin/setup all`](bin/setup) to update applications and ensure environment settings are configured properly.
+* Re-run [`setup all`](bin/setup) to update applications and ensure environment settings are configured properly.
+
+# Why not just use [dotfiles](http://dotfiles.github.io/)?
+Github [dotfiles](http://dotfiles.github.io/) is really neat, but it doesn't go far enough for my purposes. I wanted a single command, [`setup all`](bin/setup) to just *do everything* for me with minimal interaction. I also wanted to be able to update and deploy my settings with similar ease. Some of the code in this repository is based on existing [dotfiles](http://dotfiles.github.io/), so you can think of this as a meta-dotfiles repository, tailored to my tastes. It may be possible to clean up this codebase using tools like [fresh](https://github.com/freshshell/fresh), and it may be possible to refactor it as a fork of [dotfiles](http://dotfiles.github.io/). The exploration of these possibilities is left as an exercise to the reader.
 
 # Environment: [`~/env`](env)
 Provides installation and configuration of many utilities and applications. Running [`env/install`](env/install) will provide the following features, as well as additional configuration. For more details on what is provided see [the `README.md` for [`~/env`](env)](env/README.md).

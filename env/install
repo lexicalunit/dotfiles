@@ -15,6 +15,8 @@ fi
 # install shell control utilities
 ###############################################################################
 
+pushd "$(dirname "$0")" >/dev/null
+
 if [[ $INSTALL == 1 ]]; then
     rsync -apl dot_shell_control "$HOME/.shell_control"
 fi

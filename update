@@ -6,6 +6,9 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 
 set -e
 
+pushd "$(dirname "$0")" >/dev/null
+
+
 if [[ -n "$(git status -s)" ]]; then
 	abort "cowardly refusing to overwrite existing changes"
 fi

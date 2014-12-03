@@ -3,8 +3,14 @@
 # Prints out documentation and usages for utilities.
 
 if echo "$*" | egrep -q -- "--help|-h"; then
-	echo "usage: ${0##*/} [-h|--help]" 1>&2
-    echo "Prints out documentation and usage information for everything in current directory." 1>&2
+    (
+	    echo "usage: ${0##*/} [-t|--table|-v|--verbose-h|--help]"
+        echo "Prints out documentation and usage information for everything in current directory."
+        echo
+        echo "-t,--table:   prints out information in a markdown table."
+        echo "-v,--verbose: prints out all usage information in markdown format."
+        echo "-v,--help:    prints out this help message."
+    ) 1>&2
 	exit 1
 fi
 

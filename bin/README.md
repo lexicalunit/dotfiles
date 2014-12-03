@@ -441,8 +441,12 @@ Copies scripts in ~/bin into ./bin. Honors ignore file.
 * * *
 ### [`usages`](bin/usages)
 ```
-usage: usages [-h|--help]
+usage: usages [-t|--table|-v|--verbose-h|--help]
 Prints out documentation and usage information for everything in current directory.
+
+-t,--table:   prints out information in a markdown table.
+-v,--verbose: prints out all usage information in markdown format.
+-v,--help:    prints out this help message.
 ```
 
 * * *

@@ -43,7 +43,6 @@
 
     editor:
       autoIndentOnPaste: false
-      invisibles: {}
       normalizeIndentOnPaste: false
       showIndentGuide: true
       showInvisibles: true

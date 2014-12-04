@@ -359,10 +359,10 @@ mactex, mysqlworkbench, onepassword, pdftk, pycharm, robomongo, silverlight,
 skype, snes9x, soundflower, sourcetree, spotify, steam, teamviewer, 
 transmission, vlc, xquartz
 
-Atom Packages: atom-soda-dark-ui, autocomplete-plus, color-picker, 
-highlight-selected, indentation-indicator, language-puppet, linter, 
-linter-flake8, linter-puppet, linter-puppet-lint, linter-shellcheck, minimap, 
-minimap-git-diff, minimap-selection, monokai-soda, next-occurrence, omni-ruler, 
+Atom Packages: atom-soda-dark-ui, autocomplete-plulors, highlight-selected, 
+indentation-indicator, language-puppet, linter, linter-flake8, linter-puppet, 
+linter-puppet-lint, linter-shellcheck, minimap, minimap-git-diff, 
+minimap-selection, monokai-soda, next-occurrence, omni-ruler, 
 rainbow-selection, red-wavy-underline, select-line, set-syntax, 
 soft-wrap-indicator, sort-lines, tab-control, tabs-to-spaces
 

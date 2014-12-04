@@ -43,6 +43,7 @@
 
     editor:
       autoIndentOnPaste: false
+      invisibles: {}
       normalizeIndentOnPaste: false
       showIndentGuide: true
       showInvisibles: true
@@ -97,6 +98,12 @@
     "tree-view":
       hideIgnoredNames: true
       hideVcsIgnoredFiles: true
+
+    "weather-package":
+      city: "Austin, Texas"
+      showInFahrenheit: true
+      showPressure: false
+      showTemperature: true
 
     welcome:
       showOnStartup: false

@@ -359,11 +359,12 @@ mactex, mysqlworkbench, onepassword, pdftk, pycharm, robomongo, silverlight,
 skype, snes9x, soundflower, sourcetree, spotify, steam, teamviewer, 
 transmission, vlc, xquartz
 
-Atom Packages: atom-soda-dark-ui, autocomplete-plulors, highlight-selected, 
-indentation-indicator, language-puppet, linter, linter-flake8, linter-puppet, 
+Atom Packages: atom-soda-dark-ui, autocomplete-plulors, file-icons, 
+highlight-selected, indentation-indicator, language-diff, language-latex, 
+language-puppet, linter, linter-erb, linter-flake8, linter-puppet, 
 linter-puppet-lint, linter-shellcheck, minimap, minimap-git-diff, 
-minimap-selection, monokai-soda, next-occurrence, omni-ruler, 
-rainbow-selection, red-wavy-underline, select-line, set-syntax, 
+minimap-highlight-selected, minimap-selection, monokai-soda, next-occurrence, 
+omni-ruler, rainbow-selection, red-wavy-underline, select-line, set-syntax, 
 soft-wrap-indicator, sort-lines, tab-control, tabs-to-spaces
 
 Pip Packages: beautifulsoup4, bson, fabric, flake8, google-api-python-client, 

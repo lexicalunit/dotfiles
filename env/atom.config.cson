@@ -66,6 +66,7 @@
     minimap:
       plugins:
         "git-diff": true
+        "highlight-selected": true
         selection: true
 
     "spell-check":

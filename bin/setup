@@ -24,7 +24,7 @@ HOMEBREW_CASKS="                                                               \
     xquartz"
 
 ATOM_PACKAGES="                                                                \
-    atom-soda-dark-ui autocomplete-plulors cursor-count file-icons             \
+    atom-soda-dark-ui autocomplete-plus cursor-count file-icons                \
     highlight-selected indentation-indicator language-diff language-latex      \
     language-puppet linter linter-erb linter-flake8 linter-puppet              \
     linter-puppet-lint linter-shellcheck minimap minimap-git-diff              \

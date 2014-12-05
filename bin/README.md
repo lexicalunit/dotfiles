@@ -352,12 +352,12 @@ pngquant, postgresql, readline, ruby, s3cmd, scons, shellcheck, sloccount,
 spark, sqlite, tree, unixodbc, unrar, watch, wget, xz, yaml-cpp, youtube-dl
 
 Homebrew Casks: adium, amazon-music, atom, audacity, caffeine, 
-caskroom/versions/java7, chromecast, clamxav, dbvisualizer, disk-inventory-x, 
-dropbox, evernote, firefox, flux, gimp-lisanet, google-chrome, google-hangouts, 
-graphviz, hipchat, intellij-idea, istumbler, iterm2, kaleidoscope, kvirc, 
-mactex, mysqlworkbench, onepassword, pdftk, pycharm, robomongo, silverlight, 
-skype, snes9x, soundflower, sourcetree, spotify, steam, teamviewer, 
-transmission, vlc, xquartz
+caskroom/versions/java7, chromecast, clamxav, cyberduck, dbvisualizer, 
+disk-inventory-x, dropbox, evernote, firefox, flux, gimp-lisanet, 
+google-chrome, google-hangouts, graphviz, hipchat, intellij-idea, istumbler, 
+iterm2, kaleidoscope, kvirc, mactex, mysqlworkbench, onepassword, pdftk, 
+pycharm, robomongo, silverlight, skype, snes9x, soundflower, sourcetree, 
+spotify, steam, teamviewer, transmission, vlc, xquartz
 
 Atom Packages: atom-soda-dark-ui, autocomplete-plulors, cursor-count, 
 file-icons, highlight-selected, indentation-indicator, language-diff, 

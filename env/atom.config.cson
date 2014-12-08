@@ -35,6 +35,7 @@
         "update-package-dependencies"
         "welcome"
         "wrap-guide"
+        "rainbow-selection"
       ]
       themes: [
         "atom-soda-dark-ui"

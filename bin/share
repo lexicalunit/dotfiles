@@ -13,9 +13,6 @@ usage()
     echo " * SHARE_DEST - the root of the shares directory on SHARE_HOST"
     echo " * SHARE_URI  - the base URI for shared files"
     exit 1
-export SHARE_DEST="/home/imnotbob/mainwebsite_html/shares"
-export SHARE_URI="http://shares.lexicalunit.com"
-
 }
 
 [[ -f "$HOME/.webshare" ]] || usage

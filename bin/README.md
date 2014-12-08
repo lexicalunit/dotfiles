@@ -508,8 +508,8 @@ Options:
                                      value "fixup_error" repairs broken URLs, but emits an error if this is not possible instead
                                      of searching.
     --ignore-config                  Do not read configuration files. When given in the global configuration file /etc/youtube-
-                                     dl.conf: do not read the user configuration in ~/.config/youtube-dl.conf (%APPDATA%/youtube-
-                                     dl/config.txt on Windows)
+                                     dl.conf: Do not read the user configuration in ~/.config/youtube-dl/config (%APPDATA
+                                     %/youtube-dl/config.txt on Windows)
     --flat-playlist                  Do not extract the videos of a playlist, only list them.
 
   Video Selection:

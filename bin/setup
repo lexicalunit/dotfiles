@@ -902,7 +902,7 @@ if [[ $LISTING == 0 ]]; then
     # Keep-alive sudo: update existing `sudo` time stamp until `.osx` has finished
     # See: https://github.com/mathiasbynens/dotfiles/blob/master/.osx
     show -i "This script is occasionally interactive, even in -f force mode."
-    show -i "Asking for sudo access once at the start, you should not be asked again."
+    show -i "Asking for sudo access once at the start, you should (hopefully) not be asked again."
     sudo -v
     while true; do sudo -n true; sleep 30; kill -0 "$$" || exit; done 2>/dev/null &
 fi

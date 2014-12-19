@@ -80,14 +80,15 @@ or of course just run the tools with the argument `--help`.
 | [`ff`](bin/ff) | Symbolic link to '/usr/local/bin/grind' |
 | [`flip`](bin/flip) | Flips input upside down. |
 | [`fm`](bin/fm) | Find in CMake files. |
+| [`git_name_change`](bin/git_name_change) | usage() |
 | [`git_push_topic`](bin/git_push_topic) | Force updates remote topic branch with local branch. |
+| [`git_reauthor`](bin/git_reauthor) | In git, change the author name and/or email of a single commit. |
 | [`install`](bin/install) | Installs everything to ~/bin. |
 | [`install_mysql`](bin/install_mysql) | Installs/uninstalls mysql from package. |
 | [`jsc`](bin/jsc) | Symbolic link to '/System/Library/Frameworks/JavaScriptCore.framewo... |
 | [`lt`](bin/lt) | Run shell command with a timeout. |
 | [`macosver`](bin/macosver) | Prints current OS X version information. |
 | [`nopw`](bin/nopw) | Enables password-less ssh TO username@remotehost FROM localhost. |
-| [`reauthor`](bin/reauthor) | In git, change the author name and/or email of a single commit. |
 | [`root`](bin/root) | Prints the root of the current repository. |
 | [`s`](bin/s) | Show git status for all directories in current directory. |
 | [`safari_cache`](bin/safari_cache) | Shows current Safari cache. |

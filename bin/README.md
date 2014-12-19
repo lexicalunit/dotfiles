@@ -210,10 +210,31 @@ Recursively Finds given pattern within CMake files.
 ```
 
 * * *
+### [`git_name_change`](bin/git_name_change)
+```
+./usages: line 63: ./git_name_change: Permission denied
+```
+
+* * *
 ### [`git_push_topic`](bin/git_push_topic)
 ```
 usage: git_push_topic [-h|--help]
 Preforms command 'git push -fu origin $BRANCH', force pushing feature branch up to remote origin.
+```
+
+* * *
+### [`git_reauthor`](bin/git_reauthor)
+```
+usage: git_reauthor [-f] commit-to-change [branch-to-rewrite [new-name [new-email]]]
+
+  If -f is supplied it is passed to 'git filter-branch'.
+
+  If <branch-to-rewrite> is not provided or is empty HEAD will be used.
+  Use '--all' or a space separated list (e.g. 'master next') to rewrite
+  multiple branches.
+
+  If <new-name> (or <new-email>) is not provided or is empty, the normal
+  user.name (user.email) Git configuration value will be used.
 ```
 
 * * *
@@ -270,21 +291,6 @@ Simply prints out the OS X major and minor version.
 ```
 usage: nopw [-h|-help] [ssh connection options] username@remotehost
 Puts your public ssh key in the authorized_keys on the remote host.
-```
-
-* * *
-### [`reauthor`](bin/reauthor)
-```
-usage: reauthor [-f] commit-to-change [branch-to-rewrite [new-name [new-email]]]
-
-  If -f is supplied it is passed to 'git filter-branch'.
-
-  If <branch-to-rewrite> is not provided or is empty HEAD will be used.
-  Use '--all' or a space separated list (e.g. 'master next') to rewrite
-  multiple branches.
-
-  If <new-name> (or <new-email>) is not provided or is empty, the normal
-  user.name (user.email) Git configuration value will be used.
 ```
 
 * * *
@@ -537,11 +543,11 @@ Options:
     --buffer-size SIZE               size of download buffer (e.g. 1024 or 16K) (default is 1024)
     --no-resize-buffer               do not automatically adjust the buffer size. By default, the buffer size is automatically
                                      resized from an initial value of SIZE.
+    --playlist-reverse               Download playlist videos in reverse order
 
   Filesystem Options:
     -a, --batch-file FILE            file containing URLs to download ('-' for stdin)
     --id                             use only video ID in file name
-    -A, --auto-number                number downloaded files starting from 00000
     -o, --output TEMPLATE            output filename template. Use %(title)s to get the title, %(uploader)s for the uploader name,
                                      %(uploader_id)s for the uploader nickname if different, %(autonumber)s to get an
                                      automatically incremented number, %(ext)s for the filename extension, %(format)s for the
@@ -557,6 +563,8 @@ Options:
     --autonumber-size NUMBER         Specifies the number of digits in %(autonumber)s when it is present in output filename
                                      template or --auto-number option is given
     --restrict-filenames             Restrict filenames to only ASCII characters, and avoid "&" and spaces in filenames
+    -A, --auto-number                [deprecated; use  -o "%(autonumber)s-%(title)s.%(ext)s" ] number downloaded files starting
+                                     from 00000
     -t, --title                      [deprecated] use title in file name (default)
     -l, --literal                    [deprecated] alias of --title
     -w, --no-overwrites              do not overwrite files

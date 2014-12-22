@@ -143,6 +143,13 @@ Bug reports to <enthought-dev@mail.enthought.com>.
 ```
 
 * * *
+### [`fart`](bin/fart)
+```
+usage: fart SECONDS [-h|--help]
+Sleeps for the given number of seconds, showing a progress bar.
+```
+
+* * *
 ### [`ff`](bin/ff)
 Symbolic link to '/usr/local/bin/grind'
 ```
@@ -212,7 +219,8 @@ Recursively Finds given pattern within CMake files.
 * * *
 ### [`git_name_change`](bin/git_name_change)
 ```
-./usages: line 63: ./git_name_change: Permission denied
+usage: git_name_change REPO_URL OLD_EMAIL NEW_NAME NEW_EMAIL
+clones the given repo, changing the name and email address in entire history
 ```
 
 * * *

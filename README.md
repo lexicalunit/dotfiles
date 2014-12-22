@@ -77,6 +77,7 @@ or of course just run the tools with the argument `--help`.
 | [`colortest`](bin/colortest) | Prints out an entire color palette of terminal color codes. |
 | [`die`](bin/die) | Kills processes based on process name. |
 | [`fa`](bin/fa) | Searches a codebase for given pattern. |
+| [`fart`](bin/fart) | Sleeps for the given number of seconds, showing a progress bar. |
 | [`ff`](bin/ff) | Symbolic link to '/usr/local/bin/grind' |
 | [`flip`](bin/flip) | Flips input upside down. |
 | [`fm`](bin/fm) | Find in CMake files. |

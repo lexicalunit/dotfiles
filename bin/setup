@@ -795,6 +795,7 @@ step_node()
     ensure_homebrew_updated
     install_brew_formula node
     run "npm update -g"
+    run "npm install -g npm@latest"
     IFS=' '
     for I in $NODE_MODULES; do
         run "npm install -g $I"

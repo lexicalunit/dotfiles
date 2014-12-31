@@ -52,7 +52,7 @@ show "Generating LICENSE..."
 cat >LICENSE <<EOF
 MIT License
 
-Copyright (c) $(date "+%Y"), amy@lexicalunit.com
+Copyright (c) $(date "+%Y"), lexicalunit@lexicalunit.com
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

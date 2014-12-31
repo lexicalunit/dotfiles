@@ -818,7 +818,7 @@ step_tiddlywiki()
         abort "Please run step node first"
     fi
 
-    run "mkdir -p $HOME/Library/LaunchDaemons"
+    run "mkdir -p $HOME/Library/LaunchAgents"
     run "cd $HOME"
     if [[ -d notes ]]; then
         show "$(tput smul)WARNING$(tput sgr0): NOT overwriting '$HOME/notes', assuming tiddlywiki already installed there!"
@@ -827,9 +827,10 @@ step_tiddlywiki()
     fi
 
     local TIDDLYWIKI_DOMAIN="org.tiddlywiki.server"
-    show "Creating $HOME/Library/LaunchDaemons/org.tiddlywiki.server.plist..."
+    local PLIST="$HOME/Library/LaunchAgents/$TIDDLYWIKI_DOMAIN.plist"
+    show "Creating $PLIST..."
     if [[ $DRYRUN == 0 ]]; then
-        cat >"$HOME/Library/LaunchDaemons/$TIDDLYWIKI_DOMAIN.plist" <<EOF
+        cat >"$PLIST" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -840,12 +841,22 @@ step_tiddlywiki()
         <key>WorkingDirectory</key>
         <string>$HOME</string>
 
+        <key>Program</key>
+        <string>$(which node)</string>
+
         <key>ProgramArguments</key>
         <array>
+            <string>$(which node)</string>
             <string>$(which tiddlywiki)</string>
             <string>notes</string>
             <string>--server</string>
         </array>
+
+        <key>StandardErrorPath</key>
+        <string>/tmp/notes.err.log</string>
+
+        <key>StandardOutPath</key>
+        <string>/tmp/notes.log</string>
 
         <key>RunAtLoad</key>
         <true/>
@@ -858,10 +869,11 @@ EOF
     fi
 
     show "Creating /etc/launchd.conf..."
+    run "sudo launchctl setenv PATH \"/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin\""
     run "echo 'setenv PATH \"/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin\"' | sudo tee /etc/launchd.config"
 
-    run "launchctl unload $HOME/Library/LaunchDaemons/org.tiddlywiki.server.plist"
-    run "launchctl load -w $HOME/Library/LaunchDaemons/org.tiddlywiki.server.plist"
+    run "launchctl unload '$PLIST'"
+    run "launchctl load -w '$PLIST'"
 
     show "TiddlyWiki setup at $HOME/notes"
     show "Server running at http://127.0.0.1:8080/"

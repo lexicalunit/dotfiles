@@ -591,6 +591,9 @@ step_brew()
         show "Homebrew already installed"
     fi
 
+    # fix permissions on /usr/local
+    run "sudo chown -R $(whoami) /usr/local"
+
     if [[ -z "$(which brew)" ]]; then
         abort "failed to install Homebrew"
     fi
@@ -794,8 +797,12 @@ step_node()
 {
     ensure_homebrew_updated
     install_brew_formula node
-    run "npm update -g"
+
+    # Homebrew Caveat
+    # If you update npm itself, do NOT use the npm update command.
+    # The upstream-recommended way to update npm is:
     run "npm install -g npm@latest"
+
     IFS=' '
     for I in $NODE_MODULES; do
         run "npm install -g $I"

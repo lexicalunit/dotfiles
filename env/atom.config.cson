@@ -44,6 +44,7 @@
 
     editor:
       autoIndentOnPaste: false
+      invisibles: {}
       normalizeIndentOnPaste: false
       showIndentGuide: true
       showInvisibles: true
@@ -69,6 +70,13 @@
         "git-diff": true
         "highlight-selected": true
         selection: true
+
+    "omni-ruler":
+      columns: [
+        73
+        80
+        100
+      ]
 
     "spell-check":
       grammars: [
@@ -107,11 +115,4 @@
 
     welcome:
       showOnStartup: false
-
-  "omni-ruler":
-    columns: [
-      73
-      80
-      100
-    ]
 }

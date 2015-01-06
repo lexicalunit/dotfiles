@@ -1,4 +1,8 @@
 {
+  ".coffee.source":
+    editor:
+      tabLength: 2
+
   ".erb.html.text":
     editor:
       tabLength: 2
@@ -44,7 +48,6 @@
 
     editor:
       autoIndentOnPaste: false
-      invisibles: {}
       normalizeIndentOnPaste: false
       showIndentGuide: true
       showInvisibles: true

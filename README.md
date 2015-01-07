@@ -171,7 +171,7 @@ Node Modules: coffee-script, cson, tiddlywiki, tmpin
 ```
 MIT License
 
-Copyright (c) 2014, amy@lexicalunit.com
+Copyright (c) 2015, lexicalunit@lexicalunit.com
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

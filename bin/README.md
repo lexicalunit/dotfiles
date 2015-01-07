@@ -500,7 +500,7 @@ usage: youtube2mp3 [-h|--help] [youtube-dl options] <youtube URL>
 Downloads the youtube video at the given URL and creates corresponding mp3.
 Uses the tool youtube-dl to do it's dirty work, so make sure that it's installed and up to date.
 
-Usage: youtube-dl [options] url [url...]
+Usage: youtube-dl [OPTIONS] URL [URL...]
 
 Options:
   General Options:

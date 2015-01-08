@@ -1,129 +1,169 @@
 {
-"*":
-  "bracket-matcher":
-    autocompleteSmartQuotes: false
+  "*":
+    "bracket-matcher":
+      autocompleteSmartQuotes: false
 
-  core:
-    disabledPackages: [
-      "autocomplete"
-      "exception-reporting"
-      "autoflow"
-      "autosave"
-      "background-tips"
-      "bookmarks"
-      "dev-live-reload"
-      "encoding-selector"
-      "language-mustache"
-      "language-toml"
-      "metrics"
-      "open-on-github"
-      "snippets"
-      "styleguide"
-      "update-package-dependencies"
-      "welcome"
-      "wrap-guide"
-      "rainbow-selection"
-    ]
-    themes: [
-      "atom-soda-dark-ui"
-      "monokai-soda"
-    ]
-
-  editor:
-    autoIndentOnPaste: false
-    invisibles: {}
-    showIndentGuide: true
-    showInvisibles: true
-    tabLength: 4
-
-  "event-watch":
-    data:
-      "-Northbound": [
-        "7:03"
-        "7:34"
-        "8:05"
-        "8:41"
-        "9:15"
-        "9:44"
-        "10:15"
-        "11:15"
-        "12:15"
-        "13:15"
-        "14:15"
-        "15:15"
-        "15:44"
-        "16:19"
-        "16:55"
-        "17:27"
-        "17:57"
-        "18:30"
+    core:
+      disabledPackages: [
+        "autocomplete"
+        "exception-reporting"
+        "autoflow"
+        "autosave"
+        "background-tips"
+        "bookmarks"
+        "dev-live-reload"
+        "encoding-selector"
+        "language-mustache"
+        "language-toml"
+        "metrics"
+        "open-on-github"
+        "snippets"
+        "styleguide"
+        "update-package-dependencies"
+        "welcome"
+        "wrap-guide"
+        "rainbow-selection"
+      ]
+      themes: [
+        "atom-soda-dark-ui"
+        "monokai-soda"
       ]
 
-    intervalMinutes: 5
+    editor:
+      autoIndentOnPaste: false
+      invisibles: {}
+      showIndentGuide: true
+      tabLength: 4
 
-  "git-diff":
-    showIconsInEditorGutter: true
+    "event-watch":
+      data:
+        Northbound: [
+          "7:03"
+          "7:34"
+          "8:05"
+          "8:41"
+          "9:15"
+          "9:44"
+          "10:15"
+          "11:15"
+          "12:15"
+          "13:15"
+          "14:15"
+          "15:15"
+          "15:44"
+          "16:19"
+          "16:55"
+          "17:27"
+          "17:57"
+          "18:30"
+        ]
+        Southbound: [
+          "6:24"
+          "6:56"
+          "7:27"
+          "7:58"
+          "8:34"
+          "9:09"
+          "9:38"
+          "10:38"
+          "11:38"
+          "12:38"
+          "13:38"
+          "14:38"
+          "15:09"
+          "15:38"
+          "16:13"
+          "16:43"
+          "17:19"
+          "17:51"
+        ]
 
-  "highlight-selected":
-    onlyHighlightWholeWords: true
+      displayFormat: "$title: $time"
+      refreshIntervalMinutes: 5
+      warnThresholdMinutes: 15
 
-  linter:
-    lintOnChange: false
+    "git-diff":
+      showIconsInEditorGutter: true
 
-  "linter-flake8":
-    maxLineLength: 120
+    "highlight-selected":
+      onlyHighlightWholeWords: true
 
-  "merge-conflicts":
-    gitPath: "/usr/local/bin/git"
+    linter:
+      lintOnChange: false
 
-  minimap:
-    plugins:
-      "git-diff": true
-      "highlight-selected": true
-      selection: true
+    "linter-flake8":
+      maxLineLength: 120
 
-  "omni-ruler":
-    columns: [
-      73
-      80
-      100
-    ]
+    "merge-conflicts":
+      gitPath: "/usr/local/bin/git"
 
-  "spell-check":
-    grammars: [
-      "source.gfm"
-      "text.plain.null-grammar"
-      "source.c++"
-      "source.litcoffee"
-      "source.css"
-      "text.git-commit"
-      "source.go"
-      "text.html.basic"
-      "source.java"
-      "source.js"
-      "source.json"
-      "source.css.less"
-      "source.makefile"
-      "source.plist"
-      "source.python"
-      "text.html.erb"
-      "source.shell"
-      "source.sql"
-      "text.plain"
-      "text.todo"
-      "source.yaml"
-    ]
+    minimap:
+      plugins:
+        "git-diff": true
+        "highlight-selected": true
 
-  "tree-view":
-    hideIgnoredNames: true
-    hideVcsIgnoredFiles: true
+    "omni-ruler":
+      columns: [
+        73
+        80
+        100
+      ]
 
-  "weather-package":
-    city: "Austin, Texas"
-    showInFahrenheit: true
-    showPressure: false
-    showTemperature: true
+    "spell-check":
+      grammars: [
+        "source.gfm"
+        "text.plain.null-grammar"
+        "source.c++"
+        "source.litcoffee"
+        "source.css"
+        "text.git-commit"
+        "source.go"
+        "text.html.basic"
+        "source.java"
+        "source.js"
+        "source.json"
+        "source.css.less"
+        "source.makefile"
+        "source.plist"
+        "source.python"
+        "text.html.erb"
+        "source.shell"
+        "source.sql"
+        "text.plain"
+        "text.todo"
+        "source.yaml"
+      ]
 
-  welcome:
-    showOnStartup: false
+    "tree-view":
+      hideIgnoredNames: true
+      hideVcsIgnoredFiles: true
+
+    "weather-package":
+      city: "Austin, Texas"
+      showInFahrenheit: true
+      showPressure: false
+      showTemperature: true
+
+    welcome:
+      showOnStartup: false
+
+  ".coffee.source":
+    editor:
+      tabLength: 2
+
+  ".erb.html.text":
+    editor:
+      tabLength: 2
+
+  ".litcoffee.source":
+    editor:
+      tabLength: 2
+
+  ".puppet.source":
+    editor:
+      tabLength: 2
+
+  ".ruby.source":
+    editor:
+      tabLength: 2
 }

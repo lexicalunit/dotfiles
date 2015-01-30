@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Clones a repo then changes the name and email address in entire history.
+
 usage()
 {
     echo "usage: ${0##*/} REPO_URL OLD_EMAIL NEW_NAME NEW_EMAIL" >&2

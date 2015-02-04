@@ -1,21 +1,20 @@
 #!/bin/bash
 
+# Installs bin and env from this repository to remote server via ssh.
+
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
+if echo "$*" | egrep -q -- "--help|-h" || [[ -z "$@" ]]; then
+	echo "usage: ${0##*/} SSH_ARGS"
+	echo "deploys setup source code to remote host."
+	exit 1
+fi
 
 set -e
 
 pushd "$(dirname "$0")" >/dev/null
-
-
-if [ ! "$1" ]; then
-	echo "usage: $0 HOST"
-	echo "deploys setup source code to remote HOST."
-	exit 1
-fi
-
-HOST="$1"
 REPO="$(basename "$(pwd)")"
 
-run "tar zcf - --exclude .git '../$REPO' | ssh $HOST 'tar xzf -'"
-run "ssh $HOST 'set -e; pushd '$REPO'; yes | ./install; popd; rm -rf setup'"
+run "tar zcf - --exclude .git '../$REPO' | ssh $* 'tar xzf -'"
+run "ssh $* 'set -e; pushd '$REPO'; yes | ./install; popd; rm -rf setup'"
 show "deployment complete!"

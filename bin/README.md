@@ -374,9 +374,9 @@ pycharm, robomongo, silverlight, skype, snes9x, soundflower, sourcetree,
 spotify, steam, teamviewer, transmission, vlc, xquartz
 
 Atom Packages: atom-soda-dark-ui, autocomplete-plus, cursor-count, file-icons, 
-highlight-selected, indentation-indicator, language-applescript, language-diff, 
-language-latex, language-puppet, linter, linter-clang, linter-csslint, 
-linter-erb, linter-flake8, linter-puppet, linter-puppet-lint, 
+git-blame, highlight-selected, indentation-indicator, language-applescript, 
+language-diff, language-latex, language-puppet, linter, linter-clang, 
+linter-csslint, linter-erb, linter-flake8, linter-puppet, linter-puppet-lint, 
 linter-shellcheck, linter-tidy, minimap, minimap-git-diff, 
 minimap-highlight-selected, minimap-selection, monokai-soda, next-occurrence, 
 omni-ruler, rainbow-selection, red-wavy-underline, select-line, set-syntax, 
@@ -514,9 +514,6 @@ Options:
     --dump-user-agent                display the current browser identification
     --list-extractors                List all supported extractors and the URLs they would handle
     --extractor-descriptions         Output descriptions of all supported extractors
-    --proxy URL                      Use the specified HTTP/HTTPS proxy. Pass in an empty string (--proxy "") for direct
-                                     connection
-    --socket-timeout None            Time to wait before giving up, in seconds
     --default-search PREFIX          Use this prefix for unqualified URLs. For example "gvsearch2:" downloads two videos from
                                      google videos for  youtube-dl "large apple". Use the value "auto" to let youtube-dl guess
                                      ("auto_warning" to emit a warning when guessing). "error" just throws an error. The default
@@ -527,9 +524,21 @@ Options:
                                      %/youtube-dl/config.txt on Windows)
     --flat-playlist                  Do not extract the videos of a playlist, only list them.
 
+  Network Options:
+    --proxy URL                      Use the specified HTTP/HTTPS proxy. Pass in an empty string (--proxy "") for direct
+                                     connection
+    --socket-timeout SECONDS         Time to wait before giving up, in seconds
+    --source-address IP              Client-side IP address to bind to (experimental)
+    -4, --force-ipv4                 Make all connections via IPv4 (experimental)
+    -6, --force-ipv6                 Make all connections via IPv6 (experimental)
+
   Video Selection:
     --playlist-start NUMBER          playlist video to start at (default is 1)
     --playlist-end NUMBER            playlist video to end at (default is last)
+    --playlist-items ITEM_SPEC       playlist video items to download. Specify indices of the videos in the playlist seperated by
+                                     commas like: "--playlist-items 1,2,5,8" if you want to download videos indexed 1, 2, 5, 8 in
+                                     the playlist. You can specify range: "--playlist-items 1-3,7,10-13", it will download the
+                                     videos at index 1, 2, 3, 7, 10, 11, 12 and 13.
     --match-title REGEX              download only matching titles (regex or caseless sub-string)
     --reject-title REGEX             skip download for matching titles (regex or caseless sub-string)
     --max-downloads NUMBER           Abort after downloading NUMBER files
@@ -548,11 +557,13 @@ Options:
 
   Download Options:
     -r, --rate-limit LIMIT           maximum download rate in bytes per second (e.g. 50K or 4.2M)
-    -R, --retries RETRIES            number of retries (default is 10)
+    -R, --retries RETRIES            number of retries (default is 10), or "infinite".
     --buffer-size SIZE               size of download buffer (e.g. 1024 or 16K) (default is 1024)
     --no-resize-buffer               do not automatically adjust the buffer size. By default, the buffer size is automatically
                                      resized from an initial value of SIZE.
     --playlist-reverse               Download playlist videos in reverse order
+    --xattr-set-filesize             (experimental) set file xattribute ytdl.filesize with expected filesize
+    --external-downloader COMMAND    (experimental) Use the specified external downloader. Currently supports aria2c,curl,wget
 
   Filesystem Options:
     -a, --batch-file FILE            file containing URLs to download ('-' for stdin)
@@ -585,7 +596,6 @@ Options:
     --write-description              write video description to a .description file
     --write-info-json                write video metadata to a .info.json file
     --write-annotations              write video annotations to a .annotation file
-    --write-thumbnail                write thumbnail image to disk
     --load-info FILE                 json file containing the video information (created with the "--write-json" option)
     --cookies FILE                   file to read cookies from and dump cookie jar in
     --cache-dir DIR                  Location in the filesystem where youtube-dl can store some downloaded information
@@ -594,6 +604,11 @@ Options:
                                      change.
     --no-cache-dir                   Disable filesystem caching
     --rm-cache-dir                   Delete all filesystem cache files
+
+  Thumbnail images:
+    --write-thumbnail                write thumbnail image to disk
+    --write-all-thumbnails           write all thumbnail image formats to disk
+    --list-thumbnails                Simulate and list all available thumbnail formats
 
   Verbosity / Simulation Options:
     -q, --quiet                      activates quiet mode
@@ -611,6 +626,7 @@ Options:
     -j, --dump-json                  simulate, quiet but print JSON information. See --output for a description of available keys.
     -J, --dump-single-json           simulate, quiet but print JSON information for each command-line argument. If the URL refers
                                      to a playlist, dump the whole playlist information in a single line.
+    --print-json                     Be quiet and print the video information as JSON (video is still being downloaded).
     --newline                        output progress bar as new lines
     --no-progress                    do not print progress bar
     --console-title                  display progress in console titlebar
@@ -618,6 +634,8 @@ Options:
     --dump-intermediate-pages        print downloaded pages to debug problems (very verbose)
     --write-pages                    Write downloaded intermediary pages to files in the current directory to debug problems
     --print-traffic                  Display sent and read HTTP traffic
+    -C, --call-home                  Contact the youtube-dl server for debugging.
+    --no-call-home                   Do NOT contact the youtube-dl server for debugging.
 
   Workarounds:
     --encoding ENCODING              Force the specified encoding (experimental)
@@ -630,20 +648,29 @@ Options:
                                      multiple times
     --bidi-workaround                Work around terminals that lack bidirectional text support. Requires bidiv or fribidi
                                      executable in PATH
+    --sleep-interval SECONDS         Number of seconds to sleep before each download.
 
   Video Format Options:
     -f, --format FORMAT              video format code, specify the order of preference using slashes, as in -f 22/17/18 .
                                      Instead of format codes, you can select by extension for the extensions aac, m4a, mp3, mp4,
                                      ogg, wav, webm. You can also use the special names "best", "bestvideo", "bestaudio", "worst".
-                                     By default, youtube-dl will pick the best quality. Use commas to download multiple audio
-                                     formats, such as -f  136/137/mp4/bestvideo,140/m4a/bestaudio. You can merge the video and
-                                     audio of two formats into a single file using -f <video-format>+<audio-format> (requires
-                                     ffmpeg or avconv), for example -f bestvideo+bestaudio.
+                                     You can filter the video results by putting a condition in brackets, as in -f
+                                     "best[height=720]" (or -f "[filesize>10M]").  This works for filesize, height, width, tbr,
+                                     abr, vbr, and fps and the comparisons <, <=, >, >=, =, != . Formats for which the value is
+                                     not known are excluded unless you put a question mark (?) after the operator. You can combine
+                                     format filters, so  -f "[height <=? 720][tbr>500]" selects up to 720p videos (or videos where
+                                     the height is not known) with a bitrate of at least 500 KBit/s. By default, youtube-dl will
+                                     pick the best quality. Use commas to download multiple audio formats, such as -f
+                                     136/137/mp4/bestvideo,140/m4a/bestaudio. You can merge the video and audio of two formats
+                                     into a single file using -f <video-format>+<audio-format> (requires ffmpeg or avconv), for
+                                     example -f bestvideo+bestaudio.
     --all-formats                    download all available video formats
     --prefer-free-formats            prefer free video formats unless a specific one is requested
     --max-quality FORMAT             highest quality format to download
     -F, --list-formats               list all available formats
     --youtube-skip-dash-manifest     Do not download the DASH manifest on YouTube videos
+    --merge-output-format FORMAT     If a merge is required (e.g. bestvideo+bestaudio), output to given container format. One of
+                                     mkv, mp4, ogg, webm, flv.Ignored if no merge is required
 
   Subtitle Options:
     --write-sub                      write subtitle file
@@ -656,7 +683,7 @@ Options:
 
   Authentication Options:
     -u, --username USERNAME          login with this account ID
-    -p, --password PASSWORD          account password
+    -p, --password PASSWORD          account password. If this option is left out, youtube-dl will ask interactively.
     -2, --twofactor TWOFACTOR        two-factor auth code
     -n, --netrc                      use .netrc authentication data
     --video-password PASSWORD        video password (vimeo, smotri)
@@ -673,6 +700,8 @@ Options:
     --embed-thumbnail                embed thumbnail in the audio as cover art
     --add-metadata                   write metadata to the video file
     --xattrs                         write metadata to the video file's xattrs (using dublin core and xdg standards)
+    --fixup POLICY                   Automatically correct known faults of the file. One of never (do nothing), warn (only emit a
+                                     warning), detect_or_warn(the default; fix file if we can, warn otherwise)
     --prefer-avconv                  Prefer avconv over ffmpeg for running the postprocessors (default)
     --prefer-ffmpeg                  Prefer ffmpeg over avconv for running the postprocessors
     --exec CMD                       Execute a command on the file after downloading, similar to find's -exec syntax. Example:

@@ -145,9 +145,9 @@ pycharm, robomongo, silverlight, skype, snes9x, soundflower, sourcetree,
 spotify, steam, teamviewer, transmission, vlc, xquartz
 
 Atom Packages: atom-soda-dark-ui, autocomplete-plus, cursor-count, file-icons, 
-highlight-selected, indentation-indicator, language-applescript, language-diff, 
-language-latex, language-puppet, linter, linter-clang, linter-csslint, 
-linter-erb, linter-flake8, linter-puppet, linter-puppet-lint, 
+git-blame, highlight-selected, indentation-indicator, language-applescript, 
+language-diff, language-latex, language-puppet, linter, linter-clang, 
+linter-csslint, linter-erb, linter-flake8, linter-puppet, linter-puppet-lint, 
 linter-shellcheck, linter-tidy, minimap, minimap-git-diff, 
 minimap-highlight-selected, minimap-selection, monokai-soda, next-occurrence, 
 omni-ruler, rainbow-selection, red-wavy-underline, select-line, set-syntax, 

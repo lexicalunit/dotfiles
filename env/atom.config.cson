@@ -83,6 +83,7 @@
     refreshIntervalMinutes: 5
     warnThresholdMinutes: 15
 
+  "git-blame": {}
   "git-diff":
     showIconsInEditorGutter: true
 

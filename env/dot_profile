@@ -553,7 +553,12 @@ alias ssh='ssh -Y -C ' # use compression over ssh connections
 
 fpdf()
 {
-     pdf2ps "$1" - | ps2pdf - "f$1"
+    pdf2ps "$1" - | ps2pdf - "f$1"
+}
+
+running_in_docker()
+{
+    awk -F/ '$2 == "docker"' /proc/self/cgroup | read
 }
 
 lw()

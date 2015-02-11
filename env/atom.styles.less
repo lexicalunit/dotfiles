@@ -39,3 +39,330 @@ atom-text-editor {
         text-shadow: none;
     }
 }
+
+.markdown-preview {
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+    word-wrap: break-word;
+
+    a {
+      background: transparent;
+    }
+
+    a:active,
+    a:hover {
+        outline: 0;
+    }
+
+    strong {
+        font-weight: bold;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    img {
+        border: 0;
+    }
+
+    hr {
+        box-sizing: content-box;
+        height: 0;
+    }
+
+    pre {
+        overflow: auto;
+    }
+
+    code, pre {
+        font-size: 1em;
+    }
+
+    input {
+        color: inherit;
+        font: inherit;
+        margin: 0;
+    }
+
+    html input[disabled] {
+        cursor: default;
+    }
+
+    input {
+        line-height: normal;
+    }
+
+    input[type="checkbox"] {
+        box-sizing: border-box;
+        padding: 0;
+    }
+
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    td, th {
+        padding: 0;
+    }
+
+    a {
+        color: #4183c4;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        text-decoration: underline;
+    }
+
+    hr {
+        height: 0;
+        margin: 15px 0;
+        overflow: hidden;
+        background: transparent;
+        border: 0;
+        border-bottom: 1px solid #ddd;
+    }
+
+    hr:before {
+        display: table;
+        content: "";
+    }
+
+    hr:after {
+        display: table;
+        clear: both;
+        content: "";
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        line-height: 1.1;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 21px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    h4 {
+        font-size: 14px;
+    }
+
+    h5 {
+        font-size: 12px;
+    }
+
+    h6 {
+        font-size: 11px;
+    }
+
+    blockquote {
+        margin: 0;
+    }
+
+    ul,
+    ol {
+        padding: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    ol ol,
+    ul ol {
+        list-style-type: lower-roman;
+    }
+
+    ul ul ol,
+    ul ol ol,
+    ol ul ol,
+    ol ol ol {
+        list-style-type: lower-alpha;
+    }
+
+    dd {
+        margin-left: 0;
+    }
+
+    pre {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    h1 {
+        font-size: 2.25em;
+        line-height: 1.2;
+    }
+
+    h2 {
+        font-size: 1.75em;
+        line-height: 1.225;
+    }
+
+    h3 {
+        font-size: 1.5em;
+        line-height: 1.43;
+    }
+
+    h4 {
+        font-size: 1.25em;
+    }
+
+    h5 {
+        font-size: 1em;
+    }
+
+    h6 {
+        font-size: 1em;
+        color: #777;
+    }
+
+    p,
+    blockquote,
+    ul,
+    ol,
+    dl,
+    table,
+    pre {
+        margin-top: 0;
+        margin-bottom: 16px;
+    }
+
+    hr {
+        height: 4px;
+        padding: 0;
+        margin: 16px 0;
+        background-color: #e7e7e7;
+        border: 0 none;
+    }
+
+    ul,
+    ol {
+        padding-left: 2em;
+    }
+
+    ul ul,
+    ul ol,
+    ol ol,
+    ol ul {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    li>p {
+        margin-top: 16px;
+    }
+
+    dl {
+        padding: 0;
+    }
+
+    dl dt {
+        padding: 0;
+        margin-top: 16px;
+        font-size: 1em;
+        font-style: italic;
+        font-weight: bold;
+    }
+
+    dl dd {
+        padding: 0 16px;
+        margin-bottom: 16px;
+    }
+
+    blockquote {
+        padding: 0 15px;
+        color: #777;
+        border-left: 4px solid #ddd;
+    }
+
+    blockquote>:first-child {
+        margin-top: 0;
+    }
+
+    blockquote>:last-child {
+        margin-bottom: 0;
+    }
+
+    table {
+        display: block;
+        width: 100%;
+        overflow: auto;
+        word-break: normal;
+        word-break: keep-all;
+    }
+
+    table th {
+        font-weight: bold;
+    }
+
+    table th,
+    table td {
+        padding: 6px 13px;
+        border: 1px solid #ddd;
+    }
+
+    table tr {
+        background-color: #fff;
+        border-top: 1px solid #ccc;
+    }
+
+    table tr:nth-child(2n) {
+        background-color: #f8f8f8;
+    }
+
+    img {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    code {
+        padding: 0;
+        padding-top: 0.2em;
+        padding-bottom: 0.2em;
+        margin: 0;
+        font-size: 85%;
+        background-color: rgba(0,0,0,0.04);
+        border-radius: 3px;
+    }
+
+    code:before,
+    code:after {
+        letter-spacing: -0.2em;
+        content: "\00a0";
+    }
+
+    atom-text-editor {
+      padding: 10;
+      margin: 0;
+      font-size: 100%;
+      word-break: normal;
+      white-space: pre;
+      background: #222;
+      border: 0;
+    }
+
+    pre {
+        word-wrap: normal;
+    }
+
+    pre atom-text-editor:before,
+    pre atom-text-editor:after {
+        content: normal;
+    }
+}

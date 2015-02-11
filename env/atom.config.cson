@@ -96,6 +96,7 @@
   "linter-flake8":
     maxLineLength: 120
 
+  "markdown-preview": {}
   "merge-conflicts":
     gitPath: "/usr/local/bin/git"
 

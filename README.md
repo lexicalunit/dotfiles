@@ -76,6 +76,7 @@ or of course just run the tools with the argument `--help`.
 | [`capture`](bin/capture) | Creates a screenshot of selected window on X11. |
 | [`colortest`](bin/colortest) | Prints out an entire color palette of terminal color codes. |
 | [`die`](bin/die) | Kills processes based on process name. |
+| [`docker_clean`](bin/docker_clean) | Delete all docker containers and images. |
 | [`fa`](bin/fa) | Searches a codebase for given pattern. |
 | [`fart`](bin/fart) | Sleeps for the given number of seconds, showing a progress bar. |
 | [`ff`](bin/ff) | Symbolic link to '/usr/local/bin/grind' |

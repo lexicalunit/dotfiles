@@ -152,8 +152,7 @@ linter-csslint, linter-erb, linter-flake8, linter-puppet, linter-puppet-lint,
 linter-shellcheck, linter-tidy, minimap, minimap-git-diff, 
 minimap-highlight-selected, minimap-selection, monokai-soda, next-occurrence, 
 omni-ruler, rainbow-selection, red-wavy-underline, select-line, set-syntax, 
-snake, soft-wrap-indicator, sort-lines, tab-control, tabs-to-spaces, 
-weather-package
+snake, soft-wrap-indicator, sort-lines, tab-control, tabs-to-spaces
 
 Pip Packages: beautifulsoup4, bson, fabric, flake8, google-api-python-client, 
 httplib2, iniparse, oauth2client, pep8, psycopg2, pyflakes, pymongo, pytz, 

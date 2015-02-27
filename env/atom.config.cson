@@ -1,5 +1,6 @@
 {
 "*":
+  "autocomplete-plus": {}
   "bracket-matcher":
     autocompleteSmartQuotes: false
 
@@ -31,7 +32,6 @@
 
   editor:
     autoIndentOnPaste: false
-    fontSize: 17
     invisibles: {}
     showIndentGuide: true
     showInvisibles: true

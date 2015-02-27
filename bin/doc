@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Builds HTML output from Markdown file.
+
+if [[ "$1" == "--help" || "$1" == "-h" || -z "$1" ]]; then
+    echo "usage: ${0##*/} [-h|--help] FILE.md" 1>&2
+    echo "Converts FILE.md into FILE.html using github markdown CSS style." 1>&2
+    exit 1
+fi
+
+SRC="$1"
+TGT="$(basename "$1" .md).html"
+pandoc "$SRC" \
+        --css http://shares.lexicalunit.com/github-markdown.css \
+        -t html \
+        -s \
+        -o "$TGT" \
+    && open "$TGT"

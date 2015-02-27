@@ -150,10 +150,11 @@ Atom Packages: atom-soda-dark-ui, autocomplete-plus, cursor-count, file-icons,
 git-blame, highlight-selected, indentation-indicator, language-applescript, 
 language-diff, language-latex, language-puppet, linter, linter-clang, 
 linter-csslint, linter-erb, linter-flake8, linter-puppet, linter-puppet-lint, 
-linter-shellcheck, linter-tidy, minimap, minimap-git-diff, 
-minimap-highlight-selected, minimap-selection, monokai-soda, next-occurrence, 
-omni-ruler, rainbow-selection, red-wavy-underline, select-line, set-syntax, 
-snake, soft-wrap-indicator, sort-lines, tab-control, tabs-to-spaces
+linter-shellcheck, linter-tidy, minimap, minimap-find-and-replace, 
+minimap-git-diff, minimap-highlight-selected, minimap-selection, monokai-soda, 
+next-occurrence, omni-ruler, rainbow-selection, red-wavy-underline, 
+select-line, set-syntax, snake, soft-wrap-indicator, sort-lines, tab-control, 
+tabs-to-spaces, trailing-spaces
 
 Pip Packages: beautifulsoup4, bson, fabric, flake8, google-api-python-client, 
 httplib2, iniparse, oauth2client, pep8, psycopg2, pyflakes, pymongo, pytz, 

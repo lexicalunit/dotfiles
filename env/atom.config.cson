@@ -24,8 +24,8 @@
 			"rainbow-selection"
 		]
 		themes: [
-			"atom-soda-dark-ui"
-			"monokai-soda"
+			"isotope-ui"
+			"monokai"
 		]
 	editor:
 		autoIndentOnPaste: false
@@ -83,6 +83,16 @@
 		showIconsInEditorGutter: true
 	"highlight-selected":
 		onlyHighlightWholeWords: true
+	"isotope-ui":
+		backgroundColor: "false"
+		customBackgroundColorPicker:
+			alpha: 1
+			blue: 19
+			green: 59
+			red: 33
+		fontFamily: "Cantarell"
+		fontWeight: "Regular"
+		lowContrastTooltip: true
 	linter:
 		lintOnChange: false
 	"linter-flake8":
@@ -92,6 +102,7 @@
 		gitPath: "/usr/local/bin/git"
 	minimap:
 		plugins:
+			"find-and-replace": true
 			"git-diff": true
 			"highlight-selected": true
 			selection: true

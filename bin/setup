@@ -24,15 +24,15 @@ HOMEBREW_CASKS="                                                               \
     teamviewer transmission vlc xquartz"
 
 ATOM_PACKAGES="                                                                \
-    atom-soda-dark-ui autocomplete-plus cursor-count file-icons git-blame      \
-    highlight-selected indentation-indicator language-applescript              \
+    autocomplete-plus cursor-count event-watch file-icons git-blame            \
+    highlight-selected indentation-indicator isotope-ui language-applescript   \
     language-diff language-latex language-puppet linter linter-clang           \
     linter-csslint linter-erb linter-flake8 linter-puppet linter-puppet-lint   \
     linter-shellcheck linter-tidy minimap minimap-find-and-replace             \
-    minimap-git-diff minimap-highlight-selected minimap-selection monokai-soda \
+    minimap-git-diff minimap-highlight-selected minimap-selection              \
     next-occurrence omni-ruler rainbow-selection red-wavy-underline            \
     select-line set-syntax snake soft-wrap-indicator sort-lines tab-control    \
-    tabs-to-spaces trailing-spaces"
+    tabs-to-spaces todo-show toggle-quotes trailing-spaces"
 
 PIP_PACKAGES="                                                                 \
     beautifulsoup4 bson fabric flake8 google-api-python-client httplib2        \
@@ -672,6 +672,14 @@ step_atom()
         install_atom_pkg "$I"
     done
     run "apm upgrade --confirm false"
+
+    IFS=$'\n'
+    for I in $(apm list -bi); do
+        name="${I%@*}"
+        if ! echo "$ATOM_PACKAGES" | grep -q "$name"; then
+            show -i "$I installed but not managed by setup"
+        fi
+    done
 }
 
 ################################################################################
@@ -924,14 +932,14 @@ fi
 
 [[ $1 == all ]] && ALL=1
 
-if [[ $LISTING == 0 ]]; then
-    # Keep-alive sudo: update existing `sudo` time stamp until `.osx` has finished
-    # See: https://github.com/mathiasbynens/dotfiles/blob/master/.osx
-    show -i "This script is occasionally interactive, even in -f force mode."
-    show -i "Asking for sudo access once at the start, you should (hopefully) not be asked again."
-    sudo -v
-    while true; do sudo -n true; sleep 30; kill -0 "$$" || exit; done 2>/dev/null &
-fi
+# if [[ $LISTING == 0 ]]; then
+#     # Keep-alive sudo: update existing `sudo` time stamp until `.osx` has finished
+#     # See: https://github.com/mathiasbynens/dotfiles/blob/master/.osx
+#     show -i "This script is occasionally interactive, even in -f force mode."
+#     show -i "Asking for sudo access once at the start, you should (hopefully) not be asked again."
+#     sudo -v
+#     while true; do sudo -n true; sleep 30; kill -0 "$$" || exit; done 2>/dev/null &
+# fi
 
 # key;  question
 steps=(

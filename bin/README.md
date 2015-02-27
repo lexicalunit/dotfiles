@@ -535,6 +535,7 @@ Options:
                                      dl.conf: Do not read the user configuration in ~/.config/youtube-dl/config (%APPDATA
                                      %/youtube-dl/config.txt on Windows)
     --flat-playlist                  Do not extract the videos of a playlist, only list them.
+    --no-color                       Do not emit color codes in output.
 
   Network Options:
     --proxy URL                      Use the specified HTTP/HTTPS proxy. Pass in an empty string (--proxy "") for direct
@@ -561,6 +562,14 @@ Options:
     --dateafter DATE                 download only videos uploaded on or after this date (i.e. inclusive)
     --min-views COUNT                Do not download any videos with less than COUNT views
     --max-views COUNT                Do not download any videos with more than COUNT views
+    --match-filter FILTER            (Experimental) Generic video filter. Specify any key (see help for -o for a list of available
+                                     keys) to match if the key is present, !key to check if the key is not present,key > NUMBER
+                                     (like "comment_count > 12", also works with >=, <, <=, !=, =) to compare against a number,
+                                     and & to require multiple matches. Values which are not known are excluded unless you put a
+                                     question mark (?) after the operator.For example, to only match videos that have been liked
+                                     more than 100 times and disliked less than 50 times (or the dislike functionality is not
+                                     available at the given service), but who also have a description, use  --match-filter
+                                     "like_count > 100 & dislike_count <? 50 & description" .
     --no-playlist                    If the URL refers to a video and a playlist, download only the video.
     --age-limit YEARS                download only videos suitable for the given age
     --download-archive FILE          Download only videos not listed in the archive file. Record the IDs of all downloaded videos
@@ -575,6 +584,7 @@ Options:
                                      resized from an initial value of SIZE.
     --playlist-reverse               Download playlist videos in reverse order
     --xattr-set-filesize             (experimental) set file xattribute ytdl.filesize with expected filesize
+    --hls-prefer-native              (experimental) Use the native HLS downloader instead of ffmpeg.
     --external-downloader COMMAND    (experimental) Use the specified external downloader. Currently supports aria2c,curl,wget
 
   Filesystem Options:
@@ -668,11 +678,12 @@ Options:
                                      ogg, wav, webm. You can also use the special names "best", "bestvideo", "bestaudio", "worst".
                                      You can filter the video results by putting a condition in brackets, as in -f
                                      "best[height=720]" (or -f "[filesize>10M]").  This works for filesize, height, width, tbr,
-                                     abr, vbr, and fps and the comparisons <, <=, >, >=, =, != . Formats for which the value is
-                                     not known are excluded unless you put a question mark (?) after the operator. You can combine
-                                     format filters, so  -f "[height <=? 720][tbr>500]" selects up to 720p videos (or videos where
-                                     the height is not known) with a bitrate of at least 500 KBit/s. By default, youtube-dl will
-                                     pick the best quality. Use commas to download multiple audio formats, such as -f
+                                     abr, vbr, asr, and fps and the comparisons <, <=, >, >=, =, != and for ext, acodec, vcodec,
+                                     container, and protocol and the comparisons =, != . Formats for which the value is not known
+                                     are excluded unless you put a question mark (?) after the operator. You can combine format
+                                     filters, so  -f "[height <=? 720][tbr>500]" selects up to 720p videos (or videos where the
+                                     height is not known) with a bitrate of at least 500 KBit/s. By default, youtube-dl will pick
+                                     the best quality. Use commas to download multiple audio formats, such as -f
                                      136/137/mp4/bestvideo,140/m4a/bestaudio. You can merge the video and audio of two formats
                                      into a single file using -f <video-format>+<audio-format> (requires ffmpeg or avconv), for
                                      example -f bestvideo+bestaudio.
@@ -689,7 +700,7 @@ Options:
     --write-auto-sub                 write automatic subtitle file (youtube only)
     --all-subs                       downloads all the available subtitles of the video
     --list-subs                      lists all available subtitles for the video
-    --sub-format FORMAT              subtitle format (default=srt) ([sbv/vtt] youtube only)
+    --sub-format FORMAT              subtitle format, accepts formats preference, for example: "ass/srt/best"
     --sub-lang LANGS                 languages of the subtitles to download (optional) separated by commas, use IETF language tags
                                      like 'en,pt'
 
@@ -716,6 +727,8 @@ Options:
                                      warning), detect_or_warn(the default; fix file if we can, warn otherwise)
     --prefer-avconv                  Prefer avconv over ffmpeg for running the postprocessors (default)
     --prefer-ffmpeg                  Prefer ffmpeg over avconv for running the postprocessors
+    --ffmpeg-location PATH           Location of the ffmpeg/avconv binary; either the path to the binary or its containing
+                                     directory.
     --exec CMD                       Execute a command on the file after downloading, similar to find's -exec syntax. Example:
                                      --exec 'adb push {} /sdcard/Music/ && rm {}'
 ```

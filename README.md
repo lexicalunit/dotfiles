@@ -130,21 +130,25 @@ see below for the list of items that will be installed when that step runs.
 | node | Ensure Node modules are installed |
 | tiddlywiki | Install and setup latest TiddlyWiki from Homebrew |
 
-Homebrew Formulas: autoconf, boost, caskroom/cask/brew-cask, cmake, coreutils, 
-cppunit, dmd, doxygen, fontconfig, freetype, geoip, ghostscript, git, gnu-sed, 
-imagemagick, jbig2dec, jhead, jpeg, jq, libevent, libmpc, libpng, libtiff, 
-libtool, libyaml, little-cms2, maven, memcached, mercurial, mongodb, ncftp, 
-node, onepass, openssl, ossp-uuid, pandoc, pcre, pidof, pkg-config, plotutils, 
-pngquant, postgresql, readline, ruby, s3cmd, scons, shellcheck, sloccount, 
-spark, sqlite, tree, unixodbc, unrar, watch, wget, xz, yaml-cpp, youtube-dl
+Homebrew Formulas: autoconf, automake, bash, bison, boost, boot2docker, 
+caskroom/cask/brew-cask, cloog, cmake, coreutils, cppunit, dmd, docker, 
+doxygen, faac, ffmpeg, fontconfig, freetype, geoip, ghostscript, gifify, git, 
+gmp, gnu-sed, gnu-tar, graphviz, htop-osx, imagemagick, isl, jbig2dec, jhead, 
+jpeg, jq, lame, libevent, libmpc, libpng, libtiff, libtool, libvo-aacenc, 
+libyaml, little-cms2, maven, md5sha1sum, memcached, mercurial, mongodb, mpfr, 
+ncftp, node, onepass, openssl, ossp-uuid, pandoc, pcre, pidof, pkg-config, 
+plotutils, pngquant, postgresql, readline, ruby, s3cmd, scons, sdl2, 
+sdl2_image, shellcheck, sloccount, spark, sqlite, storm, tree, unixodbc, unrar, 
+vramsteg, watch, webp, wget, x264, xvid, xz, yaml-cpp, youtube-dl, zsh, 
+zsh-completions, gdbm
 
 Homebrew Casks: adium, amazon-music, atom, audacity, balsamiq-mockups, 
-caffeine, caskroom/versions/java7, chromecast, clamxav, cyberduck, 
+battle-net, caffeine, caskroom/versions/java7, chromecast, clamxav, cyberduck, 
 dbvisualizer, disk-inventory-x, dropbox, evernote, firefox, flux, gimp-lisanet, 
-google-chrome, google-hangouts, graphviz, hipchat, intellij-idea, istumbler, 
-iterm2, kaleidoscope, kvirc, mactex, mysqlworkbench, onepassword, pdftk, 
-pycharm, robomongo, silverlight, skype, snes9x, soundflower, sourcetree, 
-spotify, steam, teamviewer, transmission, vlc, xquartz
+google-chrome, google-hangouts, hipchat, intellij-idea, istumbler, iterm2, 
+kaleidoscope, kvirc, mactex, mysqlworkbench, onepassword, pdftk, pycharm-ce, 
+robomongo, silverlight, skype, snes9x, soundflower, sourcetree, spotify, steam, 
+teamviewer, texstudio, transmission, vlc, xquartz
 
 Atom Packages: autocomplete-plus, cursor-count, event-watch, file-icons, 
 git-blame, highlight-selected, indentation-indicator, isotope-ui, 
@@ -152,23 +156,57 @@ language-applescript, language-diff, language-latex, language-puppet, linter,
 linter-clang, linter-csslint, linter-erb, linter-flake8, linter-puppet, 
 linter-puppet-lint, linter-shellcheck, linter-tidy, minimap, 
 minimap-find-and-replace, minimap-git-diff, minimap-highlight-selected, 
-minimap-selection, next-occurrence, omni-ruler, rainbow-selection, 
-red-wavy-underline, select-line, set-syntax, snake, soft-wrap-indicator, 
-sort-lines, tab-control, tabs-to-spaces, todo-show, toggle-quotes, 
-trailing-spaces
+minimap-selection, monokai, omni-ruler, rainbow-selection, set-syntax, 
+soft-wrap-indicator, sort-lines, tab-control, tabs-to-spaces, todo-show, 
+toggle-quotes, trailing-spaces
 
-Pip Packages: beautifulsoup4, bson, fabric, flake8, google-api-python-client, 
-httplib2, iniparse, oauth2client, pep8, psycopg2, pyflakes, pymongo, pytz, 
-requests, suds, termcolor, tinycss, uritemplate
+Pip Packages: anyjson, backports.ssl-match-hostname, beautifulsoup4, bson, 
+fabric, flake8, google-api-python-client, httplib2, iniparse, oauth2client, 
+pep8, psycopg2, pyasn1-modules, pydruid, pyflakes, pymongo, python-cson, 
+python-dateutil, pytz, requests, rsa, simplejson, suds, tables, termcolor, 
+tinycss, uritemplate, wsgiref
 
-Conda Packages: argcomplete, dateutil, pyzmq
+Conda Packages: abstract-rendering, anaconda, argcomplete, astropy, atom, 
+bcolz, beautiful-soup, binstar, bitarray, blaze, blaze-core, blz, bokeh, boto, 
+casuarius, cdecimal, cffi, chaco, clyent, colorama, conda, conda-build, 
+conda-env, configobj, cryptography, cubes, curl, cython, cytoolz, datashape, 
+dateutil, decorator, docutils, dynd-python, ecdsa, enable, enaml, enum34, 
+fastcache, flask, freetype, funcsigs, future, futures, gevent, 
+gevent-websocket, greenlet, grin, h5py, hdf5, into, ipython, ipython-notebook, 
+ipython-qtconsole, itsdangerous, jdcal, jinja2, jpeg, jsonschema, kiwisolver, 
+launcher, lcms, libdynd, libpng, libsodium, libtiff, libxml2, libxslt, llvm, 
+llvmlite, llvmpy, lxml, markupsafe, matplotlib, mccabe, mercurial, mock, 
+modules, multipledispatch, networkx, nltk, node-webkit, nose, numba, numexpr, 
+numpy, openpyxl, openssl, pandas, paramiko, patsy, pil, pip, ply, psutil, 
+pyasn1, pyaudio, pycosat, pycparser, pycrypto, pycurl, pyface, pygments, 
+pyopenssl, pyparsing, pyqt, pytables, pytest, python.app, pyyaml, pyzmq, qt, 
+readline, redis, redis-py, rope, runipy, scikit-image, scikit-learn, scipy, 
+setuptools, sip, six, sockjs-tornado, sphinx, spyder, spyder-app, sqlalchemy, 
+sqlite, ssl_match_hostname, statsmodels, sympy, tk, toolz, tornado, traits, 
+traitsui, ujson, unicodecsv, werkzeug, xlrd, xlsxwriter, xlwt, yaml, zeromq, 
+zlib
 
-Gem Packages: archive-tar-minitar, bson, bson_ext, bundler, bundler-unload, 
-cap_gun, capistrano, childprocess, cuba, erector, gem-wrappers, jekyll, 
-jewelbox, log4r, lolcat, mongo, net-ldap, puppet-lint, rack, rack-protection, 
-railsless-deploy, rubygems-bundler, rvm, shotgun, yajl-ruby
+Gem Packages: actionmailer, actionpack, actionview, activejob, activesupport, 
+archive-tar-minitar, arr-pm, backports, bigdecimal, blankslate, bson, bson_ext, 
+builder, bundler, bundler-unload, cabin, cap_gun, capistrano, capistrano-stats, 
+celluloid, childprocess, claide, clamp, classifier-reborn, cocoapods, 
+cocoapods-core, cocoapods-deintegrate, cocoapods-downloader, cocoapods-plugins, 
+cocoapods-trunk, cocoapods-try, coffee-script, coffee-script-source, colorator, 
+colored, colorize, cuba, erector, erubis, escape, execjs, executable-hooks, 
+fast-stemmer, ffi, fpm, fuzzy_match, gem-wrappers, globalid, hitimes, i18n, 
+io-console, jekyll, jekyll-coffeescript, jekyll-gist, jekyll-paginate, 
+jekyll-sass-converter, jekyll-watch, jewelbox, json, json_pure, kramdown, 
+liquid, listen, log4r, lolcat, loofah, mail, mercenary, mime-types, 
+mini_portile, minitest, molinillo, mongo, multi_json, nap, net-ldap, net-scp, 
+net-ssh, netrc, nokogiri, open4, paint, parslet, polyglot, posix-spawn, 
+power_assert, psych, puppet-lint, pygments.rb, rack, rack-protection, 
+rack-test, rails-deprecated_sanitizer, rails-dom-testing, rails-html-sanitizer, 
+railsless-deploy, rake, rb-fsevent, rb-inotify, rdoc, redcarpet, 
+rubygems-bundler, rubygems-update, rvm, safe_yaml, sass, shotgun, sshkit, 
+test-unit, thread_safe, timers, toml, treetop, trollop, tzinfo, xcodeproj, 
+yajl-ruby
 
-Node Modules: coffee-script, cson, tiddlywiki, tmpin
+Node Modules: coffee-script, cson, doctoc, gulp, tiddlywiki, tmpin
 
 # License
 

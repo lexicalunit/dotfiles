@@ -6,22 +6,25 @@
 # Settings
 ################################################################################
 HOMEBREW_FORMULAS="                                                            \
-    autoconf boost caskroom/cask/brew-cask cmake coreutils cppunit dmd doxygen \
-    fontconfig freetype geoip ghostscript git gnu-sed imagemagick jbig2dec     \
-    jhead jpeg jq libevent libmpc libpng libtiff libtool libyaml little-cms2   \
-    maven memcached mercurial mongodb ncftp node onepass openssl ossp-uuid     \
+    autoconf automake bash bison boost boot2docker caskroom/cask/brew-cask     \
+    cloog cmake coreutils cppunit dmd docker doxygen faac ffmpeg fontconfig    \
+    freetype geoip ghostscript gifify git gmp gnu-sed gnu-tar graphviz         \
+    htop-osx imagemagick isl jbig2dec jhead jpeg jq lame libevent libmpc       \
+    libpng libtiff libtool libvo-aacenc libyaml little-cms2 maven md5sha1sum   \
+    memcached mercurial mongodb mpfr ncftp node onepass openssl ossp-uuid      \
     pandoc pcre pidof pkg-config plotutils pngquant postgresql readline ruby   \
-    s3cmd scons shellcheck sloccount spark sqlite tree unixodbc unrar watch    \
-    wget xz yaml-cpp youtube-dl"
+    s3cmd scons sdl2 sdl2_image shellcheck sloccount spark sqlite storm tree   \
+    unixodbc unrar vramsteg watch webp wget x264 xvid xz yaml-cpp youtube-dl   \
+    zsh zsh-completions gdbm"
 
 HOMEBREW_CASKS="                                                               \
-    adium amazon-music atom audacity balsamiq-mockups caffeine                 \
+    adium amazon-music atom audacity balsamiq-mockups battle-net caffeine      \
     caskroom/versions/java7 chromecast clamxav cyberduck dbvisualizer          \
     disk-inventory-x dropbox evernote firefox flux gimp-lisanet google-chrome  \
-    google-hangouts graphviz hipchat intellij-idea istumbler iterm2            \
-    kaleidoscope kvirc mactex mysqlworkbench onepassword pdftk pycharm         \
-    robomongo silverlight skype snes9x soundflower sourcetree spotify steam    \
-    teamviewer transmission vlc xquartz"
+    google-hangouts hipchat intellij-idea istumbler iterm2 kaleidoscope kvirc  \
+    mactex mysqlworkbench onepassword pdftk pycharm-ce robomongo silverlight   \
+    skype snes9x soundflower sourcetree spotify steam teamviewer texstudio     \
+    transmission vlc xquartz"
 
 ATOM_PACKAGES="                                                                \
     autocomplete-plus cursor-count event-watch file-icons git-blame            \
@@ -29,27 +32,58 @@ ATOM_PACKAGES="                                                                \
     language-diff language-latex language-puppet linter linter-clang           \
     linter-csslint linter-erb linter-flake8 linter-puppet linter-puppet-lint   \
     linter-shellcheck linter-tidy minimap minimap-find-and-replace             \
-    minimap-git-diff minimap-highlight-selected minimap-selection              \
-    next-occurrence omni-ruler rainbow-selection red-wavy-underline            \
-    select-line set-syntax snake soft-wrap-indicator sort-lines tab-control    \
-    tabs-to-spaces todo-show toggle-quotes trailing-spaces"
+    minimap-git-diff minimap-highlight-selected minimap-selection monokai      \
+    omni-ruler rainbow-selection set-syntax soft-wrap-indicator sort-lines     \
+    tab-control tabs-to-spaces todo-show toggle-quotes trailing-spaces"
 
 PIP_PACKAGES="                                                                 \
-    beautifulsoup4 bson fabric flake8 google-api-python-client httplib2        \
-    iniparse oauth2client pep8 psycopg2 pyflakes pymongo pytz requests suds    \
-    termcolor tinycss uritemplate"
+    anyjson backports.ssl-match-hostname beautifulsoup4 bson fabric flake8     \
+    google-api-python-client httplib2 iniparse oauth2client pep8 psycopg2      \
+    pyasn1-modules pydruid pyflakes pymongo python-cson python-dateutil pytz   \
+    requests rsa simplejson suds tables termcolor tinycss uritemplate wsgiref"
 
 CONDA_PACKAGES="                                                               \
-    argcomplete dateutil pyzmq"
+    abstract-rendering anaconda argcomplete astropy atom bcolz beautiful-soup  \
+    binstar bitarray blaze blaze-core blz bokeh boto casuarius cdecimal cffi   \
+    chaco clyent colorama conda conda-build conda-env configobj cryptography   \
+    cubes curl cython cytoolz datashape dateutil decorator docutils            \
+    dynd-python ecdsa enable enaml enum34 fastcache flask freetype funcsigs    \
+    future futures gevent gevent-websocket greenlet grin h5py hdf5 into        \
+    ipython ipython-notebook ipython-qtconsole itsdangerous jdcal jinja2 jpeg  \
+    jsonschema kiwisolver launcher lcms libdynd libpng libsodium libtiff       \
+    libxml2 libxslt llvm llvmlite llvmpy lxml markupsafe matplotlib mccabe     \
+    mercurial mock modules multipledispatch networkx nltk node-webkit nose     \
+    numba numexpr numpy openpyxl openssl pandas paramiko patsy pil pip ply     \
+    psutil pyasn1 pyaudio pycosat pycparser pycrypto pycurl pyface pygments    \
+    pyopenssl pyparsing pyqt pytables pytest python.app pyyaml pyzmq qt        \
+    readline redis redis-py rope runipy scikit-image scikit-learn scipy        \
+    setuptools sip six sockjs-tornado sphinx spyder spyder-app sqlalchemy      \
+    sqlite ssl_match_hostname statsmodels sympy tk toolz tornado traits        \
+    traitsui ujson unicodecsv werkzeug xlrd xlsxwriter xlwt yaml zeromq zlib"
 
 GEM_PACKAGES="                                                                 \
-    archive-tar-minitar bson bson_ext bundler bundler-unload cap_gun           \
-    capistrano childprocess cuba erector gem-wrappers jekyll jewelbox log4r    \
-    lolcat mongo net-ldap puppet-lint rack rack-protection railsless-deploy    \
-    rubygems-bundler rvm shotgun yajl-ruby"
+    actionmailer actionpack actionview activejob activesupport                 \
+    archive-tar-minitar arr-pm backports bigdecimal blankslate bson bson_ext   \
+    builder bundler bundler-unload cabin cap_gun capistrano capistrano-stats   \
+    celluloid childprocess claide clamp classifier-reborn cocoapods            \
+    cocoapods-core cocoapods-deintegrate cocoapods-downloader                  \
+    cocoapods-plugins cocoapods-trunk cocoapods-try coffee-script              \
+    coffee-script-source colorator colored colorize cuba erector erubis escape \
+    execjs executable-hooks fast-stemmer ffi fpm fuzzy_match gem-wrappers      \
+    globalid hitimes i18n io-console jekyll jekyll-coffeescript jekyll-gist    \
+    jekyll-paginate jekyll-sass-converter jekyll-watch jewelbox json json_pure \
+    kramdown liquid listen log4r lolcat loofah mail mercenary mime-types       \
+    mini_portile minitest molinillo mongo multi_json nap net-ldap net-scp      \
+    net-ssh netrc nokogiri open4 paint parslet polyglot posix-spawn            \
+    power_assert psych puppet-lint pygments.rb rack rack-protection rack-test  \
+    rails-deprecated_sanitizer rails-dom-testing rails-html-sanitizer          \
+    railsless-deploy rake rb-fsevent rb-inotify rdoc redcarpet                 \
+    rubygems-bundler rubygems-update rvm safe_yaml sass shotgun sshkit         \
+    test-unit thread_safe timers toml treetop trollop tzinfo xcodeproj         \
+    yajl-ruby"
 
 NODE_MODULES="                                                                 \
-    coffee-script cson tiddlywiki tmpin"
+    coffee-script cson doctoc gulp tiddlywiki tmpin"
 
 ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS ATOM_PACKAGES PIP_PACKAGES
     CONDA_PACKAGES GEM_PACKAGES NODE_MODULES)
@@ -619,6 +653,14 @@ step_brew()
 
     # unlink keg-only formulas which should not be not symlinked into /usr/local
     run "brew unlink openssl readline sqlite"
+
+    IFS=$'\n'
+    for I in $(brew ls); do
+        name="${I%@*}"
+        if ! echo "$HOMEBREW_FORMULAS" | grep -q "$name"; then
+            show -i "$I installed but not managed by setup"
+        fi
+    done
 }
 
 ################################################################################
@@ -647,6 +689,14 @@ step_cask()
     IFS=' '
     for I in $HOMEBREW_CASKS; do
         install_brew_cask "$I"
+    done
+
+    IFS=$'\n'
+    for I in $(brew cask list); do
+        name="${I%@*}"
+        if ! echo "$HOMEBREW_CASKS" | grep -q "$(echo "$name" | sed 's/ (!)//g')"; then
+            show -i "$I installed but not managed by setup"
+        fi
     done
 }
 
@@ -738,6 +788,7 @@ step_python()
 
     if run "type conda >/dev/null 2>&1"; then
         run "conda update --yes --prefix '$HOME/anaconda' anaconda"
+        run "conda update --yes --prefix '$HOME/anaconda' --all"
     else
         curl_output="$(mktemp -d -t tmp.XXXXXXXXXX)"
         trap 'rm -rf $curl_output' EXIT
@@ -751,34 +802,43 @@ step_python()
         run "curl -o '$curl_output/anaconda.sh' '$latest'" || abort "could not download Anaconda installer"
         run "bash '$curl_output/anaconda.sh' -b" || abort "could not install Anaconda"
 
-        # enter anaconda environment now that it's installed
         export PATH="$HOME/anaconda/bin:$PATH"
-
-        # prevent conda from setting my PS1
         run "conda config --set changeps1 no"
-
-        # get rid of Launcher.app on Desktop
         [[ -d "$HOME/Desktop/Launcher.app" ]] && run "rm -rf '$HOME/Desktop/Launcher.app'"
-
         run "rm -rf '$curl_output'"
     fi
+
+    CONDA_LIST="$(conda list | cut -f1 -d' ')"
 
     # Install python packages that don't come with Anaconda... yet!
     IFS=' '
     for I in $PIP_PACKAGES; do
-        run "pip install -U $I"
+        run "pip install -qU $I"
     done
 
     # Install conda packages that don't come pre-installed with Anaconda
+    IFS=' '
     for I in $CONDA_PACKAGES; do
-        run "conda install -f --yes $I"
-        run "conda update -f --yes $I"
+        if ! echo "$CONDA_LIST" | grep -q "$I"; then
+            echo run "conda install -f --yes $I"
+        fi
     done
 
     # Fix annoying ipython settings
     run "ipython profile create"
     run "perl -pi -e 's/.*confirm_exit.*/c.TerminalInteractiveShell.confirm_exit = False/' $HOME/.ipython/profile_default/ipython_config.py"
     run "perl -pi -e 's/.*display_banner.*/c.TerminalIPythonApp.display_banner = False/' $HOME/.ipython/profile_default/ipython_config.py"
+
+    IFS=$'\n'
+    for I in $CONDA_LIST; do
+        name="${I%@*}"
+        if [[ "$name" == "#" || "$name" == "_license" ]]; then
+            continue
+        fi
+        if ! echo "$PIP_PACKAGES" | grep -q "$name" && ! echo "$CONDA_PACKAGES" | grep -q "$name"; then
+            show -i "$I installed but not managed by setup"
+        fi
+    done
 }
 
 ################################################################################
@@ -795,6 +855,17 @@ step_gem()
         run "yes | sudo gem update -q $I"
         if ! gem list "$I" | grep -q "$I"; then
             run "yes | sudo gem install -q $I"
+        fi
+    done
+
+    IFS=$'\n'
+    for I in $(gem list); do
+        name="${I%@*}"
+        if [[ "$name" == "*** LOCAL GEMS ***" ]]; then
+            continue
+        fi
+        if ! echo "$GEM_PACKAGES" | grep -q "$(echo "$name" | cut -d' ' -f1)"; then
+            show -i "$I installed but not managed by setup"
         fi
     done
 }
@@ -815,6 +886,17 @@ step_node()
     IFS=' '
     for I in $NODE_MODULES; do
         run "npm install -g $I"
+    done
+
+    IFS=$'\n'
+    for I in $(npm list -g --depth 0 | grep @ | cut -d' ' -f2); do
+        name="${I%@*}"
+        if [[ "$name" == "npm" ]]; then
+            continue
+        fi
+        if ! echo "$NODE_MODULES" | grep -q "$(echo "$name" | cut -d@ -f1)"; then
+            show -i "$I installed but not managed by setup"
+        fi
     done
 }
 

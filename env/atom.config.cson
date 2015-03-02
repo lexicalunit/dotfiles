@@ -85,11 +85,12 @@
 		onlyHighlightWholeWords: true
 	"isotope-ui":
 		backgroundColor: "false"
+		customBackgroundColor: true
 		customBackgroundColorPicker:
 			alpha: 1
-			blue: 19
-			green: 59
-			red: 33
+			blue: 29
+			green: 6
+			red: 32
 		fontFamily: "Cantarell"
 		fontWeight: "Regular"
 		lowContrastTooltip: true

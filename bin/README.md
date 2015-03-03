@@ -390,8 +390,8 @@ kaleidoscope, kvirc, mactex, mysqlworkbench, onepassword, pdftk, pycharm-ce,
 robomongo, silverlight, skype, snes9x, soundflower, sourcetree, spotify, steam, 
 teamviewer, texstudio, transmission, vlc, xquartz
 
-Atom Packages: autocomplete-plus, cursor-count, event-watch, file-icons, 
-git-blame, highlight-selected, indentation-indicator, isotope-ui, 
+Atom Packages: autocomplete-plus, column-select, cursor-count, event-watch, 
+file-icons, git-blame, highlight-selected, indentation-indicator, isotope-ui, 
 language-applescript, language-diff, language-latex, language-puppet, linter, 
 linter-clang, linter-csslint, linter-erb, linter-flake8, linter-puppet, 
 linter-puppet-lint, linter-shellcheck, linter-tidy, minimap, 
@@ -565,12 +565,11 @@ Options:
     --dump-user-agent                display the current browser identification
     --list-extractors                List all supported extractors and the URLs they would handle
     --extractor-descriptions         Output descriptions of all supported extractors
-    --default-search PREFIX          Use this prefix for unqualified URLs. For example "gvsearch2:" downloads two videos from google videos for
-                                     youtube-dl "large apple". Use the value "auto" to let youtube-dl guess ("auto_warning" to emit a warning when
-                                     guessing). "error" just throws an error. The default value "fixup_error" repairs broken URLs, but emits an
-                                     error if this is not possible instead of searching.
-    --ignore-config                  Do not read configuration files. When given in the global configuration file /etc/youtube-dl.conf: Do not read
-                                     the user configuration in ~/.config/youtube-dl/config (%APPDATA%/youtube-dl/config.txt on Windows)
+    --default-search PREFIX          Use this prefix for unqualified URLs. For example "gvsearch2:" downloads two videos from google videos for  youtube-dl "large apple". Use the value
+                                     "auto" to let youtube-dl guess ("auto_warning" to emit a warning when guessing). "error" just throws an error. The default value "fixup_error"
+                                     repairs broken URLs, but emits an error if this is not possible instead of searching.
+    --ignore-config                  Do not read configuration files. When given in the global configuration file /etc/youtube-dl.conf: Do not read the user configuration in ~/.config
+                                     /youtube-dl/config (%APPDATA%/youtube-dl/config.txt on Windows)
     --flat-playlist                  Do not extract the videos of a playlist, only list them.
     --no-color                       Do not emit color codes in output.
 
@@ -584,9 +583,9 @@ Options:
   Video Selection:
     --playlist-start NUMBER          playlist video to start at (default is 1)
     --playlist-end NUMBER            playlist video to end at (default is last)
-    --playlist-items ITEM_SPEC       playlist video items to download. Specify indices of the videos in the playlist seperated by commas like:
-                                     "--playlist-items 1,2,5,8" if you want to download videos indexed 1, 2, 5, 8 in the playlist. You can specify
-                                     range: "--playlist-items 1-3,7,10-13", it will download the videos at index 1, 2, 3, 7, 10, 11, 12 and 13.
+    --playlist-items ITEM_SPEC       playlist video items to download. Specify indices of the videos in the playlist seperated by commas like: "--playlist-items 1,2,5,8" if you want to
+                                     download videos indexed 1, 2, 5, 8 in the playlist. You can specify range: "--playlist-items 1-3,7,10-13", it will download the videos at index 1, 2,
+                                     3, 7, 10, 11, 12 and 13.
     --match-title REGEX              download only matching titles (regex or caseless sub-string)
     --reject-title REGEX             skip download for matching titles (regex or caseless sub-string)
     --max-downloads NUMBER           Abort after downloading NUMBER files
@@ -597,13 +596,11 @@ Options:
     --dateafter DATE                 download only videos uploaded on or after this date (i.e. inclusive)
     --min-views COUNT                Do not download any videos with less than COUNT views
     --max-views COUNT                Do not download any videos with more than COUNT views
-    --match-filter FILTER            (Experimental) Generic video filter. Specify any key (see help for -o for a list of available keys) to match if
-                                     the key is present, !key to check if the key is not present,key > NUMBER (like "comment_count > 12", also works
-                                     with >=, <, <=, !=, =) to compare against a number, and & to require multiple matches. Values which are not
-                                     known are excluded unless you put a question mark (?) after the operator.For example, to only match videos that
-                                     have been liked more than 100 times and disliked less than 50 times (or the dislike functionality is not
-                                     available at the given service), but who also have a description, use  --match-filter "like_count > 100 &
-                                     dislike_count <? 50 & description" .
+    --match-filter FILTER            (Experimental) Generic video filter. Specify any key (see help for -o for a list of available keys) to match if the key is present, !key to check if
+                                     the key is not present,key > NUMBER (like "comment_count > 12", also works with >=, <, <=, !=, =) to compare against a number, and & to require
+                                     multiple matches. Values which are not known are excluded unless you put a question mark (?) after the operator.For example, to only match videos
+                                     that have been liked more than 100 times and disliked less than 50 times (or the dislike functionality is not available at the given service), but
+                                     who also have a description, use  --match-filter "like_count > 100 & dislike_count <? 50 & description" .
     --no-playlist                    If the URL refers to a video and a playlist, download only the video.
     --yes-playlist                   If the URL refers to a video and a playlist, download the playlist.
     --age-limit YEARS                download only videos suitable for the given age
@@ -614,8 +611,7 @@ Options:
     -r, --rate-limit LIMIT           maximum download rate in bytes per second (e.g. 50K or 4.2M)
     -R, --retries RETRIES            number of retries (default is 10), or "infinite".
     --buffer-size SIZE               size of download buffer (e.g. 1024 or 16K) (default is 1024)
-    --no-resize-buffer               do not automatically adjust the buffer size. By default, the buffer size is automatically resized from an
-                                     initial value of SIZE.
+    --no-resize-buffer               do not automatically adjust the buffer size. By default, the buffer size is automatically resized from an initial value of SIZE.
     --playlist-reverse               Download playlist videos in reverse order
     --xattr-set-filesize             (experimental) set file xattribute ytdl.filesize with expected filesize
     --hls-prefer-native              (experimental) Use the native HLS downloader instead of ffmpeg.
@@ -624,18 +620,14 @@ Options:
   Filesystem Options:
     -a, --batch-file FILE            file containing URLs to download ('-' for stdin)
     --id                             use only video ID in file name
-    -o, --output TEMPLATE            output filename template. Use %(title)s to get the title, %(uploader)s for the uploader name, %(uploader_id)s
-                                     for the uploader nickname if different, %(autonumber)s to get an automatically incremented number, %(ext)s for
-                                     the filename extension, %(format)s for the format description (like "22 - 1280x720" or "HD"), %(format_id)s for
-                                     the unique id of the format (like Youtube's itags: "137"), %(upload_date)s for the upload date (YYYYMMDD),
-                                     %(extractor)s for the provider (youtube, metacafe, etc), %(id)s for the video id, %(playlist_title)s,
-                                     %(playlist_id)s, or %(playlist)s (=title if present, ID otherwise) for the playlist the video is in,
-                                     %(playlist_index)s for the position in the playlist. %(height)s and %(width)s for the width and height of the
-                                     video format. %(resolution)s for a textual description of the resolution of the video format. %% for a literal
-                                     percent. Use - to output to stdout. Can also be used to download to a different directory, for example with -o
-                                     '/my/downloads/%(uploader)s/%(title)s-%(id)s.%(ext)s' .
-    --autonumber-size NUMBER         Specifies the number of digits in %(autonumber)s when it is present in output filename template or --auto-
-                                     number option is given
+    -o, --output TEMPLATE            output filename template. Use %(title)s to get the title, %(uploader)s for the uploader name, %(uploader_id)s for the uploader nickname if different,
+                                     %(autonumber)s to get an automatically incremented number, %(ext)s for the filename extension, %(format)s for the format description (like "22 -
+                                     1280x720" or "HD"), %(format_id)s for the unique id of the format (like Youtube's itags: "137"), %(upload_date)s for the upload date (YYYYMMDD),
+                                     %(extractor)s for the provider (youtube, metacafe, etc), %(id)s for the video id, %(playlist_title)s, %(playlist_id)s, or %(playlist)s (=title if
+                                     present, ID otherwise) for the playlist the video is in, %(playlist_index)s for the position in the playlist. %(height)s and %(width)s for the width
+                                     and height of the video format. %(resolution)s for a textual description of the resolution of the video format. %% for a literal percent. Use - to
+                                     output to stdout. Can also be used to download to a different directory, for example with -o '/my/downloads/%(uploader)s/%(title)s-%(id)s.%(ext)s' .
+    --autonumber-size NUMBER         Specifies the number of digits in %(autonumber)s when it is present in output filename template or --auto-number option is given
     --restrict-filenames             Restrict filenames to only ASCII characters, and avoid "&" and spaces in filenames
     -A, --auto-number                [deprecated; use  -o "%(autonumber)s-%(title)s.%(ext)s" ] number downloaded files starting from 00000
     -t, --title                      [deprecated] use title in file name (default)
@@ -650,9 +642,8 @@ Options:
     --write-annotations              write video annotations to a .annotation file
     --load-info FILE                 json file containing the video information (created with the "--write-json" option)
     --cookies FILE                   file to read cookies from and dump cookie jar in
-    --cache-dir DIR                  Location in the filesystem where youtube-dl can store some downloaded information permanently. By default
-                                     $XDG_CACHE_HOME/youtube-dl or ~/.cache/youtube-dl . At the moment, only YouTube player files (for videos with
-                                     obfuscated signatures) are cached, but that may change.
+    --cache-dir DIR                  Location in the filesystem where youtube-dl can store some downloaded information permanently. By default $XDG_CACHE_HOME/youtube-dl or ~/.cache
+                                     /youtube-dl . At the moment, only YouTube player files (for videos with obfuscated signatures) are cached, but that may change.
     --no-cache-dir                   Disable filesystem caching
     --rm-cache-dir                   Delete all filesystem cache files
 
@@ -675,8 +666,8 @@ Options:
     --get-filename                   simulate, quiet but print output filename
     --get-format                     simulate, quiet but print output format
     -j, --dump-json                  simulate, quiet but print JSON information. See --output for a description of available keys.
-    -J, --dump-single-json           simulate, quiet but print JSON information for each command-line argument. If the URL refers to a playlist,
-                                     dump the whole playlist information in a single line.
+    -J, --dump-single-json           simulate, quiet but print JSON information for each command-line argument. If the URL refers to a playlist, dump the whole playlist information in a
+                                     single line.
     --print-json                     Be quiet and print the video information as JSON (video is still being downloaded).
     --newline                        output progress bar as new lines
     --no-progress                    do not print progress bar
@@ -699,24 +690,21 @@ Options:
     --sleep-interval SECONDS         Number of seconds to sleep before each download.
 
   Video Format Options:
-    -f, --format FORMAT              video format code, specify the order of preference using slashes, as in -f 22/17/18 .  Instead of format codes,
-                                     you can select by extension for the extensions aac, m4a, mp3, mp4, ogg, wav, webm. You can also use the special
-                                     names "best", "bestvideo", "bestaudio", "worst".  You can filter the video results by putting a condition in
-                                     brackets, as in -f "best[height=720]" (or -f "[filesize>10M]").  This works for filesize, height, width, tbr,
-                                     abr, vbr, asr, and fps and the comparisons <, <=, >, >=, =, != and for ext, acodec, vcodec, container, and
-                                     protocol and the comparisons =, != . Formats for which the value is not known are excluded unless you put a
-                                     question mark (?) after the operator. You can combine format filters, so  -f "[height <=? 720][tbr>500]"
-                                     selects up to 720p videos (or videos where the height is not known) with a bitrate of at least 500 KBit/s. By
-                                     default, youtube-dl will pick the best quality. Use commas to download multiple audio formats, such as -f
-                                     136/137/mp4/bestvideo,140/m4a/bestaudio. You can merge the video and audio of two formats into a single file
-                                     using -f <video-format>+<audio-format> (requires ffmpeg or avconv), for example -f bestvideo+bestaudio.
+    -f, --format FORMAT              video format code, specify the order of preference using slashes, as in -f 22/17/18 .  Instead of format codes, you can select by extension for the
+                                     extensions aac, m4a, mp3, mp4, ogg, wav, webm. You can also use the special names "best", "bestvideo", "bestaudio", "worst".  You can filter the
+                                     video results by putting a condition in brackets, as in -f "best[height=720]" (or -f "[filesize>10M]").  This works for filesize, height, width, tbr,
+                                     abr, vbr, asr, and fps and the comparisons <, <=, >, >=, =, != and for ext, acodec, vcodec, container, and protocol and the comparisons =, != .
+                                     Formats for which the value is not known are excluded unless you put a question mark (?) after the operator. You can combine format filters, so  -f
+                                     "[height <=? 720][tbr>500]" selects up to 720p videos (or videos where the height is not known) with a bitrate of at least 500 KBit/s. By default,
+                                     youtube-dl will pick the best quality. Use commas to download multiple audio formats, such as -f  136/137/mp4/bestvideo,140/m4a/bestaudio. You can
+                                     merge the video and audio of two formats into a single file using -f <video-format>+<audio-format> (requires ffmpeg or avconv), for example -f
+                                     bestvideo+bestaudio.
     --all-formats                    download all available video formats
     --prefer-free-formats            prefer free video formats unless a specific one is requested
     --max-quality FORMAT             highest quality format to download
     -F, --list-formats               list all available formats
     --youtube-skip-dash-manifest     Do not download the DASH manifest on YouTube videos
-    --merge-output-format FORMAT     If a merge is required (e.g. bestvideo+bestaudio), output to given container format. One of mkv, mp4, ogg,
-                                     webm, flv.Ignored if no merge is required
+    --merge-output-format FORMAT     If a merge is required (e.g. bestvideo+bestaudio), output to given container format. One of mkv, mp4, ogg, webm, flv.Ignored if no merge is required
 
   Subtitle Options:
     --write-sub                      write subtitle file
@@ -736,8 +724,7 @@ Options:
   Post-processing Options:
     -x, --extract-audio              convert video files to audio-only files (requires ffmpeg or avconv and ffprobe or avprobe)
     --audio-format FORMAT            "best", "aac", "vorbis", "mp3", "m4a", "opus", or "wav"; "best" by default
-    --audio-quality QUALITY          ffmpeg/avconv audio quality specification, insert a value between 0 (better) and 9 (worse) for VBR or a
-                                     specific bitrate like 128K (default 5)
+    --audio-quality QUALITY          ffmpeg/avconv audio quality specification, insert a value between 0 (better) and 9 (worse) for VBR or a specific bitrate like 128K (default 5)
     --recode-video FORMAT            Encode the video to another format if necessary (currently supported: mp4|flv|ogg|webm|mkv)
     -k, --keep-video                 keeps the video file on disk after the post-processing; the video is erased by default
     --no-post-overwrites             do not overwrite post-processed files; the post-processed files are overwritten by default
@@ -745,12 +732,12 @@ Options:
     --embed-thumbnail                embed thumbnail in the audio as cover art
     --add-metadata                   write metadata to the video file
     --xattrs                         write metadata to the video file's xattrs (using dublin core and xdg standards)
-    --fixup POLICY                   Automatically correct known faults of the file. One of never (do nothing), warn (only emit a warning),
-                                     detect_or_warn(the default; fix file if we can, warn otherwise)
+    --fixup POLICY                   Automatically correct known faults of the file. One of never (do nothing), warn (only emit a warning), detect_or_warn(the default; fix file if we
+                                     can, warn otherwise)
     --prefer-avconv                  Prefer avconv over ffmpeg for running the postprocessors (default)
     --prefer-ffmpeg                  Prefer ffmpeg over avconv for running the postprocessors
     --ffmpeg-location PATH           Location of the ffmpeg/avconv binary; either the path to the binary or its containing directory.
-    --exec CMD                       Execute a command on the file after downloading, similar to find's -exec syntax. Example: --exec 'adb push {}
-                                     /sdcard/Music/ && rm {}'
+    --exec CMD                       Execute a command on the file after downloading, similar to find's -exec syntax. Example: --exec 'adb push {} /sdcard/Music/ && rm {}'
+    --convert-subtitles FORMAT       Convert the subtitles to other format (currently supported: srt|ass|vtt)
 ```
 

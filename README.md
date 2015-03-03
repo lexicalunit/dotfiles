@@ -150,8 +150,8 @@ kaleidoscope, kvirc, mactex, mysqlworkbench, onepassword, pdftk, pycharm-ce,
 robomongo, silverlight, skype, snes9x, soundflower, sourcetree, spotify, steam, 
 teamviewer, texstudio, transmission, vlc, xquartz
 
-Atom Packages: autocomplete-plus, cursor-count, event-watch, file-icons, 
-git-blame, highlight-selected, indentation-indicator, isotope-ui, 
+Atom Packages: autocomplete-plus, column-select, cursor-count, event-watch, 
+file-icons, git-blame, highlight-selected, indentation-indicator, isotope-ui, 
 language-applescript, language-diff, language-latex, language-puppet, linter, 
 linter-clang, linter-csslint, linter-erb, linter-flake8, linter-puppet, 
 linter-puppet-lint, linter-shellcheck, linter-tidy, minimap, 

@@ -717,7 +717,14 @@ install_atom_pkg()
 
 step_atom()
 {
-    install_brew_cask atom || abort "can't install atom via brew-cask"
+    if ! type atom >/dev/null 2>&1; then
+        ensure_homebrew_updated
+        if ! brew ls | grep -q brew-cask; then
+            abort "please run step cask first"
+        fi
+        install_brew_cask atom || abort "can't install atom via brew-cask"
+    fi
+
     IFS=' '
     for I in $ATOM_PACKAGES; do
         install_atom_pkg "$I"

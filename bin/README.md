@@ -315,6 +315,13 @@ Puts your public ssh key in the authorized_keys on the remote host.
 ```
 
 * * *
+### [`reset_bluetooth.sh`](bin/reset_bluetooth.sh)
+```
+usage: reset_bluetooth.sh [-h|--help|--ready]
+Resets bluetooth on OS X
+```
+
+* * *
 ### [`root`](bin/root)
 ```
 usage: root [-h|--help]

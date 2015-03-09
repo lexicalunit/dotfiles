@@ -20,10 +20,15 @@ if [[ "$0" != "--ready" ]]; then
     show "  6. Log back in, $(tput bold)still do not re-plug in power or accessories.$(tput sgr0)"
     show "  7. Turn on bluetooth devices."
     show "  8. If devices connect properly, then plug back in power and accessories."
+
+    show "Fixing permissions and installing updates..."
+    run "sudo diskutil repairPermissions /"
+    run "sudo softwareupdate -via"
+
     exit 0
 fi
 
-# disable
+show "Disabling bluetooth service..."
 run "sudo defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 0"
 run "sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist"
 run "sudo rm /Library/Preferences/com.apple.Bluetooth.plist"
@@ -33,14 +38,14 @@ run "sudo kextunload /System/Library/Extensions/AppleBluetoothMultitouch.kext"
 run "sudo kextunload -b com.apple.iokit.BroadcomBluetoothHostControllerUSBTransport"
 fart 10
 
-# re-enable
+show "Enabling bluetooth service..."
 run "sudo kextload -b com.apple.iokit.BroadcomBluetoothHostControllerUSBTransport"
 run "sudo kextload /System/Library/Extensions/AppleBluetoothMultitouch.kext"
 run "sudo defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 1"
 run "sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist"
 fart 10
 
-# status
+show "Checking bluetooth service status..."
 run "nvram -p"
 run "ps -efw | egrep 'blued| *UID' | grep -v grep"
 run "kextstat | egrep 'AppleBluetoothMultitouch|BroadcomBluetoothHostControllerUSBTransport'"

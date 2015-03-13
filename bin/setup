@@ -5,6 +5,7 @@
 ################################################################################
 # Settings
 ################################################################################
+# BEGIN GENERATED PACKAGE LISTS
 HOMEBREW_FORMULAS="                                                            \
     autoconf automake bash bison boost boot2docker caskroom/cask/brew-cask     \
     cloog cmake coreutils cppunit dmd docker doxygen faac ffmpeg fontconfig    \
@@ -35,7 +36,7 @@ ATOM_PACKAGES="                                                                \
     minimap-find-and-replace minimap-git-diff minimap-highlight-selected       \
     minimap-selection monokai omni-ruler rainbow-selection red-wavy-underline  \
     set-syntax soft-wrap-indicator sort-lines tab-control tabs-to-spaces       \
-    todo-show toggle-quotes trailing-spaces"
+    todo-show toggle-quotes trailing-spaces view-tail-large-files"
 
 PIP_PACKAGES="                                                                 \
     anyjson backports.ssl-match-hostname beautifulsoup4 bson fabric flake8     \
@@ -85,6 +86,7 @@ GEM_PACKAGES="                                                                 \
 
 NODE_MODULES="                                                                 \
     coffee-script cson doctoc gulp tiddlywiki tmpin"
+# END GENERATED PACKAGE LISTS
 
 ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS ATOM_PACKAGES PIP_PACKAGES
     CONDA_PACKAGES GEM_PACKAGES NODE_MODULES)

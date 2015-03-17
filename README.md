@@ -133,15 +133,15 @@ see below for the list of items that will be installed when that step runs.
 
 Homebrew Formulas: autoconf, automake, bash, bison, boost, boot2docker, 
 caskroom/cask/brew-cask, cloog, cmake, coreutils, cppunit, dmd, docker, 
-doxygen, faac, ffmpeg, fontconfig, freetype, geoip, ghostscript, gifify, git, 
-gmp, gnu-sed, gnu-tar, graphviz, htop-osx, imagemagick, isl, jbig2dec, jhead, 
-jpeg, jq, lame, libevent, libmpc, libpng, libtiff, libtool, libvo-aacenc, 
-libyaml, little-cms2, maven, md5sha1sum, memcached, mercurial, mongodb, mpfr, 
-ncftp, node, onepass, openssl, ossp-uuid, pandoc, pcre, pidof, pkg-config, 
-plotutils, pngquant, postgresql, readline, ruby, s3cmd, scons, sdl2, 
-sdl2_image, shellcheck, sloccount, spark, sqlite, storm, tree, unixodbc, unrar, 
-vramsteg, watch, webp, wget, x264, xvid, xz, yaml-cpp, youtube-dl, zsh, 
-zsh-completions, gdbm
+doxygen, faac, ffmpeg, fontconfig, freetype, gdbm, geoip, ghostscript, gifify, 
+git, gmp, gnu-sed, gnu-tar, graphviz, htop-osx, imagemagick, isl, jbig2dec, 
+jhead, jpeg, jq, lame, libevent, libmpc, libpng, libtiff, libtool, 
+libvo-aacenc, libyaml, little-cms2, maven, md5sha1sum, memcached, mercurial, 
+mongodb, mpfr, ncftp, node, onepass, openssl, ossp-uuid, pandoc, pcre, pidof, 
+pkg-config, plotutils, pngquant, postgresql, readline, ruby, s3cmd, scons, 
+sdl2, sdl2_image, shellcheck, sloccount, spark, sqlite, storm, tree, unixodbc, 
+unrar, vramsteg, watch, webp, wget, x264, xvid, xz, yaml-cpp, youtube-dl, zsh, 
+zsh-completions
 
 Homebrew Casks: adium, amazon-music, atom, audacity, balsamiq-mockups, 
 battle-net, caffeine, caskroom/versions/java7, chromecast, clamxav, cyberduck, 

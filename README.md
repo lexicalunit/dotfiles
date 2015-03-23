@@ -73,6 +73,7 @@ or of course just run the tools with the argument `--help`.
 | --- | --- |
 | [`alert`](bin/alert) | Provides shell level windowed alerting system. |
 | [`api`](bin/api) | Requests a web API resource and pretty prints resulting JSON. |
+| [`bluetooth_reset`](bin/bluetooth_reset) | Resets bluetooth on OS X. |
 | [`capture`](bin/capture) | Creates a screenshot of selected window on X11. |
 | [`colortest`](bin/colortest) | Prints out an entire color palette of terminal color codes. |
 | [`die`](bin/die) | Kills processes based on process name. |
@@ -92,7 +93,6 @@ or of course just run the tools with the argument `--help`.
 | [`lt`](bin/lt) | Run shell command with a timeout. |
 | [`macosver`](bin/macosver) | Prints current OS X version information. |
 | [`nopw`](bin/nopw) | Enables password-less ssh TO username@remotehost FROM localhost. |
-| [`reset_bluetooth`](bin/reset_bluetooth) | Resets bluetooth on OS X. |
 | [`root`](bin/root) | Prints the root of the current repository. |
 | [`s`](bin/s) | Show git status for all directories in current directory. |
 | [`safari_cache`](bin/safari_cache) | Shows current Safari cache. |

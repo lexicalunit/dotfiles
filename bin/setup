@@ -97,6 +97,7 @@ ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS ATOM_PACKAGES PIP_PACKAGES
 cleanup_item_list()
 {
     # A useful function for cleaning up the above item lists.
+    # This is an implementation detail, and is used by update scripts.
     # Usage: setup -i (aka --items)
     local items_var lines leftover
     declare -a lines

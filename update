@@ -37,9 +37,9 @@ see below for the list of items that will be installed when that step runs.
 
 | Step | Description |
 | --- | --- |
-$(setup -l | sed 's/^\([^ ]*\) *\(.*\)$/| \1 | \2 |/g')
+$(./setup -l | sed 's/^\([^ ]*\) *\(.*\)$/| \1 | \2 |/g')
 
-$(setup -h 2>&1 | grep -A5000 'Homebrew Formulas:')
+$(./setup -h 2>&1 | grep -A5000 'Homebrew Formulas:')
 EOF
 )
 

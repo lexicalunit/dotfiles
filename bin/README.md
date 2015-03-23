@@ -27,8 +27,8 @@ Or force the beginning of curl option parsing by passing -- first.
 * * *
 ### [`bluetooth_reset`](bin/bluetooth_reset)
 ```
-usage: bluetooth_reset [-h|--help|--ready]
-Resets bluetooth on OS X
+usage: bluetooth_reset [-h|--help]
+Resets bluetooth on OS X. Run without arguments first, then follow instructions.
 ```
 
 * * *
@@ -453,7 +453,7 @@ rubygems-bundler, rubygems-update, rvm, safe_yaml, sass, shotgun, sshkit,
 test-unit, thread_safe, timers, toml, treetop, trollop, tzinfo, xcodeproj, 
 yajl-ruby
 
-Node Modules: coffee-script, cson, doctoc, gulp, tiddlywiki, tmpin
+Node Modules: coffee-script, cson, doctoc, grunt-cli, gulp, tiddlywiki, tmpin
 ```
 
 * * *

@@ -23,7 +23,7 @@ for I in "${EXCLUDES[@]}"; do
 done
 
 run "$CMD --delete ~/bin/ ." || abort "could not update bin"
-run "./usages -v >README.md"
 run "../util/update_setup_items.py > setup.new"
 run "mv -f setup.new setup"
 run "chmod +x setup"
+run "./usages -v >README.md"

@@ -85,7 +85,7 @@ GEM_PACKAGES="                                                                 \
     yajl-ruby"
 
 NODE_MODULES="                                                                 \
-    coffee-script cson doctoc gulp tiddlywiki tmpin"
+    coffee-script cson doctoc grunt-cli gulp tiddlywiki tmpin"
 # END GENERATED PACKAGE LISTS
 
 ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS ATOM_PACKAGES PIP_PACKAGES

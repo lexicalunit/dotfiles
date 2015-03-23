@@ -1,61 +1,55 @@
 [core]
-    excludesfile = ~/.gitignore_global
-    whitespace = trailing-space,space-before-tab
-    autocrlf = false
-
+	excludesfile = ~/.gitignore_global
+	whitespace = trailing-space,space-before-tab
+	autocrlf = false
 [push]
-    default = tracking
-
+	default = tracking
 [difftool "Kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path "$MERGED" -- "$LOCAL" "$REMOTE"
-
 [diff]
-    prompt = false
-    renames = copies
+	prompt = false
+	renames = copies
 	tool = Kaleidoscope
-
 [mergetool "kaleidoscope"]
-    prompt = false
-    cmd = ksdiff --merge --output "$MERGED" --base "$BASE" -- "$LOCAL" --snapshot "$REMOTE" --snapshot
-    trustExitCode = true
-
+	prompt = false
+	cmd = ksdiff --merge --output "$MERGED" --base "$BASE" -- "$LOCAL" --snapshot "$REMOTE" --snapshot
+	trustExitCode = true
 [merge]
-    stat = true
+	stat = true
 	tool = Kaleidoscope
-
 [alias]
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-    s = status -uno
-    su = status
-    co = checkout
-    ci = commit
-    ca = commit --amend
-    push-topic = !bash git_push_topic
-    reauthor = !bash git_reauthor
-    name-change = !bash git_name_change
-    wdiff = diff --color-words --word-diff
-
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	s = status -uno
+	su = status
+	co = checkout
+	ci = commit
+	ca = commit --amend
+	push-topic = !bash git_push_topic
+	reauthor = !bash git_reauthor
+	name-change = !bash git_name_change
+	wdiff = diff --color-words --word-diff
 [color]
-    ui = auto
-
+	ui = auto
 [color "branch"]
-    current = yellow reverse
-    local = yellow
-    remote = green
-
+	current = yellow reverse
+	local = yellow
+	remote = green
 [color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
-
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
 [color "status"]
-    added = yellow
-    changed = green
-    untracked = cyan
-
+	added = yellow
+	changed = green
+	untracked = cyan
 [advice]
-    pushNonFastForward = false
-
+	pushNonFastForward = false
 [branch]
-    autosetuprebase = always
+	autosetuprebase = always
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.5.2/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

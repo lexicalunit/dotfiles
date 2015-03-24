@@ -113,7 +113,28 @@ fi
 if [[ -d "$HOME/.atom" ]]; then
     for I in atom.*; do
         if [[ $INSTALL == 1 ]]; then
-            run "rsync -apl '$I' '$HOME/.atom/$(echo "$I" | sed 's/^atom\.//g')'"
+            # special handling for install of $HOME/.atom/config.cson
+            if [[ "$I" == "atom.config.cson" && -e "$HOME/.atom/config.cson" ]] \
+                && type jq >/dev/null                                           \
+                && type cson2json >/dev/null                                    \
+                && type json2cson >/dev/null; then
+                # pull atom-pair settings out of current config
+                atom_pair_settings="$(mktemp -t tmp.XXXXXXXXXX.atom_pair_settings.json)"
+                run "cson2json '$HOME/.atom/config.cson' | jq -S '.[\"*\"] | {\"*\": {\"atom-pair\": .\"atom-pair\"} }' >'$atom_pair_settings'"
+                # convert backup into json
+                atom_config_backup="$(mktemp -t tmp.XXXXXXXXXX.atom_config_backup.json)"
+                run "cson2json '$I' | jq -S '.' >'$atom_config_backup'"
+                # merge backup and atom-pair settings
+                atom_merged_config="$(mktemp -t tmp.XXXXXXXXXX.atom_merged_config.json)"
+                run "jq '$(jq -c . "$atom_pair_settings") * .' '$atom_config_backup' > '$atom_merged_config'"
+                # install merged config
+                atom_config="$(mktemp -t tmp.XXXXXXXXXX.atom_merged_config.cson)"
+                run "json2cson '$atom_merged_config' >'$atom_config'"
+                run "rsync -apl '$atom_config' '$HOME/.atom/config.cson'"
+                run "rm '$atom_pair_settings' '$atom_config_backup' '$atom_merged_config' '$atom_config'"
+            else
+                run "rsync -apl '$I' '$HOME/.atom/$(echo "$I" | sed 's/^atom\.//g')'"
+            fi
         else
             run "rm -f '$HOME/.atom/$(echo "$I" | sed 's/^atom\.//g')'"
         fi

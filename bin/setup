@@ -713,7 +713,7 @@ install_atom_pkg()
     local PKG="$1"
     local INSTALLED="$(apm list --installed --bare | grep "$PKG")"
     if [[ -z "$INSTALLED" ]]; then
-        run "apm install $PKG" || abort "can not install package '$PKG'"
+        run "apm install '$PKG'" || abort "can not install package '$PKG'"
     else
         show "skipping $PKG: already installed"
     fi

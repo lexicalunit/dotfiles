@@ -44,7 +44,7 @@ backup_atom()
             && type json2cson >/dev/null; then
             # sort config.cson keys for consistency between updates
             local tempfile="$(mktemp -t tmp.XXXXXXXXXX.config.json)"
-            run "cson2json '$atom_file_path' | jq -S '.' >'$tempfile'"
+            run "cson2json '$atom_file_path' | jq -S 'del(.[\"*\"].\"atom-pair\")' >'$tempfile'"
             run "json2cson '$tempfile' >'./atom.$atom_file'"
             run "rm '$tempfile'"
         else

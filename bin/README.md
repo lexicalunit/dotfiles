@@ -401,11 +401,12 @@ Atom Packages: autocomplete-plus, column-select, cursor-count, event-watch,
 file-icons, git-blame, highlight-selected, indentation-indicator, isotope-ui, 
 language-applescript, language-diff, language-latex, language-puppet, linter, 
 linter-clang, linter-csslint, linter-erb, linter-flake8, linter-puppet, 
-linter-puppet-lint, linter-shellcheck, linter-tidy, minimap, 
-minimap-find-and-replace, minimap-git-diff, minimap-highlight-selected, 
-minimap-selection, monokai, omni-ruler, rainbow-selection, red-wavy-underline, 
-set-syntax, soft-wrap-indicator, sort-lines, tab-control, tabs-to-spaces, 
-todo-show, toggle-quotes, trailing-spaces, view-tail-large-files
+linter-puppet-lint, linter-shellcheck, linter-tidy, markdown-scroll-sync, 
+minimap, minimap-find-and-replace, minimap-git-diff, 
+minimap-highlight-selected, minimap-selection, monokai, omni-ruler, 
+rainbow-selection, red-wavy-underline, set-syntax, soft-wrap-indicator, 
+sort-lines, tab-control, tabs-to-spaces, todo-show, toggle-quotes, 
+trailing-spaces, view-tail-large-files
 
 Pip Packages: anyjson, backports.ssl-match-hostname, beautifulsoup4, bson, 
 fabric, flake8, google-api-python-client, httplib2, iniparse, oauth2client, 

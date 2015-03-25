@@ -1,4 +1,11 @@
 * * *
+### [`addroot`](bin/addroot)
+```
+usage: addroot ROOT_FOLDER
+Runs command Adds Root Folder in Atom using given ROOT_FOLDER.
+```
+
+* * *
 ### [`alert`](bin/alert)
 ```
 usage: alert [-qh] [message]

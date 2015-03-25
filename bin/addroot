@@ -1,0 +1,66 @@
+#!/bin/bash -e
+
+# Crazy hack to Add Root Folder to Atom.
+
+usage()
+{
+    (
+        echo "usage: ${0##*/} ROOT_FOLDER"
+        echo "Runs command Adds Root Folder in Atom using given ROOT_FOLDER."
+    ) >&2
+    exit 1
+}
+
+if echo "$*" | egrep -q -- "--help|-h" || [[ -z "$1" ]]; then
+    usage
+fi
+
+ROOT_FOLDER="$1"
+if [[ "$ROOT_FOLDER" == "." ]]; then
+    ROOT_FOLDER="$(pwd)"
+fi
+APP="${0##*/}"
+cat >"/tmp/$APP.applescript" <<EOF
+on is_app_running(name)
+    tell application "System Events" to (name of processes) contains name
+end is_app_running
+
+on raise_app(name)
+    tell application name to activate
+end raise_app
+
+on type_string(str)
+    repeat with c in the characters of str
+        tell application "System Events" to keystroke c
+    end repeat
+end type_string
+
+on run argv
+    set atom_app_name to "Atom"
+    set atom_cmd to "Add Root Folder"
+    if length of argv is greater than 0 then
+        set root_folder to item 1 of argv as text
+        if is_app_running(atom_app_name) then
+            -- bring editor up
+            raise_app(atom_app_name)
+            delay 1
+
+            -- open command palette and enter command
+            tell application "System Events" to keystroke "p" using {command down, shift down}
+            delay 1
+            type_string(atom_cmd)
+            tell application "System Events" to keystroke return
+            delay 1
+
+            -- drive open directory dialog window
+            tell application "System Events" to keystroke "g" using {command down, shift down}
+            delay 1
+            type_string(root_folder)
+            tell application "System Events" to keystroke return
+            tell application "System Events" to keystroke return
+        end if
+    end if
+end run
+EOF
+osacompile -o "/tmp/$APP.scpt" "/tmp/$APP.applescript"
+osascript "/tmp/$APP.scpt" "$ROOT_FOLDER"

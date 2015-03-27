@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Lists (a-la 'ls -ltr') git controlled source files in current directory.
+
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+    (
+        echo "usage: ${0##*/} [-h|--help] [-r]"
+        echo "Lists (a-la 'ls -ltr') git controlled source files in current directory."
+        echo
+        echo "options:"
+        (
+            echo "    -h, --help: show usage help"
+            echo "    -r: recursive"
+        ) | column -ts:
+    ) >&2
+    exit 1
+fi
+
+RECURSIVE=""
+while getopts "r" opt; do
+    case "$opt" in
+        r) RECURSIVE="-r";;
+    esac
+done
+shift $((OPTIND - 1))
+
+git_list()
+{
+    eval "git ls-tree $RECURSIVE --name-only HEAD" | while read filename; do
+        echo "$(git log -1 --format="%ad" -- "$filename")"$'\t'"$filename"
+    done
+}
+
+git_list \
+    | sort -t' ' -k5,5n -k2,2M -k3,3n -k4,4n \
+    | column -ts$'\t'

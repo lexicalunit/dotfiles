@@ -244,6 +244,17 @@ Recursively Finds given pattern within CMake files.
 ```
 
 * * *
+### [`git_ltr`](bin/git_ltr)
+```
+usage: git_ltr [-h|--help] [-r]
+Lists (a-la 'ls -ltr') git controlled source files in current directory.
+
+options:
+    -h, --help   show usage help
+    -r           recursive
+```
+
+* * *
 ### [`git_name_change`](bin/git_name_change)
 ```
 usage: git_name_change REPO_URL OLD_EMAIL NEW_NAME NEW_EMAIL

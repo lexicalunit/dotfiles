@@ -27,6 +27,7 @@
 	push-topic = !bash git_push_topic
 	reauthor = !bash git_reauthor
 	name-change = !bash git_name_change
+	ltr = !bash git_ltr
 	wdiff = diff --color-words --word-diff
 [color]
 	ui = auto
@@ -49,7 +50,7 @@
 	autosetuprebase = always
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.5.2/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true

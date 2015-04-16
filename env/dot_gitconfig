@@ -27,7 +27,7 @@
 	push-topic = !bash git_push_topic
 	reauthor = !bash git_reauthor
 	name-change = !bash git_name_change
-	ltr = !bash git_ltr
+	ltr = !cd ${GIT_PREFIX:-.} && git_ltr
 	wdiff = diff --color-words --word-diff
 [color]
 	ui = auto

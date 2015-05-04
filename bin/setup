@@ -28,20 +28,21 @@ HOMEBREW_CASKS="                                                               \
     transmission vlc xquartz"
 
 ATOM_PACKAGES="                                                                \
-    atom-pair autocomplete-plus column-select cursor-count event-watch         \
-    file-icons git-blame highlight-selected indentation-indicator isotope-ui   \
-    language-applescript language-diff language-latex language-puppet linter   \
-    linter-clang linter-csslint linter-erb linter-flake8 linter-puppet         \
-    linter-puppet-lint linter-shellcheck linter-tidy minimap                   \
-    minimap-find-and-replace minimap-git-diff minimap-highlight-selected       \
-    minimap-selection monokai omni-ruler python-yapf rainbow-selection         \
-    red-wavy-underline set-syntax soft-wrap-indicator sort-lines               \
-    symbols-tree-view tab-control tabs-to-spaces todo-show toggle-quotes       \
-    trailing-spaces view-tail-large-files"
+    atom-pair autocomplete-plus autocomplete-plus-python-jedi column-select    \
+    cursor-count event-watch file-icons git-blame highlight-selected           \
+    indentation-indicator isotope-ui language-applescript language-diff        \
+    language-latex language-puppet linter linter-clang linter-csslint          \
+    linter-erb linter-flake8 linter-puppet linter-puppet-lint                  \
+    linter-shellcheck linter-tidy minimap minimap-find-and-replace             \
+    minimap-git-diff minimap-highlight-selected minimap-selection monokai      \
+    omni-ruler python-yapf rainbow-selection red-wavy-underline set-syntax     \
+    soft-wrap-indicator sort-lines symbols-tree-view tab-control               \
+    tabs-to-spaces todo-show toggle-quotes trailing-spaces                     \
+    view-tail-large-files"
 
 PIP_PACKAGES="                                                                 \
     anyjson backports.ssl-match-hostname beautifulsoup4 bson fabric flake8     \
-    google-api-python-client httplib2 iniparse oauth2client pep8 psycopg2      \
+    google-api-python-client httplib2 iniparse jedi oauth2client pep8 psycopg2 \
     pyasn1-modules pydruid pyflakes pymongo python-cson python-dateutil pytz   \
     requests rsa simplejson suds tables termcolor tinycss uritemplate wsgiref"
 

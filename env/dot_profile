@@ -59,8 +59,15 @@ fi
 export PYTHONPATH
 export PKG_CONFIG_PATH
 
-export USER="$(whoami)"
-export HOST="$(uname -n)"
+################################################################################
+# inspect system
+################################################################################
+USER="$(whoami)"
+HOST="$(uname -n)"
+PLATFORM="$(uname)"
+export USER
+export HOST
+export PLATFORM
 
 if $INTERACTIVE; then
 
@@ -149,8 +156,10 @@ exitconda()
     fi
 
     if [[ -n "$ANACONDA_ROOT" ]]; then
-        export PATH="$(echo "$PATH" | sed "s@$ANACONDA_ROOT/bin@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
-        export MANPATH="$(echo "$PATH" | sed "s@$ANACONDA_ROOT/share/man@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
+        PATH="$(echo "$PATH" | sed "s@$ANACONDA_ROOT/bin@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
+        MANPATH="$(echo "$PATH" | sed "s@$ANACONDA_ROOT/share/man@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
+        export PATH
+        export MANPATH
     fi
     unset PYTHON_ENV
 }
@@ -193,12 +202,64 @@ elif echo "$SHELL" | grep -q zsh; then
     bindkey "^[[B" history-beginning-search-forward
 fi
 
-export HISTFILE="$HOME/.$(basename "$SHELL")_history.$(uname -s)"
+HISTFILE="$HOME/.$(basename "$SHELL")_history.$(uname -s)"
+export HISTFILE
 export HISTCONTROL=ignoredups:erasedups
 export TERMINAL_HISTORY_SIZE="100000"
 export HISTSIZE="$TERMINAL_HISTORY_SIZE"
 export HISTFILESIZE="$TERMINAL_HISTORY_SIZE"
 export SAVEHIST="$TERMINAL_HISTORY_SIZE"
+
+################################################################################
+# setup terminal colors and editors
+################################################################################
+_interactive_log "setup terminal colors and editors"
+if type dircolors >/dev/null 2>&1; then
+    eval "$(dircolors -b "$HOME/.dircolors" 2>/dev/null)" # sets LS_COLORS
+    alias ls='ls -hF --color=auto'
+fi
+export CLICOLOR=1
+alias l='ls '
+alias ll='ls -l '
+
+# setup grep
+export GREP_OPTIONS='--color=auto' GREP_COLOR='7;35'
+
+# setup editor
+export EDITOR=vim
+export CVSEDITOR=vim
+export XEDITOR=vim
+export IGNOREEOF=0
+if type atom >/dev/null 2>&1; then
+    # export EDITOR='atom -w'
+    # export CVSEDITOR='atom -w'
+    export OSXEDITOR='atom -w'
+    alias edit='atom '
+    ew() { atom "$(which "$1")"; }
+    eman() { man "$@" | col -bx | tmpin atom -w & }
+elif type subl >/dev/null 2>&1; then
+    # export EDITOR='subl -w'
+    # export CVSEDITOR='subl -w'
+    export OSXEDITOR='subl -w'
+    alias edit='subl '
+    ew() { subl "$(which "$1")"; }
+    eman() { man "$@" | col -bx | subl -w & }
+elif type vim >/dev/null 2>&1; then
+    alias edit='vim '
+    ew() { vim "$(which "$1")"; }
+    eman() { man "$@" | col -bx | vim -; }
+fi
+
+vman() { man "$@" | col -bx | vim -; }
+
+# setup man
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
 
 ################################################################################
 # setup bash completions
@@ -277,7 +338,7 @@ elif echo "$SHELL" | grep -q zsh; then
     zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
     # Directories
-    zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
+    zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}" # LS_COLORS set by dircolors
     zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
     zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
     zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
@@ -370,22 +431,15 @@ ostype()
         return 0
     fi
 
-    local OS="$(uname -s)"
-    local CHIP=unknown
+    local OS
+    local CHIP
+    OS="$(uname -s)"
 
     case "$OS" in
-        SunOS|IRIX64|Darwin)
-            local CHIP="$(uname -p)"
-            ;;
-
-        Linux|machten)
-            local CHIP="$(uname -m)"
-            ;;
-
-        "Mac OS")
-            local OS="MacOS"
-            local CHIP="$(uname -p)"
-            ;;
+        SunOS|IRIX64|Darwin)    CHIP="$(uname -p)"; OS="$(uname -s)";;
+        Linux|machten)          CHIP="$(uname -m)"; OS="$(uname -s)";;
+        "Mac OS")               CHIP="$(uname -p)"; OS="MacOS";;
+        *)                      CHIP="unknown";;
     esac
 
     echo "$OS-$CHIP"
@@ -469,9 +523,12 @@ if echo "$SHELL" | grep -q bash; then
         local   GREY="\[\e[0;38;5;241m\]"
 
         # "\w" or "${PWD/#$HOME/~}" not sure which to go with...
-        local TERMINAL_TITLE="$TERMINAL_TITLE_USER$(if [[ -n \"$TERMINAL_TITLE_USER\" ]]; then printf ' '; fi)$USER@$HOST:\w"
-        local PROMPT_LINE_1="$RED\w${BLUE}$(_prompt_python_env)$GREY$(_prompt_repo)$BLUE$(_prompt_usernote)"
-        local PROMPT_LINE_2="$RED$(date +%H%M) $(ostype | sed 's/Linux-//g') \u@\h\`if [ \$? = 0 ]; then echo \"$BGREEN\$\"; else echo \"$BRED>\"; fi\`$BLACK"
+        local TERMINAL_TITLE
+        local PROMPT_LINE_1
+        local PROMPT_LINE_2
+        TERMINAL_TITLE="$TERMINAL_TITLE_USER$(if [[ -n \"$TERMINAL_TITLE_USER\" ]]; then printf ' '; fi)$USER@$HOST:\w"
+        PROMPT_LINE_1="$RED\w${BLUE}$(_prompt_python_env)$GREY$(_prompt_repo)$BLUE$(_prompt_usernote)"
+        PROMPT_LINE_2="$RED$(date +%H%M) $(ostype | sed 's/Linux-//g') \u@\h\`if [ \$? = 0 ]; then echo \"$BGREEN\$\"; else echo \"$BRED>\"; fi\`$BLACK"
 
         PS1="\[\e]2;\]${TERMINAL_TITLE}\a\
 ${PROMPT_LINE_1}\n\
@@ -508,7 +565,8 @@ elif echo "$SHELL" | grep -q zsh; then
 
     _prompt_first_line()
     {
-        local PROMPT_FIRST_LINE="%{$fg[red]%}%~%{$reset_color%}%{$fg[blue]%}$(_prompt_python_env)%{$reset_color%}$(_prompt_repo)"
+        local PROMPT_FIRST_LINE
+        PROMPT_FIRST_LINE="%{$fg[red]%}%~%{$reset_color%}%{$fg[blue]%}$(_prompt_python_env)%{$reset_color%}$(_prompt_repo)"
         echo -n "$PROMPT_FIRST_LINE"
     }
 
@@ -519,7 +577,8 @@ elif echo "$SHELL" | grep -q zsh; then
 
     _prompt_second_line()
     {
-        local PROMPT_SECOND_LINE="%{$fg[red]%}%D{%H%M} $(ostype | sed 's/Linux-//g') %n@%m%{$reset_color%}"
+        local PROMPT_SECOND_LINE
+        PROMPT_SECOND_LINE="%{$fg[red]%}%D{%H%M} $(ostype | sed 's/Linux-//g') %n@%m%{$reset_color%}"
         echo -n "$PROMPT_SECOND_LINE"
     }
 
@@ -543,6 +602,7 @@ alias unmerged='git ls-files -u | cut -f2 | sort -u '
 alias pygmentize='pygmentize -O bg=dark'
 alias gits='git s '
 alias gitsu='git s -u '
+alias yapf='yapf --style="{based_on_style: pep8, column_limit: 120}" '
 
 if type ncftp >/dev/null 2>&1; then alias ftp='ncftp '; fi
 if type share >/dev/null 2>&1; then alias shares='share '; fi
@@ -563,9 +623,12 @@ running_in_docker()
 
 lw()
 {
-    local LOC="$(which "$1")"
+    local LOC
+    local FINFO
+    local REAL
+    LOC="$(which "$1")"
     echo "$LOC"
-    local FINFO="$(file -h "$LOC")"
+    FINFO="$(file -h "$LOC")"
     if echo "$FINFO" | grep -q 'symbolic link to'; then
         SYLOC="$(echo "$FINFO" | sed 's@.*symbolic link to\s*\(.*\)@\1@')"
         if [[ "$SYLOC" != /* ]]; then
@@ -575,7 +638,7 @@ lw()
         fi
         echo "$LOC"
         if type realpath >/dev/null 2>&1; then
-            local REAL="$(realpath "$LOC")"
+            REAL="$(realpath "$LOC")"
             if [[ "$REAL" != "$LOC" ]]; then
                 echo "$REAL"
             fi
@@ -614,57 +677,6 @@ h()
 if type gsed >/dev/null 2>&1; then
     alias sed='gsed '
 fi
-
-################################################################################
-# setup terminal colors and editors
-################################################################################
-_interactive_log "setup terminal colors and editors"
-if type dircolors >/dev/null 2>&1; then
-    eval "$(dircolors -b "$HOME/.dircolors" 2>/dev/null)"
-    alias ls='ls -hF --color=auto'
-fi
-export CLICOLOR=1
-alias l='ls '
-alias ll='ls -l '
-
-# setup grep
-export GREP_OPTIONS='--color=auto' GREP_COLOR='7;35'
-
-# setup editor
-export EDITOR=vim
-export CVSEDITOR=vim
-export XEDITOR=vim
-export IGNOREEOF=0
-if type atom >/dev/null 2>&1; then
-    # export EDITOR='atom -w'
-    # export CVSEDITOR='atom -w'
-    export OSXEDITOR='atom -w'
-    alias edit='atom '
-    ew() { atom "$(which "$1")"; }
-    eman() { man "$@" | col -bx | tmpin atom -w & }
-elif type subl >/dev/null 2>&1; then
-    # export EDITOR='subl -w'
-    # export CVSEDITOR='subl -w'
-    export OSXEDITOR='subl -w'
-    alias edit='subl '
-    ew() { subl "$(which "$1")"; }
-    eman() { man "$@" | col -bx | subl -w & }
-elif type vim >/dev/null 2>&1; then
-    alias edit='vim '
-    ew() { vim "$(which "$1")"; }
-    eman() { man "$@" | col -bx | vim -; }
-fi
-
-vman() { man "$@" | col -bx | vim -; }
-
-# setup man
-export LESS_TERMCAP_mb=$'\E[01;31m'
-export LESS_TERMCAP_md=$'\E[01;31m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;44;33m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;32m'
 
 ################################################################################
 # source any local configuration files

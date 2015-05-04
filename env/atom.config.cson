@@ -1,5 +1,6 @@
 "*":
-	"autocomplete-plus": {}
+	"autocomplete-plus":
+		confirmCompletion: "tab and enter"
 	"bracket-matcher":
 		autocompleteSmartQuotes: false
 	core:
@@ -110,6 +111,9 @@
 		fontWeight: "Regular"
 		lowContrastTooltip: true
 	linter:
+		ignoredLinterErrors: [
+			"shellcheck"
+		]
 		lintOnChange: false
 	"linter-flake8":
 		maxLineLength: 120

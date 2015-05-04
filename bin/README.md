@@ -422,9 +422,9 @@ language-puppet, linter, linter-clang, linter-csslint, linter-erb,
 linter-flake8, linter-puppet, linter-puppet-lint, linter-shellcheck, 
 linter-tidy, minimap, minimap-find-and-replace, minimap-git-diff, 
 minimap-highlight-selected, minimap-selection, monokai, omni-ruler, 
-rainbow-selection, red-wavy-underline, set-syntax, soft-wrap-indicator, 
-sort-lines, symbols-tree-view, tab-control, tabs-to-spaces, todo-show, 
-toggle-quotes, trailing-spaces, view-tail-large-files
+python-yapf, rainbow-selection, red-wavy-underline, set-syntax, 
+soft-wrap-indicator, sort-lines, symbols-tree-view, tab-control, 
+tabs-to-spaces, todo-show, toggle-quotes, trailing-spaces, view-tail-large-files
 
 Pip Packages: anyjson, backports.ssl-match-hostname, beautifulsoup4, bson, 
 fabric, flake8, google-api-python-client, httplib2, iniparse, oauth2client, 
@@ -688,7 +688,7 @@ Options:
     --no-mtime                       Do not use the Last-modified header to set the file modification time
     --write-description              Write video description to a .description file
     --write-info-json                Write video metadata to a .info.json file
-    --write-annotations              Write video annotations to a .annotation file
+    --write-annotations              Write video annotations to a .annotations.xml file
     --load-info FILE                 JSON file containing the video information (created with the "--write-info-json" option)
     --cookies FILE                   File to read cookies from and dump cookie jar in
     --cache-dir DIR                  Location in the filesystem where youtube-dl can store some downloaded information
@@ -744,23 +744,9 @@ Options:
     --sleep-interval SECONDS         Number of seconds to sleep before each download.
 
   Video Format Options:
-    -f, --format FORMAT              Video format code, specify the order of preference using slashes, as in -f 22/17/18 .
-                                     Instead of format codes, you can select by extension for the extensions aac, m4a, mp3, mp4,
-                                     ogg, wav, webm. You can also use the special names "best", "bestvideo", "bestaudio", "worst".
-                                     You can filter the video results by putting a condition in brackets, as in -f
-                                     "best[height=720]" (or -f "[filesize>10M]").  This works for filesize, height, width, tbr,
-                                     abr, vbr, asr, and fps and the comparisons <, <=, >, >=, =, != and for ext, acodec, vcodec,
-                                     container, and protocol and the comparisons =, != . Formats for which the value is not known
-                                     are excluded unless you put a question mark (?) after the operator. You can combine format
-                                     filters, so  -f "[height <=? 720][tbr>500]" selects up to 720p videos (or videos where the
-                                     height is not known) with a bitrate of at least 500 KBit/s. By default, youtube-dl will pick
-                                     the best quality. Use commas to download multiple audio formats, such as -f
-                                     136/137/mp4/bestvideo,140/m4a/bestaudio. You can merge the video and audio of two formats
-                                     into a single file using -f <video-format>+<audio-format> (requires ffmpeg or avconv), for
-                                     example -f bestvideo+bestaudio.
+    -f, --format FORMAT              Video format code, see the "FORMAT SELECTION" for all the info
     --all-formats                    Download all available video formats
     --prefer-free-formats            Prefer free video formats unless a specific one is requested
-    --max-quality FORMAT             Highest quality format to download
     -F, --list-formats               List all available formats
     --youtube-skip-dash-manifest     Do not download the DASH manifest on YouTube videos
     --merge-output-format FORMAT     If a merge is required (e.g. bestvideo+bestaudio), output to given container format. One of
@@ -791,7 +777,7 @@ Options:
     --recode-video FORMAT            Encode the video to another format if necessary (currently supported: mp4|flv|ogg|webm|mkv)
     -k, --keep-video                 Keep the video file on disk after the post-processing; the video is erased by default
     --no-post-overwrites             Do not overwrite post-processed files; the post-processed files are overwritten by default
-    --embed-subs                     Embed subtitles in the video (only for mp4 videos)
+    --embed-subs                     Embed subtitles in the video (only for mkv and mp4 videos)
     --embed-thumbnail                Embed thumbnail in the audio as cover art
     --add-metadata                   Write metadata to the video file
     --metadata-from-title FORMAT     Parse additional metadata like song title / artist from the video title. The format syntax is

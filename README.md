@@ -160,12 +160,12 @@ language-diff, language-latex, language-puppet, linter, linter-clang,
 linter-csslint, linter-erb, linter-flake8, linter-puppet, linter-puppet-lint, 
 linter-shellcheck, linter-tidy, minimap, minimap-find-and-replace, 
 minimap-git-diff, minimap-highlight-selected, minimap-selection, monokai, 
-omni-ruler, python-yapf, rainbow-selection, red-wavy-underline, set-syntax, 
-soft-wrap-indicator, sort-lines, symbols-tree-view, tab-control, 
+omni-ruler, python-isort, python-yapf, rainbow-selection, red-wavy-underline, 
+set-syntax, soft-wrap-indicator, sort-lines, symbols-tree-view, tab-control, 
 tabs-to-spaces, todo-show, toggle-quotes, trailing-spaces, view-tail-large-files
 
 Pip Packages: anyjson, backports.ssl-match-hostname, beautifulsoup4, bson, 
-fabric, flake8, google-api-python-client, httplib2, iniparse, jedi, 
+fabric, flake8, google-api-python-client, httplib2, iniparse, isort, jedi, 
 oauth2client, pep8, psycopg2, pyasn1-modules, pydruid, pyflakes, pymongo, 
 python-cson, python-dateutil, pytz, requests, rsa, simplejson, suds, tables, 
 termcolor, tinycss, uritemplate, wsgiref

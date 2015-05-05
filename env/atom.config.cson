@@ -36,7 +36,7 @@
 		tabLength: 4
 	"event-watch":
 		data:
-			Northbound: [
+			N: [
 				"6 12:00"
 				"6 12:30"
 				"6 1:00"
@@ -71,7 +71,7 @@
 				"5 11:00pm"
 				"5 11:30pm"
 			]
-			Southbound: [
+			S: [
 				"12345 6:24"
 				"12345 6:56"
 				"12345 7:27"
@@ -92,8 +92,6 @@
 				"12345 5:51pm"
 			]
 		displayFormat: "$title: $tminus"
-		refreshIntervalMinutes: 5
-		warnThresholdMinutes: 15
 	"git-blame": {}
 	"git-diff":
 		showIconsInEditorGutter: true
@@ -113,6 +111,7 @@
 	linter:
 		ignoredLinterErrors: [
 			"shellcheck"
+			"flake8"
 		]
 		lintOnChange: false
 	"linter-flake8":
@@ -133,6 +132,8 @@
 			100
 			120
 		]
+	"python-yapf":
+		yapfStyle: "{based_on_style: pep8, column_limit: 120}"
 	"spell-check":
 		grammars: [
 			"source.gfm"

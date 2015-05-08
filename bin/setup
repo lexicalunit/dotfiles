@@ -608,7 +608,7 @@ ensure_homebrew_updated()
     fi
 
     run "brew update"
-    run "brew upgrade"
+    run "brew upgrade --all"
 }
 
 install_brew_formula()

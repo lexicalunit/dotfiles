@@ -825,6 +825,7 @@ step_python()
     CONDA_LIST="$(conda list | cut -f1 -d' ')"
 
     # Install python packages that don't come with Anaconda... yet!
+    run "pip install --upgrade pip"
     IFS=' '
     for I in $PIP_PACKAGES; do
         run "pip install -qU $I"

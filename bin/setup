@@ -31,8 +31,8 @@ ATOM_PACKAGES="                                                                \
     atom-pair autocomplete-plus autocomplete-plus-python-jedi column-select    \
     cursor-count event-watch file-icons git-blame highlight-selected           \
     indentation-indicator isotope-ui language-applescript language-diff        \
-    language-latex language-puppet linter linter-clang linter-csslint          \
-    linter-erb linter-flake8 linter-puppet linter-puppet-lint                  \
+    language-latex language-puppet linter linter-clang linter-coffeelint       \
+    linter-csslint linter-erb linter-flake8 linter-puppet linter-puppet-lint   \
     linter-shellcheck linter-tidy minimap minimap-find-and-replace             \
     minimap-git-diff minimap-highlight-selected minimap-selection monokai      \
     omni-ruler python-isort python-yapf rainbow-selection red-wavy-underline   \

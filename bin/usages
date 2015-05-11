@@ -14,6 +14,11 @@ if echo "$*" | egrep -q -- "--help|-h"; then
 	exit 1
 fi
 
+# Some help messages are adjusted to fit terminal columns, so setting a
+# default constant value here avoids usages producing different output
+# when run in different terminal windows.
+stty columns 120
+
 # -t or --table enabled table mode for generating markdown output
 TABLE=0
 if echo "$*" | egrep -q -- "--table|-t"; then

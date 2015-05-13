@@ -15,17 +15,17 @@ HOMEBREW_FORMULAS="                                                            \
     memcached mercurial mongodb mpfr ncftp node onepass openssl ossp-uuid      \
     pandoc pcre pidof pkg-config plotutils pngquant postgresql readline ruby   \
     s3cmd scons sdl2 sdl2_image shellcheck sloccount spark sqlite storm tree   \
-    unixodbc unrar vramsteg watch webp wget x264 xvid xz yaml-cpp youtube-dl   \
+    unixodbc unrar vramsteg watch webp wget x264 xvid xz yaml-cpp youtube-dl z \
     zsh zsh-completions"
 
 HOMEBREW_CASKS="                                                               \
     adium amazon-music atom audacity balsamiq-mockups battle-net caffeine      \
     caskroom/versions/java7 chromecast clamxav cyberduck dbvisualizer          \
     disk-inventory-x dropbox evernote firefox flux gimp-lisanet google-chrome  \
-    google-hangouts hipchat intellij-idea istumbler iterm2 kaleidoscope kvirc  \
-    mactex mysqlworkbench onepassword pdftk pycharm-ce robomongo silverlight   \
-    skype snes9x soundflower sourcetree spotify steam teamviewer texstudio     \
-    transmission vlc xquartz"
+    google-hangouts hipchat iexplorer intellij-idea istumbler iterm2           \
+    kaleidoscope kvirc mactex mysqlworkbench onepassword pdftk pycharm-ce      \
+    robomongo silverlight skype snes9x soundflower sourcetree spotify steam    \
+    teamviewer texstudio transmission vlc xquartz"
 
 ATOM_PACKAGES="                                                                \
     atom-pair autocomplete-plus autocomplete-plus-python-jedi column-select    \
@@ -36,8 +36,8 @@ ATOM_PACKAGES="                                                                \
     linter-shellcheck linter-tidy minimap minimap-find-and-replace             \
     minimap-git-diff minimap-highlight-selected minimap-selection monokai      \
     omni-ruler python-isort python-yapf rainbow-selection red-wavy-underline   \
-    set-syntax soft-wrap-indicator sort-lines symbols-tree-view tab-control    \
-    tabs-to-spaces todo-show toggle-quotes trailing-spaces                     \
+    script set-syntax soft-wrap-indicator sort-lines symbols-tree-view         \
+    tab-control tabs-to-spaces todo-show toggle-quotes trailing-spaces         \
     view-tail-large-files"
 
 PIP_PACKAGES="                                                                 \
@@ -664,7 +664,7 @@ step_brew()
     IFS=$'\n'
     for I in $(brew ls); do
         name="${I%@*}"
-        if ! echo "$HOMEBREW_FORMULAS" | grep -q "$name"; then
+        if ! echo "$HOMEBREW_FORMULAS" | egrep -q "\\b$name\\b"; then
             show -i "$I installed but not managed by setup"
         fi
     done
@@ -701,7 +701,7 @@ step_cask()
     IFS=$'\n'
     for I in $(brew cask list); do
         name="${I%@*}"
-        if ! echo "$HOMEBREW_CASKS" | grep -q "$(echo "$name" | sed 's/ (!)//g')"; then
+        if ! echo "$HOMEBREW_CASKS" | egrep -q "$(echo "\\b$name\\b" | sed 's/ (!)//g')"; then
             show -i "$I installed but not managed by setup"
         fi
     done
@@ -740,7 +740,7 @@ step_atom()
     IFS=$'\n'
     for I in $(apm list -bi); do
         name="${I%@*}"
-        if ! echo "$ATOM_PACKAGES" | grep -q "$name"; then
+        if ! echo "$ATOM_PACKAGES" | egrep -q "\\b${name}\\b"; then
             show -i "$I installed but not managed by setup"
         fi
     done
@@ -850,7 +850,7 @@ step_python()
         if [[ "$name" == "#" || "$name" == "_license" ]]; then
             continue
         fi
-        if ! echo "$PIP_PACKAGES" | grep -q "$name" && ! echo "$CONDA_PACKAGES" | grep -q "$name"; then
+        if ! echo "$PIP_PACKAGES" | egrep -q "\\b$name\\b" && ! echo "$CONDA_PACKAGES" | egrep -q "\\b$name\\b"; then
             show -i "$I installed but not managed by setup"
         fi
     done
@@ -879,7 +879,7 @@ step_gem()
         if [[ "$name" == "*** LOCAL GEMS ***" ]]; then
             continue
         fi
-        if ! echo "$GEM_PACKAGES" | grep -q "$(echo "$name" | cut -d' ' -f1)"; then
+        if ! echo "$GEM_PACKAGES" | egrep -q "$(echo "\\b$name\\b" | cut -d' ' -f1)"; then
             show -i "$I installed but not managed by setup"
         fi
     done
@@ -909,7 +909,7 @@ step_node()
         if [[ "$name" == "npm" ]]; then
             continue
         fi
-        if ! echo "$NODE_MODULES" | grep -q "$(echo "$name" | cut -d@ -f1)"; then
+        if ! echo "$NODE_MODULES" | egrep -q "$(echo "\\b$name\\b" | cut -d@ -f1)"; then
             show -i "$I installed but not managed by setup"
         fi
     done

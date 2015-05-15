@@ -468,7 +468,7 @@ mini_portile, minitest, molinillo, mongo, multi_json, nap, net-ldap, net-scp,
 net-ssh, netrc, nokogiri, open4, paint, parslet, polyglot, posix-spawn, 
 power_assert, psych, puppet-lint, pygments.rb, rack, rack-protection, 
 rack-test, rails-deprecated_sanitizer, rails-dom-testing, rails-html-sanitizer, 
-railsless-deploy, rake, rb-fsevent, rb-inotify, rdoc, redcarpet, 
+railsless-deploy, rake, rb-fsevent, rb-inotify, rdoc, redcarpet, rouge, 
 rubygems-bundler, rubygems-update, rvm, safe_yaml, sass, shotgun, sshkit, 
 test-unit, thread_safe, timers, toml, treetop, trollop, tzinfo, xcodeproj, 
 yajl-ruby

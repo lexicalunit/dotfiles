@@ -23,6 +23,7 @@
 			"welcome"
 			"wrap-guide"
 			"rainbow-selection"
+			"linter-clang"
 		]
 		themes: [
 			"isotope-ui"

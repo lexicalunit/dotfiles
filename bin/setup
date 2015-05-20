@@ -7,25 +7,26 @@
 ################################################################################
 # BEGIN GENERATED PACKAGE LISTS
 HOMEBREW_FORMULAS="                                                            \
-    autoconf automake bash bison boost boot2docker caskroom/cask/brew-cask     \
-    cloog cmake coreutils cppunit dmd docker doxygen faac ffmpeg fontconfig    \
-    freetype gdbm geoip ghostscript gifify git gmp gnu-sed gnu-tar graphviz    \
-    htop-osx imagemagick isl jbig2dec jhead jpeg jq lame libevent libmpc       \
-    libpng libtiff libtool libvo-aacenc libyaml little-cms2 maven md5sha1sum   \
-    memcached mercurial mongodb mpfr ncftp node onepass openssl ossp-uuid      \
-    pandoc pcre pidof pkg-config plotutils pngquant postgresql readline ruby   \
-    s3cmd scons sdl2 sdl2_image shellcheck sloccount spark sqlite storm tree   \
+    autoconf automake bash bison boost boot2docker cloog cmake coreutils       \
+    cppunit dmd docker doxygen faac ffmpeg fontconfig freetype gdbm geoip      \
+    gettext ghostscript gifify git glib gmp gmp4 gnu-sed gnu-tar gnupg go      \
+    gradle graphviz htop-osx id3v2 imagemagick isl jbig2dec jhead jpeg jq lame \
+    libevent libffi libgpg-error libksba libmpc libpng libtiff libtool         \
+    libvo-aacenc libyaml little-cms2 maven md5sha1sum memcached mercurial      \
+    mongodb mpfr ncftp nginx node onepass openssl ossp-uuid pandoc pcre pidof  \
+    pkg-config plotutils pngquant postgresql readline redis ruby rust s3cmd    \
+    scons sdl2 sdl2_image shellcheck sloccount spark sqlite storm tree         \
     unixodbc unrar vramsteg watch webp wget x264 xvid xz yaml-cpp youtube-dl z \
-    zsh zsh-completions"
+    zookeeper zsh zsh-completions"
 
 HOMEBREW_CASKS="                                                               \
-    adium amazon-music atom audacity balsamiq-mockups battle-net caffeine      \
-    caskroom/versions/java7 chromecast clamxav cyberduck dbvisualizer          \
-    disk-inventory-x dropbox evernote firefox flux gimp-lisanet google-chrome  \
-    google-hangouts hipchat iexplorer intellij-idea istumbler iterm2           \
-    kaleidoscope kvirc mactex mysqlworkbench onepassword pdftk pycharm-ce      \
-    robomongo silverlight skype snes9x soundflower sourcetree spotify steam    \
-    teamviewer texstudio transmission vlc xquartz"
+    adium-beta amazon-music atom audacity balsamiq-mockups battle-net caffeine \
+    chromecast clamxav cyberduck dbvisualizer disk-inventory-x dropbox         \
+    evernote firefox flux gimp-lisanet google-chrome google-hangouts hipchat   \
+    iexplorer intellij-idea istumbler iterm2 java7 kaleidoscope kvirc mactex   \
+    mysqlworkbench onepassword pdftk pycharm-ce robomongo silverlight skype    \
+    snes9x soundflower sourcetree spotify steam teamviewer texstudio           \
+    transmission vlc xquartz"
 
 ATOM_PACKAGES="                                                                \
     atom-pair autocomplete-plus autocomplete-plus-python-jedi column-select    \
@@ -601,6 +602,13 @@ step_java()
 ################################################################################
 # Step brew
 ################################################################################
+ensure_homebrew_tap()
+{
+    if ! brew tap | grep -q "$1"; then
+        run "brew tap '$1'"
+    fi
+}
+
 ensure_homebrew_updated()
 {
     if [[ -z "$(which brew)" ]]; then
@@ -641,6 +649,7 @@ step_brew()
     fi
 
     ensure_homebrew_updated
+    ensure_homebrew_tap "homebrew/versions"
 
     IFS=' '
     for I in $HOMEBREW_FORMULAS; do
@@ -665,7 +674,10 @@ step_brew()
     for I in $(brew ls); do
         name="${I%@*}"
         if ! echo "$HOMEBREW_FORMULAS" | egrep -q "\\b$name\\b"; then
-            show -i "$I installed but not managed by setup"
+            case "$I" in
+                "brew-cask");; "lib");; # ignored warnings
+                *) show -i "$I installed but not managed by setup"
+            esac
         fi
     done
 }
@@ -692,6 +704,8 @@ step_cask()
     echo
 
     ensure_homebrew_updated
+    install_brew_formula "caskroom/cask/brew-cask"
+    ensure_homebrew_tap "caskroom/versions"
 
     IFS=' '
     for I in $HOMEBREW_CASKS; do

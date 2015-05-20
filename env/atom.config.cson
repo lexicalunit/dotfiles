@@ -24,6 +24,7 @@
 			"wrap-guide"
 			"rainbow-selection"
 			"linter-clang"
+			"atom-pair"
 		]
 		themes: [
 			"isotope-ui"

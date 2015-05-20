@@ -395,23 +395,24 @@ steps:
     node         Ensure Node modules are installed
     tiddlywiki   Install and setup latest TiddlyWiki from Homebrew
 
-Homebrew Formulas: autoconf, automake, bash, bison, boost, boot2docker, 
-caskroom/cask/brew-cask, cloog, cmake, coreutils, cppunit, dmd, docker, 
-doxygen, faac, ffmpeg, fontconfig, freetype, gdbm, geoip, ghostscript, gifify, 
-git, gmp, gnu-sed, gnu-tar, graphviz, htop-osx, imagemagick, isl, jbig2dec, 
-jhead, jpeg, jq, lame, libevent, libmpc, libpng, libtiff, libtool, 
-libvo-aacenc, libyaml, little-cms2, maven, md5sha1sum, memcached, mercurial, 
-mongodb, mpfr, ncftp, node, onepass, openssl, ossp-uuid, pandoc, pcre, pidof, 
-pkg-config, plotutils, pngquant, postgresql, readline, ruby, s3cmd, scons, 
-sdl2, sdl2_image, shellcheck, sloccount, spark, sqlite, storm, tree, unixodbc, 
-unrar, vramsteg, watch, webp, wget, x264, xvid, xz, yaml-cpp, youtube-dl, z, 
-zsh, zsh-completions
+Homebrew Formulas: autoconf, automake, bash, bison, boost, boot2docker, cloog, 
+cmake, coreutils, cppunit, dmd, docker, doxygen, faac, ffmpeg, fontconfig, 
+freetype, gdbm, geoip, gettext, ghostscript, gifify, git, glib, gmp, gmp4, 
+gnu-sed, gnu-tar, gnupg, go, gradle, graphviz, htop-osx, id3v2, imagemagick, 
+isl, jbig2dec, jhead, jpeg, jq, lame, libevent, libffi, libgpg-error, libksba, 
+libmpc, libpng, libtiff, libtool, libvo-aacenc, libyaml, little-cms2, maven, 
+md5sha1sum, memcached, mercurial, mongodb, mpfr, ncftp, nginx, node, onepass, 
+openssl, ossp-uuid, pandoc, pcre, pidof, pkg-config, plotutils, pngquant, 
+postgresql, readline, redis, ruby, rust, s3cmd, scons, sdl2, sdl2_image, 
+shellcheck, sloccount, spark, sqlite, storm, tree, unixodbc, unrar, vramsteg, 
+watch, webp, wget, x264, xvid, xz, yaml-cpp, youtube-dl, z, zookeeper, zsh, 
+zsh-completions
 
-Homebrew Casks: adium, amazon-music, atom, audacity, balsamiq-mockups, 
-battle-net, caffeine, caskroom/versions/java7, chromecast, clamxav, cyberduck, 
-dbvisualizer, disk-inventory-x, dropbox, evernote, firefox, flux, gimp-lisanet, 
+Homebrew Casks: adium-beta, amazon-music, atom, audacity, balsamiq-mockups, 
+battle-net, caffeine, chromecast, clamxav, cyberduck, dbvisualizer, 
+disk-inventory-x, dropbox, evernote, firefox, flux, gimp-lisanet, 
 google-chrome, google-hangouts, hipchat, iexplorer, intellij-idea, istumbler, 
-iterm2, kaleidoscope, kvirc, mactex, mysqlworkbench, onepassword, pdftk, 
+iterm2, java7, kaleidoscope, kvirc, mactex, mysqlworkbench, onepassword, pdftk, 
 pycharm-ce, robomongo, silverlight, skype, snes9x, soundflower, sourcetree, 
 spotify, steam, teamviewer, texstudio, transmission, vlc, xquartz
 

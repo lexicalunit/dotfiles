@@ -135,7 +135,8 @@ show_items()
 {
     # Pretty prints an item list suitable for usage help.
     local list_name="$1"
-    local list_title="$(echo "$list_name"                                      \
+    local list_title
+    list_title="$(echo "$list_name"                                            \
         | tr '[:upper:]' '[:lower:]'                                           \
         | tr '_' ' '                                                           \
         | awk '{for (i=1;i <= NF;i++) {
@@ -727,7 +728,8 @@ step_cask()
 install_atom_pkg()
 {
     local PKG="$1"
-    local INSTALLED="$(apm list --installed --bare | grep "$PKG")"
+    local INSTALLED
+    INSTALLED="$(apm list --installed --bare | grep "$PKG")"
     if [[ -z "$INSTALLED" ]]; then
         run "apm install '$PKG'" || abort "can not install package '$PKG'"
     else
@@ -766,7 +768,8 @@ step_atom()
 ensure_add_shell()
 {
     local BINARY="$1"
-    local INSTALLED="$(grep "$BINARY" /etc/shells)"
+    local INSTALLED
+    INSTALLED="$(grep "$BINARY" /etc/shells)"
     if [[ "$INSTALLED" == "" ]]; then
         run "echo '$BINARY' | sudo tee -a /etc/shells"
     fi
@@ -1043,15 +1046,6 @@ fi
 
 [[ $1 == all ]] && ALL=1
 
-# if [[ $LISTING == 0 ]]; then
-#     # Keep-alive sudo: update existing `sudo` time stamp until `.osx` has finished
-#     # See: https://github.com/mathiasbynens/dotfiles/blob/master/.osx
-#     show -i "This script is occasionally interactive, even in -f force mode."
-#     show -i "Asking for sudo access once at the start, you should (hopefully) not be asked again."
-#     sudo -v
-#     while true; do sudo -n true; sleep 30; kill -0 "$$" || exit; done 2>/dev/null &
-# fi
-
 # key;  question
 steps=(
     "osx;           Override OS X defaults settings and configuration"
@@ -1061,7 +1055,6 @@ steps=(
     "cask;          Ensure Homebrew Casks are installed"
     "atom;          Ensure Atom installed via Homebrew Cask and apm packages are upgraded"
     "zsh;           Ensure shell is latest version of zsh from Homebrew"
-    # "bash;          Ensure shell is latest version of bash from Homebrew"
     "python;        Upgrade/Install Anaconda, pip packages, and conda packages"
     "gem;           Upgrade/Install gem packages and rubygems-update package"
     "node;          Ensure Node modules are installed"
@@ -1073,8 +1066,8 @@ LISTING_OUTPUT=""
 IFS=$'\n'
 let steps_taken=0
 for step in "${steps[@]}"; do
-    key="$(echo $step | cut -d';' -f1)"
-    question="$(echo $step | cut -d';' -f2 | sed 's/^ *//g')"
+    key="$(echo "$step" | cut -d';' -f1)"
+    question="$(echo "$step" | cut -d';' -f2 | sed 's/^ *//g')"
     function="step_$key"
 
     if [[ $LISTING == 1 ]]; then

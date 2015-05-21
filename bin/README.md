@@ -340,6 +340,12 @@ Puts your public ssh key in the authorized_keys on the remote host.
 ```
 
 * * *
+### [`reset_boot2docker`](bin/reset_boot2docker)
+```
+Reset completely boot2docker on OS X.
+```
+
+* * *
 ### [`root`](bin/root)
 ```
 usage: root [-h|--help]

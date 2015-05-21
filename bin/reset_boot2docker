@@ -1,0 +1,19 @@
+#!/bin/bash -ue
+
+# Reset completely boot2docker on OS X.
+
+if echo "$*" | egrep -q -- "--help|-h"; then
+    echo "Reset completely boot2docker on OS X." >&2
+    exit 0
+fi
+
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
+type boot2docker >/dev/null 2>&1 && run "boot2docker delete"
+type boot2docker >/dev/null 2>&1 && run "brew uninstall -f docker boot2docker"
+run "brew update"
+run "brew install boot2docker"
+run "boot2docker download"
+run "boot2docker init"
+run "boot2docker up"
+run "boot2docker shellinit"

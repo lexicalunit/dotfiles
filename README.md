@@ -95,6 +95,7 @@ or of course just run the tools with the argument `--help`.
 | [`lt`](bin/lt) | Run shell command with a timeout. |
 | [`macosver`](bin/macosver) | Prints current OS X version information. |
 | [`nopw`](bin/nopw) | Enables password-less ssh TO username@remotehost FROM localhost. |
+| [`reset_boot2docker`](bin/reset_boot2docker) | Reset completely boot2docker on OS X. |
 | [`root`](bin/root) | Prints the root of the current repository. |
 | [`s`](bin/s) | Show git status for all directories in current directory. |
 | [`safari_cache`](bin/safari_cache) | Shows current Safari cache. |

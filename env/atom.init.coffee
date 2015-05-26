@@ -12,8 +12,11 @@ atom.commands.add 'atom-workspace',
     editor = atom.workspace.getActiveTextEditor()
     if editor?
       if editor.getSoftTabs()
-        line = editor.getCursor().getCurrentBufferLine()
-        n_spaces = editor.getTabLength() - (line.length % editor.getTabLength())
-        editor.insertText(Array(n_spaces + 1).join(' '))
-      else
-        editor.insertText('\t')
+        cursors = editor.getCursors()
+        if cursors.length == 1
+          line = cursors[0].getCurrentBufferLine()
+          tabLength = editor.getTabLength()
+          n_spaces = tabLength - (line.length % editor.getTabLength())
+          editor.insertText(Array(n_spaces + 1).join(' '))
+          return
+      editor.insertText('\t')

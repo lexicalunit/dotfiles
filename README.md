@@ -144,8 +144,8 @@ md5sha1sum, memcached, mercurial, mongodb, mpfr, ncftp, nginx, node, onepass,
 openssl, ossp-uuid, pandoc, pcre, pidof, pkg-config, plotutils, pngquant, 
 postgresql, readline, redis, ruby, rust, s3cmd, scons, sdl2, sdl2_image, 
 shellcheck, sloccount, spark, sqlite, storm, tree, unixodbc, unrar, vramsteg, 
-watch, webp, wget, x264, xvid, xz, yaml-cpp, youtube-dl, z, zookeeper, zsh, 
-zsh-completions
+watch, webp, wget, x264, xvid, xz, yaml-cpp, youtube-dl, z, zeromq, zookeeper, 
+zsh, zsh-completions
 
 Homebrew Casks: adium-beta, amazon-music, atom, audacity, balsamiq-mockups, 
 battle-net, caffeine, chromecast, clamxav, cyberduck, dbvisualizer, 
@@ -157,15 +157,16 @@ spotify, steam, teamviewer, texstudio, transmission, vlc, xquartz
 
 Atom Packages: atom-pair, autocomplete-plus, autocomplete-plus-python-jedi, 
 column-select, cursor-count, event-watch, file-icons, git-blame, 
-highlight-selected, indentation-indicator, isotope-ui, language-applescript, 
-language-diff, language-latex, language-puppet, language-rust, linter, 
-linter-clang, linter-coffeelint, linter-csslint, linter-erb, linter-flake8, 
-linter-puppet, linter-puppet-lint, linter-shellcheck, linter-tidy, minimap, 
-minimap-find-and-replace, minimap-git-diff, minimap-highlight-selected, 
-minimap-selection, monokai, omni-ruler, python-isort, python-yapf, 
-rainbow-selection, red-wavy-underline, script, set-syntax, soft-wrap-indicator, 
-sort-lines, symbols-tree-view, tab-control, tabs-to-spaces, todo-show, 
-toggle-quotes, trailing-spaces, view-tail-large-files
+git-tab-status, highlight-selected, hydrogen, indentation-indicator, 
+isotope-ui, language-applescript, language-diff, language-latex, 
+language-puppet, language-rust, linter, linter-clang, linter-coffeelint, 
+linter-csslint, linter-erb, linter-flake8, linter-puppet, linter-puppet-lint, 
+linter-shellcheck, linter-tidy, minimap, minimap-find-and-replace, 
+minimap-git-diff, minimap-highlight-selected, minimap-selection, monokai, 
+omni-ruler, python-isort, python-yapf, rainbow-selection, red-wavy-underline, 
+script, set-syntax, soft-wrap-indicator, sort-lines, symbols-tree-view, 
+tab-control, tabs-to-spaces, todo-show, toggle-quotes, trailing-spaces, 
+view-tail-large-files
 
 Pip Packages: anyjson, backports.ssl-match-hostname, beautifulsoup4, bson, 
 fabric, flake8, google-api-python-client, httplib2, iniparse, isort, jedi, 

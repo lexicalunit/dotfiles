@@ -231,12 +231,12 @@ export CVSEDITOR=vim
 export XEDITOR=vim
 export IGNOREEOF=0
 if type atom >/dev/null 2>&1; then
-    # export EDITOR='atom -w'
-    # export CVSEDITOR='atom -w'
-    export OSXEDITOR='atom -w'
-    alias edit='atom '
-    ew() { atom "$(which "$1")"; }
-    eman() { man "$@" | col -bx | tmpin atom -w & }
+    # export EDITOR='atom --one -w'
+    # export CVSEDITOR='atom --one -w'
+    export OSXEDITOR='atom --one -w'
+    alias edit='atom --one '
+    ew() { atom --one "$(which "$1")"; }
+    eman() { man "$@" | col -bx | tmpin atom --one -w & }
 elif type subl >/dev/null 2>&1; then
     # export EDITOR='subl -w'
     # export CVSEDITOR='subl -w'

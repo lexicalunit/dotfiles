@@ -106,6 +106,8 @@
 			"text.todo"
 			"source.yaml"
 		]
+	"tab-control":
+		displayInStatusBar: true
 	"tree-view":
 		hideIgnoredNames: true
 		hideVcsIgnoredFiles: true

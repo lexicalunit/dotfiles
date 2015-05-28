@@ -729,7 +729,7 @@ install_atom_pkg()
 {
     local PKG="$1"
     local INSTALLED
-    INSTALLED="$(apm list --installed --bare | grep "$PKG")"
+    INSTALLED="$(apm list --installed --bare | grep -i "$PKG")"
     if [[ -z "$INSTALLED" ]]; then
         run "apm install '$PKG'" || abort "can not install package '$PKG'"
     else
@@ -756,7 +756,7 @@ step_atom()
     IFS=$'\n'
     for I in $(apm list -bi); do
         name="${I%@*}"
-        if ! echo "$ATOM_PACKAGES" | egrep -q "\\b${name}\\b"; then
+        if ! echo "$ATOM_PACKAGES" | egrep -qi "\\b${name}\\b"; then
             show -i "$I installed but not managed by setup"
         fi
     done

@@ -157,16 +157,15 @@ spotify, steam, teamviewer, texstudio, transmission, vlc, xquartz
 
 Atom Packages: atom-pair, autocomplete-plus, autocomplete-plus-python-jedi, 
 column-select, cursor-count, event-watch, file-icons, git-blame, 
-git-tab-status, highlight-selected, hydrogen, indentation-indicator, 
-isotope-ui, language-applescript, language-diff, language-latex, 
-language-puppet, language-rust, linter, linter-clang, linter-coffeelint, 
-linter-csslint, linter-erb, linter-flake8, linter-puppet, linter-puppet-lint, 
+git-tab-status, highlight-selected, hydrogen, indent-control, isotope-ui, 
+language-applescript, language-diff, language-latex, language-puppet, 
+language-rust, linter, linter-clang, linter-coffeelint, linter-csslint, 
+linter-erb, linter-flake8, linter-puppet, linter-puppet-lint, 
 linter-shellcheck, linter-tidy, minimap, minimap-find-and-replace, 
 minimap-git-diff, minimap-highlight-selected, minimap-selection, monokai, 
 omni-ruler, python-isort, python-yapf, rainbow-selection, red-wavy-underline, 
 script, set-syntax, soft-wrap-indicator, sort-lines, symbols-tree-view, 
-tab-control, tabs-to-spaces, todo-show, toggle-quotes, trailing-spaces, 
-view-tail-large-files
+tabs-to-spaces, todo-show, toggle-quotes, trailing-spaces, view-tail-large-files
 
 Pip Packages: anyjson, backports.ssl-match-hostname, beautifulsoup4, bson, 
 fabric, flake8, google-api-python-client, httplib2, iniparse, isort, jedi, 

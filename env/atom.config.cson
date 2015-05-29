@@ -37,7 +37,6 @@
 			{}
 		showIndentGuide: true
 		showInvisibles: true
-		tabLength: 4
 	"event-watch":
 		schedules:
 			N: "at 7:03am and 7:34am and 8:05am and 8:41am and 9:15am and 9:44am and 10:15am and 11:15am and 12:15am and  1:15pm and 2:15pm and 3:15pm and 3:44pm and 4:19pm and 4:55pm and 5:27pm and 5:57pm and 6:30pm on Mon,Tue,Wed,Thu,Fri also at 7:30pm and 8:30pm and 9:30pm and 10:30pm and 11:30pm on Fri also at 12:30am on Sat also at 4:41pm and 5:15pm and 5:15pm and 5:49pm and 6:23pm and 6:57pm and 7:31pm and 8:05pm and 8:39pm and 9:13pm and 9:47pm and 10:21pm and 10:55pm and 11:29pm on Sat also at 12:03am on Sun"
@@ -54,7 +53,6 @@
 			blue: 29
 			green: 6
 			red: 32
-		fontFamily: "Cantarell"
 		fontWeight: "Regular"
 		lowContrastTooltip: true
 	linter:
@@ -107,14 +105,19 @@
 			"source.yaml"
 		]
 	"tab-control":
+		autoSaveChanges: true
 		displayInStatusBar: true
 	"tree-view":
 		hideIgnoredNames: true
 		hideVcsIgnoredFiles: true
-	"weather-package":
-		city: "Austin, Texas"
-		showInFahrenheit: true
-		showPressure: false
-		showTemperature: true
 	welcome:
 		showOnStartup: false
+"source.coffee":
+	editor:
+		tabLength: 2
+"source.css.less":
+	editor:
+		tabLength: 2
+"source.yaml":
+	editor:
+		tabLength: 2

@@ -52,10 +52,12 @@ if type brew >/dev/null 2>&1; then
     export PYTHONPATH
 fi
 
-# Add specific application paths, such as Python.
+# Add specific application paths, such as Python, rvm, etc...
+[[ -d "$HOME/.rvm/bin" ]] && PATH="$PATH:$HOME/.rvm/bin"
 [[ -d /usr/local/lib/svn-python ]] && PYTHONPATH="/usr/local/lib/svn-python:$PYTHONPATH"
 [[ -d /opt/local/lib/pkgconfig ]] && PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 [[ -d /usr/local/lib/pkgconfig ]] && PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
+export PATH
 export PYTHONPATH
 export PKG_CONFIG_PATH
 

@@ -20,10 +20,11 @@
 			"styleguide"
 			"update-package-dependencies"
 			"welcome"
-			"rainbow-selection"
 			"linter-clang"
 			"atom-pair"
 			"wrap-guide"
+			"rainbow-selection"
+			"minimap"
 		]
 		themes: [
 			"isotope-ui"
@@ -109,6 +110,8 @@
 		]
 	"tab-control":
 		autoSaveChanges: true
+	tabs:
+		usePreviewTabs: true
 	"tree-view":
 		hideIgnoredNames: true
 		hideVcsIgnoredFiles: true

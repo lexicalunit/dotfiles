@@ -1,6 +1,14 @@
+// Make final wrap guide stand out more.
+atom-text-editor::shadow {
+  .multi-wrap-guide:last-child .multi-wrap-guide-line {
+    background-color: fadeout(red, 60%);
+  }
+}
+
 // use better font
 atom-text-editor {
-    font-family: Inconsolata;
+    // -webkit-font-smoothing: antialiased !important;
+    font-family:  Inconsolata;
 }
 
 // decrease tree view items height

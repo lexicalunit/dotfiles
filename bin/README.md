@@ -340,6 +340,13 @@ Puts your public ssh key in the authorized_keys on the remote host.
 ```
 
 * * *
+### [`readmeize`](bin/readmeize)
+```
+usage: readmeize [-h|--help]
+Prepares given image for use in a README.md file.
+```
+
+* * *
 ### [`reset_boot2docker`](bin/reset_boot2docker)
 ```
 Reset completely boot2docker on OS X.

@@ -22,9 +22,8 @@
 			"welcome"
 			"linter-clang"
 			"atom-pair"
-			"wrap-guide"
 			"rainbow-selection"
-			"minimap"
+			"wrap-guide"
 		]
 		themes: [
 			"isotope-ui"
@@ -41,6 +40,7 @@
 		scrollPastEnd: true
 		showIndentGuide: true
 		showInvisibles: true
+		tabLength: 4
 	"event-watch":
 		schedules:
 			N: "at 7:03am and 7:34am and 8:05am and 8:41am and 9:15am and 9:44am and 10:15am and 11:15am and 12:15am and  1:15pm and 2:15pm and 3:15pm and 3:44pm and 4:19pm and 4:55pm and 5:27pm and 5:57pm and 6:30pm on Mon,Tue,Wed,Thu,Fri also at 7:30pm and 8:30pm and 9:30pm and 10:30pm and 11:30pm on Fri also at 12:30am on Sat also at 4:41pm and 5:15pm and 5:15pm and 5:49pm and 6:23pm and 6:57pm and 7:31pm and 8:05pm and 8:39pm and 9:13pm and 9:47pm and 10:21pm and 10:55pm and 11:29pm on Sat also at 12:03am on Sun"
@@ -60,11 +60,7 @@
 		fontWeight: "Regular"
 		lowContrastTooltip: true
 	linter:
-		ignoredLinterErrors: [
-			"shellcheck"
-			"flake8"
-		]
-		lintOnChange: false
+		lintOnChange: true
 	"linter-flake8":
 		maxLineLength: 120
 	"merge-conflicts":
@@ -82,6 +78,7 @@
 			100
 			120
 		]
+		locked: true
 	"python-yapf":
 		yapfStyle: "{based_on_style: pep8, column_limit: 120}"
 	"spell-check":
@@ -124,7 +121,7 @@
 ".css.less.source":
 	editor:
 		softTabs: true
-		tabLength: 2
+		tabLength: 4
 ".gfm.source":
 	editor:
 		tabLength: 2

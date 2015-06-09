@@ -436,10 +436,10 @@ language-diff, language-latex, language-puppet, language-rust, linter,
 linter-clang, linter-coffeelint, linter-csslint, linter-erb, linter-flake8, 
 linter-puppet, linter-puppet-lint, linter-shellcheck, linter-tidy, minimap, 
 minimap-find-and-replace, minimap-git-diff, minimap-highlight-selected, 
-minimap-selection, monokai, omni-ruler, python-isort, python-yapf, 
+minimap-selection, monokai, multi-wrap-guide, python-isort, python-yapf, 
 rainbow-selection, red-wavy-underline, script, set-syntax, soft-wrap-indicator, 
 sort-lines, symbols-tree-view, tab-control, tabs-to-spaces, todo-show, 
-toggle-quotes, trailing-spaces, view-tail-large-files
+toggle-quotes, trailing-spaces
 
 Pip Packages: anyjson, backports.ssl-match-hostname, beautifulsoup4, bson, 
 fabric, flake8, google-api-python-client, httplib2, iniparse, isort, jedi, 

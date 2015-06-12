@@ -107,8 +107,6 @@
 		]
 	"tab-control":
 		autoSaveChanges: true
-	tabs:
-		usePreviewTabs: true
 	"tree-view":
 		hideIgnoredNames: true
 		hideVcsIgnoredFiles: true
@@ -116,7 +114,6 @@
 		showOnStartup: false
 ".coffee.source":
 	editor:
-		softTabs: true
 		tabLength: 2
 ".css.less.source":
 	editor:
@@ -125,10 +122,9 @@
 ".gfm.source":
 	editor:
 		tabLength: 2
-".shell.source":
+".html.mustache.text":
 	editor:
-		softTabs: true
-		tabLength: 4
+		tabLength: 2
 ".source.yaml":
 	editor:
 		tabLength: 2

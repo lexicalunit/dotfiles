@@ -1,0 +1,17 @@
+#!/bin/bash -ue
+
+# Get boot2docker up and running.
+
+if [[ "$1" == "--help" || "$1" == "-h" || -z "$1" ]]; then
+    echo "usage: ${0##*/} [-h|--help]" 1>&2
+    echo "Get boot2docker up and running." 1>&2
+    exit 1
+fi
+
+# Killing:
+# docker ps -q | xargs docker kill
+# boot2docker halt
+
+if ! boot2docker status | grep -q "running"; then
+    boot2docker up
+fi

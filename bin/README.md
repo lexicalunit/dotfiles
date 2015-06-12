@@ -32,6 +32,13 @@ Or force the beginning of curl option parsing by passing -- first.
 ```
 
 * * *
+### [`b2d`](bin/b2d)
+```
+usage: b2d [-h|--help]
+Get boot2docker up and running.
+```
+
+* * *
 ### [`bluetooth_reset`](bin/bluetooth_reset)
 ```
 usage: bluetooth_reset [-h|--help]
@@ -429,17 +436,18 @@ iterm2, java7, kaleidoscope, kvirc, mactex, mysqlworkbench, onepassword, pdftk,
 pycharm-ce, robomongo, silverlight, skype, snes9x, soundflower, sourcetree, 
 spotify, steam, teamviewer, texstudio, transmission, vlc, xquartz
 
-Atom Packages: atom-pair, autocomplete-plus, autocomplete-plus-python-jedi, 
-column-select, cursor-count, event-watch, file-icons, git-blame, 
-git-tab-status, highlight-selected, hydrogen, isotope-ui, language-applescript, 
-language-diff, language-latex, language-puppet, language-rust, linter, 
-linter-clang, linter-coffeelint, linter-csslint, linter-erb, linter-flake8, 
-linter-puppet, linter-puppet-lint, linter-shellcheck, linter-tidy, minimap, 
-minimap-find-and-replace, minimap-git-diff, minimap-highlight-selected, 
-minimap-selection, monokai, multi-wrap-guide, python-isort, python-yapf, 
-rainbow-selection, red-wavy-underline, script, set-syntax, soft-wrap-indicator, 
-sort-lines, symbols-tree-view, tab-control, tabs-to-spaces, todo-show, 
-toggle-quotes, trailing-spaces
+Atom Packages: atom-beautify, atom-pair, autocomplete-plus, 
+autocomplete-plus-python-jedi, column-select, cursor-count, event-watch, 
+file-icons, git-blame, git-tab-status, highlight-selected, hydrogen, 
+isotope-ui, language-applescript, language-diff, language-latex, 
+language-puppet, language-rust, linter, linter-clang, linter-coffeelint, 
+linter-csslint, linter-erb, linter-flake8, linter-puppet, linter-puppet-lint, 
+linter-shellcheck, linter-tidy, minimap, minimap-find-and-replace, 
+minimap-git-diff, minimap-highlight-selected, minimap-selection, monokai, 
+multi-wrap-guide, python-isort, python-yapf, rainbow-selection, 
+red-wavy-underline, script, set-syntax, soft-wrap-indicator, sort-lines, 
+symbols-tree-view, tab-control, tabs-to-spaces, todo-show, toggle-quotes, 
+trailing-spaces
 
 Pip Packages: anyjson, backports.ssl-match-hostname, beautifulsoup4, bson, 
 fabric, flake8, google-api-python-client, httplib2, iniparse, isort, jedi, 
@@ -745,7 +753,7 @@ Options:
     --no-progress                    Do not print progress bar
     --console-title                  Display progress in console titlebar
     -v, --verbose                    Print various debugging information
-    --dump-pages                     Print downloaded pages to debug problems (very verbose)
+    --dump-pages                     Print downloaded pages encoded using base64 to debug problems (very verbose)
     --write-pages                    Write downloaded intermediary pages to files in the current directory to debug
                                      problems
     --print-traffic                  Display sent and read HTTP traffic
@@ -808,7 +816,7 @@ Options:
     --add-metadata                   Write metadata to the video file
     --metadata-from-title FORMAT     Parse additional metadata like song title / artist from the video title. The format
                                      syntax is the same as --output, the parsed parameters replace existing values.
-                                     Additional templates: %(album), %(artist). Example: --metadata-from-title
+                                     Additional templates: %(album)s, %(artist)s. Example: --metadata-from-title
                                      "%(artist)s - %(title)s" matches a title like "Coldplay - Paradise"
     --xattrs                         Write metadata to the video file's xattrs (using dublin core and xdg standards)
     --fixup POLICY                   Automatically correct known faults of the file. One of never (do nothing), warn

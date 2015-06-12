@@ -15,7 +15,7 @@ if [[ "$1" != "--ready" ]]; then
     show "  1. Turn off all bluetooth devices you intend to connect to this machine."
     show "  2. Re-run this script with command line option --ready."
     show "  3. Turn off this machine."
-    show "  4. Unplug power and all accessories this machine."
+    show "  4. Unplug all power cable and all accessories from this machine."
     show "  5. Turn this machine back on by holding power button for $(tput bold)at least 5 seconds.$(tput sgr0)"
     show "  6. Log back in, $(tput bold)still do not re-plug in power or accessories.$(tput sgr0)"
     show "  7. Turn on bluetooth devices."

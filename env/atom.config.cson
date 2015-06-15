@@ -24,6 +24,7 @@
 			"atom-pair"
 			"rainbow-selection"
 			"wrap-guide"
+			"opened-files"
 		]
 		themes: [
 			"isotope-ui"

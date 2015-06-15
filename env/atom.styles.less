@@ -5,10 +5,21 @@ atom-text-editor::shadow {
   }
 }
 
+// ensure subpixel-antialiased
+body * {
+    -webkit-font-smoothing: subpixel-antialiased !important;
+}
+
 // use better font
-atom-text-editor {
-    // -webkit-font-smoothing: antialiased !important;
-    font-family:  Inconsolata;
+atom-text-editor::shadow {
+    font-family: Inconsolata;
+}
+
+// disable italic comments in any syntax theme
+atom-text-editor::shadow {
+  .comment {
+    font-style: normal !important;
+  }
 }
 
 // decrease tree view items height

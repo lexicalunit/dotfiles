@@ -15,19 +15,19 @@ HOMEBREW_FORMULAS="                                                            \
     libmpc libpng libtiff libtool libvo-aacenc libyaml little-cms2 maven       \
     md5sha1sum memcached mercurial mongodb mpfr ncftp nginx node onepass       \
     openssl ossp-uuid pandoc pcre pidof pkg-config plotutils pngquant          \
-    postgresql readline redis ruby rust s3cmd scons sdl2 sdl2_image shellcheck \
-    sloccount spark sqlite storm tree unixodbc unrar vramsteg watch webp wget  \
-    x264 xvid xz yaml-cpp youtube-dl z zeromq zlib zookeeper zsh               \
+    postgresql rabbitmq readline redis ruby rust s3cmd scons sdl2 sdl2_image   \
+    shellcheck sloccount spark sqlite storm tree unixodbc unrar vramsteg watch \
+    webp wget x264 xvid xz yaml-cpp youtube-dl z zeromq zlib zookeeper zsh     \
     zsh-completions"
 
 HOMEBREW_CASKS="                                                               \
     adium-beta amazon-music atom audacity balsamiq-mockups battle-net caffeine \
     chromecast clamxav cyberduck dbvisualizer disk-inventory-x dropbox         \
     evernote firefox flux gimp-lisanet google-chrome google-hangouts hipchat   \
-    iexplorer intellij-idea istumbler iterm2 java7 kaleidoscope kvirc mactex   \
-    mysqlworkbench onepassword pdftk pycharm-ce robomongo silverlight skype    \
-    snes9x soundflower sourcetree spotify steam sublime-text3 teamviewer       \
-    texstudio transmission vlc xquartz"
+    iexplorer istumbler iterm2 java7 kaleidoscope kvirc mactex mysqlworkbench  \
+    onepassword pdftk pycharm-ce robomongo silverlight skype snes9x            \
+    soundflower sourcetree spotify steam sublime-text3 teamviewer texstudio    \
+    transmission vlc xquartz"
 
 ATOM_PACKAGES="                                                                \
     atom-beautify atom-pair autocomplete-plus autocomplete-plus-python-jedi    \
@@ -617,7 +617,10 @@ ensure_homebrew_updated()
         abort "Please run step brew first"
     fi
 
+    run "cd /usr/local"
+    run "git checkout HEAD Library/Formula/rabbitmq.rb"
     run "brew update"
+    run "git checkout 841c0d21b80a8687bd87e3053f98c2bb6897d5b5 Library/Formula/rabbitmq.rb"  # ensure rabbitmq v2.8.7
     run "brew upgrade --all"
 }
 

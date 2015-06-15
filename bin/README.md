@@ -423,18 +423,18 @@ htop-osx, id3lib, id3v2, imagemagick, isl, jbig2dec, jhead, jpeg, jq, lame,
 libevent, libffi, libgpg-error, libksba, libmpc, libpng, libtiff, libtool, 
 libvo-aacenc, libyaml, little-cms2, maven, md5sha1sum, memcached, mercurial, 
 mongodb, mpfr, ncftp, nginx, node, onepass, openssl, ossp-uuid, pandoc, pcre, 
-pidof, pkg-config, plotutils, pngquant, postgresql, readline, redis, ruby, 
-rust, s3cmd, scons, sdl2, sdl2_image, shellcheck, sloccount, spark, sqlite, 
-storm, tree, unixodbc, unrar, vramsteg, watch, webp, wget, x264, xvid, xz, 
-yaml-cpp, youtube-dl, z, zeromq, zlib, zookeeper, zsh, zsh-completions
+pidof, pkg-config, plotutils, pngquant, postgresql, rabbitmq, readline, redis, 
+ruby, rust, s3cmd, scons, sdl2, sdl2_image, shellcheck, sloccount, spark, 
+sqlite, storm, tree, unixodbc, unrar, vramsteg, watch, webp, wget, x264, xvid, 
+xz, yaml-cpp, youtube-dl, z, zeromq, zlib, zookeeper, zsh, zsh-completions
 
 Homebrew Casks: adium-beta, amazon-music, atom, audacity, balsamiq-mockups, 
 battle-net, caffeine, chromecast, clamxav, cyberduck, dbvisualizer, 
 disk-inventory-x, dropbox, evernote, firefox, flux, gimp-lisanet, 
-google-chrome, google-hangouts, hipchat, iexplorer, intellij-idea, istumbler, 
-iterm2, java7, kaleidoscope, kvirc, mactex, mysqlworkbench, onepassword, pdftk, 
-pycharm-ce, robomongo, silverlight, skype, snes9x, soundflower, sourcetree, 
-spotify, steam, sublime-text3, teamviewer, texstudio, transmission, vlc, xquartz
+google-chrome, google-hangouts, hipchat, iexplorer, istumbler, iterm2, java7, 
+kaleidoscope, kvirc, mactex, mysqlworkbench, onepassword, pdftk, pycharm-ce, 
+robomongo, silverlight, skype, snes9x, soundflower, sourcetree, spotify, steam, 
+sublime-text3, teamviewer, texstudio, transmission, vlc, xquartz
 
 Atom Packages: atom-beautify, atom-pair, autocomplete-plus, 
 autocomplete-plus-python-jedi, column-select, cursor-count, event-watch, 

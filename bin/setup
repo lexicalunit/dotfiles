@@ -884,16 +884,21 @@ step_gem()
     run "yes | sudo update_rubygems"
     run "yes | sudo gem update -q --system"
 
+    declare -a GEM_LIST
+    GEM_LIST=($(gem list))
+
     IFS=' '
     for I in $GEM_PACKAGES; do
-        run "yes | sudo gem update -q $I"
-        if ! gem list "$I" | grep -q "$I"; then
+        if ! echo "${GEM_LIST[*]}" | grep -q "$I"; then
             run "yes | sudo gem install -q $I"
         fi
     done
+    for I in $(gem outdated | awk '{print $1}'); do
+        run "yes | sudo gem update -q $I"
+    done
 
     IFS=$'\n'
-    for I in $(gem list); do
+    for I in $(gem list -l); do
         name="${I%@*}"
         if [[ "$name" == "*** LOCAL GEMS ***" ]]; then
             continue

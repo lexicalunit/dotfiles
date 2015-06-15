@@ -165,7 +165,7 @@ language-puppet, language-rust, linter, linter-clang, linter-coffeelint,
 linter-csslint, linter-erb, linter-flake8, linter-puppet, linter-puppet-lint, 
 linter-shellcheck, linter-tidy, minimap, minimap-find-and-replace, 
 minimap-git-diff, minimap-highlight-selected, minimap-selection, monokai, 
-multi-wrap-guide, python-isort, python-yapf, rainbow-selection, 
+multi-wrap-guide, opened-files, python-isort, python-yapf, rainbow-selection, 
 red-wavy-underline, script, set-syntax, soft-wrap-indicator, sort-lines, 
 symbols-tree-view, tab-control, tabs-to-spaces, todo-show, toggle-quotes, 
 trailing-spaces

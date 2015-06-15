@@ -37,10 +37,10 @@ ATOM_PACKAGES="                                                                \
     linter-coffeelint linter-csslint linter-erb linter-flake8 linter-puppet    \
     linter-puppet-lint linter-shellcheck linter-tidy minimap                   \
     minimap-find-and-replace minimap-git-diff minimap-highlight-selected       \
-    minimap-selection monokai multi-wrap-guide python-isort python-yapf        \
-    rainbow-selection red-wavy-underline script set-syntax soft-wrap-indicator \
-    sort-lines symbols-tree-view tab-control tabs-to-spaces todo-show          \
-    toggle-quotes trailing-spaces"
+    minimap-selection monokai multi-wrap-guide opened-files python-isort       \
+    python-yapf rainbow-selection red-wavy-underline script set-syntax         \
+    soft-wrap-indicator sort-lines symbols-tree-view tab-control               \
+    tabs-to-spaces todo-show toggle-quotes trailing-spaces"
 
 PIP_PACKAGES="                                                                 \
     anyjson backports.ssl-match-hostname beautifulsoup4 bson fabric flake8     \
@@ -617,10 +617,7 @@ ensure_homebrew_updated()
         abort "Please run step brew first"
     fi
 
-    run "cd /usr/local"
-    run "git checkout HEAD Library/Formula/rabbitmq.rb"
     run "brew update"
-    run "git checkout 841c0d21b80a8687bd87e3053f98c2bb6897d5b5 Library/Formula/rabbitmq.rb"  # ensure rabbitmq v2.8.7
     run "brew upgrade --all"
 }
 

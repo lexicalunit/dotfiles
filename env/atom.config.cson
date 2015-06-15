@@ -122,7 +122,8 @@
 		tabLength: 4
 ".gfm.source":
 	editor:
-		tabLength: 2
+		softTabs: true
+		tabLength: 4
 ".html.mustache.text":
 	editor:
 		tabLength: 2

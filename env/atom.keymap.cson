@@ -1,6 +1,6 @@
 'atom-text-editor:not([mini])':
   'shift-tab': 'editor:force-tab'
 
-'atom-text-editor':
-  'alt-shift-cmd-f': 'next-occurrence:prev'
+'atom-text-editor:not([mini])':
+  'alt-shift-cmd-F': 'next-occurrence:prev'
   'shift-cmd-f': 'next-occurrence:next'

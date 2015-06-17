@@ -437,7 +437,7 @@ robomongo, silverlight, skype, snes9x, soundflower, sourcetree, spotify, steam,
 sublime-text3, teamviewer, texstudio, transmission, vlc, xquartz
 
 Atom Packages: atom-beautify, atom-pair, autocomplete-plus, 
-autocomplete-plus-python-jedi, column-select, cursor-count, event-watch, 
+autocomplete-plus-python-jedi, column-select, cursor-indicator, event-watch, 
 file-icons, git-blame, git-tab-status, highlight-selected, hydrogen, 
 isotope-ui, language-applescript, language-diff, language-latex, 
 language-puppet, language-rust, linter, linter-clang, linter-coffeelint, 

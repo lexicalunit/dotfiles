@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # Builds HTML output from Markdown file.
 
@@ -14,5 +14,7 @@ pandoc "$SRC" \
         --css http://shares.lexicalunit.com/github-markdown.css \
         -t html \
         -s \
-        -o "$TGT" \
-    && open "$TGT"
+        -o "$TGT"
+open "$TGT"
+sleep 1
+rm "$TGT"

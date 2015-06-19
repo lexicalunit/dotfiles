@@ -41,6 +41,8 @@
 		scrollPastEnd: true
 		showIndentGuide: true
 		showInvisibles: true
+		softWrap: true
+		softWrapAtPreferredLineLength: true
 		tabLength: 4
 	"event-watch":
 		schedules:

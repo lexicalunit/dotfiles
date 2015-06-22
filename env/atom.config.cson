@@ -24,7 +24,6 @@
 			"atom-pair"
 			"rainbow-selection"
 			"wrap-guide"
-			"opened-files"
 		]
 		themes: [
 			"isotope-ui"
@@ -110,6 +109,8 @@
 		]
 	"tab-control":
 		autoSaveChanges: true
+	tabs:
+		enableVcsColoring: true
 	"tree-view":
 		hideIgnoredNames: true
 		hideVcsIgnoredFiles: true

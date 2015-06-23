@@ -166,9 +166,9 @@ linter-csslint, linter-erb, linter-flake8, linter-puppet, linter-puppet-lint,
 linter-shellcheck, linter-tidy, minimap, minimap-find-and-replace, 
 minimap-git-diff, minimap-highlight-selected, minimap-selection, monokai, 
 multi-wrap-guide, next-occurrence, opened-files, python-isort, python-yapf, 
-rainbow-selection, red-wavy-underline, script, set-syntax, soft-wrap-indicator, 
-sort-lines, symbols-tree-view, tab-control, tabs-to-spaces, todo-show, 
-toggle-quotes, trailing-spaces
+rainbow-selection, red-wavy-underline, retro-gruvbox, script, set-syntax, 
+soft-wrap-indicator, sort-lines, symbols-tree-view, tab-control, 
+tabs-to-spaces, todo-show, toggle-quotes, trailing-spaces
 
 Pip Packages: anyjson, backports.ssl-match-hostname, beautifulsoup4, bson, 
 fabric, flake8, google-api-python-client, httplib2, iniparse, isort, jedi, 

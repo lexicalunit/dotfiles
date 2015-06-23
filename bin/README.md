@@ -445,9 +445,9 @@ linter-csslint, linter-erb, linter-flake8, linter-puppet, linter-puppet-lint,
 linter-shellcheck, linter-tidy, minimap, minimap-find-and-replace, 
 minimap-git-diff, minimap-highlight-selected, minimap-selection, monokai, 
 multi-wrap-guide, next-occurrence, opened-files, python-isort, python-yapf, 
-rainbow-selection, red-wavy-underline, script, set-syntax, soft-wrap-indicator, 
-sort-lines, symbols-tree-view, tab-control, tabs-to-spaces, todo-show, 
-toggle-quotes, trailing-spaces
+rainbow-selection, red-wavy-underline, retro-gruvbox, script, set-syntax, 
+soft-wrap-indicator, sort-lines, symbols-tree-view, tab-control, 
+tabs-to-spaces, todo-show, toggle-quotes, trailing-spaces
 
 Pip Packages: anyjson, backports.ssl-match-hostname, beautifulsoup4, bson, 
 fabric, flake8, google-api-python-client, httplib2, iniparse, isort, jedi, 
@@ -614,7 +614,7 @@ Options:
     --abort-on-error                 Abort downloading of further videos (in the playlist or the command line) if an
                                      error occurs
     --dump-user-agent                Display the current browser identification
-    --list-extractors                List all supported extractors and the URLs they would handle
+    --list-extractors                List all supported extractors
     --extractor-descriptions         Output descriptions of all supported extractors
     --default-search PREFIX          Use this prefix for unqualified URLs. For example "gvsearch2:" downloads two videos
                                      from google videos for youtube-dl "large apple". Use the value "auto" to let
@@ -753,7 +753,7 @@ Options:
     --no-progress                    Do not print progress bar
     --console-title                  Display progress in console titlebar
     -v, --verbose                    Print various debugging information
-    --dump-pages                     Print downloaded pages to debug problems (very verbose)
+    --dump-pages                     Print downloaded pages encoded using base64 to debug problems (very verbose)
     --write-pages                    Write downloaded intermediary pages to files in the current directory to debug
                                      problems
     --print-traffic                  Display sent and read HTTP traffic
@@ -816,11 +816,11 @@ Options:
     --add-metadata                   Write metadata to the video file
     --metadata-from-title FORMAT     Parse additional metadata like song title / artist from the video title. The format
                                      syntax is the same as --output, the parsed parameters replace existing values.
-                                     Additional templates: %(album), %(artist). Example: --metadata-from-title
+                                     Additional templates: %(album)s, %(artist)s. Example: --metadata-from-title
                                      "%(artist)s - %(title)s" matches a title like "Coldplay - Paradise"
     --xattrs                         Write metadata to the video file's xattrs (using dublin core and xdg standards)
     --fixup POLICY                   Automatically correct known faults of the file. One of never (do nothing), warn
-                                     (only emit a warning), detect_or_warn(the default; fix file if we can, warn
+                                     (only emit a warning), detect_or_warn (the default; fix file if we can, warn
                                      otherwise)
     --prefer-avconv                  Prefer avconv over ffmpeg for running the postprocessors (default)
     --prefer-ffmpeg                  Prefer ffmpeg over avconv for running the postprocessors

@@ -24,10 +24,11 @@
 			"atom-pair"
 			"rainbow-selection"
 			"wrap-guide"
+			"opened-files"
 		]
 		themes: [
 			"isotope-ui"
-			"monokai"
+			"retro-gruvbox"
 		]
 	editor:
 		autoIndentOnPaste: false
@@ -56,11 +57,12 @@
 		customBackgroundColor: true
 		customBackgroundColorPicker:
 			alpha: 1
-			blue: 29
-			green: 6
-			red: 32
+			blue: 40
+			green: 40
+			red: 40
 		fontWeight: "Regular"
 		lowContrastTooltip: true
+		minimalMode: true
 	linter:
 		lintOnChange: true
 	"linter-flake8":
@@ -109,8 +111,6 @@
 		]
 	"tab-control":
 		autoSaveChanges: true
-	tabs:
-		enableVcsColoring: true
 	"tree-view":
 		hideIgnoredNames: true
 		hideVcsIgnoredFiles: true

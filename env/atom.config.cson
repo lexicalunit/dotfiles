@@ -31,7 +31,8 @@
 		]
 	editor:
 		autoIndentOnPaste: false
-		fontSize: 17
+		fontFamily: "Inconsolata"
+		fontSize: 19
 		invisibles:
 			cr: "↩"
 			eol: " "
@@ -45,8 +46,25 @@
 		tabLength: 4
 	"event-watch":
 		schedules:
-			N: "at 7:03am and 7:34am and 8:05am and 8:41am and 9:15am and 9:44am and 10:15am and 11:15am and 12:15am and  1:15pm and 2:15pm and 3:15pm and 3:44pm and 4:19pm and 4:55pm and 5:27pm and 5:57pm and 6:30pm on Mon,Tue,Wed,Thu,Fri also at 7:30pm and 8:30pm and 9:30pm and 10:30pm and 11:30pm on Fri also at 12:30am on Sat also at 4:41pm and 5:15pm and 5:15pm and 5:49pm and 6:23pm and 6:57pm and 7:31pm and 8:05pm and 8:39pm and 9:13pm and 9:47pm and 10:21pm and 10:55pm and 11:29pm on Sat also at 12:03am on Sun"
-			S: "at 6:24am and 6:56am and 7:27am and 7:58am and 8:34am and 9:09am and  9:38am and 10:38am and 11:38am and 12:38am and 1:38pm and 2:38pm and 3:09pm and 3:38pm and 4:13pm and 4:43pm and 5:19pm and 5:51pm on Mon,Tue,Wed,Thu,Fri also at 6:53pm and 7:53pm and 8:24pm and 9:24pm and 10:24pm and 11:24pm on Fri also at 4:00pm and 4:34pm and 5:08pm and 5:42pm and 6:16pm and 6:50pm and 7:24pm and 7:58pm and 8:32pm and 9:06pm and 9:40pm and 10:14pm and 10:48pm and 11:22pm on Sat"
+			N: '''
+				at 7:03am and 7:34am and 8:05am and 8:41am and 9:15am and 9:44am and
+				10:15am and 11:15am and 12:15am and  1:15pm and 2:15pm and 3:15pm
+				and 3:44pm and 4:19pm and 4:55pm and 5:27pm and 5:57pm and 6:30pm on
+				Mon,Tue,Wed,Thu,Fri also at 7:30pm and 8:30pm and 9:30pm and 10:30pm
+				and 11:30pm on Fri also at 12:30am on Sat also at 4:41pm and 5:15pm
+				and 5:15pm and 5:49pm and 6:23pm and 6:57pm and 7:31pm and 8:05pm
+				and 8:39pm and 9:13pm and 9:47pm and 10:21pm and 10:55pm and 11:29pm
+				on Sat also at 12:03am on Sun
+			'''
+			S: '''
+				at 6:24am and 6:56am and 7:27am and 7:58am and 8:34am and 9:09am and
+				9:38am and 10:38am and 11:38am and 12:38am and 1:38pm and 2:38pm and
+				3:09pm and 3:38pm and 4:13pm and 4:43pm and 5:19pm and 5:51pm on
+				Mon,Tue,Wed,Thu,Fri also at 6:53pm and 7:53pm and 8:24pm and 9:24pm
+				and 10:24pm and 11:24pm on Fri also at 4:00pm and 4:34pm and 5:08pm
+				and 5:42pm and 6:16pm and 6:50pm and 7:24pm and 7:58pm and 8:32pm
+				and 9:06pm and 9:40pm and 10:14pm and 10:48pm and 11:22pm on Sat
+			'''
 	"git-diff":
 		showIconsInEditorGutter: true
 	"highlight-selected":

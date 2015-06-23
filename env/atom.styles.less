@@ -1,3 +1,4 @@
+@import "syntax-variables";
 @import "ui-variables";
 
 // ensure subpixel-antialiased
@@ -31,6 +32,11 @@ atom-text-editor::shadow {
         background-color: @background-color-selected !important;
         color: @text-color-selected !important;
     }
+}
+
+// separate tree view and text editor more clearly
+.tree-view-scroller {
+    border-right: 1px solid @syntax-wrap-guide-color !important;
 }
 
 // more subtle invisibles
@@ -70,4 +76,23 @@ atom-text-editor::shadow {
         color: #10BB10 !important;
         text-shadow: none !important;
     }
+}
+
+// less ugly opened-files view
+.of-highlighted, ul.tab-bar > li.tab.of-highlighted {
+    background-color: inherit;
+    transition-property: none;
+    transition-duration: 0;
+}
+
+.of-unhighlighted, ul.tab-bar > li.tab.of-unhighlighted {
+    background-color: inherit;
+    transition-property: none;
+    transition-duration: 0;
+}
+
+.file-list.opened-files {
+  box-shadow: none;
+  border-bottom: 1px solid @syntax-wrap-guide-color;
+  border-right: 1px solid @syntax-wrap-guide-color;
 }

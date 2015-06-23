@@ -92,7 +92,19 @@ atom-text-editor::shadow {
 }
 
 .file-list.opened-files {
-  box-shadow: none;
-  border-bottom: 1px solid @syntax-wrap-guide-color;
-  border-right: 1px solid @syntax-wrap-guide-color;
+    box-shadow: none;
+    border-bottom: 1px solid @syntax-wrap-guide-color;
+    border-right: 1px solid @syntax-wrap-guide-color;
+}
+
+.file-list .list-item.file {
+    .icon-x {
+        display: none;
+    }
+}
+
+.file-list .directory {
+    .icon-x {
+        margin-left: .5em;
+    }
 }

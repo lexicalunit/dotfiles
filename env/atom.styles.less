@@ -24,15 +24,15 @@ atom-text-editor::shadow {
 // make current file in tree-view stand out more
 .tree-view {
     .list-item.selected::before {
-        background-color: @background-color-selected !important;
-        color: @text-color-selected !important;
+        background-color: @background-color-highlight !important;
+        color: @text-color-highlight !important;
     }
 }
 
-// separate tree view and text editor more clearly
-.tree-view-scroller {
-    border-right: 1px solid @syntax-wrap-guide-color !important;
-}
+// separate tree view and text editor more clearly, good for some themes
+// .tree-view-scroller {
+//     border-right: 1px solid @syntax-wrap-guide-color !important;
+// }
 
 // more subtle invisibles for dark themes
 atom-text-editor::shadow {
@@ -76,32 +76,18 @@ atom-text-editor::shadow {
 }
 
 // less ugly opened-files view
-.of-highlighted, ul.tab-bar > li.tab.of-highlighted {
-    background-color: inherit;
-    transition-property: none;
-    transition-duration: 0;
-}
+.opened-files {
+    border-right: 0 !important;
+    background-color: transparent !important;
 
-.of-unhighlighted, ul.tab-bar > li.tab.of-unhighlighted {
-    background-color: inherit;
-    transition-property: none;
-    transition-duration: 0;
-}
-
-.file-list.opened-files {
-    box-shadow: none;
-    border-bottom: 1px solid @syntax-wrap-guide-color;
-    border-right: 1px solid @syntax-wrap-guide-color;
-}
-
-.file-list .list-item.file {
-    .icon-x {
-        display: none;
+    .of-highlight::before {
+        transition-duration: 0 !important;
+        background-color: inherit !important;
+        color: @text-color-subtle !important;
     }
-}
 
-.file-list .directory {
-    .icon-x {
-        margin-left: .5em;
+    .selected::before {
+        background-color: @background-color-highlight !important;
+        color: @text-color-highlight !important;
     }
 }

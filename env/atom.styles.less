@@ -34,14 +34,16 @@ atom-text-editor::shadow {
     border-right: 1px solid @syntax-wrap-guide-color !important;
 }
 
-// more subtle invisibles
+// more subtle invisibles for dark themes
 atom-text-editor::shadow {
-    .invisible-character {
-        color: #504949;
-        opacity: 0.5;
-    }
-    .indent-guide {
-        opacity: .5;
+    & when (lightness(@syntax-background-color) <= 50%) {
+        .invisible-character {
+            color: #504949;
+            opacity: 0.5;
+        }
+        .indent-guide {
+            opacity: .5;
+        }
     }
 }
 

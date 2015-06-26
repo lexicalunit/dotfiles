@@ -29,6 +29,8 @@
 			"isotope-light-ui"
 			"solarized-light-syntax"
 		]
+	"cursor-indicator":
+		displayPrefix: "|"
 	editor:
 		autoIndentOnPaste: false
 		fontFamily: "Inconsolata"

@@ -133,10 +133,10 @@ if [[ -d "$HOME/.atom" ]]; then
                 run "rsync -apl '$atom_config' '$HOME/.atom/config.cson'"
                 run "rm '$atom_pair_settings' '$atom_config_backup' '$atom_merged_config' '$atom_config'"
             else
-                run "rsync -apl '$I' '$HOME/.atom/$(echo "$I" | sed 's/^atom\.//g')'"
+                run "rsync -apl '$I' '$HOME/.atom/${I//atom./}'"
             fi
         else
-            run "rm -f '$HOME/.atom/$(echo "$I" | sed 's/^atom\.//g')'"
+            run "rm -f '$HOME/.atom/${I//atom./}'"
         fi
     done
 fi

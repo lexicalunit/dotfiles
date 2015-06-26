@@ -1,2 +1,2 @@
-bin/ignore
-env/ignore
+/bin/ignore
+/env/ignore

@@ -4,35 +4,36 @@
 
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
-# profile
-run "rsync -apl '$HOME/.profile' ./dot_profile"
+sync_dotfile()
+{
+    [[ -f "$HOME/.$1" ]] && run "rsync -apl '$HOME/.$1' ./dot_$1"
+    [[ -d "$HOME/.$1/" ]] && run "rsync -apl '$HOME/.$1/' ./dot_$1"
+}
+
+sync_dotfile 'profile'
+sync_dotfile 'bash_bashrc'
+sync_dotfile 'bash_profile'
+sync_dotfile 'complete'
+sync_dotfile 'dircolors'
+sync_dotfile 'gitconfig'
+sync_dotfile 'hgignore'
+sync_dotfile 'hgrc'
+sync_dotfile 'inputrc'
+sync_dotfile 'jsbeautifyrc'
+sync_dotfile 'pythonrc'
+sync_dotfile 'shell_control'
+sync_dotfile 'toprc'
+sync_dotfile 'vimrc'
+sync_dotfile 'zprofile'
+sync_dotfile 'zshrc'
+
+# also sync .profile_* dotfiles
 for I in "$HOME/".profile_*; do
     if [[ ! -f ignore ]] || ! grep -q "$(basename "$I")" ignore; then
         run "rsync -apl '$I' './$(basename "$I" | sed 's/^./dot_/')'"
     fi
 done
 
-# bash
-[[ -f "$HOME/.bash_profile" ]] && run "rsync -apl '$HOME/.bash_profile' ./dot_bash_profile"
-[[ -f "$HOME/.bashrc" ]] && run "rsync -apl '$HOME/.bashrc' ./dot_bashrc"
-
-# zsh
-[[ -f "$HOME/.zshrc" ]] && run "rsync -apl '$HOME/.zshrc' ./dot_zshrc"
-[[ -f "$HOME/.zprofile" ]] && run "rsync -apl '$HOME/.zprofile' ./dot_zprofile"
-
-# tools
-[[ -f "$HOME/.shell_control" ]] && run "rsync -apl '$HOME/.shell_control' ./dot_shell_control"
-[[ -f "$HOME/.dircolors" ]] && run "rsync -apl '$HOME/.dircolors' ./dot_dircolors"
-[[ -f "$HOME/.inputrc" ]] && run "rsync -apl '$HOME/.inputrc' ./dot_inputrc"
-[[ -f "$HOME/.vimrc" ]] && run "rsync -apl '$HOME/.vimrc' ./dot_vimrc"
-[[ -f "$HOME/.hgignore" ]] && run "rsync -apl '$HOME/.hgignore' ./dot_hgignore"
-[[ -f "$HOME/.hgrc" ]] && run "rsync -apl '$HOME/.hgrc' ./dot_hgrc"
-[[ -f "$HOME/.gitconfig" ]] && run "rsync -apl '$HOME/.gitconfig' ./dot_gitconfig"
-[[ -f "$HOME/.pythonrc" ]] && run "rsync -apl '$HOME/.pythonrc'.py ./dot_pythonrc.py"
-[[ -f "$HOME/.toprc" ]] && run "rsync -apl '$HOME/.toprc' ./dot_toprc"
-[[ -d "$HOME/.complete/" ]] && run "rsync -apl '$HOME/.complete/' ./dot_complete"
-
-# atom
 backup_atom()
 {
     local atom_file="$1"
@@ -43,7 +44,8 @@ backup_atom()
             && type cson2json >/dev/null                                       \
             && type json2cson >/dev/null; then
             # sort config.cson keys for consistency between updates
-            local tempfile="$(mktemp -t tmp.XXXXXXXXXX.config.json)"
+            local tempfile
+            tempfile="$(mktemp -t tmp.XXXXXXXXXX.config.json)"
             run "cson2json '$atom_file_path' | jq -S 'del(.[\"*\"].\"atom-pair\")' >'$tempfile'"
             run "json2cson '$tempfile' >'./atom.$atom_file'"
             run "rm '$tempfile'"
@@ -57,7 +59,6 @@ backup_atom "keymap.cson"
 backup_atom "init.coffee"
 backup_atom "styles.less"
 
-# sublime text
 backup_st()
 {
     if [[ -e "$1/$2" ]]; then

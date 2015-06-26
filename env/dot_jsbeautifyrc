@@ -1,0 +1,10 @@
+{
+    "coffee": {
+        "indent_char": " ",
+        "indent_size": 2,
+    },
+    "js": {
+        "indent_char": " ",
+        "indent_size": 2,
+    }
+}

@@ -159,16 +159,16 @@ sublime-text3, teamviewer, texstudio, transmission, vlc, xquartz
 
 Atom Packages: atom-beautify, atom-pair, autocomplete-plus, 
 autocomplete-plus-python-jedi, column-select, cursor-indicator, event-watch, 
-file-icons, git-blame, git-tab-status, gruvbox, highlight-selected, hydrogen, 
-isotope-light-ui, isotope-ui, language-applescript, language-diff, 
-language-latex, language-puppet, language-rust, linter, linter-clang, 
-linter-coffeelint, linter-csslint, linter-erb, linter-flake8, linter-puppet, 
-linter-puppet-lint, linter-shellcheck, linter-tidy, minimap, 
-minimap-find-and-replace, minimap-git-diff, minimap-highlight-selected, 
-minimap-selection, monokai, multi-wrap-guide, next-occurrence, opened-files, 
-python-isort, python-yapf, rainbow-selection, red-wavy-underline, script, 
-set-syntax, soft-wrap-indicator, sort-lines, symbols-tree-view, tab-control, 
-tabs-to-spaces, todo-show, toggle-quotes, trailing-spaces
+file-icons, git-blame, gruvbox, highlight-selected, hydrogen, isotope-light-ui, 
+isotope-ui, language-applescript, language-diff, language-latex, 
+language-puppet, language-rust, linter, linter-clang, linter-coffeelint, 
+linter-csslint, linter-erb, linter-flake8, linter-puppet, linter-puppet-lint, 
+linter-shellcheck, linter-tidy, minimap, minimap-find-and-replace, 
+minimap-git-diff, minimap-highlight-selected, minimap-selection, monokai, 
+multi-wrap-guide, next-occurrence, opened-files, python-isort, python-yapf, 
+rainbow-selection, red-wavy-underline, script, set-syntax, soft-wrap-indicator, 
+sort-lines, symbols-tree-view, tab-control, tabs-to-spaces, todo-show, 
+toggle-quotes, trailing-spaces
 
 Pip Packages: anyjson, backports.ssl-match-hostname, beautifulsoup4, bson, 
 fabric, flake8, google-api-python-client, httplib2, iniparse, isort, jedi, 

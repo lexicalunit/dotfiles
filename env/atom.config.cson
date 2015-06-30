@@ -105,7 +105,6 @@
 			120
 		]
 		locked: true
-	"opened-files": {}
 	"python-yapf":
 		yapfStyle: "{based_on_style: pep8, column_limit: 120}"
 	"spell-check":
@@ -142,15 +141,10 @@
 ".coffee.source":
 	editor:
 		tabLength: 2
-".css.less.source":
-	editor:
-		softTabs: true
-		tabLength: 4
-".gfm.source":
-	editor:
-		softTabs: true
-		tabLength: 4
 ".html.mustache.text":
+	editor:
+		tabLength: 2
+".json.source":
 	editor:
 		tabLength: 2
 ".source.yaml":

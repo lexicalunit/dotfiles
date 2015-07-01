@@ -36,7 +36,7 @@ ATOM_PACKAGES="                                                                \
     language-applescript language-diff language-latex language-puppet          \
     language-rust linter linter-clang linter-coffeelint linter-csslint         \
     linter-erb linter-flake8 linter-just-say-no linter-puppet                  \
-    linter-puppet-lint linter-shellcheck linter-tidy minimap                   \
+    linter-puppet-lint linter-shellcheck linter-tidy linter-write-good minimap \
     minimap-find-and-replace minimap-git-diff minimap-highlight-selected       \
     minimap-selection monokai multi-wrap-guide next-occurrence opened-files    \
     python-isort python-yapf rainbow-selection red-wavy-underline script       \

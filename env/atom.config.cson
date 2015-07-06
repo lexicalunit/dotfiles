@@ -138,6 +138,10 @@
 		hideVcsIgnoredFiles: true
 	welcome:
 		showOnStartup: false
+".basic.html.text":
+	editor:
+		softTabs: true
+		tabLength: 2
 ".coffee.source":
 	editor:
 		tabLength: 2

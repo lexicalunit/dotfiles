@@ -32,6 +32,13 @@ Or force the beginning of curl option parsing by passing -- first.
 ```
 
 * * *
+### [`apmpull`](bin/apmpull)
+```
+usage: apmpull [-h|--help]
+Updates atom packages that are installed via git cloning them into ~/.atom/packages.
+```
+
+* * *
 ### [`b2d`](bin/b2d)
 ```
 usage: b2d [-h|--help]
@@ -443,11 +450,12 @@ isotope-ui, language-applescript, language-diff, language-latex,
 language-puppet, language-rust, linter, linter-clang, linter-coffeelint, 
 linter-csslint, linter-erb, linter-flake8, linter-just-say-no, linter-puppet, 
 linter-puppet-lint, linter-shellcheck, linter-tidy, linter-write-good, minimap, 
-minimap-find-and-replace, minimap-git-diff, minimap-highlight-selected, 
-minimap-selection, monokai, multi-wrap-guide, next-occurrence, opened-files, 
-python-isort, python-yapf, rainbow-selection, red-wavy-underline, script, 
-set-syntax, soft-wrap-indicator, sort-lines, symbols-tree-view, tab-control, 
-tabs-to-spaces, todo-show, toggle-quotes, trailing-spaces
+minimap-codeglance, minimap-find-and-replace, minimap-git-diff, 
+minimap-highlight-selected, minimap-selection, monokai, multi-wrap-guide, 
+next-occurrence, opened-files, python-isort, python-yapf, rainbow-selection, 
+red-wavy-underline, script, set-syntax, soft-wrap-indicator, sort-lines, 
+symbols-tree-view, tab-control, tabs-to-spaces, todo-show, toggle-quotes, 
+trailing-spaces
 
 Pip Packages: anyjson, backports.ssl-match-hostname, beautifulsoup4, bson, 
 fabric, flake8, google-api-python-client, httplib2, iniparse, isort, jedi, 

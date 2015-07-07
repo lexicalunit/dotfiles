@@ -93,6 +93,7 @@
 		gitPath: "/usr/local/bin/git"
 	minimap:
 		plugins:
+			codeglance: true
 			"find-and-replace": true
 			"git-diff": true
 			"highlight-selected": true

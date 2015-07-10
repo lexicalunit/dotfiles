@@ -25,7 +25,7 @@ HOMEBREW_CASKS="                                                               \
     chromecast clamxav cyberduck dbvisualizer disk-inventory-x dropbox         \
     evernote firefox flux gimp-lisanet google-chrome google-hangouts hipchat   \
     iexplorer istumbler iterm2 java7 kaleidoscope kvirc mactex mysqlworkbench  \
-    onepassword pdftk pycharm-ce robomongo silverlight skype snes9x            \
+    oclint onepassword pdftk pycharm-ce robomongo silverlight skype snes9x     \
     soundflower sourcetree spotify steam sublime-text3 teamviewer texstudio    \
     transmission vlc xquartz"
 
@@ -625,7 +625,8 @@ ensure_homebrew_updated()
 
 install_brew_formula()
 {
-    if ! brew ls | grep -q "$1"; then
+    local INSTALLED="$2"
+    if ! echo "$INSTALLED" | grep -q "$1"; then
         run "brew install '$1'"
     else
         show "brew formula '$1' already installed"
@@ -655,9 +656,11 @@ step_brew()
     ensure_homebrew_updated
     ensure_homebrew_tap "homebrew/versions"
 
+    local INSTALLED
+    INSTALLED="$(brew ls)"
     IFS=' '
     for I in $HOMEBREW_FORMULAS; do
-        install_brew_formula "$I"
+        install_brew_formula "$I" "$INSTALLED"
     done
 
     # cmake's bundling utility fails in completely reasonable cases, the following steps are necessary
@@ -692,7 +695,8 @@ step_brew()
 ################################################################################
 install_brew_cask()
 {
-    if ! brew ls | grep -q "$1"; then
+    local INSTALLED="$2"
+    if ! echo "$INSTALLED" | egrep -q "$(echo "\\b$1\\b" | sed 's/ (!)//g')"; then
         run "brew cask install '$1'"
     else
         show "brew formula '$1' already installed"
@@ -712,9 +716,11 @@ step_cask()
     install_brew_formula "caskroom/cask/brew-cask"
     ensure_homebrew_tap "caskroom/versions"
 
+    local INSTALLED
+    INSTALLED="$(brew cask list)"
     IFS=' '
     for I in $HOMEBREW_CASKS; do
-        install_brew_cask "$I"
+        install_brew_cask "$I" "$INSTALLED"
     done
 
     IFS=$'\n'
@@ -732,8 +738,7 @@ step_cask()
 install_atom_pkg()
 {
     local PKG="$1"
-    local INSTALLED
-    INSTALLED="$(apm list --installed --bare | grep -i "$PKG")"
+    local INSTALLED="$2"
     if [[ -z "$INSTALLED" ]]; then
         run "apm install '$PKG'" || abort "can not install package '$PKG'"
     else
@@ -751,9 +756,11 @@ step_atom()
         install_brew_cask atom || abort "can't install atom via brew-cask"
     fi
 
+    local INSTALLED
+    INSTALLED="$(apm list --installed --bare | grep -i "$PKG")"
     IFS=' '
     for I in $ATOM_PACKAGES; do
-        install_atom_pkg "$I"
+        install_atom_pkg "$I" "$INSTALLED"
     done
     run "apm upgrade --confirm false"
 
@@ -843,8 +850,6 @@ step_python()
         run "rm -rf '$curl_output'"
     fi
 
-    CONDA_LIST="$(conda list | cut -f1 -d' ')"
-
     # Install python packages that don't come with Anaconda... yet!
     run "pip install --upgrade pip"
     IFS=' '
@@ -853,6 +858,8 @@ step_python()
     done
 
     # Install conda packages that don't come pre-installed with Anaconda
+    local CONDA_LIST
+    CONDA_LIST="$(conda list | cut -f1 -d' ')"
     IFS=' '
     for I in $CONDA_PACKAGES; do
         if ! echo "$CONDA_LIST" | grep -q "$I"; then

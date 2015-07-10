@@ -439,9 +439,9 @@ Homebrew Casks: adium-beta, amazon-music, atom, audacity, balsamiq-mockups,
 battle-net, caffeine, chromecast, clamxav, cyberduck, dbvisualizer, 
 disk-inventory-x, dropbox, evernote, firefox, flux, gimp-lisanet, 
 google-chrome, google-hangouts, hipchat, iexplorer, istumbler, iterm2, java7, 
-kaleidoscope, kvirc, mactex, mysqlworkbench, onepassword, pdftk, pycharm-ce, 
-robomongo, silverlight, skype, snes9x, soundflower, sourcetree, spotify, steam, 
-sublime-text3, teamviewer, texstudio, transmission, vlc, xquartz
+kaleidoscope, kvirc, mactex, mysqlworkbench, oclint, onepassword, pdftk, 
+pycharm-ce, robomongo, silverlight, skype, snes9x, soundflower, sourcetree, 
+spotify, steam, sublime-text3, teamviewer, texstudio, transmission, vlc, xquartz
 
 Atom Packages: atom-beautify, atom-pair, autocomplete-plus, 
 autocomplete-plus-python-jedi, column-select, cursor-indicator, event-watch, 
@@ -624,6 +624,7 @@ Options:
     --dump-user-agent                Display the current browser identification
     --list-extractors                List all supported extractors
     --extractor-descriptions         Output descriptions of all supported extractors
+    --force-generic-extractor        Force extraction to use the generic extractor
     --default-search PREFIX          Use this prefix for unqualified URLs. For example "gvsearch2:" downloads two videos
                                      from google videos for youtube-dl "large apple". Use the value "auto" to let
                                      youtube-dl guess ("auto_warning" to emit a warning when guessing). "error" just
@@ -688,7 +689,7 @@ Options:
     --playlist-reverse               Download playlist videos in reverse order
     --xattr-set-filesize             Set file xattribute ytdl.filesize with expected filesize (experimental)
     --hls-prefer-native              Use the native HLS downloader instead of ffmpeg (experimental)
-    --external-downloader COMMAND    Use the specified external downloader. Currently supports aria2c,curl,wget
+    --external-downloader COMMAND    Use the specified external downloader. Currently supports aria2c,curl,httpie,wget
     --external-downloader-args ARGS  Give these arguments to the external downloader
 
   Filesystem Options:
@@ -786,9 +787,9 @@ Options:
     --all-formats                    Download all available video formats
     --prefer-free-formats            Prefer free video formats unless a specific one is requested
     -F, --list-formats               List all available formats
-    --youtube-skip-dash-manifest     Do not download the DASH manifest on YouTube videos
+    --youtube-skip-dash-manifest     Do not download the DASH manifests and related data on YouTube videos
     --merge-output-format FORMAT     If a merge is required (e.g. bestvideo+bestaudio), output to given container
-                                     format. One of mkv, mp4, ogg, webm, flv.Ignored if no merge is required
+                                     format. One of mkv, mp4, ogg, webm, flv. Ignored if no merge is required
 
   Subtitle Options:
     --write-sub                      Write subtitle file

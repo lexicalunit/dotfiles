@@ -198,7 +198,25 @@ sqlite, ssl_match_hostname, statsmodels, sympy, tk, toolz, tornado, traits,
 traitsui, ujson, unicodecsv, werkzeug, xlrd, xlsxwriter, xlwt, yaml, zeromq, 
 zlib
 
-Gem Packages: 
+Gem Packages: actionmailer, actionpack, actionview, activejob, activesupport, 
+archive-tar-minitar, arr-pm, backports, bigdecimal, blankslate, bson, bson_ext, 
+builder, bundler, bundler-unload, cabin, cap_gun, capistrano, capistrano-stats, 
+celluloid, childprocess, claide, clamp, classifier-reborn, cocoapods, 
+cocoapods-core, cocoapods-deintegrate, cocoapods-downloader, cocoapods-plugins, 
+cocoapods-trunk, cocoapods-try, coffee-script, coffee-script-source, colorator, 
+colored, colorize, cuba, erector, erubis, escape, execjs, executable-hooks, 
+fast-stemmer, ffi, fpm, fuzzy_match, gem-wrappers, globalid, hitimes, i18n, 
+io-console, jekyll, jekyll-coffeescript, jekyll-gist, jekyll-paginate, 
+jekyll-sass-converter, jekyll-watch, jewelbox, json, json_pure, kramdown, 
+liquid, listen, log4r, lolcat, loofah, mail, mercenary, mime-types, 
+mini_portile, minitest, molinillo, mongo, multi_json, nap, net-ldap, net-scp, 
+net-ssh, netrc, nokogiri, open4, paint, parslet, polyglot, posix-spawn, 
+power_assert, psych, puppet-lint, pygments.rb, rack, rack-protection, 
+rack-test, rails-deprecated_sanitizer, rails-dom-testing, rails-html-sanitizer, 
+railsless-deploy, rake, rb-fsevent, rb-inotify, rdoc, redcarpet, rouge, 
+rubygems-bundler, rubygems-update, rvm, safe_yaml, sass, shotgun, sshkit, 
+test-unit, thread_safe, timers, toml, treetop, trollop, tzinfo, xcodeproj, 
+yajl-ruby
 
 Node Modules: coffee-script, cson, doctoc, grunt-cli, gulp, js-beautify, 
 tiddlywiki, tmpin

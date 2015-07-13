@@ -1,6 +1,25 @@
 @import "syntax-variables";
 @import "ui-variables";
 
+// Interesting 3D effects for tree-view and minimap...
+#atom-perspective() {
+    @viewing-distance: 12in;
+    @rotation: 10deg;
+    // .tree-view-scroller {
+    //     transform: translateY(-10vh) perspective(@viewing-distance) rotateY(@rotation);
+    //     padding-top: 12vh;
+    //     padding-bottom: 12vh;
+    //     transform-origin: left;
+    //     width: 120%;
+    //     height: 120%;
+    // }
+    body /deep/ atom-text-editor-minimap {
+        transform: perspective(@viewing-distance) rotateY(-@rotation);
+        transform-origin: right;
+    }
+}
+#atom-perspective;
+
 // ensure subpixel-antialiased
 body * {
     -webkit-font-smoothing: subpixel-antialiased !important;

@@ -73,7 +73,6 @@
 	"highlight-selected":
 		onlyHighlightWholeWords: true
 	"isotope-light-ui":
-		fontFamily: "System Default"
 		fontWeight: "Regular"
 	"isotope-ui":
 		backgroundColor: "false"

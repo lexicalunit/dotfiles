@@ -84,8 +84,13 @@ options:
 * * *
 ### [`doc`](bin/doc)
 ```
-usage: doc [-h|--help] FILE.md
-Converts FILE.md into FILE.html using github markdown CSS style.
+usage: doc [-h|--help|-k] FILE.md
+Opens FILE.md as FILE.html in your default web browser.
+
+options:
+    -h, --help   show usage help
+    -k           keep .html artifact (default: no)
+    -c           .css file/URI to use when building output (default: http://shares.lexicalunit.com/github-markdown.css)
 ```
 
 * * *

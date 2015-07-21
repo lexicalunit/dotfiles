@@ -2,19 +2,46 @@
 
 # Builds HTML output from Markdown file.
 
-if [[ "$1" == "--help" || "$1" == "-h" || -z "$1" ]]; then
-    echo "usage: ${0##*/} [-h|--help] FILE.md" 1>&2
-    echo "Converts FILE.md into FILE.html using github markdown CSS style." 1>&2
+KEEP="no"
+CSS="http://shares.lexicalunit.com/github-markdown.css"
+
+if echo "$*" | egrep -q -- "--help|-h" || [[ -z "$1" ]]; then
+    (
+        echo "usage: ${0##*/} [-h|--help|-k] FILE.md"
+        echo "Opens FILE.md as FILE.html in your default web browser."
+        echo
+        echo "options:"
+        (
+            echo "    -h, --help@ show usage help"
+            echo "    -k@ keep .html artifact (default: $KEEP)"
+            echo "    -c@ .css file/URI to use when building output (default: $CSS)"
+        ) | column -ts@
+    ) >&2
     exit 1
 fi
 
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
+while getopts "kc:" opt; do
+    case "$opt" in
+        k) KEEP="yes";;
+        c) CSS="$OPTARG";;
+    esac
+done
+shift $((OPTIND - 1))
+
 SRC="$1"
 TGT="$(basename "$1" .md).html"
-pandoc "$SRC" \
-        --css http://shares.lexicalunit.com/github-markdown.css \
-        -t html \
-        -s \
-        -o "$TGT"
-open "$TGT"
-sleep 1
-rm "$TGT"
+CMD="pandoc '$SRC'"
+CMD="$CMD --css '$CSS'"
+CMD="$CMD -t html"
+CMD="$CMD -s"
+CMD="$CMD -o '$TGT'"
+run "$CMD"
+run "open '$TGT'"
+
+if [[ $KEEP == "no" ]]; then
+    run "sleep 1"
+    run "rm '$TGT'"
+    show -i "use -k to keep .html file"
+fi

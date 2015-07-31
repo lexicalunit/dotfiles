@@ -452,15 +452,15 @@ Atom Packages: atom-beautify, atom-pair, autocomplete-plus,
 autocomplete-plus-python-jedi, column-select, cursor-indicator, event-watch, 
 file-icons, git-blame, gruvbox, highlight-selected, hydrogen, isotope-light-ui, 
 isotope-ui, language-applescript, language-diff, language-latex, 
-language-puppet, language-rust, linter, linter-clang, linter-coffeelint, 
-linter-csslint, linter-erb, linter-flake8, linter-just-say-no, linter-puppet, 
-linter-puppet-lint, linter-shellcheck, linter-tidy, linter-write-good, minimap, 
-minimap-codeglance, minimap-find-and-replace, minimap-git-diff, 
-minimap-highlight-selected, minimap-selection, monokai, multi-wrap-guide, 
-next-occurrence, opened-files, python-isort, python-yapf, rainbow-selection, 
-red-wavy-underline, script, set-syntax, soft-wrap-indicator, sort-lines, 
-symbols-tree-view, tab-control, tabs-to-spaces, todo-show, toggle-quotes, 
-trailing-spaces
+language-puppet, language-rust, line-ending-converter, linter, linter-clang, 
+linter-coffeelint, linter-csslint, linter-erb, linter-flake8, 
+linter-just-say-no, linter-puppet, linter-puppet-lint, linter-shellcheck, 
+linter-tidy, linter-write-good, minimap, minimap-codeglance, 
+minimap-find-and-replace, minimap-git-diff, minimap-highlight-selected, 
+minimap-selection, monokai, multi-wrap-guide, next-occurrence, opened-files, 
+python-isort, python-yapf, rainbow-selection, red-wavy-underline, script, 
+set-syntax, soft-wrap-indicator, sort-lines, symbols-tree-view, tab-control, 
+tabs-to-spaces, todo-show, toggle-quotes, trailing-spaces
 
 Pip Packages: anyjson, backports.ssl-match-hostname, beautifulsoup4, bson, 
 fabric, flake8, google-api-python-client, httplib2, iniparse, isort, jedi, 
@@ -630,7 +630,6 @@ Options:
     --dump-user-agent                Display the current browser identification
     --list-extractors                List all supported extractors
     --extractor-descriptions         Output descriptions of all supported extractors
-    --force-generic-extractor        Force extraction to use the generic extractor
     --default-search PREFIX          Use this prefix for unqualified URLs. For example "gvsearch2:" downloads two videos
                                      from google videos for youtube-dl "large apple". Use the value "auto" to let
                                      youtube-dl guess ("auto_warning" to emit a warning when guessing). "error" just
@@ -695,7 +694,7 @@ Options:
     --playlist-reverse               Download playlist videos in reverse order
     --xattr-set-filesize             Set file xattribute ytdl.filesize with expected filesize (experimental)
     --hls-prefer-native              Use the native HLS downloader instead of ffmpeg (experimental)
-    --external-downloader COMMAND    Use the specified external downloader. Currently supports aria2c,curl,httpie,wget
+    --external-downloader COMMAND    Use the specified external downloader. Currently supports aria2c,curl,wget
     --external-downloader-args ARGS  Give these arguments to the external downloader
 
   Filesystem Options:
@@ -793,9 +792,9 @@ Options:
     --all-formats                    Download all available video formats
     --prefer-free-formats            Prefer free video formats unless a specific one is requested
     -F, --list-formats               List all available formats
-    --youtube-skip-dash-manifest     Do not download the DASH manifests and related data on YouTube videos
+    --youtube-skip-dash-manifest     Do not download the DASH manifest on YouTube videos
     --merge-output-format FORMAT     If a merge is required (e.g. bestvideo+bestaudio), output to given container
-                                     format. One of mkv, mp4, ogg, webm, flv. Ignored if no merge is required
+                                     format. One of mkv, mp4, ogg, webm, flv.Ignored if no merge is required
 
   Subtitle Options:
     --write-sub                      Write subtitle file

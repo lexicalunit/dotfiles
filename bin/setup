@@ -34,8 +34,8 @@ ATOM_PACKAGES="                                                                \
     column-select cursor-indicator event-watch file-icons git-blame gruvbox    \
     highlight-selected hydrogen isotope-light-ui isotope-ui                    \
     language-applescript language-diff language-latex language-puppet          \
-    language-rust linter linter-clang linter-coffeelint linter-csslint         \
-    linter-erb linter-flake8 linter-just-say-no linter-puppet                  \
+    language-rust line-ending-converter linter linter-clang linter-coffeelint  \
+    linter-csslint linter-erb linter-flake8 linter-just-say-no linter-puppet   \
     linter-puppet-lint linter-shellcheck linter-tidy linter-write-good minimap \
     minimap-codeglance minimap-find-and-replace minimap-git-diff               \
     minimap-highlight-selected minimap-selection monokai multi-wrap-guide      \

@@ -508,8 +508,8 @@ rubygems-bundler, rubygems-update, rvm, safe_yaml, sass, shotgun, sshkit,
 test-unit, thread_safe, timers, toml, treetop, trollop, tzinfo, xcodeproj, 
 yajl-ruby
 
-Node Modules: coffee-script, cson, doctoc, grunt-cli, gulp, js-beautify, 
-tiddlywiki, tmpin
+Node Modules: coffee-script, coffeelint, cson, doctoc, grunt-cli, gulp, 
+js-beautify, tiddlywiki, tmpin
 ```
 
 * * *
@@ -630,6 +630,7 @@ Options:
     --dump-user-agent                Display the current browser identification
     --list-extractors                List all supported extractors
     --extractor-descriptions         Output descriptions of all supported extractors
+    --force-generic-extractor        Force extraction to use the generic extractor
     --default-search PREFIX          Use this prefix for unqualified URLs. For example "gvsearch2:" downloads two videos
                                      from google videos for youtube-dl "large apple". Use the value "auto" to let
                                      youtube-dl guess ("auto_warning" to emit a warning when guessing). "error" just
@@ -656,7 +657,7 @@ Options:
     --playlist-start NUMBER          Playlist video to start at (default is 1)
     --playlist-end NUMBER            Playlist video to end at (default is last)
     --playlist-items ITEM_SPEC       Playlist video items to download. Specify indices of the videos in the playlist
-                                     seperated by commas like: "--playlist-items 1,2,5,8" if you want to download videos
+                                     separated by commas like: "--playlist-items 1,2,5,8" if you want to download videos
                                      indexed 1, 2, 5, 8 in the playlist. You can specify range: "--playlist-items
                                      1-3,7,10-13", it will download the videos at index 1, 2, 3, 7, 10, 11, 12 and 13.
     --match-title REGEX              Download only matching titles (regex or caseless sub-string)
@@ -694,7 +695,7 @@ Options:
     --playlist-reverse               Download playlist videos in reverse order
     --xattr-set-filesize             Set file xattribute ytdl.filesize with expected filesize (experimental)
     --hls-prefer-native              Use the native HLS downloader instead of ffmpeg (experimental)
-    --external-downloader COMMAND    Use the specified external downloader. Currently supports aria2c,curl,wget
+    --external-downloader COMMAND    Use the specified external downloader. Currently supports aria2c,curl,httpie,wget
     --external-downloader-args ARGS  Give these arguments to the external downloader
 
   Filesystem Options:
@@ -792,9 +793,9 @@ Options:
     --all-formats                    Download all available video formats
     --prefer-free-formats            Prefer free video formats unless a specific one is requested
     -F, --list-formats               List all available formats
-    --youtube-skip-dash-manifest     Do not download the DASH manifest on YouTube videos
+    --youtube-skip-dash-manifest     Do not download the DASH manifests and related data on YouTube videos
     --merge-output-format FORMAT     If a merge is required (e.g. bestvideo+bestaudio), output to given container
-                                     format. One of mkv, mp4, ogg, webm, flv.Ignored if no merge is required
+                                     format. One of mkv, mp4, ogg, webm, flv. Ignored if no merge is required
 
   Subtitle Options:
     --write-sub                      Write subtitle file
@@ -820,7 +821,8 @@ Options:
     --audio-quality QUALITY          Specify ffmpeg/avconv audio quality, insert a value between 0 (better) and 9
                                      (worse) for VBR or a specific bitrate like 128K (default 5)
     --recode-video FORMAT            Encode the video to another format if necessary (currently supported:
-                                     mp4|flv|ogg|webm|mkv)
+                                     mp4|flv|ogg|webm|mkv|avi)
+    --postprocessor-args ARGS        Give these arguments to the postprocessor
     -k, --keep-video                 Keep the video file on disk after the post-processing; the video is erased by
                                      default
     --no-post-overwrites             Do not overwrite post-processed files; the post-processed files are overwritten by

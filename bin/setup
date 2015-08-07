@@ -7,19 +7,19 @@
 ################################################################################
 # BEGIN GENERATED PACKAGE LISTS
 HOMEBREW_FORMULAS="                                                            \
-    autoconf automake bash bison boost boot2docker cloog cmake composer        \
-    coreutils cppunit dmd docker docker-compose doxygen faac ffmpeg fontconfig \
-    freetype gd gdbm geoip gettext ghostscript gifify gifsicle git glib gmp    \
-    gmp4 gnu-sed gnu-tar gnupg go gradle graphviz htop-osx id3lib id3v2        \
-    imagemagick isl jasper jbig2dec jhead jpeg jq lame libevent libffi         \
-    libgpg-error libgphoto2 libicns libksba libmpc libpng libtiff libtool      \
-    libusb libusb-compat libvo-aacenc libyaml little-cms2 makedepend maven     \
-    md5sha1sum memcached mercurial mongodb mpfr ncftp nginx node onepass       \
-    openssl ossp-uuid pandoc pcre pidof pkg-config plotutils pngquant          \
-    postgresql rabbitmq readline redis ruby rust s3cmd sane-backends scons     \
-    sdl2 sdl2_image shellcheck sloccount spark sqlite storm swig tree unixodbc \
-    unrar vramsteg watch webp wget x264 xvid xz yaml-cpp youtube-dl z zeromq   \
-    zlib zookeeper zsh zsh-completions"
+    autoconf automake bash bison boost boot2docker cloog cmake coreutils       \
+    cppunit dmd docker doxygen faac ffmpeg fontconfig freetype gd gdbm geoip   \
+    gettext ghostscript gifify gifsicle git glib gmp gmp4 gnu-sed gnu-tar      \
+    gnupg go gradle graphviz htop-osx id3lib id3v2 imagemagick isl jasper      \
+    jbig2dec jhead jpeg jq lame libevent libffi libgpg-error libgphoto2        \
+    libicns libksba libmpc libpng libtiff libtool libusb libusb-compat         \
+    libvo-aacenc libyaml little-cms2 makedepend maven md5sha1sum memcached     \
+    mercurial mongodb mpfr ncftp nginx node onepass openssl ossp-uuid pandoc   \
+    pcre pidof pkg-config plotutils pngquant postgresql rabbitmq readline      \
+    redis ruby rust s3cmd sane-backends scons sdl2 sdl2_image shellcheck       \
+    sloccount spark sqlite storm swig tree unixodbc unrar vramsteg watch webp  \
+    wget x264 xvid xz yaml-cpp youtube-dl z zeromq zlib zookeeper zsh          \
+    zsh-completions"
 
 HOMEBREW_CASKS="                                                               \
     adium-beta amazon-music atom audacity balsamiq-mockups battle-net caffeine \
@@ -48,34 +48,32 @@ ATOM_PACKAGES="                                                                \
 PIP_PACKAGES="                                                                 \
     anyjson backports.ssl-match-hostname beautifulsoup4 bson cssutils fabric   \
     flake8 google-api-python-client httplib2 iniparse inlinestyler isort jedi  \
-    oauth2client oauthlib pep8 psycopg2 pyasn1-modules pydruid pyflakes        \
-    pymongo python-cson python-dateutil python-twitter pytz requests           \
-    requests-oauthlib rsa simplejson suds tables termcolor tinycss uritemplate \
-    wsgiref"
+    oauth2client oauthlib pep8 pyasn1-modules pydruid pyflakes pymongo         \
+    python-cson python-dateutil python-twitter pytz requests requests-oauthlib \
+    rsa simplejson suds termcolor tinycss uritemplate wsgiref"
 
 CONDA_PACKAGES="                                                               \
     abstract-rendering alabaster anaconda appscript apptools argcomplete       \
-    astropy atom babel bcolz beautiful-soup binstar biopython bitarray blaze   \
+    astropy atom babel bcolz beautiful-soup biopython bitarray blaze           \
     blaze-core blz bokeh boto bottleneck casuarius cdecimal certifi cffi chaco \
     clyent colorama conda conda-build conda-env configobj cryptography cubes   \
     cudatoolkit curl cython cytoolz datashape dateutil decorator docutils      \
     dynd-python ecdsa enable enaml enum34 envisage fastcache flask freetype    \
-    funcsigs future futures gevent gevent-websocket gevent_zeromq greenlet     \
-    grin h5py hdf5 idna into ipaddress ipython ipython-notebook                \
-    ipython-qtconsole itsdangerous jdcal jinja2 jpeg jsonschema keyring        \
-    kiwisolver launcher lcms libdynd libnetcdf libpng libsodium libtiff        \
-    libxml2 libxslt llvm llvmlite llvmpy lxml markupsafe matplotlib mayavi     \
-    mccabe mdp mercurial mistune mock modules multipledispatch natsort netcdf4 \
-    networkx nltk node-webkit nose numba numexpr numpy odo openpyxl openssl    \
-    pandas paramiko patsy pies pies2overrides pil pillow pip ply psutil        \
-    ptyprocess pyasn1 pyaudio pycosat pycparser pycrypto pycurl pyface         \
-    pygments pykit pyopenssl pyparsing pyqt pysal pysam pyside pytables pytest \
-    python.app pyyaml pyzmq qt readline redis redis-py rope runipy             \
-    scikit-image scikit-learn scipy setuptools shiboken sip six                \
-    snowballstemmer sockjs-tornado sphinx sphinx-rtd-theme sphinx_rtd_theme    \
-    spyder spyder-app sqlalchemy sqlite ssl_match_hostname statsmodels sympy   \
-    terminado tk toolz tornado traits traitsui ujson unicodecsv vtk werkzeug   \
-    xlrd xlsxwriter xlwings xlwt yaml zeromq zlib"
+    funcsigs future futures gevent gevent-websocket greenlet grin h5py hdf5    \
+    idna into ipaddress ipython ipython-notebook ipython-qtconsole             \
+    itsdangerous jdcal jinja2 jpeg jsonschema keyring kiwisolver launcher lcms \
+    libdynd libnetcdf libpng libsodium libtiff libxml2 libxslt llvm llvmlite   \
+    llvmpy lxml markupsafe matplotlib mayavi mccabe mdp mercurial mistune mock \
+    modules multipledispatch natsort netcdf4 networkx nltk node-webkit nose    \
+    numba numexpr numpy odo openpyxl openssl pandas paramiko patsy pbr pies    \
+    pies2overrides pil pillow pip ply psutil ptyprocess pyasn1 pyaudio pycosat \
+    pycparser pycrypto pycurl pyface pygments pyopenssl pyparsing pyqt pysal   \
+    pysam pyside pytables pytest python.app pyyaml pyzmq qt readline redis     \
+    redis-py rope runipy scikit-image scikit-learn scipy setuptools shiboken   \
+    sip six snowballstemmer sockjs-tornado sphinx sphinx-rtd-theme             \
+    sphinx_rtd_theme spyder spyder-app sqlalchemy sqlite ssl_match_hostname    \
+    statsmodels sympy terminado tk toolz tornado traits traitsui ujson         \
+    unicodecsv vtk werkzeug xlrd xlsxwriter xlwings xlwt yaml zeromq zlib"
 
 GEM_PACKAGES="                                                                 \
     actionmailer actionpack actionview activejob activesupport                 \
@@ -642,8 +640,9 @@ install_brew_formula()
         show "brew formula '$1' already installed"
     fi
 
-    # force link the most recent versions
-    run "brew unlink $1 && brew link --force --overwrite $1"
+    # Force link the most recent version; can fix some annoying issues,
+    # but is also slow and terrible and shouldn't be necessary.
+    # run "brew unlink $1 && brew link --force --overwrite $1"
 }
 
 step_brew()
@@ -839,7 +838,14 @@ step_python()
     [[ -d "$HOME/anaconda/bin" ]] && export PATH="$HOME/anaconda/bin:$PATH"
 
     if run "type conda >/dev/null 2>&1"; then
-        run "conda update --yes --prefix '$HOME/anaconda' anaconda"
+        # Remove anaconda so that `conda update --all` doesn't stupidly downgrade things.
+        # See https://github.com/conda/conda/issues/463 for more details.
+        run "conda remove anaconda"
+
+        # Update anaconda to the latest; commented out because we remove anaconda, above.
+        # run "conda update --yes --prefix '$HOME/anaconda' anaconda"
+
+        # Sadly, `conda update --all` takes forever and is somewhat unreliable.
         run "conda update --yes --prefix '$HOME/anaconda' --all"
     else
         curl_output="$(mktemp -d -t tmp.XXXXXXXXXX)"
@@ -856,9 +862,11 @@ step_python()
 
         export PATH="$HOME/anaconda/bin:$PATH"
         run "conda config --set changeps1 no"
-        [[ -d "$HOME/Desktop/Launcher.app" ]] && run "rm -rf '$HOME/Desktop/Launcher.app'"
         run "rm -rf '$curl_output'"
     fi
+
+    # Remove terrible Anaconda launcher app from desktop (That's not where .app directories go anyway!)
+    [[ -d "$HOME/Desktop/Launcher.app" ]] && run "rm -rf '$HOME/Desktop/Launcher.app'"
 
     # Install python packages that don't come with Anaconda... yet!
     run "pip install --upgrade pip"
@@ -924,7 +932,7 @@ step_gem()
         if [[ "$name" == "*** LOCAL GEMS ***" ]]; then
             continue
         fi
-        if ! echo "$GEM_PACKAGES" | egrep -q "$(echo "\\b$name\\b" | cut -d' ' -f1)"; then
+        if ! echo "$GEM_PACKAGES rubygems-update" | egrep -q "$(echo "\\b$name\\b" | cut -d' ' -f1)"; then
             show -i "$I installed but not managed by setup"
         fi
     done

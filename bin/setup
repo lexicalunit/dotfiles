@@ -840,7 +840,7 @@ step_python()
     if run "type conda >/dev/null 2>&1"; then
         # Remove anaconda so that `conda update --all` doesn't stupidly downgrade things.
         # See https://github.com/conda/conda/issues/463 for more details.
-        run "conda remove anaconda"
+        run "conda remove --yes anaconda"
 
         # Update anaconda to the latest; commented out because we remove anaconda, above.
         # run "conda update --yes --prefix '$HOME/anaconda' anaconda"

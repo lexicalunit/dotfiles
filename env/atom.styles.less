@@ -1,45 +1,6 @@
 @import "syntax-variables";
 @import "ui-variables";
 
-// Interesting 3D effects for tree-view and minimap...
-#atom-perspective() {
-    @viewing-distance: 12in;
-    @rotation: 10deg;
-    .tree-view-scroller {
-        transform: translateY(-10vh) perspective(@viewing-distance) rotateY(@rotation);
-        padding-top: 12vh;
-        padding-bottom: 12vh;
-        transform-origin: left;
-        width: 120%;
-        height: 120%;
-    }
-    body /deep/ atom-text-editor-minimap {
-        transform: perspective(@viewing-distance) rotateY(-@rotation);
-        transform-origin: right;
-    }
-}
-// #atom-perspective;
-
-// ensure subpixel-antialiased
-body * {
-    -webkit-font-smoothing: subpixel-antialiased !important;
-}
-
-// disable italic comments in any syntax theme
-atom-text-editor::shadow {
-    .comment {
-        font-style: normal !important;
-    }
-}
-
-// make active tab stand out more
-.tab-bar {
-    .tab.active .title {
-        background-color: @background-color-selected !important;
-        color: @text-color-selected !important;
-    }
-}
-
 // make current file in tree-view stand out more
 .tree-view {
     .list-item.selected::before {
@@ -48,10 +9,17 @@ atom-text-editor::shadow {
     }
 }
 
-// separate tree view and text editor more clearly, good for some themes
-// .tree-view-scroller {
-//     border-right: 1px solid @syntax-wrap-guide-color !important;
-// }
+// ensure subpixel-antialiased
+body * {
+    -webkit-font-smoothing: subpixel-antialiased !important;
+}
+
+// disable italic comments and source code in any syntax theme
+atom-text-editor::shadow {
+    .comment, .source * {
+        font-style: normal !important;
+    }
+}
 
 // more subtle invisibles for dark themes
 atom-text-editor::shadow {
@@ -110,3 +78,22 @@ atom-text-editor::shadow {
         color: @text-color-highlight !important;
     }
 }
+
+// 3D effects for tree-view and minimap
+// #atom-perspective() {
+//     @viewing-distance: 12in;
+//     @rotation: 10deg;
+//     .tree-view-scroller {
+//         transform: translateY(-10vh) perspective(@viewing-distance) rotateY(@rotation);
+//         padding-top: 12vh;
+//         padding-bottom: 12vh;
+//         transform-origin: left;
+//         width: 120%;
+//         height: 120%;
+//     }
+//     body /deep/ atom-text-editor-minimap {
+//         transform: perspective(@viewing-distance) rotateY(-@rotation);
+//         transform-origin: right;
+//     }
+// }
+// #atom-perspective;

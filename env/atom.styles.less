@@ -1,6 +1,16 @@
 @import "syntax-variables";
 @import "ui-variables";
 
+// better highlight-selected for light themes
+atom-text-editor::shadow {
+    & when (lightness(@syntax-background-color) > 50%) {
+        .highlight-selected .region {
+            border-color: fadeout(contrast(@syntax-background-color), 50%) !important;
+            background-color: fadeout(@syntax-selection-color, 50%) !important;
+        }
+    }
+}
+
 // make current file in tree-view stand out more
 .tree-view {
     .list-item.selected::before {

@@ -24,6 +24,7 @@
 	co = checkout
 	ci = commit
 	ca = commit --amend
+	authors = !bash git_authors
 	push-topic = !bash git_push_topic
 	reauthor = !bash git_reauthor
 	name-change = !bash git_name_change

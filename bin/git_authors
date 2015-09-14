@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Finds out who wrote the code at the given path.
+
+usage()
+{
+    echo "usage: ${0##*/} [PATH]" >&2
+    echo "Finds out who wrote the code at the given path." >&2
+    exit 1
+}
+
+if echo "$*" | egrep -q -- "--help|-h"; then
+    usage
+fi
+
+git ls-tree -r -z --name-only HEAD -- "$*" \
+    | xargs -0 -n1 git blame --line-porcelain HEAD \
+    | grep  "^author "\
+    | sort | uniq -c | sort -nr

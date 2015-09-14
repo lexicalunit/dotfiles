@@ -263,6 +263,13 @@ Recursively Finds given pattern within CMake files.
 ```
 
 * * *
+### [`git_authors`](bin/git_authors)
+```
+usage: git_authors [PATH]
+Finds out who wrote the code at the given path.
+```
+
+* * *
 ### [`git_ltr`](bin/git_ltr)
 ```
 usage: git_ltr [-h|--help] [-r]
@@ -820,7 +827,7 @@ Options:
     -p, --password PASSWORD          Account password. If this option is left out, youtube-dl will ask interactively.
     -2, --twofactor TWOFACTOR        Two-factor auth code
     -n, --netrc                      Use .netrc authentication data
-    --video-password PASSWORD        Video password (vimeo, smotri)
+    --video-password PASSWORD        Video password (vimeo, smotri, youku)
 
   Post-processing Options:
     -x, --extract-audio              Convert video files to audio-only files (requires ffmpeg or avconv and ffprobe or

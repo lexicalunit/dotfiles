@@ -162,8 +162,8 @@ spotify, steam, sublime-text3, teamviewer, texstudio, transmission, vlc, xquartz
 
 Atom Packages: atom-beautify, atom-pair, autocomplete-plus, 
 autocomplete-plus-python-jedi, column-select, cursor-indicator, event-watch, 
-file-icons, git-blame, gruvbox, highlight-selected, isotope-light-ui, 
-isotope-ui, language-applescript, language-diff, language-latex, language-rust, 
+file-icons, gruvbox, highlight-selected, isotope-light-ui, isotope-ui, 
+language-applescript, language-diff, language-latex, language-rust, 
 line-ending-converter, linter, linter-alex, linter-clang, linter-coffeelint, 
 linter-csslint, linter-erb, linter-flake8, linter-just-say-no, 
 linter-shellcheck, linter-tidy, linter-write-good, minimap, minimap-codeglance, 

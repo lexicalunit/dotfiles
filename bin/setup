@@ -32,7 +32,7 @@ HOMEBREW_CASKS="                                                               \
 
 ATOM_PACKAGES="                                                                \
     atom-beautify atom-pair autocomplete-plus autocomplete-plus-python-jedi    \
-    column-select cursor-indicator event-watch file-icons git-blame gruvbox    \
+    column-select cursor-indicator event-watch file-icons gruvbox              \
     highlight-selected isotope-light-ui isotope-ui language-applescript        \
     language-diff language-latex language-rust line-ending-converter linter    \
     linter-alex linter-clang linter-coffeelint linter-csslint linter-erb       \

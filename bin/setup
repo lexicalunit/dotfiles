@@ -33,17 +33,16 @@ HOMEBREW_CASKS="                                                               \
 ATOM_PACKAGES="                                                                \
     atom-beautify atom-pair autocomplete-plus autocomplete-plus-python-jedi    \
     column-select cursor-indicator event-watch file-icons git-blame gruvbox    \
-    highlight-selected hydrogen isotope-light-ui isotope-ui                    \
-    language-applescript language-diff language-latex language-puppet          \
-    language-rust line-ending-converter linter linter-alex linter-clang        \
-    linter-coffeelint linter-csslint linter-erb linter-flake8                  \
-    linter-just-say-no linter-puppet linter-puppet-lint linter-shellcheck      \
-    linter-tidy linter-write-good minimap minimap-codeglance                   \
-    minimap-find-and-replace minimap-git-diff minimap-highlight-selected       \
-    minimap-selection monokai multi-wrap-guide next-occurrence opened-files    \
-    python-isort python-yapf rainbow-selection red-wavy-underline script       \
-    set-syntax soft-wrap-indicator sort-lines symbols-tree-view tab-control    \
-    tabs-to-spaces todo-show toggle-quotes trailing-spaces"
+    highlight-selected isotope-light-ui isotope-ui language-applescript        \
+    language-diff language-latex language-rust line-ending-converter linter    \
+    linter-alex linter-clang linter-coffeelint linter-csslint linter-erb       \
+    linter-flake8 linter-just-say-no linter-shellcheck linter-tidy             \
+    linter-write-good minimap minimap-codeglance minimap-find-and-replace      \
+    minimap-git-diff minimap-highlight-selected minimap-selection monokai      \
+    multi-wrap-guide next-occurrence python-isort python-yapf                  \
+    rainbow-selection red-wavy-underline script set-syntax soft-wrap-indicator \
+    sort-lines symbols-tree-view tab-control tabs-to-spaces todo-show          \
+    toggle-quotes trailing-spaces"
 
 PIP_PACKAGES="                                                                 \
     anyjson backports.ssl-match-hostname beautifulsoup4 bson cssutils fabric   \
@@ -748,7 +747,7 @@ install_atom_pkg()
 {
     local PKG="$1"
     local INSTALLED="$2"
-    if [[ -z "$INSTALLED" ]]; then
+    if ! echo "$INSTALLED" | egrep -qi "\\b${PKG}\\b"; then
         run "apm install '$PKG'" || abort "can not install package '$PKG'"
     else
         show "skipping $PKG: already installed"

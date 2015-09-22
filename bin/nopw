@@ -3,9 +3,9 @@
 # Enables password-less ssh TO username@remotehost FROM localhost.
 
 if [[ -z "$1" || "$1" == "--help" || "$1" == "-h" ]]; then
-	echo "usage: ${0##*/} [-h|-help] [ssh connection options] username@remotehost" 1>&2
-	echo "Puts your public ssh key in the authorized_keys on the remote host."
-	exit 1
+    echo "usage: ${0##*/} [-h|-help] [ssh connection options] username@remotehost" 1>&2
+    echo "Puts your public ssh key in the authorized_keys on the remote host."
+    exit 1
 fi
 
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
@@ -18,11 +18,10 @@ show "*** KEY_TYPE set to ${KEY_TYPE} ***"
 show "*** KEY set to ${KEY} ***"
 echo
 
-run_local()
-{
-	echo $'\e[1;34mlocal ==>\e[0m\e[31m' "$1" $'\e[0m'
-	eval "$1"
-	return $?
+run_local() {
+    echo $'\e[1;34mlocal ==>\e[0m\e[31m' "$1" $'\e[0m'
+    eval "$1"
+    return $?
 }
 
 set -e
@@ -31,8 +30,8 @@ set -e
 [[ -f "$HOME/.ssh/authorized_keys" ]] || run_local "touch '$HOME/.ssh/authorized_keys'"
 
 if [[ ! -f "$HOME/.ssh/$KEY.pub" ]]; then
-	run_local "ssh-keygen -t '$KEY_TYPE'"
-	run_local "cat '$HOME/.ssh/$KEY.pub' >> '$HOME/.ssh/authorized_keys'"
+    run_local "ssh-keygen -t '$KEY_TYPE'"
+    run_local "cat '$HOME/.ssh/$KEY.pub' >> '$HOME/.ssh/authorized_keys'"
 fi
 
 # SSH requires certain permissions on home directory, .ssh directory, and authorized_keys file
@@ -44,23 +43,23 @@ echo
 show "*** You will be asked for your password twice... ***"
 echo
 
-run_local "cat '$HOME/.ssh/$KEY.pub' | ssh $@ 'cat > \"$KEY.pub\"'"
+run_local "cat '$HOME/.ssh/$KEY.pub' | ssh $* 'cat > \"$KEY.pub\"'"
 
+# Don't quote EOF here, we want variable expansion locally here.
 ssh "$@" "bash -s" << EOF
-	remote_run()
-	{
-		echo $'\e[1;34mremote ==>\e[0m\e[31m' "\$1" $'\e[0m'
-		eval "\$1"
-		return \$?
-	}
+    remote_run() {
+        echo $'\e[1;34mremote ==>\e[0m\e[31m' "\$1" $'\e[0m'
+        eval "\$1"
+        return \$?
+    }
 
-	set -e
-	remote_run "cd ~"
-	[[ -d ".ssh" ]] || remote_run "mkdir -p .ssh"
-	[[ -f ".ssh/authorized_keys" ]] || remote_run "touch .ssh/authorized_keys"
-	remote_run "cat '$KEY.pub' >> .ssh/authorized_keys"
-	remote_run "chmod go-w ."
-	remote_run "chmod go-rwx .ssh"
-	remote_run "chmod go-rwx .ssh/authorized_keys"
-	[[ -f "$KEY.pub" ]] && remote_run "rm '$KEY.pub'"
+    set -e
+    remote_run "cd ~"
+    [[ -d ".ssh" ]] || remote_run "mkdir -p .ssh"
+    [[ -f ".ssh/authorized_keys" ]] || remote_run "touch .ssh/authorized_keys"
+    remote_run "cat '$KEY.pub' >> .ssh/authorized_keys"
+    remote_run "chmod go-w ."
+    remote_run "chmod go-rwx .ssh"
+    remote_run "chmod go-rwx .ssh/authorized_keys"
+    [[ -f "$KEY.pub" ]] && remote_run "rm '$KEY.pub'"
 EOF

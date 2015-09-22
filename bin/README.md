@@ -1,12 +1,12 @@
 * * *
-### [`addroot`](bin/addroot)
+### [`addroot`](addroot)
 ```
 usage: addroot ROOT_FOLDER
 Runs command Adds Root Folder in Atom using given ROOT_FOLDER.
 ```
 
 * * *
-### [`alert`](bin/alert)
+### [`alert`](alert)
 ```
 usage: alert [-qh] [message]
 
@@ -15,7 +15,7 @@ usage: alert [-qh] [message]
 ```
 
 * * *
-### [`api`](bin/api)
+### [`api`](api)
 ```
 usage: api [options] [curl options] 'URI'
 
@@ -32,28 +32,28 @@ Or force the beginning of curl option parsing by passing -- first.
 ```
 
 * * *
-### [`apmpull`](bin/apmpull)
+### [`apmpull`](apmpull)
 ```
 usage: apmpull [-h|--help]
 Updates atom packages that are installed via git cloning them into ~/.atom/packages.
 ```
 
 * * *
-### [`b2d`](bin/b2d)
+### [`b2d`](b2d)
 ```
 usage: b2d [-h|--help]
 Get boot2docker up and running.
 ```
 
 * * *
-### [`bluetooth_reset`](bin/bluetooth_reset)
+### [`bluetooth_reset`](bluetooth_reset)
 ```
 usage: bluetooth_reset [-h|--help]
 Resets bluetooth on OS X. Run without arguments first, then follow instructions.
 ```
 
 * * *
-### [`capture`](bin/capture)
+### [`capture`](capture)
 ```
 usage: capture [-h|--help]
 
@@ -61,7 +61,7 @@ Creates a screenshot of selected window on X11.
 ```
 
 * * *
-### [`colortest`](bin/colortest)
+### [`colortest`](colortest)
 ```
 usage: colortest
 
@@ -69,7 +69,7 @@ Prints out table of terminal color codes.
 ```
 
 * * *
-### [`die`](bin/die)
+### [`die`](die)
 ```
 usage: die [options] REGEX
 
@@ -82,7 +82,7 @@ options:
 ```
 
 * * *
-### [`doc`](bin/doc)
+### [`doc`](doc)
 ```
 usage: doc [-h|--help|-k] FILE.md
 Opens FILE.md as FILE.html in your default web browser.
@@ -94,13 +94,13 @@ options:
 ```
 
 * * *
-### [`docker_clean`](bin/docker_clean)
+### [`docker_clean`](docker_clean)
 ```
 Delete all docker containers and images.
 ```
 
 * * *
-### [`fa`](bin/fa)
+### [`fa`](fa)
 ```
 usage: fa [-h|--help] [python regex]
 
@@ -189,14 +189,14 @@ Bug reports to <enthought-dev@mail.enthought.com>.
 ```
 
 * * *
-### [`fart`](bin/fart)
+### [`fart`](fart)
 ```
 usage: fart SECONDS [-h|--help]
 Sleeps for the given number of seconds, showing a progress bar.
 ```
 
 * * *
-### [`ff`](bin/ff)
+### [`ff`](ff)
 Symbolic link to '/usr/local/bin/grind'
 ```
 usage: ff [-h] [-v] [-s] [--skip-hidden-files] [-b] [--skip-backup-files] [-S]
@@ -247,7 +247,7 @@ Bug reports to <enthought-dev@mail.enthought.com>.
 ```
 
 * * *
-### [`flip`](bin/flip)
+### [`flip`](flip)
 ```
 usage: echo 'text' | flip
 
@@ -255,7 +255,7 @@ Literally flips input upside down, printing words so they appear to be flipped o
 ```
 
 * * *
-### [`fm`](bin/fm)
+### [`fm`](fm)
 ```
 usage: fm [-h|--help] [grep pattern]
 
@@ -263,14 +263,14 @@ Recursively Finds given pattern within CMake files.
 ```
 
 * * *
-### [`git_authors`](bin/git_authors)
+### [`git_authors`](git_authors)
 ```
 usage: git_authors [PATH]
 Finds out who wrote the code at the given path.
 ```
 
 * * *
-### [`git_ltr`](bin/git_ltr)
+### [`git_ltr`](git_ltr)
 ```
 usage: git_ltr [-h|--help] [-r]
 Lists (a-la 'ls -ltr') git controlled source files in current directory.
@@ -281,21 +281,21 @@ options:
 ```
 
 * * *
-### [`git_name_change`](bin/git_name_change)
+### [`git_name_change`](git_name_change)
 ```
 usage: git_name_change REPO_URL OLD_EMAIL NEW_NAME NEW_EMAIL
 clones the given repo, changing the name and email address in entire history
 ```
 
 * * *
-### [`git_push_topic`](bin/git_push_topic)
+### [`git_push_topic`](git_push_topic)
 ```
 usage: git_push_topic [-h|--help]
 Preforms command 'git push -fu origin $BRANCH', force pushing feature branch up to remote origin.
 ```
 
 * * *
-### [`git_reauthor`](bin/git_reauthor)
+### [`git_reauthor`](git_reauthor)
 ```
 usage: git_reauthor [-f] commit-to-change [branch-to-rewrite [new-name [new-email]]]
 
@@ -310,21 +310,21 @@ usage: git_reauthor [-f] commit-to-change [branch-to-rewrite [new-name [new-emai
 ```
 
 * * *
-### [`install`](bin/install)
+### [`install`](install)
 ```
 usage: install [uninstall]
 Installs setup/bin tools into user's ~/bin directory.
 ```
 
 * * *
-### [`install_mysql`](bin/install_mysql)
+### [`install_mysql`](install_mysql)
 ```
 usage: install_mysql [-h|--help] [uninstall]
 If the 'uninstall' command is given, uninstalls MySQL instead.
 ```
 
 * * *
-### [`jsc`](bin/jsc)
+### [`jsc`](jsc)
 Symbolic link to '/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Resources/jsc'
 ```
 Usage: jsc [options] [files] [-- arguments]
@@ -343,7 +343,7 @@ Usage: jsc [options] [files] [-- arguments]
 ```
 
 * * *
-### [`lt`](bin/lt)
+### [`lt`](lt)
 ```
 usage: lt DURATION CMD [ARG]
 
@@ -351,7 +351,7 @@ A limited bash version of the GNU tool timeout. Use timeout if you have it.
 ```
 
 * * *
-### [`macosver`](bin/macosver)
+### [`macosver`](macosver)
 ```
 usage: macosver
 
@@ -359,48 +359,48 @@ Simply prints out the OS X major and minor version.
 ```
 
 * * *
-### [`nopw`](bin/nopw)
+### [`nopw`](nopw)
 ```
 usage: nopw [-h|-help] [ssh connection options] username@remotehost
 Puts your public ssh key in the authorized_keys on the remote host.
 ```
 
 * * *
-### [`readmeize`](bin/readmeize)
+### [`readmeize`](readmeize)
 ```
 usage: readmeize [-h|--help]
 Prepares given image for use in a README.md file.
 ```
 
 * * *
-### [`reset_boot2docker`](bin/reset_boot2docker)
+### [`reset_boot2docker`](reset_boot2docker)
 ```
 Reset completely boot2docker on OS X.
 ```
 
 * * *
-### [`root`](bin/root)
+### [`root`](root)
 ```
 usage: root [-h|--help]
 Prints the root directory of the current source repository.
 ```
 
 * * *
-### [`s`](bin/s)
+### [`s`](s)
 ```
 usage: s [-h|--help] [git command]
 Print out the git status, or given command, of all subdirectories of the current directory.
 ```
 
 * * *
-### [`safari_cache`](bin/safari_cache)
+### [`safari_cache`](safari_cache)
 ```
 usage: safari_cache [-h|--help]
 Generates and displays a webpage displaying Safari's cache.
 ```
 
 * * *
-### [`safari_clean`](bin/safari_clean)
+### [`safari_clean`](safari_clean)
 ```
 usage: safari_clean [-h|--help]
 Cleans Safari caches and saved data on OS X.
@@ -408,7 +408,7 @@ Use 'yes | safari_clean' to auto-confirm the cleaning of everything.
 ```
 
 * * *
-### [`setup`](bin/setup)
+### [`setup`](setup)
 ```
 usage: setup [-l|-d|-f|-h|--help] [all|step-name(s)]
 Automatically installs and configures a complete OS X developer environment.
@@ -527,7 +527,7 @@ js-beautify, tiddlywiki, tmpin
 ```
 
 * * *
-### [`setup_odbc`](bin/setup_odbc)
+### [`setup_odbc`](setup_odbc)
 ```
 usage: setup_odbc [-h|--help]
 Attempts to install a working ODBC configuration to OS X.
@@ -536,7 +536,7 @@ Requires hand editing to support your specific installation.
 ```
 
 * * *
-### [`share`](bin/share)
+### [`share`](share)
 ```
 usage share [<file>|ls|names|ssh|get <name(s)>|put <file(s)>|rm <name>]
 Requires ~/.webshare script be created for your webshare configuration.
@@ -549,14 +549,14 @@ The ~/.webshare script must set environment variables:
 ```
 
 * * *
-### [`slept`](bin/slept)
+### [`slept`](slept)
 ```
 usage: slept [-h|--help]
 Uses sysctl to discover when the last time OS X slept was.
 ```
 
 * * *
-### [`smongo`](bin/smongo)
+### [`smongo`](smongo)
 ```
 usage: smongo HOST
 
@@ -564,28 +564,28 @@ Discovers and then connects mongo shell to the cluster master node.
 ```
 
 * * *
-### [`uninstall_homebrew`](bin/uninstall_homebrew)
+### [`uninstall_homebrew`](uninstall_homebrew)
 ```
 usage: uninstall_homebrew [-h|--help]
 See https://gist.github.com/1173223 for details.
 ```
 
 * * *
-### [`uninstall_macports`](bin/uninstall_macports)
+### [`uninstall_macports`](uninstall_macports)
 ```
 usage: uninstall_macports [-h|--help]
 See http://guide.macports.org/chunked/installing.macports.uninstalling.html for details.
 ```
 
 * * *
-### [`update_bin`](bin/update_bin)
+### [`update_bin`](update_bin)
 ```
 usage: update_bin [-h|--help]
 Copies scripts in ~/bin into ./bin. Honors ignore file.
 ```
 
 * * *
-### [`usages`](bin/usages)
+### [`usages`](usages)
 ```
 usage: usages [-t|--table|-v|--verbose-h|--help]
 Prints out documentation and usage information for everything in current directory.
@@ -596,34 +596,34 @@ Prints out documentation and usage information for everything in current directo
 ```
 
 * * *
-### [`woke`](bin/woke)
+### [`woke`](woke)
 ```
 usage: woke [-h|--help]
 Uses sysctl to discover when the last time OS X woke was.
 ```
 
 * * *
-### [`xdie`](bin/xdie)
+### [`xdie`](xdie)
 ```
 usage: xdie [-p|-h|--help] REGEX
 Kills all windows matching REGEX. Use -p for pretend mode.
 ```
 
 * * *
-### [`xf`](bin/xf)
+### [`xf`](xf)
 ```
 usage: xf <archive> - extract common file formats
 ```
 
 * * *
-### [`yaml2json`](bin/yaml2json)
+### [`yaml2json`](yaml2json)
 ```
 usage: yaml2json < file.yaml
 Takes YAML input and pretty prints conversion to JSON format.
 ```
 
 * * *
-### [`youtube2mp3`](bin/youtube2mp3)
+### [`youtube2mp3`](youtube2mp3)
 ```
 usage: youtube2mp3 [-h|--help] [youtube-dl options] <youtube URL>
 

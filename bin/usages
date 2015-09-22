@@ -40,7 +40,7 @@ for I in *; do
     # tool name
 	if [[ $VERBOSE == 1 ]]; then
 		echo "* * *"
-        echo -en "### [\`$I\`](bin/$I)"
+        echo -en "### [\`$I\`]($I)"
     elif [[ $TABLE == 1 ]]; then
         echo -en "| [\`$I\`](bin/$I) | "
     else

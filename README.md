@@ -168,7 +168,7 @@ linter-alex, linter-clang, linter-coffeelint, linter-csslint, linter-erb,
 linter-flake8, linter-just-say-no, linter-shellcheck, linter-tidy, 
 linter-write-good, minimap, minimap-codeglance, minimap-find-and-replace, 
 minimap-git-diff, minimap-highlight-selected, minimap-selection, monokai, 
-multi-wrap-guide, next-occurrence, python-isort, python-yapf, 
+multi-wrap-guide, next-occurrence, nvatom, python-isort, python-yapf, 
 rainbow-selection, red-wavy-underline, script, set-syntax, soft-wrap-indicator, 
 sort-lines, symbols-tree-view, tab-control, tabs-to-spaces, todo-show, 
 toggle-quotes, trailing-spaces

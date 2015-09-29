@@ -25,6 +25,7 @@
 			"rainbow-selection"
 			"wrap-guide"
 			"opened-files"
+			"linter"
 		]
 		themes: [
 			"isotope-light-ui"
@@ -146,6 +147,10 @@
 	editor:
 		softTabs: true
 		tabLength: 2
+".c.source":
+	editor:
+		softTabs: true
+		tabLength: 4
 ".coffee.source":
 	editor:
 		tabLength: 2

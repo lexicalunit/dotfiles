@@ -136,6 +136,16 @@
 			"text.todo"
 			"source.yaml"
 		]
+	swackets:
+		colors: [
+			"#b58900"
+			"#d33682"
+			"#268bd2"
+			"#859900"
+			"#6c71c4"
+			"#002b36"
+			"#2aa198"
+		]
 	"tab-control":
 		autoSaveChanges: true
 	"tree-view":

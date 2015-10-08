@@ -136,17 +136,16 @@ see below for the list of items that will be installed when that step runs.
 | python | Upgrade/Install Anaconda, pip packages, and conda packages |
 | gem | Upgrade/Install gem packages and rubygems-update package |
 | node | Ensure Node modules are installed |
-| tiddlywiki | Install and setup latest TiddlyWiki from Homebrew |
 
 Homebrew Formulas: autoconf, automake, bash, bison, boost, boot2docker, cloog, 
 cmake, coreutils, cppunit, dmd, docker, doxygen, faac, ffmpeg, fontconfig, 
 freetype, gd, gdbm, geoip, gettext, ghostscript, gifify, gifsicle, git, glib, 
-gmp, gmp4, gnu-sed, gnu-tar, gnupg, go, gradle, graphviz, htop-osx, id3lib, 
-id3v2, imagemagick, isl, jasper, jbig2dec, jhead, jpeg, jq, lame, libevent, 
-libffi, libgpg-error, libgphoto2, libicns, libksba, libmpc, libpng, libtiff, 
-libtool, libusb, libusb-compat, libvo-aacenc, libyaml, little-cms2, makedepend, 
-maven, md5sha1sum, memcached, mercurial, mongodb, mpfr, ncftp, nginx, node, 
-onepass, openssl, ossp-uuid, pandoc, pcre, pidof, pkg-config, plotutils, 
+gmp, gmp4, gnu-sed, gnu-tar, gnupg, go, gradle, htop-osx, id3lib, id3v2, 
+imagemagick, isl, jasper, jbig2dec, jhead, jpeg, jq, lame, libevent, libffi, 
+libgpg-error, libgphoto2, libicns, libksba, libmpc, libpng, libtiff, libtool, 
+libusb, libusb-compat, libvo-aacenc, libyaml, little-cms2, makedepend, maven, 
+md5sha1sum, memcached, mercurial, mongodb, mpfr, ncftp, nginx, node, onepass, 
+oniguruma, openssl, ossp-uuid, pandoc, pcre, pidof, pkg-config, plotutils, 
 pngquant, postgresql, rabbitmq, readline, redis, ruby, rust, s3cmd, 
 sane-backends, scons, sdl2, sdl2_image, shellcheck, sloccount, spark, sqlite, 
 storm, swig, tree, unixodbc, unrar, vramsteg, watch, webp, wget, x264, xvid, 
@@ -227,7 +226,7 @@ shotgun, sshkit, test-unit, thread_safe, timers, toml, treetop, trollop,
 tzinfo, xcodeproj, yajl-ruby
 
 Node Modules: coffee-script, coffeelint, cson, doctoc, grunt-cli, gulp, 
-js-beautify, tiddlywiki, tmpin
+js-beautify, tmpin
 
 # License
 

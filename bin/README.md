@@ -422,27 +422,26 @@ options:
     step-name(s)   execute the given step(s)
 
 steps:
-    osx          Override OS X defaults settings and configuration
-    xcode        Ensure that Xcode Command Line Tools are installed
-    java         Ensure that Apple's java for OS X is installed
-    brew         Ensure Homebrew installed and formulas upgraded
-    cask         Ensure Homebrew Casks are installed
-    atom         Ensure Atom installed via Homebrew Cask and apm packages are upgraded
-    zsh          Ensure shell is latest version of zsh from Homebrew
-    python       Upgrade/Install Anaconda, pip packages, and conda packages
-    gem          Upgrade/Install gem packages and rubygems-update package
-    node         Ensure Node modules are installed
-    tiddlywiki   Install and setup latest TiddlyWiki from Homebrew
+    osx      Override OS X defaults settings and configuration
+    xcode    Ensure that Xcode Command Line Tools are installed
+    java     Ensure that Apple's java for OS X is installed
+    brew     Ensure Homebrew installed and formulas upgraded
+    cask     Ensure Homebrew Casks are installed
+    atom     Ensure Atom installed via Homebrew Cask and apm packages are upgraded
+    zsh      Ensure shell is latest version of zsh from Homebrew
+    python   Upgrade/Install Anaconda, pip packages, and conda packages
+    gem      Upgrade/Install gem packages and rubygems-update package
+    node     Ensure Node modules are installed
 
 Homebrew Formulas: autoconf, automake, bash, bison, boost, boot2docker, cloog, 
 cmake, coreutils, cppunit, dmd, docker, doxygen, faac, ffmpeg, fontconfig, 
 freetype, gd, gdbm, geoip, gettext, ghostscript, gifify, gifsicle, git, glib, 
-gmp, gmp4, gnu-sed, gnu-tar, gnupg, go, gradle, graphviz, htop-osx, id3lib, 
-id3v2, imagemagick, isl, jasper, jbig2dec, jhead, jpeg, jq, lame, libevent, 
-libffi, libgpg-error, libgphoto2, libicns, libksba, libmpc, libpng, libtiff, 
-libtool, libusb, libusb-compat, libvo-aacenc, libyaml, little-cms2, makedepend, 
-maven, md5sha1sum, memcached, mercurial, mongodb, mpfr, ncftp, nginx, node, 
-onepass, openssl, ossp-uuid, pandoc, pcre, pidof, pkg-config, plotutils, 
+gmp, gmp4, gnu-sed, gnu-tar, gnupg, go, gradle, htop-osx, id3lib, id3v2, 
+imagemagick, isl, jasper, jbig2dec, jhead, jpeg, jq, lame, libevent, libffi, 
+libgpg-error, libgphoto2, libicns, libksba, libmpc, libpng, libtiff, libtool, 
+libusb, libusb-compat, libvo-aacenc, libyaml, little-cms2, makedepend, maven, 
+md5sha1sum, memcached, mercurial, mongodb, mpfr, ncftp, nginx, node, onepass, 
+oniguruma, openssl, ossp-uuid, pandoc, pcre, pidof, pkg-config, plotutils, 
 pngquant, postgresql, rabbitmq, readline, redis, ruby, rust, s3cmd, 
 sane-backends, scons, sdl2, sdl2_image, shellcheck, sloccount, spark, sqlite, 
 storm, swig, tree, unixodbc, unrar, vramsteg, watch, webp, wget, x264, xvid, 
@@ -523,7 +522,7 @@ shotgun, sshkit, test-unit, thread_safe, timers, toml, treetop, trollop,
 tzinfo, xcodeproj, yajl-ruby
 
 Node Modules: coffee-script, coffeelint, cson, doctoc, grunt-cli, gulp, 
-js-beautify, tiddlywiki, tmpin
+js-beautify, tmpin
 ```
 
 * * *
@@ -691,7 +690,7 @@ Options:
                                      not known are excluded unless you put a question mark (?) after the operator.For
                                      example, to only match videos that have been liked more than 100 times and disliked
                                      less than 50 times (or the dislike functionality is not available at the given
-                                     service), but who also have a description, use  --match-filter "like_count > 100 &
+                                     service), but who also have a description, use --match-filter "like_count > 100 &
                                      dislike_count <? 50 & description" .
     --no-playlist                    Download only the video, if the URL refers to a video and a playlist.
     --yes-playlist                   Download the playlist, if the URL refers to a video and a playlist.
@@ -733,7 +732,7 @@ Options:
     --autonumber-size NUMBER         Specify the number of digits in %(autonumber)s when it is present in output
                                      filename template or --auto-number option is given
     --restrict-filenames             Restrict filenames to only ASCII characters, and avoid "&" and spaces in filenames
-    -A, --auto-number                [deprecated; use  -o "%(autonumber)s-%(title)s.%(ext)s" ] Number downloaded files
+    -A, --auto-number                [deprecated; use -o "%(autonumber)s-%(title)s.%(ext)s" ] Number downloaded files
                                      starting from 00000
     -t, --title                      [deprecated] Use title in file name (default)
     -l, --literal                    [deprecated] Alias of --title

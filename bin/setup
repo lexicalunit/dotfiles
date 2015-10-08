@@ -10,16 +10,15 @@ HOMEBREW_FORMULAS="                                                            \
     autoconf automake bash bison boost boot2docker cloog cmake coreutils       \
     cppunit dmd docker doxygen faac ffmpeg fontconfig freetype gd gdbm geoip   \
     gettext ghostscript gifify gifsicle git glib gmp gmp4 gnu-sed gnu-tar      \
-    gnupg go gradle graphviz htop-osx id3lib id3v2 imagemagick isl jasper      \
-    jbig2dec jhead jpeg jq lame libevent libffi libgpg-error libgphoto2        \
-    libicns libksba libmpc libpng libtiff libtool libusb libusb-compat         \
-    libvo-aacenc libyaml little-cms2 makedepend maven md5sha1sum memcached     \
-    mercurial mongodb mpfr ncftp nginx node onepass openssl ossp-uuid pandoc   \
-    pcre pidof pkg-config plotutils pngquant postgresql rabbitmq readline      \
-    redis ruby rust s3cmd sane-backends scons sdl2 sdl2_image shellcheck       \
-    sloccount spark sqlite storm swig tree unixodbc unrar vramsteg watch webp  \
-    wget x264 xvid xz yaml-cpp youtube-dl z zeromq zlib zookeeper zsh          \
-    zsh-completions"
+    gnupg go gradle htop-osx id3lib id3v2 imagemagick isl jasper jbig2dec      \
+    jhead jpeg jq lame libevent libffi libgpg-error libgphoto2 libicns libksba \
+    libmpc libpng libtiff libtool libusb libusb-compat libvo-aacenc libyaml    \
+    little-cms2 makedepend maven md5sha1sum memcached mercurial mongodb mpfr   \
+    ncftp nginx node onepass oniguruma openssl ossp-uuid pandoc pcre pidof     \
+    pkg-config plotutils pngquant postgresql rabbitmq readline redis ruby rust \
+    s3cmd sane-backends scons sdl2 sdl2_image shellcheck sloccount spark       \
+    sqlite storm swig tree unixodbc unrar vramsteg watch webp wget x264 xvid   \
+    xz yaml-cpp youtube-dl z zeromq zlib zookeeper zsh zsh-completions"
 
 HOMEBREW_CASKS="                                                               \
     adium-beta amazon-music atom audacity balsamiq-mockups battle-net caffeine \
@@ -98,8 +97,7 @@ GEM_PACKAGES="                                                                 \
     yajl-ruby"
 
 NODE_MODULES="                                                                 \
-    coffee-script coffeelint cson doctoc grunt-cli gulp js-beautify tiddlywiki \
-    tmpin"
+    coffee-script coffeelint cson doctoc grunt-cli gulp js-beautify tmpin"
 # END GENERATED PACKAGE LISTS
 
 ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS ATOM_PACKAGES PIP_PACKAGES
@@ -968,76 +966,6 @@ step_node()
 }
 
 ################################################################################
-# Step tiddlywiki
-################################################################################
-step_tiddlywiki()
-{
-    if ! npm list -g tiddlywiki >/dev/null 2>&1; then
-        abort "Please run step node first"
-    fi
-
-    run "mkdir -p $HOME/Library/LaunchAgents"
-    run "cd $HOME"
-    if [[ -d notes ]]; then
-        show "$(tput smul)WARNING$(tput sgr0): NOT overwriting '$HOME/notes', assuming tiddlywiki already installed there!"
-    else
-        run "tiddlywiki notes --init server"
-    fi
-
-    local TIDDLYWIKI_DOMAIN="org.tiddlywiki.server"
-    local PLIST="$HOME/Library/LaunchAgents/$TIDDLYWIKI_DOMAIN.plist"
-    show "Creating $PLIST..."
-    if [[ $DRYRUN == 0 ]]; then
-        cat >"$PLIST" <<EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-    <dict>
-        <key>Label</key>
-        <string>$TIDDLYWIKI_DOMAIN</string>
-
-        <key>WorkingDirectory</key>
-        <string>$HOME</string>
-
-        <key>Program</key>
-        <string>$(which node)</string>
-
-        <key>ProgramArguments</key>
-        <array>
-            <string>$(which node)</string>
-            <string>$(which tiddlywiki)</string>
-            <string>notes</string>
-            <string>--server</string>
-        </array>
-
-        <key>StandardErrorPath</key>
-        <string>/tmp/notes.err.log</string>
-
-        <key>StandardOutPath</key>
-        <string>/tmp/notes.log</string>
-
-        <key>RunAtLoad</key>
-        <true/>
-
-        <key>KeepAlive</key>
-        <true/>
-    </dict>
-</plist>
-EOF
-    fi
-
-    show "Creating /etc/launchd.conf..."
-    run "sudo launchctl setenv PATH \"/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin\""
-    run "echo 'setenv PATH \"/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin\"' | sudo tee /etc/launchd.config"
-
-    run "launchctl unload '$PLIST'"
-    run "launchctl load -w '$PLIST'"
-
-    show "TiddlyWiki setup at $HOME/notes"
-    show "Server running at http://127.0.0.1:8080/"
-}
-
-################################################################################
 # Main
 ################################################################################
 if [[ $(id -u) == 0 ]]; then
@@ -1093,7 +1021,6 @@ steps=(
     "python;        Upgrade/Install Anaconda, pip packages, and conda packages"
     "gem;           Upgrade/Install gem packages and rubygems-update package"
     "node;          Ensure Node modules are installed"
-    "tiddlywiki;    Install and setup latest TiddlyWiki from Homebrew"
 )
 
 LISTING_OUTPUT=""

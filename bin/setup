@@ -97,7 +97,7 @@ GEM_PACKAGES="                                                                 \
     yajl-ruby"
 
 NODE_MODULES="                                                                 \
-    coffee-script coffeelint cson doctoc grunt-cli gulp js-beautify tmpin"
+    alex coffee-script coffeelint cson doctoc grunt-cli gulp js-beautify tmpin"
 # END GENERATED PACKAGE LISTS
 
 ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS ATOM_PACKAGES PIP_PACKAGES
@@ -660,7 +660,6 @@ step_brew()
     fi
 
     ensure_homebrew_updated
-    ensure_homebrew_tap "homebrew/versions"
 
     local INSTALLED
     INSTALLED="$(brew ls)"
@@ -681,7 +680,7 @@ step_brew()
     run "ln -sf $(brew ls -v git | grep git-remote-hg) /usr/local/bin"
 
     # unlink keg-only formulas which should not be not symlinked into /usr/local
-    KEG_ONLY="bison gettext homebrew/versions/gmp4 libffi openssl readline sqlite"
+    KEG_ONLY="bison gettext homebrew/dupes/zlib libffi openssl readline sqlite"
     run "brew unlink $KEG_ONLY"
 
     IFS=$'\n'
@@ -720,7 +719,6 @@ step_cask()
 
     ensure_homebrew_updated
     install_brew_formula "caskroom/cask/brew-cask"
-    ensure_homebrew_tap "caskroom/versions"
 
     local INSTALLED
     INSTALLED="$(brew cask list)"
@@ -947,19 +945,25 @@ step_node()
     # If you update npm itself, do NOT use the npm update command.
     # The upstream-recommended way to update npm is:
     run "npm install -g npm@latest"
+    run "npm update -g"
+
+    local INSTALLED
+    INSTALLED="$(npm list -g --depth 0 | grep @ | cut -d' ' -f2 | cut -d@ -f1)"
 
     IFS=' '
     for I in $NODE_MODULES; do
-        run "npm install -g $I"
+        if ! echo "$INSTALLED" | egrep -q "\b$I\b"; then
+            run "npm install -g $I"
+        fi
     done
 
     IFS=$'\n'
-    for I in $(npm list -g --depth 0 | grep @ | cut -d' ' -f2); do
+    for I in $INSTALLED; do
         name="${I%@*}"
         if [[ "$name" == "npm" ]]; then
             continue
         fi
-        if ! echo "$NODE_MODULES" | egrep -q "$(echo "\\b$name\\b" | cut -d@ -f1)"; then
+        if ! echo "$NODE_MODULES" | egrep -q "\b$name\b"; then
             show -i "$I installed but not managed by setup"
         fi
     done

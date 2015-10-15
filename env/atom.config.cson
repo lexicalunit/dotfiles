@@ -20,12 +20,10 @@
 			"styleguide"
 			"update-package-dependencies"
 			"welcome"
-			"linter-clang"
 			"atom-pair"
 			"rainbow-selection"
 			"wrap-guide"
 			"opened-files"
-			"linter"
 		]
 		themes: [
 			"isotope-light-ui"

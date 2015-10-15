@@ -97,7 +97,7 @@ GEM_PACKAGES="                                                                 \
     yajl-ruby"
 
 NODE_MODULES="                                                                 \
-    alex coffee-script coffeelint cson doctoc grunt-cli gulp js-beautify tmpin"
+    alex coffee-script coffeelint cson js-beautify tmpin"
 # END GENERATED PACKAGE LISTS
 
 ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS ATOM_PACKAGES PIP_PACKAGES

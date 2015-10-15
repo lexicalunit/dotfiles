@@ -521,8 +521,7 @@ redcarpet, rouge, rspec-logsplit, rubygems-bundler, rvm, safe_yaml, sass,
 shotgun, sshkit, test-unit, thread_safe, timers, toml, treetop, trollop, 
 tzinfo, xcodeproj, yajl-ruby
 
-Node Modules: alex, coffee-script, coffeelint, cson, doctoc, grunt-cli, gulp, 
-js-beautify, tmpin
+Node Modules: alex, coffee-script, coffeelint, cson, js-beautify, tmpin
 ```
 
 * * *

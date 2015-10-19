@@ -336,9 +336,7 @@ elif echo "$SHELL" | grep -q zsh; then
     zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
     # Directories
-    ZLS_COLORS="$(echo "${LS_COLORS:?}" | tr ':' ' ')" # LS_COLORS set by dircolors
-    export ZLS_COLORS
-    zstyle ':completion:*:default' list-colors "${ZLS_COLORS}"
+    zstyle ':completion:*:default' list-colors "${(s.:.)ZLS_COLORS}"
     zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
     zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
     zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'

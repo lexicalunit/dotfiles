@@ -26,8 +26,8 @@ HOMEBREW_CASKS="                                                               \
     dropbox evernote firefox flux google-chrome google-hangouts hipchat        \
     iexplorer istumbler iterm2 java kaleidoscope lisanet-gimp mactex           \
     mysqlworkbench oclint pycharm-ce robomongo silverlight skype slack snes9x  \
-    soundflower sourcetree spotify steam sublime-text teamviewer texstudio     \
-    transmission vlc xquartz"
+    soundflower sourcetree spectacle spotify steam sublime-text teamviewer     \
+    texstudio transmission vlc xquartz"
 
 ATOM_PACKAGES="                                                                \
     atom-beautify atom-pair autocomplete-plus autocomplete-plus-python-jedi    \
@@ -80,9 +80,9 @@ GEM_PACKAGES="                                                                 \
     celluloid celluloid-essentials celluloid-extras celluloid-fsm              \
     celluloid-pool celluloid-supervision childprocess claide clamp             \
     classifier-reborn cocoapods cocoapods-core cocoapods-deintegrate           \
-    cocoapods-downloader cocoapods-plugins cocoapods-stats cocoapods-trunk     \
-    cocoapods-try coffee-script coffee-script-source colorator colored         \
-    colorize cuba dotenv erector erubis escape execjs executable-hooks         \
+    cocoapods-downloader cocoapods-plugins cocoapods-search cocoapods-stats    \
+    cocoapods-trunk cocoapods-try coffee-script coffee-script-source colorator \
+    colored colorize cuba dotenv erector erubis escape execjs executable-hooks \
     fast-stemmer ffi fpm fuzzy_match gem-wrappers globalid hitimes i18n        \
     io-console jekyll jekyll-coffeescript jekyll-gist jekyll-paginate          \
     jekyll-sass-converter jekyll-watch jewelbox json json_pure kramdown liquid \
@@ -829,8 +829,10 @@ step_bash()
 ################################################################################
 step_python()
 {
+    local ANACONDA_DIR_NAME="anaconda"
+
     # enter existing anaconda environment if it's detected
-    [[ -d "$HOME/anaconda/bin" ]] && export PATH="$HOME/anaconda/bin:$PATH"
+    [[ -d "$HOME/$ANACONDA_DIR_NAME/bin" ]] && export PATH="$HOME/$ANACONDA_DIR_NAME/bin:$PATH"
 
     if run "type conda >/dev/null 2>&1"; then
         # Remove anaconda so that `conda update --all` doesn't stupidly downgrade things.
@@ -838,10 +840,10 @@ step_python()
         run "conda remove --yes anaconda"
 
         # Update anaconda to the latest; commented out because we remove anaconda, above.
-        # run "conda update --yes --prefix '$HOME/anaconda' anaconda"
+        # run "conda update --yes --prefix '$HOME/$ANACONDA_DIR_NAME' anaconda"
 
         # Sadly, `conda update --all` takes forever and is somewhat unreliable.
-        run "conda update --yes --prefix '$HOME/anaconda' --all"
+        run "conda update --yes --prefix '$HOME/$ANACONDA_DIR_NAME' --all"
     else
         curl_output="$(mktemp -d -t tmp.XXXXXXXXXX)"
         trap 'rm -rf $curl_output' EXIT
@@ -849,13 +851,14 @@ step_python()
         local latest
         latest="$(curl -s http://repo.continuum.io/archive/.files.json \
                   | jq 'to_entries | sort_by(.value.mtime) | reverse | .[].key' \
+                  | grep Anaconda- \
                   | grep -m 1 MacOSX-x86_64.sh | tr -d '"')" || abort "could not find latest Anaconda installer"
         latest="http://repo.continuum.io/archive/$latest"
         show "downloading $latest ..."
         run "curl -o '$curl_output/anaconda.sh' '$latest'" || abort "could not download Anaconda installer"
         run "bash '$curl_output/anaconda.sh' -b" || abort "could not install Anaconda"
 
-        export PATH="$HOME/anaconda/bin:$PATH"
+        export PATH="$HOME/$ANACONDA_DIR_NAME/bin:$PATH"
         run "conda config --set changeps1 no"
         run "rm -rf '$curl_output'"
     fi

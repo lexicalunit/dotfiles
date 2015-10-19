@@ -1,4 +1,4 @@
-# .profile
+#! .profile
 
 INTERACTIVE=false
 if [[ $- == *i* ]]; then
@@ -108,6 +108,7 @@ entervirtualenv() {
     exitconda
 
     if type virtualenvwrapper.sh >/dev/null 2>&1; then
+        # shellcheck source=virtualenvwrapper.sh
         source "$(which virtualenvwrapper.sh)"
     fi
     export PYTHON_ENV="virtualenv"
@@ -127,8 +128,9 @@ enterconda() {
     exitvirtualenv
 
     # assume anaconda is installed in your home directory unless specified
+    local ANACONDA_DIR_NAME="anaconda"
     if [[ -z "$1" ]]; then
-        export ANACONDA_ROOT="$HOME/anaconda"
+        export ANACONDA_ROOT="$HOME/$ANACONDA_DIR_NAME"
     else
         export ANACONDA_ROOT="$1"
     fi
@@ -263,9 +265,11 @@ if echo "$SHELL" | grep -q bash; then
     _source_completions() {
         if [[ -d "$1" ]]; then
             for I in "$1"/*; do
+                # shellcheck source=.profile
                 source "$I" 2>/dev/null
             done
         elif [[ -f "$1" ]]; then
+            # shellcheck source=.profile
             source "$1" 2>/dev/null
         fi
     }
@@ -275,6 +279,7 @@ if echo "$SHELL" | grep -q bash; then
     _source_completions ~/.bash-completion/bash_completion 2>/dev/null # git.debian.org/git/bash-completion
     _source_completions ~/.complete 2>/dev/null # setup env
     if type brew >/dev/null 2>&1; then
+        # shellcheck source=/usr/local/Library/Contributions/brew_bash_completion.sh
         source "$(brew --repository)/Library/Contributions/brew_bash_completion.sh"
     fi
     complete -cf sudo
@@ -331,7 +336,9 @@ elif echo "$SHELL" | grep -q zsh; then
     zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
     # Directories
-    zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}" # LS_COLORS set by dircolors
+    ZLS_COLORS="$(echo "${LS_COLORS:?}" | tr ':' ' ')" # LS_COLORS set by dircolors
+    export ZLS_COLORS
+    zstyle ':completion:*:default' list-colors "${ZLS_COLORS}"
     zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
     zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
     zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
@@ -401,9 +408,11 @@ elif echo "$SHELL" | grep -q zsh; then
     _source_completions() {
       if [[ -d "$1" ]]; then
           for I in "$1"/*; do
+              # shellcheck source=.profile
               source "$I" 2>/dev/null
           done
       elif [[ -f "$1" ]]; then
+          # shellcheck source=.profile
           source "$1" 2>/dev/null
       fi
     }
@@ -511,7 +520,7 @@ if echo "$SHELL" | grep -q bash; then
         local TERMINAL_TITLE
         local PROMPT_LINE_1
         local PROMPT_LINE_2
-        TERMINAL_TITLE="$TERMINAL_TITLE_USER$(if [[ -n \"$TERMINAL_TITLE_USER\" ]]; then printf ' '; fi)$USER@$HOST:\w"
+        TERMINAL_TITLE="$TERMINAL_TITLE_USER$(if [[ -n $TERMINAL_TITLE_USER ]]; then printf ' '; fi)$USER@$HOST:\w"
         PROMPT_LINE_1="$RED\w${BLUE}$(_prompt_python_env)$GREY$(_prompt_repo)$BLUE$(_prompt_usernote)"
         PROMPT_LINE_2="$RED$(date +%H%M) $(ostype | sed 's/Linux-//g') \u@\h\`if [ \$? = 0 ]; then echo \"$BGREEN\$\"; else echo \"$BRED>\"; fi\`$BLACK"
 
@@ -535,8 +544,9 @@ elif echo "$SHELL" | grep -q zsh; then
 
     _prompt_repo() {
         vcs_info
-        if [[ -n "$vcs_info_msg_0_" ]]; then
-            echo -n " # ${vcs_info_msg_0_}"
+        local vcs_info="${vcs_info_msg_0_:-}"
+        if [[ -n $vcs_info ]]; then
+            echo -n " # $vcs_info"
         fi
     }
 
@@ -548,6 +558,8 @@ elif echo "$SHELL" | grep -q zsh; then
 
     _prompt_first_line() {
         local PROMPT_FIRST_LINE
+        local fg=${fg:?}
+        local reset_color=${reset_color:?}
         PROMPT_FIRST_LINE="%{$fg[red]%}%~%{$reset_color%}%{$fg[blue]%}$(_prompt_python_env)%{$reset_color%}$(_prompt_repo)"
         echo -n "$PROMPT_FIRST_LINE"
     }
@@ -643,6 +655,7 @@ fawk() {
 }
 
 hist() {
+    [[ $1 == "--workaround-sc2120" ]] && return
     if echo "$SHELL" | grep -q zsh; then
         if [[ -n "$*" ]]; then
             history "$@"
@@ -653,6 +666,7 @@ hist() {
         history "$@"
     fi
 }
+hist --workaround-sc2120 # see: https://github.com/koalaman/shellcheck/wiki/SC2120
 
 h() {
     if [[ -z "$*" ]]; then
@@ -673,9 +687,11 @@ fi
 IFS=$'\n'
 for I in $(/bin/ls -1 ~/.profile_* 2>/dev/null) ; do
     _interactive_log "sourcing $I"
+    # shellcheck source=.profile
     source "$I"
 done
 
+# shellcheck source=~/.shell_control
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 ################################################################################
@@ -685,6 +701,7 @@ if type brew >/dev/null 2>&1; then
     ZSRC="$(brew --prefix)/etc/profile.d/z.sh"
     if [[ -e "$ZSRC" ]]; then
         _interactive_log "setting up z"
+        # shellcheck source=/usr/local/etc/profile.d/z.sh
         . "$ZSRC"
     fi
 fi

@@ -66,6 +66,7 @@
 				and 5:42pm and 6:16pm and 6:50pm and 7:24pm and 7:58pm and 8:32pm
 				and 9:06pm and 9:40pm and 10:14pm and 10:48pm and 11:22pm on Sat
 			'''
+		warnThresholdMinutes: 35
 	"git-diff":
 		showIconsInEditorGutter: true
 	"highlight-selected":

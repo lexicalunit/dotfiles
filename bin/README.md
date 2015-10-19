@@ -439,21 +439,21 @@ freetype, gd, gdbm, geoip, gettext, ghostscript, gifify, gifsicle, git, glib,
 gmp, gmp4, gnu-sed, gnu-tar, gnupg, go, gradle, htop-osx, id3lib, id3v2, 
 imagemagick, isl, jasper, jbig2dec, jhead, jpeg, jq, lame, libevent, libffi, 
 libgpg-error, libgphoto2, libicns, libksba, libmpc, libpng, libtiff, libtool, 
-libusb, libusb-compat, libvo-aacenc, libyaml, little-cms2, makedepend, maven, 
-md5sha1sum, memcached, mercurial, mongodb, mpfr, ncftp, nginx, node, onepass, 
-oniguruma, openssl, ossp-uuid, pandoc, pcre, pidof, pkg-config, plotutils, 
-pngquant, postgresql, rabbitmq, readline, redis, ruby, rust, s3cmd, 
+libusb, libusb-compat, libvo-aacenc, libyaml, little-cms2, lzlib, makedepend, 
+maven, md5sha1sum, memcached, mercurial, mongodb, mpfr, ncftp, nginx, node, 
+onepass, oniguruma, openssl, ossp-uuid, pandoc, pcre, pidof, pkg-config, 
+plotutils, pngquant, postgresql, rabbitmq, readline, redis, ruby, rust, s3cmd, 
 sane-backends, scons, sdl2, sdl2_image, shellcheck, sloccount, spark, sqlite, 
 storm, swig, tree, unixodbc, unrar, vramsteg, watch, webp, wget, x264, xvid, 
-xz, yaml-cpp, youtube-dl, z, zeromq, zlib, zookeeper, zsh, zsh-completions
+xz, yaml-cpp, youtube-dl, z, zeromq, zookeeper, zsh, zsh-completions
 
-Homebrew Casks: adium-beta, amazon-music, atom, audacity, balsamiq-mockups, 
-battle-net, caffeine, chromecast, clamxav, cyberduck, dbvisualizer, 
-disk-inventory-x, dropbox, evernote, firefox, flux, gimp-lisanet, 
-google-chrome, google-hangouts, hipchat, iexplorer, istumbler, iterm2, java7, 
-kaleidoscope, kvirc, mactex, mysqlworkbench, oclint, onepassword, pdftk, 
-pycharm-ce, robomongo, silverlight, skype, snes9x, soundflower, sourcetree, 
-spotify, steam, sublime-text3, teamviewer, texstudio, transmission, vlc, xquartz
+Homebrew Casks: 1password, adium, amazon-music, atom, audacity, 
+balsamiq-mockups, battle-net, caffeine, chromecast, clamxav, cyberduck, 
+dbvisualizer, disk-inventory-x, dropbox, evernote, firefox, flux, 
+google-chrome, google-hangouts, hipchat, iexplorer, istumbler, iterm2, java, 
+kaleidoscope, lisanet-gimp, mactex, mysqlworkbench, oclint, pycharm-ce, 
+robomongo, silverlight, skype, slack, snes9x, soundflower, sourcetree, spotify, 
+steam, sublime-text, teamviewer, texstudio, transmission, vlc, xquartz
 
 Atom Packages: atom-beautify, atom-pair, autocomplete-plus, 
 autocomplete-plus-python-jedi, column-select, cursor-indicator, event-watch, 

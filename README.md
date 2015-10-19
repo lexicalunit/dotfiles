@@ -84,7 +84,6 @@ or of course just run the tools with the argument `--help`.
 | [`docker_clean`](bin/docker_clean) | Delete all docker containers and images. |
 | [`fa`](bin/fa) | Searches a codebase for given pattern. |
 | [`fart`](bin/fart) | Sleeps for the given number of seconds, showing a progress bar. |
-| [`ff`](bin/ff) | Symbolic link to '/usr/local/bin/grind' |
 | [`flip`](bin/flip) | Flips input upside down. |
 | [`fm`](bin/fm) | Find in CMake files. |
 | [`git_authors`](bin/git_authors) | Finds out who wrote the code at the given path. |

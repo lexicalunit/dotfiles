@@ -196,57 +196,6 @@ Sleeps for the given number of seconds, showing a progress bar.
 ```
 
 * * *
-### [`ff`](ff)
-Symbolic link to '/usr/local/bin/grind'
-```
-usage: ff [-h] [-v] [-s] [--skip-hidden-files] [-b] [--skip-backup-files] [-S]
-          [--skip-hidden-dirs] [-d SKIP_DIRS] [-D] [-e SKIP_EXTS] [-E]
-          [--no-follow] [--follow] [-0] [--dirs DIRS [DIRS ...]] [--sys-path]
-          [glob]
-
-Find text and binary files using similar rules as grin.
-
-positional arguments:
-  glob                  the glob pattern to match; you may need to quote this
-                        to prevent the shell from trying to expand it
-                        [default='*']
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -v, --version         show program's version number and exit
-  -s, --no-skip-hidden-files
-                        do not skip .hidden files
-  --skip-hidden-files   do skip .hidden files
-  -b, --no-skip-backup-files
-                        do not skip backup~ files [deprecated; edit --skip-
-                        exts]
-  --skip-backup-files   do skip backup~ files [default] [deprecated; edit
-                        --skip-exts]
-  -S, --no-skip-hidden-dirs
-                        do not skip .hidden directories
-  --skip-hidden-dirs    do skip .hidden directories
-  -d SKIP_DIRS, --skip-dirs SKIP_DIRS
-                        comma-separated list of directory names to skip
-                        [default='CVS,RCS,.svn,.hg,.bzr,build,dist']
-  -D, --no-skip-dirs    do not skip any directories
-  -e SKIP_EXTS, --skip-exts SKIP_EXTS
-                        comma-separated list of file extensions to skip [defau
-                        lt='.pyc,.pyo,.so,.o,.a,.tgz,.tar.gz,.rar,.zip,~,#,.ba
-                        k,.png,.jpg,.gif,.bmp,.tif,.tiff,.pyd,.dll,.exe,.obj,.
-                        lib']
-  -E, --no-skip-exts    do not skip any file extensions
-  --no-follow           do not follow symlinks to directories and files
-                        [default]
-  --follow              follow symlinks to directories and files
-  -0, --null-separated  print the filenames separated by NULs
-  --dirs DIRS [DIRS ...]
-                        the directories to start from
-  --sys-path            search the directories on sys.path
-
-Bug reports to <enthought-dev@mail.enthought.com>.
-```
-
-* * *
 ### [`flip`](flip)
 ```
 usage: echo 'text' | flip
@@ -617,8 +566,10 @@ usage: xf <archive> - extract common file formats
 * * *
 ### [`yaml2json`](yaml2json)
 ```
-usage: yaml2json < file.yaml
-Takes YAML input and pretty prints conversion to JSON format.
+Traceback (most recent call last):
+  File "./yaml2json", line 8, in <module>
+    from yaml import load_all
+ImportError: No module named yaml
 ```
 
 * * *

@@ -87,7 +87,7 @@
 	linter:
 		lintOnChange: true
 	"linter-flake8":
-		maxLineLength: 120
+		maxLineLength: 300
 	"linter-puppet-lint":
 		oldVersion: false
 	"merge-conflicts":

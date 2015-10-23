@@ -400,10 +400,9 @@ Homebrew Casks: 1password, adium, amazon-music, atom, audacity,
 balsamiq-mockups, battle-net, caffeine, chromecast, clamxav, cyberduck, 
 dbvisualizer, disk-inventory-x, dropbox, evernote, firefox, flux, git-review, 
 google-chrome, google-hangouts, hipchat, iexplorer, istumbler, iterm2, java, 
-kaleidoscope, lisanet-gimp, mactex, mysqlworkbench, oclint, pycharm-ce, 
-robomongo, silverlight, skype, slack, snes9x, soundflower, sourcetree, 
-spectacle, spotify, steam, sublime-text, teamviewer, texstudio, transmission, 
-vlc, xquartz
+kaleidoscope, lisanet-gimp, mactex, mysqlworkbench, oclint, robomongo, 
+silverlight, skype, slack, snes9x, soundflower, sourcetree, spectacle, spotify, 
+steam, sublime-text, teamviewer, texstudio, transmission, vlc, xquartz
 
 Atom Packages: atom-beautify, atom-pair, autocomplete-plus, 
 autocomplete-plus-python-jedi, column-select, cursor-indicator, event-watch, 

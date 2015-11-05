@@ -159,8 +159,8 @@ silverlight, skype, slack, snes9x, soundflower, sourcetree, spectacle, spotify,
 steam, sublime-text, teamviewer, texstudio, transmission, vlc, xquartz
 
 Atom Packages: atom-beautify, atom-pair, autocomplete-plus, 
-autocomplete-plus-python-jedi, column-select, cursor-indicator, event-watch, 
-file-icons, gruvbox, highlight-selected, isotope-light-ui, isotope-ui, 
+autocomplete-python, column-select, cursor-indicator, event-watch, file-icons, 
+gruvbox, highlight-selected, isotope-light-ui, isotope-ui, 
 language-applescript, language-diff, language-latex, language-rust, linter, 
 linter-alex, linter-clang, linter-coffeelint, linter-csslint, linter-erb, 
 linter-just-say-no, linter-pep8, linter-pyflakes, linter-raml, 

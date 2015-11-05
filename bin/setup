@@ -30,7 +30,7 @@ HOMEBREW_CASKS="                                                               \
     transmission vlc xquartz"
 
 ATOM_PACKAGES="                                                                \
-    atom-beautify atom-pair autocomplete-plus autocomplete-plus-python-jedi    \
+    atom-beautify atom-pair autocomplete-plus autocomplete-python              \
     column-select cursor-indicator event-watch file-icons gruvbox              \
     highlight-selected isotope-light-ui isotope-ui language-applescript        \
     language-diff language-latex language-rust linter linter-alex linter-clang \
@@ -182,6 +182,7 @@ usage()
     exit 1
 }
 
+# shellcheck source=~/.shell_control
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 ################################################################################

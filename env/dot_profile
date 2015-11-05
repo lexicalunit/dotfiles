@@ -23,7 +23,6 @@ else
 fi
 
 # Then add specific paths that I use.
-[[ -d "$HOME/bin" ]] && PATH="$PATH:$HOME/bin"
 [[ -d /usr/local/opt/ruby/bin ]] && PATH="$PATH:/usr/local/opt/ruby/bin"
 [[ -d /opt/local/bin ]] && PATH="$PATH:/opt/local/bin"
 [[ -d /opt/local/sbin ]] && PATH="$PATH:/opt/local/sbin"
@@ -57,6 +56,10 @@ fi
 [[ -d /usr/local/lib/svn-python ]] && PYTHONPATH="/usr/local/lib/svn-python:$PYTHONPATH"
 [[ -d /opt/local/lib/pkgconfig ]] && PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:$PKG_CONFIG_PATH"
 [[ -d /usr/local/lib/pkgconfig ]] && PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
+
+# Make sure user utilites take precedence
+[[ -d "$HOME/bin" ]] && PATH="$HOME/bin:$PATH"
+
 export PATH
 export PYTHONPATH
 export PKG_CONFIG_PATH

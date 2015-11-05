@@ -24,6 +24,7 @@
 			"rainbow-selection"
 			"wrap-guide"
 			"opened-files"
+			"minimap-codeglance"
 		]
 		themes: [
 			"isotope-light-ui"
@@ -87,6 +88,8 @@
 	linter:
 		lintOnChange: true
 	"linter-flake8":
+		maxLineLength: 300
+	"linter-pep8":
 		maxLineLength: 300
 	"linter-puppet-lint":
 		oldVersion: false
@@ -172,6 +175,10 @@
 		tabLength: 2
 ".json.source":
 	editor:
+		tabLength: 2
+".source.sql":
+	editor:
+		softTabs: true
 		tabLength: 2
 ".source.yaml":
 	editor:

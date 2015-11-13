@@ -9,9 +9,9 @@
 HOMEBREW_FORMULAS="                                                            \
     autoconf automake bash bison boost cloog cmake coreutils cppunit dmd       \
     docker docker-machine doxygen faac ffmpeg fontconfig freetype gd gdbm      \
-    geoip gettext ghostscript gifify gifsicle git glib gmp gmp4 gnu-sed        \
-    gnu-tar gnupg go gradle htop-osx id3lib id3v2 imagemagick isl jasper       \
-    jbig2dec jhead jpeg jq lame libevent libffi libgpg-error libgphoto2        \
+    geoip gettext ghostscript gifify gifsicle git git-review glib gmp gmp4     \
+    gnu-sed gnu-tar gnupg go gradle htop-osx id3lib id3v2 imagemagick isl      \
+    jasper jbig2dec jhead jpeg jq lame libevent libffi libgpg-error libgphoto2 \
     libicns libksba libmpc libpng libtiff libtool libusb libusb-compat         \
     libvo-aacenc libyaml little-cms2 lzlib makedepend maven md5sha1sum         \
     memcached mercurial mongodb mpfr ncftp nginx node onepass oniguruma        \
@@ -24,8 +24,8 @@ HOMEBREW_FORMULAS="                                                            \
 HOMEBREW_CASKS="                                                               \
     1password adium amazon-music atom audacity balsamiq-mockups battle-net     \
     caffeine chromecast clamxav cyberduck dbvisualizer disk-inventory-x        \
-    dropbox evernote firefox flux git-review google-chrome google-hangouts     \
-    hipchat iexplorer istumbler iterm2 java kaleidoscope lisanet-gimp mactex   \
+    dropbox evernote firefox flux google-chrome google-hangouts hipchat        \
+    iexplorer istumbler iterm2 java kaleidoscope lisanet-gimp mactex           \
     mysqlworkbench oclint robomongo silverlight skype slack snes9x soundflower \
     sourcetree spectacle spotify steam sublime-text teamviewer texstudio       \
     transmission vlc xquartz"

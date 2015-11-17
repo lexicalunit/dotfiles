@@ -147,7 +147,7 @@ pandoc, pcre, pidof, pkg-config, plotutils, pngquant, postgresql, rabbitmq,
 readline, redis, ruby, rust, s3cmd, sane-backends, scons, sdl2, sdl2_image, 
 shellcheck, sloccount, spark, sqlite, storm, swig, tree, unixodbc, unrar, 
 vramsteg, watch, webp, wget, x264, xvid, xz, yaml-cpp, youtube-dl, z, zeromq, 
-zookeeper, zsh, zsh-completions
+zookeeper, zsh
 
 Homebrew Casks: 1password, adium, amazon-music, atom, audacity, 
 balsamiq-mockups, battle-net, caffeine, chromecast, clamxav, cyberduck, 

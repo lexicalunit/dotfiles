@@ -19,7 +19,7 @@ HOMEBREW_FORMULAS="                                                            \
     postgresql rabbitmq readline redis ruby rust s3cmd sane-backends scons     \
     sdl2 sdl2_image shellcheck sloccount spark sqlite storm swig tree unixodbc \
     unrar vramsteg watch webp wget x264 xvid xz yaml-cpp youtube-dl z zeromq   \
-    zookeeper zsh zsh-completions"
+    zookeeper zsh"
 
 HOMEBREW_CASKS="                                                               \
     1password adium amazon-music atom audacity balsamiq-mockups battle-net     \
@@ -819,7 +819,14 @@ ensure_shell()
 
 step_zsh()
 {
-    ensure_shell zsh zsh zsh-completions
+    # Not installing brew formula zsh-completions here because it is way out of date.
+    ensure_shell zsh zsh
+    if [[ -d "$HOME/.zsh-completions" ]]; then
+        run "cd '$HOME/.zsh-completions' && git fetch origin && git reset --hard origin/master && git clean -fd"
+    else
+        run "cd '$HOME' && git clone git://github.com/zsh-users/zsh-completions.git .zsh-completions"
+    fi
+    run "ln -sf '$HOME/.zsh-completions/src' /usr/local/share/zsh-completions"
 }
 
 ################################################################################

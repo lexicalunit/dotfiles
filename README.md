@@ -150,8 +150,8 @@ vramsteg, watch, webp, wget, x264, xvid, xz, yaml-cpp, youtube-dl, z, zeromq,
 zookeeper, zsh
 
 Homebrew Casks: 1password, adium, amazon-music, atom, audacity, 
-balsamiq-mockups, battle-net, caffeine, chromecast, clamxav, cyberduck, 
-dbvisualizer, disk-inventory-x, dropbox, evernote, firefox, flux, 
+balsamiq-mockups, battle-net, caffeine, chitchat, chromecast, clamxav, 
+cyberduck, dbvisualizer, disk-inventory-x, dropbox, evernote, firefox, flux, 
 google-chrome, google-hangouts, hipchat, iexplorer, istumbler, iterm2, java, 
 kaleidoscope, lisanet-gimp, mactex, mysqlworkbench, oclint, robomongo, 
 silverlight, skype, slack, snes9x, soundflower, sourcetree, spectacle, spotify, 

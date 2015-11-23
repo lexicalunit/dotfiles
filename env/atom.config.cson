@@ -113,6 +113,8 @@
 		directory: "~/Dropbox/nv"
 	"python-yapf":
 		yapfStyle: "{based_on_style: pep8, column_limit: 120}"
+	"rst-preview-pandoc":
+		pandocOpts: "-frst -thtml --webtex"
 	"spell-check":
 		grammars: [
 			"source.gfm"

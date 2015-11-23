@@ -395,15 +395,15 @@ steam, sublime-text, teamviewer, texstudio, transmission, vlc, xquartz
 Atom Packages: atom-beautify, atom-pair, autocomplete-python, column-select, 
 cursor-indicator, event-watch, file-icons, gruvbox, highlight-selected, 
 isotope-light-ui, isotope-ui, language-applescript, language-diff, 
-language-latex, language-rust, linter, linter-alex, linter-clang, 
+language-latex, language-restructuredtext, language-rust, linter, linter-clang, 
 linter-coffeelint, linter-csslint, linter-erb, linter-just-say-no, linter-pep8, 
 linter-pyflakes, linter-raml, linter-shellcheck, linter-tidy, 
 linter-write-good, minimap, minimap-codeglance, minimap-find-and-replace, 
 minimap-git-diff, minimap-highlight-selected, minimap-selection, monokai, 
 multi-wrap-guide, next-occurrence, nvatom, python-isort, python-yapf, 
-rainbow-selection, raml, red-wavy-underline, script, set-syntax, 
-soft-wrap-indicator, sort-lines, swackets, symbols-tree-view, tab-control, 
-tabs-to-spaces, todo-show, toggle-quotes, trailing-spaces
+rainbow-selection, raml, red-wavy-underline, rst-preview-pandoc, script, 
+set-syntax, soft-wrap-indicator, sort-lines, swackets, symbols-tree-view, 
+tab-control, tabs-to-spaces, todo-show, toggle-quotes, trailing-spaces
 
 Pip Packages: anyjson, backports.ssl-match-hostname, beautifulsoup4, bson, 
 cssutils, fabric, flake8, google-api-python-client, httplib2, iniparse, 
@@ -458,7 +458,7 @@ redcarpet, rouge, rspec-logsplit, rubygems-bundler, rvm, safe_yaml, sass,
 shotgun, sshkit, test-unit, thread_safe, timers, toml, treetop, trollop, 
 tzinfo, xcodeproj, yajl-ruby
 
-Node Modules: alex, coffee-script, coffeelint, cson, js-beautify, tmpin
+Node Modules: coffee-script, coffeelint, cson, js-beautify, tmpin
 ```
 
 * * *
@@ -749,7 +749,7 @@ Options:
 
   Subtitle Options:
     --write-sub                      Write subtitle file
-    --write-auto-sub                 Write automatic subtitle file (YouTube only)
+    --write-auto-sub                 Write automatically generated subtitle file (YouTube only)
     --all-subs                       Download all the available subtitles of the video
     --list-subs                      List all available subtitles for the video
     --sub-format FORMAT              Subtitle format, accepts formats preference, for example: "srt" or "ass/srt/best"

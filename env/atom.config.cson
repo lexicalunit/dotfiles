@@ -24,6 +24,12 @@
 			"wrap-guide"
 			"opened-files"
 			"minimap-codeglance"
+			"linter-just-say-no"
+			"linter-write-good"
+			"rst-preview-pandoc"
+			"swackets"
+			"todo-show"
+			"symbols-tree-view"
 		]
 		themes: [
 			"isotope-light-ui"
@@ -92,6 +98,8 @@
 		maxLineLength: 300
 	"linter-puppet-lint":
 		oldVersion: false
+	"markdown-preview":
+		useGitHubStyle: true
 	"merge-conflicts":
 		gitPath: "/usr/local/bin/git"
 	minimap:
@@ -113,8 +121,7 @@
 		directory: "~/Dropbox/nv"
 	"python-yapf":
 		yapfStyle: "{based_on_style: pep8, column_limit: 120}"
-	"rst-preview-pandoc":
-		pandocOpts: "-frst -thtml --webtex"
+	"rst-preview-pandoc": {}
 	"spell-check":
 		grammars: [
 			"source.gfm"

@@ -92,6 +92,7 @@
 		minimalMode: true
 	linter:
 		lintOnChange: true
+		lintOnFlyInterval: 10000
 	"linter-flake8":
 		maxLineLength: 300
 	"linter-pep8":
@@ -119,7 +120,11 @@
 		locked: true
 	nvatom:
 		directory: "~/Dropbox/nv"
+	"python-isort":
+		checkOnSave: false
 	"python-yapf":
+		checkOnSave: false
+		yapfPath: "/usr/local/bin/yapf"
 		yapfStyle: "{based_on_style: pep8, column_limit: 120}"
 	"rst-preview-pandoc": {}
 	"spell-check":

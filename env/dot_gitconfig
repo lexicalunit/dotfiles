@@ -30,8 +30,8 @@
 	reauthor = !bash git_reauthor
 	name-change = !bash git_name_change
 	ltr = !cd ${GIT_PREFIX:-.} && git_ltr
-    wdiff = diff --color-words --word-diff
-    r = review -Rv
+	wdiff = diff --color-words --word-diff
+	r = !git review -Rv -t $(git rev-parse --abbrev-ref HEAD)
 [color]
 	ui = auto
 [color "branch"]

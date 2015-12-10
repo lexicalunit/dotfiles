@@ -85,7 +85,7 @@ or of course just run the tools with the argument `--help`.
 | [`fart`](bin/fart) | Sleeps for the given number of seconds, showing a progress bar. |
 | [`flip`](bin/flip) | Flips input upside down. |
 | [`fm`](bin/fm) | Find in CMake files. |
-| [`git_authors`](bin/git_authors) | Finds out who wrote the code at the given path. |
+| [`git_authors`](bin/git_authors) | Git script for discovering who wrote the code at the current workin... |
 | [`git_ltr`](bin/git_ltr) | Lists (a-la 'ls -ltr') git controlled source files in current direc... |
 | [`git_name_change`](bin/git_name_change) | Clones a repo then changes the name and email address in entire his... |
 | [`git_push_topic`](bin/git_push_topic) | Force updates remote topic branch with local branch. |

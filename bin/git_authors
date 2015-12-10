@@ -1,19 +1,18 @@
 #!/bin/bash
 
-# Finds out who wrote the code at the given path.
+# Git script for discovering who wrote the code at the current working directory.
 
-usage()
-{
-    echo "usage: ${0##*/} [PATH]" >&2
-    echo "Finds out who wrote the code at the given path." >&2
+if [[ "$1" == "--help" || "$1" == "-h" || -z "$*" ]]; then
+    echo "usage: ${0##*/} [-h|--help] PATH" 1>&2
+    echo "For git, shows who wrote the code found at the current directory." 1>&2
     exit 1
-}
-
-if echo "$*" | egrep -q -- "--help|-h"; then
-    usage
 fi
 
-git ls-tree -r -z --name-only HEAD -- "$*" \
-    | xargs -0 -n1 git blame --line-porcelain HEAD \
-    | grep  "^author "\
-    | sort | uniq -c | sort -nr
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
+cmd="git ls-tree -r -z --name-only HEAD -- ."
+cmd="$cmd | xargs -0 -n1 git blame --line-porcelain HEAD"
+cmd="$cmd | grep  '^author '"
+cmd="$cmd | sort | uniq -c | sort -nr"
+[[ -z "$GIT_PREFIX" ]] || cd "$GIT_PREFIX" || exit
+run "$cmd"

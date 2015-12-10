@@ -21,7 +21,6 @@
 			"welcome"
 			"atom-pair"
 			"rainbow-selection"
-			"wrap-guide"
 			"opened-files"
 			"minimap-codeglance"
 			"linter-just-say-no"
@@ -30,6 +29,7 @@
 			"swackets"
 			"todo-show"
 			"symbols-tree-view"
+			"wrap-guide"
 		]
 		themes: [
 			"isotope-light-ui"
@@ -97,8 +97,11 @@
 		maxLineLength: 300
 	"linter-pep8":
 		maxLineLength: 300
+		pep8ExecutablePath: "/usr/local/bin/pep8"
 	"linter-puppet-lint":
 		oldVersion: false
+	"linter-shellcheck":
+		userParameters: "-e \"SC1090\""
 	"markdown-preview":
 		useGitHubStyle: true
 	"merge-conflicts":
@@ -122,6 +125,7 @@
 		directory: "~/Dropbox/nv"
 	"python-isort":
 		checkOnSave: false
+		isortPath: "/usr/local/bin/isort"
 	"python-yapf":
 		checkOnSave: false
 		yapfPath: "/usr/local/bin/yapf"
@@ -189,6 +193,10 @@
 ".json.source":
 	editor:
 		tabLength: 2
+".shell.source":
+	editor:
+		softTabs: false
+		tabLength: 4
 ".source.sql":
 	editor:
 		softTabs: true

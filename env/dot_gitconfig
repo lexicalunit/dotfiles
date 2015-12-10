@@ -25,14 +25,13 @@
 	ci = commit
 	ca = commit --amend
 	b = !git rev-parse --abbrev-ref HEAD
-	authors = !bash git_authors
+	authors = !git_authors "$(pwd)"
 	push-topic = !bash git_push_topic
 	reauthor = !bash git_reauthor
 	name-change = !bash git_name_change
 	ltr = !cd ${GIT_PREFIX:-.} && git_ltr
 	wdiff = diff --color-words --word-diff
 	r = !git review -Rv -t $(git rev-parse --abbrev-ref HEAD)
-	rt = !git review -Rv -t $(git rev-parse --abbrev-ref HEAD) $(git rev-parse --abbrev-ref HEAD)
 [color]
 	ui = auto
 [color "branch"]

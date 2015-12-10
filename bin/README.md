@@ -207,8 +207,8 @@ Recursively Finds given pattern within CMake files.
 * * *
 ### [`git_authors`](git_authors)
 ```
-usage: git_authors [PATH]
-Finds out who wrote the code at the given path.
+usage: git_authors [-h|--help] PATH
+For git, shows who wrote the code found at the current directory.
 ```
 
 * * *

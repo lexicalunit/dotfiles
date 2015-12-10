@@ -407,56 +407,59 @@ tab-control, tabs-to-spaces, todo-show, toggle-quotes, trailing-spaces
 
 Pip Packages: anyjson, backports.ssl-match-hostname, beautifulsoup4, bson, 
 cssutils, fabric, flake8, google-api-python-client, httplib2, iniparse, 
-inlinestyler, isort, jedi, oauth2client, oauthlib, pep8, pyasn1-modules, 
+inlinestyler, isort, jedi, oauth2client, oauthlib, oboe, pep8, pyasn1-modules, 
 pydruid, pyflakes, pymongo, python-cson, python-dateutil, python-twitter, pytz, 
-requests, requests-oauthlib, rsa, simplejson, suds, termcolor, tinycss, 
-uritemplate, wsgiref
+requests, requests-oauthlib, rsa, simplejson, suds, tables, termcolor, tinycss, 
+uritemplate, wsgiref, yapf
 
-Conda Packages: abstract-rendering, alabaster, anaconda, appscript, apptools, 
-argcomplete, astropy, atom, babel, bcolz, beautiful-soup, biopython, bitarray, 
-blaze, blaze-core, blz, bokeh, boto, bottleneck, casuarius, cdecimal, certifi, 
-cffi, chaco, clyent, colorama, conda, conda-build, conda-env, configobj, 
-cryptography, cubes, cudatoolkit, curl, cython, cytoolz, datashape, dateutil, 
-decorator, docutils, dynd-python, ecdsa, enable, enaml, enum34, envisage, 
-fastcache, flask, freetype, funcsigs, future, futures, gevent, 
-gevent-websocket, greenlet, grin, h5py, hdf5, idna, into, ipaddress, ipython, 
-ipython-notebook, ipython-qtconsole, itsdangerous, jdcal, jinja2, jpeg, 
-jsonschema, keyring, kiwisolver, launcher, lcms, libdynd, libnetcdf, libpng, 
-libsodium, libtiff, libxml2, libxslt, llvm, llvmlite, llvmpy, lxml, markupsafe, 
-matplotlib, mayavi, mccabe, mdp, mercurial, mistune, mock, modules, 
-multipledispatch, natsort, netcdf4, networkx, nltk, node-webkit, nose, numba, 
-numexpr, numpy, odo, openpyxl, openssl, pandas, paramiko, patsy, pbr, pies, 
-pies2overrides, pil, pillow, pip, ply, psutil, ptyprocess, pyasn1, pyaudio, 
-pycosat, pycparser, pycrypto, pycurl, pyface, pygments, pyopenssl, pyparsing, 
-pyqt, pysal, pysam, pyside, pytables, pytest, python.app, pyyaml, pyzmq, qt, 
-readline, redis, redis-py, rope, runipy, scikit-image, scikit-learn, scipy, 
-setuptools, shiboken, sip, six, snowballstemmer, sockjs-tornado, sphinx, 
-sphinx-rtd-theme, sphinx_rtd_theme, spyder, spyder-app, sqlalchemy, sqlite, 
-ssl_match_hostname, statsmodels, sympy, terminado, tk, toolz, tornado, traits, 
-traitsui, ujson, unicodecsv, vtk, werkzeug, xlrd, xlsxwriter, xlwings, xlwt, 
-yaml, zeromq, zlib
+Conda Packages: abstract-rendering, alabaster, anaconda, appnope, appscript, 
+apptools, argcomplete, astropy, atom, babel, backports_abc, bcolz, 
+beautiful-soup, binstar, biopython, bitarray, blaze, blaze-core, blz, bokeh, 
+boto, bottleneck, casuarius, cdecimal, certifi, cffi, chaco, clyent, colorama, 
+conda, conda-build, conda-env, configobj, cryptography, cubes, cudatoolkit, 
+curl, cython, cytoolz, datashape, dateutil, decorator, docutils, dynd-python, 
+ecdsa, enable, enaml, enum34, envisage, fastcache, flask, freetype, funcsigs, 
+future, futures, gevent, gevent-websocket, greenlet, grin, h5py, hdf5, idna, 
+into, ipaddress, ipykernel, ipython, ipython-notebook, ipython-qtconsole, 
+ipython_genutils, itsdangerous, jbig, jdcal, jinja2, jpeg, jsonschema, 
+jupyter_client, jupyter_core, keyring, kiwisolver, krb5, launcher, lcms, 
+libdynd, libnetcdf, libpng, libsodium, libtiff, libxml2, libxslt, llvm, 
+llvmlite, llvmpy, lxml, markupsafe, matplotlib, mayavi, mccabe, mdp, mercurial, 
+mistune, mock, modules, multipledispatch, natsort, nbconvert, nbformat, 
+netcdf4, networkx, nltk, node-webkit, nose, numba, numexpr, numpy, odo, 
+openpyxl, openssl, pandas, paramiko, path.py, patsy, pbr, pexpect, pickleshare, 
+pies, pies2overrides, pil, pillow, pip, ply, psutil, ptyprocess, pyasn1, 
+pyaudio, pycosat, pycparser, pycrypto, pycurl, pyface, pygments, pyopenssl, 
+pyparsing, pyqt, pysal, pysam, pyside, pytables, pytest, python.app, pyyaml, 
+pyzmq, qt, readline, redis, redis-py, rope, runipy, scikit-image, scikit-learn, 
+scipy, setuptools, shiboken, simplegeneric, singledispatch, sip, six, 
+snowballstemmer, sockjs-tornado, sphinx, sphinx-rtd-theme, sphinx_rtd_theme, 
+spyder, spyder-app, sqlalchemy, sqlite, ssl_match_hostname, statsmodels, sympy, 
+terminado, tk, toolz, tornado, traitlets, traits, traitsui, ujson, unicodecsv, 
+vtk, werkzeug, wheel, xlrd, xlsxwriter, xlwings, xlwt, xz, yaml, zeromq, zlib
 
 Gem Packages: actionmailer, actionpack, actionview, activejob, activesupport, 
-archive-tar-minitar, arr-pm, backports, bigdecimal, blankslate, bson, bson_ext, 
-builder, bundler, bundler-unload, cabin, cap_gun, capistrano, capistrano-stats, 
-celluloid, celluloid-essentials, celluloid-extras, celluloid-fsm, 
-celluloid-pool, celluloid-supervision, childprocess, claide, clamp, 
-classifier-reborn, cocoapods, cocoapods-core, cocoapods-deintegrate, 
+addressable, archive-tar-minitar, arr-pm, backports, bigdecimal, blankslate, 
+bson, bson_ext, builder, bundler, bundler-unload, cabin, cap_gun, capistrano, 
+capistrano-stats, celluloid, celluloid-essentials, celluloid-extras, 
+celluloid-fsm, celluloid-pool, celluloid-supervision, childprocess, claide, 
+clamp, classifier-reborn, cocoapods, cocoapods-core, cocoapods-deintegrate, 
 cocoapods-downloader, cocoapods-plugins, cocoapods-search, cocoapods-stats, 
 cocoapods-trunk, cocoapods-try, coffee-script, coffee-script-source, colorator, 
 colored, colorize, cuba, dotenv, erector, erubis, escape, execjs, 
-executable-hooks, fast-stemmer, ffi, fpm, fuzzy_match, gem-wrappers, globalid, 
-hitimes, i18n, io-console, jekyll, jekyll-coffeescript, jekyll-gist, 
+executable-hooks, faraday, fast-stemmer, ffi, fpm, fuzzy_match, gem-wrappers, 
+globalid, hitimes, i18n, io-console, jekyll, jekyll-coffeescript, jekyll-gist, 
 jekyll-paginate, jekyll-sass-converter, jekyll-watch, jewelbox, json, 
 json_pure, kramdown, liquid, listen, log4r, lolcat, loofah, mail, mercenary, 
-mime-types, mini_portile, minitest, molinillo, mongo, multi_json, nap, nenv, 
-net-ldap, net-scp, net-ssh, netrc, nokogiri, open4, paint, parslet, polyglot, 
-posix-spawn, power_assert, psych, puppet-lint, pygments.rb, rack, 
-rack-protection, rack-test, rails-deprecated_sanitizer, rails-dom-testing, 
-rails-html-sanitizer, railsless-deploy, rake, rb-fsevent, rb-inotify, rdoc, 
-redcarpet, rouge, rspec-logsplit, rubygems-bundler, rvm, safe_yaml, sass, 
-shotgun, sshkit, test-unit, thread_safe, timers, toml, treetop, trollop, 
-tzinfo, xcodeproj, yajl-ruby
+mime-types, mime-types-data, mini_portile, mini_portile2, minitest, molinillo, 
+mongo, multi_json, multipart-post, nap, nenv, net-ldap, net-scp, net-ssh, 
+netrc, nokogiri, octokit, open4, paint, parslet, polyglot, posix-spawn, 
+power_assert, psych, puppet-lint, pygments.rb, rack, rack-protection, 
+rack-test, rails-deprecated_sanitizer, rails-dom-testing, rails-html-sanitizer, 
+railsless-deploy, rake, rb-fsevent, rb-inotify, rdoc, redcarpet, rouge, 
+rspec-logsplit, rubygems-bundler, rvm, safe_yaml, sass, sawyer, shotgun, 
+sshkit, test-unit, thread_safe, timers, toml, treetop, trollop, tzinfo, 
+xcodeproj, yajl-ruby
 
 Node Modules: coffee-script, coffeelint, cson, js-beautify, tmpin
 ```
@@ -742,7 +745,7 @@ Options:
     -f, --format FORMAT              Video format code, see the "FORMAT SELECTION" for all the info
     --all-formats                    Download all available video formats
     --prefer-free-formats            Prefer free video formats unless a specific one is requested
-    -F, --list-formats               List all available formats
+    -F, --list-formats               List all available formats of requested videos
     --youtube-skip-dash-manifest     Do not download the DASH manifests and related data on YouTube videos
     --merge-output-format FORMAT     If a merge is required (e.g. bestvideo+bestaudio), output to given container
                                      format. One of mkv, mp4, ogg, webm, flv. Ignored if no merge is required

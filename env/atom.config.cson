@@ -183,6 +183,10 @@
 ".coffee.source":
 	editor:
 		tabLength: 2
+".css.less.source":
+	editor:
+		softTabs: true
+		tabLength: 2
 ".gfm.source":
 	editor:
 		softTabs: true

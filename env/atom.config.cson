@@ -32,7 +32,7 @@
 			"wrap-guide"
 		]
 		themes: [
-			"isotope-light-ui"
+			"native-ui"
 			"solarized-light-syntax"
 		]
 	"cursor-indicator":

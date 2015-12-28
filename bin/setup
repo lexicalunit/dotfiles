@@ -26,9 +26,9 @@ HOMEBREW_CASKS="                                                               \
     caffeine chitchat chromecast clamxav cyberduck dbvisualizer                \
     disk-inventory-x dropbox evernote firefox flux google-chrome               \
     google-hangouts hipchat iexplorer istumbler iterm2 java kaleidoscope       \
-    lisanet-gimp mactex mysqlworkbench oclint robomongo silverlight skype      \
-    slack snes9x soundflower sourcetree spectacle spotify steam sublime-text   \
-    teamviewer texstudio transmission vlc xquartz"
+    lingon-x lisanet-gimp mactex mysqlworkbench oclint robomongo silverlight   \
+    skype slack snes9x soundflower sourcetree spectacle spotify steam          \
+    sublime-text teamviewer texstudio transmission vlc xquartz"
 
 ATOM_PACKAGES="                                                                \
     atom-beautify atom-pair autocomplete-python column-select cursor-indicator \

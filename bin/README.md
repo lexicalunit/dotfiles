@@ -62,6 +62,12 @@ Prints out table of terminal color codes.
 ```
 
 * * *
+### [`daemons`](daemons)
+```
+usage: daemons [-h|--help] [PATTERN|FILE_PATH]
+```
+
+* * *
 ### [`die`](die)
 ```
 usage: die [options] REGEX
@@ -388,9 +394,10 @@ Homebrew Casks: 1password, adium, amazon-music, atom, audacity,
 balsamiq-mockups, battle-net, caffeine, chitchat, chromecast, clamxav, 
 cyberduck, dbvisualizer, disk-inventory-x, dropbox, evernote, firefox, flux, 
 google-chrome, google-hangouts, hipchat, iexplorer, istumbler, iterm2, java, 
-kaleidoscope, lisanet-gimp, mactex, mysqlworkbench, oclint, robomongo, 
-silverlight, skype, slack, snes9x, soundflower, sourcetree, spectacle, spotify, 
-steam, sublime-text, teamviewer, texstudio, transmission, vlc, xquartz
+kaleidoscope, lingon-x, lisanet-gimp, mactex, mysqlworkbench, oclint, 
+robomongo, silverlight, skype, slack, snes9x, soundflower, sourcetree, 
+spectacle, spotify, steam, sublime-text, teamviewer, texstudio, transmission, 
+vlc, xquartz
 
 Atom Packages: atom-beautify, atom-pair, autocomplete-python, column-select, 
 cursor-indicator, event-watch, file-icons, gruvbox, highlight-selected, 

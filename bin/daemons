@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Finds and removes unwanted daemons and agents.
+
+if echo "$*" | egrep -q -- "--help|-h" || [[ -z "$1" ]]; then
+    echo "usage: ${0##*/} [-h|--help] [PATTERN|FILE_PATH]" >&2
+    exit 1
+fi
+
+# shellcheck source=~/.shell_control
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
+# Creating an empty temporary workspace so that a given PATTERN will
+# never accidentally match a FILE_PATH in the current working directory.
+wd="$(mktemp -d -t tmp.XXXXXXXXXX)"
+trap 'rm -rf $wd' EXIT
+cd "$wd" || abort "could not create workspace"
+
+if [[ ! -e "$1" ]]; then
+    find /System/Library/LaunchDaemons \
+            /System/Library/LaunchAgents \
+            ~/Library/LaunchAgents \
+            ~/Library/LaunchDaemons \
+            /Library/LaunchAgents/ \
+            /Library/LaunchDaemons/ \
+            2>/dev/null \
+        | egrep -i "$@"
+else
+    run "sudo launchctl unload -w '$1'"
+    run "sudo rm -f '$1'"
+fi
+
+rm -rf "$wd"

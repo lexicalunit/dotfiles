@@ -78,6 +78,7 @@ or of course just run the tools with the argument `--help`.
 | [`bluetooth_reset`](bin/bluetooth_reset) | Resets bluetooth on OS X. |
 | [`capture`](bin/capture) | Creates a screenshot of selected window on X11. |
 | [`colortest`](bin/colortest) | Prints out an entire color palette of terminal color codes. |
+| [`daemons`](bin/daemons) | Finds and removes unwanted daemons and agents. |
 | [`die`](bin/die) | Kills processes based on process name. |
 | [`doc`](bin/doc) | Builds HTML output from Markdown file. |
 | [`docker_clean`](bin/docker_clean) | Delete all docker containers and images. |
@@ -153,9 +154,10 @@ Homebrew Casks: 1password, adium, amazon-music, atom, audacity,
 balsamiq-mockups, battle-net, caffeine, chitchat, chromecast, clamxav, 
 cyberduck, dbvisualizer, disk-inventory-x, dropbox, evernote, firefox, flux, 
 google-chrome, google-hangouts, hipchat, iexplorer, istumbler, iterm2, java, 
-kaleidoscope, lisanet-gimp, mactex, mysqlworkbench, oclint, robomongo, 
-silverlight, skype, slack, snes9x, soundflower, sourcetree, spectacle, spotify, 
-steam, sublime-text, teamviewer, texstudio, transmission, vlc, xquartz
+kaleidoscope, lingon-x, lisanet-gimp, mactex, mysqlworkbench, oclint, 
+robomongo, silverlight, skype, slack, snes9x, soundflower, sourcetree, 
+spectacle, spotify, steam, sublime-text, teamviewer, texstudio, transmission, 
+vlc, xquartz
 
 Atom Packages: atom-beautify, atom-pair, autocomplete-python, column-select, 
 cursor-indicator, event-watch, file-icons, gruvbox, highlight-selected, 

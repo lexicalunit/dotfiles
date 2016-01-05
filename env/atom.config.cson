@@ -1,6 +1,8 @@
 "*":
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
+	"autoupdate-packages":
+		lastUpdateTimestamp: 1452013027479
 	"bracket-matcher":
 		autocompleteSmartQuotes: false
 	core:
@@ -52,6 +54,12 @@
 		softWrapAtPreferredLineLength: true
 		tabLength: 4
 	"event-watch":
+		displayColorStatusbar: "Olive"
+		displayColorTooltip: "PaleGreen"
+		displayColorWarningStatusbar: "IndianRed"
+		displayColorWarningTooltip: "LightPink"
+		displayFontWeightStatusbar: "900"
+		displayFontWeightTooltip: "700"
 		schedules:
 			N: '''
 				at 7:03am and 7:34am and 8:05am and 8:41am and 9:15am and 9:44am and
@@ -72,6 +80,7 @@
 				and 5:42pm and 6:16pm and 6:50pm and 7:24pm and 7:58pm and 8:32pm
 				and 9:06pm and 9:40pm and 10:14pm and 10:48pm and 11:22pm on Sat
 			'''
+		tooltipFontWeight: "700"
 		warnThresholdMinutes: 35
 	"git-diff":
 		showIconsInEditorGutter: true

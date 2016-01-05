@@ -17,13 +17,15 @@ trap 'rm -rf $wd' EXIT
 cd "$wd" || abort "could not create workspace"
 
 if [[ ! -e "$1" ]]; then
-    find /System/Library/LaunchDaemons \
+    find \
+            /Library/LaunchAgents \
+            /Library/LaunchDaemons \
             /System/Library/LaunchAgents \
+            /System/Library/LaunchDaemons \
             ~/Library/LaunchAgents \
             ~/Library/LaunchDaemons \
-            /Library/LaunchAgents/ \
-            /Library/LaunchDaemons/ \
-            2>/dev/null \
+            -type f \
+        2>/dev/null \
         | egrep -i "$@"
 else
     run "sudo launchctl unload -w '$1'"

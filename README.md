@@ -159,10 +159,11 @@ robomongo, silverlight, skype, slack, snes9x, soundflower, sourcetree,
 spectacle, spotify, steam, sublime-text, teamviewer, texstudio, transmission, 
 vlc, xquartz
 
-Atom Packages: atom-beautify, atom-pair, autocomplete-python, column-select, 
-cursor-indicator, event-watch, file-icons, gruvbox, highlight-selected, 
-isotope-light-ui, isotope-ui, language-applescript, language-diff, 
-language-latex, language-restructuredtext, language-rust, linter, linter-clang, 
+Atom Packages: atom-beautify, atom-pair, autocomplete-python, 
+autoupdate-packages, column-select, cursor-indicator, event-watch, file-icons, 
+gruvbox, highlight-selected, isotope-light-ui, isotope-ui, 
+language-applescript, language-cmake, language-diff, language-latex, 
+language-restructuredtext, language-rust, linter, linter-clang, 
 linter-coffeelint, linter-csslint, linter-erb, linter-just-say-no, linter-pep8, 
 linter-pyflakes, linter-raml, linter-shellcheck, linter-tidy, 
 linter-write-good, minimap, minimap-codeglance, minimap-find-and-replace, 
@@ -240,7 +241,7 @@ Copyright 2006 Raph Levien. Released under the SIL Open Font License.
 
 The MIT License (MIT)
 
-Copyright (c) 2015, lexicalunit@lexicalunit.com
+Copyright (c) 2016, lexicalunit@lexicalunit.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

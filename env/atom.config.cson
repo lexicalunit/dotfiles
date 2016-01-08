@@ -2,7 +2,7 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1452013027479
+		lastUpdateTimestamp: 1452268421252
 	"bracket-matcher":
 		autocompleteSmartQuotes: false
 	core:
@@ -25,8 +25,6 @@
 			"rainbow-selection"
 			"opened-files"
 			"minimap-codeglance"
-			"linter-just-say-no"
-			"linter-write-good"
 			"rst-preview-pandoc"
 			"swackets"
 			"todo-show"

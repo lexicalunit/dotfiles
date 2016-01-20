@@ -31,12 +31,13 @@ HOMEBREW_CASKS="                                                               \
     sublime-text teamviewer texstudio transmission vlc xquartz"
 
 ATOM_PACKAGES="                                                                \
-    atom-beautify atom-pair autocomplete-python autoupdate-packages            \
+    api-workbench atom-pair autocomplete-python autoupdate-packages            \
     column-select cursor-indicator event-watch file-icons gruvbox              \
     highlight-selected isotope-light-ui isotope-ui language-applescript        \
-    language-cmake language-diff language-latex language-restructuredtext      \
-    language-rust linter linter-clang linter-coffeelint linter-csslint         \
-    linter-erb linter-just-say-no linter-pep8 linter-pyflakes linter-raml      \
+    language-cmake language-diff language-docker language-latex                \
+    language-restructuredtext language-rust linter linter-clang                \
+    linter-coffeelint linter-csslint linter-docker linter-erb linter-flake8    \
+    linter-just-say-no linter-pep8 linter-pyflakes linter-raml                 \
     linter-shellcheck linter-tidy linter-write-good minimap minimap-codeglance \
     minimap-find-and-replace minimap-git-diff minimap-highlight-selected       \
     minimap-selection monokai multi-wrap-guide native-ui next-occurrence       \

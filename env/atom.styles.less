@@ -12,12 +12,12 @@ atom-text-editor::shadow {
 }
 
 // make current file in tree-view stand out more
-.tree-view {
-    .list-item.selected::before {
-        background-color: @background-color-highlight !important;
-        color: @text-color-highlight !important;
-    }
-}
+// .tree-view {
+//     .list-item.selected::before {
+//         background-color: @background-color-highlight !important;
+//         color: @text-color-highlight !important;
+//     }
+// }
 
 // ensure subpixel-antialiased
 body * {
@@ -69,23 +69,6 @@ atom-text-editor::shadow {
     &.lit {
         color: #10BB10 !important;
         text-shadow: none !important;
-    }
-}
-
-// less ugly opened-files view
-.opened-files {
-    border-right: 0 !important;
-    background-color: transparent !important;
-
-    .of-highlight::before {
-        transition-duration: 0 !important;
-        background-color: inherit !important;
-        color: @text-color-subtle !important;
-    }
-
-    .selected::before {
-        background-color: @background-color-highlight !important;
-        color: @text-color-highlight !important;
     }
 }
 

@@ -37,14 +37,13 @@ ATOM_PACKAGES="                                                                \
     language-cmake language-diff language-docker language-latex                \
     language-restructuredtext language-rust linter linter-clang                \
     linter-coffeelint linter-csslint linter-docker linter-erb linter-flake8    \
-    linter-just-say-no linter-pep8 linter-pyflakes linter-raml                 \
-    linter-shellcheck linter-tidy linter-write-good minimap minimap-codeglance \
-    minimap-find-and-replace minimap-git-diff minimap-highlight-selected       \
-    minimap-selection monokai multi-wrap-guide native-ui next-occurrence       \
-    nvatom python-isort python-yapf rainbow-selection raml red-wavy-underline  \
-    rst-preview-pandoc script set-syntax soft-wrap-indicator sort-lines        \
-    swackets symbols-tree-view tab-control tabs-to-spaces todo-show            \
-    toggle-quotes trailing-spaces"
+    linter-just-say-no linter-raml linter-shellcheck linter-tidy               \
+    linter-write-good minimap minimap-codeglance minimap-find-and-replace      \
+    minimap-git-diff minimap-highlight-selected minimap-selection monokai      \
+    multi-wrap-guide native-ui next-occurrence nvatom python-isort python-yapf \
+    rainbow-selection raml red-wavy-underline rst-preview-pandoc script        \
+    set-syntax soft-wrap-indicator sort-lines swackets symbols-tree-view       \
+    tab-control tabs-to-spaces todo-show toggle-quotes trailing-spaces"
 
 PIP_PACKAGES="                                                                 \
     anyjson backports.ssl-match-hostname beautifulsoup4 bson cssutils fabric   \

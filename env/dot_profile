@@ -581,6 +581,17 @@ elif echo "$SHELL" | grep -q zsh; then
 fi
 
 ################################################################################
+# setup zsh run-help
+################################################################################
+if echo "$SHELL" | grep -q zsh; then
+    _interactive_log "setup zsh run-help"
+    unalias run-help
+    autoload run-help
+    export HELPDIR="/usr/local/share/zsh/help"
+    alias help='run-help '
+fi
+
+################################################################################
 # setup aliases and functions
 ################################################################################
 _interactive_log "setup aliases and functions"

@@ -2,7 +2,7 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1453739316226
+		lastUpdateTimestamp: 1453846549390
 	"bracket-matcher":
 		autocompleteSmartQuotes: false
 	core:
@@ -206,7 +206,7 @@
 		tabLength: 2
 ".shell.source":
 	editor:
-		softTabs: false
+		softTabs: true
 		tabLength: 4
 ".source.sql":
 	editor:

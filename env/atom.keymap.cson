@@ -1,11 +1,19 @@
+# Replaces: editor:outdent-selected-rows
 'atom-text-editor:not([mini])':
   'shift-tab': 'editor:force-tab'
 
+# Replaces: project-find:show
 'atom-text-editor:not([mini])':
   'alt-shift-cmd-F': 'next-occurrence:prev'
   'shift-cmd-f': 'next-occurrence:next'
 
+# Replaces: editor:select-line
 'atom-text-editor':
   'cmd-l': 'unset!'
-'atom-workspace':
+'atom-text-editor':
   'cmd-l': 'nvatom:toggle'
+
+# Removes: api-workbench:find-usages
+# Resolves conflict with: go-to-line:toggle
+'atom-workspace':
+  'ctrl-g': 'unset!'

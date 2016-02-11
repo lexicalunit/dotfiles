@@ -2,7 +2,7 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1453846549390
+		lastUpdateTimestamp: 1455220425817
 	"bracket-matcher":
 		autocompleteSmartQuotes: false
 	core:
@@ -30,6 +30,7 @@
 			"todo-show"
 			"symbols-tree-view"
 			"wrap-guide"
+			"language-python"
 		]
 		themes: [
 			"native-ui"
@@ -203,6 +204,11 @@
 		tabLength: 2
 ".json.source":
 	editor:
+		softTabs: true
+		tabLength: 2
+".null-grammar.plain.text":
+	editor:
+		softTabs: true
 		tabLength: 2
 ".shell.source":
 	editor:

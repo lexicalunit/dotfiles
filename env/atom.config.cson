@@ -2,7 +2,7 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1455220425817
+		lastUpdateTimestamp: 1455636777429
 	"bracket-matcher":
 		autocompleteSmartQuotes: false
 	core:
@@ -102,7 +102,7 @@
 		lintOnChange: true
 		lintOnFlyInterval: 10000
 	"linter-flake8":
-		maxLineLength: 300
+		maxLineLength: 100
 	"linter-pep8":
 		maxLineLength: 300
 		pep8ExecutablePath: "/usr/local/bin/pep8"
@@ -131,9 +131,8 @@
 		locked: true
 	nvatom:
 		directory: "~/Dropbox/nv"
-	"python-isort":
-		checkOnSave: false
-		isortPath: "/usr/local/bin/isort"
+	"pretty-json": {}
+	"python-isort": {}
 	"python-yapf":
 		checkOnSave: false
 		yapfPath: "/usr/local/bin/yapf"
@@ -175,6 +174,7 @@
 		]
 	"tab-control":
 		autoSaveChanges: true
+	tabs: {}
 	"tree-view":
 		hideIgnoredNames: true
 		hideVcsIgnoredFiles: true
@@ -185,6 +185,10 @@
 		softTabs: true
 		tabLength: 2
 ".c.source":
+	editor:
+		softTabs: true
+		tabLength: 4
+".cmake.source":
 	editor:
 		softTabs: true
 		tabLength: 4

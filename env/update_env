@@ -26,6 +26,7 @@ sync_dotfile 'toprc'
 sync_dotfile 'vimrc'
 sync_dotfile 'zprofile'
 sync_dotfile 'zshrc'
+sync_dotfile 'isort.cfg'
 
 # also sync .profile_* dotfiles
 for I in "$HOME/".profile_*; do

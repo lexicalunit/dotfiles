@@ -104,8 +104,8 @@ Delete all docker containers and images.
 usage: fa [-h|--help] [python regex]
 
 Finds All (fa) occurrences of the given regex using grin to search source files,
-ignoring directories: CVS, RCS, .svn, .hg, .bzr, .git, build, dist, CMakeFiles
-and ignoring file extensions: .pyc, .pyo, .so, .o, .a, .tgz, .tar.gz, .rar, .zip, ~, #, .bak, .png, .jpg, .gif, .bmp, .tif, .tiff, .pyd, .dll, .exe, .obj, .lib, cmake, Makefile
+ignoring directories: htmlcov, CVS, RCS, .svn, .hg, .bzr, .git, build, dist, CMakeFiles
+and ignoring file extensions: TEST-all.xml, .pyc, .pyo, .so, .o, .a, .tgz, .tar.gz, .rar, .zip, ~, #, .bak, .png, .jpg, .gif, .bmp, .tif, .tiff, .pyd, .dll, .exe, .obj, .lib, cmake, Makefile
 
 usage: grin [-h] [-v] [-i] [-A AFTER_CONTEXT] [-B BEFORE_CONTEXT] [-C CONTEXT]
             [-I INCLUDE] [-n] [-N] [-H] [--without-filename] [--emacs] [-l]
@@ -656,6 +656,8 @@ Options:
     --playlist-reverse               Download playlist videos in reverse order
     --xattr-set-filesize             Set file xattribute ytdl.filesize with expected filesize (experimental)
     --hls-prefer-native              Use the native HLS downloader instead of ffmpeg (experimental)
+    --hls-use-mpegts                 Use the mpegts container for HLS videos, allowing to play the video while
+                                     downloading (some players may not be able to play it)
     --external-downloader COMMAND    Use the specified external downloader. Currently supports
                                      aria2c,axel,curl,httpie,wget
     --external-downloader-args ARGS  Give these arguments to the external downloader
@@ -765,8 +767,8 @@ Options:
     --all-subs                       Download all the available subtitles of the video
     --list-subs                      List all available subtitles for the video
     --sub-format FORMAT              Subtitle format, accepts formats preference, for example: "srt" or "ass/srt/best"
-    --sub-lang LANGS                 Languages of the subtitles to download (optional) separated by commas, use IETF
-                                     language tags like 'en,pt'
+    --sub-lang LANGS                 Languages of the subtitles to download (optional) separated by commas, use --list-
+                                     subs for available language tags
 
   Authentication Options:
     -u, --username USERNAME          Login with this account ID
@@ -806,6 +808,6 @@ Options:
                                      containing directory.
     --exec CMD                       Execute a command on the file after downloading, similar to find's -exec syntax.
                                      Example: --exec 'adb push {} /sdcard/Music/ && rm {}'
-    --convert-subtitles FORMAT       Convert the subtitles to other format (currently supported: srt|ass|vtt)
+    --convert-subs FORMAT            Convert the subtitles to other format (currently supported: srt|ass|vtt)
 ```
 

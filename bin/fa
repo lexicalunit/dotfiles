@@ -2,8 +2,8 @@
 
 # Searches a codebase for given pattern.
 
-SKIP_DIRS="CVS,RCS,.svn,.hg,.bzr,.git,build,dist,CMakeFiles"
-SKIP_EXTS=".pyc,.pyo,.so,.o,.a,.tgz,.tar.gz,.rar,.zip,~,#,.bak,.png,.jpg,.gif,.bmp,.tif,.tiff,.pyd,.dll,.exe,.obj,.lib,cmake,Makefile"
+SKIP_DIRS="htmlcov,CVS,RCS,.svn,.hg,.bzr,.git,build,dist,CMakeFiles"
+SKIP_EXTS="TEST-all.xml,.pyc,.pyo,.so,.o,.a,.tgz,.tar.gz,.rar,.zip,~,#,.bak,.png,.jpg,.gif,.bmp,.tif,.tiff,.pyd,.dll,.exe,.obj,.lib,cmake,Makefile"
 
 if [[ "$1" == "--help" || "$1" == "-h" ]]; then
 	echo "usage: ${0##*/} [-h|--help] [python regex]" 1>&2

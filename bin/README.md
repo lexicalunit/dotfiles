@@ -415,10 +415,11 @@ set-syntax, soft-wrap-indicator, sort-lines, swackets, symbols-tree-view,
 tab-control, tabs-to-spaces, todo-show, toggle-quotes, trailing-spaces
 
 Pip Packages: anyjson, backports.ssl-match-hostname, beautifulsoup4, bson, 
-cssutils, fabric, flake8, google-api-python-client, httplib2, iniparse, 
-inlinestyler, isort, jedi, oauth2client, oauthlib, oboe, pep8, pyasn1-modules, 
-pydruid, pyflakes, pymongo, python-cson, python-dateutil, python-twitter, pytz, 
-requests, requests-oauthlib, rsa, simplejson, suds, tables, termcolor, tinycss, 
+cssutils, fabric, flake8, google-api-python-client, httpie, httplib2, 
+inflection, iniparse, inlinestyler, isort, jedi, oauth2client, oauthlib, oboe, 
+patch, pep8, pyasn1-modules, pydruid, pyflakes, pymongo, python-cson, 
+python-dateutil, python-json-logger, python-twitter, pytz, requests, 
+requests-oauthlib, rsa, simplejson, suds, tables, termcolor, tinycss, 
 uritemplate, wsgiref, yapf
 
 Conda Packages: abstract-rendering, alabaster, anaconda, appnope, appscript, 
@@ -455,22 +456,24 @@ celluloid-fsm, celluloid-pool, celluloid-supervision, childprocess, claide,
 clamp, classifier-reborn, cocoapods, cocoapods-core, cocoapods-deintegrate, 
 cocoapods-downloader, cocoapods-plugins, cocoapods-search, cocoapods-stats, 
 cocoapods-trunk, cocoapods-try, coffee-script, coffee-script-source, colorator, 
-colored, colorize, cuba, dotenv, erector, erubis, escape, execjs, 
-executable-hooks, faraday, fast-stemmer, ffi, fpm, fuzzy_match, gem-wrappers, 
-globalid, hitimes, i18n, io-console, jekyll, jekyll-coffeescript, jekyll-gist, 
-jekyll-paginate, jekyll-sass-converter, jekyll-watch, jewelbox, json, 
-json_pure, kramdown, liquid, listen, log4r, lolcat, loofah, mail, mercenary, 
-mime-types, mime-types-data, mini_portile, mini_portile2, minitest, molinillo, 
-mongo, multi_json, multipart-post, nap, nenv, net-ldap, net-scp, net-ssh, 
+colored, colorize, commander, cuba, did_you_mean, dotenv, erector, erubis, 
+escape, execjs, executable-hooks, faraday, faraday_middleware, fast-stemmer, 
+ffi, fpm, fuzzy_match, gem-wrappers, globalid, highline, hitimes, i18n, 
+io-console, jekyll, jekyll-coffeescript, jekyll-gist, jekyll-paginate, 
+jekyll-sass-converter, jekyll-watch, jewelbox, json, json_pure, kramdown, 
+liquid, listen, log4r, lolcat, loofah, mail, mercenary, mime-types, 
+mime-types-data, mini_portile, mini_portile2, minitest, molinillo, mongo, 
+multi_json, multipart-post, nap, nenv, net-ldap, net-scp, net-ssh, net-telnet, 
 netrc, nokogiri, octokit, open4, paint, parslet, polyglot, posix-spawn, 
 power_assert, psych, puppet-lint, pygments.rb, rack, rack-protection, 
 rack-test, rails-deprecated_sanitizer, rails-dom-testing, rails-html-sanitizer, 
 railsless-deploy, rake, rb-fsevent, rb-inotify, rdoc, redcarpet, rouge, 
 rspec-logsplit, rubygems-bundler, rvm, safe_yaml, sass, sawyer, shotgun, 
-sshkit, test-unit, thread_safe, timers, toml, treetop, trollop, tzinfo, 
-xcodeproj, yajl-ruby
+sshkit, terminal-table, test-unit, thread_safe, timers, toml, treetop, trollop, 
+tzinfo, xcodeproj, yajl-ruby
 
-Node Modules: coffee-script, coffeelint, cson, js-beautify, tmpin
+Node Modules: JSON, coffee-script, coffeelint, cson, dockerling, js-beautify, 
+json-stable-stringify, moment, tmpin
 ```
 
 * * *

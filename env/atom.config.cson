@@ -2,7 +2,7 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1456954969021
+		lastUpdateTimestamp: 1457541148258
 	"bracket-matcher":
 		autocompleteSmartQuotes: false
 	core:
@@ -127,9 +127,13 @@
 		plugins:
 			codeglance: true
 			"find-and-replace": true
+			"find-and-replaceDecorationsZIndex": 0
 			"git-diff": true
+			"git-diffDecorationsZIndex": 0
 			"highlight-selected": true
+			"highlight-selectedDecorationsZIndex": 0
 			selection: true
+			selectionDecorationsZIndex: 0
 	"multi-wrap-guide":
 		columns: [
 			73
@@ -220,6 +224,10 @@
 		softTabs: true
 		tabLength: 4
 ".null-grammar.plain.text":
+	editor:
+		softTabs: true
+		tabLength: 2
+".raml.source":
 	editor:
 		softTabs: true
 		tabLength: 2

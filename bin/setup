@@ -105,7 +105,7 @@ GEM_PACKAGES="                                                                 \
     timers toml treetop trollop tzinfo xcodeproj yajl-ruby"
 
 NODE_MODULES="                                                                 \
-    JSON coffee-script coffeelint cson dockerling js-beautify                  \
+    JSON coffee-script coffeelint cson dockerlint js-beautify                  \
     json-stable-stringify moment tmpin"
 # END GENERATED PACKAGE LISTS
 

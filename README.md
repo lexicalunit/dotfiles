@@ -232,7 +232,7 @@ rspec-logsplit, rubygems-bundler, rvm, safe_yaml, sass, sawyer, shotgun,
 sshkit, terminal-table, test-unit, thread_safe, timers, toml, treetop, trollop, 
 tzinfo, xcodeproj, yajl-ruby
 
-Node Modules: JSON, coffee-script, coffeelint, cson, dockerling, js-beautify, 
+Node Modules: JSON, coffee-script, coffeelint, cson, dockerlint, js-beautify, 
 json-stable-stringify, moment, tmpin
 
 # License

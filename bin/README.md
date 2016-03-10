@@ -472,7 +472,7 @@ rspec-logsplit, rubygems-bundler, rvm, safe_yaml, sass, sawyer, shotgun,
 sshkit, terminal-table, test-unit, thread_safe, timers, toml, treetop, trollop, 
 tzinfo, xcodeproj, yajl-ruby
 
-Node Modules: JSON, coffee-script, coffeelint, cson, dockerling, js-beautify, 
+Node Modules: JSON, coffee-script, coffeelint, cson, dockerlint, js-beautify, 
 json-stable-stringify, moment, tmpin
 ```
 
@@ -604,6 +604,8 @@ Options:
                                      /youtube-dl.conf: Do not read the user configuration in ~/.config/youtube-dl/config
                                      (%APPDATA%/youtube-dl/config.txt on Windows)
     --flat-playlist                  Do not extract the videos of a playlist, only list them.
+    --mark-watched                   Mark videos watched (YouTube only)
+    --no-mark-watched                Do not mark videos watched (YouTube only)
     --no-color                       Do not emit color codes in output
 
   Network Options:

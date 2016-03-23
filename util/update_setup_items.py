@@ -4,6 +4,7 @@
 
 import subprocess
 import sys
+from builtins import bytes
 
 if __name__ == '__main__':
     inside = False
@@ -13,7 +14,10 @@ if __name__ == '__main__':
                 sys.stdout.write(line)
                 inside = True
             elif line.startswith('# END GENERATED PACKAGE LISTS'):
-                sys.stdout.write(subprocess.check_output(['setup', '-i'])[:-1])
+                output = subprocess.check_output(['setup', '-i'])[:-1]
+                if isinstance(output, bytes):
+                    output = output.decode('utf-8')
+                sys.stdout.write(output)
                 sys.stdout.write(line)
                 inside = False
             elif not inside:

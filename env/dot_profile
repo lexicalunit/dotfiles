@@ -131,11 +131,16 @@ enterconda() {
     exitvirtualenv
 
     # assume anaconda is installed in your home directory unless specified
-    local ANACONDA_DIR_NAME="anaconda"
+    local ANACONDA_DIR_NAME="anaconda3"
     if [[ -z "$1" ]]; then
         export ANACONDA_ROOT="$HOME/$ANACONDA_DIR_NAME"
     else
         export ANACONDA_ROOT="$1"
+    fi
+
+    if [[ ! -e "$ANACONDA_ROOT" ]]; then
+        echo "error: can not enter anaconda env at '$ANACONDA_ROOT', directory does not exist."
+        return 1
     fi
 
     [[ -d "$ANACONDA_ROOT/bin" ]] && PATH="$ANACONDA_ROOT/bin:$PATH"
@@ -730,6 +735,11 @@ if type brew >/dev/null 2>&1; then
         . "$ZSRC"
     fi
 fi
+
+################################################################################
+# always assume we want our default anaconda environment
+################################################################################
+enterconda || true
 
 _interactive_log "environment setup complete"
 

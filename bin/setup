@@ -11,15 +11,15 @@ HOMEBREW_FORMULAS="                                                            \
     docker docker-compose docker-machine doxygen faac ffmpeg fontconfig        \
     freetype gd gdbm geoip gettext ghostscript gifify gifsicle git git-review  \
     glib gmp gmp4 gnu-sed gnu-tar gnupg go gradle htop-osx id3lib id3v2        \
-    imagemagick isl jasper jbig2dec jhead jpeg jq lame libevent libffi         \
+    imagemagick isl jasper jbig2dec jhead jo jpeg jq lame libevent libffi      \
     libgpg-error libgphoto2 libicns libksba libmpc libpng libssh2 libtiff      \
     libtool libusb libusb-compat libvo-aacenc libyaml little-cms2 lzlib        \
-    makedepend maven md5sha1sum memcached mercurial mongodb mpfr ncftp nginx   \
-    node onepass oniguruma openssl ossp-uuid pandoc pcre pidof pkg-config      \
-    plotutils pngquant postgresql rabbitmq readline redis ruby rust s3cmd      \
-    sane-backends scons sdl2 sdl2_image shellcheck sloccount spark sqlite      \
-    sqliteodbc storm swig tree unixodbc unrar vramsteg watch webp wget x264    \
-    xvid xz yaml-cpp youtube-dl z zeromq zookeeper zsh"
+    makedepend maven md5sha1sum memcached mercurial mongodb mpfr mysql ncftp   \
+    nginx node onepass oniguruma openssl ossp-uuid pandoc pcre pidof           \
+    pkg-config plotutils pngquant postgresql rabbitmq readline redis ruby rust \
+    s3cmd sane-backends scons sdl2 sdl2_image shellcheck sloccount spark       \
+    sqlite sqliteodbc storm swig tree unixodbc unrar vramsteg watch webp wget  \
+    x264 xvid xz yaml-cpp youtube-dl z zeromq zookeeper zsh"
 
 HOMEBREW_CASKS="                                                               \
     1password adium amazon-music atom audacity balsamiq-mockups battle-net     \
@@ -28,7 +28,8 @@ HOMEBREW_CASKS="                                                               \
     google-hangouts hipchat iexplorer istumbler iterm2 java kaleidoscope       \
     lingon-x lisanet-gimp mactex mysqlworkbench oclint robomongo silverlight   \
     skype slack snes9x soundflower sourcetree spectacle spotify steam          \
-    sublime-text teamviewer texstudio transmission vlc xquartz"
+    sublime-text teamviewer texstudio transmission vagrant virtualbox vlc      \
+    xquartz"
 
 ATOM_PACKAGES="                                                                \
     MagicPython api-workbench atom-pair autocomplete-python                    \
@@ -47,37 +48,28 @@ ATOM_PACKAGES="                                                                \
     tab-control tabs-to-spaces todo-show toggle-quotes trailing-spaces"
 
 PIP_PACKAGES="                                                                 \
-    anyjson backports.ssl-match-hostname beautifulsoup4 bson cssutils fabric   \
-    flake8 google-api-python-client httpie httplib2 inflection iniparse        \
-    inlinestyler isort jedi oauth2client oauthlib oboe patch pep8              \
-    pyasn1-modules pydruid pyflakes pymongo python-cson python-dateutil        \
-    python-json-logger python-twitter pytz requests requests-oauthlib rsa      \
-    simplejson suds tables termcolor tinycss uritemplate wsgiref yapf"
+    httpie inflection isort patch python-json-logger termcolor yapf"
 
 CONDA_PACKAGES="                                                               \
-    abstract-rendering alabaster anaconda appnope appscript apptools           \
-    argcomplete astropy atom babel backports_abc bcolz beautiful-soup binstar  \
-    biopython bitarray blaze blaze-core blz bokeh boto bottleneck casuarius    \
-    cdecimal certifi cffi chaco clyent colorama conda conda-build conda-env    \
-    configobj cryptography cubes cudatoolkit curl cython cytoolz datashape     \
-    dateutil decorator docutils dynd-python ecdsa enable enaml enum34 envisage \
-    fastcache flask freetype funcsigs future futures gevent gevent-websocket   \
-    greenlet grin h5py hdf5 idna into ipaddress ipykernel ipython              \
-    ipython-notebook ipython-qtconsole ipython_genutils itsdangerous jbig      \
-    jdcal jinja2 jpeg jsonschema jupyter_client jupyter_core keyring           \
-    kiwisolver krb5 launcher lcms libdynd libnetcdf libpng libsodium libtiff   \
-    libxml2 libxslt llvm llvmlite llvmpy lxml markupsafe matplotlib mayavi     \
-    mccabe mdp mercurial mistune mock modules multipledispatch natsort         \
-    nbconvert nbformat netcdf4 networkx nltk node-webkit nose numba numexpr    \
-    numpy odo openpyxl openssl pandas paramiko path.py patsy pbr pexpect       \
-    pickleshare pies pies2overrides pil pillow pip ply psutil ptyprocess       \
-    pyasn1 pyaudio pycosat pycparser pycrypto pycurl pyface pygments pyopenssl \
-    pyparsing pyqt pysal pysam pyside pytables pytest python.app pyyaml pyzmq  \
-    qt readline redis redis-py rope runipy scikit-image scikit-learn scipy     \
-    setuptools shiboken simplegeneric singledispatch sip six snowballstemmer   \
-    sockjs-tornado sphinx sphinx-rtd-theme sphinx_rtd_theme spyder spyder-app  \
-    sqlalchemy sqlite ssl_match_hostname statsmodels sympy terminado tk toolz  \
-    tornado traitlets traits traitsui ujson unicodecsv vtk werkzeug wheel xlrd \
+    abstract-rendering alabaster anaconda anaconda-client appnope appscript    \
+    argcomplete astropy babel beautifulsoup4 bitarray blaze-core bokeh boto    \
+    bottleneck cffi clyent colorama conda conda-build conda-env configobj      \
+    cryptography curl cycler cython cytoolz datashape decorator docutils       \
+    dynd-python et_xmlfile fastcache flake8 flask freetype futures greenlet    \
+    h5py hdf5 idna ipykernel ipython ipython-notebook ipython-qtconsole        \
+    ipython_genutils ipywidgets itsdangerous jbig jdcal jedi jinja2 jpeg       \
+    jsonschema jupyter jupyter_client jupyter_console jupyter_core launcher    \
+    libdynd libpng libtiff libxml2 libxslt llvmlite lxml markupsafe matplotlib \
+    mccabe mistune mkl mkl-service multipledispatch nbconvert nbformat         \
+    networkx nltk node-webkit nose notebook numba numexpr numpy odo openpyxl   \
+    openssl pandas path.py patsy pep8 pexpect pickleshare pillow pip ply       \
+    psutil ptyprocess py pyasn1 pycosat pycparser pycrypto pycurl pyflakes     \
+    pygments pymongo pyopenssl pyparsing pyqt pytables pytest python           \
+    python-dateutil python.app pytz pyyaml pyzmq qt qtconsole readline redis   \
+    redis-py requests rope scikit-image scikit-learn scipy setuptools          \
+    simplegeneric sip six snowballstemmer sockjs-tornado sphinx                \
+    sphinx_rtd_theme spyder spyder-app sqlalchemy sqlite statsmodels sympy     \
+    terminado tk toolz tornado traitlets unicodecsv werkzeug wheel xlrd        \
     xlsxwriter xlwings xlwt xz yaml zeromq zlib"
 
 GEM_PACKAGES="                                                                 \
@@ -191,7 +183,7 @@ usage()
     exit 1
 }
 
-# shellcheck source=~/.shell_control
+# shellcheck source=../.shell_control
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 ################################################################################
@@ -709,7 +701,7 @@ step_brew()
         if ! echo "$HOMEBREW_FORMULAS" | egrep -q "\\b$name\\b"; then
             case "$I" in
                 "brew-cask");; "lib");; # ignored warnings
-                *) show -i "$I installed but not managed by setup"
+                *) show -i "$I installed but not managed by setup via brew"
             esac
         fi
     done
@@ -751,7 +743,7 @@ step_cask()
     for I in $(brew cask list); do
         name="${I%@*}"
         if ! echo "$HOMEBREW_CASKS" | egrep -q "$(echo "\\b$name\\b" | sed 's/ (!)//g')"; then
-            show -i "$I installed but not managed by setup"
+            show -i "$I installed but not managed by setup via brew cask"
         fi
     done
 }
@@ -792,7 +784,7 @@ step_atom()
     for I in $(apm list -bi); do
         name="${I%@*}"
         if ! echo "$ATOM_PACKAGES" | egrep -qi "\\b${name}\\b"; then
-            show -i "$I installed but not managed by setup"
+            show -i "$I installed but not managed by setup via apm"
         fi
     done
 }
@@ -856,21 +848,30 @@ step_bash()
 ################################################################################
 step_python()
 {
-    local ANACONDA_DIR_NAME="anaconda"
+    # Easy install grin because it's incompatible with Python 3 and we can't rely on OS X having pip installed.
+    if ! type grin 2>/dev/null; then
+        run "sudo /usr/bin/easy_install grin"
+    else
+        run "sudo /usr/bin/easy_install --upgrade grin"
+    fi
+
+    local ANACONDA_DIR_NAME="anaconda3"
 
     # enter existing anaconda environment if it's detected
     [[ -d "$HOME/$ANACONDA_DIR_NAME/bin" ]] && export PATH="$HOME/$ANACONDA_DIR_NAME/bin:$PATH"
 
     if run "type conda >/dev/null 2>&1"; then
-        # Remove anaconda so that `conda update --all` doesn't stupidly downgrade things.
-        # See https://github.com/conda/conda/issues/463 for more details.
-        run "conda remove --yes anaconda"
-
-        # Update anaconda to the latest; commented out because we remove anaconda, above.
-        # run "conda update --yes --prefix '$HOME/$ANACONDA_DIR_NAME' anaconda"
-
-        # Sadly, `conda update --all` takes forever and is somewhat unreliable.
-        run "conda update --yes --prefix '$HOME/$ANACONDA_DIR_NAME' --all"
+        MANAGE_WITH_ANACONDA=1
+        if [[ "$MANAGE_WITH_ANACONDA" == 1 ]]; then
+            # Allow anaconda to manage all the packages we've installed so that we're reasonable sure
+            # that the installed versions will play nicely with each other.
+            run "conda update --yes --prefix '$HOME/$ANACONDA_DIR_NAME' anaconda"
+        else
+            # Remove anaconda so that `conda update --all` doesn't stupidly downgrade things.
+            # See https://github.com/conda/conda/issues/463 for more details.
+            run "conda remove --yes anaconda"
+            run "conda update --yes --prefix '$HOME/$ANACONDA_DIR_NAME' --all"
+        fi
     else
         curl_output="$(mktemp -d -t tmp.XXXXXXXXXX)"
         trap 'rm -rf $curl_output' EXIT
@@ -878,7 +879,7 @@ step_python()
         local latest
         latest="$(curl -s http://repo.continuum.io/archive/.files.json \
                   | jq 'to_entries | sort_by(.value.mtime) | reverse | .[].key' \
-                  | grep Anaconda- \
+                  | grep Anaconda3- \
                   | grep -m 1 MacOSX-x86_64.sh | tr -d '"')" || abort "could not find latest Anaconda installer"
         latest="http://repo.continuum.io/archive/$latest"
         show "downloading $latest ..."
@@ -897,12 +898,13 @@ step_python()
     run "pip install --upgrade pip"
     IFS=' '
     for I in $PIP_PACKAGES; do
-        run "pip install -qU $I"
+        # NOTE: `--ignore-installed` is used here to workaround this issue: https://github.com/pypa/pip/issues/2751
+        run "pip install --ignore-installed -qU $I"
     done
 
     # Install conda packages that don't come pre-installed with Anaconda
     local CONDA_LIST
-    CONDA_LIST="$(conda list | cut -f1 -d' ')"
+    CONDA_LIST="$(conda list -e | cut -f1 -d= | grep -v '^#')"
     IFS=' '
     for I in $CONDA_PACKAGES; do
         if ! echo "$CONDA_LIST" | grep -q "$I"; then
@@ -922,7 +924,7 @@ step_python()
             continue
         fi
         if ! echo "$PIP_PACKAGES" | egrep -q "\\b$name\\b" && ! echo "$CONDA_PACKAGES" | egrep -q "\\b$name\\b"; then
-            show -i "$I installed but not managed by setup"
+            show -i "$I installed but not managed by setup via pip or anaconda"
         fi
     done
 }
@@ -958,7 +960,7 @@ step_gem()
             continue
         fi
         if ! echo "$GEM_PACKAGES rubygems-update" | egrep -q "$(echo "\\b$name\\b" | cut -d' ' -f1)"; then
-            show -i "$I installed but not managed by setup"
+            show -i "$I installed but not managed by setup via gem"
         fi
     done
 }
@@ -994,7 +996,7 @@ step_node()
             continue
         fi
         if ! echo "$NODE_MODULES" | egrep -q "\b$name\b"; then
-            show -i "$I installed but not managed by setup"
+            show -i "$I installed but not managed by setup via npm"
         fi
     done
 }

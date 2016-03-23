@@ -2,7 +2,7 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1457541148258
+		lastUpdateTimestamp: 1458772610085
 	"bracket-matcher":
 		autocompleteSmartQuotes: false
 	core:
@@ -191,6 +191,7 @@
 	tabs: {}
 	"tree-view":
 		hideIgnoredNames: true
+		hideVcsIgnoredFiles: true
 	welcome:
 		showOnStartup: false
 ".basic.html.text":

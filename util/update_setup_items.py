@@ -4,7 +4,12 @@
 
 import subprocess
 import sys
-from builtins import bytes
+
+try:
+    # python 3 support:
+    from builtins import bytes
+except:
+    pass
 
 if __name__ == '__main__':
     inside = False

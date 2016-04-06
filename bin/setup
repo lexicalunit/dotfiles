@@ -8,7 +8,7 @@
 # BEGIN GENERATED PACKAGE LISTS
 HOMEBREW_FORMULAS="                                                            \
     autoconf automake bash bison boost cloog cmake coreutils cppunit dmd       \
-    docker docker-compose docker-machine doxygen faac ffmpeg fontconfig        \
+    docker docker-compose docker-machine doxygen erlang faac ffmpeg fontconfig \
     freetype gd gdbm geoip gettext ghostscript gifify gifsicle git git-review  \
     glib gmp gmp4 gnu-sed gnu-tar gnupg go gradle htop-osx id3lib id3v2        \
     imagemagick isl jasper jbig2dec jhead jo jpeg jq lame libevent libffi      \
@@ -19,7 +19,7 @@ HOMEBREW_FORMULAS="                                                            \
     pkg-config plotutils pngquant postgresql rabbitmq readline redis ruby rust \
     s3cmd sane-backends scons sdl2 sdl2_image shellcheck sloccount spark       \
     sqlite sqliteodbc storm swig tree unixodbc unrar vramsteg watch webp wget  \
-    x264 xvid xz yaml-cpp youtube-dl z zeromq zookeeper zsh"
+    wxmac x264 xvid xz yaml-cpp youtube-dl z zeromq zookeeper zsh"
 
 HOMEBREW_CASKS="                                                               \
     1password adium amazon-music atom audacity balsamiq-mockups battle-net     \
@@ -109,8 +109,7 @@ ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS ATOM_PACKAGES PIP_PACKAGES
 ################################################################################
 # Utilities
 ################################################################################
-cleanup_item_list()
-{
+cleanup_item_list() {
     # A useful function for cleaning up the above item lists.
     # This is an implementation detail, and is used by update scripts.
     # Usage: setup -i (aka --items)
@@ -142,8 +141,7 @@ cleanup_item_list()
     echo
 }
 
-show_items()
-{
+show_items() {
     # Pretty prints an item list suitable for usage help.
     local list_name="$1"
     local list_title
@@ -158,8 +156,7 @@ show_items()
     echo
 }
 
-usage()
-{
+usage() {
     (
         echo "usage: ${0##*/} [-l|-d|-f|-h|--help] [all|step-name(s)]"
         echo "Automatically installs and configures a complete OS X developer environment."
@@ -191,8 +188,7 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 ################################################################################
 # Step osx
 ################################################################################
-step_osx()
-{
+step_osx() {
     # Much of this step has been crafted from https://mths.be/osx
 
     ########################################
@@ -597,8 +593,7 @@ step_osx()
 ################################################################################
 # Step xcode
 ################################################################################
-step_xcode()
-{
+step_xcode() {
     if ! type xcode-select >/dev/null; then
         run "xcode-select --install"
     else
@@ -615,8 +610,7 @@ step_xcode()
 ################################################################################
 # Step java
 ################################################################################
-step_java()
-{
+step_java() {
     show "Checking if java's installed..."
     run "java -version"
 }
@@ -624,25 +618,49 @@ step_java()
 ################################################################################
 # Step brew
 ################################################################################
-ensure_homebrew_tap()
-{
-    if ! brew tap | grep -q "$1"; then
-        run "brew tap '$1'"
+ensure_no_anaconda() {
+    # Anaconda is known to frequently break Homebrew builds, including Vim and
+    # MacVim, due to bundling many duplicates of system and Homebrew-available
+    # tools. Make sure to exit it before doing anything with Homebrew.
+
+    if [[ -n "$CONDA_DEFAULT_ENV" ]]; then
+        if which deactivate >/dev/null 2>&1; then
+            run "source deactivate"
+        fi
     fi
+
+    if [[ -n "$ANACONDA_ROOT" ]]; then
+        PATH="$(echo "$PATH" | sed "s@$ANACONDA_ROOT/bin@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
+        MANPATH="$(echo "$PATH" | sed "s@$ANACONDA_ROOT/share/man@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
+        export PATH
+        export MANPATH
+    fi
+    unset PYTHON_ENV
 }
 
-ensure_homebrew_updated()
-{
+ensure_homebrew_updated() {
     if [[ -z "$(which brew)" ]]; then
         abort "Please run step brew first"
     fi
+
+    ensure_no_anaconda
+
+    # unlink keg-only formulas which should not be not symlinked into /usr/local
+    KEG_ONLY="bison gettext libffi openssl readline sqlite"
+    run "brew unlink $KEG_ONLY"
 
     run "brew update"
     run "brew upgrade --all"
 }
 
-install_brew_formula()
-{
+ensure_homebrew_updated_cleanup() {
+    # Force link this keg-only formula to override outdated system sqlite.
+    # Must be called sometime after ensure_homebrew_updated() has been called,
+    # and after any other brew commands such as install have also been called.
+    run "brew link --force sqlite"
+}
+
+install_brew_formula() {
     local INSTALLED="$2"
     if ! echo "$INSTALLED" | grep -q "$1"; then
         run "brew install '$1'"
@@ -655,8 +673,9 @@ install_brew_formula()
     # run "brew unlink $1 && brew link --force --overwrite $1"
 }
 
-step_brew()
-{
+step_brew() {
+    ensure_no_anaconda
+
     if [[ -z "$(which brew)" ]]; then
         show "installing homebrew..."
         run "ruby -e \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
@@ -681,6 +700,8 @@ step_brew()
         install_brew_formula "$I" "$INSTALLED"
     done
 
+    ensure_homebrew_updated_cleanup
+
     # cmake's bundling utility fails in completely reasonable cases, the following steps are necessary
     run "chmod +w /usr/local/Cellar/freetds/*/lib/*.dylib 2>/dev/null"
     run "chmod +w /usr/local/Cellar/pcre/*/lib/*.dylib 2>/dev/null"
@@ -691,11 +712,6 @@ step_brew()
 
     # install the git remote-hg helper
     run "ln -sf $(brew ls -v git | grep git-remote-hg) /usr/local/bin"
-
-    # unlink keg-only formulas which should not be not symlinked into /usr/local
-    KEG_ONLY="bison gettext libffi openssl readline sqlite"
-    run "brew unlink $KEG_ONLY"
-    run "brew link --force sqlite" # I actually want this linked, so force it.
 
     IFS=$'\n'
     for I in $(brew ls); do
@@ -712,8 +728,7 @@ step_brew()
 ################################################################################
 # Step cask
 ################################################################################
-install_brew_cask()
-{
+install_brew_cask() {
     local INSTALLED="$2"
     if ! echo "$INSTALLED" | egrep -q "$(echo "\\b$1\\b" | sed 's/ (!)//g')"; then
         run "brew cask install '$1'"
@@ -722,8 +737,7 @@ install_brew_cask()
     fi
 }
 
-step_cask()
-{
+step_cask() {
     echo
     show -i "================================================================================"
     show -i "= Installing Casks is ESPECIALLY interactive, you WILL need to babysit this!   ="
@@ -740,6 +754,8 @@ step_cask()
         install_brew_cask "$I" "$INSTALLED"
     done
 
+    ensure_homebrew_updated_cleanup
+
     IFS=$'\n'
     for I in $(brew cask list); do
         name="${I%@*}"
@@ -752,8 +768,7 @@ step_cask()
 ################################################################################
 # Step atom
 ################################################################################
-install_atom_pkg()
-{
+install_atom_pkg() {
     local PKG="$1"
     local INSTALLED="$2"
     if ! echo "$INSTALLED" | egrep -qi "\\b${PKG}\\b"; then
@@ -763,14 +778,16 @@ install_atom_pkg()
     fi
 }
 
-step_atom()
-{
+step_atom() {
     if ! type atom >/dev/null 2>&1; then
         ensure_homebrew_updated
+
         if ! brew ls | grep -q brew-cask; then
             abort "please run step cask first"
         fi
         install_brew_cask atom || abort "can't install atom via brew-cask"
+
+        ensure_homebrew_updated_cleanup
     fi
 
     local INSTALLED
@@ -793,8 +810,7 @@ step_atom()
 ################################################################################
 # Step zsh
 ################################################################################
-ensure_add_shell()
-{
+ensure_add_shell() {
     local BINARY="$1"
     local INSTALLED
     INSTALLED="$(grep "$BINARY" /etc/shells)"
@@ -803,15 +819,17 @@ ensure_add_shell()
     fi
 }
 
-ensure_shell()
-{
+ensure_shell() {
     NAME="$1"
     shift
 
     ensure_homebrew_updated
+
     for FORMULA in "$@"; do
         install_brew_formula "$FORMULA"
     done
+
+    ensure_homebrew_updated_cleanup
 
     SHELL_BINARY="$(brew ls "$NAME" | grep "^.*/bin/.*$NAME\$")"
     ensure_add_shell "$SHELL_BINARY"
@@ -821,8 +839,7 @@ ensure_shell()
     run "sudo chsh -s '$BREW_SHELL_BINARY' '$(whoami)'"
 }
 
-step_zsh()
-{
+step_zsh() {
     # Not installing brew formula zsh-completions here because it is way out of date.
     ensure_shell zsh zsh
     if [[ -d "$HOME/.zsh-completions" ]]; then
@@ -836,8 +853,7 @@ step_zsh()
 ################################################################################
 # Step bash
 ################################################################################
-step_bash()
-{
+step_bash() {
     # Not installing formula bash-completion here, because that is installed
     # by env/install. This is to get the most up to date development version
     # with git (if able), or to install from a tarball if git is not available.
@@ -847,14 +863,12 @@ step_bash()
 ################################################################################
 # Step python
 ################################################################################
-step_python()
-{
+step_python() {
     # Easy install grin because it's incompatible with Python 3 and we can't rely on OS X having pip installed.
-    if ! type grin 2>/dev/null; then
-        run "sudo /usr/bin/easy_install grin"
-    else
-        run "sudo /usr/bin/easy_install --upgrade grin"
-    fi
+    run "sudo /usr/bin/easy_install --upgrade grin"
+
+    # PyYAML is required for yaml2json CLI tool, so it needs to work outside of anaconda environment.
+    run "sudo /usr/bin/easy_install --upgrade PyYAML"
 
     local ANACONDA_DIR_NAME="anaconda3"
 
@@ -936,8 +950,7 @@ step_python()
 ################################################################################
 # Step gem
 ################################################################################
-step_gem()
-{
+step_gem() {
     run "yes | sudo gem install rubygems-update"
     run "yes | sudo update_rubygems"
     run "yes | sudo gem update -q --system"
@@ -972,10 +985,10 @@ step_gem()
 ################################################################################
 # Step node
 ################################################################################
-step_node()
-{
+step_node() {
     ensure_homebrew_updated
     install_brew_formula node
+    ensure_homebrew_updated_cleanup
 
     # Homebrew Caveat
     # If you update npm itself, do NOT use the npm update command.

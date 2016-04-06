@@ -864,13 +864,15 @@ step_python()
     if run "type conda >/dev/null 2>&1"; then
         MANAGE_WITH_ANACONDA=1
         if [[ "$MANAGE_WITH_ANACONDA" == 1 ]]; then
-            # Allow anaconda to manage all the packages we've installed so that we're reasonable sure
+            # Allow anaconda to manage all the packages we've installed so that we're reasonably sure
             # that the installed versions will play nicely with each other.
             run "conda update --yes --prefix '$HOME/$ANACONDA_DIR_NAME' anaconda"
         else
             # Remove anaconda so that `conda update --all` doesn't stupidly downgrade things.
             # See https://github.com/conda/conda/issues/463 for more details.
             run "conda remove --yes anaconda"
+            # Ensures that we get the latest versions possible of installed packages.
+            # Though we risk those versions maybe not playing well with each other.
             run "conda update --yes --prefix '$HOME/$ANACONDA_DIR_NAME' --all"
         fi
     else
@@ -892,8 +894,9 @@ step_python()
         run "rm -rf '$curl_output'"
     fi
 
-    # Remove terrible Anaconda launcher app from desktop (That's not where .app directories go anyway!)
+    # Remove terrible Anaconda launcher apps from desktop (That's not where .app directories go anyway!)
     [[ -d "$HOME/Desktop/Launcher.app" ]] && run "rm -rf '$HOME/Desktop/Launcher.app'"
+    [[ -d "$HOME/Desktop/Navigator.app" ]] && run "rm -rf '$HOME/Desktop/Navigator.app'"
 
     # Install python packages that don't come with Anaconda... yet!
     run "pip install --upgrade pip"

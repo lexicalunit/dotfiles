@@ -14,22 +14,23 @@ export PATH=""
 if [[ -e /usr/libexec/path_helper ]]; then
     eval "$(/usr/libexec/path_helper -s)"
 else
-    [[ -d /usr/bin ]] && PATH="$PATH:/usr/bin"
-    [[ -d /bin ]] && PATH="$PATH:/bin"
-    [[ -d /usr/sbin ]] && PATH="$PATH:/usr/sbin"
-    [[ -d /sbin ]] && PATH="$PATH:/sbin"
-    [[ -d /usr/local/bin ]] && PATH="$PATH:/usr/local/bin"
-    [[ -d /opt/X11/bin ]] && PATH="$PATH:/opt/X11/bin"
+    test -d /usr/bin && PATH="$PATH:$_"
+    test -d /usr/bin && PATH="$PATH:$_"
+    test -d /bin && PATH="$PATH:$_"
+    test -d /usr/sbin && PATH="$PATH:$_"
+    test -d /sbin && PATH="$PATH:$_"
+    test -d /usr/local/bin && PATH="$PATH:$_"
+    test -d /opt/X11/bin && PATH="$PATH:$_"
 fi
 
 # Then add specific paths that I use.
-[[ -d /usr/local/opt/ruby/bin ]] && PATH="$PATH:/usr/local/opt/ruby/bin"
-[[ -d /opt/local/bin ]] && PATH="$PATH:/opt/local/bin"
-[[ -d /opt/local/sbin ]] && PATH="$PATH:/opt/local/sbin"
+test -d /usr/local/opt/ruby/bin && PATH="$PATH:$_"
+test -d /opt/local/bin && PATH="$PATH:$_"
+test -d /opt/local/sbin && PATH="$PATH:$_"
 
 # Export currently built PATH so the rest of this script has access to them.
-if [[ -e /usr/libexec/path_helper ]]; then
-    eval "$(/usr/libexec/path_helper -s)"
+if test -e /usr/libexec/path_helper; then
+    eval "$($_ -s)"
 else
     export PATH
     export MANPATH
@@ -38,13 +39,13 @@ fi
 # Make sure Homebrew utilities override system utilities.
 if type brew >/dev/null 2>&1; then
     BREW_PREFIX="$(brew --prefix)"
-    [[ -d "$BREW_PREFIX/bin" ]] && PATH="$BREW_PREFIX/bin:$PATH"
-    [[ -d "$BREW_PREFIX/sbin" ]] && PATH="$BREW_PREFIX/sbin:$PATH"
-    [[ -d "$BREW_PREFIX/lib/python2.7/site-packages" ]] && PYTHONPATH="$PYTHONPATH:$BREW_PREFIX/lib/python2.7/site-packages"
+    test -d "$BREW_PREFIX/bin" && PATH="$_:$PATH"
+    test -d "$BREW_PREFIX/sbin" && PATH="$_:$PATH"
+    test -d "$BREW_PREFIX/lib/python2.7/site-packages" && PYTHONPATH="$PYTHONPATH:$_"
     BREW_COREUTILS_PREFIX="$(brew --prefix coreutils 2>/dev/null)"
     if [[ $? == 0 ]]; then
-        [[ -d "$BREW_COREUTILS_PREFIX/libexec/gnubin" ]] && PATH="$BREW_COREUTILS_PREFIX/libexec/gnubin:$PATH"
-        [[ -d "$BREW_COREUTILS_PREFIX/libexec/gnuman" ]] && MANPATH="$BREW_COREUTILS_PREFIX/libexec/gnuman:$MANPATH"
+        test -d "$BREW_COREUTILS_PREFIX/libexec/gnubin" && PATH="$_:$PATH"
+        test -d "$BREW_COREUTILS_PREFIX/libexec/gnuman" && MANPATH="$_:$MANPATH"
     fi
     export PATH
     export MANPATH
@@ -52,13 +53,13 @@ if type brew >/dev/null 2>&1; then
 fi
 
 # Add specific application paths, such as Python, rvm, etc...
-[[ -d "$HOME/.rvm/bin" ]] && PATH="$PATH:$HOME/.rvm/bin"
-[[ -d /usr/local/lib/svn-python ]] && PYTHONPATH="/usr/local/lib/svn-python:$PYTHONPATH"
-[[ -d /opt/local/lib/pkgconfig ]] && PKG_CONFIG_PATH="/opt/local/lib/pkgconfig:$PKG_CONFIG_PATH"
-[[ -d /usr/local/lib/pkgconfig ]] && PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
+test -d "$HOME/.rvm/bin" && PATH="$PATH:$_"
+test -d /usr/local/lib/svn-python && PYTHONPATH="$_:$PYTHONPATH"
+test -d /opt/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
+test -d /usr/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
 
 # Make sure user utilites take precedence
-[[ -d "$HOME/bin" ]] && PATH="$HOME/bin:$PATH"
+test -d "$HOME/bin" && PATH="$_:$PATH"
 
 export PATH
 export PYTHONPATH
@@ -102,8 +103,9 @@ fi
 ################################################################################
 # python environment control
 ################################################################################
-[[ -f "$HOME/.pythonrc.py" ]] && export PYTHONSTARTUP="$HOME/.pythonrc.py"
+test -f "$HOME/.pythonrc.py" && PYTHONSTARTUP="$_"
 
+export PYTHONSTARTUP
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export PYTHON_ENV=""
 
@@ -143,8 +145,8 @@ enterconda() {
         return 1
     fi
 
-    [[ -d "$ANACONDA_ROOT/bin" ]] && PATH="$ANACONDA_ROOT/bin:$PATH"
-    [[ -d "$ANACONDA_ROOT/share/man" ]] && MANPATH="$ANACONDA_ROOT/share/man:$MANPATH"
+    test -d "$ANACONDA_ROOT/bin" && PATH="$_:$PATH"
+    test -d "$ANACONDA_ROOT/share/man" && MANPATH="$_:$MANPATH"
     export PATH
     export MANPATH
     export PYTHON_ENV="conda"
@@ -292,8 +294,8 @@ if echo "$SHELL" | grep -q bash; then
     fi
     complete -cf sudo
 elif echo "$SHELL" | grep -q zsh; then
-    if [[ -d /usr/local/share/zsh-completions ]]; then
-        fpath=(/usr/local/share/zsh-completions $fpath)
+    if test -d /usr/local/share/zsh-completions; then
+        fpath=($_ $fpath)
     fi
 
     autoload -Uz compinit && compinit -i
@@ -721,7 +723,7 @@ for I in $(/bin/ls -1 ~/.profile_* 2>/dev/null) ; do
     source "$I"
 done
 
-# shellcheck source=~/.shell_control
+# shellcheck source=.shell_control
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 ################################################################################

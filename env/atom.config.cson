@@ -2,7 +2,7 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1459984049210
+		lastUpdateTimestamp: 1461006282895
 	"bracket-matcher":
 		autocompleteSmartQuotes: false
 	core:

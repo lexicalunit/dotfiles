@@ -161,9 +161,9 @@ vagrant, virtualbox, vlc, xquartz
 
 Atom Packages: MagicPython, activate-power-mode, api-workbench, atom-pair, 
 autocomplete-python, autoupdate-packages, column-select, cursor-indicator, 
-event-watch, file-icons, git-time-machine, gruvbox, highlight-selected, 
-isotope-light-ui, isotope-ui, language-applescript, language-cmake, 
-language-diff, language-docker, language-json, language-latex, 
+event-watch, file-icons, git-time-machine, go-plus, gruvbox, 
+highlight-selected, isotope-light-ui, isotope-ui, language-applescript, 
+language-cmake, language-diff, language-docker, language-json, language-latex, 
 language-restructuredtext, language-rust, linter, linter-clang, 
 linter-coffeelint, linter-csslint, linter-docker, linter-erb, linter-flake8, 
 linter-jsonlint, linter-just-say-no, linter-raml, linter-shellcheck, 

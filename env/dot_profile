@@ -57,13 +57,18 @@ test -d "$HOME/.rvm/bin" && PATH="$PATH:$_"
 test -d /usr/local/lib/svn-python && PYTHONPATH="$_:$PYTHONPATH"
 test -d /opt/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
 test -d /usr/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
+if [[ ! -d /usr/local/lib/gopath ]]; then
+    mkdir -p /usr/local/lib/gopath
+fi
+test -d /usr/local/lib/gopath && GOPATH="$_"
 
-# Make sure user utilites take precedence
+# Make sure user utilities take precedence
 test -d "$HOME/bin" && PATH="$_:$PATH"
 
 export PATH
 export PYTHONPATH
 export PKG_CONFIG_PATH
+export GOPATH
 
 ################################################################################
 # inspect system

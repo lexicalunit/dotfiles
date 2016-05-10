@@ -2,7 +2,7 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1461006282895
+		lastUpdateTimestamp: 1462896093229
 	"bracket-matcher":
 		autocompleteSmartQuotes: false
 	core:
@@ -45,7 +45,7 @@
 		invisibles:
 			cr: "↩"
 			eol: " "
-			tab: "⇥"
+			tab: "¬"
 		preferredLineLength: 120
 		scrollPastEnd: true
 		showIndentGuide: true
@@ -213,6 +213,10 @@
 	editor:
 		softTabs: true
 		tabLength: 2
+".dockerfile.source":
+	editor:
+		softTabs: true
+		tabLength: 4
 ".gfm.source":
 	editor:
 		softTabs: true

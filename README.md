@@ -160,20 +160,22 @@ spectacle, spotify, steam, sublime-text, teamviewer, texstudio, transmission,
 vagrant, virtualbox, vlc, xquartz
 
 Atom Packages: MagicPython, activate-power-mode, api-workbench, atom-pair, 
-autocomplete-python, autoupdate-packages, column-select, cursor-indicator, 
-event-watch, file-icons, git-time-machine, go-plus, gruvbox, 
+autocomplete-go, autocomplete-python, autoupdate-packages, builder-go, 
+column-select, cursor-indicator, event-watch, file-icons, git-time-machine, 
+go-config, go-get, go-plus, gofmt, gometalinter-linter, gorename, gruvbox, 
 highlight-selected, isotope-light-ui, isotope-ui, language-applescript, 
-language-cmake, language-diff, language-docker, language-json, language-latex, 
-language-restructuredtext, language-rust, linter, linter-clang, 
+language-cmake, language-diff, language-docker, language-groovy, language-json, 
+language-latex, language-restructuredtext, language-rust, linter, linter-clang, 
 linter-coffeelint, linter-csslint, linter-docker, linter-erb, linter-flake8, 
 linter-jsonlint, linter-just-say-no, linter-raml, linter-shellcheck, 
 linter-tidy, linter-write-good, merge-conflicts, minimap, minimap-codeglance, 
 minimap-find-and-replace, minimap-git-diff, minimap-highlight-selected, 
-minimap-selection, monokai, multi-wrap-guide, native-ui, next-occurrence, 
-nvatom, pretty-json, python-isort, python-yapf, rainbow-selection, raml, 
-red-wavy-underline, rst-preview-pandoc, script, set-syntax, 
-soft-wrap-indicator, sort-lines, swackets, symbols-tree-view, tab-control, 
-tabs-to-spaces, todo-show, toggle-quotes, trailing-spaces
+minimap-selection, monokai, multi-wrap-guide, native-ui, navigator-godef, 
+next-occurrence, nvatom, pretty-json, python-isort, python-yapf, 
+rainbow-selection, raml, red-wavy-underline, rst-preview-pandoc, script, 
+set-syntax, soft-wrap-indicator, sort-lines, swackets, symbols-tree-view, 
+tab-control, tabs-to-spaces, tester-go, todo-show, toggle-quotes, 
+trailing-spaces
 
 Pip Packages: httpie, inflection, isort, patch, python-json-logger, termcolor, 
 yapf

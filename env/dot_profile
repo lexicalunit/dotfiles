@@ -746,7 +746,18 @@ fi
 ################################################################################
 # always assume we want our default anaconda environment
 ################################################################################
+_interactive_log "setting up conda environment"
 enterconda || true
+
+################################################################################
+# setup rvm -- must go last otherwise rvm complains about PATH
+################################################################################
+_interactive_log "setting up rvm"
+# shellcheck source=.rvm/scripts/rvm
+test -s "$HOME/.rvm/scripts/rvm" && source "$_"
+if type rvm >/dev/null 2>&1; then
+    rvm use "$(rvm list default string)" >/dev/null
+fi
 
 _interactive_log "environment setup complete"
 

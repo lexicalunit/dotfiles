@@ -16,7 +16,7 @@ HOMEBREW_FORMULAS="                                                            \
     libtool libusb libusb-compat libvo-aacenc libyaml little-cms2 lzlib        \
     makedepend maven md5sha1sum memcached mercurial mongodb mpfr mysql ncftp   \
     nginx node onepass oniguruma openssl ossp-uuid pandoc pcre pidof           \
-    pkg-config plotutils pngquant postgresql rabbitmq readline redis ruby rust \
+    pkg-config plotutils pngquant postgresql rabbitmq readline redis rust      \
     s3cmd sane-backends scons sdl2 sdl2_image shellcheck sloccount spark       \
     sqlite sqliteodbc storm swig tree unixodbc unrar vramsteg watch webp wget  \
     wxmac x264 xvid xz yaml-cpp youtube-dl z zeromq zookeeper zsh"
@@ -78,30 +78,20 @@ CONDA_PACKAGES="                                                               \
     xlsxwriter xlwings xlwt xz yaml zeromq zlib"
 
 GEM_PACKAGES="                                                                 \
-    actionmailer actionpack actionview activejob activesupport addressable     \
-    airbrussh archive-tar-minitar arr-pm backports bigdecimal blankslate bson  \
-    bson_ext builder bundler bundler-unload cabin cap_gun capistrano           \
-    capistrano-harrow capistrano-stats celluloid celluloid-essentials          \
-    celluloid-extras celluloid-fsm celluloid-pool celluloid-supervision        \
-    childprocess claide clamp classifier-reborn cocoapods cocoapods-core       \
+    actionmailer actionpack actionview activejob activesupport bigdecimal      \
+    blankslate builder bundler-unload claide cocoapods cocoapods-core          \
     cocoapods-deintegrate cocoapods-downloader cocoapods-plugins               \
     cocoapods-search cocoapods-stats cocoapods-trunk cocoapods-try             \
-    coffee-script coffee-script-source colorator colored colorize commander    \
-    corefines cuba did_you_mean dotenv erector erubis escape execjs            \
-    executable-hooks faraday faraday_middleware fast-stemmer ffi fourflusher   \
-    fpm fuzzy_match gem-wrappers globalid highline hitimes i18n io-console     \
-    io-like jekyll jekyll-coffeescript jekyll-gist jekyll-paginate             \
-    jekyll-sass-converter jekyll-watch jewelbox json json_pure kramdown liquid \
-    listen log4r lolcat loofah mail mercenary mime-types mime-types-data       \
-    mini_portile mini_portile2 minitest molinillo mongo multi_json             \
-    multipart-post nap nenv net-ldap net-scp net-ssh net-telnet netrc nokogiri \
-    octokit open4 paint parslet polyglot posix-spawn power_assert psych        \
-    puppet-lint pygments.rb rack rack-protection rack-test                     \
-    rails-deprecated_sanitizer rails-dom-testing rails-html-sanitizer          \
-    railsless-deploy rake rb-fsevent rb-inotify rdoc redcarpet rouge           \
-    rspec-logsplit ruby-xz ruby_dep rubygems-bundler rvm safe_yaml sass sawyer \
-    shotgun sshkit terminal-table test-unit thread_safe timers toml treetop    \
-    trollop tzinfo xcodeproj yajl-ruby"
+    coffee-script coffee-script-source colorator colored commander             \
+    did_you_mean erubis escape execjs executable-hooks ffi fourflusher         \
+    fuzzy_match gem-wrappers globalid highline i18n io-console jekyll          \
+    jekyll-sass-converter jekyll-watch json kramdown liquid listen lolcat      \
+    loofah mail mercenary mime-types mime-types-data mini_portile2 minitest    \
+    molinillo nap net-telnet netrc nokogiri paint parslet power_assert psych   \
+    puppet-lint rack rack-test rails-deprecated_sanitizer rails-dom-testing    \
+    rails-html-sanitizer rake rb-fsevent rb-inotify rdoc rouge ruby_dep        \
+    rubygems-bundler rubygems-update rvm safe_yaml sass test-unit thread_safe  \
+    toml trollop tzinfo xcodeproj"
 
 NODE_MODULES="                                                                 \
     JSON coffee-script coffeelint cson dockerlint js-beautify                  \
@@ -659,10 +649,10 @@ ensure_homebrew_updated() {
 }
 
 ensure_homebrew_updated_cleanup() {
-    # Force link this keg-only formula to override outdated system sqlite.
+    # Force link these keg-only formulas to override outdated system versions.
     # Must be called sometime after ensure_homebrew_updated() has been called,
     # and after any other brew commands such as install have also been called.
-    run "brew link --force sqlite"
+    run "brew link --force --overwrite sqlite"
 }
 
 install_brew_formula() {
@@ -955,10 +945,38 @@ step_python() {
 ################################################################################
 # Step gem
 ################################################################################
+ensure_rvm_ruby() {
+    if which ruby | grep -q "/usr/bin/ruby"; then
+        if [[ ! -e "$HOME/.rvm/scripts/rvm" ]]; then
+            run "gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"
+            run "\curl -sSL https://get.rvm.io | bash -s stable" || abort "failed to install rvm"
+        fi
+        if ! type rvm >/dev/null 2>&1; then
+            # shellcheck source=.rvm/scripts/rvm
+            test -s "$HOME/.rvm/scripts/rvm" && source "$_"
+        fi
+        if [[ -z "$(rvm list strings)" ]]; then
+            run "rvm install ruby-2" || abort "could not install ruby via rvm"
+            run "rvm alias create default ruby-2"
+        fi
+    fi
+
+    if ! type rvm >/dev/null 2>&1; then
+        abort "rvm not installed"
+    fi
+    run "rvm get head" || abort "could not update rvm"
+
+    # shellcheck source=.rvm/scripts/rvm
+    test -s "$HOME/.rvm/scripts/rvm" && source "$_"
+    rvm use "$(rvm list default string)" || abort "could not select default ruby via rvm"
+}
+
 step_gem() {
-    run "yes | sudo gem install rubygems-update"
-    run "yes | sudo update_rubygems"
-    run "yes | sudo gem update -q --system"
+    ensure_rvm_ruby
+
+    run "yes | gem install rubygems-update"
+    run "yes | update_rubygems"
+    run "yes | gem update -q --system"
 
     declare -a GEM_LIST
     GEM_LIST=($(gem list))
@@ -966,13 +984,13 @@ step_gem() {
     IFS=' '
     for I in $GEM_PACKAGES; do
         if ! echo "${GEM_LIST[*]}" | grep -q "$I"; then
-            run "yes | sudo gem install -q $I"
+            run "yes | gem install -q $I"
         fi
     done
 
     IFS=$'\n'
     for I in $(gem outdated | awk '{print $1}'); do
-        run "yes | sudo gem update -q $I"
+        run "yes | gem update -q $I"
     done
 
     IFS=$'\n'

@@ -946,6 +946,9 @@ step_python() {
 # Step gem
 ################################################################################
 ensure_rvm_ruby() {
+    # I seem to have the least number of issues getting this version of ruby installed on OS X.
+    RVM_RUBY="ruby-2.1.10-clang"
+
     if which ruby | grep -q "/usr/bin/ruby"; then
         if [[ ! -e "$HOME/.rvm/scripts/rvm" ]]; then
             run "gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"
@@ -956,23 +959,26 @@ ensure_rvm_ruby() {
             test -s "$HOME/.rvm/scripts/rvm" && source "$_"
         fi
         if [[ -z "$(rvm list strings)" ]]; then
-            run "rvm install ruby-2" || abort "could not install ruby via rvm"
-            run "rvm alias create default ruby-2"
+            run "rvm install $RVM_RUBY --binary" || abort "could not install ruby via rvm"
+            run "rvm alias create default $RVM_RUBY"
         fi
     fi
 
     if ! type rvm >/dev/null 2>&1; then
         abort "rvm not installed"
     fi
-    run "rvm get head" || abort "could not update rvm"
+    run "rvm get stable" || abort "could not update rvm"
 
     # shellcheck source=.rvm/scripts/rvm
     test -s "$HOME/.rvm/scripts/rvm" && source "$_"
-    rvm use "$(rvm list default string)" || abort "could not select default ruby via rvm"
+    run "rvm use '$(rvm list default string)'" || abort "could not select default ruby via rvm"
 }
 
 step_gem() {
     ensure_rvm_ruby
+    if which ruby | grep -q "/usr/bin/ruby"; then
+        abort "system ruby detected, please ensure ruby installed via rvm"
+    fi
 
     run "yes | gem install rubygems-update"
     run "yes | update_rubygems"

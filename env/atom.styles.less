@@ -1,6 +1,16 @@
 @import "syntax-variables";
 @import "ui-variables";
 
+.indent-guide-improved {
+  background-color: fadeout(gray, 70%);
+  &.indent-guide-stack {
+    background-color: fadeout(multiply(gray, red), 60%);
+    &.indent-guide-active {
+      background-color: fadeout(red, 50%);
+    }
+  }
+}
+
 // better highlight-selected for light themes
 atom-text-editor::shadow {
     & when (lightness(@syntax-background-color) > 50%) {

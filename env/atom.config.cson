@@ -2,7 +2,7 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1464148890413
+		lastUpdateTimestamp: 1465049325365
 	"bracket-matcher":
 		autocompleteSmartQuotes: false
 	core:
@@ -48,7 +48,6 @@
 			tab: "¬"
 		preferredLineLength: 120
 		scrollPastEnd: true
-		showIndentGuide: true
 		showInvisibles: true
 		softWrapAtPreferredLineLength: true
 		tabLength: 4

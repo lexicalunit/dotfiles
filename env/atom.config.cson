@@ -2,7 +2,7 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1465049325365
+		lastUpdateTimestamp: 1465833100274
 	"bracket-matcher":
 		autocompleteSmartQuotes: false
 	core:
@@ -150,7 +150,7 @@
 	"python-yapf":
 		checkOnSave: false
 		yapfPath: "~/bin/yapf"
-		yapfStyle: "{based_on_style: pep8, column_limit: 120}"
+		yapfStyle: "{based_on_style: pep8, column_limit: 100}"
 	"rst-preview-pandoc": {}
 	"spell-check":
 		grammars: [

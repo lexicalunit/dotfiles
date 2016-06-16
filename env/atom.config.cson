@@ -166,6 +166,7 @@
 		tabLength: 4
 ".coffee.source":
 	editor:
+		softTabs: true
 		tabLength: 2
 ".css.less.source":
 	editor:

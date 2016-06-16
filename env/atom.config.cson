@@ -1,37 +1,27 @@
 "*":
+	"atom-isort":
+		isortPath: "~/bin/isort"
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
 		lastUpdateTimestamp: 1466086521841
-	"bracket-matcher":
-		autocompleteSmartQuotes: false
+	"bracket-matcher": {}
 	core:
 		audioBeep: false
 		disabledPackages: [
-			"autocomplete"
 			"exception-reporting"
 			"autoflow"
 			"autosave"
 			"background-tips"
 			"bookmarks"
 			"encoding-selector"
-			"language-toml"
 			"metrics"
 			"open-on-github"
 			"styleguide"
 			"update-package-dependencies"
 			"welcome"
-			"atom-pair"
-			"rainbow-selection"
-			"opened-files"
-			"minimap-codeglance"
-			"rst-preview-pandoc"
-			"swackets"
-			"todo-show"
-			"symbols-tree-view"
 			"wrap-guide"
 			"language-python"
-			"activate-power-mode"
 		]
 		themes: [
 			"native-ui"
@@ -85,19 +75,6 @@
 		showIconsInEditorGutter: true
 	"highlight-selected":
 		onlyHighlightWholeWords: true
-	"isotope-light-ui":
-		fontWeight: "Regular"
-	"isotope-ui":
-		backgroundColor: "false"
-		customBackgroundColor: true
-		customBackgroundColorPicker:
-			alpha: 1
-			blue: 40
-			green: 40
-			red: 40
-		fontWeight: "Regular"
-		lowContrastTooltip: true
-		minimalMode: true
 	linter:
 		lintOnChange: true
 		lintOnFlyInterval: 10000
@@ -107,9 +84,6 @@
 	"linter-pep8":
 		maxLineLength: 300
 		pep8ExecutablePath: "/usr/local/bin/pep8"
-	"linter-puppet-lint":
-		oldVersion: false
-	"linter-shellcheck": {}
 	"markdown-preview":
 		grammars: [
 			"source.gfm"
@@ -121,11 +95,8 @@
 			"source.gfm.nvatom"
 		]
 		useGitHubStyle: true
-	"merge-conflicts":
-		gitPath: "/usr/local/bin/git"
 	minimap:
 		plugins:
-			codeglance: true
 			"find-and-replace": true
 			"find-and-replaceDecorationsZIndex": 0
 			"git-diff": true
@@ -144,47 +115,34 @@
 		locked: true
 	nvatom:
 		directory: "~/Dropbox/nv"
-	"pretty-json": {}
-	"python-isort":
-		isortPath: "~/bin/isort"
 	"python-yapf":
 		checkOnSave: false
 		yapfPath: "~/bin/yapf"
 		yapfStyle: "{based_on_style: pep8, column_limit: 100}"
-	"rst-preview-pandoc": {}
 	"spell-check":
 		grammars: [
-			"source.gfm"
-			"text.plain.null-grammar"
 			"source.c++"
-			"source.litcoffee"
+			"source.css.less"
 			"source.css"
-			"text.git-commit"
+			"source.gfm.nvatom"
+			"source.gfm"
 			"source.go"
-			"text.html.basic"
 			"source.java"
 			"source.js"
 			"source.json"
-			"source.css.less"
+			"source.litcoffee"
 			"source.makefile"
 			"source.plist"
 			"source.python"
-			"text.html.erb"
 			"source.shell"
 			"source.sql"
+			"source.yaml"
+			"text.git-commit"
+			"text.html.basic"
+			"text.html.erb"
+			"text.plain.null-grammar"
 			"text.plain"
 			"text.todo"
-			"source.yaml"
-		]
-	swackets:
-		colors: [
-			"#b58900"
-			"#d33682"
-			"#268bd2"
-			"#859900"
-			"#6c71c4"
-			"#002b36"
-			"#2aa198"
 		]
 	"tab-control":
 		autoSaveChanges: true
@@ -231,7 +189,7 @@
 ".null-grammar.plain.text":
 	editor:
 		softTabs: true
-		tabLength: 2
+		tabLength: 4
 ".raml.source":
 	editor:
 		softTabs: true

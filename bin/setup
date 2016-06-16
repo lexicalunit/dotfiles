@@ -32,23 +32,20 @@ HOMEBREW_CASKS="                                                               \
     xquartz"
 
 ATOM_PACKAGES="                                                                \
-    MagicPython activate-power-mode api-workbench atom-isort atom-pair         \
-    autocomplete-go autocomplete-python autoupdate-packages builder-go         \
-    column-select cursor-indicator event-watch file-icons git-time-machine     \
-    go-config go-get go-plus gofmt gometalinter-linter gorename gruvbox        \
-    highlight-selected indent-guide-improved isotope-light-ui isotope-ui       \
-    language-applescript language-cmake language-diff language-docker          \
-    language-groovy language-json language-latex language-restructuredtext     \
-    language-rust line-length-break linter linter-clang linter-coffeelint      \
-    linter-csslint linter-docker linter-erb linter-flake8 linter-jsonlint      \
-    linter-just-say-no linter-raml linter-shellcheck linter-tidy               \
-    linter-write-good merge-conflicts minimap minimap-codeglance               \
+    MagicPython atom-isort autocomplete-go autocomplete-python                 \
+    autoupdate-packages builder-go column-select cursor-indicator event-watch  \
+    file-icons go-config go-get go-plus gofmt gometalinter-linter gorename     \
+    highlight-selected language-applescript language-cmake language-diff       \
+    language-docker language-groovy language-json language-latex               \
+    language-restructuredtext language-rust line-length-break linter           \
+    linter-clang linter-coffeelint linter-csslint linter-docker linter-erb     \
+    linter-flake8 linter-jsonlint linter-just-say-no linter-raml               \
+    linter-shellcheck linter-tidy linter-write-good minimap                    \
     minimap-find-and-replace minimap-git-diff minimap-highlight-selected       \
-    minimap-selection monokai multi-wrap-guide native-ui navigator-godef       \
-    next-occurrence nvatom pretty-json python-yapf rainbow-selection raml      \
-    red-wavy-underline rst-preview-pandoc script set-syntax                    \
-    soft-wrap-indicator sort-lines swackets symbols-tree-view tab-control      \
-    tabs-to-spaces tester-go todo-show toggle-quotes trailing-spaces"
+    minimap-selection multi-wrap-guide native-ui navigator-godef nvatom        \
+    pretty-json python-yapf raml red-wavy-underline script set-syntax          \
+    soft-wrap-indicator sort-lines tab-control tabs-to-spaces tester-go        \
+    toggle-quotes trailing-spaces"
 
 PIP_PACKAGES="                                                                 \
     httpie inflection isort patch python-json-logger termcolor yapf"

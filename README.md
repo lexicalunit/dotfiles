@@ -81,7 +81,6 @@ or of course just run the tools with the argument `--help`.
 | [`daemons`](bin/daemons) | Finds and removes unwanted daemons and agents. |
 | [`die`](bin/die) | Kills processes based on process name. |
 | [`doc`](bin/doc) | Builds HTML output from Markdown file. |
-| [`docker_clean`](bin/docker_clean) | Delete all docker containers and images. |
 | [`fa`](bin/fa) | Searches a codebase for given pattern. |
 | [`fart`](bin/fart) | Sleeps for the given number of seconds, showing a progress bar. |
 | [`flip`](bin/flip) | Flips input upside down. |

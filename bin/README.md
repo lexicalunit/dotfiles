@@ -93,12 +93,6 @@ options:
 ```
 
 * * *
-### [`docker_clean`](docker_clean)
-```
-Delete all docker containers and images.
-```
-
-* * *
 ### [`fa`](fa)
 ```
 usage: fa [-h|--help] [python regex]

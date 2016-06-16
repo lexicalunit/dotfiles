@@ -5,58 +5,9 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 
 # Docker Aliases
 alias dc="docker-compose"
-alias dm="docker-machine"
-alias de="eval \"\`docker-machine env dev\`\""
 
-# Local Development Tools
-_ensure_docker_env() {
-    [[ -n $DOCKER_HOST ]] && return 0
-    run 'eval "`docker-machine env dev`"'
-    if [[ -z $DOCKER_HOST ]]; then
-        _err "docker vm is not running"
-        return 1
-    fi
-}
-
-dev() {
-    op=$1
-    [[ -z $1 ]] || shift
-    case "$op" in
-        init)       _dev_init "$@";;
-        pull)       _dev_pull "$@";;
-        stop)       _dev_stop "$@";;
-        clean)      _dev_clean "$@";;
-        *)          _err "unknown dev option. Options: init, pull, stop, clean";;
-    esac
-}
-
-_dev_init() {
-    run "docker-machine start dev" && run "eval \"$(docker-machine env dev)\""
-    if [[ "$?" -ne "0" ]]; then
-        grep "$(docker-machine ip dev)" /etc/hosts >/dev/null 2>&1
-        if [[ "$?" -ne "0" ]]; then
-            show -i "Please add \"$(docker-machine ip dev)\tdev\" to /etc/hosts"
-            run "sudo $EDITOR /etc/hosts"
-        fi
-    fi
-}
-
-_dev_pull() {
-    _ensure_docker_env || return 1
-    for image in $(grep image docker-compose.yml | awk '{print $2}' | sort | uniq ); do
-        run "docker pull $image | grep 'Status\|fs layer'"
-        if [ "$?" -ne "0" ]; then
-            failure="$failure $image"
-        fi
-    done
-}
-
-_dev_stop() {
-    run "docker-machine stop dev"
-}
-
-_dev_clean() {
-    _ensure_docker_env || return 1
+# Docker Clean
+dcl() {
     run "docker ps -aq | xargs docker kill"
     run "docker ps -aq | xargs docker rm"
     if [[ "$1" == "images" ]]; then # optionally remove old images
@@ -70,45 +21,6 @@ _dev_clean() {
             show -i "docker version less than 1.9, can not clean up dangling any dangling volumes"
         fi
     fi
-}
-
-# Shell Completions
-
-_dev() {
-    if type emulate 1>/dev/null 2>&1; then
-        emulate -L ksh
-    fi
-    local cur="${COMP_WORDS[COMP_CWORD]}"
-    local prev="${COMP_WORDS[COMP_CWORD-1]}"
-    COMPREPLY=()
-    if [[ -z "$prev" || $COMP_CWORD == 1 ]]; then
-        local opts=("init" "pull" "stop" "clean" "migrate")
-        COMPREPLY=($(compgen -W "$(echo -n "${opts[@]}")" -- "${cur}"))
-        return 0
-    fi
-} &&
-complete -o default -F _dev dev
-
-# prefix docker ps with ips
-function docker-ips() {
-    docker ps | while read line; do
-        if `echo $line | grep -q 'CONTAINER ID'`; then
-            echo -e "IP ADDRESS\t$line"
-        else
-            CID=$(echo $line | awk '{print $1}');
-            IP=$(docker inspect -f "{{ .NetworkSettings.IPAddress }}" $CID);
-            printf "${IP}\t${line}\n"
-        fi
-    done;
-}
-
-function docker-clean-exited() {
-    docker ps -a | while read line; do
-        echo $line | grep '^CONTAINER ID' && continue;
-        CID=$(echo $line | awk '{print $1}');
-        docker inspect -f "{{ .State.Running }}" $CID | grep -q 'false' && docker rm -f $CID;
-
-    done;
 }
 
 # add variable DOCKER_ID with UID of most recent container
@@ -135,17 +47,17 @@ alias docker-run='docker run -it '
 # following based on https://github.com/rcmorano/docker-baids/blob/master/00-docker-baids
 
 function docker-container-grep() {
-    PATTERN=$@
+    PATTERN=$*
     docker ps -a | grep $PATTERN | grep -v ^CONTAINER
 }
 
 function docker-container-grep-running() {
-    PATTERN=$@
+    PATTERN=$*
     docker ps | grep $PATTERN | grep -v ^CONTAINER
 }
 
 function docker-container-kill-pattern() {
-    PATTERN=$@
+    PATTERN=$*
     docker-container-grep-running $PATTERN | awk '{print $1}' | xargs -rI % bash -c 'echo $(docker kill %; echo "killed!");'
 }
 
@@ -223,7 +135,7 @@ function docker-container-remove-all-non-running() {
 }
 
 function docker-container-remove-pattern() {
-    PATTERN=$@
+    PATTERN=$*
     docker-container-kill-pattern $PATTERN
     docker-container-grep $PATTERN | awk '{print $1}' | xargs -rI % bash -c 'echo $(docker rm %; echo "removed!")'
 }
@@ -238,7 +150,7 @@ function docker-enter() {
     if [ -z "$1" ]; then
         echo "usage: docker-enter <container id/name> <command to run default:sh>"
     else
-        CONTAINER_ID=$(docker inspect --format {{.State.Pid}} "$1")
+        CONTAINER_ID=$(docker inspect --format "{{.State.Pid}}" "$1")
         if [ -z "$CONTAINER_ID" ]; then
            exit 1
         fi
@@ -248,7 +160,7 @@ function docker-enter() {
 }
 
 function docker-image-grep() {
-    PATTERN=$@
+    PATTERN=$*
     docker images | grep $PATTERN | grep -v ^REPOSITORY
 }
 
@@ -266,6 +178,6 @@ function docker-image-remove-orphan() {
 }
 
 function docker-image-remove-pattern() {
-    PATTERN=$@
+    PATTERN=$*
     docker-image-grep $PATTERN | awk '{print $1}' | xargs -rI % bash -c 'echo $(docker rmi %; echo "removed!");'
 }

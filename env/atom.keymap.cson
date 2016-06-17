@@ -2,3 +2,9 @@
 # Resolves conflict with: go-to-line:toggle
 'atom-workspace':
   'ctrl-g': 'unset!'
+
+# Replaces: editor:select-line with nvatom:toggle
+'atom-text-editor':
+  'cmd-l': 'unset!'
+'atom-text-editor':
+  'cmd-l': 'nvatom:toggle'

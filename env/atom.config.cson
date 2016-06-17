@@ -4,7 +4,7 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1466086521841
+		lastUpdateTimestamp: 1466178581671
 	"bracket-matcher": {}
 	core:
 		audioBeep: false

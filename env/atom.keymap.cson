@@ -1,15 +1,3 @@
-# Replaces: editor:outdent-selected-rows with editor:force-tab
-'atom-text-editor:not([mini])':
-  'shift-tab': 'unset!'
-'atom-text-editor:not([mini])':
-  'shift-tab': 'editor:force-tab'
-
-# Replaces: editor:select-line with nvatom:toggle
-'atom-text-editor':
-  'cmd-l': 'unset!'
-'atom-text-editor':
-  'cmd-l': 'nvatom:toggle'
-
 # Removes: api-workbench:find-usages
 # Resolves conflict with: go-to-line:toggle
 'atom-workspace':

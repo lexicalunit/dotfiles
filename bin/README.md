@@ -395,9 +395,9 @@ vagrant, virtualbox, vlc, xquartz
 
 Atom Packages: MagicPython, atom-isort, autocomplete-go, autocomplete-python, 
 autoupdate-packages, builder-go, column-select, cursor-indicator, event-watch, 
-file-icons, go-config, go-get, go-plus, gofmt, gometalinter-linter, gorename, 
-highlight-selected, language-applescript, language-cmake, language-diff, 
-language-docker, language-groovy, language-json, language-latex, 
+file-icons, force-tab, go-config, go-get, go-plus, gofmt, gometalinter-linter, 
+gorename, highlight-selected, language-applescript, language-cmake, 
+language-diff, language-docker, language-groovy, language-json, language-latex, 
 language-restructuredtext, language-rust, line-length-break, linter, 
 linter-clang, linter-coffeelint, linter-csslint, linter-docker, linter-erb, 
 linter-flake8, linter-jsonlint, linter-just-say-no, linter-raml, 
@@ -764,7 +764,7 @@ Options:
     --write-info-json                Write video metadata to a .info.json file
     --write-annotations              Write video annotations to a
                                      .annotations.xml file
-    --load-info FILE                 JSON file containing the video information
+    --load-info-json FILE            JSON file containing the video information
                                      (created with the "--write-info-json"
                                      option)
     --cookies FILE                   File to read cookies from and dump cookie

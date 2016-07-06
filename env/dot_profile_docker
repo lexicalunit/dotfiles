@@ -23,6 +23,10 @@ dcl() {
     fi
 }
 
+dcli() {
+    dcl images
+}
+
 # add variable DOCKER_ID with UID of most recent container
 alias docker-id='export DOCKER_ID=`docker ps -ql` && echo $DOCKER_ID'
 

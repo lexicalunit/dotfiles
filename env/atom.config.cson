@@ -4,7 +4,7 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1466178581671
+		lastUpdateTimestamp: 1467813373952
 	"bracket-matcher": {}
 	core:
 		audioBeep: false
@@ -32,7 +32,7 @@
 	editor:
 		autoIndentOnPaste: false
 		fontFamily: "Inconsolata"
-		fontSize: 19
+		fontSize: 22
 		invisibles:
 			cr: "↩"
 			eol: " "

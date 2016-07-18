@@ -4,7 +4,7 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1467813373952
+		lastUpdateTimestamp: 1468860441703
 	"bracket-matcher": {}
 	core:
 		audioBeep: false
@@ -76,6 +76,7 @@
 	"highlight-selected":
 		onlyHighlightWholeWords: true
 	linter:
+		errorPanelHeight: 103
 		lintOnChange: true
 		lintOnFlyInterval: 10000
 	"linter-flake8":

@@ -1,6 +1,21 @@
 @import "syntax-variables";
 @import "ui-variables";
 
+// Jumpy style for Native UI theme
+atom-text-editor /deep/ {
+    .jumpy-label {
+        color: @text-color;
+        background-color: @base-background-color;
+        border-radius: @border-radius--base;
+        border-bottom: 1px solid @tab-bar-border-color;
+        box-shadow: inset 0 0 0 1px @tab-bar-border-color;
+        padding-left: .4em;
+        padding-right: .4em;
+        top: -1em;
+        left: -.25em;
+    }
+}
+
 // better highlight-selected for light themes
 atom-text-editor::shadow {
     & when (lightness(@syntax-background-color) > 50%) {
@@ -10,14 +25,6 @@ atom-text-editor::shadow {
         }
     }
 }
-
-// make current file in tree-view stand out more
-// .tree-view {
-//     .list-item.selected::before {
-//         background-color: @background-color-highlight !important;
-//         color: @text-color-highlight !important;
-//     }
-// }
 
 // ensure subpixel-antialiased
 body * {

@@ -68,7 +68,7 @@ CONDA_PACKAGES="                                                               \
     pycosat pycparser pycrypto pycurl pyflakes pygments pymongo pyopenssl      \
     pyparsing pyqt pytables pytest python python-dateutil python.app pytz      \
     pyyaml pyzmq qt qtawesome qtconsole qtpy readline redis redis-py requests  \
-    rope scikit-image scikit-learn scipy setuptools simplegeneric              \
+    rope ruamel_yaml scikit-image scikit-learn scipy setuptools simplegeneric  \
     singledispatch sip six snowballstemmer sockjs-tornado sphinx               \
     sphinx_rtd_theme spyder spyder-app sqlalchemy sqlite statsmodels sympy     \
     terminado tk toolz tornado traitlets unicodecsv werkzeug wheel xlrd        \

@@ -429,11 +429,11 @@ pickleshare, pillow, pip, ply, psutil, ptyprocess, py, pyasn1, pycosat,
 pycparser, pycrypto, pycurl, pyflakes, pygments, pymongo, pyopenssl, pyparsing, 
 pyqt, pytables, pytest, python, python-dateutil, python.app, pytz, pyyaml, 
 pyzmq, qt, qtawesome, qtconsole, qtpy, readline, redis, redis-py, requests, 
-rope, scikit-image, scikit-learn, scipy, setuptools, simplegeneric, 
-singledispatch, sip, six, snowballstemmer, sockjs-tornado, sphinx, 
-sphinx_rtd_theme, spyder, spyder-app, sqlalchemy, sqlite, statsmodels, sympy, 
-terminado, tk, toolz, tornado, traitlets, unicodecsv, werkzeug, wheel, xlrd, 
-xlsxwriter, xlwings, xlwt, xz, yaml, zeromq, zlib
+rope, ruamel_yaml, scikit-image, scikit-learn, scipy, setuptools, 
+simplegeneric, singledispatch, sip, six, snowballstemmer, sockjs-tornado, 
+sphinx, sphinx_rtd_theme, spyder, spyder-app, sqlalchemy, sqlite, statsmodels, 
+sympy, terminado, tk, toolz, tornado, traitlets, unicodecsv, werkzeug, wheel, 
+xlrd, xlsxwriter, xlwings, xlwt, xz, yaml, zeromq, zlib
 
 Gem Packages: actionmailer, actionpack, actionview, activejob, activesupport, 
 bigdecimal, blankslate, builder, bundler-unload, claide, cocoapods, 
@@ -612,9 +612,9 @@ Options:
                                      (experimental)
     -6, --force-ipv6                 Make all connections via IPv6
                                      (experimental)
-    --cn-verification-proxy URL      Use this proxy to verify the IP address for
-                                     some Chinese sites. The default proxy
-                                     specified by --proxy (or none, if the
+    --geo-verification-proxy URL     Use this proxy to verify the IP address for
+                                     some geo-restricted sites. The default
+                                     proxy specified by --proxy (or none, if the
                                      options is not present) is used for the
                                      actual downloading. (experimental)
 

@@ -150,13 +150,13 @@ sqliteodbc, storm, swig, tree, unixodbc, unrar, vramsteg, watch, webp, wget,
 wxmac, x264, xvid, xz, yaml-cpp, youtube-dl, z, zeromq, zookeeper, zsh
 
 Homebrew Casks: 1password, adium, amazon-music, atom, audacity, 
-balsamiq-mockups, battle-net, caffeine, chitchat, chromecast, clamxav, 
-cyberduck, dbvisualizer, disk-inventory-x, dropbox, evernote, fantastical, 
-firefox, flux, google-chrome, google-hangouts, hipchat, iexplorer, istumbler, 
-iterm2, java, kaleidoscope, lingon-x, lisanet-gimp, mactex, mysqlworkbench, 
-oclint, robomongo, silverlight, skype, slack, snes9x, soundflower, sourcetree, 
-spectacle, spotify, steam, sublime-text, teamviewer, texstudio, transmission, 
-vagrant, virtualbox, vlc, xquartz
+balsamiq-mockups, battle-net, caffeine, clamxav, cyberduck, dbvisualizer, 
+disk-inventory-x, dropbox, evernote, fantastical, firefox, flux, google-chrome, 
+google-hangouts, hipchat, iexplorer, istumbler, iterm2, java, kaleidoscope, 
+lingon-x, lisanet-gimp, mactex, mysqlworkbench, oclint, robomongo, silverlight, 
+skype, slack, snes9x, soundflower, sourcetree, spectacle, spotify, steam, 
+sublime-text, texstudio, transmission, vagrant, virtualbox, vlc, whatsapp, 
+xquartz
 
 Atom Packages: MagicPython, atom-isort, autocomplete-go, autocomplete-python, 
 autoupdate-packages, builder-go, column-select, cursor-indicator, event-watch, 

@@ -4,7 +4,7 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1468860441703
+		lastUpdateTimestamp: 1469738504783
 	"bracket-matcher": {}
 	core:
 		audioBeep: false
@@ -37,7 +37,7 @@
 			cr: "↩"
 			eol: " "
 			tab: "¬"
-		preferredLineLength: 120
+		preferredLineLength: 100
 		scrollPastEnd: true
 		showInvisibles: true
 		softWrapAtPreferredLineLength: true
@@ -114,6 +114,7 @@
 			120
 		]
 		locked: true
+		silent: true
 	nvatom:
 		directory: "~/Dropbox/nv"
 	"python-yapf":

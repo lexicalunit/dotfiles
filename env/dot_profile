@@ -41,7 +41,8 @@ if type brew >/dev/null 2>&1; then
     BREW_PREFIX="$(brew --prefix)"
     test -d "$BREW_PREFIX/bin" && PATH="$_:$PATH"
     test -d "$BREW_PREFIX/sbin" && PATH="$_:$PATH"
-    test -d "$BREW_PREFIX/lib/python2.7/site-packages" && PYTHONPATH="$PYTHONPATH:$_"
+    # Don't use brew installed python. Prefer an Anaconda distro instead.
+    # test -d "$BREW_PREFIX/lib/python2.7/site-packages" && PYTHONPATH="$PYTHONPATH:$_"
     BREW_COREUTILS_PREFIX="$(brew --prefix coreutils 2>/dev/null)"
     if [[ $? == 0 ]]; then
         test -d "$BREW_COREUTILS_PREFIX/libexec/gnubin" && PATH="$_:$PATH"

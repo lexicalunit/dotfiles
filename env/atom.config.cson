@@ -4,7 +4,7 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1469738504783
+		lastUpdateTimestamp: 1470842358871
 	"bracket-matcher": {}
 	core:
 		audioBeep: false
@@ -22,6 +22,7 @@
 			"welcome"
 			"wrap-guide"
 			"language-python"
+			"activate-power-mode"
 		]
 		themes: [
 			"native-ui"
@@ -188,7 +189,7 @@
 ".json.source":
 	editor:
 		softTabs: true
-		tabLength: 4
+		tabLength: 2
 ".null-grammar.plain.text":
 	editor:
 		softTabs: true

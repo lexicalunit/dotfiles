@@ -370,19 +370,19 @@ steps:
     node     Ensure Node modules are installed
 
 Homebrew Formulas: autoconf, automake, bash, bison, boost, cloog, cmake, 
-coreutils, cppunit, dmd, docker, docker-compose, docker-machine, doxygen, 
-erlang, faac, ffmpeg, fontconfig, freetype, gd, gdbm, geoip, gettext, 
-ghostscript, gifify, gifsicle, git, git-review, glib, gmp, gmp4, gnu-sed, 
-gnu-tar, gnupg, go, gradle, htop-osx, id3lib, id3v2, imagemagick, isl, jasper, 
-jbig2dec, jhead, jo, jpeg, jq, lame, libevent, libffi, libgpg-error, 
-libgphoto2, libicns, libksba, libmpc, libpng, libssh2, libtiff, libtool, 
-libusb, libusb-compat, libvo-aacenc, libyaml, little-cms2, lzlib, makedepend, 
-maven, md5sha1sum, memcached, mercurial, mongodb, mpfr, mysql, ncftp, nginx, 
-node, onepass, oniguruma, openssl, ossp-uuid, pandoc, pcre, pidof, pkg-config, 
-plotutils, pngquant, postgresql, rabbitmq, readline, redis, rust, s3cmd, 
-sane-backends, scons, sdl2, sdl2_image, shellcheck, sloccount, spark, sqlite, 
-sqliteodbc, storm, swig, tree, unixodbc, unrar, vramsteg, watch, webp, wget, 
-wxmac, x264, xvid, xz, yaml-cpp, youtube-dl, z, zeromq, zookeeper, zsh
+coreutils, cppunit, dmd, docker, docker-compose, doxygen, erlang, faac, ffmpeg, 
+fontconfig, freetype, gd, gdbm, geoip, gettext, ghostscript, gifify, gifsicle, 
+git, git-review, glib, gmp, gmp4, gnu-sed, gnu-tar, gnupg, go, gradle, 
+htop-osx, id3lib, id3v2, imagemagick, isl, jasper, jbig2dec, jhead, jo, jpeg, 
+jq, lame, libevent, libffi, libgpg-error, libgphoto2, libicns, libksba, libmpc, 
+libpng, libssh2, libtiff, libtool, libusb, libusb-compat, libvo-aacenc, 
+libyaml, little-cms2, lzlib, makedepend, maven, md5sha1sum, memcached, 
+mercurial, mongodb, mpfr, mysql, ncftp, nginx, node, onepass, oniguruma, 
+openssl, ossp-uuid, pandoc, pcre, pidof, pkg-config, plotutils, pngquant, 
+postgresql, rabbitmq, readline, redis, rust, s3cmd, sane-backends, scons, sdl2, 
+sdl2_image, shellcheck, sloccount, spark, sqlite, sqliteodbc, storm, swig, 
+tree, unixodbc, unrar, vramsteg, watch, webp, wget, wxmac, x264, xvid, xz, 
+yaml-cpp, youtube-dl, z, zeromq, zookeeper, zsh
 
 Homebrew Casks: 1password, adium, amazon-music, atom, audacity, 
 balsamiq-mockups, battle-net, caffeine, clamxav, cyberduck, dbvisualizer, 
@@ -839,7 +839,15 @@ Options:
                                      bidirectional text support. Requires bidiv
                                      or fribidi executable in PATH
     --sleep-interval SECONDS         Number of seconds to sleep before each
-                                     download.
+                                     download when used alone or a lower bound
+                                     of a range for randomized sleep before each
+                                     download (minimum possible number of
+                                     seconds to sleep) when used along with
+                                     --max-sleep-interval.
+    --max-sleep-interval SECONDS     Upper bound of a range for randomized sleep
+                                     before each download (maximum possible
+                                     number of seconds to sleep). Must only be
+                                     used along with --min-sleep-interval.
 
   Video Format Options:
     -f, --format FORMAT              Video format code, see the "FORMAT

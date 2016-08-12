@@ -4,7 +4,7 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1470842358871
+		lastUpdateTimestamp: 1471021157907
 	"bracket-matcher": {}
 	core:
 		audioBeep: false
@@ -115,7 +115,6 @@
 			120
 		]
 		locked: true
-		silent: true
 	nvatom:
 		directory: "~/Dropbox/nv"
 	"python-yapf":

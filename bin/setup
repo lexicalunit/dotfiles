@@ -8,18 +8,18 @@
 # BEGIN GENERATED PACKAGE LISTS
 HOMEBREW_FORMULAS="                                                            \
     autoconf automake bash bison boost cloog cmake coreutils cppunit dmd       \
-    docker docker-compose docker-machine doxygen erlang faac ffmpeg fontconfig \
-    freetype gd gdbm geoip gettext ghostscript gifify gifsicle git git-review  \
-    glib gmp gmp4 gnu-sed gnu-tar gnupg go gradle htop-osx id3lib id3v2        \
-    imagemagick isl jasper jbig2dec jhead jo jpeg jq lame libevent libffi      \
-    libgpg-error libgphoto2 libicns libksba libmpc libpng libssh2 libtiff      \
-    libtool libusb libusb-compat libvo-aacenc libyaml little-cms2 lzlib        \
-    makedepend maven md5sha1sum memcached mercurial mongodb mpfr mysql ncftp   \
-    nginx node onepass oniguruma openssl ossp-uuid pandoc pcre pidof           \
-    pkg-config plotutils pngquant postgresql rabbitmq readline redis rust      \
-    s3cmd sane-backends scons sdl2 sdl2_image shellcheck sloccount spark       \
-    sqlite sqliteodbc storm swig tree unixodbc unrar vramsteg watch webp wget  \
-    wxmac x264 xvid xz yaml-cpp youtube-dl z zeromq zookeeper zsh"
+    docker docker-compose doxygen erlang faac ffmpeg fontconfig freetype gd    \
+    gdbm geoip gettext ghostscript gifify gifsicle git git-review glib gmp     \
+    gmp4 gnu-sed gnu-tar gnupg go gradle htop-osx id3lib id3v2 imagemagick isl \
+    jasper jbig2dec jhead jo jpeg jq lame libevent libffi libgpg-error         \
+    libgphoto2 libicns libksba libmpc libpng libssh2 libtiff libtool libusb    \
+    libusb-compat libvo-aacenc libyaml little-cms2 lzlib makedepend maven      \
+    md5sha1sum memcached mercurial mongodb mpfr mysql ncftp nginx node onepass \
+    oniguruma openssl ossp-uuid pandoc pcre pidof pkg-config plotutils         \
+    pngquant postgresql rabbitmq readline redis rust s3cmd sane-backends scons \
+    sdl2 sdl2_image shellcheck sloccount spark sqlite sqliteodbc storm swig    \
+    tree unixodbc unrar vramsteg watch webp wget wxmac x264 xvid xz yaml-cpp   \
+    youtube-dl z zeromq zookeeper zsh"
 
 HOMEBREW_CASKS="                                                               \
     1password adium amazon-music atom audacity balsamiq-mockups battle-net     \
@@ -651,11 +651,19 @@ ensure_homebrew_updated_cleanup() {
 }
 
 install_brew_formula() {
+    local FORMULA="$1"
     local INSTALLED="$2"
-    if ! echo "$INSTALLED" | grep -q "$1"; then
-        run "brew install '$1'"
+    if ! echo "$INSTALLED" | grep -q "$FORMULA"; then
+        # Use Docker for Mac instead of docker-machine.
+        # See: https://docs.docker.com/docker-for-mac/
+        if [[ "$FORMULA" == "docker-compose" ]]; then
+            run "brew install '$FORMULA' --without-docker-machine"
+            show -i "Please install Docker for Mac: https://docs.docker.com/docker-for-mac/"
+        else
+            run "brew install '$FORMULA'"
+        fi
     else
-        show "brew formula '$1' already installed"
+        show "brew formula '$FORMULA' already installed"
     fi
 
     # Force link the most recent version; can fix some annoying issues,

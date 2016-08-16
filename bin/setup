@@ -31,10 +31,11 @@ HOMEBREW_CASKS="                                                               \
     vagrant virtualbox vlc whatsapp xquartz"
 
 ATOM_PACKAGES="                                                                \
-    MagicPython atom-isort autocomplete-go autocomplete-python                 \
-    autoupdate-packages builder-go column-select cursor-indicator event-watch  \
-    file-icons force-tab go-config go-get go-plus gofmt gometalinter-linter    \
-    gorename highlight-selected jumpy language-applescript language-cmake      \
+    MagicPython activate-power-mode aesthetic-ui atom-beautify atom-isort      \
+    autocomplete-go autocomplete-python autoupdate-packages builder-go         \
+    column-select cursor-indicator event-watch file-icons force-tab go-config  \
+    go-get go-plus gofmt gometalinter-linter gorename highlight-selected       \
+    indent-guide-improved jumpy language-applescript language-cmake            \
     language-diff language-docker language-groovy language-json language-latex \
     language-restructuredtext language-rust line-length-break linter           \
     linter-clang linter-coffeelint linter-csslint linter-docker linter-erb     \

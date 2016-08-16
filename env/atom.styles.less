@@ -1,54 +1,65 @@
 @import "syntax-variables";
 @import "ui-variables";
 
-// Jumpy style for Native UI theme
-atom-text-editor /deep/ {
-    .jumpy-label {
-        color: @text-color;
-        background-color: @base-background-color;
-        border-radius: @border-radius--base;
-        border-bottom: 1px solid @tab-bar-border-color;
-        box-shadow: inset 0 0 0 1px @tab-bar-border-color;
-        padding-left: .4em;
-        padding-right: .4em;
-        top: -1em;
-        left: -.25em;
+// better indent guides for light syntax themes
+.indent-guide-improved {
+  background-color: @syntax-wrap-guide-color;
+  &.indent-guide-stack {
+    background-color: darken(@syntax-wrap-guide-color, 30%);
+    &.indent-guide-active {
+      background-color: darken(@syntax-wrap-guide-color, 40%);
     }
+  }
+}
+
+// better jumpy style for the native-ui theme
+atom-text-editor /deep/ {
+  .jumpy-label {
+    color: @text-color;
+    background-color: @base-background-color;
+    border-radius: @border-radius--base;
+    border-bottom: 1px solid @tab-bar-border-color;
+    box-shadow: inset 0 0 0 1px @tab-bar-border-color;
+    padding-left: .4em;
+    padding-right: .4em;
+    top: -1em;
+    left: -.25em;
+  }
 }
 
 // better highlight-selected for light themes
 atom-text-editor::shadow {
-    & when (lightness(@syntax-background-color) > 50%) {
-        .highlight-selected .region {
-            border-color: fadeout(contrast(@syntax-background-color), 50%) !important;
-            background-color: fadeout(@syntax-selection-color, 50%) !important;
-        }
+  & when (lightness(@syntax-wrap-guide-color) > 50%) {
+    .highlight-selected .region {
+      border-color: fadeout(contrast(@syntax-background-color), 50%) !important;
+      background-color: fadeout(@syntax-selection-color, 50%) !important;
     }
+  }
 }
 
 // ensure subpixel-antialiased
 body * {
-    -webkit-font-smoothing: subpixel-antialiased !important;
+  -webkit-font-smoothing: subpixel-antialiased !important;
 }
 
 // disable italic comments and source code in any syntax theme
 atom-text-editor::shadow {
-    .comment, .source * {
-        font-style: normal !important;
-    }
+  .comment, .source * {
+    font-style: normal !important;
+  }
 }
 
-// more subtle invisibles for dark themes
+// more subtle invisibles for light syntax themes
 atom-text-editor::shadow {
-    & when (lightness(@syntax-background-color) <= 50%) {
-        .invisible-character {
-            color: #504949;
-            opacity: 0.5;
-        }
-        .indent-guide {
-            opacity: .5;
-        }
+  & when (lightness(@syntax-background-color) <= 50%) {
+    .invisible-character {
+      color: #504949;
+      opacity: 0.5;
     }
+    .indent-guide {
+      opacity: .5;
+    }
+  }
 }
 
 // make final wrap guide stand out more
@@ -60,40 +71,40 @@ atom-text-editor::shadow {
 
 // less ugly soft-wrap-indicator
 .soft-wrap-indicator {
-    color: inherit !important;
+  color: inherit !important;
+  text-decoration: none !important;
+
+  &:hover {
     text-decoration: none !important;
+    color: inherit !important;
+  }
 
-    &:hover {
-        text-decoration: none !important;
-        color: inherit !important;
-    }
+  &:active {
+    text-decoration: none !important;
+    color: inherit !important;
+  }
 
-    &:active {
-        text-decoration: none !important;
-        color: inherit !important;
-    }
-
-    &.lit {
-        color: #10BB10 !important;
-        text-shadow: none !important;
-    }
+  &.lit {
+    color: #10BB10 !important;
+    text-shadow: none !important;
+  }
 }
 
 // 3D effects for tree-view and minimap
 // #atom-perspective() {
-//     @viewing-distance: 12in;
-//     @rotation: 10deg;
-//     .tree-view-scroller {
-//         transform: translateY(-10vh) perspective(@viewing-distance) rotateY(@rotation);
-//         padding-top: 12vh;
-//         padding-bottom: 12vh;
-//         transform-origin: left;
-//         width: 120%;
-//         height: 120%;
-//     }
-//     body /deep/ atom-text-editor-minimap {
-//         transform: perspective(@viewing-distance) rotateY(-@rotation);
-//         transform-origin: right;
-//     }
+//   @viewing-distance: 12in;
+//   @rotation: 10deg;
+//   .tree-view-scroller {
+//     transform: translateY(-10vh) perspective(@viewing-distance) rotateY(@rotation);
+//     padding-top: 12vh;
+//     padding-bottom: 12vh;
+//     transform-origin: left;
+//     width: 120%;
+//     height: 120%;
+//   }
+//   body /deep/ atom-text-editor-minimap {
+//     transform: perspective(@viewing-distance) rotateY(-@rotation);
+//     transform-origin: right;
+//   }
 // }
 // #atom-perspective;

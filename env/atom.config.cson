@@ -1,10 +1,13 @@
 "*":
+	"atom-beautify":
+		general:
+			analytics: false
 	"atom-isort":
 		isortPath: "~/bin/isort"
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1471021157907
+		lastUpdateTimestamp: 1471363900490
 	"bracket-matcher": {}
 	core:
 		audioBeep: false

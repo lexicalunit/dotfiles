@@ -55,6 +55,7 @@ fi
 
 # Add specific application paths, such as Python, rvm, etc...
 test -d "$HOME/.rvm/bin" && PATH="$PATH:$_"
+test -d "$HOME/.log-ninja" && PATH="$PATH:$_"
 test -d /usr/local/lib/svn-python && PYTHONPATH="$_:$PYTHONPATH"
 test -d /opt/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
 test -d /usr/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
@@ -730,6 +731,16 @@ dps() {
             printf "%s\t%s\n" "${IP}" "${line}"
         fi
     done
+}
+
+weather() {
+    local LOC
+    if [[ -n "$1" ]]; then
+        LOC="$1"
+    else
+        LOC="austin"
+    fi
+    run "curl http://wttr.in/$LOC"
 }
 
 # use gnu-sed if available

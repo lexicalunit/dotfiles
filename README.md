@@ -90,6 +90,7 @@ or of course just run the tools with the argument `--help`.
 | [`git_name_change`](bin/git_name_change) | Clones a repo then changes the name and email address in entire his... |
 | [`git_push_topic`](bin/git_push_topic) | Force updates remote topic branch with local branch. |
 | [`git_reauthor`](bin/git_reauthor) | In git, change the author name and/or email of a single commit. |
+| [`imgcat`](bin/imgcat) | Like cat but for images. |
 | [`install`](bin/install) | Installs everything to ~/bin. |
 | [`install_mysql`](bin/install_mysql) | Installs/uninstalls mysql from package. |
 | [`jsc`](bin/jsc) | Symbolic link to '/System/Library/Frameworks/JavaScriptCore.framewo... |

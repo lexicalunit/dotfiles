@@ -252,6 +252,13 @@ usage: git_reauthor [-f] commit-to-change [branch-to-rewrite [new-name [new-emai
 ```
 
 * * *
+### [`imgcat`](imgcat)
+```
+Usage: imgcat [-p] filename ...
+   or: cat filename | imgcat
+```
+
+* * *
 ### [`install`](install)
 ```
 usage: install [uninstall]

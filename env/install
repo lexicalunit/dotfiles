@@ -20,11 +20,36 @@ pushd "$(dirname "$0")" >/dev/null
 if [[ $INSTALL == 1 ]]; then
     rsync -apl dot_shell_control "$HOME/.shell_control"
 fi
+
+# shellcheck source=shell_control
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control could not be installed!$(tput sgr0)" >&2
 
 ###############################################################################
-# install dot files
+# utilities
 ###############################################################################
+install_with_git() {
+    local repo="$1"
+    local dir="$2"
+
+    if [[ $INSTALL == 1 ]]; then
+        if type git 1>/dev/null 2>&1; then
+            if [[ -d "$dir" ]]; then
+                run "pushd '$dir' >/dev/null"
+                run "git fetch >/dev/null"
+                run "git clean -fd >/dev/null"
+                run "git reset --hard origin/master >/dev/null"
+                run "popd"
+            else
+                run "git clone '$repo' '$dir'"
+            fi
+        else
+            warn "could not git clone $repo, please install git"
+        fi
+    else
+        test -d "$dir" && run "rm -rf '$dir'"
+    fi
+}
+
 sync()
 {
     run "rsync -apl '$1' '$2/$1'"
@@ -37,6 +62,9 @@ contains()
     return 1
 }
 
+###############################################################################
+# install dot files
+###############################################################################
 declare -a DOT_FILES
 DOT_FILES=($(find ./* -maxdepth 1 -name "dot_*"))
 show "found dot files: ${DOT_FILES[*]}..."
@@ -113,43 +141,27 @@ fi
 ###############################################################################
 # Install base16-shell
 ###############################################################################
-if [[ $INSTALL == 1 ]]; then
-    if type git 1>/dev/null 2>&1; then
-        if [[ -d "$HOME/.config/base16-shell" ]]; then
-            run "pushd '$HOME/.config/base16-shell' >/dev/null"
-            run "git fetch >/dev/null"
-            run "git clean -fd >/dev/null"
-            run "git reset --hard origin/master >/dev/null"
-            run "popd"
-        else
-            run "git clone https://github.com/chriskempson/base16-shell.git '$HOME/.config/base16-shell'"
-        fi
-    else
-        warn "could not git clone base16-shell, please install git"
-    fi
-else
-    [[ -d "$HOME/.config/base16-shell" ]] && run "rm -rf '$HOME/.config/base16-shell'"
-fi
+mkdir -p "$HOME/.config"
+install_with_git "https://github.com/chriskempson/base16-shell.git" "$HOME/.config/base16-shell"
 
 ###############################################################################
 # Install zsh-autocompletions
 ###############################################################################
-if [[ $INSTALL == 1 ]] && echo "$SHELL" | grep -q zsh; then
-    if type git 1>/dev/null 2>&1; then
-        if [[ -d "$HOME/.zsh/zsh-autosuggestions" ]]; then
-            run "pushd '$HOME/.zsh/zsh-autosuggestions' >/dev/null"
-            run "git fetch >/dev/null"
-            run "git clean -fd >/dev/null"
-            run "git reset --hard origin/master >/dev/null"
-            run "popd"
-        else
-            run "git clone git://github.com/zsh-users/zsh-autosuggestions '$HOME/.zsh/zsh-autosuggestions'"
-        fi
-    else
-        warn "could not git clone base16-shell, please install git"
-    fi
-else
-    [[ -d "$HOME/.zsh/zsh-autosuggestions" ]] && run "rm -rf '$HOME/.zsh/zsh-autosuggestions'"
+if echo "$SHELL" | grep -q zsh; then
+    mkdir -p "$HOME/.zsh"
+    install_with_git "https://github.com/zsh-users/zsh-autosuggestions.git" "$HOME/.zsh/zsh-autosuggestions"
+fi
+
+###############################################################################
+# Install log-ninja
+###############################################################################
+LOG_NINJA_DIR="$HOME/.log-ninja"
+install_with_git "https://github.com/mrmanc/log-ninja.git" "$LOG_NINJA_DIR"
+if [[ -d "$LOG_NINJA_DIR" ]]; then
+    pushd "$LOG_NINJA_DIR"
+    rm -f bashrc README.md
+    for i in *; do mv $i log_$i; done
+    popd
 fi
 
 ###############################################################################

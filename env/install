@@ -81,15 +81,18 @@ if [[ $INSTALL == 1 ]] && echo "$SHELL" | grep -q bash; then
             run "git fetch >/dev/null"
             run "git clean -fd >/dev/null"
             run "git reset --hard origin/master >/dev/null"
+            run "git popd"
         ) else (
             if [[ -d "$HOME/.bash-completion" ]]; then (
                 # exists and isn't a repo, blow it away
                 run "pushd '$HOME' >/dev/null"
                 run "rm -rf .bash-completion"
+                run "git popd"
             ) fi
             # doesn't exist, clone it
             run "pushd '$HOME' >/dev/null"
             run "git clone git://git.debian.org/git/bash-completion/bash-completion .bash-completion >/dev/null"
+            run "git popd"
         ) fi
     else
         # From tarball:
@@ -117,6 +120,7 @@ if [[ $INSTALL == 1 ]]; then
             run "git fetch >/dev/null"
             run "git clean -fd >/dev/null"
             run "git reset --hard origin/master >/dev/null"
+            run "popd"
         else
             run "git clone https://github.com/chriskempson/base16-shell.git '$HOME/.config/base16-shell'"
         fi
@@ -125,6 +129,27 @@ if [[ $INSTALL == 1 ]]; then
     fi
 else
     [[ -d "$HOME/.config/base16-shell" ]] && run "rm -rf '$HOME/.config/base16-shell'"
+fi
+
+###############################################################################
+# Install zsh-autocompletions
+###############################################################################
+if [[ $INSTALL == 1 ]] && echo "$SHELL" | grep -q zsh; then
+    if type git 1>/dev/null 2>&1; then
+        if [[ -d "$HOME/.zsh/zsh-autosuggestions" ]]; then
+            run "pushd '$HOME/.zsh/zsh-autosuggestions' >/dev/null"
+            run "git fetch >/dev/null"
+            run "git clean -fd >/dev/null"
+            run "git reset --hard origin/master >/dev/null"
+            run "popd"
+        else
+            run "git clone git://github.com/zsh-users/zsh-autosuggestions '$HOME/.zsh/zsh-autosuggestions'"
+        fi
+    else
+        warn "could not git clone base16-shell, please install git"
+    fi
+else
+    [[ -d "$HOME/.zsh/zsh-autosuggestions" ]] && run "rm -rf '$HOME/.zsh/zsh-autosuggestions'"
 fi
 
 ###############################################################################

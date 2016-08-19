@@ -107,6 +107,14 @@ if echo "$SHELL" | grep -q bash; then
 fi
 
 ################################################################################
+# setup base16-shell -- https://github.com/chriskempson/base16-shell
+################################################################################
+_interactive_log "setting up base16-shell"
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+type -f base16_solarized-light >/dev/null 2>&1 && $_
+
+################################################################################
 # python environment control
 ################################################################################
 test -f "$HOME/.pythonrc.py" && PYTHONSTARTUP="$_"
@@ -134,6 +142,7 @@ exitvirtualenv() {
     unset PYTHON_ENV
 }
 
+# shellcheck disable=SC2120
 enterconda() {
     # should be safe to exitvirtualenv just in case we're in a virtualenv
     exitvirtualenv
@@ -262,6 +271,14 @@ elif type vim >/dev/null 2>&1; then
     eman() { man "$@" | col -bx | vim -; }
 fi
 
+# setup atom beta if it's installed
+if type atom-beta >/dev/null 2>&1; then
+    alias edit='atom-beta '
+    alias atom='atom-beta '
+    alias apm='apm-beta '
+    ew() { atom-beta "$(which "$1")"; }
+fi
+
 vman() { man "$@" | col -bx | vim -; }
 
 # setup man
@@ -352,6 +369,7 @@ elif echo "$SHELL" | grep -q zsh; then
     zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
     # Directories
+    # shellcheck disable=SC2154
     zstyle ':completion:*:default' list-colors "${(s.:.)ZLS_COLORS}"
     zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
     zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
@@ -728,7 +746,11 @@ for I in $(/bin/ls -1 ~/.profile_* 2>/dev/null) ; do
     # shellcheck source=.profile
     source "$I"
 done
+IFS=' '
 
+################################################################################
+# setup shell_control
+################################################################################
 # shellcheck source=.shell_control
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
@@ -751,12 +773,13 @@ _interactive_log "setting up conda environment"
 enterconda || true
 
 ################################################################################
-# setup base16-shell -- https://github.com/chriskempson/base16-shell
+# setup zsh-autocompletions -- https://github.com/zsh-users/zsh-autosuggestions
 ################################################################################
-_interactive_log "setting up base16-shell"
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-type -f base16_solarized-light >/dev/null 2>&1 && $_
+if echo "$SHELL" | grep -q zsh; then
+    _interactive_log "setting up zsh-autocompletions"
+    # shellcheck source=.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+    test -s ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh && source $_ 2>/dev/null >/dev/null
+fi
 
 ################################################################################
 # setup rvm -- must go last otherwise rvm complains about PATH

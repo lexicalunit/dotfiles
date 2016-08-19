@@ -740,7 +740,7 @@ weather() {
     else
         LOC="austin"
     fi
-    run "curl http://wttr.in/$LOC"
+    run "curl -s http://wttr.in/$LOC"
 }
 
 # use gnu-sed if available
@@ -789,7 +789,34 @@ enterconda || true
 if echo "$SHELL" | grep -q zsh; then
     _interactive_log "setting up zsh-autocompletions"
     # shellcheck source=.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-    test -s ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh && source $_ 2>/dev/null >/dev/null
+    if [[ -s "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
+        source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+        # Shift-{Left,Right}Arrow because Ctrl triggers Mission Control shortcuts
+        bindkey '^[[1;2C' forward-word
+        bindkey '^[[1;2D' backward-word
+
+        # Make tab-completions clear the autosuggestions, as well as history interactions
+        export ZSH_AUTOSUGGEST_CLEAR_WIDGETS=(
+            accept-line
+            complete-word
+            down-line-or-history
+            expand-or-complete
+            expand-or-complete-prefix
+            history-beginning-search-backward
+            history-beginning-search-forward
+            history-search-backward
+            history-search-forward
+            history-substring-search-down
+            history-substring-search-up
+            menu-complete
+            menu-expand-or-complete
+            up-line-or-history
+        )
+
+        # Better color for autosuggestions
+        export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=4"
+    fi
 fi
 
 ################################################################################

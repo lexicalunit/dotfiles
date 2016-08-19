@@ -79,7 +79,7 @@ if [[ $INSTALL == 1 ]] && echo "$SHELL" | grep -q bash; then
             # exists and is a repo, update it
             run "pushd '$HOME/.bash-completion' >/dev/null"
             run "git fetch >/dev/null"
-            run "git clean -f >/dev/null"
+            run "git clean -fd >/dev/null"
             run "git reset --hard origin/master >/dev/null"
         ) else (
             if [[ -d "$HOME/.bash-completion" ]]; then (
@@ -105,6 +105,26 @@ if [[ $INSTALL == 1 ]] && echo "$SHELL" | grep -q bash; then
     fi
 else
     [[ -d "$HOME/.bash-completion" ]] && run "rm -rf '$HOME/.bash-completion'"
+fi
+
+###############################################################################
+# Install base16-shell
+###############################################################################
+if [[ $INSTALL == 1 ]]; then
+    if type git 1>/dev/null 2>&1; then
+        if [[ -d "$HOME/.config/base16-shell" ]]; then
+            run "pushd '$HOME/.config/base16-shell' >/dev/null"
+            run "git fetch >/dev/null"
+            run "git clean -fd >/dev/null"
+            run "git reset --hard origin/master >/dev/null"
+        else
+            run "git clone https://github.com/chriskempson/base16-shell.git '$HOME/.config/base16-shell'"
+        fi
+    else
+        warn "could not git clone base16-shell, please install git"
+    fi
+else
+    [[ -d "$HOME/.config/base16-shell" ]] && run "rm -rf '$HOME/.config/base16-shell'"
 fi
 
 ###############################################################################

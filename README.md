@@ -137,19 +137,19 @@ see below for the list of items that will be installed when that step runs.
 | node | Ensure Node modules are installed |
 
 Homebrew Formulas: autoconf, automake, bash, bison, boost, cloog, cmake, 
-coreutils, cppunit, dmd, docker, docker-compose, doxygen, erlang, faac, ffmpeg, 
-fontconfig, freetype, gd, gdbm, geoip, gettext, ghostscript, gifify, gifsicle, 
-git, git-review, glib, gmp, gmp4, gnu-sed, gnu-tar, gnupg, go, gradle, 
-htop-osx, id3lib, id3v2, imagemagick, isl, jasper, jbig2dec, jhead, jo, jpeg, 
-jq, lame, libevent, libffi, libgpg-error, libgphoto2, libicns, libksba, libmpc, 
-libpng, libssh2, libtiff, libtool, libusb, libusb-compat, libvo-aacenc, 
+coreutils, cppunit, dmd, docker, docker-compose, doxygen, erlang, faac, fasd, 
+ffmpeg, fontconfig, freetype, gd, gdbm, geoip, gettext, ghostscript, gifify, 
+gifsicle, git, git-review, glib, gmp, gmp4, gnu-sed, gnu-tar, gnupg, go, 
+gradle, htop-osx, id3lib, id3v2, imagemagick, isl, jasper, jbig2dec, jhead, jo, 
+jpeg, jq, lame, libevent, libffi, libgpg-error, libgphoto2, libicns, libksba, 
+libmpc, libpng, libssh2, libtiff, libtool, libusb, libusb-compat, libvo-aacenc, 
 libyaml, little-cms2, lzlib, makedepend, maven, md5sha1sum, memcached, 
 mercurial, mongodb, mpfr, mysql, ncftp, nginx, node, onepass, oniguruma, 
 openssl, ossp-uuid, pandoc, pcre, pidof, pkg-config, plotutils, pngquant, 
 postgresql, rabbitmq, readline, redis, rust, s3cmd, sane-backends, scons, sdl2, 
 sdl2_image, shellcheck, sloccount, spark, sqlite, sqliteodbc, storm, swig, 
 tree, unixodbc, unrar, vramsteg, watch, webp, wget, wxmac, x264, xvid, xz, 
-yaml-cpp, youtube-dl, z, zeromq, zookeeper, zsh
+yaml-cpp, youtube-dl, zeromq, zookeeper, zsh
 
 Homebrew Casks: 1password, adium, amazon-music, atom, audacity, 
 balsamiq-mockups, battle-net, caffeine, clamxav, cyberduck, dbvisualizer, 

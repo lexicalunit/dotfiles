@@ -8,8 +8,8 @@
 # BEGIN GENERATED PACKAGE LISTS
 HOMEBREW_FORMULAS="                                                            \
     autoconf automake bash bison boost cloog cmake coreutils cppunit dmd       \
-    docker docker-compose doxygen erlang faac ffmpeg fontconfig freetype gd    \
-    gdbm geoip gettext ghostscript gifify gifsicle git git-review glib gmp     \
+    docker docker-compose doxygen erlang faac fasd ffmpeg fontconfig freetype  \
+    gd gdbm geoip gettext ghostscript gifify gifsicle git git-review glib gmp  \
     gmp4 gnu-sed gnu-tar gnupg go gradle htop-osx id3lib id3v2 imagemagick isl \
     jasper jbig2dec jhead jo jpeg jq lame libevent libffi libgpg-error         \
     libgphoto2 libicns libksba libmpc libpng libssh2 libtiff libtool libusb    \
@@ -19,7 +19,7 @@ HOMEBREW_FORMULAS="                                                            \
     pngquant postgresql rabbitmq readline redis rust s3cmd sane-backends scons \
     sdl2 sdl2_image shellcheck sloccount spark sqlite sqliteodbc storm swig    \
     tree unixodbc unrar vramsteg watch webp wget wxmac x264 xvid xz yaml-cpp   \
-    youtube-dl z zeromq zookeeper zsh"
+    youtube-dl zeromq zookeeper zsh"
 
 HOMEBREW_CASKS="                                                               \
     1password adium amazon-music atom audacity balsamiq-mockups battle-net     \

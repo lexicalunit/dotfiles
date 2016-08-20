@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Gets a random gif from giphy and shows it via imgcat.
+
+if [[ "$1" == "--help" || "$1" == "-h" || -z "$*" ]]; then
+    echo "usage: ${0##*/} [-h|--help] SEARCH TERMS" 1>&2
+    echo "Searches giphy for a random gif matching your search terms and shows." 1>&2
+    exit 1
+fi
+
+tag="$(echo "$*" | sed 's/ /+/')"
+random_api_url="http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=$tag"
+gif_url="$(curl "$random_api_url" 2> /dev/null | jq '.data.image_url' -r)"
+curl "$gif_url" 2> /dev/null | imgcat

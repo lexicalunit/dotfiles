@@ -32,20 +32,18 @@ HOMEBREW_CASKS="                                                               \
 
 ATOM_PACKAGES="                                                                \
     MagicPython activate-power-mode aesthetic-ui atom-beautify atom-isort      \
-    autocomplete-go autocomplete-python autoupdate-packages builder-go         \
-    column-select cursor-indicator event-watch file-icons force-tab go-config  \
-    go-get go-plus gofmt gometalinter-linter gorename highlight-selected       \
-    indent-guide-improved jumpy language-applescript language-cmake            \
-    language-diff language-docker language-groovy language-json language-latex \
-    language-restructuredtext language-rust line-length-break linter           \
-    linter-clang linter-coffeelint linter-csslint linter-docker linter-erb     \
-    linter-flake8 linter-jsonlint linter-just-say-no linter-raml               \
-    linter-shellcheck linter-tidy linter-write-good minimap                    \
-    minimap-find-and-replace minimap-git-diff minimap-highlight-selected       \
-    minimap-selection multi-wrap-guide native-ui navigator-godef nvatom        \
-    pretty-json python-yapf raml red-wavy-underline script set-syntax          \
-    soft-wrap-indicator sort-lines tab-control tabs-to-spaces tester-go        \
-    toggle-quotes trailing-spaces"
+    autocomplete-python autoupdate-packages column-select cursor-indicator     \
+    event-watch file-icons force-tab highlight-selected indent-guide-improved  \
+    jumpy language-applescript language-cmake language-diff language-docker    \
+    language-groovy language-json language-latex language-restructuredtext     \
+    language-rust line-length-break linter linter-clang linter-coffeelint      \
+    linter-csslint linter-docker linter-erb linter-flake8 linter-jsonlint      \
+    linter-just-say-no linter-raml linter-shellcheck linter-tidy               \
+    linter-write-good minimap minimap-find-and-replace minimap-git-diff        \
+    minimap-highlight-selected minimap-selection multi-wrap-guide native-ui    \
+    nvatom pretty-json python-yapf raml red-wavy-underline script set-syntax   \
+    soft-wrap-indicator sort-lines tab-control tabs-to-spaces toggle-quotes    \
+    trailing-spaces"
 
 PIP_PACKAGES="                                                                 \
     httpie inflection isort patch python-json-logger termcolor yapf"

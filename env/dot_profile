@@ -796,7 +796,10 @@ if echo "$SHELL" | grep -q zsh; then
         bindkey '^[[1;2C' forward-word
         bindkey '^[[1;2D' backward-word
 
-        # Make tab-completions clear the autosuggestions, as well as history interactions
+        # ESC should clear autosuggestions
+        bindkey '\e' autosuggest-clear
+
+        # Completions, history navigation, and kill line should clear autosuggestions
         export ZSH_AUTOSUGGEST_CLEAR_WIDGETS=(
             accept-line
             complete-word
@@ -809,6 +812,7 @@ if echo "$SHELL" | grep -q zsh; then
             history-search-forward
             history-substring-search-down
             history-substring-search-up
+            kill-line
             menu-complete
             menu-expand-or-complete
             up-line-or-history

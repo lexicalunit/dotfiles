@@ -85,6 +85,7 @@ or of course just run the tools with the argument `--help`.
 | [`fart`](bin/fart) | Sleeps for the given number of seconds, showing a progress bar. |
 | [`flip`](bin/flip) | Flips input upside down. |
 | [`fm`](bin/fm) | Find in CMake files. |
+| [`giphy`](bin/giphy) | Gets a random gif from giphy and shows it via imgcat. |
 | [`git_authors`](bin/git_authors) | Git script for discovering who wrote the code at the current workin... |
 | [`git_ltr`](bin/git_ltr) | Lists (a-la 'ls -ltr') git controlled source files in current direc... |
 | [`git_name_change`](bin/git_name_change) | Clones a repo then changes the name and email address in entire his... |
@@ -160,20 +161,18 @@ sublime-text, texstudio, transmission, vagrant, virtualbox, vlc, whatsapp,
 xquartz
 
 Atom Packages: MagicPython, activate-power-mode, aesthetic-ui, atom-beautify, 
-atom-isort, autocomplete-go, autocomplete-python, autoupdate-packages, 
-builder-go, column-select, cursor-indicator, event-watch, file-icons, 
-force-tab, go-config, go-get, go-plus, gofmt, gometalinter-linter, gorename, 
-highlight-selected, indent-guide-improved, jumpy, language-applescript, 
-language-cmake, language-diff, language-docker, language-groovy, language-json, 
-language-latex, language-restructuredtext, language-rust, line-length-break, 
-linter, linter-clang, linter-coffeelint, linter-csslint, linter-docker, 
-linter-erb, linter-flake8, linter-jsonlint, linter-just-say-no, linter-raml, 
+atom-isort, autocomplete-python, autoupdate-packages, column-select, 
+cursor-indicator, event-watch, file-icons, force-tab, highlight-selected, 
+indent-guide-improved, jumpy, language-applescript, language-cmake, 
+language-diff, language-docker, language-groovy, language-json, language-latex, 
+language-restructuredtext, language-rust, line-length-break, linter, 
+linter-clang, linter-coffeelint, linter-csslint, linter-docker, linter-erb, 
+linter-flake8, linter-jsonlint, linter-just-say-no, linter-raml, 
 linter-shellcheck, linter-tidy, linter-write-good, minimap, 
 minimap-find-and-replace, minimap-git-diff, minimap-highlight-selected, 
-minimap-selection, multi-wrap-guide, native-ui, navigator-godef, nvatom, 
-pretty-json, python-yapf, raml, red-wavy-underline, script, set-syntax, 
-soft-wrap-indicator, sort-lines, tab-control, tabs-to-spaces, tester-go, 
-toggle-quotes, trailing-spaces
+minimap-selection, multi-wrap-guide, native-ui, nvatom, pretty-json, 
+python-yapf, raml, red-wavy-underline, script, set-syntax, soft-wrap-indicator, 
+sort-lines, tab-control, tabs-to-spaces, toggle-quotes, trailing-spaces
 
 Pip Packages: httpie, inflection, isort, patch, python-json-logger, termcolor, 
 yapf

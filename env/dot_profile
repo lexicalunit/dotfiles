@@ -15,7 +15,6 @@ if [[ -e /usr/libexec/path_helper ]]; then
     eval "$(/usr/libexec/path_helper -s)"
 else
     test -d /usr/bin && PATH="$PATH:$_"
-    test -d /usr/bin && PATH="$PATH:$_"
     test -d /bin && PATH="$PATH:$_"
     test -d /usr/sbin && PATH="$PATH:$_"
     test -d /sbin && PATH="$PATH:$_"
@@ -771,14 +770,6 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 if type fasd >/dev/null 2>&1; then
     eval "$(fasd --init auto)"
 fi
-# if type brew >/dev/null 2>&1; then
-#     ZSRC="$(brew --prefix)/etc/profile.d/z.sh"
-#     if [[ -e "$ZSRC" ]]; then
-#         _interactive_log "setting up z"
-#         # shellcheck source=/usr/local/etc/profile.d/z.sh
-#         . "$ZSRC"
-#     fi
-# fi
 
 ################################################################################
 # always assume we want our default anaconda environment

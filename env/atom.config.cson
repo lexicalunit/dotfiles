@@ -7,7 +7,7 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1471663198264
+		lastUpdateTimestamp: 1472567039754
 	"bracket-matcher": {}
 	core:
 		audioBeep: false
@@ -26,6 +26,7 @@
 			"wrap-guide"
 			"language-python"
 			"activate-power-mode"
+			"atom-metaweather"
 		]
 		themes: [
 			"native-ui"

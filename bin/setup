@@ -14,11 +14,11 @@ HOMEBREW_FORMULAS="                                                            \
     jasper jbig2dec jhead jo jpeg jq lame libevent libffi libgpg-error         \
     libgphoto2 libicns libksba libmpc libpng libssh2 libtiff libtool libusb    \
     libusb-compat libvo-aacenc libyaml little-cms2 lzlib makedepend maven      \
-    md5sha1sum memcached mercurial mongodb mpfr mysql ncftp nginx node onepass \
-    oniguruma openssl ossp-uuid pandoc pcre pidof pkg-config plotutils         \
-    pngquant postgresql rabbitmq readline redis rust s3cmd sane-backends scons \
-    sdl2 sdl2_image shellcheck sloccount spark sqlite sqliteodbc storm swig    \
-    tree unixodbc unrar vramsteg watch webp wget wxmac x264 xvid xz yaml-cpp   \
+    md5sha1sum memcached mongodb mpfr mysql ncftp nginx node onepass oniguruma \
+    openssl ossp-uuid pandoc pcre pidof pkg-config plotutils pngquant          \
+    postgresql rabbitmq readline redis rust s3cmd sane-backends scons sdl2     \
+    sdl2_image shellcheck sloccount spark sqlite sqliteodbc storm swig tree    \
+    unixodbc unrar vramsteg watch webp wget wxmac x264 xvid xz yaml-cpp        \
     youtube-dl zeromq zookeeper zsh"
 
 HOMEBREW_CASKS="                                                               \
@@ -583,15 +583,12 @@ step_osx() {
 # Step xcode
 ################################################################################
 step_xcode() {
-    if ! type xcode-select >/dev/null; then
-        run "xcode-select --install"
+    run "xcode-select --install"
+    if run "cc --version 2>/dev/null 1>&2"; then
+        show "Xcode agreement is accepted."
     else
-        if run "cc --version 2>/dev/null 1>&2"; then
-            show "Xcode agreement is accepted."
-        else
-            show "Xcode agreement not accepted..."
-            run "sudo cc --version" || abort "Xcode agreement NOT accepted"
-        fi
+        show "Xcode agreement not accepted..."
+        run "sudo cc --version" || abort "Xcode agreement NOT accepted"
     fi
     show "Xcode Command Line Tools are properly installed."
 }

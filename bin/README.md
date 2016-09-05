@@ -390,13 +390,13 @@ gifsicle, git, git-review, glib, gmp, gmp4, gnu-sed, gnu-tar, gnupg, go,
 gradle, htop-osx, id3lib, id3v2, imagemagick, isl, jasper, jbig2dec, jhead, jo, 
 jpeg, jq, lame, libevent, libffi, libgpg-error, libgphoto2, libicns, libksba, 
 libmpc, libpng, libssh2, libtiff, libtool, libusb, libusb-compat, libvo-aacenc, 
-libyaml, little-cms2, lzlib, makedepend, maven, md5sha1sum, memcached, 
-mercurial, mongodb, mpfr, mysql, ncftp, nginx, node, onepass, oniguruma, 
-openssl, ossp-uuid, pandoc, pcre, pidof, pkg-config, plotutils, pngquant, 
-postgresql, rabbitmq, readline, redis, rust, s3cmd, sane-backends, scons, sdl2, 
-sdl2_image, shellcheck, sloccount, spark, sqlite, sqliteodbc, storm, swig, 
-tree, unixodbc, unrar, vramsteg, watch, webp, wget, wxmac, x264, xvid, xz, 
-yaml-cpp, youtube-dl, zeromq, zookeeper, zsh
+libyaml, little-cms2, lzlib, makedepend, maven, md5sha1sum, memcached, mongodb, 
+mpfr, mysql, ncftp, nginx, node, onepass, oniguruma, openssl, ossp-uuid, 
+pandoc, pcre, pidof, pkg-config, plotutils, pngquant, postgresql, rabbitmq, 
+readline, redis, rust, s3cmd, sane-backends, scons, sdl2, sdl2_image, 
+shellcheck, sloccount, spark, sqlite, sqliteodbc, storm, swig, tree, unixodbc, 
+unrar, vramsteg, watch, webp, wget, wxmac, x264, xvid, xz, yaml-cpp, 
+youtube-dl, zeromq, zookeeper, zsh
 
 Homebrew Casks: 1password, adium, amazon-music, atom, audacity, 
 balsamiq-mockups, battle-net, caffeine, clamxav, cyberduck, dbvisualizer, 
@@ -723,32 +723,8 @@ Options:
     -a, --batch-file FILE            File containing URLs to download ('-' for
                                      stdin)
     --id                             Use only video ID in file name
-    -o, --output TEMPLATE            Output filename template. Use %(title)s to
-                                     get the title, %(uploader)s for the
-                                     uploader name, %(uploader_id)s for the
-                                     uploader nickname if different,
-                                     %(autonumber)s to get an automatically
-                                     incremented number, %(ext)s for the
-                                     filename extension, %(format)s for the
-                                     format description (like "22 - 1280x720" or
-                                     "HD"), %(format_id)s for the unique id of
-                                     the format (like YouTube's itags: "137"),
-                                     %(upload_date)s for the upload date
-                                     (YYYYMMDD), %(extractor)s for the provider
-                                     (youtube, metacafe, etc), %(id)s for the
-                                     video id, %(playlist_title)s,
-                                     %(playlist_id)s, or %(playlist)s (=title if
-                                     present, ID otherwise) for the playlist the
-                                     video is in, %(playlist_index)s for the
-                                     position in the playlist. %(height)s and
-                                     %(width)s for the width and height of the
-                                     video format. %(resolution)s for a textual
-                                     description of the resolution of the video
-                                     format. %% for a literal percent. Use - to
-                                     output to stdout. Can also be used to
-                                     download to a different directory, for
-                                     example with -o '/my/downloads/%(uploader)s
-                                     /%(title)s-%(id)s.%(ext)s' .
+    -o, --output TEMPLATE            Output filename template, see the "OUTPUT
+                                     TEMPLATE" for all the info
     --autonumber-size NUMBER         Specify the number of digits in
                                      %(autonumber)s when it is present in output
                                      filename template or --auto-number option

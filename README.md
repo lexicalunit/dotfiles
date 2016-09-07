@@ -174,8 +174,8 @@ minimap-selection, multi-wrap-guide, native-ui, nvatom, pretty-json,
 python-yapf, raml, red-wavy-underline, script, set-syntax, soft-wrap-indicator, 
 sort-lines, tab-control, tabs-to-spaces, toggle-quotes, trailing-spaces
 
-Pip Packages: httpie, inflection, isort, patch, python-json-logger, termcolor, 
-yapf
+Pip Packages: git-sweep3k, httpie, inflection, isort, patch, 
+python-json-logger, termcolor, yapf
 
 Conda Packages: abstract-rendering, alabaster, anaconda, anaconda-client, 
 anaconda-navigator, appnope, appscript, argcomplete, astropy, babel, 

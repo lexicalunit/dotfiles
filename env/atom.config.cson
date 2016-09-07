@@ -7,7 +7,7 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1473035016938
+		lastUpdateTimestamp: 1473181374781
 	"bracket-matcher": {}
 	core:
 		audioBeep: false
@@ -20,7 +20,6 @@
 			"encoding-selector"
 			"metrics"
 			"open-on-github"
-			"styleguide"
 			"update-package-dependencies"
 			"welcome"
 			"wrap-guide"
@@ -28,10 +27,12 @@
 			"activate-power-mode"
 			"atom-metaweather"
 		]
+		telemetryConsent: "no"
 		themes: [
 			"native-ui"
 			"solarized-light-syntax"
 		]
+		useCustomTitleBar: true
 	"cursor-indicator":
 		displayPrefix: "|"
 	editor:
@@ -186,6 +187,10 @@
 		tabLength: 4
 ".html.mustache.text":
 	editor:
+		tabLength: 2
+".js.source":
+	editor:
+		softTabs: true
 		tabLength: 2
 ".json.source":
 	editor:

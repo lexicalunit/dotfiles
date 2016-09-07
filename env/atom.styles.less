@@ -29,7 +29,7 @@ atom-text-editor /deep/ {
 
 // better highlight-selected for light themes
 atom-text-editor::shadow {
-  & when (lightness(@syntax-wrap-guide-color) > 50%) {
+  & when (luminance(@syntax-wrap-guide-color) > 50%) {
     .highlight-selected .region {
       border-color: fadeout(contrast(@syntax-background-color), 50%) !important;
       background-color: fadeout(@syntax-selection-color, 50%) !important;
@@ -49,18 +49,32 @@ atom-text-editor::shadow {
   }
 }
 
-// more subtle invisibles for light syntax themes
-atom-text-editor::shadow {
-  & when (lightness(@syntax-background-color) <= 50%) {
-    .invisible-character {
-      color: #504949;
-      opacity: 0.5;
+#atom-nicer-invisibles() {
+  // More subtle invisibles for light syntax themes, while
+  // retaining more visible invisibles for dark syntax themes.
+  atom-text-editor::shadow {
+    & when (luminance(@syntax-background-color) < 50%) {
+      .invisible-character {
+        opacity: 0.9;
+      }
+
+      .indent-guide {
+        opacity: 0.9;
+      }
     }
-    .indent-guide {
-      opacity: .5;
+
+    & when (luminance(@syntax-background-color) >= 50%) {
+      .invisible-character {
+        opacity: 0.5;
+      }
+
+      .indent-guide {
+        opacity: 0.5;
+      }
     }
   }
 }
+#atom-nicer-invisibles;
 
 // make final wrap guide stand out more
 atom-text-editor::shadow {

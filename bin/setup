@@ -46,7 +46,8 @@ ATOM_PACKAGES="                                                                \
     trailing-spaces"
 
 PIP_PACKAGES="                                                                 \
-    httpie inflection isort patch python-json-logger termcolor yapf"
+    git-sweep3k httpie inflection isort patch python-json-logger termcolor     \
+    yapf"
 
 CONDA_PACKAGES="                                                               \
     abstract-rendering alabaster anaconda anaconda-client anaconda-navigator   \

@@ -32,18 +32,19 @@ HOMEBREW_CASKS="                                                               \
 
 ATOM_PACKAGES="                                                                \
     MagicPython activate-power-mode aesthetic-ui atom-beautify atom-isort      \
-    autocomplete-python autoupdate-packages column-select cursor-indicator     \
-    event-watch file-icons force-tab highlight-selected indent-guide-improved  \
-    jumpy language-applescript language-cmake language-diff language-docker    \
-    language-groovy language-json language-latex language-restructuredtext     \
-    language-rust line-length-break linter linter-clang linter-coffeelint      \
-    linter-csslint linter-docker linter-erb linter-flake8 linter-jsonlint      \
-    linter-just-say-no linter-raml linter-shellcheck linter-tidy               \
-    linter-write-good minimap minimap-find-and-replace minimap-git-diff        \
-    minimap-highlight-selected minimap-selection multi-wrap-guide native-ui    \
-    nvatom pretty-json python-yapf raml red-wavy-underline script set-syntax   \
-    soft-wrap-indicator sort-lines tab-control tabs-to-spaces toggle-quotes    \
-    trailing-spaces"
+    atom-language-avro autocomplete-python autoupdate-packages base16-syntax   \
+    column-select cursor-indicator event-watch file-icons force-tab            \
+    highlight-selected indent-guide-improved jumpy language-applescript        \
+    language-cmake language-diff language-docker language-groovy language-json \
+    language-latex language-restructuredtext language-rust line-length-break   \
+    linter linter-clang linter-coffeelint linter-csslint linter-docker         \
+    linter-erb linter-eslint linter-flake8 linter-jsonlint linter-just-say-no  \
+    linter-raml linter-shellcheck linter-tidy linter-write-good minimap        \
+    minimap-find-and-replace minimap-git-diff minimap-highlight-selected       \
+    minimap-selection multi-wrap-guide native-ui no-title-bar nvatom           \
+    pretty-json python-yapf raml red-wavy-underline script set-syntax          \
+    soft-wrap-indicator sort-lines standard-formatter tab-control              \
+    tabs-to-spaces toggle-quotes trailing-spaces"
 
 PIP_PACKAGES="                                                                 \
     git-sweep3k httpie inflection isort patch python-json-logger termcolor     \
@@ -91,8 +92,8 @@ GEM_PACKAGES="                                                                 \
     toml trollop tzinfo xcodeproj"
 
 NODE_MODULES="                                                                 \
-    JSON coffee-script coffeelint cson dockerlint js-beautify                  \
-    json-stable-stringify moment nesh tmpin"
+    JSON coffee-script coffeelint cson decaffeinate dockerlint eslint          \
+    js-beautify json-stable-stringify moment nesh raml2html standard tmpin"
 # END GENERATED PACKAGE LISTS
 
 ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS ATOM_PACKAGES PIP_PACKAGES

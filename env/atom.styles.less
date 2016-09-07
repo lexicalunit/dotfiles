@@ -3,11 +3,11 @@
 
 // better indent guides for light syntax themes
 .indent-guide-improved {
-  background-color: @syntax-wrap-guide-color;
+  background-color: @syntax-indent-guide-color;
   &.indent-guide-stack {
-    background-color: darken(@syntax-wrap-guide-color, 30%);
+    background-color: darken(@syntax-indent-guide-color, 30%);
     &.indent-guide-active {
-      background-color: darken(@syntax-wrap-guide-color, 40%);
+      background-color: darken(@syntax-indent-guide-color, 40%);
     }
   }
 }
@@ -24,6 +24,14 @@ atom-text-editor /deep/ {
     padding-right: .4em;
     top: -1em;
     left: -.25em;
+  }
+}
+
+// make cursor pulse instead of blink
+atom-text-editor::shadow {
+  .cursor {
+    transition: opacity .5s;
+    border-left: 2px solid @text-color-info;
   }
 }
 
@@ -57,18 +65,10 @@ atom-text-editor::shadow {
       .invisible-character {
         opacity: 0.9;
       }
-
-      .indent-guide {
-        opacity: 0.9;
-      }
     }
 
     & when (luminance(@syntax-background-color) >= 50%) {
       .invisible-character {
-        opacity: 0.5;
-      }
-
-      .indent-guide {
         opacity: 0.5;
       }
     }

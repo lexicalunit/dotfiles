@@ -7,7 +7,11 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1473181374781
+		lastUpdateTimestamp: 1473282996527
+	"base16-syntax":
+		matchUserInterfaceTheme: false
+		scheme: "Solarized"
+		style: "Light"
 	"bracket-matcher": {}
 	core:
 		audioBeep: false
@@ -30,7 +34,7 @@
 		telemetryConsent: "no"
 		themes: [
 			"native-ui"
-			"solarized-light-syntax"
+			"base16-syntax"
 		]
 		useCustomTitleBar: true
 	"cursor-indicator":

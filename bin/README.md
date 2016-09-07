@@ -408,18 +408,19 @@ sublime-text, texstudio, transmission, vagrant, virtualbox, vlc, whatsapp,
 xquartz
 
 Atom Packages: MagicPython, activate-power-mode, aesthetic-ui, atom-beautify, 
-atom-isort, autocomplete-python, autoupdate-packages, column-select, 
-cursor-indicator, event-watch, file-icons, force-tab, highlight-selected, 
-indent-guide-improved, jumpy, language-applescript, language-cmake, 
-language-diff, language-docker, language-groovy, language-json, language-latex, 
-language-restructuredtext, language-rust, line-length-break, linter, 
-linter-clang, linter-coffeelint, linter-csslint, linter-docker, linter-erb, 
-linter-flake8, linter-jsonlint, linter-just-say-no, linter-raml, 
-linter-shellcheck, linter-tidy, linter-write-good, minimap, 
-minimap-find-and-replace, minimap-git-diff, minimap-highlight-selected, 
-minimap-selection, multi-wrap-guide, native-ui, nvatom, pretty-json, 
-python-yapf, raml, red-wavy-underline, script, set-syntax, soft-wrap-indicator, 
-sort-lines, tab-control, tabs-to-spaces, toggle-quotes, trailing-spaces
+atom-isort, atom-language-avro, autocomplete-python, autoupdate-packages, 
+base16-syntax, column-select, cursor-indicator, event-watch, file-icons, 
+force-tab, highlight-selected, indent-guide-improved, jumpy, 
+language-applescript, language-cmake, language-diff, language-docker, 
+language-groovy, language-json, language-latex, language-restructuredtext, 
+language-rust, line-length-break, linter, linter-clang, linter-coffeelint, 
+linter-csslint, linter-docker, linter-erb, linter-eslint, linter-flake8, 
+linter-jsonlint, linter-just-say-no, linter-raml, linter-shellcheck, 
+linter-tidy, linter-write-good, minimap, minimap-find-and-replace, 
+minimap-git-diff, minimap-highlight-selected, minimap-selection, 
+multi-wrap-guide, native-ui, no-title-bar, nvatom, pretty-json, python-yapf, 
+raml, red-wavy-underline, script, set-syntax, soft-wrap-indicator, sort-lines, 
+standard-formatter, tab-control, tabs-to-spaces, toggle-quotes, trailing-spaces
 
 Pip Packages: git-sweep3k, httpie, inflection, isort, patch, 
 python-json-logger, termcolor, yapf
@@ -464,8 +465,9 @@ rails-html-sanitizer, rake, rb-fsevent, rb-inotify, rdoc, rouge, ruby_dep,
 rubygems-bundler, rubygems-update, rvm, safe_yaml, sass, test-unit, 
 thread_safe, toml, trollop, tzinfo, xcodeproj
 
-Node Modules: JSON, coffee-script, coffeelint, cson, dockerlint, js-beautify, 
-json-stable-stringify, moment, nesh, tmpin
+Node Modules: JSON, coffee-script, coffeelint, cson, decaffeinate, dockerlint, 
+eslint, js-beautify, json-stable-stringify, moment, nesh, raml2html, standard, 
+tmpin
 ```
 
 * * *

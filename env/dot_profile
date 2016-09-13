@@ -663,13 +663,6 @@ running_in_docker() {
     awk -F/ '$2 == "docker"' /proc/self/cgroup | read
 }
 
-btd() {
-    if ! boot2docker status | grep -q "running"; then
-        boot2docker up
-    fi
-    eval "$(boot2docker shellinit)"
-}
-
 lw() {
     local LOC
     local FINFO

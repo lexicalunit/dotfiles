@@ -7,7 +7,7 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1473727303249
+		lastUpdateTimestamp: 1473781121546
 	"base16-syntax":
 		matchUserInterfaceTheme: false
 		scheme: "Solarized"
@@ -205,6 +205,10 @@
 		softTabs: true
 		tabLength: 4
 ".raml.source":
+	editor:
+		softTabs: true
+		tabLength: 2
+".ruby.source":
 	editor:
 		softTabs: true
 		tabLength: 2

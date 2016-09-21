@@ -89,6 +89,7 @@ or of course just run the tools with the argument `--help`.
 | [`git_authors`](bin/git_authors) | Git script for discovering who wrote the code at the current workin... |
 | [`git_ltr`](bin/git_ltr) | Lists (a-la 'ls -ltr') git controlled source files in current direc... |
 | [`git_name_change`](bin/git_name_change) | Clones a repo then changes the name and email address in entire his... |
+| [`git_pretty_log`](bin/git_pretty_log) | Git script for printing very pretty logs. |
 | [`git_push_topic`](bin/git_push_topic) | Force updates remote topic branch with local branch. |
 | [`git_reauthor`](bin/git_reauthor) | In git, change the author name and/or email of a single commit. |
 | [`imgcat`](bin/imgcat) | Like cat but for images. |
@@ -169,7 +170,7 @@ language-docker, language-groovy, language-json, language-latex,
 language-restructuredtext, language-rust, line-length-break, linter, 
 linter-clang, linter-coffeelint, linter-csslint, linter-docker, linter-erb, 
 linter-eslint, linter-flake8, linter-jsonlint, linter-just-say-no, linter-raml, 
-linter-shellcheck, linter-tidy, linter-write-good, minimap, 
+linter-rubocop, linter-shellcheck, linter-tidy, linter-write-good, minimap, 
 minimap-find-and-replace, minimap-git-diff, minimap-highlight-selected, 
 minimap-selection, multi-wrap-guide, native-ui, no-title-bar, nvatom, 
 pretty-json, python-yapf, raml, red-wavy-underline, script, set-syntax, 

@@ -1,0 +1,72 @@
+#!/bin/bash -e
+
+# Git script for printing very pretty logs.
+
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+  echo "usage: ${0##*/} [-h|--help] [ARGS]" 1>&2
+  echo "Forwards any additional ARGS to the git log command." 1>&2
+  exit 1
+fi
+
+HASH='%C(red)%h%C(reset)'
+DATE='%C(green)(%cr)%C(reset)'
+AUTHOR='%C(bold blue)<%an>%C(reset)'
+REFS='%C(yellow)%d%C(reset)'
+MESSAGE='%s'
+
+TERM_WIDTH="$(tput cols)"
+MAX_HASH_WIDTH="$((TERM_WIDTH / 4))"
+
+make_format() {
+    local delim="$1"
+    echo "$HASH$delim$DATE$delim$AUTHOR$delim$REFS $MESSAGE"
+}
+
+make_log() {
+    local format="$1"
+    shift
+    git log \
+            --date=relative \
+            --graph \
+            --pretty="tformat:$format" \
+            "$@"
+}
+
+max_hash_width() {
+    make_log "$HASH" "$@" | awk '{ if (length > L) { L = length } }END{ print L }'
+}
+
+git_pretty_log() {
+    local columnize
+    if [[ "$(max_hash_width "$@")" -le "$MAX_HASH_WIDTH" ]]; then
+        columnize=true
+    else
+        columnize=false
+    fi
+
+    if [[ $columnize = true ]]; then
+        make_log "$(make_format '}')" "$@"
+    else
+        make_log "$(make_format ' ')" "$@"
+    fi |
+    # Replace (2 years, 5 months) with (2 years)
+    sed -Ee 's/([[:digit:]]+ [[:alpha:]]+), [[:digit:]]+ months? ago/\1/' |
+    # Replace (2 years ago) with (2 years)
+    sed -Ee 's/([[:digit:]]+ [[:alpha:]]+) ago/\1/' |
+    # Color merge commits specially
+    sed -Ee "s/(Merge (branch|remote-tracking branch|pull request) .*$)/$(printf '\033[31m')\1$(printf '\033[0m')/" |
+    if [[ $columnize = true ]]; then
+        column -ts '}'
+    else
+        cat
+    fi |
+    # Page only if we're asked to
+    if [ -n "$GIT_NO_PAGER" ]; then
+        cat
+    else
+        # Page only if needed
+        less --quit-if-one-screen --no-init --RAW-CONTROL-CHARS --chop-long-lines
+    fi
+}
+
+git_pretty_log "$@"

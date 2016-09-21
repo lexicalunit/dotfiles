@@ -237,6 +237,13 @@ clones the given repo, changing the name and email address in entire history
 ```
 
 * * *
+### [`git_pretty_log`](git_pretty_log)
+```
+usage: git_pretty_log [-h|--help] [ARGS]
+Forwards any additional ARGS to the git log command.
+```
+
+* * *
 ### [`git_push_topic`](git_push_topic)
 ```
 usage: git_push_topic [-h|--help]
@@ -416,7 +423,7 @@ language-docker, language-groovy, language-json, language-latex,
 language-restructuredtext, language-rust, line-length-break, linter, 
 linter-clang, linter-coffeelint, linter-csslint, linter-docker, linter-erb, 
 linter-eslint, linter-flake8, linter-jsonlint, linter-just-say-no, linter-raml, 
-linter-shellcheck, linter-tidy, linter-write-good, minimap, 
+linter-rubocop, linter-shellcheck, linter-tidy, linter-write-good, minimap, 
 minimap-find-and-replace, minimap-git-diff, minimap-highlight-selected, 
 minimap-selection, multi-wrap-guide, native-ui, no-title-bar, nvatom, 
 pretty-json, python-yapf, raml, red-wavy-underline, script, set-syntax, 

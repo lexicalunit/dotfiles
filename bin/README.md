@@ -469,8 +469,8 @@ kramdown, liquid, listen, lolcat, loofah, mail, mercenary, mime-types,
 mime-types-data, mini_portile2, minitest, molinillo, nap, net-telnet, netrc, 
 nokogiri, paint, parslet, pathutil, pkg-config, power_assert, psych, 
 puppet-lint, rack, rack-test, rails-deprecated_sanitizer, rails-dom-testing, 
-rails-html-sanitizer, rake, rb-fsevent, rb-inotify, rdoc, rouge, ruby_dep, 
-rubygems-bundler, rubygems-update, rvm, safe_yaml, sass, test-unit, 
+rails-html-sanitizer, rake, rb-fsevent, rb-inotify, rdoc, rouge, rubocop, 
+ruby_dep, rubygems-bundler, rubygems-update, rvm, safe_yaml, sass, test-unit, 
 thread_safe, toml, trollop, tzinfo, xcodeproj
 
 Node Modules: JSON, coffee-script, coffeelint, cson, decaffeinate, dockerlint, 

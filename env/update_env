@@ -10,7 +10,6 @@ sync_dotfile()
     [[ -d "$HOME/.$1/" ]] && run "rsync -apl '$HOME/.$1/' ./dot_$1"
 }
 
-sync_dotfile 'profile'
 sync_dotfile 'bash_bashrc'
 sync_dotfile 'bash_profile'
 sync_dotfile 'complete'
@@ -19,14 +18,16 @@ sync_dotfile 'gitconfig'
 sync_dotfile 'hgignore'
 sync_dotfile 'hgrc'
 sync_dotfile 'inputrc'
+sync_dotfile 'isort.cfg'
 sync_dotfile 'jsbeautifyrc'
+sync_dotfile 'profile'
 sync_dotfile 'pythonrc'
+sync_dotfile 'rubocop.yml'
 sync_dotfile 'shell_control'
 sync_dotfile 'toprc'
 sync_dotfile 'vimrc'
 sync_dotfile 'zprofile'
 sync_dotfile 'zshrc'
-sync_dotfile 'isort.cfg'
 
 # also sync .profile_* dotfiles
 for I in "$HOME/".profile_*; do

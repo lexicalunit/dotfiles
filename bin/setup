@@ -10,7 +10,7 @@ HOMEBREW_FORMULAS="                                                            \
     autoconf automake bash bison boost clang-format cloog cmake coreutils      \
     cppunit csv-fix dmd docker docker-compose doxygen erlang faac fasd ffmpeg  \
     fontconfig freetype gd gdbm geoip gettext ghostscript gifify gifsicle git  \
-    git-flow git-review glib gmp gmp4 gnu-sed gnu-tar gnupg go gradle htop-osx \
+    git-flow git-review glib gmp gmp4 gnu-sed gnu-tar gnupg gradle htop-osx    \
     id3lib id3v2 imagemagick isl jasper jbig2dec jhead jo jpeg jq lame         \
     libevent libffi libgpg-error libgphoto2 libicns libksba libmpc libpng      \
     libssh2 libtiff libtool libusb libusb-compat libvo-aacenc libyaml          \
@@ -96,10 +96,18 @@ GEM_PACKAGES="                                                                 \
 NODE_MODULES="                                                                 \
     JSON coffee-script coffeelint cson decaffeinate dockerlint eslint          \
     js-beautify json-stable-stringify moment nesh raml2html standard tmpin"
+
+GO_PACKAGES="                                                                  \
+    github.com/alecthomas/gometalinter github.com/alecthomas/template          \
+    github.com/alecthomas/units github.com/google/shlex                        \
+    github.com/mvdan/sh/ast github.com/mvdan/sh/cmd/shfmt                      \
+    github.com/mvdan/sh/internal github.com/mvdan/sh/internal/tests            \
+    github.com/mvdan/sh/parser github.com/mvdan/sh/printer                     \
+    github.com/mvdan/sh/token github.com/stretchr/testify"
 # END GENERATED PACKAGE LISTS
 
 ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS ATOM_PACKAGES PIP_PACKAGES
-    CONDA_PACKAGES GEM_PACKAGES NODE_MODULES)
+    CONDA_PACKAGES GEM_PACKAGES NODE_MODULES GO_PACKAGES)
 
 ################################################################################
 # Utilities
@@ -1053,6 +1061,44 @@ step_node() {
 }
 
 ################################################################################
+# Step go
+################################################################################
+step_go() {
+    ensure_homebrew_updated
+    install_brew_formula go
+    ensure_homebrew_updated_cleanup
+
+    export GOPATH="/usr/local/lib/gopath"
+    mkdir -p "$GOPATH"
+    export PATH="$PATH:$GOPATH"
+
+    run "go get -v -u all"
+
+    INSTALLED="$(go list ... | grep github | tr '\n' ' ')"
+
+    IFS=' '
+    for I in $GO_PACKAGES; do
+        if ! echo "$INSTALLED" | egrep -q "\b$I\b"; then
+            run "go get -u $I"
+        fi
+    done
+
+    IFS=' '
+    for install_name in $INSTALLED; do
+        FOUND="false"
+        for pkg in $GO_PACKAGES; do
+            if echo "$install_name" | egrep -q "\b$pkg\b"; then
+                FOUND="true"
+                break
+            fi
+        done
+        if [[ "$FOUND" != "true" ]]; then
+            show -i "$install_name installed but not managed by setup via go get"
+        fi
+    done
+}
+
+################################################################################
 # Main
 ################################################################################
 if [[ $(id -u) == 0 ]]; then
@@ -1108,6 +1154,7 @@ steps=(
     "python;        Upgrade/Install Anaconda, pip packages, and conda packages"
     "gem;           Upgrade/Install gem packages and rubygems-update package"
     "node;          Ensure Node modules are installed"
+    "go;            Ensure Go packages are installed"
 )
 
 LISTING_OUTPUT=""

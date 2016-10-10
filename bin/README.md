@@ -389,12 +389,13 @@ steps:
     python   Upgrade/Install Anaconda, pip packages, and conda packages
     gem      Upgrade/Install gem packages and rubygems-update package
     node     Ensure Node modules are installed
+    go       Ensure Go packages are installed
 
 Homebrew Formulas: autoconf, automake, bash, bison, boost, clang-format, cloog, 
 cmake, coreutils, cppunit, csv-fix, dmd, docker, docker-compose, doxygen, 
 erlang, faac, fasd, ffmpeg, fontconfig, freetype, gd, gdbm, geoip, gettext, 
 ghostscript, gifify, gifsicle, git, git-flow, git-review, glib, gmp, gmp4, 
-gnu-sed, gnu-tar, gnupg, go, gradle, htop-osx, id3lib, id3v2, imagemagick, isl, 
+gnu-sed, gnu-tar, gnupg, gradle, htop-osx, id3lib, id3v2, imagemagick, isl, 
 jasper, jbig2dec, jhead, jo, jpeg, jq, lame, libevent, libffi, libgpg-error, 
 libgphoto2, libicns, libksba, libmpc, libpng, libssh2, libtiff, libtool, 
 libusb, libusb-compat, libvo-aacenc, libyaml, little-cms2, lzlib, makedepend, 
@@ -476,6 +477,14 @@ thread_safe, toml, trollop, tzinfo, xcodeproj
 Node Modules: JSON, coffee-script, coffeelint, cson, decaffeinate, dockerlint, 
 eslint, js-beautify, json-stable-stringify, moment, nesh, raml2html, standard, 
 tmpin
+
+Go Packages: github.com/alecthomas/gometalinter, 
+github.com/alecthomas/template, github.com/alecthomas/units, 
+github.com/google/shlex, github.com/mvdan/sh/ast, 
+github.com/mvdan/sh/cmd/shfmt, github.com/mvdan/sh/internal, 
+github.com/mvdan/sh/internal/tests, github.com/mvdan/sh/parser, 
+github.com/mvdan/sh/printer, github.com/mvdan/sh/token, 
+github.com/stretchr/testify
 ```
 
 * * *

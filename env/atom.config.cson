@@ -7,7 +7,7 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1475595780882
+		lastUpdateTimestamp: 1476113696147
 	"base16-syntax":
 		matchUserInterfaceTheme: false
 		scheme: "Solarized"

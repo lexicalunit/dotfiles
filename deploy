@@ -5,9 +5,9 @@
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 if echo "$*" | egrep -q -- "--help|-h" || [[ -z "$@" ]]; then
-	echo "usage: ${0##*/} SSH_ARGS"
-	echo "deploys setup source code to remote host."
-	exit 1
+    echo "usage: ${0##*/} SSH_ARGS"
+    echo "deploys setup source code to remote host."
+    exit 1
 fi
 
 set -e

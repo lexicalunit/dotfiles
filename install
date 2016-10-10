@@ -9,7 +9,13 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 
 set -e
 
-( run "pushd bin >/dev/null"; run "./install" )
-( run "pushd env >/dev/null"; run "./install" )
+(
+    run "pushd bin >/dev/null"
+    run "./install"
+)
+(
+    run "pushd env >/dev/null"
+    run "./install"
+)
 
 show "Install complete!"

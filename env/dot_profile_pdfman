@@ -46,6 +46,6 @@ unset MAN_PDF_VIEWER
 
 if type qlmanage >/dev/null 2>&1; then
     qman() {
-       qlmanage -p "$(man_pdf_helper "$@")" > /dev/null 2>&1 &
+        qlmanage -p "$(man_pdf_helper "$@")" >/dev/null 2>&1 &
     }
 fi

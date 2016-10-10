@@ -4,8 +4,7 @@
 
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
-sync_dotfile()
-{
+sync_dotfile() {
     [[ -f "$HOME/.$1" ]] && run "rsync -apl '$HOME/.$1' ./dot_$1"
     [[ -d "$HOME/.$1/" ]] && run "rsync -apl '$HOME/.$1/' ./dot_$1"
 }
@@ -36,14 +35,13 @@ for I in "$HOME/".profile_*; do
     fi
 done
 
-backup_atom()
-{
+backup_atom() {
     local atom_file="$1"
     local atom_file_path="$HOME/.atom/$atom_file"
     if [[ -f "$atom_file_path" ]]; then
-        if [[ "$atom_file" == "config.cson" ]]                                 \
-            && type jq >/dev/null                                              \
-            && type cson2json >/dev/null                                       \
+        if [[ "$atom_file" == "config.cson" ]] \
+            && type jq >/dev/null \
+            && type cson2json >/dev/null \
             && type json2cson >/dev/null; then
             # sort config.cson keys for consistency between updates
             local tempfile
@@ -61,8 +59,7 @@ backup_atom "keymap.cson"
 backup_atom "init.coffee"
 backup_atom "styles.less"
 
-backup_st()
-{
+backup_st() {
     if [[ -e "$1/$2" ]]; then
         run "rsync -apl '$1/$2' '$2'"
     fi

@@ -1,7 +1,6 @@
 # .shell_control
 
-show()
-{
+show() {
     # usage: show [-i|-r] <message>
     # -i: show an important message
     # -r: show a command that will be run
@@ -28,8 +27,7 @@ show()
     echo
 }
 
-run()
-{
+run() {
     # usage: run <command>; SC_DRYRUN=1 means command will not actually be run
     show -r "$1"
     if [[ $SC_DRYRUN == 0 ]]; then
@@ -40,8 +38,7 @@ run()
     fi
 }
 
-abort()
-{
+abort() {
     # usage: abort <message> [cleanup command]
     if [[ -n "$2" ]]; then
         run "$2"
@@ -50,8 +47,7 @@ abort()
     exit 1
 }
 
-ask()
-{
+ask() {
     # usage: ask "question"; SC_FORCE=1 implies reply is yes
     if [[ $SC_FORCE = 1 ]]; then
         REPLY='y'
@@ -62,8 +58,7 @@ ask()
     echo -n $'\e[0;0m'
 }
 
-query()
-{
+query() {
     # usage: query "question" [fallback]; SC_FORCE=1 implies reply is fallback
     if [[ $SC_FORCE = 1 ]]; then
         REPLY="$2" # fallback used

@@ -76,8 +76,7 @@ function docker-container-most-recent-killed() {
 function docker-container-diff-most-recent() {
     LAST_CONTAINER=$(docker-container-most-recent)
 
-    if [ ! -z "$LAST_CONTAINER" ]
-    then
+    if [ ! -z "$LAST_CONTAINER" ]; then
         docker diff $LAST_CONTAINER
     else
         echo "There are no running containers!"
@@ -86,12 +85,10 @@ function docker-container-diff-most-recent() {
 
 function docker-container-get-ip() {
     CONTAINER_ID=$1
-    if [ -z "$CONTAINER_ID" ]
-    then
+    if [ -z "$CONTAINER_ID" ]; then
         CONTAINER_ID=$(docker-container-most-recent)
     fi
-    if [ ! -z "$CONTAINER_ID" ]
-    then
+    if [ ! -z "$CONTAINER_ID" ]; then
         docker inspect --format '{{ .NetworkSettings.IPAddress }}' $CONTAINER_ID
     else
         echo "There are no running containers!"
@@ -100,8 +97,7 @@ function docker-container-get-ip() {
 
 function docker-container-inspect-most-recent() {
     LAST_CONTAINER=$(docker-container-most-recent)
-    if [ ! -z "$LAST_CONTAINER" ]
-    then
+    if [ ! -z "$LAST_CONTAINER" ]; then
         docker inspect $LAST_CONTAINER
     else
         echo "There are no running containers!"
@@ -110,12 +106,10 @@ function docker-container-inspect-most-recent() {
 
 function docker-container-get-root() {
     CONTAINER_ID=$1
-    if [ -z "$CONTAINER_ID" ]
-    then
+    if [ -z "$CONTAINER_ID" ]; then
         CONTAINER_ID=$(docker-container-most-recent)
     fi
-    if [ ! -z "$CONTAINER_ID" ]
-    then
+    if [ ! -z "$CONTAINER_ID" ]; then
         docker inspect --format '{{ .HostsPath }}' $CONTAINER_ID
     else
         echo "There are no running containers!"
@@ -127,7 +121,7 @@ function docker-container-map-port() {
     SRC_PORT=$2
     DST_PORT=$3
     CONTAINER_IP=$(docker-container-get-ip $CONTAINER_ID)
-    iptables -t nat -A  DOCKER -p tcp --dport $SRC_PORT -j DNAT --to-destination $CONTAINER_IP:$DST_PORT
+    iptables -t nat -A DOCKER -p tcp --dport $SRC_PORT -j DNAT --to-destination $CONTAINER_IP:$DST_PORT
 }
 
 function docker-container-remove-all() {
@@ -146,8 +140,7 @@ function docker-container-remove-pattern() {
 
 function docker-enter() {
     NSENTER=/usr/local/bin/nsenter
-    if [ ! -e $NSENTER ]
-    then
+    if [ ! -e $NSENTER ]; then
         docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter
     fi
 
@@ -156,7 +149,7 @@ function docker-enter() {
     else
         CONTAINER_ID=$(docker inspect --format "{{.State.Pid}}" "$1")
         if [ -z "$CONTAINER_ID" ]; then
-           exit 1
+            exit 1
         fi
         shift
         "$NSENTER" --target $CONTAINER_ID --mount --uts --ipc --net --pid -- "$@"

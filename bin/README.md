@@ -15,23 +15,6 @@ usage: alert [-qh] [message]
 ```
 
 * * *
-### [`api`](api)
-```
-usage: api [options] [curl options] 'URI'
-
-Hits the given URI and returns the result as prettified JSON.
-options:
-    -h: show this usage help
-    -n: dry run
-    -j: use curl option: -H 'content-type: application/json'
-
-curl options:
-The first option that can not be parsed as an option to this script
-will be interpreted as the beginning of options to be passed to curl.
-Or force the beginning of curl option parsing by passing -- first.
-```
-
-* * *
 ### [`apmpull`](apmpull)
 ```
 usage: apmpull [-h|--help]

@@ -73,7 +73,6 @@ or of course just run the tools with the argument `--help`.
 | --- | --- |
 | [`addroot`](bin/addroot) | Crazy hack to Add Root Folder to Atom. |
 | [`alert`](bin/alert) | Provides shell level windowed alerting system. |
-| [`api`](bin/api) | Requests a web API resource and pretty prints resulting JSON. |
 | [`apmpull`](bin/apmpull) | Updates atom packages that are installed via git cloning them into ... |
 | [`bluetooth_reset`](bin/bluetooth_reset) | Resets bluetooth on OS X. |
 | [`capture`](bin/capture) | Creates a screenshot of selected window on X11. |

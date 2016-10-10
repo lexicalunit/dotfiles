@@ -113,19 +113,19 @@ cleanup_item_list() {
     items_var="$1"
     IFS=$'\n'
     lines=("$items_var=\"")
-    lines+=($(eval "echo \$$items_var"  \
-        | sed "s/  */ /g;s/^ *//g;"     \
-        | tr ' ' '\n'                   \
-        | sort -u                       \
-        | tr '\n' ' '                   \
-        | fold -w 75 -s                 \
+    lines+=($(eval "echo \$$items_var" \
+        | sed "s/  */ /g;s/^ *//g;" \
+        | tr ' ' '\n' \
+        | sort -u \
+        | tr '\n' ' ' \
+        | fold -w 75 -s \
         | sed 's/^/    /g;s/ $//g'))
-    for ((n=0;n<${#lines[@]};n++)); do
+    for ((n = 0; n < ${#lines[@]}; n++)); do
         line="${lines[$n]}"
         leftover="$((80 - ${#line} - 1))"
         echo -n "$line"
         if [[ $((n + 1)) != "${#lines[@]}" ]]; then
-            for ((i=1;i<=leftover;i++)); do
+            for ((i = 1; i <= leftover; i++)); do
                 echo -n ' '
             done
             echo "\\"
@@ -140,9 +140,9 @@ show_items() {
     # Pretty prints an item list suitable for usage help.
     local list_name="$1"
     local list_title
-    list_title="$(echo "$list_name"                                            \
-        | tr '[:upper:]' '[:lower:]'                                           \
-        | tr '_' ' '                                                           \
+    list_title="$(echo "$list_name" \
+        | tr '[:upper:]' '[:lower:]' \
+        | tr '_' ' ' \
         | awk '{for (i=1;i <= NF;i++) {
             sub(".",substr(toupper($i),1,1),$i)} print}')"
     local output="$list_title:"
@@ -576,10 +576,10 @@ step_osx() {
     ########################################
     # Kill affected applications
     ########################################
-    for app in "Activity Monitor" "Address Book" "Calendar" "Contacts"         \
+    for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" \
         "cfprefsd" "Dock" "Finder" "Mail" "Messages" "Safari" "SystemUIServer" \
         "Terminal" "Transmission" "iCal"; do
-        killall "${app}" > /dev/null 2>&1
+        killall "${app}" >/dev/null 2>&1
     done
 
     show -i "Done. Note that some of these changes require a logout/restart to take effect."
@@ -718,8 +718,8 @@ step_brew() {
         name="${I%@*}"
         if ! echo "$HOMEBREW_FORMULAS" | egrep -q "\\b$name\\b"; then
             case "$I" in
-                "brew-cask");; "lib");; # ignored warnings
-                *) show -i "$I installed but not managed by setup via brew"
+                "brew-cask") ;; "lib") ;; # ignored warnings
+                *) show -i "$I installed but not managed by setup via brew" ;;
             esac
         fi
     done
@@ -895,9 +895,9 @@ step_python() {
 
         local latest
         latest="$(curl -s http://repo.continuum.io/archive/.files.json \
-                  | jq 'to_entries | sort_by(.value.mtime) | reverse | .[].key' \
-                  | grep Anaconda3- \
-                  | grep -m 1 MacOSX-x86_64.sh | tr -d '"')" || abort "could not find latest Anaconda installer"
+            | jq 'to_entries | sort_by(.value.mtime) | reverse | .[].key' \
+            | grep Anaconda3- \
+            | grep -m 1 MacOSX-x86_64.sh | tr -d '"')" || abort "could not find latest Anaconda installer"
         latest="http://repo.continuum.io/archive/$latest"
         show "downloading $latest ..."
         run "curl -o '$curl_output/anaconda.sh' '$latest'" || abort "could not download Anaconda installer"
@@ -1079,9 +1079,9 @@ ALL=0
 DRYRUN=0
 while getopts "lfd" opt; do
     case "$opt" in
-        l) LISTING=1;;
-        f) FORCE=1;;
-        d) DRYRUN=1;;
+        l) LISTING=1 ;;
+        f) FORCE=1 ;;
+        d) DRYRUN=1 ;;
     esac
 done
 shift $((OPTIND - 1))

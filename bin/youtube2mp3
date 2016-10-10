@@ -2,8 +2,7 @@
 
 # Downloads the audio from a youtube video given the URL.
 
-usage()
-{
+usage() {
     echo "usage: ${0##*/} [-h|--help] [youtube-dl options] <youtube URL>"
     echo ""
     echo "Downloads the youtube video at the given URL and creates corresponding mp3."

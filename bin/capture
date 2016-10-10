@@ -3,10 +3,10 @@
 # Creates a screenshot of selected window on X11.
 
 if [[ "$1" == "--help" || "$1" == "-h" ]]; then
-	echo "usage: ${0##*/} [-h|--help]" 1>&2
-	echo "" 1>&2
-	echo "Creates a screenshot of selected window on X11." 1>&2
-	exit 1
+    echo "usage: ${0##*/} [-h|--help]" 1>&2
+    echo "" 1>&2
+    echo "Creates a screenshot of selected window on X11." 1>&2
+    exit 1
 fi
 
 set -e
@@ -22,5 +22,5 @@ import -window "$XID" "$FILE"
 echo "imported to $FILE"
 
 if type eog >/dev/null 2>&1; then
-	nohup eog "$FILE" &
+    nohup eog "$FILE" &
 fi

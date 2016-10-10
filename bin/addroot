@@ -2,8 +2,7 @@
 
 # Crazy hack to Add Root Folder to Atom.
 
-usage()
-{
+usage() {
     (
         echo "usage: ${0##*/} ROOT_FOLDER"
         echo "Runs command Adds Root Folder in Atom using given ROOT_FOLDER."

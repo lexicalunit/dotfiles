@@ -28,7 +28,7 @@ fi
 
 for I in *; do
     case "$I" in
-        install|update_bin|usages|ignore|README.md) ;; # don't install these files
+        install | update_bin | usages | ignore | README.md) ;; # don't install these files
         *)
             if [[ ! -f ignore ]] || ! grep -q "$(basename "$I")" ignore; then
                 if [[ $INSTALL == 1 ]]; then
@@ -37,7 +37,7 @@ for I in *; do
                     run "rm '$HOME/bin/$I'"
                 fi
             fi
-        ;;
+            ;;
     esac
 done
 

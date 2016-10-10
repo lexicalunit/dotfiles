@@ -12,8 +12,11 @@ fi
 # req_progs=(7z unrar unzip)
 req_progs=(unrar unzip)
 for p in ${req_progs[*]}; do
-    hash "$p" 2>&- || \
-    { echo >&2 " Required program \"$p\" not installed."; exit 1; }
+    hash "$p" 2>&- \
+        || {
+            echo >&2 " Required program \"$p\" not installed."
+            exit 1
+        }
 done
 
 # Test if file exists
@@ -25,18 +28,18 @@ fi
 # Extract file by using extension as reference
 case "$@" in
     # *.7z      ) 7z  x       "$@"                ;;
-    *.tar.bz2 ) tar xvjf    "$@"                ;;
-    *.bz2     ) bunzip2     "$@"                ;;
-    *.deb     ) ar  vx      "$@"                ;;
-    *.tar.gz  ) tar xvf     "$@"                ;;
-    *.gz      ) gunzip      "$@"                ;;
-    *.tar     ) tar xvf     "$@"                ;;
-    *.tbz2    ) tar xvjf    "$@"                ;;
-    *.tar.xz  ) tar xvf     "$@"                ;;
-    *.tgz     ) tar xvzf    "$@"                ;;
-    *.rar     ) unrar x     "$@"                ;;
+    *.tar.bz2) tar xvjf "$@" ;;
+    *.bz2) bunzip2 "$@" ;;
+    *.deb) ar vx "$@" ;;
+    *.tar.gz) tar xvf "$@" ;;
+    *.gz) gunzip "$@" ;;
+    *.tar) tar xvf "$@" ;;
+    *.tbz2) tar xvjf "$@" ;;
+    *.tar.xz) tar xvf "$@" ;;
+    *.tgz) tar xvzf "$@" ;;
+    *.rar) unrar x "$@" ;;
     # *.rar     ) 7z  x       "$@"                ;;
-    *.zip     ) unzip       "$@"                ;;
-    *.Z       ) uncompress  "$@"                ;;
-    *         ) echo " Unsupported file format" ;;
+    *.zip) unzip "$@" ;;
+    *.Z) uncompress "$@" ;;
+    *) echo " Unsupported file format" ;;
 esac

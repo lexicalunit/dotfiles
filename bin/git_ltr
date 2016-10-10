@@ -19,13 +19,12 @@ fi
 RECURSIVE=""
 while getopts "r" opt; do
     case "$opt" in
-        r) RECURSIVE="-r";;
+        r) RECURSIVE="-r" ;;
     esac
 done
 shift $((OPTIND - 1))
 
-git_list()
-{
+git_list() {
     eval "git ls-tree $RECURSIVE --name-only HEAD" | while read filename; do
         echo "$(git log -1 --format="%ad" -- "$filename")"$'\t'"$filename"
     done

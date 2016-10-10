@@ -6,14 +6,14 @@ SKIP_DIRS="htmlcov,CVS,RCS,.svn,.hg,.bzr,.git,build,dist,CMakeFiles"
 SKIP_EXTS="TEST-all.xml,.pyc,.pyo,.so,.o,.a,.tgz,.tar.gz,.rar,.zip,~,#,.bak,.png,.jpg,.gif,.bmp,.tif,.tiff,.pyd,.dll,.exe,.obj,.lib,cmake,Makefile"
 
 if [[ "$1" == "--help" || "$1" == "-h" ]]; then
-	echo "usage: ${0##*/} [-h|--help] [python regex]" 1>&2
-	echo "" 1>&2
-	echo "Finds All (fa) occurrences of the given regex using grin to search source files," 1>&2
-	echo "ignoring directories: $(echo "$SKIP_DIRS" | sed 's/,/, /g')" 1>&2
-	echo "and ignoring file extensions: $(echo "$SKIP_EXTS" | sed 's/,/, /g')" 1>&2
-	echo "" 1>&2
-	grin --help 1>&2
-	exit 1
+    echo "usage: ${0##*/} [-h|--help] [python regex]" 1>&2
+    echo "" 1>&2
+    echo "Finds All (fa) occurrences of the given regex using grin to search source files," 1>&2
+    echo "ignoring directories: $(echo "$SKIP_DIRS" | sed 's/,/, /g')" 1>&2
+    echo "and ignoring file extensions: $(echo "$SKIP_EXTS" | sed 's/,/, /g')" 1>&2
+    echo "" 1>&2
+    grin --help 1>&2
+    exit 1
 fi
 
 set -o xtrace

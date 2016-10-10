@@ -2,8 +2,7 @@
 
 # Easy way to quickly manage temporary web shares.
 
-usage()
-{
+usage() {
     echo "usage ${0##*/} [<file>|ls|names|ssh|get <name(s)>|put <file(s)>|rm <name>]" 1>&2
     echo "Requires ~/.webshare script be created for your webshare configuration."
     echo
@@ -18,8 +17,7 @@ usage()
 [[ -f "$HOME/.webshare" ]] || usage
 source "$HOME/.webshare"
 
-share_put()
-{
+share_put() {
     for I in "$@"; do
         NAME="$(basename "$I")"
         rsync --chmod=a+r --rsh="ssh -c blowfish" "$I" "$SHARE_USER@$SHARE_HOST:$SHARE_DEST/$NAME"
@@ -29,8 +27,7 @@ share_put()
     done
 }
 
-list_files()
-{
+list_files() {
     # Note that we DO want to expand $SHARE_DEST locally here.
     local cmd="                     \
         find $SHARE_DEST            \
@@ -53,11 +50,11 @@ if [[ -f "$1" ]]; then
 fi
 
 case "$1" in
-    help|-h|--help|h*|-*)
+    help | -h | --help | h* | -*)
         usage
         ;;
 
-    names|n*)
+    names | n*)
         if echo "$*" | egrep -q -- "-p|--private"; then
             SHARE_DEST="$SHARE_DEST/private"
             SHARE_URI="$SHARE_URI/private"
@@ -65,7 +62,7 @@ case "$1" in
         list_files | sed "s@$SHARE_DEST/@@g"
         ;;
 
-    list|ls|l|ll|find|f|l*|f*)
+    list | ls | l | ll | find | f | l* | f*)
         if echo "$*" | egrep -q -- "-p|--private"; then
             SHARE_DEST="$SHARE_DEST/private"
             SHARE_URI="$SHARE_URI/private"
@@ -73,7 +70,7 @@ case "$1" in
         list_files | sed "s@$SHARE_DEST/@$SHARE_URI/@g"
         ;;
 
-    put|p|up|p*|u*)
+    put | p | up | p* | u*)
         [[ -n "$2" ]] || usage
         if echo "$2" | egrep -q -- "-p|--private"; then
             shift
@@ -84,7 +81,7 @@ case "$1" in
         share_put "$@"
         ;;
 
-    get|g*)
+    get | g*)
         [[ -n "$2" ]] || usage
         if echo "$2" | egrep -q -- "-p|--private"; then
             shift
@@ -97,11 +94,11 @@ case "$1" in
         done
         ;;
 
-    ssh|open|shell|s*)
+    ssh | open | shell | s*)
         ssh "$SHARE_USER@$SHARE_HOST"
         ;;
 
-    del|delete|rm)
+    del | delete | rm)
         [[ -n "$2" ]] || usage
         if echo "$2" | egrep -q -- "-p|--private"; then
             shift

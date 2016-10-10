@@ -2,59 +2,58 @@
 
 # Kills processes based on process name.
 
-usage()
-{
-	echo "usage: ${0##*/} [options] REGEX" 1>&2
-	echo "" 1>&2
-	echo "kills all processes matching REGEX." 1>&2
-	echo ""
-	echo "options:"
-	echo " -n enables dryrun mode" 1>&2
-	echo " -q enables quite mode" 1>&2
-	echo " -h or --help shows usage help" 1>&2
-	exit 1
+usage() {
+    echo "usage: ${0##*/} [options] REGEX" 1>&2
+    echo "" 1>&2
+    echo "kills all processes matching REGEX." 1>&2
+    echo ""
+    echo "options:"
+    echo " -n enables dryrun mode" 1>&2
+    echo " -q enables quite mode" 1>&2
+    echo " -h or --help shows usage help" 1>&2
+    exit 1
 }
 
 if [[ "$1" == "--help" || "$1" == "-h" ]]; then
-	usage
+    usage
 fi
 
 DRYRUN=0
 QUIET=0
 while getopts "hqn" opt; do
-	case "$opt" in
-		h) usage;;
-		n) DRYRUN=1;;
-		q) QUIET=1;;
-	esac
+    case "$opt" in
+        h) usage ;;
+        n) DRYRUN=1 ;;
+        q) QUIET=1 ;;
+    esac
 done
 shift $((OPTIND - 1))
 
 LIST="$(ps -ww -ew -o pid,user,command | egrep -v "bin/die|grep" | grep -i "$1")"
 if [ "$LIST" = "" ]; then
-	if [[ "$QUIET" == 0 ]]; then
-		echo "no processes found"
-	fi
-	exit 0
+    if [[ "$QUIET" == 0 ]]; then
+        echo "no processes found"
+    fi
+    exit 0
 fi
 
 if [[ "$QUIET" == 0 ]]; then
-	echo "$(echo "$LIST" | wc -l) processes found:"
-	echo "$LIST"
+    echo "$(echo "$LIST" | wc -l) processes found:"
+    echo "$LIST"
 fi
 
 KCMD="kill -9 $(echo "$LIST" | sed "s/^ *//g" | cut -d" " -f1 | tr '\n' ' ')"
 
 if [[ "$DRYRUN" == 0 ]]; then
-	if [[ "$QUIET" == 0 ]]; then
-		echo -n "running '$KCMD' ... "
-	fi
-	eval "$KCMD"
+    if [[ "$QUIET" == 0 ]]; then
+        echo -n "running '$KCMD' ... "
+    fi
+    eval "$KCMD"
 else
-	if [[ "$QUIET" == 0 ]]; then
-		echo -n "dryrun '$KCMD' ... "
-	fi
+    if [[ "$QUIET" == 0 ]]; then
+        echo -n "dryrun '$KCMD' ... "
+    fi
 fi
 if [[ "$QUIET" == 0 ]]; then
-	echo "done"
+    echo "done"
 fi

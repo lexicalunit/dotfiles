@@ -46,7 +46,7 @@ echo
 run_local "cat '$HOME/.ssh/$KEY.pub' | ssh $* 'cat > \"$KEY.pub\"'"
 
 # Don't quote EOF here, we want variable expansion locally here.
-ssh "$@" "bash -s" << EOF
+ssh "$@" "bash -s" <<EOF
     remote_run() {
         echo $'\e[1;34mremote ==>\e[0m\e[31m' "\$1" $'\e[0m'
         eval "\$1"

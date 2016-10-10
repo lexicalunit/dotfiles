@@ -12,9 +12,9 @@ set -u
 cd "$HOME/.atom/packages"
 find . -not -path . -maxdepth 1 -type d -or -type l | while read dir; do
     [[ -d "$dir/.git" ]] || continue
-    pushd "$dir" > /dev/null
+    pushd "$dir" >/dev/null
     echo "$(tput bold)$(pwd)$(tput sgr0)"
     git pull
-    popd > /dev/null
+    popd >/dev/null
     echo
 done

@@ -13,7 +13,7 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 EXCLUDES=(install usages macosver update_bin ignore)
 
 if [[ -f ignore ]]; then
-    while read I; do EXCLUDES+=("$I"); done < ignore
+    while read I; do EXCLUDES+=("$I"); done <ignore
 fi
 
 CMD="rsync -apl"

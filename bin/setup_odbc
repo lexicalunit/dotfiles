@@ -3,11 +3,11 @@
 # Sets up ODBC.
 
 if [[ "$1" == "--help" || "$1" == "-h" ]]; then
-	echo "usage: ${0##*/} [-h|--help]" 1>&2
-	echo "Attempts to install a working ODBC configuration to OS X." 1>&2
-	echo "Uses unixODBC with FreeTDS from Homebrew." 1>&2
-	echo "Requires hand editing to support your specific installation." 1>&2
-	exit 1
+    echo "usage: ${0##*/} [-h|--help]" 1>&2
+    echo "Attempts to install a working ODBC configuration to OS X." 1>&2
+    echo "Uses unixODBC with FreeTDS from Homebrew." 1>&2
+    echo "Requires hand editing to support your specific installation." 1>&2
+    exit 1
 fi
 
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
@@ -16,34 +16,33 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 # installing freetds with unixodbc
 ###############################################################################
 if ! type brew >/dev/null; then
-	abort "prerequisite homebrew not installed"
+    abort "prerequisite homebrew not installed"
 fi
 
-install_freetds()
-{
-	run "brew install unixodbc" || abort "could not install unixodbc"
-	run "brew install --with-unixodbc freetds" || abort "could not install freetds with unixodbc"
-	run "brew unlink unixodbc && brew link --overwrite unixodbc"
-	run "brew unlink freetds && brew link --overwrite freetds"
+install_freetds() {
+    run "brew install unixodbc" || abort "could not install unixodbc"
+    run "brew install --with-unixodbc freetds" || abort "could not install freetds with unixodbc"
+    run "brew unlink unixodbc && brew link --overwrite unixodbc"
+    run "brew unlink freetds && brew link --overwrite freetds"
 }
 
 if ! brew list freetds >/dev/null 2>&1; then
-	install_freetds
+    install_freetds
 fi
 
 if ! brew info freetds 2>&1 | grep "Built from source with" | grep -q -- "--with-unixodbc"; then
-	show "installed freetds not build with unixodbc, reinstalling..."
-	run "brew uninstall freetds" || abort "could not uninstall freetds"
-	install_freetds
+    show "installed freetds not build with unixodbc, reinstalling..."
+    run "brew uninstall freetds" || abort "could not uninstall freetds"
+    install_freetds
 fi
 
 ###############################################################################
 # detect settings
 ###############################################################################
 if [[ -d /opt/vertica/lib64 ]]; then
-	VERTICA_LIBRARY_PATH="/opt/vertica/lib64"
+    VERTICA_LIBRARY_PATH="/opt/vertica/lib64"
 elif [[ -d /opt/vertica/lib ]]; then
-	VERTICA_LIBRARY_PATH="/opt/vertica/lib"
+    VERTICA_LIBRARY_PATH="/opt/vertica/lib"
 fi
 VERTICA_DRIVER="$(find $VERTICA_LIBRARY_PATH -name "libverticaodbc.*" | egrep "$VERTICA_LIBRARY_PATH/libverticaodbc.(dylib|so)\$")"
 MSSQL_DRIVER="$(brew ls -v freetds | grep libtdsodbc.so)"
@@ -56,7 +55,7 @@ run "chmod +x $MSSQL_DRIVER"
 # odbcinst.ini
 ###############################################################################
 show "creating ~/.odbcinst.ini..."
-cat > "$HOME/.odbcinst.ini" <<EOF
+cat >"$HOME/.odbcinst.ini" <<EOF
 [vertica]
 Description             = Vertica ODBC Driver
 Driver                  = $VERTICA_DRIVER
@@ -96,7 +95,7 @@ run "cat $HOME/.odbcinst.ini"
 # odbc.ini
 ###############################################################################
 show "creating ~/.odbc.ini..."
-cat > "$HOME/.odbc.ini" <<EOF
+cat >"$HOME/.odbc.ini" <<EOF
 [ODBC]
 Trace       = 1
 TraceFile   = /tmp/odbctrace.log
@@ -109,12 +108,11 @@ run "cat $HOME/.odbc.ini"
 ###############################################################################
 # installing configuration files
 ###############################################################################
-install_to()
-{
-	local install_to_path="$@"
-	run "sudo mkdir -p $install_to_path/" || abort "can't create directory $install_to_path"
-	run "sudo cp -vf $HOME/.odbcinst.ini $install_to_path/odbcinst.ini" || abort "can't install $install_to_path/odbcinst.ini"
-	run "sudo cp -vf $HOME/.odbc.ini $install_to_path/odbc.ini" || abort "can't install $install_to_path/odbc.ini"
+install_to() {
+    local install_to_path="$@"
+    run "sudo mkdir -p $install_to_path/" || abort "can't create directory $install_to_path"
+    run "sudo cp -vf $HOME/.odbcinst.ini $install_to_path/odbcinst.ini" || abort "can't install $install_to_path/odbcinst.ini"
+    run "sudo cp -vf $HOME/.odbc.ini $install_to_path/odbc.ini" || abort "can't install $install_to_path/odbc.ini"
 }
 
 install_to "$HOME/Library/ODBC"
@@ -124,9 +122,9 @@ install_to "/usr/etc"
 install_to "" # root
 
 if type odbcinst >/dev/null 2>&1; then
-	# install to odbcinst -j locations
-	run "sudo cat $HOME/.odbcinst.ini > $(odbcinst -j | grep DRIVERS | awk '{print $2}')"
-	run "sudo cat $HOME/.odbc.ini > $(odbcinst -j | grep 'SYSTEM DATA SOURCES' | awk '{print $4}')"
+    # install to odbcinst -j locations
+    run "sudo cat $HOME/.odbcinst.ini > $(odbcinst -j | grep DRIVERS | awk '{print $2}')"
+    run "sudo cat $HOME/.odbc.ini > $(odbcinst -j | grep 'SYSTEM DATA SOURCES' | awk '{print $4}')"
 fi
 
 ###############################################################################

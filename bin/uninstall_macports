@@ -3,9 +3,9 @@
 # Uninstalls MacPorts completely.
 
 if [[ "$1" == "--help" || "$1" == "-h" ]]; then
-	echo "usage: ${0##*/} [-h|--help]" 1>&2
+    echo "usage: ${0##*/} [-h|--help]" 1>&2
     echo "See http://guide.macports.org/chunked/installing.macports.uninstalling.html for details." 1>&2
-	exit 1
+    exit 1
 fi
 
 sudo port -fp uninstall installed

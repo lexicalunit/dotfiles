@@ -3,9 +3,9 @@
 # Uninstalls Homebrew completely.
 
 if [[ "$1" == "--help" || "$1" == "-h" ]]; then
-	echo "usage: ${0##*/} [-h|--help]" 1>&2
+    echo "usage: ${0##*/} [-h|--help]" 1>&2
     echo "See https://gist.github.com/1173223 for details." 1>&2
-	exit 1
+    exit 1
 fi
 
 set -e
@@ -21,7 +21,7 @@ bin/brew prune
 pbpaste | xargs -0 rm
 rm -r Library/Homebrew Library/Aliases Library/Formula Library/Contributions
 test -d Library/LinkedKegs && rm -r Library/LinkedKegs
-rmdir -p bin Library share/man/man1 2> /dev/null
+rmdir -p bin Library share/man/man1 2>/dev/null
 rm -rf .git
 rm -rf "$HOME/Library/Caches/Homebrew"
 rm -rf "$HOME/Library/Logs/Homebrew"

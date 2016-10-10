@@ -18,13 +18,13 @@ cd "$wd" || abort "could not create workspace"
 
 if [[ ! -e "$1" ]]; then
     find \
-            /Library/LaunchAgents \
-            /Library/LaunchDaemons \
-            /System/Library/LaunchAgents \
-            /System/Library/LaunchDaemons \
-            ~/Library/LaunchAgents \
-            ~/Library/LaunchDaemons \
-            -type f \
+        /Library/LaunchAgents \
+        /Library/LaunchDaemons \
+        /System/Library/LaunchAgents \
+        /System/Library/LaunchDaemons \
+        ~/Library/LaunchAgents \
+        ~/Library/LaunchDaemons \
+        -type f \
         2>/dev/null \
         | egrep -i "$@"
 else

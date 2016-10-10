@@ -24,8 +24,8 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 
 while getopts "kc:" opt; do
     case "$opt" in
-        k) KEEP="yes";;
-        c) CSS="$OPTARG";;
+        k) KEEP="yes" ;;
+        c) CSS="$OPTARG" ;;
     esac
 done
 shift $((OPTIND - 1))

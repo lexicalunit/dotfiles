@@ -3,9 +3,9 @@
 # Sleeps for the given number of seconds, showing a progress bar.
 
 if [[ "$1" == "--help" || "$1" == "-h" || -z "$1" ]]; then
-	echo "usage: ${0##*/} SECONDS [-h|--help]" 1>&2
-	echo "Sleeps for the given number of seconds, showing a progress bar." 1>&2
-	exit 1
+    echo "usage: ${0##*/} SECONDS [-h|--help]" 1>&2
+    echo "Sleeps for the given number of seconds, showing a progress bar." 1>&2
+    exit 1
 fi
 
 set -ue
@@ -17,14 +17,14 @@ start=$(vramsteg --now)
 while :; do
     now=$(vramsteg --now)
     current=$((now - start))
-    vramsteg --start="$start"       \
-             --estimate             \
-             --label sleeping       \
-             --style mono           \
-             --width "$width"       \
-             --min 0                \
-             --max "$max"           \
-             --current "$current"
+    vramsteg --start="$start" \
+        --estimate \
+        --label sleeping \
+        --style mono \
+        --width "$width" \
+        --min 0 \
+        --max "$max" \
+        --current "$current"
     sleep 1
     [[ $current -ge $1 ]] && break
 done

@@ -4,14 +4,14 @@
 
 if echo "$*" | egrep -q -- "--help|-h"; then
     (
-	    echo "usage: ${0##*/} [-t|--table|-v|--verbose-h|--help]"
+        echo "usage: ${0##*/} [-t|--table|-v|--verbose-h|--help]"
         echo "Prints out documentation and usage information for everything in current directory."
         echo
         echo "-t,--table:   prints out information in a markdown table."
         echo "-v,--verbose: prints out all usage information in markdown format."
         echo "-v,--help:    prints out this help message."
     ) 1>&2
-	exit 1
+    exit 1
 fi
 
 # Some help messages are adjusted to fit terminal columns, so setting a
@@ -29,7 +29,7 @@ fi
 
 VERBOSE=0
 if echo "$*" | egrep -q -- "--verbose|-v"; then
-	VERBOSE=1
+    VERBOSE=1
 fi
 
 for I in *; do
@@ -38,8 +38,8 @@ for I in *; do
     fi
 
     # tool name
-	if [[ $VERBOSE == 1 ]]; then
-		echo "* * *"
+    if [[ $VERBOSE == 1 ]]; then
+        echo "* * *"
         echo -en "### [\`$I\`]($I)"
     elif [[ $TABLE == 1 ]]; then
         echo -en "| [\`$I\`](bin/$I) | "
@@ -48,25 +48,25 @@ for I in *; do
     fi
 
     # describe tool or symbolic link
-	DESC=""
+    DESC=""
     if [[ "$I" == "macosver" ]]; then
-		if [[ $VERBOSE == 1 ]]; then
-			DESC=$'\n```\n'"usage: macosver"$'\n\n'"Simply prints out the OS X major and minor version."$'\n```\n'
-		else
-	        DESC="Prints current OS X version information."
-		fi
+        if [[ $VERBOSE == 1 ]]; then
+            DESC=$'\n```\n'"usage: macosver"$'\n\n'"Simply prints out the OS X major and minor version."$'\n```\n'
+        else
+            DESC="Prints current OS X version information."
+        fi
     elif file -h "$I" | grep -q 'symbolic link to'; then
-		if [[ $VERBOSE == 1 ]]; then
-			echo
-		fi
-    	DESC="Symbolic link to '$(ls -l "$I" | sed 's@.* -> \(.*\)@\1@')'"
+        if [[ $VERBOSE == 1 ]]; then
+            echo
+        fi
+        DESC="Symbolic link to '$(ls -l "$I" | sed 's@.* -> \(.*\)@\1@')'"
     elif [[ $VERBOSE == 0 ]]; then
         DESC="$(head -n 3 "$I" | tail -n 1 | sed 's@[^ ]* \(.*\)@\1@')"
     fi
 
-	if [[ $VERBOSE == 1 && "$I" != "macosver" ]]; then
-		DESC="$DESC"$'\n```\n'"$("./$I" --help 2>&1)"$'\n```\n'
-	fi
+    if [[ $VERBOSE == 1 && "$I" != "macosver" ]]; then
+        DESC="$DESC"$'\n```\n'"$("./$I" --help 2>&1)"$'\n```\n'
+    fi
 
     # truncate long descriptions
     if [[ $TABLE == 1 ]]; then

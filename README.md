@@ -164,7 +164,7 @@ xquartz
 Atom Packages: MagicPython, activate-power-mode, aesthetic-ui, atom-beautify, 
 atom-isort, atom-language-avro, autocomplete-python, autoupdate-packages, 
 base16-syntax, column-select, cursor-indicator, event-watch, file-icons, 
-force-tab, highlight-selected, indent-guide-improved, jumpy, 
+force-tab, format-shell, highlight-selected, indent-guide-improved, jumpy, 
 language-applescript, language-babel, language-cmake, language-diff, 
 language-docker, language-groovy, language-json, language-latex, 
 language-restructuredtext, language-rust, line-length-break, linter, 

@@ -727,6 +727,7 @@ step_brew() {
         if ! echo "$HOMEBREW_FORMULAS" | egrep -q "\\b$name\\b"; then
             case "$I" in
                 "brew-cask") ;; "lib") ;; # ignored warnings
+                "go") ;; # installed as a separate step
                 *) show -i "$I installed but not managed by setup via brew" ;;
             esac
         fi

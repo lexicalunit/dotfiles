@@ -602,7 +602,7 @@ step_xcode() {
         show "Xcode agreement is accepted."
     else
         show "Xcode agreement not accepted..."
-        run "sudo cc --version" || abort "Xcode agreement NOT accepted"
+        run "sudo xcodebuild -license" || abort "Xcode agreement NOT accepted"
     fi
     show "Xcode Command Line Tools are properly installed."
 }

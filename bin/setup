@@ -650,7 +650,7 @@ ensure_homebrew_updated() {
     run "brew unlink $KEG_ONLY"
 
     run "brew update"
-    run "brew upgrade --all"
+    run "brew upgrade"
 }
 
 ensure_homebrew_updated_cleanup() {

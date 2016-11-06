@@ -54,26 +54,29 @@ PIP_PACKAGES="                                                                 \
 
 CONDA_PACKAGES="                                                               \
     abstract-rendering alabaster anaconda anaconda-client anaconda-navigator   \
-    appnope appscript argcomplete astropy babel beautifulsoup4 bitarray        \
-    blaze-core bokeh boto bottleneck cffi chest cloudpickle clyent colorama    \
-    conda conda-build conda-env conda-manager configobj cryptography curl      \
-    cycler cython cytoolz dask datashape decorator dill docutils dynd-python   \
-    et_xmlfile fastcache flake8 flask flask-cors freetype futures gevent       \
-    greenlet h5py hdf5 heapdict idna ipykernel ipython ipython-notebook        \
-    ipython-qtconsole ipython_genutils ipywidgets itsdangerous jbig jdcal jedi \
-    jinja2 jpeg jsonschema jupyter jupyter_client jupyter_console jupyter_core \
-    launcher libdynd libpng libtiff libxml2 libxslt llvmlite locket lxml       \
-    markupsafe matplotlib mccabe mistune mkl mkl-service mpmath                \
-    multipledispatch nbconvert nbformat networkx nltk node-webkit nose         \
-    notebook numba numexpr numpy odo openpyxl openssl pandas partd path.py     \
-    patsy pep8 pexpect pickleshare pillow pip ply psutil ptyprocess py pyasn1  \
-    pycosat pycparser pycrypto pycurl pyflakes pygments pymongo pyopenssl      \
-    pyparsing pyqt pytables pytest python python-dateutil python.app pytz      \
-    pyyaml pyzmq qt qtawesome qtconsole qtpy readline redis redis-py requests  \
-    rope ruamel_yaml scikit-image scikit-learn scipy setuptools simplegeneric  \
-    singledispatch sip six snowballstemmer sockjs-tornado sphinx               \
-    sphinx_rtd_theme spyder spyder-app sqlalchemy sqlite statsmodels sympy     \
-    terminado tk toolz tornado traitlets unicodecsv werkzeug wheel xlrd        \
+    appnope appscript argcomplete astroid astropy babel backports              \
+    beautifulsoup4 bitarray blaze-core bokeh boto bottleneck cffi chest click  \
+    cloudpickle clyent colorama conda conda-build conda-env conda-manager      \
+    configobj contextlib2 cryptography curl cycler cython cytoolz dask         \
+    datashape decorator dill docutils dynd-python entrypoints et_xmlfile       \
+    fastcache filelock flake8 flask flask-cors freetype futures                \
+    get_terminal_size gevent greenlet h5py hdf5 heapdict icu idna imagesize    \
+    ipykernel ipython ipython-notebook ipython-qtconsole ipython_genutils      \
+    ipywidgets itsdangerous jbig jdcal jedi jinja2 jpeg jsonschema jupyter     \
+    jupyter_client jupyter_console jupyter_core launcher lazy-object-proxy     \
+    libdynd libpng libtiff libxml2 libxslt llvmlite locket lxml markupsafe     \
+    matplotlib mccabe mistune mkl mkl-service mpmath multipledispatch nb_conda \
+    nb_conda_kernels nbconvert nbformat nbpresent networkx nltk node-webkit    \
+    nose notebook numba numexpr numpy odo openpyxl openssl pandas partd        \
+    path.py pathlib2 patsy pep8 pexpect pickleshare pillow pip pkginfo ply     \
+    prompt_toolkit psutil ptyprocess py pyasn1 pycosat pycparser pycrypto      \
+    pycurl pyflakes pygments pylint pymongo pyopenssl pyparsing pyqt pytables  \
+    pytest python python-dateutil python.app pytz pyyaml pyzmq qt qtawesome    \
+    qtconsole qtpy readline redis redis-py requests rope ruamel_yaml           \
+    scikit-image scikit-learn scipy setuptools simplegeneric singledispatch    \
+    sip six snowballstemmer sockjs-tornado sphinx sphinx_rtd_theme spyder      \
+    spyder-app sqlalchemy sqlite statsmodels sympy terminado tk toolz tornado  \
+    traitlets unicodecsv wcwidth werkzeug wheel widgetsnbextension wrapt xlrd  \
     xlsxwriter xlwings xlwt xz yaml zeromq zlib"
 
 GEM_PACKAGES="                                                                 \
@@ -100,10 +103,8 @@ NODE_MODULES="                                                                 \
 GO_PACKAGES="                                                                  \
     github.com/alecthomas/gometalinter github.com/alecthomas/template          \
     github.com/alecthomas/units github.com/google/shlex                        \
-    github.com/mvdan/sh/ast github.com/mvdan/sh/cmd/shfmt                      \
-    github.com/mvdan/sh/internal github.com/mvdan/sh/internal/tests            \
-    github.com/mvdan/sh/parser github.com/mvdan/sh/printer                     \
-    github.com/mvdan/sh/token github.com/stretchr/testify"
+    github.com/mvdan/sh/cmd/shfmt github.com/mvdan/sh/syntax                   \
+    github.com/stretchr/testify"
 # END GENERATED PACKAGE LISTS
 
 ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS ATOM_PACKAGES PIP_PACKAGES
@@ -903,13 +904,15 @@ step_python() {
         trap 'rm -rf $curl_output' EXIT
 
         local latest
-        latest="$(curl -s http://repo.continuum.io/archive/.files.json \
+        latest="$(curl -s https://repo.continuum.io/archive/.files.json \
             | jq 'to_entries | sort_by(.value.mtime) | reverse | .[].key' \
             | grep Anaconda3- \
             | grep -m 1 MacOSX-x86_64.sh | tr -d '"')" || abort "could not find latest Anaconda installer"
-        latest="http://repo.continuum.io/archive/$latest"
+        [[ -n "$latest" ]] || abort "could not find latest Anaconda installer"
+        latest="https://repo.continuum.io/archive/$latest"
         show "downloading $latest ..."
         run "curl -o '$curl_output/anaconda.sh' '$latest'" || abort "could not download Anaconda installer"
+        [[ -e "$curl_output/anaconda.sh" ]] || abort "could not download Anaconda installer"
         run "bash '$curl_output/anaconda.sh' -b" || abort "could not install Anaconda"
 
         export PATH="$HOME/$ANACONDA_DIR_NAME/bin:$PATH"
@@ -931,7 +934,7 @@ step_python() {
 
     # Install conda packages that don't come pre-installed with Anaconda
     local CONDA_LIST
-    CONDA_LIST="$(conda list -e | cut -f1 -d= | grep -v '^#')"
+    CONDA_LIST="$(conda list -e | cut -f1 -d= | egrep -v '^#|^_|anaconda')"
     IFS=' '
     for I in $CONDA_PACKAGES; do
         if ! echo "$CONDA_LIST" | grep -q "$I"; then

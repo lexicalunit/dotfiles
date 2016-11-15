@@ -7,7 +7,7 @@
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1478470837924
+		lastUpdateTimestamp: 1479228609817
 	"base16-syntax":
 		matchUserInterfaceTheme: false
 		scheme: "Solarized"
@@ -30,6 +30,7 @@
 			"language-python"
 			"activate-power-mode"
 			"atom-metaweather"
+			"standard-formatter"
 		]
 		telemetryConsent: "no"
 		themes: [

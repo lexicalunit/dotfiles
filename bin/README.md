@@ -279,18 +279,12 @@ Usage: jsc [options] [files] [-- arguments]
   -f         Specifies a source file (deprecated)
   -h|--help  Prints this help message
   -i         Enables interactive mode (default if no files are specified)
-  -m         Execute as a module
   -s         Installs signal handlers that exit on a crash (Unix platforms only)
   -p <file>  Outputs profiling data to a file
   -x         Output exit code before terminating
 
-  --sample                   Collects and outputs sampling profiler data
-  --test262-async            Check that some script calls the print function with the string 'Test262:AsyncTestComplete'
-  --strict-file=<file>       Parse the given file as if it were in strict mode (this option may be passed more than once)
-  --module-file=<file>       Parse and evaluate the given file as module (this option may be passed more than once)
-  --exception=<name>         Check the last script exits with an uncaught exception with the specified name
   --options                  Dumps all JSC VM options and exits
-  --dumpOptions              Dumps all non-default JSC VM options before continuing
+  --dumpOptions              Dumps all JSC VM options before continuing
   --<jsc VM option>=<value>  Sets the specified JSC VM option
 ```
 
@@ -410,15 +404,15 @@ base16-syntax, column-select, cursor-indicator, event-watch, file-icons,
 force-tab, format-shell, highlight-selected, indent-guide-improved, jumpy, 
 language-applescript, language-babel, language-cmake, language-diff, 
 language-docker, language-groovy, language-json, language-latex, 
-language-restructuredtext, language-rust, line-length-break, linter, 
-linter-clang, linter-coffeelint, linter-csslint, linter-docker, linter-erb, 
-linter-eslint, linter-flake8, linter-jsonlint, linter-just-say-no, linter-raml, 
-linter-rubocop, linter-shellcheck, linter-tidy, linter-write-good, minimap, 
-minimap-find-and-replace, minimap-git-diff, minimap-highlight-selected, 
-minimap-selection, multi-wrap-guide, native-ui, no-title-bar, nvatom, 
-pretty-json, python-yapf, raml, red-wavy-underline, script, set-syntax, 
-soft-wrap-indicator, sort-lines, standard-formatter, tab-control, 
-tabs-to-spaces, toggle-quotes, trailing-spaces
+language-restructuredtext, language-rust, language-scala, line-length-break, 
+linter, linter-clang, linter-coffeelint, linter-csslint, linter-docker, 
+linter-erb, linter-eslint, linter-flake8, linter-jsonlint, linter-just-say-no, 
+linter-raml, linter-rubocop, linter-shellcheck, linter-tidy, linter-write-good, 
+markdown-toc, minimap, minimap-find-and-replace, minimap-git-diff, 
+minimap-highlight-selected, minimap-selection, multi-wrap-guide, native-ui, 
+no-title-bar, nvatom, pretty-json, python-yapf, raml, red-wavy-underline, 
+script, set-syntax, soft-wrap-indicator, sort-lines, standard-formatter, 
+tab-control, tabs-to-spaces, toggle-quotes, trailing-spaces
 
 Pip Packages: git-sweep3k, httpie, inflection, isort, patch, 
 python-json-logger, termcolor, yapf
@@ -620,8 +614,6 @@ Options:
     --mark-watched                   Mark videos watched (YouTube only)
     --no-mark-watched                Do not mark videos watched (YouTube only)
     --no-color                       Do not emit color codes in output
-    --abort-on-unavailable-fragment  Abort downloading when some fragment is not
-                                     available
 
   Network Options:
     --proxy URL                      Use the specified HTTP/HTTPS/SOCKS proxy.
@@ -706,10 +698,7 @@ Options:
     -R, --retries RETRIES            Number of retries (default is 10), or
                                      "infinite".
     --fragment-retries RETRIES       Number of retries for a fragment (default
-                                     is 10), or "infinite" (DASH and hlsnative
-                                     only)
-    --skip-unavailable-fragments     Skip unavailable fragments (DASH and
-                                     hlsnative only)
+                                     is 10), or "infinite" (DASH only)
     --buffer-size SIZE               Size of download buffer (e.g. 1024 or 16K)
                                      (default is 1024)
     --no-resize-buffer               Do not automatically adjust the buffer
@@ -737,8 +726,32 @@ Options:
     -a, --batch-file FILE            File containing URLs to download ('-' for
                                      stdin)
     --id                             Use only video ID in file name
-    -o, --output TEMPLATE            Output filename template, see the "OUTPUT
-                                     TEMPLATE" for all the info
+    -o, --output TEMPLATE            Output filename template. Use %(title)s to
+                                     get the title, %(uploader)s for the
+                                     uploader name, %(uploader_id)s for the
+                                     uploader nickname if different,
+                                     %(autonumber)s to get an automatically
+                                     incremented number, %(ext)s for the
+                                     filename extension, %(format)s for the
+                                     format description (like "22 - 1280x720" or
+                                     "HD"), %(format_id)s for the unique id of
+                                     the format (like YouTube's itags: "137"),
+                                     %(upload_date)s for the upload date
+                                     (YYYYMMDD), %(extractor)s for the provider
+                                     (youtube, metacafe, etc), %(id)s for the
+                                     video id, %(playlist_title)s,
+                                     %(playlist_id)s, or %(playlist)s (=title if
+                                     present, ID otherwise) for the playlist the
+                                     video is in, %(playlist_index)s for the
+                                     position in the playlist. %(height)s and
+                                     %(width)s for the width and height of the
+                                     video format. %(resolution)s for a textual
+                                     description of the resolution of the video
+                                     format. %% for a literal percent. Use - to
+                                     output to stdout. Can also be used to
+                                     download to a different directory, for
+                                     example with -o '/my/downloads/%(uploader)s
+                                     /%(title)s-%(id)s.%(ext)s' .
     --autonumber-size NUMBER         Specify the number of digits in
                                      %(autonumber)s when it is present in output
                                      filename template or --auto-number option
@@ -888,17 +901,6 @@ Options:
     -2, --twofactor TWOFACTOR        Two-factor auth code
     -n, --netrc                      Use .netrc authentication data
     --video-password PASSWORD        Video password (vimeo, smotri, youku)
-
-  Adobe Pass Options:
-    --ap-mso MSO                     Adobe Pass multiple-system operator (TV
-                                     provider) identifier, use --ap-list-mso for
-                                     a list of available MSOs
-    --ap-username USERNAME           Multiple-system operator account login
-    --ap-password PASSWORD           Multiple-system operator account password.
-                                     If this option is left out, youtube-dl will
-                                     ask interactively.
-    --ap-list-mso                    List all supported multiple-system
-                                     operators
 
   Post-processing Options:
     -x, --extract-audio              Convert video files to audio-only files

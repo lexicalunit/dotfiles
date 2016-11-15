@@ -28,7 +28,7 @@ atom-text-editor /deep/ {
 }
 
 // make cursor pulse instead of blink
-atom-text-editor::shadow {
+atom-text-editor.editor {
   .cursor {
     transition: opacity .5s;
     border-left: 2px solid @text-color-info;
@@ -36,7 +36,7 @@ atom-text-editor::shadow {
 }
 
 // better highlight-selected for light themes
-atom-text-editor::shadow {
+atom-text-editor.editor {
   & when (luminance(@syntax-wrap-guide-color) > 50%) {
     .highlight-selected .region {
       border-color: fadeout(contrast(@syntax-background-color), 50%) !important;
@@ -51,7 +51,7 @@ body * {
 }
 
 // disable italic comments and source code in any syntax theme
-atom-text-editor::shadow {
+atom-text-editor.editor {
   .comment, .source * {
     font-style: normal !important;
   }
@@ -60,7 +60,7 @@ atom-text-editor::shadow {
 #atom-nicer-invisibles() {
   // More subtle invisibles for light syntax themes, while
   // retaining more visible invisibles for dark syntax themes.
-  atom-text-editor::shadow {
+  atom-text-editor.editor {
     & when (luminance(@syntax-background-color) < 50%) {
       .invisible-character {
         opacity: 0.9;
@@ -77,7 +77,7 @@ atom-text-editor::shadow {
 #atom-nicer-invisibles;
 
 // make final wrap guide stand out more
-atom-text-editor::shadow {
+atom-text-editor.editor {
   .vertical .multi-wrap-guide:last-child .multi-wrap-guide-line {
     background-color: fadeout(red, 60%);
   }

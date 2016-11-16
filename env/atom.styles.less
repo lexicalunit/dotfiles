@@ -2,28 +2,31 @@
 @import "ui-variables";
 
 // better indent guides for light syntax themes
-.indent-guide-improved {
-  background-color: @syntax-indent-guide-color;
-  &.indent-guide-stack {
-    background-color: darken(@syntax-indent-guide-color, 30%);
-    &.indent-guide-active {
-      background-color: darken(@syntax-indent-guide-color, 40%);
-    }
-  }
-}
+// .indent-guide-improved {
+//   background-color: @syntax-indent-guide-color;
+//   &.indent-guide-stack {
+//     background-color: darken(@syntax-indent-guide-color, 30%);
+//     &.indent-guide-active {
+//       background-color: darken(@syntax-indent-guide-color, 40%);
+//     }
+//   }
+// }
 
 // better jumpy style for the native-ui theme
-atom-text-editor /deep/ {
-  .jumpy-label {
-    color: @text-color;
-    background-color: @base-background-color;
-    border-radius: @border-radius--base;
-    border-bottom: 1px solid @tab-bar-border-color;
-    box-shadow: inset 0 0 0 1px @tab-bar-border-color;
-    padding-left: .4em;
-    padding-right: .4em;
-    top: -1em;
-    left: -.25em;
+
+.theme-native-ui {
+  atom-text-editor /deep/ {
+    .jumpy-label {
+      color: @text-color;
+      background-color: @base-background-color;
+      border-radius: 5px;
+      border-bottom: 1px solid @tab-bar-border-color;
+      box-shadow: inset 0 0 0 1px @tab-bar-border-color;
+      padding-left: .4em;
+      padding-right: .4em;
+      top: -1em;
+      left: -.25em;
+    }
   }
 }
 
@@ -69,7 +72,8 @@ atom-text-editor.editor {
 
     & when (luminance(@syntax-background-color) >= 50%) {
       .invisible-character {
-        opacity: 0.5;
+        opacity: .5;
+        color: darken(@syntax-background-color, 30%)
       }
     }
   }

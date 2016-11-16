@@ -375,19 +375,20 @@ steps:
     go       Ensure Go packages are installed
 
 Homebrew Formulas: autoconf, automake, bash, bison, boost, clang-format, cloog, 
-cmake, coreutils, cppunit, csv-fix, dmd, docker, docker-compose, doxygen, 
-erlang, faac, fasd, ffmpeg, fontconfig, freetype, gd, gdbm, geoip, gettext, 
-ghostscript, gifify, gifsicle, git, git-flow, git-review, glib, gmp, gmp4, 
-gnu-sed, gnu-tar, gnupg, gradle, htop-osx, id3lib, id3v2, imagemagick, isl, 
-jasper, jbig2dec, jhead, jo, jpeg, jq, lame, libevent, libffi, libgpg-error, 
-libgphoto2, libicns, libksba, libmpc, libpng, libssh2, libtiff, libtool, 
-libusb, libusb-compat, libvo-aacenc, libyaml, little-cms2, lzlib, makedepend, 
-maven, md5sha1sum, memcached, mongodb, mpfr, mysql, ncftp, nginx, 
+cmake, colordiff, coreutils, cppunit, csv-fix, dmd, docker, docker-compose, 
+doxygen, erlang, faac, fasd, ffmpeg, fontconfig, freetype, gd, gdbm, geoip, 
+gettext, ghostscript, gifify, gifsicle, git, git-flow, git-review, glib, gmp, 
+gmp4, gnu-sed, gnu-tar, gnupg, gradle, htop-osx, id3lib, id3v2, imagemagick, 
+isl, jasper, jbig2dec, jhead, jo, jpeg, jq, lame, libevent, libffi, 
+libgpg-error, libgphoto2, libicns, libksba, libmpc, libpng, libssh2, libtiff, 
+libtool, libusb, libusb-compat, libvo-aacenc, libyaml, little-cms2, lzlib, 
+makedepend, maven, md5sha1sum, memcached, mongodb, mpfr, mysql, ncftp, nginx, 
 no-more-secrets, node, onepass, oniguruma, openssl, ossp-uuid, pandoc, pcre, 
 pidof, pkg-config, plotutils, pngquant, postgresql, rabbitmq, readline, redis, 
 rust, s3cmd, sane-backends, scons, sdl2, sdl2_image, shellcheck, sloccount, 
 spark, sqlite, sqliteodbc, storm, swig, tree, unixodbc, unrar, vramsteg, watch, 
-webp, wget, wxmac, x264, xvid, xz, yaml-cpp, youtube-dl, zeromq, zookeeper, zsh
+wdiff, webp, wget, wxmac, x264, xvid, xz, yaml-cpp, youtube-dl, zeromq, 
+zookeeper, zsh
 
 Homebrew Casks: 1password, adium, amazon-music, atom, audacity, 
 balsamiq-mockups, battle-net, caffeine, clamxav, cyberduck, dbvisualizer, 

@@ -18,10 +18,14 @@ Style/TrailingCommaInLiteral:
 
 Style/TrailingCommaInArguments:
   Enabled: false
- 
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 
 Style/BracesAroundHashParameters:
   Enabled: false
 
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*.rb"
+    - "**/*_spec.rb"

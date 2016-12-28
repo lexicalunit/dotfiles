@@ -12,7 +12,7 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 
 cmd="git ls-tree -r -z --name-only HEAD -- ."
 cmd="$cmd | xargs -0 -n1 git blame --line-porcelain HEAD"
-cmd="$cmd | grep  '^author '"
+cmd="$cmd | grep '^author '"
 cmd="$cmd | sort | uniq -c | sort -nr"
 [[ -z "$GIT_PREFIX" ]] || cd "$GIT_PREFIX" || exit
 run "$cmd"

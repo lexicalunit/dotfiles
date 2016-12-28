@@ -2,15 +2,15 @@
 @import "ui-variables";
 
 // better indent guides for light syntax themes
-// .indent-guide-improved {
-//   background-color: @syntax-indent-guide-color;
-//   &.indent-guide-stack {
-//     background-color: darken(@syntax-indent-guide-color, 30%);
-//     &.indent-guide-active {
-//       background-color: darken(@syntax-indent-guide-color, 40%);
-//     }
-//   }
-// }
+.indent-guide-improved {
+  background-color: @syntax-indent-guide-color;
+  &.indent-guide-stack {
+    background-color: darken(@syntax-indent-guide-color, 30%);
+    &.indent-guide-active {
+      background-color: darken(@syntax-indent-guide-color, 40%);
+    }
+  }
+}
 
 // better jumpy style for the native-ui theme
 
@@ -109,20 +109,20 @@ atom-text-editor.editor {
 }
 
 // 3D effects for tree-view and minimap
-// #atom-perspective() {
-//   @viewing-distance: 12in;
-//   @rotation: 10deg;
-//   .tree-view-scroller {
-//     transform: translateY(-10vh) perspective(@viewing-distance) rotateY(@rotation);
-//     padding-top: 12vh;
-//     padding-bottom: 12vh;
-//     transform-origin: left;
-//     width: 120%;
-//     height: 120%;
-//   }
-//   body /deep/ atom-text-editor-minimap {
-//     transform: perspective(@viewing-distance) rotateY(-@rotation);
-//     transform-origin: right;
-//   }
-// }
-// #atom-perspective;
+#atom-perspective() {
+  @viewing-distance: 12in;
+  @rotation: 10deg;
+  .tree-view-scroller {
+    transform: translateY(-10vh) perspective(@viewing-distance) rotateY(@rotation);
+    padding-top: 12vh;
+    padding-bottom: 12vh;
+    transform-origin: left;
+    width: 120%;
+    height: 120%;
+  }
+  body /deep/ atom-text-editor-minimap {
+    transform: perspective(@viewing-distance) rotateY(-@rotation);
+    transform-origin: right;
+  }
+}
+// #atom-perspective; // <-- uncomment to enable

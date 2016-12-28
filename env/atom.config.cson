@@ -6,8 +6,10 @@
 		isortPath: "~/bin/isort"
 	"autocomplete-plus":
 		confirmCompletion: "tab and enter"
+	"autocomplete-python":
+		useKite: false
 	"autoupdate-packages":
-		lastUpdateTimestamp: 1479228609817
+		lastUpdateTimestamp: 1482941183789
 	"base16-syntax":
 		matchUserInterfaceTheme: false
 		scheme: "Solarized"
@@ -31,6 +33,7 @@
 			"activate-power-mode"
 			"atom-metaweather"
 			"standard-formatter"
+			"indent-guide-improved"
 		]
 		telemetryConsent: "no"
 		themes: [
@@ -43,7 +46,7 @@
 	editor:
 		autoIndentOnPaste: false
 		fontFamily: "Inconsolata"
-		fontSize: 22
+		fontSize: 20
 		invisibles:
 			cr: "↩"
 			eol: " "
@@ -190,6 +193,10 @@
 	editor:
 		softTabs: true
 		tabLength: 4
+".go.source":
+	editor:
+		softTabs: false
+		tabLength: 4
 ".html.mustache.text":
 	editor:
 		tabLength: 2
@@ -210,6 +217,10 @@
 		softTabs: true
 		tabLength: 2
 ".ruby.source":
+	editor:
+		softTabs: true
+		tabLength: 2
+".scala.source":
 	editor:
 		softTabs: true
 		tabLength: 2

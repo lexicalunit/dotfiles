@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Shows example output based on current dircolors settings.
+# Helps in creating a .dircolors color profile for ls by printing
+# out a directory containing a variety of different kinds of files.
+
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+    echo "usage: ${0##*/} [-h|--help]" 1>&2
+    echo "Shows example output based on current dircolors settings." 1>&2
+    exit 1
+fi
+
+tempdir="$(mktemp -d -t tmp.XXXXXXXXXX)"
+tar xzpf "$HOME/.dircolors_examples.tgz" -C "$tempdir" || rm -rf "$tempdir"
+ls --color "$tempdir/colors/"
+rm -rf "$tempdir"

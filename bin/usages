@@ -4,7 +4,7 @@
 
 if echo "$*" | egrep -q -- "--help|-h"; then
     (
-        echo "usage: ${0##*/} [-t|--table|-v|--verbose-h|--help]"
+        echo "usage: ${0##*/} [-t|--table|-v|--verbose|-h|--help]"
         echo "Prints out documentation and usage information for everything in current directory."
         echo
         echo "-t,--table:   prints out information in a markdown table."
@@ -33,7 +33,11 @@ if echo "$*" | egrep -q -- "--verbose|-v"; then
 fi
 
 for I in *; do
-    if [[ "$I" == "ignore" || "$I" == "README.md" ]]; then
+    if [[ "$I" == ".gitignore" || "$I" == "README.md" ]]; then
+        continue
+    fi
+
+    if egrep -q "^$I\$" .gitignore; then
         continue
     fi
 

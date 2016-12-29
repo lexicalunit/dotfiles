@@ -1,0 +1,11 @@
+[submodule ".zsh/zsh-autosuggestions"]
+	path = .zsh/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
+	ignore = dirty
+[submodule ".log-ninja"]
+	path = .log-ninja
+	url = https://github.com/lexicalunit/log-ninja.git
+	branch = lexicalunit/deploy
+[submodule ".config/base16-shell"]
+	path = .config/base16-shell
+	url = https://github.com/chriskempson/base16-shell.git

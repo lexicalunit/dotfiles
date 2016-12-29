@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# Helps in creating a .dircolors color profile for ls by printing
-# out a directory containing a variety of different kinds of files.
-
-tempdir="$(mktemp -d -t tmp.XXXXXXXXXX)"
-tar xzpf colors.tgz -C "$tempdir" || rm -rf "$tempdir"
-ls --color "$tempdir/colors/"
-rm -rf "$tempdir"

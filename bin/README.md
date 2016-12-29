@@ -1,24 +1,10 @@
 * * *
-### [`addroot`](addroot)
-```
-usage: addroot ROOT_FOLDER
-Runs command Adds Root Folder in Atom using given ROOT_FOLDER.
-```
-
-* * *
 ### [`alert`](alert)
 ```
 usage: alert [-qh] [message]
 
     -h: print usage help
     -q: enable quiet mode (do not generate any sound)
-```
-
-* * *
-### [`apmpull`](apmpull)
-```
-usage: apmpull [-h|--help]
-Updates atom packages that are installed via git cloning them into ~/.atom/packages.
 ```
 
 * * *
@@ -48,6 +34,13 @@ Prints out table of terminal color codes.
 ### [`daemons`](daemons)
 ```
 usage: daemons [-h|--help] [PATTERN|FILE_PATH]
+```
+
+* * *
+### [`deploy_dotfiles`](deploy_dotfiles)
+```
+usage: deploy_dotfiles SSH_ARGS
+deploys dotfiles source code to remote host.
 ```
 
 * * *
@@ -256,10 +249,10 @@ Usage: imgcat [-p] filename ...
 ```
 
 * * *
-### [`install`](install)
+### [`install_fonts`](install_fonts)
 ```
-usage: install [uninstall]
-Installs setup/bin tools into user's ~/bin directory.
+usage: install_fonts [-h|--help]
+Installs fonts that I like.
 ```
 
 * * *
@@ -279,12 +272,18 @@ Usage: jsc [options] [files] [-- arguments]
   -f         Specifies a source file (deprecated)
   -h|--help  Prints this help message
   -i         Enables interactive mode (default if no files are specified)
+  -m         Execute as a module
   -s         Installs signal handlers that exit on a crash (Unix platforms only)
   -p <file>  Outputs profiling data to a file
   -x         Output exit code before terminating
 
+  --sample                   Collects and outputs sampling profiler data
+  --test262-async            Check that some script calls the print function with the string 'Test262:AsyncTestComplete'
+  --strict-file=<file>       Parse the given file as if it were in strict mode (this option may be passed more than once)
+  --module-file=<file>       Parse and evaluate the given file as module (this option may be passed more than once)
+  --exception=<name>         Check the last script exits with an uncaught exception with the specified name
   --options                  Dumps all JSC VM options and exits
-  --dumpOptions              Dumps all JSC VM options before continuing
+  --dumpOptions              Dumps all non-default JSC VM options before continuing
   --<jsc VM option>=<value>  Sets the specified JSC VM option
 ```
 
@@ -373,6 +372,7 @@ steps:
     gem      Upgrade/Install gem packages and rubygems-update package
     node     Ensure Node modules are installed
     go       Ensure Go packages are installed
+    env      Update to latest all submodules in your dotfiles
 
 Homebrew Formulas: autoconf, automake, bash, bison, boost, clang-format, cloog, 
 cmake, colordiff, coreutils, cppunit, csv-fix, dmd, docker, docker-compose, 
@@ -494,6 +494,13 @@ The ~/.webshare script must set environment variables:
 ```
 
 * * *
+### [`show_dircolors`](show_dircolors)
+```
+usage: show_dircolors [-h|--help]
+Shows example output based on current dircolors settings.
+```
+
+* * *
 ### [`slept`](slept)
 ```
 usage: slept [-h|--help]
@@ -523,16 +530,25 @@ See http://guide.macports.org/chunked/installing.macports.uninstalling.html for 
 ```
 
 * * *
-### [`update_bin`](update_bin)
+### [`update_dotfiles`](update_dotfiles)
 ```
-usage: update_bin [-h|--help]
-Copies scripts in ~/bin into ./bin. Honors ignore file.
+usage: update_dotfiles [-h|--help]
+Updates dotifles generated files with the latest changes.
+```
+
+* * *
+### [`update_setup`](update_setup)
+```
+usage: update_setup [-h|--help]
+Sorts and formats the installed items lists at the top of the setup script.
+
+-v,--help:    prints out this help message.
 ```
 
 * * *
 ### [`usages`](usages)
 ```
-usage: usages [-t|--table|-v|--verbose-h|--help]
+usage: usages [-t|--table|-v|--verbose|-h|--help]
 Prints out documentation and usage information for everything in current directory.
 
 -t,--table:   prints out information in a markdown table.
@@ -615,6 +631,8 @@ Options:
     --mark-watched                   Mark videos watched (YouTube only)
     --no-mark-watched                Do not mark videos watched (YouTube only)
     --no-color                       Do not emit color codes in output
+    --abort-on-unavailable-fragment  Abort downloading when some fragment is not
+                                     available
 
   Network Options:
     --proxy URL                      Use the specified HTTP/HTTPS/SOCKS proxy.
@@ -699,7 +717,10 @@ Options:
     -R, --retries RETRIES            Number of retries (default is 10), or
                                      "infinite".
     --fragment-retries RETRIES       Number of retries for a fragment (default
-                                     is 10), or "infinite" (DASH only)
+                                     is 10), or "infinite" (DASH and hlsnative
+                                     only)
+    --skip-unavailable-fragments     Skip unavailable fragments (DASH and
+                                     hlsnative only)
     --buffer-size SIZE               Size of download buffer (e.g. 1024 or 16K)
                                      (default is 1024)
     --no-resize-buffer               Do not automatically adjust the buffer
@@ -727,32 +748,8 @@ Options:
     -a, --batch-file FILE            File containing URLs to download ('-' for
                                      stdin)
     --id                             Use only video ID in file name
-    -o, --output TEMPLATE            Output filename template. Use %(title)s to
-                                     get the title, %(uploader)s for the
-                                     uploader name, %(uploader_id)s for the
-                                     uploader nickname if different,
-                                     %(autonumber)s to get an automatically
-                                     incremented number, %(ext)s for the
-                                     filename extension, %(format)s for the
-                                     format description (like "22 - 1280x720" or
-                                     "HD"), %(format_id)s for the unique id of
-                                     the format (like YouTube's itags: "137"),
-                                     %(upload_date)s for the upload date
-                                     (YYYYMMDD), %(extractor)s for the provider
-                                     (youtube, metacafe, etc), %(id)s for the
-                                     video id, %(playlist_title)s,
-                                     %(playlist_id)s, or %(playlist)s (=title if
-                                     present, ID otherwise) for the playlist the
-                                     video is in, %(playlist_index)s for the
-                                     position in the playlist. %(height)s and
-                                     %(width)s for the width and height of the
-                                     video format. %(resolution)s for a textual
-                                     description of the resolution of the video
-                                     format. %% for a literal percent. Use - to
-                                     output to stdout. Can also be used to
-                                     download to a different directory, for
-                                     example with -o '/my/downloads/%(uploader)s
-                                     /%(title)s-%(id)s.%(ext)s' .
+    -o, --output TEMPLATE            Output filename template, see the "OUTPUT
+                                     TEMPLATE" for all the info
     --autonumber-size NUMBER         Specify the number of digits in
                                      %(autonumber)s when it is present in output
                                      filename template or --auto-number option
@@ -902,6 +899,17 @@ Options:
     -2, --twofactor TWOFACTOR        Two-factor auth code
     -n, --netrc                      Use .netrc authentication data
     --video-password PASSWORD        Video password (vimeo, smotri, youku)
+
+  Adobe Pass Options:
+    --ap-mso MSO                     Adobe Pass multiple-system operator (TV
+                                     provider) identifier, use --ap-list-mso for
+                                     a list of available MSOs
+    --ap-username USERNAME           Multiple-system operator account login
+    --ap-password PASSWORD           Multiple-system operator account password.
+                                     If this option is left out, youtube-dl will
+                                     ask interactively.
+    --ap-list-mso                    List all supported multiple-system
+                                     operators
 
   Post-processing Options:
     -x, --extract-audio              Convert video files to audio-only files

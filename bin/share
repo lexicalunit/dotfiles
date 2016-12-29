@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Easy way to quickly manage temporary web shares.
+# Easy way to manage temporary web shares.
 
 usage() {
     echo "usage ${0##*/} [<file>|ls|names|ssh|get <name(s)>|put <file(s)>|rm <name>]" 1>&2

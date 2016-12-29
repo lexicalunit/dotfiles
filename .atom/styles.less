@@ -13,7 +13,6 @@
 }
 
 // better jumpy style for the native-ui theme
-
 .theme-native-ui {
   atom-text-editor /deep/ {
     .jumpy-label {
@@ -55,7 +54,7 @@ body * {
 
 // disable italic comments and source code in any syntax theme
 atom-text-editor.editor {
-  .comment, .source * {
+  .syntax--comment, .syntax--source * {
     font-style: normal !important;
   }
 }

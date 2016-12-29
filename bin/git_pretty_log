@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-# Git script for printing very pretty logs.
+# Git script for printing beautiful logs.
 
 if [[ "$1" == "--help" || "$1" == "-h" ]]; then
     echo "usage: ${0##*/} [-h|--help] [ARGS]" 1>&2

@@ -6,15 +6,12 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 
 if echo "$*" | egrep -q -- "--help|-h" || [[ -z "$@" ]]; then
     echo "usage: ${0##*/} SSH_ARGS"
-    echo "deploys setup source code to remote host."
+    echo "deploys dotfiles source code to remote host."
     exit 1
 fi
 
 set -e
 
-pushd "$(dirname "$0")" >/dev/null
-REPO="$(basename "$(pwd)")"
-
-run "tar zcf - --exclude .git '../$REPO' | ssh $* 'tar xzf -'"
-run "ssh $* 'set -e; pushd '$REPO'; yes | ./install; popd; rm -rf setup'"
+pushd "$HOME" >/dev/null
+run "tar zcf - $(git ls-tree -r master --name-only | sed 's@\(.*\)@"\1"@g' | tr '\n' ' ') | ssh $* 'tar xzf -'"
 show "deployment complete!"

@@ -1,7 +1,22 @@
-#!/usr/bin/env python
+#!/bin/bash -e
 
 # Sorts and formats the installed items lists at the top of the setup script.
 
+if echo "$*" | egrep -q -- "--help|-h"; then
+    (
+        echo "usage: ${0##*/} [-h|--help]"
+        echo "Sorts and formats the installed items lists at the top of the setup script."
+        echo
+        echo "-v,--help:    prints out this help message."
+    ) 1>&2
+    exit 1
+fi
+
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
+show "generating new setup..."
+cd "$HOME/bin"
+python - <<DOC >setup.new
 import subprocess
 import sys
 
@@ -27,3 +42,7 @@ if __name__ == '__main__':
                 inside = False
             elif not inside:
                 sys.stdout.write(line)
+DOC
+run "mv -f setup.new setup"
+run "chmod +x setup"
+run "./usages -v >README.md"

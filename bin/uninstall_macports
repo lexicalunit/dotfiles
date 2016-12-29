@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Uninstalls MacPorts completely.
+# Uninstalls MacPorts.
 
 if [[ "$1" == "--help" || "$1" == "-h" ]]; then
     echo "usage: ${0##*/} [-h|--help]" 1>&2

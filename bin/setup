@@ -1103,6 +1103,15 @@ step_go() {
 }
 
 ################################################################################
+# Step env
+################################################################################
+step_env() {
+    cd "$HOME" || exit 1
+    run "git submodule update --init --recursive"
+    run "git submodule update --init --recursive --remote"
+}
+
+################################################################################
 # Main
 ################################################################################
 if [[ $(id -u) == 0 ]]; then
@@ -1159,6 +1168,7 @@ steps=(
     "gem;           Upgrade/Install gem packages and rubygems-update package"
     "node;          Ensure Node modules are installed"
     "go;            Ensure Go packages are installed"
+    "env;           Update to latest all submodules in your dotfiles"
 )
 
 LISTING_OUTPUT=""

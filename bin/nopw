@@ -26,9 +26,6 @@ run_local() {
 
 set -e
 
-[[ -d "$HOME/.ssh" ]] || run_local "mkdir -p '$HOME/.ssh'"
-[[ -f "$HOME/.ssh/authorized_keys" ]] || run_local "touch '$HOME/.ssh/authorized_keys'"
-
 if [[ ! -f "$HOME/.ssh/$KEY.pub" ]]; then
     run_local "ssh-keygen -t '$KEY_TYPE'"
     run_local "cat '$HOME/.ssh/$KEY.pub' >> '$HOME/.ssh/authorized_keys'"
@@ -36,7 +33,9 @@ fi
 
 # SSH requires certain permissions on home directory, .ssh directory, and authorized_keys file
 run_local "chmod a-rw,a+x,u+rw $HOME"
-run_local "chmod a-rwx,u+rw $HOME/.ssh"
+[[ -d "$HOME/.ssh" ]] || run_local "mkdir -p '$HOME/.ssh'"
+run_local "chmod a-rwx,u+rwx $HOME/.ssh"
+[[ -f "$HOME/.ssh/authorized_keys" ]] || run_local "touch '$HOME/.ssh/authorized_keys'"
 run_local "chmod a-rwx,u+rw $HOME/.ssh/authorized_keys"
 
 echo
@@ -55,11 +54,11 @@ ssh "$@" "bash -s" <<EOF
 
     set -e
     remote_run "cd ~"
+    remote_run "chmod go-w,a-rw,a+x,u+rw ."
     [[ -d ".ssh" ]] || remote_run "mkdir -p .ssh"
+    remote_run "chmod a-rwx,u+rwx .ssh"
     [[ -f ".ssh/authorized_keys" ]] || remote_run "touch .ssh/authorized_keys"
-    remote_run "cat '$KEY.pub' >> .ssh/authorized_keys"
-    remote_run "chmod go-w a-rw,a+x,u+rw"
-    remote_run "chmod a-rwx,u+rw .ssh"
     remote_run "chmod a-rwx,u+rw .ssh/authorized_keys"
+    remote_run "cat '$KEY.pub' >> .ssh/authorized_keys"
     [[ -f "$KEY.pub" ]] && remote_run "rm '$KEY.pub'"
 EOF

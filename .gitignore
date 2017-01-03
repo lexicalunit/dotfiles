@@ -86,6 +86,7 @@
 /.zcomp*
 /.zsh_history*
 /.zsh-completions
+/.zsh-update
 /anaconda*
 /Dropbox*
 /IdeaProjects

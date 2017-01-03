@@ -148,7 +148,7 @@ sublime-text, texstudio, transmission, vagrant, virtualbox, vlc, whatsapp,
 xquartz
 
 Atom Packages: MagicPython, activate-power-mode, aesthetic-ui, atom-beautify, 
-atom-isort, atom-language-avro, autocomplete-python, autoupdate-packages, 
+atom-isort, atom-language-avro, auto-update-packages, autocomplete-python, 
 base16-syntax, column-select, cursor-indicator, event-watch, file-icons, 
 force-tab, format-shell, highlight-selected, indent-guide-improved, jumpy, 
 language-applescript, language-babel, language-cmake, language-diff, 
@@ -227,7 +227,7 @@ Copyright 2006 Raph Levien. Released under the SIL Open Font License.
 
 The MIT License (MIT)
 
-Copyright (c) 2016, lexicalunit@lexicalunit.com
+Copyright (c) 2017, lexicalunit@lexicalunit.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

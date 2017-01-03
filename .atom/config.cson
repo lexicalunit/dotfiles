@@ -9,8 +9,6 @@
     confirmCompletion: "tab and enter"
   "autocomplete-python":
     useKite: false
-  "autoupdate-packages":
-    lastUpdateTimestamp: 1483217739149
   "base16-syntax":
     matchUserInterfaceTheme: false
     scheme: "Solarized"

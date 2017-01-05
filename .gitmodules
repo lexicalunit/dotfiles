@@ -9,7 +9,8 @@
 [submodule ".config/base16-shell"]
 	path = .config/base16-shell
 	url = https://github.com/chriskempson/base16-shell.git
-[submodule ".oh-my-zsh"]
-	path = .oh-my-zsh
-	url = git@github.com:lexicalunit/oh-my-zsh.git
+[submodule ".zprezto"]
+	path = .zprezto
+	url = git@github.com:lexicalunit/prezto.git
 	branch = lexicalunit
+	ignore = dirty

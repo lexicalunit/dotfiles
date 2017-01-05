@@ -2,31 +2,46 @@
 # shellcheck disable=SC1090
 # shellcheck disable=SC2034
 
-##################
-# oh-my-zsh
-##################
+# Prezto
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+    source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
 
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="lexicalunit"
-CASE_SENSITIVE="false"
-HYPHEN_INSENSITIVE="true"
-DISABLE_AUTO_UPDATE="true"
-ENABLE_CORRECTION="false"
-COMPLETION_WAITING_DOTS="true"
-HIST_STAMPS="yyyy-mm-dd"
-plugins=(git)
-source $ZSH/oh-my-zsh.sh
+# Get rid of interactive rm from prezto's utility module, which I otherwise want.
+unalias rm
 
-##################
-# user
-##################
-
+# First setup shared profile settings, then setup zsh specific settings.
 SHELL="$(which zsh)"
 export SHELL
+
+################################################################################
+# interactive settings
+################################################################################
+if $INTERACTIVE; then
 
 if [[ -f "$HOME/.profile" ]]; then
     source "$HOME/.profile"
 fi
 
-# Add RVM to PATH for scripting
-export PATH="$PATH:$HOME/.rvm/bin"
+# load any personal completions
+autoload -Uz bashcompinit && bashcompinit
+_source_completions() {
+  if [[ -d "$1" ]]; then
+      for I in "$1"/*; do
+          # shellcheck source=.profile
+          source "$I" 2>/dev/null
+      done
+  elif [[ -f "$1" ]]; then
+      # shellcheck source=.profile
+      source "$1" 2>/dev/null
+  fi
+}
+_source_completions ~/.complete 2>/dev/null
+
+# setup zsh run-help
+unalias run-help
+autoload run-help
+export HELPDIR="/usr/local/share/zsh/help"
+alias help='run-help '
+
+fi # if $INTERACTIVE

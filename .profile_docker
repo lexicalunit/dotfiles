@@ -27,6 +27,22 @@ dcli() {
     dcl images
 }
 
+dps() {
+    docker ps | while read line; do
+        if [[ "$line" =~ "CONTAINER ID" ]]; then
+            echo -e "IP ADDRESS\t$line"
+        else
+            CID=$(echo $line | awk '{print $1}')
+            IP=$(docker inspect -f "{{ .NetworkSettings.IPAddress }}" $CID)
+            printf "%s\t%s\n" "${IP}" "${line}"
+        fi
+    done
+}
+
+running_in_docker() {
+    awk -F/ '$2 == "docker"' /proc/self/cgroup | read
+}
+
 # add variable DOCKER_ID with UID of most recent container
 alias docker-id='export DOCKER_ID=`docker ps -ql` && echo $DOCKER_ID'
 

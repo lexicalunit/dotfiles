@@ -84,8 +84,8 @@
 /.z
 /.z.*
 /.zcomp*
+/.zhistory
 /.zsh_history*
-/.zsh-completions
 /.zsh-update
 /anaconda*
 /Dropbox*

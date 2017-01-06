@@ -69,98 +69,9 @@ options:
 ```
 
 * * *
-### [`fa`](fa)
+### [`faff`](faff)
 ```
-usage: fa [-h|--help] [python regex]
-
-Finds All (fa) occurrences of the given regex using grin to search source files,
-ignoring directories: htmlcov, CVS, RCS, .svn, .hg, .bzr, .git, build, dist, CMakeFiles
-and ignoring file extensions: TEST-all.xml, .pyc, .pyo, .so, .o, .a, .tgz, .tar.gz, .rar, .zip, ~, #, .bak, .png, .jpg, .gif, .bmp, .tif, .tiff, .pyd, .dll, .exe, .obj, .lib, cmake, Makefile
-
-usage: grin [-h] [-v] [-i] [-A AFTER_CONTEXT] [-B BEFORE_CONTEXT] [-C CONTEXT]
-            [-I INCLUDE] [-n] [-N] [-H] [--without-filename] [--emacs] [-l]
-            [-L] [--no-color] [--use-color] [--force-color] [-s]
-            [--skip-hidden-files] [-b] [--skip-backup-files] [-S]
-            [--skip-hidden-dirs] [-d SKIP_DIRS] [-D] [-e SKIP_EXTS] [-E]
-            [--no-follow] [--follow] [-f FILE] [-0] [--sys-path]
-            regex [files [files ...]]
-
-Search text files for a given regex pattern.
-
-positional arguments:
-  regex                 the regular expression to search for
-  files                 the files to search
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -v, --version         show program's version number and exit
-  -i, --ignore-case     ignore case in the regex
-  -A AFTER_CONTEXT, --after-context AFTER_CONTEXT
-                        the number of lines of context to show after the match
-                        [default=0]
-  -B BEFORE_CONTEXT, --before-context BEFORE_CONTEXT
-                        the number of lines of context to show before the
-                        match [default=0]
-  -C CONTEXT, --context CONTEXT
-                        the number of lines of context to show on either side
-                        of the match
-  -I INCLUDE, --include INCLUDE
-                        only search in files matching this glob [default='*']
-  -n, --line-number     show the line numbers [default]
-  -N, --no-line-number  do not show the line numbers
-  -H, --with-filename   show the filenames of files that match [default]
-  --without-filename    do not show the filenames of files that match
-  --emacs               print the filename with every match for easier parsing
-                        by e.g. Emacs
-  -l, --files-with-matches
-                        show only the filenames and not the texts of the
-                        matches
-  -L, --files-without-matches
-                        show the matches with the filenames
-  --no-color            do not use colorized output [default if piping the
-                        output]
-  --use-color           use colorized output [default if outputting to a
-                        terminal]
-  --force-color         always use colorized output even when piping to
-                        something that may not be able to handle it
-  -s, --no-skip-hidden-files
-                        do not skip .hidden files
-  --skip-hidden-files   do skip .hidden files [default]
-  -b, --no-skip-backup-files
-                        do not skip backup~ files [deprecated; edit --skip-
-                        exts]
-  --skip-backup-files   do skip backup~ files [default] [deprecated; edit
-                        --skip-exts]
-  -S, --no-skip-hidden-dirs
-                        do not skip .hidden directories
-  --skip-hidden-dirs    do skip .hidden directories [default]
-  -d SKIP_DIRS, --skip-dirs SKIP_DIRS
-                        comma-separated list of directory names to skip
-                        [default='CVS,RCS,.svn,.hg,.bzr,build,dist']
-  -D, --no-skip-dirs    do not skip any directories
-  -e SKIP_EXTS, --skip-exts SKIP_EXTS
-                        comma-separated list of file extensions to skip [defau
-                        lt='.pyc,.pyo,.so,.o,.a,.tgz,.tar.gz,.rar,.zip,~,#,.ba
-                        k,.png,.jpg,.gif,.bmp,.tif,.tiff,.pyd,.dll,.exe,.obj,.
-                        lib']
-  -E, --no-skip-exts    do not skip any file extensions
-  --no-follow           do not follow symlinks to directories and files
-                        [default]
-  --follow              follow symlinks to directories and files
-  -f FILE, --files-from-file FILE
-                        read files to search from a file, one per line; - for
-                        stdin
-  -0, --null-separated  filenames specified in --files-from-file are separated
-                        by NULs
-  --sys-path            search the directories on sys.path
-
-Bug reports to <enthought-dev@mail.enthought.com>.
-```
-
-* * *
-### [`fart`](fart)
-```
-usage: fart SECONDS [-h|--help]
+usage: faff SECONDS [-h|--help]
 Sleeps for the given number of seconds, showing a progress bar.
 ```
 
@@ -170,14 +81,6 @@ Sleeps for the given number of seconds, showing a progress bar.
 usage: echo 'text' | flip
 
 Literally flips input upside down, printing words so they appear to be flipped over.
-```
-
-* * *
-### [`fm`](fm)
-```
-usage: fm [-h|--help] [grep pattern]
-
-Recursively Finds given pattern within CMake files.
 ```
 
 * * *
@@ -316,13 +219,6 @@ Prepares given image for use in a README.md file.
 ```
 usage: root [-h|--help]
 Prints the root directory of the current source repository.
-```
-
-* * *
-### [`s`](s)
-```
-usage: s [-h|--help] [git command]
-Print out the git status, or given command, of all subdirectories of the current directory.
 ```
 
 * * *

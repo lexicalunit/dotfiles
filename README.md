@@ -62,10 +62,8 @@ with the argument `--help`.
 | [`deploy_dotfiles`](bin/deploy_dotfiles) | Installs bin and env from this repository to remote server via ssh. |
 | [`die`](bin/die) | Kills processes based on process name. |
 | [`doc`](bin/doc) | Builds HTML output from Markdown file. |
-| [`fa`](bin/fa) | Searches a codebase for given pattern. |
-| [`fart`](bin/fart) | Sleeps for the given number of seconds, showing a progress bar. |
+| [`faff`](bin/faff) | Sleeps for the given number of seconds, showing a progress bar. |
 | [`flip`](bin/flip) | Flips input upside down. |
-| [`fm`](bin/fm) | Find in CMake files. |
 | [`giphy`](bin/giphy) | Gets a random gif from giphy and shows it via imgcat. |
 | [`git_authors`](bin/git_authors) | Git script for discovering who wrote the code at the current workin... |
 | [`git_ltr`](bin/git_ltr) | Lists (a-la 'ls -ltr') git controlled source files in current direc... |
@@ -82,7 +80,6 @@ with the argument `--help`.
 | [`nopw`](bin/nopw) | Enables password-less ssh TO username@remotehost FROM localhost. |
 | [`readmeize`](bin/readmeize) | Prepares given image for use in a README.md file. |
 | [`root`](bin/root) | Prints the root of the current repository. |
-| [`s`](bin/s) | Show git status for all directories in current directory. |
 | [`safari_cache`](bin/safari_cache) | Shows current Safari cache. |
 | [`safari_clean`](bin/safari_clean) | Cleans Safari caches and saved data on OS X. |
 | [`setup`](bin/setup) | Install applications and development environment on an OS X machine. |

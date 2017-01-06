@@ -250,6 +250,7 @@ alias pygmentize='pygmentize -O bg=dark'
 alias gits='git s '
 alias gitsu='git s -u '
 alias yapf='yapf --style="{based_on_style: pep8, column_limit: 120}" '
+alias fa='rg '
 
 # This ipython alias prevents `ipython notebook` from working correctly.
 # alias ipython='ipython --no-banner --no-confirm-exit '
@@ -260,6 +261,15 @@ if type htop >/dev/null 2>&1; then alias top='htop '; fi
 
 export RSYNC_RSH=rsh # use ssh over rsync
 alias ssh='ssh -Y -C ' # use compression over ssh connections
+
+fuck() {
+    die $1
+    if [[ $? == 0 ]]; then
+        echo
+        echo " (╯°□°）╯︵$(echo $1 | flip 2>/dev/null)"
+        echo
+    fi
+}
 
 lw() {
     local LOC

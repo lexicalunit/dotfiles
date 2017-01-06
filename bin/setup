@@ -722,6 +722,11 @@ step_brew() {
     # install the git remote-hg helper
     run "ln -sf $(brew ls -v git | grep git-remote-hg) /usr/local/bin"
 
+    if ! type rg >/dev/null 2>&1; then
+        run "brew tap burntsushi/ripgrep https://github.com/BurntSushi/ripgrep.git"
+        run "brew install burntsushi/ripgrep/ripgrep-bin"
+    fi
+
     IFS=$'\n'
     for I in $(brew ls); do
         name="${I%@*}"
@@ -729,6 +734,7 @@ step_brew() {
             case "$I" in
                 "brew-cask") ;; "lib") ;; # ignored warnings
                 "go") ;; # installed as a separate step
+                "ripgrep") ;; # installed above
                 *) show -i "$I installed but not managed by setup via brew" ;;
             esac
         fi
@@ -867,9 +873,6 @@ step_bash() {
 # Step python
 ################################################################################
 step_python() {
-    # Easy install grin because it's incompatible with Python 3 and we can't rely on OS X having pip installed.
-    run "sudo /usr/bin/easy_install --upgrade grin"
-
     # PyYAML is required for yaml2json CLI tool, so it needs to work outside of anaconda environment.
     run "sudo /usr/bin/easy_install --upgrade PyYAML"
 

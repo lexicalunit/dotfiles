@@ -9,6 +9,8 @@
     confirmCompletion: "tab and enter"
   "autocomplete-python":
     useKite: false
+  "autoupdate-packages":
+    lastUpdateTimestamp: 1483837964658
   "base16-syntax":
     matchUserInterfaceTheme: false
     scheme: "Solarized"
@@ -167,7 +169,6 @@
   tabs: {}
   "tree-view":
     hideIgnoredNames: true
-    hideVcsIgnoredFiles: true
   welcome:
     showOnStartup: false
 ".basic.html.text":

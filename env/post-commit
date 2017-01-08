@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+if [[ -e .commit ]]; then
+    #shellcheck source=.shell_control
+    source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
+    # add generated files to commit
+    run "rm .commit"
+    run "git add LICENSE README.md bin/README.md bin/setup" >/dev/null
+    run "git commit --amend -C HEAD --no-verify" >/dev/null
+fi

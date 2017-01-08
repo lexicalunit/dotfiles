@@ -324,15 +324,20 @@ if type gsed >/dev/null 2>&1; then
     alias sed='gsed '
 fi
 
+# shellcheck source=.docker_functions
+test -f .docker_functions && source $_
+
 ################################################################################
 # source any local configuration files
 ################################################################################
 IFS=$'\n'
+[[ "$SHELL" =~ "zsh" ]] && unsetopt nomatch
 for I in $(/bin/ls -1 ~/.profile_* 2>/dev/null) ; do
     _interactive_log "sourcing $I"
-    # shellcheck source=.profile
+    # shellcheck source=$I
     source "$I"
 done
+[[ "$SHELL" =~ "zsh" ]] && setopt nomatch
 IFS=' '
 
 ################################################################################

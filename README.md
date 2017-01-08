@@ -90,8 +90,6 @@ with the argument `--help`.
 | [`smongo`](bin/smongo) | Opens mongo shell to master node. |
 | [`uninstall_homebrew`](bin/uninstall_homebrew) | Uninstalls Homebrew. |
 | [`uninstall_macports`](bin/uninstall_macports) | Uninstalls MacPorts. |
-| [`update_dotfiles`](bin/update_dotfiles) | Updates dotifles generated files with the latest changes. |
-| [`update_setup`](bin/update_setup) | Sorts and formats the installed items lists at the top of the setup... |
 | [`usages`](bin/usages) | Prints out documentation and usages for utilities. |
 | [`woke`](bin/woke) | Get time OS X system last woke from sleep. |
 | [`xdie`](bin/xdie) | Kills processes based on their window title. |

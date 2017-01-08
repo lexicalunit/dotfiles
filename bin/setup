@@ -734,7 +734,7 @@ step_brew() {
             case "$I" in
                 "brew-cask") ;; "lib") ;; # ignored warnings
                 "go") ;; # installed as a separate step
-                "ripgrep") ;; # installed above
+                "ripgrep-bin") ;; # installed above
                 *) show -i "$I installed but not managed by setup via brew" ;;
             esac
         fi

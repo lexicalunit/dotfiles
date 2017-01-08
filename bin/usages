@@ -17,7 +17,8 @@ fi
 # Some help messages are adjusted to fit terminal columns, so setting a
 # default constant value here avoids usages producing different output
 # when run in different terminal windows.
-stty columns 120
+export COLUMNS=120
+stty columns 120 2>/dev/null
 
 # -t or --table enabled table mode for generating markdown output
 TABLE=0

@@ -309,16 +309,6 @@ hist() {
 }
 hist --workaround-sc2120 # see: https://github.com/koalaman/shellcheck/wiki/SC2120
 
-weather() {
-    local LOC
-    if [[ -n "$1" ]]; then
-        LOC="$1"
-    else
-        LOC="austin"
-    fi
-    run "curl -s http://wttr.in/$LOC"
-}
-
 # use gnu-sed if available
 if type gsed >/dev/null 2>&1; then
     alias sed='gsed '

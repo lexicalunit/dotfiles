@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Show the current weather directly in your terminal.
+
+usage() {
+    (
+        echo "usage: ${0##*/} [-h|--help] [location]"
+        echo "Shows the current weather in the given location."
+    ) >&2
+    exit 1
+}
+
+if echo "$*" | egrep -q -- "--help|-h"; then
+    usage
+fi
+
+# default location
+LOC="${1:-austin}"
+
+# force dark background color
+esc=$'\e'
+bg="$esc[48;5;232m"
+eol="$esc[K"
+
+echo -e "$bg$eol"
+curl -s "http://wttr.in/$LOC" | sed "s/^/$bg$eol  /;s/\[0m/\[0m$bg/g"
+echo -e "$bg$eol"

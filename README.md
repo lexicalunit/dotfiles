@@ -91,6 +91,7 @@ with the argument `--help`.
 | [`uninstall_homebrew`](bin/uninstall_homebrew) | Uninstalls Homebrew. |
 | [`uninstall_macports`](bin/uninstall_macports) | Uninstalls MacPorts. |
 | [`usages`](bin/usages) | Prints out documentation and usages for utilities. |
+| [`weather`](bin/weather) | Show the current weather directly in your terminal. |
 | [`woke`](bin/woke) | Get time OS X system last woke from sleep. |
 | [`xdie`](bin/xdie) | Kills processes based on their window title. |
 | [`xf`](bin/xf) | Extract common file formats. |

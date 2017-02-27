@@ -11,6 +11,7 @@ Style/GlobalVars:
   Enabled: false
 
 Style/StringLiterals:
+  Enabled: false
   EnforcedStyle: double_quotes
 
 Style/TrailingCommaInLiteral:

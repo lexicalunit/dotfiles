@@ -43,13 +43,13 @@
       "native-ui"
       "solarized-light-syntax"
     ]
-    useCustomTitleBar: true
+    titleBar: "custom"
   "cursor-indicator":
     displayPrefix: "|"
   editor:
     autoIndentOnPaste: false
     fontFamily: "Inconsolata"
-    fontSize: 20
+    fontSize: 19
     invisibles:
       cr: "↩"
       eol: " "
@@ -190,7 +190,7 @@
 ".css.less.source":
   editor:
     softTabs: true
-    tabLength: 2
+    tabLength: 4
 ".dockerfile.source":
   editor:
     softTabs: true

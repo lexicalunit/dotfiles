@@ -35,8 +35,8 @@
       "atom-metaweather"
       "standard-formatter"
       "linter-erb"
-      "python-yapf"
       "atom-isort"
+      "python-yapf"
     ]
     packagesWithKeymapsDisabled: [
       "format-shell"
@@ -52,7 +52,7 @@
   editor:
     autoIndentOnPaste: false
     fontFamily: "Inconsolata"
-    fontSize: 19
+    fontSize: 21
     invisibles:
       cr: "↩"
       eol: " "
@@ -98,6 +98,8 @@
     showIconsInEditorGutter: true
   "highlight-selected":
     onlyHighlightWholeWords: true
+  "isotope-ui":
+    minimalMode: true
   linter:
     errorPanelHeight: 550
     lintOnChange: true
@@ -108,6 +110,7 @@
   "linter-pep8":
     maxLineLength: 300
     pep8ExecutablePath: "/usr/local/bin/pep8"
+  "linter-ui-default": {}
   "markdown-preview":
     grammars: [
       "source.gfm"
@@ -136,6 +139,8 @@
       100
     ]
     locked: true
+  "no-title-bar":
+    metaKeyMouseDrag: true
   nvatom:
     directory: "~/Dropbox/nv"
   "python-yapf":
@@ -193,7 +198,7 @@
 ".css.less.source":
   editor:
     softTabs: true
-    tabLength: 4
+    tabLength: 2
 ".dockerfile.source":
   editor:
     softTabs: true

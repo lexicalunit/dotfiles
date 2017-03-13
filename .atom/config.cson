@@ -34,6 +34,9 @@
       "activate-power-mode"
       "atom-metaweather"
       "standard-formatter"
+      "linter-erb"
+      "python-yapf"
+      "atom-isort"
     ]
     packagesWithKeymapsDisabled: [
       "format-shell"

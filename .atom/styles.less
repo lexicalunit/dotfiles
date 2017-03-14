@@ -4,14 +4,19 @@
 // Adds the missing left tab border to the first tab in native-ui theme.
 // This makes the theme look much better when using no-title-bar.
 .no-title-bar:not(.fullscreen) {
-    &.custom-title-bar, &.custom-inset-title-bar {
-        .theme-native-ui .tab-bar {
-            margin-left: -1px;
-            .tab:nth-child(1) {
-                border-left: 1px solid @tab-bar-border-color;
-            }
+  &.custom-title-bar, &.custom-inset-title-bar {
+    .theme-native-ui .tab-bar {
+      margin-left: -1px;
+        .tab:nth-child(1) {
+          border-left: 1px solid @tab-bar-border-color;
         }
-    }
+      }
+  }
+}
+
+// better gutter color with linter v2
+.gutter-container {
+  background-color: @syntax-gutter-background-color;
 }
 
 // better indent guides for light syntax themes

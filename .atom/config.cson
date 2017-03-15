@@ -110,7 +110,8 @@
   "linter-pep8":
     maxLineLength: 300
     pep8ExecutablePath: "/usr/local/bin/pep8"
-  "linter-ui-default": {}
+  "linter-ui-default":
+    showPanel: true
   "markdown-preview":
     grammars: [
       "source.gfm"

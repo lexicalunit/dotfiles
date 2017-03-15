@@ -175,18 +175,12 @@ Usage: jsc [options] [files] [-- arguments]
   -f         Specifies a source file (deprecated)
   -h|--help  Prints this help message
   -i         Enables interactive mode (default if no files are specified)
-  -m         Execute as a module
   -s         Installs signal handlers that exit on a crash (Unix platforms only)
   -p <file>  Outputs profiling data to a file
   -x         Output exit code before terminating
 
-  --sample                   Collects and outputs sampling profiler data
-  --test262-async            Check that some script calls the print function with the string 'Test262:AsyncTestComplete'
-  --strict-file=<file>       Parse the given file as if it were in strict mode (this option may be passed more than once)
-  --module-file=<file>       Parse and evaluate the given file as module (this option may be passed more than once)
-  --exception=<name>         Check the last script exits with an uncaught exception with the specified name
   --options                  Dumps all JSC VM options and exits
-  --dumpOptions              Dumps all non-default JSC VM options before continuing
+  --dumpOptions              Dumps all JSC VM options before continuing
   --<jsc VM option>=<value>  Sets the specified JSC VM option
 ```
 
@@ -501,13 +495,10 @@ Options:
     --ignore-config                  Do not read configuration files. When given in the global configuration file
                                      /etc/youtube-dl.conf: Do not read the user configuration in ~/.config/youtube-
                                      dl/config (%APPDATA%/youtube-dl/config.txt on Windows)
-    --config-location PATH           Location of the configuration file; either the path to the config or its containing
-                                     directory.
     --flat-playlist                  Do not extract the videos of a playlist, only list them.
     --mark-watched                   Mark videos watched (YouTube only)
     --no-mark-watched                Do not mark videos watched (YouTube only)
     --no-color                       Do not emit color codes in output
-    --abort-on-unavailable-fragment  Abort downloading when some fragment is not available
 
   Network Options:
     --proxy URL                      Use the specified HTTP/HTTPS/SOCKS proxy. To enable experimental SOCKS proxy,
@@ -557,14 +548,12 @@ Options:
   Download Options:
     -r, --limit-rate RATE            Maximum download rate in bytes per second (e.g. 50K or 4.2M)
     -R, --retries RETRIES            Number of retries (default is 10), or "infinite".
-    --fragment-retries RETRIES       Number of retries for a fragment (default is 10), or "infinite" (DASH and hlsnative
-                                     only)
-    --skip-unavailable-fragments     Skip unavailable fragments (DASH and hlsnative only)
+    --fragment-retries RETRIES       Number of retries for a fragment (default is 10), or "infinite" (DASH only)
     --buffer-size SIZE               Size of download buffer (e.g. 1024 or 16K) (default is 1024)
     --no-resize-buffer               Do not automatically adjust the buffer size. By default, the buffer size is
                                      automatically resized from an initial value of SIZE.
     --playlist-reverse               Download playlist videos in reverse order
-    --xattr-set-filesize             Set file xattribute ytdl.filesize with expected file size (experimental)
+    --xattr-set-filesize             Set file xattribute ytdl.filesize with expected filesize (experimental)
     --hls-prefer-native              Use the native HLS downloader instead of ffmpeg
     --hls-prefer-ffmpeg              Use ffmpeg instead of the native HLS downloader
     --hls-use-mpegts                 Use the mpegts container for HLS videos, allowing to play the video while
@@ -576,7 +565,20 @@ Options:
   Filesystem Options:
     -a, --batch-file FILE            File containing URLs to download ('-' for stdin)
     --id                             Use only video ID in file name
-    -o, --output TEMPLATE            Output filename template, see the "OUTPUT TEMPLATE" for all the info
+    -o, --output TEMPLATE            Output filename template. Use %(title)s to get the title, %(uploader)s for the
+                                     uploader name, %(uploader_id)s for the uploader nickname if different,
+                                     %(autonumber)s to get an automatically incremented number, %(ext)s for the filename
+                                     extension, %(format)s for the format description (like "22 - 1280x720" or "HD"),
+                                     %(format_id)s for the unique id of the format (like YouTube's itags: "137"),
+                                     %(upload_date)s for the upload date (YYYYMMDD), %(extractor)s for the provider
+                                     (youtube, metacafe, etc), %(id)s for the video id, %(playlist_title)s,
+                                     %(playlist_id)s, or %(playlist)s (=title if present, ID otherwise) for the playlist
+                                     the video is in, %(playlist_index)s for the position in the playlist. %(height)s
+                                     and %(width)s for the width and height of the video format. %(resolution)s for a
+                                     textual description of the resolution of the video format. %% for a literal
+                                     percent. Use - to output to stdout. Can also be used to download to a different
+                                     directory, for example with -o
+                                     '/my/downloads/%(uploader)s/%(title)s-%(id)s.%(ext)s' .
     --autonumber-size NUMBER         Specify the number of digits in %(autonumber)s when it is present in output
                                      filename template or --auto-number option is given
     --restrict-filenames             Restrict filenames to only ASCII characters, and avoid "&" and spaces in filenames
@@ -675,17 +677,9 @@ Options:
   Authentication Options:
     -u, --username USERNAME          Login with this account ID
     -p, --password PASSWORD          Account password. If this option is left out, youtube-dl will ask interactively.
-    -2, --twofactor TWOFACTOR        Two-factor authentication code
+    -2, --twofactor TWOFACTOR        Two-factor auth code
     -n, --netrc                      Use .netrc authentication data
     --video-password PASSWORD        Video password (vimeo, smotri, youku)
-
-  Adobe Pass Options:
-    --ap-mso MSO                     Adobe Pass multiple-system operator (TV provider) identifier, use --ap-list-mso for
-                                     a list of available MSOs
-    --ap-username USERNAME           Multiple-system operator account login
-    --ap-password PASSWORD           Multiple-system operator account password. If this option is left out, youtube-dl
-                                     will ask interactively.
-    --ap-list-mso                    List all supported multiple-system operators
 
   Post-processing Options:
     -x, --extract-audio              Convert video files to audio-only files (requires ffmpeg or avconv and ffprobe or

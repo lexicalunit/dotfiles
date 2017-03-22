@@ -2,29 +2,33 @@ AllCops:
   TargetRubyVersion: 2.3
 
 Metrics/LineLength:
-  Enabled: false
+  Max: 100
+  Enabled: true
 
 Metrics/MethodLength:
-  Enabled: false
+  Enabled: true
 
 Style/GlobalVars:
   Enabled: false
 
 Style/StringLiterals:
-  Enabled: false
+  Enabled: true
   EnforcedStyle: double_quotes
 
 Style/TrailingCommaInLiteral:
   EnforcedStyleForMultiline: comma
 
 Style/TrailingCommaInArguments:
-  Enabled: false
+  Enabled: true
 
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-Style/BracesAroundHashParameters:
+Style/NumericLiterals:
   Enabled: false
+
+Style/BracesAroundHashParameters:
+  Enabled: true
 
 Style/Documentation:
   Enabled: false

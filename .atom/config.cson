@@ -180,6 +180,7 @@
     hideIgnoredNames: true
   welcome:
     showOnStartup: false
+  whitespace: {}
 ".basic.html.text":
   editor:
     softTabs: true

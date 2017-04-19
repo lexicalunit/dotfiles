@@ -1,6 +1,31 @@
 @import "syntax-variables";
 @import "ui-variables";
 
+// Better looking Atom 1.17beta docks for native-ui.
+.theme-native-ui {
+  .atom-dock-resize-handle {
+      width: 2px;
+      background-color: @base-border-color;
+      border-radius: 0;
+      border: 0;
+      margin: 0;
+      padding: 0;
+  }
+
+  atom-dock {
+    .tab-bar.list-inline.inset-panel {
+      border: 0;
+      border-right: 1px solid @base-border-color;
+      border-radius: 0;
+      padding: 0;
+    }
+  }
+
+  .tab-bar {
+    border-radius: 0;
+  }
+}
+
 // Adds the missing left tab border to the first tab in native-ui theme.
 // This makes the theme look much better when using no-title-bar.
 .no-title-bar:not(.fullscreen) {

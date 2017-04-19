@@ -3,6 +3,8 @@ AllCops:
 
 Metrics/LineLength:
   Max: 100
+  IgnoredPatterns:
+    - \A#
   Enabled: true
 
 Metrics/MethodLength:
@@ -12,7 +14,7 @@ Style/GlobalVars:
   Enabled: false
 
 Style/StringLiterals:
-  Enabled: true
+  Enabled: false
   EnforcedStyle: double_quotes
 
 Style/TrailingCommaInLiteral:

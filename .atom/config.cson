@@ -101,9 +101,7 @@
   "isotope-ui":
     minimalMode: true
   linter:
-    errorPanelHeight: 550
     lintOnChange: true
-    lintOnFlyInterval: 10000
   "linter-flake8":
     executablePath: "~/bin/flake8"
     maxLineLength: 100

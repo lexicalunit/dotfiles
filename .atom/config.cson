@@ -108,8 +108,7 @@
   "linter-pep8":
     maxLineLength: 300
     pep8ExecutablePath: "/usr/local/bin/pep8"
-  "linter-ui-default":
-    showPanel: true
+  "linter-ui-default": {}
   "markdown-preview":
     grammars: [
       "source.gfm"
@@ -142,6 +141,7 @@
     metaKeyMouseDrag: true
   nvatom:
     directory: "~/Dropbox/nv"
+  "pretty-json": {}
   "python-yapf":
     checkOnSave: false
     yapfPath: "~/bin/yapf"

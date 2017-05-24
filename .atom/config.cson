@@ -203,6 +203,10 @@
   editor:
     softTabs: true
     tabLength: 4
+".gfm.nvatom.source":
+  editor:
+    softTabs: true
+    tabLength: 2
 ".gfm.source":
   editor:
     softTabs: true

@@ -33,9 +33,8 @@
       "language-python"
       "activate-power-mode"
       "atom-metaweather"
-      "standard-formatter"
-      "linter-erb"
       "python-yapf"
+      "atom-isort"
     ]
     packagesWithKeymapsDisabled: [
       "format-shell"
@@ -51,7 +50,7 @@
   editor:
     autoIndentOnPaste: false
     fontFamily: "Inconsolata"
-    fontSize: 21
+    fontSize: 20
     invisibles:
       cr: "↩"
       eol: " "
@@ -108,7 +107,9 @@
     maxLineLength: 300
     pep8ExecutablePath: "/usr/local/bin/pep8"
   "linter-ui-default":
-    showPanel: true
+    hidePanelWhenEmpty: true
+    panelHeight: 169
+    showProviderName: true
   "markdown-preview":
     grammars: [
       "source.gfm"
@@ -137,8 +138,7 @@
       100
     ]
     locked: true
-  "no-title-bar":
-    metaKeyMouseDrag: true
+  "no-title-bar": {}
   nvatom:
     directory: "~/Dropbox/nv"
   "pretty-json": {}

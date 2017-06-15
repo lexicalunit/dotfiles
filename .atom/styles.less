@@ -1,22 +1,7 @@
 @import "syntax-variables";
 @import "ui-variables";
 
-// Better looking Linter 2 for native-ui.
-.theme-native-ui {
-  status-bar {
-    .linter-status-count {
-      background-color: darken(@btn-base-color, 35%);
-      margin-left: .5em;
-      padding-right: .5em;
-      border-radius: @border-radius--base;
-      &:hover {
-        background-color: darken(@btn-base-color, 45%) !important;
-      }
-    }
-  }
-}
-
-// Better looking Atom 1.17beta docks for native-ui.
+// Better looking Atom docks for native-ui.
 .theme-native-ui {
   .atom-dock-resize-handle {
       width: 2px;
@@ -25,6 +10,7 @@
       border: 0;
       margin: 0;
       padding: 0;
+      background-image: none;
   }
 
   atom-dock {

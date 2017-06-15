@@ -32,20 +32,19 @@ HOMEBREW_CASKS="                                                               \
     vagrant virtualbox vlc whatsapp xquartz"
 
 ATOM_PACKAGES="                                                                \
-    MagicPython activate-power-mode aesthetic-ui amnesia-io atom-beautify      \
-    atom-isort atom-language-avro auto-update-packages autocomplete-python     \
-    base16-syntax busy-signal column-select cursor-indicator event-watch       \
-    file-icons force-tab format-shell highlight-selected indent-guide-improved \
-    intentions isotope-light-ui jumpy language-applescript language-babel      \
-    language-cmake language-diff language-docker language-groovy               \
-    language-latex language-restructuredtext language-rust language-scala      \
-    line-length-break linter linter-clang linter-coffeelint linter-csslint     \
-    linter-docker linter-erb linter-eslint linter-flake8 linter-jsonlint       \
-    linter-just-say-no linter-raml linter-rubocop linter-shellcheck            \
-    linter-tidy linter-ui-default linter-write-good markdown-toc minimap       \
-    minimap-find-and-replace minimap-git-diff minimap-highlight-selected       \
-    minimap-selection multi-wrap-guide native-ui no-title-bar nvatom           \
-    pretty-json python-yapf raml red-wavy-underline script set-syntax          \
+    MagicPython activate-power-mode aesthetic-ui atom-beautify atom-isort      \
+    atom-language-avro auto-update-packages autocomplete-python base16-syntax  \
+    busy-signal column-select cursor-indicator event-watch file-icons          \
+    format-shell highlight-selected indent-guide-improved intentions           \
+    isotope-light-ui language-applescript language-babel language-cmake        \
+    language-diff language-docker language-groovy language-latex               \
+    language-restructuredtext language-rust language-scala line-length-break   \
+    linter linter-clang linter-coffeelint linter-csslint linter-docker         \
+    linter-erb linter-eslint linter-flake8 linter-js-standard linter-jsonlint  \
+    linter-rubocop linter-shellcheck linter-tidy linter-ui-default             \
+    linter-write-good minimap minimap-find-and-replace minimap-git-diff        \
+    minimap-highlight-selected minimap-selection multi-wrap-guide native-ui    \
+    no-title-bar nvatom python-yapf red-wavy-underline set-syntax              \
     soft-wrap-indicator sort-lines standard-formatter tab-control              \
     tabs-to-spaces toggle-quotes trailing-spaces"
 

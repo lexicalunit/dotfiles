@@ -28,6 +28,7 @@
 /.profile_uacf
 
 # Applications
+/.ammonite
 /.aws
 /.base16_theme
 /.bash_history*
@@ -79,6 +80,7 @@
 /.sh_history*
 /.ssh
 /.vagrant*
+/.vim/.netrwhist
 /.viminfo
 /.virtualenvs
 /.wget-hsts

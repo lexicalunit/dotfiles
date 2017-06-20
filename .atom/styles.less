@@ -1,29 +1,13 @@
 @import "syntax-variables";
 @import "ui-variables";
 
-// Better looking Atom docks for native-ui.
+// Fix the awful look of the tree view resize handle in native-ui theme.
 .theme-native-ui {
-  .atom-dock-resize-handle {
-      width: 2px;
-      background-color: @base-border-color;
-      border-radius: 0;
-      border: 0;
-      margin: 0;
-      padding: 0;
-      background-image: none;
-  }
-
-  atom-dock {
-    .tab-bar.list-inline.inset-panel {
-      border: 0;
-      border-right: 1px solid @base-border-color;
-      border-radius: 0;
-      padding: 0;
-    }
-  }
-
-  .tab-bar {
-    border-radius: 0;
+  .atom-dock-resize-handle-resizable {
+    background-color: @syntax-gutter-background-color !important;
+    background-image: none !important; // disable the ugly color gradient
+    margin-right: -4px !important; // align it with first tab
+    border-width: 7px !important; // make it easier to grab
   }
 }
 
@@ -40,11 +24,6 @@
   }
 }
 
-// better gutter color with linter v2
-.gutter-container {
-  background-color: @syntax-gutter-background-color;
-}
-
 // better indent guides for light syntax themes
 .indent-guide-improved {
   background-color: @syntax-indent-guide-color;
@@ -52,23 +31,6 @@
     background-color: darken(@syntax-indent-guide-color, 30%);
     &.indent-guide-active {
       background-color: darken(@syntax-indent-guide-color, 40%);
-    }
-  }
-}
-
-// better jumpy style for the native-ui theme
-.theme-native-ui {
-  atom-text-editor /deep/ {
-    .jumpy-label {
-      color: @text-color;
-      background-color: @base-background-color;
-      border-radius: 5px;
-      border-bottom: 1px solid @tab-bar-border-color;
-      box-shadow: inset 0 0 0 1px @tab-bar-border-color;
-      padding-left: .4em;
-      padding-right: .4em;
-      top: -1em;
-      left: -.25em;
     }
   }
 }
@@ -155,9 +117,9 @@ atom-text-editor.editor {
 #atom-perspective() {
   @viewing-distance: 12in;
   @rotation: 10deg;
-  .tree-view-scroller {
+  .tree-view {
     transform: translateY(-10vh) perspective(@viewing-distance) rotateY(@rotation);
-    padding-top: 12vh;
+    padding-top: 8vh;
     padding-bottom: 12vh;
     transform-origin: left;
     width: 120%;

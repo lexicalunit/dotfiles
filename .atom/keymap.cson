@@ -1,7 +1,7 @@
-'atom-workspace':
+"atom-workspace":
   # Removes `api-workbench:find-usages`; it conflicts with `go-to-line:toggle`
-  'ctrl-g': 'unset!'
+  'ctrl-g': "unset!"
 
-'atom-text-editor':
+"atom-text-editor":
   # Replaces `editor:select-line` with `nvatom:toggle`
-  'cmd-l': 'nvatom:toggle'
+  "cmd-l": "nvatom:toggle"

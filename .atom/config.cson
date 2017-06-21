@@ -18,6 +18,7 @@
   "bracket-matcher": {}
   core:
     audioBeep: false
+    closeEmptyWindows: false
     disabledPackages: [
       "exception-reporting"
       "autoflow"
@@ -35,10 +36,12 @@
       "atom-metaweather"
       "python-yapf"
       "atom-isort"
+      "github"
     ]
     packagesWithKeymapsDisabled: [
       "format-shell"
     ]
+    restorePreviousWindowsOnStart: "no"
     telemetryConsent: "no"
     themes: [
       "native-ui"
@@ -59,6 +62,7 @@
     scrollPastEnd: true
     showInvisibles: true
     softWrapAtPreferredLineLength: true
+    softWrapHangingIndent: 2
     tabLength: 4
   "event-watch":
     displayColorStatusbar: "Olive"
@@ -108,7 +112,8 @@
     pep8ExecutablePath: "/usr/local/bin/pep8"
   "linter-ui-default":
     hidePanelWhenEmpty: true
-    panelHeight: 169
+    panelHeight: 138
+    showPanel: true
     showProviderName: true
   "markdown-preview":
     grammars: [
@@ -138,7 +143,6 @@
       100
     ]
     locked: true
-  "no-title-bar": {}
   nvatom:
     directory: "~/Dropbox/nv"
   "pretty-json": {}
@@ -175,6 +179,7 @@
     autoSaveChanges: true
   tabs: {}
   "tree-view":
+    autoReveal: true
     hideIgnoredNames: true
   welcome:
     showOnStartup: false

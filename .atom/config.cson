@@ -113,7 +113,6 @@
   "linter-ui-default":
     hidePanelWhenEmpty: true
     panelHeight: 138
-    showPanel: true
     showProviderName: true
   "markdown-preview":
     grammars: [

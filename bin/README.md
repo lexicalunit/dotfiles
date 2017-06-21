@@ -175,12 +175,19 @@ Usage: jsc [options] [files] [-- arguments]
   -f         Specifies a source file (deprecated)
   -h|--help  Prints this help message
   -i         Enables interactive mode (default if no files are specified)
+  -m         Execute as a module
   -s         Installs signal handlers that exit on a crash (Unix platforms only)
   -p <file>  Outputs profiling data to a file
   -x         Output exit code before terminating
 
+  --sample                   Collects and outputs sampling profiler data
+  --test262-async            Check that some script calls the print function with the string 'Test262:AsyncTestComplete'
+  --strict-file=<file>       Parse the given file as if it were in strict mode (this option may be passed more than once)
+  --module-file=<file>       Parse and evaluate the given file as module (this option may be passed more than once)
+  --exception=<name>         Check the last script exits with an uncaught exception with the specified name
+  --dumpException            Dump uncaught exception text
   --options                  Dumps all JSC VM options and exits
-  --dumpOptions              Dumps all JSC VM options before continuing
+  --dumpOptions              Dumps all non-default JSC VM options before continuing
   --<jsc VM option>=<value>  Sets the specified JSC VM option
 ```
 

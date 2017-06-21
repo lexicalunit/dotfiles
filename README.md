@@ -114,25 +114,29 @@ install packages/formulas/casks/whatever, see below for the list of included ite
 | zsh | Ensure shell is latest version of zsh from Homebrew |
 | python | Upgrade/Install Anaconda, pip packages, and conda packages |
 | gem | Upgrade/Install gem packages and rubygems-update package |
-| node | Ensure Node modules are installed |
+| node | Ensure Node modules are installed via npm |
 | go | Ensure Go packages are installed |
 | env | Update to latest all submodules in your dotfiles |
 
-Homebrew Formulas: autoconf, automake, bash, bison, boost, clang-format, cloog, 
-cmake, colordiff, coreutils, cppunit, csv-fix, dmd, docker, docker-compose, 
-doxygen, erlang, faac, fasd, ffmpeg, fontconfig, freetype, gd, gdbm, geoip, 
-gettext, ghostscript, gifify, gifsicle, git, git-flow, git-review, git-secrets, 
-glib, gmp, gmp4, gnu-sed, gnu-tar, gnupg, gradle, htop-osx, hub, id3lib, id3v2, 
-imagemagick, isl, jasper, jbig2dec, jhead, jo, jpeg, jq, lame, libevent, 
-libffi, libgpg-error, libgphoto2, libicns, libksba, libmpc, libpng, libssh2, 
-libtiff, libtool, libusb, libusb-compat, libvo-aacenc, libyaml, little-cms2, 
+Homebrew Formulas: adns, ammonite-repl, autoconf, automake, avro-tools, bash, 
+bison, boost, clang-format, cloog, cmake, colordiff, coreutils, cppunit, 
+csv-fix, dmd, docker, docker-compose, doxygen, erlang, faac, fasd, ffmpeg, 
+fontconfig, freetype, gd, gdbm, geoip, gettext, ghostscript, gifify, gifsicle, 
+git, git-flow, git-review, git-secrets, giter8, glib, gmp, gmp4, gnu-sed, 
+gnu-tar, gnupg, gnutls, gradle, htop-osx, hub, icu4c, id3lib, id3v2, 
+imagemagick, isl, jasper, jbig2dec, jhead, jo, jpeg, jq, kafkacat, lame, 
+libassuan, libevent, libffi, libgcrypt, libgpg-error, libgphoto2, libicns, 
+libksba, libmpc, libpng, librdkafka, libssh2, libtasn1, libtiff, libtool, 
+libunistring, libusb, libusb-compat, libvo-aacenc, libyaml, little-cms2, lz4, 
 lzlib, makedepend, maven, md5sha1sum, memcached, mongodb, mpfr, mysql, ncftp, 
-nginx, no-more-secrets, node, onepass, oniguruma, openssl, ossp-uuid, pandoc, 
-pcre, pidof, pkg-config, plotutils, pngquant, postgresql, rabbitmq, readline, 
-redis, rust, s3cmd, sane-backends, scons, sdl2, sdl2_image, shellcheck, 
-sloccount, spark, sqlite, sqliteodbc, storm, swig, tree, unixodbc, unrar, 
-vramsteg, watch, wdiff, webp, wget, wxmac, x264, xvid, xz, yaml-cpp, 
-youtube-dl, zeromq, zookeeper, zsh
+net-snmp, nettle, nginx, no-more-secrets, node, npth, onepass, oniguruma, 
+openssl, ossp-uuid, p11-kit, pandoc, pcre, percona-toolkit, pidof, pinentry, 
+pkg-config, plotutils, pngquant, postgresql, protobuf, pyenv, pyenv-virtualenv, 
+pyenv-virtualenvwrapper, rabbitmq, readline, redis, rust, s3cmd, sane-backends, 
+sbt, scala, scons, sdl2, sdl2_image, shellcheck, sloccount, spark, sqlite, 
+sqliteodbc, storm, swig, tree, unixodbc, unrar, v8, vegeta, vramsteg, watch, 
+wdiff, webp, wget, wxmac, x264, xvid, xz, yajl, yaml-cpp, youtube-dl, zeromq, 
+zookeeper, zsh
 
 Homebrew Casks: 1password, adium, amazon-music, atom, audacity, 
 balsamiq-mockups, battle-net, caffeine, clamxav, cyberduck, dbvisualizer, 
@@ -146,18 +150,18 @@ xquartz
 Atom Packages: MagicPython, activate-power-mode, aesthetic-ui, atom-beautify, 
 atom-isort, atom-language-avro, auto-update-packages, autocomplete-python, 
 base16-syntax, busy-signal, column-select, cursor-indicator, event-watch, 
-file-icons, format-shell, highlight-selected, indent-guide-improved, 
+file-icons, force-tab, format-shell, highlight-selected, indent-guide-improved, 
 intentions, isotope-light-ui, language-applescript, language-babel, 
 language-cmake, language-diff, language-docker, language-groovy, 
 language-latex, language-restructuredtext, language-rust, language-scala, 
 line-length-break, linter, linter-clang, linter-coffeelint, linter-csslint, 
-linter-docker, linter-erb, linter-eslint, linter-flake8, linter-js-standard, 
-linter-jsonlint, linter-rubocop, linter-shellcheck, linter-tidy, 
-linter-ui-default, linter-write-good, minimap, minimap-find-and-replace, 
-minimap-git-diff, minimap-highlight-selected, minimap-selection, 
-multi-wrap-guide, native-ui, no-title-bar, nvatom, python-yapf, 
-red-wavy-underline, set-syntax, soft-wrap-indicator, sort-lines, 
-standard-formatter, tab-control, tabs-to-spaces, toggle-quotes, trailing-spaces
+linter-docker, linter-erb, linter-eslint, linter-flake8, linter-jsonlint, 
+linter-rubocop, linter-shellcheck, linter-tidy, linter-ui-default, 
+linter-write-good, minimap, minimap-find-and-replace, minimap-git-diff, 
+minimap-highlight-selected, minimap-selection, multi-wrap-guide, native-ui, 
+no-title-bar, nvatom, python-yapf, red-wavy-underline, set-syntax, 
+soft-wrap-indicator, sort-lines, standard-formatter, tab-control, 
+tabs-to-spaces, toggle-quotes, trailing-spaces
 
 Pip Packages: git-sweep3k, httpie, inflection, isort, patch, 
 python-json-logger, termcolor, yapf

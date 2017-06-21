@@ -39,6 +39,8 @@
 /.coffee_history
 /.conan
 /.conda/environments.txt
+/.conda/pkgs/urls
+/.conda/pkgs/urls.txt
 /.config/configstore
 /.config/QtProject
 /.config/rq

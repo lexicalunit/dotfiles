@@ -267,25 +267,29 @@ steps:
     zsh      Ensure shell is latest version of zsh from Homebrew
     python   Upgrade/Install Anaconda, pip packages, and conda packages
     gem      Upgrade/Install gem packages and rubygems-update package
-    node     Ensure Node modules are installed
+    node     Ensure Node modules are installed via npm
     go       Ensure Go packages are installed
     env      Update to latest all submodules in your dotfiles
 
-Homebrew Formulas: autoconf, automake, bash, bison, boost, clang-format, cloog, 
-cmake, colordiff, coreutils, cppunit, csv-fix, dmd, docker, docker-compose, 
-doxygen, erlang, faac, fasd, ffmpeg, fontconfig, freetype, gd, gdbm, geoip, 
-gettext, ghostscript, gifify, gifsicle, git, git-flow, git-review, git-secrets, 
-glib, gmp, gmp4, gnu-sed, gnu-tar, gnupg, gradle, htop-osx, hub, id3lib, id3v2, 
-imagemagick, isl, jasper, jbig2dec, jhead, jo, jpeg, jq, lame, libevent, 
-libffi, libgpg-error, libgphoto2, libicns, libksba, libmpc, libpng, libssh2, 
-libtiff, libtool, libusb, libusb-compat, libvo-aacenc, libyaml, little-cms2, 
+Homebrew Formulas: adns, ammonite-repl, autoconf, automake, avro-tools, bash, 
+bison, boost, clang-format, cloog, cmake, colordiff, coreutils, cppunit, 
+csv-fix, dmd, docker, docker-compose, doxygen, erlang, faac, fasd, ffmpeg, 
+fontconfig, freetype, gd, gdbm, geoip, gettext, ghostscript, gifify, gifsicle, 
+git, git-flow, git-review, git-secrets, giter8, glib, gmp, gmp4, gnu-sed, 
+gnu-tar, gnupg, gnutls, gradle, htop-osx, hub, icu4c, id3lib, id3v2, 
+imagemagick, isl, jasper, jbig2dec, jhead, jo, jpeg, jq, kafkacat, lame, 
+libassuan, libevent, libffi, libgcrypt, libgpg-error, libgphoto2, libicns, 
+libksba, libmpc, libpng, librdkafka, libssh2, libtasn1, libtiff, libtool, 
+libunistring, libusb, libusb-compat, libvo-aacenc, libyaml, little-cms2, lz4, 
 lzlib, makedepend, maven, md5sha1sum, memcached, mongodb, mpfr, mysql, ncftp, 
-nginx, no-more-secrets, node, onepass, oniguruma, openssl, ossp-uuid, pandoc, 
-pcre, pidof, pkg-config, plotutils, pngquant, postgresql, rabbitmq, readline, 
-redis, rust, s3cmd, sane-backends, scons, sdl2, sdl2_image, shellcheck, 
-sloccount, spark, sqlite, sqliteodbc, storm, swig, tree, unixodbc, unrar, 
-vramsteg, watch, wdiff, webp, wget, wxmac, x264, xvid, xz, yaml-cpp, 
-youtube-dl, zeromq, zookeeper, zsh
+net-snmp, nettle, nginx, no-more-secrets, node, npth, onepass, oniguruma, 
+openssl, ossp-uuid, p11-kit, pandoc, pcre, percona-toolkit, pidof, pinentry, 
+pkg-config, plotutils, pngquant, postgresql, protobuf, pyenv, pyenv-virtualenv, 
+pyenv-virtualenvwrapper, rabbitmq, readline, redis, rust, s3cmd, sane-backends, 
+sbt, scala, scons, sdl2, sdl2_image, shellcheck, sloccount, spark, sqlite, 
+sqliteodbc, storm, swig, tree, unixodbc, unrar, v8, vegeta, vramsteg, watch, 
+wdiff, webp, wget, wxmac, x264, xvid, xz, yajl, yaml-cpp, youtube-dl, zeromq, 
+zookeeper, zsh
 
 Homebrew Casks: 1password, adium, amazon-music, atom, audacity, 
 balsamiq-mockups, battle-net, caffeine, clamxav, cyberduck, dbvisualizer, 
@@ -299,18 +303,18 @@ xquartz
 Atom Packages: MagicPython, activate-power-mode, aesthetic-ui, atom-beautify, 
 atom-isort, atom-language-avro, auto-update-packages, autocomplete-python, 
 base16-syntax, busy-signal, column-select, cursor-indicator, event-watch, 
-file-icons, format-shell, highlight-selected, indent-guide-improved, 
+file-icons, force-tab, format-shell, highlight-selected, indent-guide-improved, 
 intentions, isotope-light-ui, language-applescript, language-babel, 
 language-cmake, language-diff, language-docker, language-groovy, 
 language-latex, language-restructuredtext, language-rust, language-scala, 
 line-length-break, linter, linter-clang, linter-coffeelint, linter-csslint, 
-linter-docker, linter-erb, linter-eslint, linter-flake8, linter-js-standard, 
-linter-jsonlint, linter-rubocop, linter-shellcheck, linter-tidy, 
-linter-ui-default, linter-write-good, minimap, minimap-find-and-replace, 
-minimap-git-diff, minimap-highlight-selected, minimap-selection, 
-multi-wrap-guide, native-ui, no-title-bar, nvatom, python-yapf, 
-red-wavy-underline, set-syntax, soft-wrap-indicator, sort-lines, 
-standard-formatter, tab-control, tabs-to-spaces, toggle-quotes, trailing-spaces
+linter-docker, linter-erb, linter-eslint, linter-flake8, linter-jsonlint, 
+linter-rubocop, linter-shellcheck, linter-tidy, linter-ui-default, 
+linter-write-good, minimap, minimap-find-and-replace, minimap-git-diff, 
+minimap-highlight-selected, minimap-selection, multi-wrap-guide, native-ui, 
+no-title-bar, nvatom, python-yapf, red-wavy-underline, set-syntax, 
+soft-wrap-indicator, sort-lines, standard-formatter, tab-control, 
+tabs-to-spaces, toggle-quotes, trailing-spaces
 
 Pip Packages: git-sweep3k, httpie, inflection, isort, patch, 
 python-json-logger, termcolor, yapf
@@ -502,6 +506,8 @@ Options:
     --ignore-config                  Do not read configuration files. When given in the global configuration file
                                      /etc/youtube-dl.conf: Do not read the user configuration in ~/.config/youtube-
                                      dl/config (%APPDATA%/youtube-dl/config.txt on Windows)
+    --config-location PATH           Location of the configuration file; either the path to the config or its containing
+                                     directory.
     --flat-playlist                  Do not extract the videos of a playlist, only list them.
     --mark-watched                   Mark videos watched (YouTube only)
     --no-mark-watched                Do not mark videos watched (YouTube only)
@@ -512,12 +518,19 @@ Options:
                                      specify a proper scheme. For example socks5://127.0.0.1:1080/. Pass in an empty
                                      string (--proxy "") for direct connection
     --socket-timeout SECONDS         Time to wait before giving up, in seconds
-    --source-address IP              Client-side IP address to bind to (experimental)
-    -4, --force-ipv4                 Make all connections via IPv4 (experimental)
-    -6, --force-ipv6                 Make all connections via IPv6 (experimental)
+    --source-address IP              Client-side IP address to bind to
+    -4, --force-ipv4                 Make all connections via IPv4
+    -6, --force-ipv6                 Make all connections via IPv6
+
+  Geo Restriction:
     --geo-verification-proxy URL     Use this proxy to verify the IP address for some geo-restricted sites. The default
                                      proxy specified by --proxy (or none, if the options is not present) is used for the
-                                     actual downloading. (experimental)
+                                     actual downloading.
+    --geo-bypass                     Bypass geographic restriction via faking X-Forwarded-For HTTP header (experimental)
+    --no-geo-bypass                  Do not bypass geographic restriction via faking X-Forwarded-For HTTP header
+                                     (experimental)
+    --geo-bypass-country CODE        Force bypass geographic restriction with explicitly provided two-letter ISO 3166-2
+                                     country code (experimental)
 
   Video Selection:
     --playlist-start NUMBER          Playlist video to start at (default is 1)
@@ -536,15 +549,16 @@ Options:
     --dateafter DATE                 Download only videos uploaded on or after this date (i.e. inclusive)
     --min-views COUNT                Do not download any videos with less than COUNT views
     --max-views COUNT                Do not download any videos with more than COUNT views
-    --match-filter FILTER            Generic video filter (experimental). Specify any key (see help for -o for a list of
+    --match-filter FILTER            Generic video filter. Specify any key (see the "OUTPUT TEMPLATE" for a list of
                                      available keys) to match if the key is present, !key to check if the key is not
-                                     present,key > NUMBER (like "comment_count > 12", also works with >=, <, <=, !=, =)
-                                     to compare against a number, and & to require multiple matches. Values which are
-                                     not known are excluded unless you put a question mark (?) after the operator.For
-                                     example, to only match videos that have been liked more than 100 times and disliked
-                                     less than 50 times (or the dislike functionality is not available at the given
-                                     service), but who also have a description, use --match-filter "like_count > 100 &
-                                     dislike_count <? 50 & description" .
+                                     present, key > NUMBER (like "comment_count > 12", also works with >=, <, <=, !=, =)
+                                     to compare against a number, key = 'LITERAL' (like "uploader = 'Mike Smith'", also
+                                     works with !=) to match against a string literal and & to require multiple matches.
+                                     Values which are not known are excluded unless you put a question mark (?) after
+                                     the operator. For example, to only match videos that have been liked more than 100
+                                     times and disliked less than 50 times (or the dislike functionality is not
+                                     available at the given service), but who also have a description, use --match-
+                                     filter "like_count > 100 & dislike_count <? 50 & description" .
     --no-playlist                    Download only the video, if the URL refers to a video and a playlist.
     --yes-playlist                   Download the playlist, if the URL refers to a video and a playlist.
     --age-limit YEARS                Download only videos suitable for the given age
@@ -555,12 +569,18 @@ Options:
   Download Options:
     -r, --limit-rate RATE            Maximum download rate in bytes per second (e.g. 50K or 4.2M)
     -R, --retries RETRIES            Number of retries (default is 10), or "infinite".
-    --fragment-retries RETRIES       Number of retries for a fragment (default is 10), or "infinite" (DASH only)
+    --fragment-retries RETRIES       Number of retries for a fragment (default is 10), or "infinite" (DASH, hlsnative
+                                     and ISM)
+    --skip-unavailable-fragments     Skip unavailable fragments (DASH, hlsnative and ISM)
+    --abort-on-unavailable-fragment  Abort downloading when some fragment is not available
+    --keep-fragments                 Keep downloaded fragments on disk after downloading is finished; fragments are
+                                     erased by default
     --buffer-size SIZE               Size of download buffer (e.g. 1024 or 16K) (default is 1024)
     --no-resize-buffer               Do not automatically adjust the buffer size. By default, the buffer size is
                                      automatically resized from an initial value of SIZE.
     --playlist-reverse               Download playlist videos in reverse order
-    --xattr-set-filesize             Set file xattribute ytdl.filesize with expected filesize (experimental)
+    --playlist-random                Download playlist videos in random order
+    --xattr-set-filesize             Set file xattribute ytdl.filesize with expected file size (experimental)
     --hls-prefer-native              Use the native HLS downloader instead of ffmpeg
     --hls-prefer-ffmpeg              Use ffmpeg instead of the native HLS downloader
     --hls-use-mpegts                 Use the mpegts container for HLS videos, allowing to play the video while
@@ -572,27 +592,9 @@ Options:
   Filesystem Options:
     -a, --batch-file FILE            File containing URLs to download ('-' for stdin)
     --id                             Use only video ID in file name
-    -o, --output TEMPLATE            Output filename template. Use %(title)s to get the title, %(uploader)s for the
-                                     uploader name, %(uploader_id)s for the uploader nickname if different,
-                                     %(autonumber)s to get an automatically incremented number, %(ext)s for the filename
-                                     extension, %(format)s for the format description (like "22 - 1280x720" or "HD"),
-                                     %(format_id)s for the unique id of the format (like YouTube's itags: "137"),
-                                     %(upload_date)s for the upload date (YYYYMMDD), %(extractor)s for the provider
-                                     (youtube, metacafe, etc), %(id)s for the video id, %(playlist_title)s,
-                                     %(playlist_id)s, or %(playlist)s (=title if present, ID otherwise) for the playlist
-                                     the video is in, %(playlist_index)s for the position in the playlist. %(height)s
-                                     and %(width)s for the width and height of the video format. %(resolution)s for a
-                                     textual description of the resolution of the video format. %% for a literal
-                                     percent. Use - to output to stdout. Can also be used to download to a different
-                                     directory, for example with -o
-                                     '/my/downloads/%(uploader)s/%(title)s-%(id)s.%(ext)s' .
-    --autonumber-size NUMBER         Specify the number of digits in %(autonumber)s when it is present in output
-                                     filename template or --auto-number option is given
+    -o, --output TEMPLATE            Output filename template, see the "OUTPUT TEMPLATE" for all the info
+    --autonumber-start NUMBER        Specify the start value for %(autonumber)s (default is 1)
     --restrict-filenames             Restrict filenames to only ASCII characters, and avoid "&" and spaces in filenames
-    -A, --auto-number                [deprecated; use -o "%(autonumber)s-%(title)s.%(ext)s" ] Number downloaded files
-                                     starting from 00000
-    -t, --title                      [deprecated] Use title in file name (default)
-    -l, --literal                    [deprecated] Alias of --title
     -w, --no-overwrites              Do not overwrite files
     -c, --continue                   Force resume of partially downloaded files. By default, youtube-dl will resume
                                      downloads if possible.
@@ -630,8 +632,8 @@ Options:
     --get-duration                   Simulate, quiet but print video length
     --get-filename                   Simulate, quiet but print output filename
     --get-format                     Simulate, quiet but print output format
-    -j, --dump-json                  Simulate, quiet but print JSON information. See --output for a description of
-                                     available keys.
+    -j, --dump-json                  Simulate, quiet but print JSON information. See the "OUTPUT TEMPLATE" for a
+                                     description of available keys.
     -J, --dump-single-json           Simulate, quiet but print JSON information for each command-line argument. If the
                                      URL refers to a playlist, dump the whole playlist information in a single line.
     --print-json                     Be quiet and print the video information as JSON (video is still being downloaded).
@@ -684,15 +686,23 @@ Options:
   Authentication Options:
     -u, --username USERNAME          Login with this account ID
     -p, --password PASSWORD          Account password. If this option is left out, youtube-dl will ask interactively.
-    -2, --twofactor TWOFACTOR        Two-factor auth code
+    -2, --twofactor TWOFACTOR        Two-factor authentication code
     -n, --netrc                      Use .netrc authentication data
     --video-password PASSWORD        Video password (vimeo, smotri, youku)
+
+  Adobe Pass Options:
+    --ap-mso MSO                     Adobe Pass multiple-system operator (TV provider) identifier, use --ap-list-mso for
+                                     a list of available MSOs
+    --ap-username USERNAME           Multiple-system operator account login
+    --ap-password PASSWORD           Multiple-system operator account password. If this option is left out, youtube-dl
+                                     will ask interactively.
+    --ap-list-mso                    List all supported multiple-system operators
 
   Post-processing Options:
     -x, --extract-audio              Convert video files to audio-only files (requires ffmpeg or avconv and ffprobe or
                                      avprobe)
-    --audio-format FORMAT            Specify audio format: "best", "aac", "vorbis", "mp3", "m4a", "opus", or "wav";
-                                     "best" by default
+    --audio-format FORMAT            Specify audio format: "best", "aac", "flac", "mp3", "m4a", "opus", "vorbis", or
+                                     "wav"; "best" by default; No effect without -x
     --audio-quality QUALITY          Specify ffmpeg/avconv audio quality, insert a value between 0 (better) and 9
                                      (worse) for VBR or a specific bitrate like 128K (default 5)
     --recode-video FORMAT            Encode the video to another format if necessary (currently supported:
@@ -706,9 +716,10 @@ Options:
     --embed-thumbnail                Embed thumbnail in the audio as cover art
     --add-metadata                   Write metadata to the video file
     --metadata-from-title FORMAT     Parse additional metadata like song title / artist from the video title. The format
-                                     syntax is the same as --output, the parsed parameters replace existing values.
-                                     Additional templates: %(album)s, %(artist)s. Example: --metadata-from-title
-                                     "%(artist)s - %(title)s" matches a title like "Coldplay - Paradise"
+                                     syntax is the same as --output. Regular expression with named capture groups may
+                                     also be used. The parsed parameters replace existing values. Example: --metadata-
+                                     from-title "%(artist)s - %(title)s" matches a title like "Coldplay - Paradise".
+                                     Example (regex): --metadata-from-title "(?P<artist>.+?) - (?P<title>.+)"
     --xattrs                         Write metadata to the video file's xattrs (using dublin core and xdg standards)
     --fixup POLICY                   Automatically correct known faults of the file. One of never (do nothing), warn
                                      (only emit a warning), detect_or_warn (the default; fix file if we can, warn

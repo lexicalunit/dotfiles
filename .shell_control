@@ -65,7 +65,12 @@ query() {
         return 0
     fi
     echo -n $'\n\e[1;35m'
-    read -p "$1 ... "
+    if [[ "$SHELL" =~ "zsh" ]]; then
+        printf "%s " "$1 ... "
+        read REPLY
+    else
+        read -p REPLY "$1 ... "
+    fi
     echo -n $'\e[0;0m'
 }
 

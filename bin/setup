@@ -982,8 +982,8 @@ EOF
         "SystemUIServer" \
         "Terminal" \
         "iCal"; do
-            run "killall '$app' &>/dev/null"
-        done
+        run "killall '$app' &>/dev/null"
+    done
     show -i "Done. Note that some of these changes require a logout/restart to take effect."
 }
 

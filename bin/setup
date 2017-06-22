@@ -475,10 +475,10 @@ step_osx() {
     show "Show item info to the right of the icons on the desktop"
     run "/usr/libexec/PlistBuddy -c 'Set DesktopViewSettings:IconViewSettings:labelOnBottom false' '$HOME/Library/Preferences/com.apple.finder.plist'"
 
-    show "Enable snap-to-grid for icons on the desktop and in other icon views"
-    run "/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:arrangeBy grid' '$HOME/Library/Preferences/com.apple.finder.plist'"
-    run "/usr/libexec/PlistBuddy -c 'Set :FK_StandardViewSettings:IconViewSettings:arrangeBy grid' '$HOME/Library/Preferences/com.apple.finder.plist'"
-    run "/usr/libexec/PlistBuddy -c 'Set :StandardViewSettings:IconViewSettings:arrangeBy grid' '$HOME/Library/Preferences/com.apple.finder.plist'"
+    show "Enable sort by Date Modified for icons on the desktop and in other icon views"
+    run "/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:arrangeBy dateModified' '$HOME/Library/Preferences/com.apple.finder.plist'"
+    run "/usr/libexec/PlistBuddy -c 'Set :FK_StandardViewSettings:IconViewSettings:arrangeBy dateModified' '$HOME/Library/Preferences/com.apple.finder.plist'"
+    run "/usr/libexec/PlistBuddy -c 'Set :StandardViewSettings:IconViewSettings:arrangeBy dateModified' '$HOME/Library/Preferences/com.apple.finder.plist'"
 
     show "Increase grid spacing for icons on the desktop and in other icon views"
     run "/usr/libexec/PlistBuddy -c 'Set :DesktopViewSettings:IconViewSettings:gridSpacing 100' '$HOME/Library/Preferences/com.apple.finder.plist'"

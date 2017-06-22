@@ -22,6 +22,7 @@ Style/TrailingCommaInLiteral:
 
 Style/TrailingCommaInArguments:
   Enabled: true
+  EnforcedStyleForMultiline: comma
 
 Style/FrozenStringLiteralComment:
   Enabled: false

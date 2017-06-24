@@ -361,7 +361,7 @@ step_osx() {
     run "defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false"
 
     show "Set a blazingly fast keyboard repeat rate"
-    run "defaults write NSGlobalDomain KeyRepeat -int 1"
+    run "defaults write NSGlobalDomain KeyRepeat -int 2"
     run "defaults write NSGlobalDomain InitialKeyRepeat -int 10"
 
     show "Set language and text formats"

@@ -38,6 +38,7 @@
       "atom-isort"
       "github"
     ]
+    openEmptyEditorOnStart: false
     packagesWithKeymapsDisabled: [
       "format-shell"
     ]
@@ -112,8 +113,7 @@
     pep8ExecutablePath: "/usr/local/bin/pep8"
   "linter-ui-default":
     hidePanelWhenEmpty: true
-    panelHeight: 158
-    showPanel: true
+    panelHeight: 153
     showProviderName: true
   "markdown-preview":
     grammars: [
@@ -181,7 +181,6 @@
     autoSaveChanges: true
   tabs: {}
   "tree-view":
-    autoReveal: true
     hideIgnoredNames: true
   welcome:
     showOnStartup: false

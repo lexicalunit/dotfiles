@@ -1,20 +1,29 @@
 @import "syntax-variables";
 @import "ui-variables";
 
-// fixes the look of dock resize handles in the native-ui theme
+// tweaks to the native-ui theme
 .theme-native-ui {
+  // add status bar top border
+  atom-panel-container.header + atom-workspace-axis.horizontal {
+    border-bottom: 1px solid @base-border-color;
+  }
+
+  // fix position of dock toggle buttons
+  .atom-dock-toggle-button.left { margin-left: 1px; }
+  .atom-dock-toggle-button.right { margin-right: 1px; }
+  .atom-dock-toggle-button.bottom { margin-bottom: -1px; }
+
+  // more subtle resize handle style
   .atom-dock-resize-handle-resizable {
     background-color: #DFDFDF !important;
     background-image: none !important;
+    border-left: 0;
     width: 5px;
   }
 
-  .gutter {
+  // add gutter left border
+  .gutter-container {
     border-left: 1px solid @tab-bar-background-color;
-  }
-
-  .tree-view {
-    box-shadow: none;
   }
 }
 

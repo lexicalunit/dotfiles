@@ -27,6 +27,10 @@
 /.profile_panama
 /.profile_uacf
 
+# Parallels
+/Applications\ (Parallels)
+/Parallels
+
 # Applications
 /.ammonite
 /.aws

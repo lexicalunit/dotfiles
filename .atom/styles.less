@@ -4,10 +4,17 @@
 // fixes the look of dock resize handles in the native-ui theme
 .theme-native-ui {
   .atom-dock-resize-handle-resizable {
-    background-color: @syntax-gutter-background-color !important;
+    background-color: #DFDFDF !important;
     background-image: none !important;
-    margin-right: -4px !important;
-    border-width: 7px !important;
+    width: 5px;
+  }
+
+  .gutter {
+    border-left: 1px solid @tab-bar-background-color;
+  }
+
+  .tree-view {
+    box-shadow: none;
   }
 }
 

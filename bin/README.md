@@ -549,13 +549,13 @@ Options:
     --dateafter DATE                 Download only videos uploaded on or after this date (i.e. inclusive)
     --min-views COUNT                Do not download any videos with less than COUNT views
     --max-views COUNT                Do not download any videos with more than COUNT views
-    --match-filter FILTER            Generic video filter. Specify any key (see help for -o for a list of available
-                                     keys) to match if the key is present, !key to check if the key is not present, key
-                                     > NUMBER (like "comment_count > 12", also works with >=, <, <=, !=, =) to compare
-                                     against a number, key = 'LITERAL' (like "uploader = 'Mike Smith'", also works with
-                                     !=) to match against a string literal and & to require multiple matches. Values
-                                     which are not known are excluded unless you put a question mark (?) after the
-                                     operator. For example, to only match videos that have been liked more than 100
+    --match-filter FILTER            Generic video filter. Specify any key (see the "OUTPUT TEMPLATE" for a list of
+                                     available keys) to match if the key is present, !key to check if the key is not
+                                     present, key > NUMBER (like "comment_count > 12", also works with >=, <, <=, !=, =)
+                                     to compare against a number, key = 'LITERAL' (like "uploader = 'Mike Smith'", also
+                                     works with !=) to match against a string literal and & to require multiple matches.
+                                     Values which are not known are excluded unless you put a question mark (?) after
+                                     the operator. For example, to only match videos that have been liked more than 100
                                      times and disliked less than 50 times (or the dislike functionality is not
                                      available at the given service), but who also have a description, use --match-
                                      filter "like_count > 100 & dislike_count <? 50 & description" .
@@ -632,8 +632,8 @@ Options:
     --get-duration                   Simulate, quiet but print video length
     --get-filename                   Simulate, quiet but print output filename
     --get-format                     Simulate, quiet but print output format
-    -j, --dump-json                  Simulate, quiet but print JSON information. See --output for a description of
-                                     available keys.
+    -j, --dump-json                  Simulate, quiet but print JSON information. See the "OUTPUT TEMPLATE" for a
+                                     description of available keys.
     -J, --dump-single-json           Simulate, quiet but print JSON information for each command-line argument. If the
                                      URL refers to a playlist, dump the whole playlist information in a single line.
     --print-json                     Be quiet and print the video information as JSON (video is still being downloaded).
@@ -716,9 +716,10 @@ Options:
     --embed-thumbnail                Embed thumbnail in the audio as cover art
     --add-metadata                   Write metadata to the video file
     --metadata-from-title FORMAT     Parse additional metadata like song title / artist from the video title. The format
-                                     syntax is the same as --output, the parsed parameters replace existing values.
-                                     Additional templates: %(album)s, %(artist)s. Example: --metadata-from-title
-                                     "%(artist)s - %(title)s" matches a title like "Coldplay - Paradise"
+                                     syntax is the same as --output. Regular expression with named capture groups may
+                                     also be used. The parsed parameters replace existing values. Example: --metadata-
+                                     from-title "%(artist)s - %(title)s" matches a title like "Coldplay - Paradise".
+                                     Example (regex): --metadata-from-title "(?P<artist>.+?) - (?P<title>.+)"
     --xattrs                         Write metadata to the video file's xattrs (using dublin core and xdg standards)
     --fixup POLICY                   Automatically correct known faults of the file. One of never (do nothing), warn
                                      (only emit a warning), detect_or_warn (the default; fix file if we can, warn

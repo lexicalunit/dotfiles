@@ -37,6 +37,7 @@
       "python-yapf"
       "atom-isort"
       "github"
+      "linter-clang"
     ]
     openEmptyEditorOnStart: false
     packagesWithKeymapsDisabled: [
@@ -113,7 +114,7 @@
     pep8ExecutablePath: "/usr/local/bin/pep8"
   "linter-ui-default":
     hidePanelWhenEmpty: true
-    panelHeight: 153
+    panelHeight: 158
     showProviderName: true
   "markdown-preview":
     grammars: [
@@ -145,6 +146,7 @@
     locked: true
   "no-title-bar":
     automaticTrafficLightsPadding: true
+    automaticTrafficLightsPaddingOffset: 5
   nvatom:
     directory: "~/Dropbox/nv"
   "pretty-json": {}

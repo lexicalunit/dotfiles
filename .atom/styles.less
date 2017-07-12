@@ -28,8 +28,8 @@
 }
 
 // get rid of annoying "Project" and "Linter" widgets at the top of their docks
-.tab.sortable {
-  &[data-type="TreeView"], &[data-type="PanelDock"] {
+.tab-bar.inset-panel {
+  &[location="left"], &[location="bottom"], &[location="right"] {
     display: none;
   }
 }

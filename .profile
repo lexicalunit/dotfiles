@@ -315,7 +315,7 @@ if type gsed >/dev/null 2>&1; then
 fi
 
 # shellcheck source=.docker_functions
-test -f .docker_functions && source $_
+test -f "$HOME/.docker_functions" && source "$_"
 
 ################################################################################
 # source any local configuration files

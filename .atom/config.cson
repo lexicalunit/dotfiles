@@ -35,7 +35,6 @@
       "activate-power-mode"
       "atom-metaweather"
       "python-yapf"
-      "atom-isort"
       "github"
       "linter-clang"
     ]
@@ -114,8 +113,11 @@
     pep8ExecutablePath: "/usr/local/bin/pep8"
   "linter-ui-default":
     hidePanelWhenEmpty: true
-    panelHeight: 158
+    panelHeight: 122
+    showPanel: true
     showProviderName: true
+  "linter-write-good":
+    additionalArgs: "--no-tooWordy"
   "markdown-preview":
     grammars: [
       "source.gfm"

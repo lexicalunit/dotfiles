@@ -45,7 +45,7 @@
     restorePreviousWindowsOnStart: "no"
     telemetryConsent: "no"
     themes: [
-      "native-ui"
+      "unity-ui"
       "solarized-light-syntax"
     ]
     titleBar: "custom"
@@ -113,7 +113,7 @@
     pep8ExecutablePath: "/usr/local/bin/pep8"
   "linter-ui-default":
     hidePanelWhenEmpty: true
-    panelHeight: 122
+    panelHeight: 112
     showPanel: true
     showProviderName: true
   "linter-write-good":
@@ -148,7 +148,6 @@
     locked: true
   "no-title-bar":
     automaticTrafficLightsPadding: true
-    automaticTrafficLightsPaddingOffset: 5
   nvatom:
     directory: "~/Dropbox/nv"
   "pretty-json": {}

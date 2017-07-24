@@ -113,7 +113,7 @@
     pep8ExecutablePath: "/usr/local/bin/pep8"
   "linter-ui-default":
     hidePanelWhenEmpty: true
-    panelHeight: 112
+    panelHeight: 127
     showPanel: true
     showProviderName: true
   "linter-write-good":
@@ -148,6 +148,7 @@
     locked: true
   "no-title-bar":
     automaticTrafficLightsPadding: true
+    automaticTrafficLightsPaddingOffset: 1
   nvatom:
     directory: "~/Dropbox/nv"
   "pretty-json": {}

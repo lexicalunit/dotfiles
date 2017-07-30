@@ -5,6 +5,7 @@
   "atom-isort":
     isortPath: "~/bin/isort"
   "atom-notes":
+    directory: "~/Dropbox/nv"
     extensions: [
       ".md"
       ".markdown"
@@ -119,7 +120,7 @@
     pep8ExecutablePath: "/usr/local/bin/pep8"
   "linter-ui-default":
     hidePanelWhenEmpty: true
-    panelHeight: 126
+    panelHeight: 127
     showPanel: true
     showProviderName: true
   "linter-write-good":

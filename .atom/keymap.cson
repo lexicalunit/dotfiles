@@ -3,5 +3,5 @@
   'ctrl-g': "unset!"
 
 "atom-text-editor":
-  # Replaces `editor:select-line` with `nvatom:toggle`
-  "cmd-l": "nvatom:toggle"
+  # Replaces `editor:select-line` with `atom-notes:toggle`
+  "cmd-l": "atom-notes:toggle"

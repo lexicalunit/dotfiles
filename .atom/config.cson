@@ -4,6 +4,11 @@
       analytics: false
   "atom-isort":
     isortPath: "~/bin/isort"
+  "atom-notes":
+    extensions: [
+      ".md"
+      ".markdown"
+    ]
   "atom-pair": null
   "autocomplete-plus":
     confirmCompletion: "tab and enter"
@@ -37,6 +42,7 @@
       "python-yapf"
       "github"
       "linter-clang"
+      "nvatom"
     ]
     openEmptyEditorOnStart: false
     packagesWithKeymapsDisabled: [
@@ -113,7 +119,7 @@
     pep8ExecutablePath: "/usr/local/bin/pep8"
   "linter-ui-default":
     hidePanelWhenEmpty: true
-    panelHeight: 127
+    panelHeight: 126
     showPanel: true
     showProviderName: true
   "linter-write-good":
@@ -126,8 +132,9 @@
       "text.md"
       "text.plain"
       "text.plain.null-grammar"
-      "source.gfm.nvatom"
+      "source.gfm.notes"
     ]
+    liveUpdate: false
     useGitHubStyle: true
   minimap:
     plugins:
@@ -147,7 +154,6 @@
     ]
     locked: true
   "no-title-bar":
-    automaticTrafficLightsPadding: true
     automaticTrafficLightsPaddingOffset: 1
   nvatom:
     directory: "~/Dropbox/nv"

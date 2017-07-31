@@ -2,8 +2,6 @@
   "atom-beautify":
     general:
       analytics: false
-  "atom-isort":
-    isortPath: "~/bin/isort"
   "atom-notes":
     directory: "~/Dropbox/nv"
     extensions: [

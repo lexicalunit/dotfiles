@@ -161,7 +161,7 @@ linter-ui-default, linter-write-good, minimap, minimap-find-and-replace,
 minimap-git-diff, minimap-highlight-selected, minimap-selection, 
 multi-wrap-guide, native-ui, no-title-bar, python-yapf, red-wavy-underline, 
 set-syntax, soft-wrap-indicator, sort-lines, standard-formatter, tab-control, 
-tabs-to-spaces, toggle-quotes, trailing-spaces
+tabs-to-spaces, toggle-quotes, trailing-spaces, unity-ui
 
 Pip Packages: git-sweep3k, httpie, inflection, isort, patch, 
 python-json-logger, termcolor, yapf

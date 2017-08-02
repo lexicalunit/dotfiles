@@ -50,7 +50,7 @@ ATOM_PACKAGES="                                                                \
     minimap-highlight-selected minimap-selection multi-wrap-guide native-ui    \
     no-title-bar python-yapf red-wavy-underline set-syntax soft-wrap-indicator \
     sort-lines standard-formatter tab-control tabs-to-spaces toggle-quotes     \
-    trailing-spaces"
+    trailing-spaces unity-ui"
 
 PIP_PACKAGES="                                                                 \
     git-sweep3k httpie inflection isort patch python-json-logger termcolor     \
@@ -632,7 +632,7 @@ step_osx() {
     show "Show the full URL in the address bar (note: this still hides the scheme)"
     run "defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true"
 
-    show "Set Safari’s home page to `about:blank` for faster loading"
+    show "Set Safari’s home page to 'about:blank' for faster loading"
     run "defaults write com.apple.Safari HomePage -string 'about:blank'"
 
     show "Prevent Safari from opening ‘safe’ files automatically after downloading"

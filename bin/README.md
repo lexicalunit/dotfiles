@@ -314,7 +314,7 @@ linter-ui-default, linter-write-good, minimap, minimap-find-and-replace,
 minimap-git-diff, minimap-highlight-selected, minimap-selection, 
 multi-wrap-guide, native-ui, no-title-bar, python-yapf, red-wavy-underline, 
 set-syntax, soft-wrap-indicator, sort-lines, standard-formatter, tab-control, 
-tabs-to-spaces, toggle-quotes, trailing-spaces, unity-ui
+tabs-to-spaces, toggle-quotes, trailing-spaces
 
 Pip Packages: git-sweep3k, httpie, inflection, isort, patch, 
 python-json-logger, termcolor, yapf
@@ -361,8 +361,8 @@ parser, parslet, pathutil, pkg-config, power_assert, powerpack, psych,
 public_suffix, puppet-lint, rack, rack-test, rails-deprecated_sanitizer, 
 rails-dom-testing, rails-html-sanitizer, rainbow, rake, rb-fsevent, rb-inotify, 
 rdoc, rouge, rubocop, ruby-macho, ruby-progressbar, ruby_dep, rubygems-bundler, 
-rubygems-update, rvm, safe_yaml, sass, sass-listen, test-unit, thread_safe, 
-toml, trollop, tzinfo, unicode-display_width, xcodeproj, xmlrpc
+rubygems-update, rvm, safe_yaml, sass, sass-listen, screengif, test-unit, 
+thread_safe, toml, trollop, tzinfo, unicode-display_width, xcodeproj, xmlrpc
 
 Node Modules: JSON, coffee-script, coffeelint, cson, decaffeinate, dockerlint, 
 eslint, js-beautify, json-stable-stringify, moment, nesh, raml2html, standard, 
@@ -734,3 +734,4 @@ Options:
                                      Example: --exec 'adb push {} /sdcard/Music/ && rm {}'
     --convert-subs FORMAT            Convert the subtitles to other format (currently supported: srt|ass|vtt)
 ```
+

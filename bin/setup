@@ -84,23 +84,6 @@ CONDA_PACKAGES="                                                               \
     xlsxwriter xlwings xlwt xz yaml zeromq zlib"
 
 GEM_PACKAGES="                                                                 \
-<<<<<<< HEAD
-    actionmailer actionpack actionview activejob activesupport bigdecimal      \
-    blankslate builder bundler-unload claide cocoapods cocoapods-core          \
-    cocoapods-deintegrate cocoapods-downloader cocoapods-plugins               \
-    cocoapods-search cocoapods-stats cocoapods-trunk cocoapods-try             \
-    coffee-script coffee-script-source colorator colored commander             \
-    concurrent-ruby erubis escape execjs executable-hooks ffi                  \
-    forwardable-extended fourflusher fuzzy_match gem-wrappers globalid         \
-    highline i18n io-console jekyll jekyll-sass-converter jekyll-watch json    \
-    kramdown liquid listen lolcat loofah mail mercenary mime-types             \
-    mime-types-data mini_portile2 minitest molinillo nap net-telnet netrc      \
-    nokogiri paint parslet pathutil pkg-config power_assert psych puppet-lint  \
-    rack rack-test rails-deprecated_sanitizer rails-dom-testing                \
-    rails-html-sanitizer rake rb-fsevent rb-inotify rdoc rouge rubocop         \
-    ruby_dep rubygems-bundler rubygems-update rvm safe_yaml sass screengif     \
-    test-unit thread_safe toml trollop tzinfo xcodeproj"
-=======
     CFPropertyList actionmailer actionpack actionview activejob activesupport  \
     addressable ast bigdecimal blankslate builder bundler-unload claide        \
     cocoapods cocoapods-core cocoapods-deintegrate cocoapods-downloader        \
@@ -116,9 +99,8 @@ GEM_PACKAGES="                                                                 \
     public_suffix puppet-lint rack rack-test rails-deprecated_sanitizer        \
     rails-dom-testing rails-html-sanitizer rainbow rake rb-fsevent rb-inotify  \
     rdoc rouge rubocop ruby-macho ruby-progressbar ruby_dep rubygems-bundler   \
-    rubygems-update rvm safe_yaml sass sass-listen test-unit thread_safe toml  \
-    trollop tzinfo unicode-display_width xcodeproj xmlrpc"
->>>>>>> Updates to rvm setup.
+    rubygems-update rvm safe_yaml sass sass-listen screengif test-unit         \
+    thread_safe toml trollop tzinfo unicode-display_width xcodeproj xmlrpc"
 
 NODE_MODULES="                                                                 \
     JSON coffee-script coffeelint cson decaffeinate dockerlint eslint          \

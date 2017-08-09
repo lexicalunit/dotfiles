@@ -102,6 +102,8 @@
   "format-shell":
     indent: 4
     showNotifications: true
+  "git-blame":
+    columnWidth: 395
   "git-diff":
     showIconsInEditorGutter: true
   "highlight-selected":
@@ -118,8 +120,7 @@
     pep8ExecutablePath: "/usr/local/bin/pep8"
   "linter-ui-default":
     hidePanelWhenEmpty: true
-    panelHeight: 127
-    showPanel: true
+    panelHeight: 75
     showProviderName: true
   "linter-write-good":
     additionalArgs: "--no-tooWordy"
@@ -153,6 +154,7 @@
     ]
     locked: true
   "no-title-bar":
+    automaticTrafficLightsPadding: true
     automaticTrafficLightsPaddingOffset: 1
   nvatom:
     directory: "~/Dropbox/nv"

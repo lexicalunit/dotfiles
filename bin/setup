@@ -39,18 +39,18 @@ ATOM_PACKAGES="                                                                \
     MagicPython activate-power-mode aesthetic-ui atom-beautify atom-isort      \
     atom-language-avro atom-notes auto-update-packages autocomplete-python     \
     base16-syntax busy-signal column-select cursor-indicator event-watch       \
-    file-icons force-tab format-shell highlight-selected indent-guide-improved \
-    intentions isotope-light-ui language-applescript language-babel            \
-    language-cmake language-diff language-docker language-groovy               \
-    language-latex language-restructuredtext language-rust language-scala      \
-    line-length-break linter linter-clang linter-coffeelint linter-csslint     \
-    linter-docker linter-erb linter-eslint linter-flake8 linter-jsonlint       \
-    linter-rubocop linter-shellcheck linter-tidy linter-ui-default             \
-    linter-write-good minimap minimap-find-and-replace minimap-git-diff        \
-    minimap-highlight-selected minimap-selection multi-wrap-guide native-ui    \
-    no-title-bar python-yapf red-wavy-underline set-syntax soft-wrap-indicator \
-    sort-lines standard-formatter tab-control tabs-to-spaces toggle-quotes     \
-    trailing-spaces unity-ui"
+    file-icons force-tab format-shell git-blame highlight-selected             \
+    indent-guide-improved intentions isotope-light-ui language-applescript     \
+    language-babel language-cmake language-diff language-docker                \
+    language-groovy language-latex language-restructuredtext language-rust     \
+    language-scala line-length-break linter linter-clang linter-coffeelint     \
+    linter-csslint linter-docker linter-erb linter-eslint linter-flake8        \
+    linter-jsonlint linter-rubocop linter-shellcheck linter-tidy               \
+    linter-ui-default linter-write-good minimap minimap-find-and-replace       \
+    minimap-git-diff minimap-highlight-selected minimap-selection              \
+    multi-wrap-guide native-ui no-title-bar python-yapf red-wavy-underline     \
+    set-syntax soft-wrap-indicator sort-lines standard-formatter tab-control   \
+    tabs-to-spaces toggle-quotes trailing-spaces"
 
 PIP_PACKAGES="                                                                 \
     git-sweep3k httpie inflection isort patch python-json-logger termcolor     \
@@ -84,6 +84,7 @@ CONDA_PACKAGES="                                                               \
     xlsxwriter xlwings xlwt xz yaml zeromq zlib"
 
 GEM_PACKAGES="                                                                 \
+<<<<<<< HEAD
     actionmailer actionpack actionview activejob activesupport bigdecimal      \
     blankslate builder bundler-unload claide cocoapods cocoapods-core          \
     cocoapods-deintegrate cocoapods-downloader cocoapods-plugins               \
@@ -99,6 +100,25 @@ GEM_PACKAGES="                                                                 \
     rails-html-sanitizer rake rb-fsevent rb-inotify rdoc rouge rubocop         \
     ruby_dep rubygems-bundler rubygems-update rvm safe_yaml sass screengif     \
     test-unit thread_safe toml trollop tzinfo xcodeproj"
+=======
+    CFPropertyList actionmailer actionpack actionview activejob activesupport  \
+    addressable ast bigdecimal blankslate builder bundler-unload claide        \
+    cocoapods cocoapods-core cocoapods-deintegrate cocoapods-downloader        \
+    cocoapods-plugins cocoapods-search cocoapods-stats cocoapods-trunk         \
+    cocoapods-try coffee-script coffee-script-source colorator colored         \
+    colored2 commander concurrent-ruby did_you_mean erubis escape execjs       \
+    executable-hooks ffi forwardable-extended fourflusher fuzzy_match          \
+    gem-wrappers gh_inspector globalid highline i18n io-console jekyll         \
+    jekyll-sass-converter jekyll-watch json kramdown liquid listen lolcat      \
+    loofah mail mercenary mime-types mime-types-data mini_portile2 minitest    \
+    molinillo nanaimo nap net-telnet netrc nokogiri openssl paint parallel     \
+    parser parslet pathutil pkg-config power_assert powerpack psych            \
+    public_suffix puppet-lint rack rack-test rails-deprecated_sanitizer        \
+    rails-dom-testing rails-html-sanitizer rainbow rake rb-fsevent rb-inotify  \
+    rdoc rouge rubocop ruby-macho ruby-progressbar ruby_dep rubygems-bundler   \
+    rubygems-update rvm safe_yaml sass sass-listen test-unit thread_safe toml  \
+    trollop tzinfo unicode-display_width xcodeproj xmlrpc"
+>>>>>>> Updates to rvm setup.
 
 NODE_MODULES="                                                                 \
     JSON coffee-script coffeelint cson decaffeinate dockerlint eslint          \
@@ -1349,9 +1369,6 @@ step_python() {
 # Step gem
 ################################################################################
 ensure_rvm_ruby() {
-    # TODO: Automatically use the latest ruby from https://rvm.io/binaries/osx/10.11/x86_64/
-    RVM_RUBY="2.2.3"
-
     if which ruby | grep -q "/usr/bin/ruby"; then
         if [[ ! -e "$HOME/.rvm/scripts/rvm" ]]; then
             run "gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"
@@ -1362,15 +1379,15 @@ ensure_rvm_ruby() {
             test -s "$HOME/.rvm/scripts/rvm" && source "$_"
         fi
         if [[ -z "$(rvm list strings)" ]]; then
-            run "rvm install $RVM_RUBY --binary" || abort "could not install ruby via rvm"
-            run "rvm alias create default $RVM_RUBY"
+            run "rvm install ruby --latest" || abort "could not install ruby via rvm"
+            run "rvm alias create default --latest"
         fi
     fi
 
     if ! type rvm >/dev/null 2>&1; then
         abort "rvm not installed"
     fi
-    run "rvm get stable" || abort "could not update rvm"
+    run "rvm get head" || abort "could not update rvm"
 
     # shellcheck source=.rvm/scripts/rvm
     test -s "$HOME/.rvm/scripts/rvm" && source "$_"

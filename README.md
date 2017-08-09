@@ -150,7 +150,7 @@ xquartz
 Atom Packages: MagicPython, activate-power-mode, aesthetic-ui, atom-beautify, 
 atom-isort, atom-language-avro, atom-notes, auto-update-packages, 
 autocomplete-python, base16-syntax, busy-signal, column-select, 
-cursor-indicator, event-watch, file-icons, force-tab, format-shell, 
+cursor-indicator, event-watch, file-icons, force-tab, format-shell, git-blame, 
 highlight-selected, indent-guide-improved, intentions, isotope-light-ui, 
 language-applescript, language-babel, language-cmake, language-diff, 
 language-docker, language-groovy, language-latex, language-restructuredtext, 
@@ -193,21 +193,23 @@ sqlite, statsmodels, sympy, terminado, tk, toolz, tornado, traitlets,
 unicodecsv, wcwidth, werkzeug, wheel, widgetsnbextension, wrapt, xlrd, 
 xlsxwriter, xlwings, xlwt, xz, yaml, zeromq, zlib
 
-Gem Packages: actionmailer, actionpack, actionview, activejob, activesupport, 
-bigdecimal, blankslate, builder, bundler-unload, claide, cocoapods, 
-cocoapods-core, cocoapods-deintegrate, cocoapods-downloader, cocoapods-plugins, 
-cocoapods-search, cocoapods-stats, cocoapods-trunk, cocoapods-try, 
-coffee-script, coffee-script-source, colorator, colored, commander, 
-concurrent-ruby, erubis, escape, execjs, executable-hooks, ffi, 
-forwardable-extended, fourflusher, fuzzy_match, gem-wrappers, globalid, 
-highline, i18n, io-console, jekyll, jekyll-sass-converter, jekyll-watch, json, 
-kramdown, liquid, listen, lolcat, loofah, mail, mercenary, mime-types, 
-mime-types-data, mini_portile2, minitest, molinillo, nap, net-telnet, netrc, 
-nokogiri, paint, parslet, pathutil, pkg-config, power_assert, psych, 
-puppet-lint, rack, rack-test, rails-deprecated_sanitizer, rails-dom-testing, 
-rails-html-sanitizer, rake, rb-fsevent, rb-inotify, rdoc, rouge, rubocop, 
-ruby_dep, rubygems-bundler, rubygems-update, rvm, safe_yaml, sass, screengif, 
-test-unit, thread_safe, toml, trollop, tzinfo, xcodeproj
+Gem Packages: CFPropertyList, actionmailer, actionpack, actionview, activejob, 
+activesupport, addressable, ast, bigdecimal, blankslate, builder, 
+bundler-unload, claide, cocoapods, cocoapods-core, cocoapods-deintegrate, 
+cocoapods-downloader, cocoapods-plugins, cocoapods-search, cocoapods-stats, 
+cocoapods-trunk, cocoapods-try, coffee-script, coffee-script-source, colorator, 
+colored, colored2, commander, concurrent-ruby, did_you_mean, erubis, escape, 
+execjs, executable-hooks, ffi, forwardable-extended, fourflusher, fuzzy_match, 
+gem-wrappers, gh_inspector, globalid, highline, i18n, io-console, jekyll, 
+jekyll-sass-converter, jekyll-watch, json, kramdown, liquid, listen, lolcat, 
+loofah, mail, mercenary, mime-types, mime-types-data, mini_portile2, minitest, 
+molinillo, nanaimo, nap, net-telnet, netrc, nokogiri, openssl, paint, parallel, 
+parser, parslet, pathutil, pkg-config, power_assert, powerpack, psych, 
+public_suffix, puppet-lint, rack, rack-test, rails-deprecated_sanitizer, 
+rails-dom-testing, rails-html-sanitizer, rainbow, rake, rb-fsevent, rb-inotify, 
+rdoc, rouge, rubocop, ruby-macho, ruby-progressbar, ruby_dep, rubygems-bundler, 
+rubygems-update, rvm, safe_yaml, sass, sass-listen, test-unit, thread_safe, 
+toml, trollop, tzinfo, unicode-display_width, xcodeproj, xmlrpc
 
 Node Modules: JSON, coffee-script, coffeelint, cson, decaffeinate, dockerlint, 
 eslint, js-beautify, json-stable-stringify, moment, nesh, raml2html, standard, 
@@ -247,4 +249,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ```
-

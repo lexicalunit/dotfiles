@@ -299,12 +299,12 @@ hist() {
     [[ $1 == "--workaround-sc2120" ]] && return
     if [[ "$SHELL" =~ "zsh" ]]; then
         if [[ -n "$*" ]]; then
-            history "$@"
+            history 1 | egrep "^[0-9]+\s*$*"
         else
             history 1
         fi
     elif [[ "$SHELL" =~ "bash" ]]; then
-        history "$@"
+        history | egrep "^[0-9]+\s*$*"
     fi
 }
 hist --workaround-sc2120 # see: https://github.com/koalaman/shellcheck/wiki/SC2120

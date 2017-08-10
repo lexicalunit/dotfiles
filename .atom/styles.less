@@ -1,6 +1,10 @@
 @import "syntax-variables";
 @import "ui-variables";
 
+.cursor-line {
+  background-color: average(@syntax-background-color, @syntax-selection-color);
+}
+
 // tweaks to the unity-ui theme
 .theme-unity-ui {
   .atom-dock-toggle-button.bottom {

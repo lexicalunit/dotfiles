@@ -166,11 +166,12 @@
     yapfStyle: "{based_on_style: pep8, column_limit: 100}"
   "spell-check":
     grammars: [
+      "source.asciidoc"
       "source.c++"
-      "source.css.less"
       "source.css"
-      "source.gfm.nvatom"
+      "source.css.less"
       "source.gfm"
+      "source.gfm.notes"
       "source.go"
       "source.java"
       "source.js"
@@ -185,8 +186,8 @@
       "text.git-commit"
       "text.html.basic"
       "text.html.erb"
-      "text.plain.null-grammar"
       "text.plain"
+      "text.plain.null-grammar"
       "text.todo"
     ]
   "tab-control":

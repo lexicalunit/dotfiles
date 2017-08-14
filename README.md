@@ -34,14 +34,15 @@ export these settings to a remote machine.
 
 ## Maintenance
 
-* The tool [`bin/update_dotfiles`](bin/update_dotfiles) updates this repository with any changes
-  made to the system scripts or environment.
+* Your home directory is a git repository now! Track changes and commit updates as needed.
+* There are some git hooks in [`env`](env) that generate certain files for you.
 * Re-run [`setup all`](bin/setup) periodically to update applications and configuration.
 * Don't forget to `git pull` any updates!
 
 ## Environment: `~/env`
 
-* [`My.terminal`](env/My.terminal) and [`Tomorrow Night.terminal`](env/Tomorrow Night.terminal)
+* [`Solarized Light.itermcolors`](env/Solarized Light.itermcolors) and
+  [`Solarized Light xterm-256color.terminal`](env/Solarized Light xterm-256color.terminal)
   themes to use in `Terminal.app` or [`iTerm.app`](http://iterm2.com/).
 * [`sane.css`](env/sane.css) style sheet for annoying websites.
 * Fonts that I like to use, install them with [`bin/install_fonts`](bin/install_fonts).
@@ -150,18 +151,19 @@ xquartz
 Atom Packages: MagicPython, activate-power-mode, aesthetic-ui, atom-beautify, 
 atom-isort, atom-language-avro, atom-notes, auto-update-packages, 
 autocomplete-python, base16-syntax, busy-signal, column-select, 
-cursor-indicator, event-watch, file-icons, force-tab, format-shell, git-blame, 
-highlight-selected, indent-guide-improved, intentions, isotope-light-ui, 
-language-applescript, language-babel, language-cmake, language-diff, 
-language-docker, language-groovy, language-latex, language-restructuredtext, 
-language-rust, language-scala, line-length-break, linter, linter-clang, 
-linter-coffeelint, linter-csslint, linter-docker, linter-erb, linter-eslint, 
-linter-flake8, linter-jsonlint, linter-rubocop, linter-shellcheck, linter-tidy, 
-linter-ui-default, linter-write-good, minimap, minimap-find-and-replace, 
-minimap-git-diff, minimap-highlight-selected, minimap-selection, 
-multi-wrap-guide, native-ui, no-title-bar, python-yapf, red-wavy-underline, 
-set-syntax, soft-wrap-indicator, sort-lines, standard-formatter, tab-control, 
-tabs-to-spaces, toggle-quotes, trailing-spaces
+cursor-indicator, event-watch, file-icons, flatwhite-syntax, force-tab, 
+format-shell, git-blame, highlight-selected, indent-guide-improved, intentions, 
+isotope-light-ui, language-applescript, language-babel, language-cmake, 
+language-diff, language-docker, language-groovy, language-latex, 
+language-restructuredtext, language-rust, language-scala, line-length-break, 
+linter, linter-clang, linter-coffeelint, linter-csslint, linter-docker, 
+linter-erb, linter-eslint, linter-flake8, linter-jsonlint, linter-rubocop, 
+linter-shellcheck, linter-tidy, linter-ui-default, linter-write-good, minimap, 
+minimap-find-and-replace, minimap-git-diff, minimap-highlight-selected, 
+minimap-selection, multi-wrap-guide, native-ui, no-title-bar, pretty-json, 
+python-yapf, red-wavy-underline, set-syntax, soft-wrap-indicator, sort-lines, 
+standard-formatter, tab-control, tabs-to-spaces, toggle-quotes, 
+trailing-spaces, unity-ui
 
 Pip Packages: git-sweep3k, httpie, inflection, isort, patch, 
 python-json-logger, termcolor, yapf

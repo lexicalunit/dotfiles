@@ -354,9 +354,6 @@ unalias cd
 
 # shellcheck source=.rvm/scripts/rvm
 test -s "$HOME/.rvm/scripts/rvm" && source "$_"
-if type rvm >/dev/null 2>&1; then
-    rvm use "$(rvm list default string)" >/dev/null
-fi
 
 alias cd='nocorrect cd'
 

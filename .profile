@@ -346,10 +346,18 @@ enterconda || true
 # setup rvm -- must go last otherwise rvm complains about PATH
 ################################################################################
 _interactive_log "setting up rvm"
+
+# Workaround https://github.com/rvm/rvm/pull/4120 by unaliasing cd before rvm.
+# Then re-alias cd again.
+# https://github.com/sorin-ionescu/prezto/blob/master/modules/utility/init.zsh
+unalias cd
+
 # shellcheck source=.rvm/scripts/rvm
 test -s "$HOME/.rvm/scripts/rvm" && source "$_"
 if type rvm >/dev/null 2>&1; then
     rvm use "$(rvm list default string)" >/dev/null
 fi
+
+alias cd='nocorrect cd'
 
 fi # if $INTERACTIVE

@@ -119,7 +119,7 @@
     pep8ExecutablePath: "/usr/local/bin/pep8"
   "linter-ui-default":
     hidePanelWhenEmpty: true
-    panelHeight: 127
+    panelHeight: 163
     showProviderName: true
   "linter-write-good":
     additionalArgs: "--no-tooWordy"

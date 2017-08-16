@@ -1,6 +1,10 @@
+"body .native-key-bindings":
+  # I never want shift-tab to move focus from the text-editor to other elements.
+  "shift-tab": "unset!"
+
 "atom-workspace":
   # Removes `api-workbench:find-usages`; it conflicts with `go-to-line:toggle`
-  'ctrl-g': "unset!"
+  "ctrl-g": "unset!"
 
 "atom-text-editor":
   # Replaces `editor:select-line` with `atom-notes:toggle`

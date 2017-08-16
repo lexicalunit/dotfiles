@@ -2,7 +2,7 @@ AllCops:
   TargetRubyVersion: 2.3
 
 Metrics/LineLength:
-  Max: 100
+  Max: 120
   IgnoredPatterns:
     - \A#
   Enabled: true

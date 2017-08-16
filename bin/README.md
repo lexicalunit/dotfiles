@@ -361,9 +361,10 @@ molinillo, nanaimo, nap, net-telnet, netrc, nokogiri, openssl, paint, parallel,
 parser, parslet, pathutil, pkg-config, power_assert, powerpack, psych, 
 public_suffix, puppet-lint, rack, rack-test, rails-deprecated_sanitizer, 
 rails-dom-testing, rails-html-sanitizer, rainbow, rake, rb-fsevent, rb-inotify, 
-rdoc, rouge, rubocop, ruby-macho, ruby-progressbar, ruby_dep, rubygems-bundler, 
-rubygems-update, rvm, safe_yaml, sass, sass-listen, screengif, test-unit, 
-thread_safe, toml, trollop, tzinfo, unicode-display_width, xcodeproj, xmlrpc
+rdoc, rmagick, rouge, rubocop, ruby-macho, ruby-progressbar, ruby_dep, 
+rubygems-bundler, rubygems-update, rvm, safe_yaml, sass, sass-listen, 
+screengif, test-unit, thread_safe, toml, trollop, tzinfo, 
+unicode-display_width, xcodeproj, xmlrpc
 
 Node Modules: JSON, coffee-script, coffeelint, cson, decaffeinate, dockerlint, 
 eslint, js-beautify, json-stable-stringify, moment, nesh, raml2html, standard, 

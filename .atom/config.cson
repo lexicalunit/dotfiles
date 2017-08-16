@@ -42,6 +42,7 @@
       "github"
       "linter-clang"
       "nvatom"
+      "linter-coffeelint"
     ]
     openEmptyEditorOnStart: false
     packagesWithKeymapsDisabled: [
@@ -50,7 +51,7 @@
     restorePreviousWindowsOnStart: "no"
     telemetryConsent: "no"
     themes: [
-      "one-light-ui"
+      "unity-ui"
       "solarized-light-syntax"
     ]
     titleBar: "custom"
@@ -71,9 +72,9 @@
     tabLength: 4
   "event-watch":
     displayColorStatusbar: "Olive"
-    displayColorTooltip: "PaleGreen"
+    displayColorTooltip: "Blue"
     displayColorWarningStatusbar: "IndianRed"
-    displayColorWarningTooltip: "LightPink"
+    displayColorWarningTooltip: "IndianRed"
     displayFontWeightStatusbar: "900"
     displayFontWeightTooltip: "700"
     schedules:
@@ -97,7 +98,7 @@
         and 9:06pm and 9:40pm and 10:14pm and 10:48pm and 11:22pm on Sat
       '''
     tooltipFontWeight: "700"
-    warnThresholdMinutes: 35
+    warnThresholdMinutes: 30
   "format-shell":
     indent: 4
     showNotifications: true

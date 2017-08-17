@@ -252,6 +252,35 @@ alias gitsu='git s -u '
 alias yapf='yapf --style="{based_on_style: pep8, column_limit: 120}" '
 alias fa='rg '
 
+# Tweak ripgrep for searching codebases with committed files that I generally don't want to search.
+# Options:
+#   -j      DO search in JavaScript files
+fs() {
+    local CMD="rg --no-ignore"
+    local BAD=(
+        "*.css.*"
+        "*.css"
+        "*.dat"
+        "*.erb"
+        "*.json"
+        "*.min.*"
+        "*.min"
+        "*.svg"
+        "*.txt"
+        "*ignore*"
+    )
+    if [[ "$1" == "-j" ]]; then shift; else BAD+=("*.js"); fi
+
+    for I in ${BAD[*]}; do
+        CMD="$CMD -g '"'!'"$I'"
+    done
+    while [[ -n "$1" ]]; do
+        ARGS="$ARGS '$1'"
+        shift
+    done
+    eval "$CMD" $ARGS
+}
+
 # This ipython alias prevents `ipython notebook` from working correctly.
 # alias ipython='ipython --no-banner --no-confirm-exit '
 

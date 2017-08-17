@@ -84,6 +84,18 @@ Literally flips input upside down, printing words so they appear to be flipped o
 ```
 
 * * *
+### [`fs`](fs)
+```
+usage: fs [-h|--help] [-z] [-j] [ -- [ripgrep options]] <QUERY>
+Use ripgrep to search a codebase.
+
+options:
+    -h, --help   show usage help
+    -z           Use ripgrep's --no-ignore option
+    -j           Ignore all JavaScript files
+```
+
+* * *
 ### [`giphy`](giphy)
 ```
 usage: giphy [-h|--help] SEARCH TERMS

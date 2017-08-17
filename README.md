@@ -65,6 +65,7 @@ with the argument `--help`.
 | [`doc`](bin/doc) | Builds HTML output from Markdown file. |
 | [`faff`](bin/faff) | Sleeps for the given number of seconds, showing a progress bar. |
 | [`flip`](bin/flip) | Flips input upside down. |
+| [`fs`](bin/fs) | Tweak ripgrep to easily search codebases with committed files and f... |
 | [`giphy`](bin/giphy) | Gets a random gif from giphy and shows it via imgcat. |
 | [`git_authors`](bin/git_authors) | Git script for discovering who wrote the code at the current workin... |
 | [`git_ltr`](bin/git_ltr) | Lists (a-la 'ls -ltr') git controlled source files in current direc... |

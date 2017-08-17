@@ -42,7 +42,6 @@
       "github"
       "linter-clang"
       "nvatom"
-      "linter-coffeelint"
     ]
     openEmptyEditorOnStart: false
     packagesWithKeymapsDisabled: [

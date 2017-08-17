@@ -3,7 +3,7 @@
 show() {
     # usage: show [-i|-r] <message>
     # -i: show an important message
-    # -r: show a command that will be run
+    # -r: show a command
     local important=0
     if [[ "$1" == "-i" ]]; then
         shift
@@ -16,7 +16,7 @@ show() {
         echo -n $'\e[1;34m>\e[0m\e[31m '
     fi
 
-    echo -n "$1"
+    echo -n "$@"
 
     if [[ "$important" == "1" ]]; then
         echo -n " $(tput sgr0)"$'\e[0m'
@@ -28,10 +28,10 @@ show() {
 }
 
 run() {
-    # usage: run <command>; SC_DRYRUN=1 means command will not actually be run
-    show -r "$1"
+    # usage: run <command>; SC_DRYRUN=1 means command will not run
+    show -r "$@"
     if [[ $SC_DRYRUN == 0 ]]; then
-        eval "$1"
+        eval "$@"
         return $?
     else
         return 0

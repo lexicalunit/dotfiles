@@ -119,7 +119,8 @@
     pep8ExecutablePath: "/usr/local/bin/pep8"
   "linter-ui-default":
     hidePanelWhenEmpty: true
-    panelHeight: 163
+    panelHeight: 122
+    showPanel: true
     showProviderName: true
   "linter-write-good":
     additionalArgs: "--no-tooWordy"
@@ -134,7 +135,6 @@
       "source.gfm.notes"
     ]
     liveUpdate: false
-    useGitHubStyle: true
   minimap:
     plugins:
       "find-and-replace": true

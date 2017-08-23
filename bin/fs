@@ -24,15 +24,16 @@ fi
 
 # Files I generally never want to search.
 BAD=(
-    "*.css.*"
-    "*.css"
+    "*.bak"
+    "*.css" "*.css.*"
     "*.dat"
     "*.erb"
     "*.json"
-    "*.min.*"
-    "*.min"
+    "*.lock"
+    "*.min" "*.min.*"
     "*.svg"
     "*.txt"
+    "*.yaml" "*.yml"
     "*ignore*"
 )
 
@@ -49,6 +50,7 @@ done
 shift $((OPTIND - 1))
 
 # Build up the ignore file globs arguments.
+set -f
 for I in ${BAD[*]}; do
     CMD="$CMD -g '"'!'"$I'"
 done

@@ -53,6 +53,7 @@ if type brew >/dev/null 2>&1; then
 fi
 
 # Add specific application paths, such as Python, rvm, etc...
+test -d "$HOME/.cargo/bin" && PATH="$PATH:$_"
 test -d "$HOME/.rvm/bin" && PATH="$PATH:$_"
 test -d "$HOME/.log-ninja" && PATH="$PATH:$_"
 test -d /usr/local/lib/svn-python && PYTHONPATH="$_:$PYTHONPATH"

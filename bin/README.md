@@ -281,6 +281,7 @@ steps:
     gem      Upgrade/Install gem packages and rubygems-update package
     node     Ensure Node modules are installed via npm
     go       Ensure Go packages are installed
+    cargo    Ensure Rust packages are installed via cargo
     env      Update to latest all submodules in your dotfiles
 
 Homebrew Formulas: adns, ammonite-repl, autoconf, automake, avro-tools, bash, 
@@ -386,6 +387,8 @@ Go Packages: github.com/alecthomas/gometalinter,
 github.com/alecthomas/template, github.com/alecthomas/units, 
 github.com/google/shlex, github.com/mvdan/sh/cmd/shfmt, 
 github.com/mvdan/sh/syntax, github.com/stretchr/testify
+
+Cargo Packages: cargo-update, loc
 ```
 
 * * *

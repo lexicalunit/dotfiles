@@ -112,10 +112,13 @@ GO_PACKAGES="                                                                  \
     github.com/alecthomas/units github.com/google/shlex                        \
     github.com/mvdan/sh/cmd/shfmt github.com/mvdan/sh/syntax                   \
     github.com/stretchr/testify"
+
+CARGO_PACKAGES="                                                               \
+    cargo-update loc"
 # END GENERATED PACKAGE LISTS
 
 ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS ATOM_PACKAGES PIP_PACKAGES
-    CONDA_PACKAGES GEM_PACKAGES NODE_MODULES GO_PACKAGES)
+    CONDA_PACKAGES GEM_PACKAGES NODE_MODULES GO_PACKAGES CARGO_PACKAGES)
 
 ################################################################################
 # Utilities
@@ -1490,6 +1493,42 @@ step_go() {
 }
 
 ################################################################################
+# Step cargo
+################################################################################
+step_cargo() {
+    ensure_homebrew_updated
+    install_brew_formula rust
+    ensure_homebrew_updated_cleanup
+
+    INSTALLED=( $(cargo install --list | grep -v "^ " | sed 's/ v.*//g') )
+
+    IFS=' '
+    for I in $CARGO_PACKAGES; do
+        if ! echo "${INSTALLED[*]}" | egrep -q "\b$I\b"; then
+            run "cargo install $I"
+        fi
+    done
+
+    run "cargo install-update -a"
+
+    IFS=' '
+    for install_name in ${INSTALLED[*]}; do
+        echo ") $install_name"
+        FOUND="false"
+        for pkg in $CARGO_PACKAGES; do
+            echo "  - $pkg"
+            if echo "$install_name" | egrep -q "\b$pkg\b"; then
+                FOUND="true"
+                break
+            fi
+        done
+        if [[ "$FOUND" != "true" ]]; then
+            show -i "$install_name installed but not managed by setup via cargo"
+        fi
+    done
+}
+
+################################################################################
 # Step env
 ################################################################################
 step_env() {
@@ -1555,6 +1594,7 @@ steps=(
     "gem;           Upgrade/Install gem packages and rubygems-update package"
     "node;          Ensure Node modules are installed via npm"
     "go;            Ensure Go packages are installed"
+    "cargo;         Ensure Rust packages are installed via cargo"
     "env;           Update to latest all submodules in your dotfiles"
 )
 

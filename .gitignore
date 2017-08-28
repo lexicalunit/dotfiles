@@ -39,6 +39,7 @@
 /.bokeh
 /.bundle/cache
 /.cache/bower
+/.cargo
 /.ccache
 /.coffee_history
 /.conan

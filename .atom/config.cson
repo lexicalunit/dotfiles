@@ -147,7 +147,7 @@
       selectionDecorationsZIndex: 0
   "multi-wrap-guide":
     columns: [
-      73
+      72
       80
       100
     ]
@@ -230,6 +230,11 @@
   editor:
     softTabs: true
     tabLength: 4
+".git-commit.text":
+  "multi-wrap-guide":
+    rows: [
+      50
+    ]
 ".go.source":
   editor:
     softTabs: false

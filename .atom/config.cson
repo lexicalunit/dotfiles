@@ -51,7 +51,7 @@
     restorePreviousWindowsOnStart: "no"
     telemetryConsent: "no"
     themes: [
-      "unity-ui"
+      "native-ui"
       "solarized-light-syntax"
     ]
     titleBar: "custom"
@@ -156,6 +156,9 @@
       100
     ]
     locked: true
+  "native-ui":
+    ui:
+      macTransparency: false
   "no-title-bar":
     automaticTrafficLightsPaddingOffset: 1
   nvatom:

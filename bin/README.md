@@ -204,14 +204,6 @@ Usage: jsc [options] [files] [-- arguments]
 ```
 
 * * *
-### [`lt`](lt)
-```
-usage: lt DURATION CMD [ARG]
-
-A limited bash version of the GNU tool timeout. Use timeout if you have it.
-```
-
-* * *
 ### [`macosver`](macosver)
 ```
 usage: macosver
@@ -224,13 +216,6 @@ Simply prints out the OS X major and minor version.
 ```
 usage: nopw [-h|-help] [ssh connection options] username@remotehost
 Puts your public ssh key in the authorized_keys on the remote host.
-```
-
-* * *
-### [`readmeize`](readmeize)
-```
-usage: readmeize [-h|--help]
-Prepares given image for use in a README.md file.
 ```
 
 * * *

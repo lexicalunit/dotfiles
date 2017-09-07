@@ -2,7 +2,7 @@
 
 # Get time OS X system last went to sleep.
 
-if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
     echo "usage: $(basename "$0") [-h|--help]" 1>&2
     echo "Uses sysctl to discover when the last time OS X slept was." 1>&2
     exit 1

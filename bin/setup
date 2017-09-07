@@ -1545,11 +1545,11 @@ if [[ $(id -u) == 0 ]]; then
     exit 1
 fi
 
-if echo "$*" | egrep -q -- "--help|-h"; then
+if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
     usage
 fi
 
-if echo "$*" | egrep -q -- "--items|-i"; then
+if echo "$*" | egrep -q -- "\b--items\b|\b-i\b"; then
     IFS=' '
     for I in "${ITEM_LISTS[@]}"; do
         cleanup_item_list "$I"

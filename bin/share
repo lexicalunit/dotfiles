@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# shellcheck disable=SC2153
 # Easy way to manage temporary web shares.
 
 usage() {
@@ -15,7 +15,12 @@ usage() {
 }
 
 [[ -f "$HOME/.webshare" ]] || usage
+# shellcheck source=.webshare
 source "$HOME/.webshare"
+[[ -n "$SHARE_USER" ]] || usage
+[[ -n "$SHARE_HOST" ]] || usage
+[[ -n "$SHARE_DEST" ]] || usage
+[[ -n "$SHARE_URI" ]] || usage
 
 share_put() {
     for I in "$@"; do

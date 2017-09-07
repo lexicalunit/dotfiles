@@ -5,7 +5,7 @@
 KEEP="no"
 CSS="http://shares.lexicalunit.com/github-markdown.css"
 
-if echo "$*" | egrep -q -- "--help|-h" || [[ -z "$1" ]]; then
+if echo "$*" | egrep -q -- "\b--help\b|\b-h\b" || [[ -z "$1" ]]; then
     (
         echo "usage: ${0##*/} [-h|--help|-k] FILE.md"
         echo "Opens FILE.md as FILE.html in your default web browser."

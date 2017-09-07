@@ -9,6 +9,10 @@ usage()
     exit 1
 }
 
+if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
+    usage
+fi
+
 REPO_URL="$1"; shift;
 OLD_EMAIL="$1"; shift;
 NEW_NAME="$1"; shift;
@@ -24,7 +28,7 @@ REPO_DIR=rewrite.tmp
 git clone "$REPO_URL" "$REPO_DIR"
 
 # Change to the cloned repository
-cd "$REPO_DIR"
+cd "$REPO_DIR" || exit 1
 
 # Checkout all the remote branches as local tracking branches
 git branch --list -r origin/* | cut -c10- | xargs -n1 git checkout

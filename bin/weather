@@ -10,7 +10,7 @@ usage() {
     exit 1
 }
 
-if echo "$*" | egrep -q -- "--help|-h"; then
+if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
     usage
 fi
 

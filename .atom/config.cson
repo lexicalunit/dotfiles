@@ -4,10 +4,6 @@
       analytics: false
   "atom-notes":
     directory: "~/Dropbox/nv"
-    extensions: [
-      ".md"
-      ".markdown"
-    ]
   "atom-pair": null
   "autocomplete-plus":
     confirmCompletion: "tab and enter"

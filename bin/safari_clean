@@ -2,7 +2,7 @@
 
 # Cleans Safari caches and saved data on OS X.
 
-if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
     echo "usage: ${0##*/} [-h|--help]" 1>&2
     echo "Cleans Safari caches and saved data on OS X." 1>&2
     echo "Use 'yes | ${0##*/}' to auto-confirm the cleaning of everything." 1>&2

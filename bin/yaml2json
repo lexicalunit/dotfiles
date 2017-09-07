@@ -3,8 +3,10 @@
 # Converts yaml input to json output.
 
 from __future__ import print_function
-import sys
+
 import json
+import sys
+
 from yaml import load_all
 
 try:

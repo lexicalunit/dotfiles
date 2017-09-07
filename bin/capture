@@ -2,7 +2,7 @@
 
 # Creates a screenshot of selected window on X11.
 
-if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
     echo "usage: ${0##*/} [-h|--help]" 1>&2
     echo "" 1>&2
     echo "Creates a screenshot of selected window on X11." 1>&2

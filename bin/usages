@@ -2,7 +2,7 @@
 
 # Prints out documentation and usages for utilities.
 
-if echo "$*" | egrep -q -- "--help|-h"; then
+if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
     (
         echo "usage: ${0##*/} [-t|--table|-v|--verbose|-h|--help]"
         echo "Prints out documentation and usage information for everything in current directory."

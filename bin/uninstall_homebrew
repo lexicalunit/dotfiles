@@ -2,7 +2,7 @@
 
 # Uninstalls Homebrew.
 
-if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
     echo "usage: ${0##*/} [-h|--help]" 1>&2
     echo "See https://gist.github.com/1173223 for details." 1>&2
     exit 1

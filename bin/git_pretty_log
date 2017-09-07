@@ -2,7 +2,7 @@
 
 # Git script for printing beautiful logs.
 
-if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
     echo "usage: ${0##*/} [-h|--help] [ARGS]" 1>&2
     echo "Forwards any additional ARGS to the git log command." 1>&2
     exit 1

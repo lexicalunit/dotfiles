@@ -77,10 +77,8 @@ with the argument `--help`.
 | [`install_fonts`](bin/install_fonts) | Installs fonts that I like. |
 | [`install_mysql`](bin/install_mysql) | Installs/uninstalls mysql from package. |
 | [`jsc`](bin/jsc) | Symbolic link to '/System/Library/Frameworks/JavaScriptCore.framewo... |
-| [`lt`](bin/lt) | Run shell command with a timeout. |
 | [`macosver`](bin/macosver) | Prints current OS X version information. |
 | [`nopw`](bin/nopw) | Enables password-less ssh TO username@remotehost FROM localhost. |
-| [`readmeize`](bin/readmeize) | Prepares given image for use in a README.md file. |
 | [`root`](bin/root) | Prints the root of the current repository. |
 | [`safari_cache`](bin/safari_cache) | Shows current Safari cache. |
 | [`safari_clean`](bin/safari_clean) | Cleans Safari caches and saved data on OS X. |

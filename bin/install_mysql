@@ -2,7 +2,7 @@
 
 # Installs/uninstalls mysql from package.
 
-if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
     echo "usage: ${0##*/} [-h|--help] [uninstall]" 1>&2
     echo "If the 'uninstall' command is given, uninstalls MySQL instead." 1>&2
     exit 1

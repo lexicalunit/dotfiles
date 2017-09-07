@@ -2,7 +2,7 @@
 
 # Finds and removes unwanted daemons and agents.
 
-if echo "$*" | egrep -q -- "--help|-h" || [[ -z "$1" ]]; then
+if echo "$*" | egrep -q -- "\b--help\b|\b-h\b" || [[ -z "$1" ]]; then
     echo "usage: ${0##*/} [-h|--help] [PATTERN|FILE_PATH]" >&2
     exit 1
 fi

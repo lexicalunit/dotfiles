@@ -2,12 +2,13 @@
 
 # Enables password-less ssh TO username@remotehost FROM localhost.
 
-if [[ -z "$1" || "$1" == "--help" || "$1" == "-h" ]]; then
+if [[ -z "$1" ]] || echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
     echo "usage: ${0##*/} [-h|-help] [ssh connection options] username@remotehost" 1>&2
     echo "Puts your public ssh key in the authorized_keys on the remote host."
     exit 1
 fi
 
+# shellcheck source=.shell_control
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 KEY_TYPE="${KEY_TYPE:-rsa}"
@@ -45,6 +46,7 @@ echo
 run_local "cat '$HOME/.ssh/$KEY.pub' | ssh $* 'cat > \"$KEY.pub\"'"
 
 # Don't quote EOF here, we want variable expansion locally here.
+# shellcheck disable=SC2087
 ssh "$@" "bash -s" <<EOF
     remote_run() {
         echo $'\e[1;34mremote ==>\e[0m\e[31m' "\$1" $'\e[0m'

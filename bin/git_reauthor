@@ -18,8 +18,8 @@ usage()
     exit 1
 }
 
-if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
-	usage
+if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
+    usage
 fi
 
 force=''

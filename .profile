@@ -324,7 +324,7 @@ test -f "$HOME/.docker_functions" && source "$_"
 IFS=$'\n'
 [[ "$SHELL" =~ "zsh" ]] && unsetopt nomatch
 for I in $(/bin/ls -1 ~/.profile_* 2>/dev/null) ; do
-    _interactive_log "sourcing $I"
+    _interactive_log "sourcing $(basename "$I")"
     # shellcheck source=$I
     source "$I"
 done

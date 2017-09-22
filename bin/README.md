@@ -62,10 +62,17 @@ options:
 usage: doc [-h|--help|-k] FILE.md
 Opens FILE.md as FILE.html in your default web browser.
 
+[1mRequires pandoc, pandoc-sidenote, tufte-css, and tufte-pandoc-css:(B[m
+
+    $ cd ~
+    $ brew install pandoc
+    $ brew install jez/formulae/pandoc-sidenote
+    $ git clone https://github.com/edwardtufte/tufte-css.git .tufte-css
+    $ git clone https://github.com/jez/tufte-pandoc-css.git .tufte-pandoc-css
+
 options:
     -h, --help   show usage help
     -k           keep .html artifact (default: no)
-    -c           .css file/URI to use when building output (default: http://shares.lexicalunit.com/github-markdown.css)
 ```
 
 * * *

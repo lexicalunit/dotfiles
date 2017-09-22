@@ -3,42 +3,64 @@
 # Builds HTML output from Markdown file.
 
 KEEP="no"
-CSS="http://shares.lexicalunit.com/github-markdown.css"
 
-if echo "$*" | egrep -q -- "\b--help\b|\b-h\b" || [[ -z "$1" ]]; then
+usage() {
     (
         echo "usage: ${0##*/} [-h|--help|-k] FILE.md"
         echo "Opens FILE.md as FILE.html in your default web browser."
+        echo
+        echo "$(tput bold)Requires pandoc, pandoc-sidenote, tufte-css, and tufte-pandoc-css:$(tput sgr0)"
+        echo
+        echo "    $ cd ~"
+        echo "    $ brew install pandoc"
+        echo "    $ brew install jez/formulae/pandoc-sidenote"
+        echo "    $ git clone https://github.com/edwardtufte/tufte-css.git .tufte-css"
+        echo "    $ git clone https://github.com/jez/tufte-pandoc-css.git .tufte-pandoc-css"
         echo
         echo "options:"
         (
             echo "    -h, --help@ show usage help"
             echo "    -k@ keep .html artifact (default: $KEEP)"
-            echo "    -c@ .css file/URI to use when building output (default: $CSS)"
         ) | column -ts@
     ) >&2
     exit 1
+}
+
+if echo "$*" | egrep -q -- "\b--help\b|\b-h\b" || [[ -z "$1" ]]; then
+    usage
 fi
 
+# shellcheck source=.shell_control
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
-while getopts "kc:" opt; do
+while getopts "k" opt; do
     case "$opt" in
         k) KEEP="yes" ;;
-        c) CSS="$OPTARG" ;;
     esac
 done
 shift $((OPTIND - 1))
 
-SRC="$1"
-TGT="$(basename "$1" .md).html"
+SRC="$(realpath "$1")"
+TGT="$(dirname "$SRC")/$(basename "$1" .md).html"
+
+run "cd '$HOME/.tufte-pandoc-css'" || usage
+
 CMD="pandoc '$SRC'"
-CMD="$CMD --css '$CSS'"
-CMD="$CMD -t html"
-CMD="$CMD -s"
-CMD="$CMD -o '$TGT'"
-run "$CMD"
-run "open '$TGT'"
+CMD="$CMD --katex"
+CMD="$CMD --smart"
+CMD="$CMD --section-divs"
+CMD="$CMD --from markdown+tex_math_single_backslash"
+CMD="$CMD --filter pandoc-sidenote"
+CMD="$CMD --to html5"
+CMD="$CMD --template=tufte"
+CMD="$CMD --css ~/.tufte-css/tufte.css"
+CMD="$CMD --css ~/.tufte-pandoc-css/pandoc.css"
+CMD="$CMD --css ~/.tufte-pandoc-css/pandoc-solarized.css"
+CMD="$CMD --css ~/.tufte-pandoc-css/tufte-extra.css"
+CMD="$CMD --output '$TGT'"
+run "$CMD" || usage
+
+open "$TGT"
 
 if [[ $KEEP == "no" ]]; then
     run "sleep 1"

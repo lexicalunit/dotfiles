@@ -10,3 +10,9 @@
 	url = git@github.com:lexicalunit/prezto.git
 	branch = lexicalunit
 	ignore = dirty
+[submodule ".tufte-pandoc-css"]
+	path = .tufte-pandoc-css
+	url = https://github.com/jez/tufte-pandoc-css.git
+[submodule ".tufte-css"]
+	path = .tufte-css
+	url = https://github.com/edwardtufte/tufte-css.git

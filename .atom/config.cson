@@ -72,8 +72,8 @@
   "event-watch":
     displayColorStatusbar: "#268bd2"
     displayColorTooltip: "#268bd2"
-    displayColorWarningStatusbar: "#dc322f"
-    displayColorWarningTooltip: "#dc322f"
+    displayColorWarningStatusbar: "IndianRed"
+    displayColorWarningTooltip: "IndianRed"
     displayFontWeightStatusbar: "400"
     displayFontWeightTooltip: "400"
     schedules:

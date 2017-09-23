@@ -16,3 +16,4 @@
 [submodule ".tufte-css"]
 	path = .tufte-css
 	url = https://github.com/edwardtufte/tufte-css.git
+	branch = gh-pages

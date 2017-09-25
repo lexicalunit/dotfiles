@@ -73,6 +73,7 @@ with the argument `--help`.
 | [`git_pretty_log`](bin/git_pretty_log) | Git script for printing beautiful logs. |
 | [`git_push_topic`](bin/git_push_topic) | Force updates remote topic branch with local branch. |
 | [`git_reauthor`](bin/git_reauthor) | In git, change the author name and/or email of a single commit. |
+| [`golist`](bin/golist) | Lists all user installed go packages. |
 | [`imgcat`](bin/imgcat) | Like cat but for images. |
 | [`install_fonts`](bin/install_fonts) | Installs fonts that I like. |
 | [`install_mysql`](bin/install_mysql) | Installs/uninstalls mysql from package. |
@@ -220,9 +221,42 @@ decaffeinate, dockerlint, eslint, js-beautify, json-stable-stringify, moment,
 nesh, raml2html, standard, tmpin
 
 Go Packages: github.com/alecthomas/gometalinter, 
-github.com/alecthomas/template, github.com/alecthomas/units, 
-github.com/google/shlex, github.com/mvdan/sh/cmd/shfmt, 
-github.com/mvdan/sh/syntax, github.com/stretchr/testify
+github.com/derekparker/delve/cmd/dlv, 
+github.com/derekparker/delve/pkg/proc/test, 
+github.com/derekparker/delve/service/test, 
+github.com/derekparker/delve/service/test/cmd, github.com/nsf/gocode, 
+github.com/rogpeppe/godef, github.com/sqs/goreturns, github.com/zmb3/gogetdoc, 
+golang.org/x/crypto/acme/autocert, golang.org/x/crypto/bcrypt, 
+golang.org/x/crypto/blake2b, golang.org/x/crypto/blake2s, 
+golang.org/x/crypto/bn256, golang.org/x/crypto/chacha20poly1305, 
+golang.org/x/crypto/cryptobyte, golang.org/x/crypto/hkdf, 
+golang.org/x/crypto/md4, golang.org/x/crypto/nacl/auth, 
+golang.org/x/crypto/nacl/box, golang.org/x/crypto/ocsp, 
+golang.org/x/crypto/openpgp, golang.org/x/crypto/openpgp/clearsign, 
+golang.org/x/crypto/otr, golang.org/x/crypto/pkcs12, 
+golang.org/x/crypto/ripemd160, golang.org/x/crypto/salsa20, 
+golang.org/x/crypto/scrypt, golang.org/x/crypto/sha3, 
+golang.org/x/crypto/ssh/agent, golang.org/x/crypto/ssh/knownhosts, 
+golang.org/x/crypto/ssh/test, golang.org/x/crypto/tea, 
+golang.org/x/crypto/twofish, golang.org/x/crypto/xtea, golang.org/x/crypto/xts, 
+golang.org/x/sys/plan9, golang.org/x/sys/windows, 
+golang.org/x/sys/windows/registry, golang.org/x/tools/cmd/benchcmp, 
+golang.org/x/tools/cmd/bundle, golang.org/x/tools/cmd/callgraph, 
+golang.org/x/tools/cmd/compilebench, golang.org/x/tools/cmd/cover, 
+golang.org/x/tools/cmd/digraph, golang.org/x/tools/cmd/eg, 
+golang.org/x/tools/cmd/fiximports, golang.org/x/tools/cmd/getgo, 
+golang.org/x/tools/cmd/getgo/server, golang.org/x/tools/cmd/go-contrib-init, 
+golang.org/x/tools/cmd/godex, golang.org/x/tools/cmd/godoc, 
+golang.org/x/tools/cmd/goimports, golang.org/x/tools/cmd/gomvpkg, 
+golang.org/x/tools/cmd/gorename, golang.org/x/tools/cmd/gotype, 
+golang.org/x/tools/cmd/goyacc, golang.org/x/tools/cmd/guru, 
+golang.org/x/tools/cmd/heapview, golang.org/x/tools/cmd/heapview/internal/core, 
+golang.org/x/tools/cmd/html2article, golang.org/x/tools/cmd/present, 
+golang.org/x/tools/cmd/ssadump, golang.org/x/tools/cmd/stress, 
+golang.org/x/tools/cmd/stringer, golang.org/x/tools/cmd/tip, 
+golang.org/x/tools/cmd/toolstash, golang.org/x/tools/go/gccgoexportdata, 
+golang.org/x/tools/go/gcexportdata, golang.org/x/tools/go/vcs, 
+mvdan.cc/sh/cmd/gosh, mvdan.cc/sh/cmd/shfmt
 
 Cargo Packages: cargo-update, loc
 

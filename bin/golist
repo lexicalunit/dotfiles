@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Lists all user installed go packages.
+
+if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
+    (
+        echo "usage: ${0##*/} [-h|--help]"
+        echo "Uses \`go list\` to list all user installed go packages that aren't dependencies."
+    ) >&2
+    exit 1
+fi
+
+IMPORTS=(
+    $(go list -f '{{ .Standard }}:{{ .ImportPath }}' ... | grep -v "^true" | cut -d: -f2)
+)
+
+DEPS=(
+    $(go list -f '{{ join .Deps "\n" }}' ... | sort -u)
+)
+
+DIFF=()
+for i in "${IMPORTS[@]}"; do
+    skip=
+    for j in "${DEPS[@]}"; do
+        [[ $i == $j ]] && { skip=1; break; }
+    done
+    [[ -n $skip ]] || DIFF+=("$i")
+done
+
+echo ${DIFF[@]} | tr ' ' '\n'

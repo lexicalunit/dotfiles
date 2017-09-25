@@ -113,7 +113,8 @@ GO_PACKAGES="                                                                  \
     github.com/alecthomas/gometalinter github.com/derekparker/delve/cmd/dlv    \
     github.com/derekparker/delve/pkg/proc/test                                 \
     github.com/derekparker/delve/service/test                                  \
-    github.com/derekparker/delve/service/test/cmd github.com/nsf/gocode        \
+    github.com/derekparker/delve/service/test/cmd                              \
+    github.com/fatih/gomodifytags github.com/nsf/gocode                        \
     github.com/rogpeppe/godef github.com/sqs/goreturns                         \
     github.com/zmb3/gogetdoc golang.org/x/crypto/acme/autocert                 \
     golang.org/x/crypto/bcrypt golang.org/x/crypto/blake2b                     \
@@ -1493,24 +1494,24 @@ step_node() {
 # Step go
 ################################################################################
 step_go() {
-    # ensure_homebrew_updated
-    # install_brew_formula go
-    # ensure_homebrew_updated_cleanup
+    ensure_homebrew_updated
+    install_brew_formula go
+    ensure_homebrew_updated_cleanup
 
     export GOPATH="/usr/local/lib/gopath"
     mkdir -p "$GOPATH"
     export PATH="$PATH:$GOPATH"
 
-    # run "go get -u all"
+    run "go get -u all"
 
     INSTALLED="$(golist | tr '\n' ' ')"
 
-    # IFS=' '
-    # for I in $GO_PACKAGES; do
-    #     if ! echo "$INSTALLED" | egrep -q "\b$I\b"; then
-    #         run "go get -u $I"
-    #     fi
-    # done
+    IFS=' '
+    for I in $GO_PACKAGES; do
+        if ! echo "$INSTALLED" | egrep -q "\b$I\b"; then
+            run "go get -u $I"
+        fi
+    done
 
     IFS=' '
     for install_name in $INSTALLED; do

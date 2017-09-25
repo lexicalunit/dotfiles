@@ -104,6 +104,12 @@
     columnWidth: 395
   "git-diff":
     showIconsInEditorGutter: true
+  "go-plus":
+    disabledBundledPackages: [
+      "go-debug"
+      "go-signature-statusbar"
+    ]
+    panel: {}
   "highlight-selected":
     onlyHighlightWholeWords: true
   "isotope-ui":

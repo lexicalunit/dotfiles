@@ -1233,12 +1233,7 @@ install_atom_pkg() {
 step_atom() {
     if ! type atom >/dev/null 2>&1; then
         ensure_homebrew_updated
-
-        if ! brew ls | grep -q brew-cask; then
-            abort "please run step cask first"
-        fi
         install_brew_cask atom || abort "can't install atom via brew-cask"
-
         ensure_homebrew_updated_cleanup
     fi
 
@@ -1275,12 +1270,7 @@ install_code_pkg() {
 step_code() {
     if ! type code >/dev/null 2>&1; then
         ensure_homebrew_updated
-
-        if ! brew ls | grep -q brew-cask; then
-            abort "please run step cask first"
-        fi
         install_brew_cask visual-studio-code || abort "can't install VS Code via brew-cask"
-
         ensure_homebrew_updated_cleanup
     fi
 

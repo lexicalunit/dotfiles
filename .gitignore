@@ -90,6 +90,7 @@
 /.vim/.netrwhist
 /.viminfo
 /.virtualenvs
+/.vscode/extensions
 /.wget-hsts
 /.z
 /.z.*

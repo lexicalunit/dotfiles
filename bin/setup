@@ -33,7 +33,7 @@ HOMEBREW_CASKS="                                                               \
     istumbler iterm2 java kaleidoscope lingon-x lisanet-gimp mactex            \
     mysqlworkbench oclint robomongo silverlight skype slack snes9x soundflower \
     sourcetree spectacle spotify steam sublime-text texstudio transmission     \
-    vagrant virtualbox vlc whatsapp xquartz"
+    vagrant virtualbox visual-studio-code vlc whatsapp xquartz"
 
 ATOM_PACKAGES="                                                                \
     MagicPython activate-power-mode aesthetic-ui atom-beautify atom-isort      \
@@ -52,6 +52,9 @@ ATOM_PACKAGES="                                                                \
     no-title-bar pretty-json python-yapf red-wavy-underline ruby-block         \
     set-syntax soft-wrap-indicator sort-lines standard-formatter tab-control   \
     tabs-to-spaces toggle-quotes trailing-spaces unity-ui"
+
+CODE_PACKAGES="                                                                \
+    lukehoban.Go"
 
 PIP_PACKAGES="                                                                 \
     git-sweep3k httpie inflection isort patch python-json-logger termcolor     \
@@ -153,8 +156,9 @@ CARGO_PACKAGES="                                                               \
     cargo-update loc"
 # END GENERATED PACKAGE LISTS
 
-ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS ATOM_PACKAGES PIP_PACKAGES
-    CONDA_PACKAGES GEM_PACKAGES NODE_MODULES GO_PACKAGES CARGO_PACKAGES)
+ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS ATOM_PACKAGES CODE_PACKAGES
+    PIP_PACKAGES CONDA_PACKAGES GEM_PACKAGES NODE_MODULES GO_PACKAGES
+    CARGO_PACKAGES)
 
 ################################################################################
 # Utilities
@@ -1239,7 +1243,7 @@ step_atom() {
     fi
 
     local INSTALLED
-    INSTALLED="$(apm list --installed --bare | grep -i "$PKG")"
+    INSTALLED="$(apm list --installed --bare)"
     IFS=' '
     for I in $ATOM_PACKAGES; do
         install_atom_pkg "$I" "$INSTALLED"
@@ -1247,10 +1251,51 @@ step_atom() {
     run "apm upgrade --confirm false"
 
     IFS=$'\n'
-    for I in $(apm list -bi); do
+    for I in $(apm list --installed --bare); do
         name="${I%@*}"
         if ! echo "$ATOM_PACKAGES" | egrep -qi "\\b${name}\\b"; then
             show -i "$I installed but not managed by setup via apm"
+        fi
+    done
+}
+
+################################################################################
+# Step code
+################################################################################
+install_code_pkg() {
+    local PKG="$1"
+    local INSTALLED="$2"
+    if ! echo "$INSTALLED" | egrep -qi "\\b${PKG}\\b"; then
+        run "code --install-extension '$PKG'" || abort "can not install package '$PKG'"
+    else
+        show "skipping $PKG: already installed"
+    fi
+}
+
+step_code() {
+    if ! type code >/dev/null 2>&1; then
+        ensure_homebrew_updated
+
+        if ! brew ls | grep -q brew-cask; then
+            abort "please run step cask first"
+        fi
+        install_brew_cask visual-studio-code || abort "can't install VS Code via brew-cask"
+
+        ensure_homebrew_updated_cleanup
+    fi
+
+    local INSTALLED
+    INSTALLED="$(code --list-extensions)"
+    IFS=' '
+    for I in $CODE_PACKAGES; do
+        install_code_pkg "$I" "$INSTALLED"
+    done
+
+    IFS=$'\n'
+    for I in $(code --list-extensions); do
+        name="${I%@*}"
+        if ! echo "$CODE_PACKAGES" | egrep -qi "\\b${name}\\b"; then
+            show -i "$I installed but not managed by setup via code"
         fi
     done
 }
@@ -1625,6 +1670,7 @@ steps=(
     "brew;          Ensure Homebrew installed and formulas upgraded"
     "cask;          Ensure Homebrew Casks are installed"
     "atom;          Ensure Atom installed via Homebrew Cask and apm packages are upgraded"
+    "code;          Ensure VS Code installed via Homebrew Cask and its packages are installed"
     "zsh;           Ensure shell is latest version of zsh from Homebrew"
     "python;        Upgrade/Install Anaconda, pip packages, and conda packages"
     "gem;           Upgrade/Install gem packages and rubygems-update package"

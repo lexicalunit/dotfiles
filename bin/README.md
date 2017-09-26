@@ -275,6 +275,7 @@ steps:
     brew     Ensure Homebrew installed and formulas upgraded
     cask     Ensure Homebrew Casks are installed
     atom     Ensure Atom installed via Homebrew Cask and apm packages are upgraded
+    code     Ensure VS Code installed via Homebrew Cask and its packages are installed
     zsh      Ensure shell is latest version of zsh from Homebrew
     python   Upgrade/Install Anaconda, pip packages, and conda packages
     gem      Upgrade/Install gem packages and rubygems-update package
@@ -309,8 +310,8 @@ disk-inventory-x, dropbox, evernote, fantastical, firefox, flux, google-chrome,
 google-hangouts, hipchat, iexplorer, istumbler, iterm2, java, kaleidoscope, 
 lingon-x, lisanet-gimp, mactex, mysqlworkbench, oclint, robomongo, silverlight, 
 skype, slack, snes9x, soundflower, sourcetree, spectacle, spotify, steam, 
-sublime-text, texstudio, transmission, vagrant, virtualbox, vlc, whatsapp, 
-xquartz
+sublime-text, texstudio, transmission, vagrant, virtualbox, visual-studio-code, 
+vlc, whatsapp, xquartz
 
 Atom Packages: MagicPython, activate-power-mode, aesthetic-ui, atom-beautify, 
 atom-isort, atom-language-avro, atom-notes, auto-update-packages, 
@@ -329,6 +330,8 @@ multi-wrap-guide, native-ui, no-title-bar, pretty-json, python-yapf,
 red-wavy-underline, ruby-block, set-syntax, soft-wrap-indicator, sort-lines, 
 standard-formatter, tab-control, tabs-to-spaces, toggle-quotes, 
 trailing-spaces, unity-ui
+
+Code Packages: lukehoban.Go
 
 Pip Packages: git-sweep3k, httpie, inflection, isort, patch, 
 python-json-logger, termcolor, yapf

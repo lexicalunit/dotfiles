@@ -60,6 +60,9 @@ test -d /usr/local/lib/svn-python && PYTHONPATH="$_:$PYTHONPATH"
 test -d /opt/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
 test -d /usr/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
 
+# Visual Studio Code
+test -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" && PATH="$PATH:$_"
+
 # Go's env
 GOPATH="/usr/local/lib/gopath"
 if [[ ! -d "$GOPATH" ]]; then

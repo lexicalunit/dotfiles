@@ -1,0 +1,6 @@
+{
+    "workbench.colorTheme": "Solarized Light",
+    "go.lintTool": "gometalinter",
+    "go.formatTool": "goimports",
+    "go.toolsGopath": "/usr/local/lib/gopath"
+}

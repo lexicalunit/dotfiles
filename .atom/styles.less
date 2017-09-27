@@ -1,6 +1,11 @@
 @import "syntax-variables";
 @import "ui-variables";
 
+// Hide left dock (typically tree-view) doing editor init time.
+atom-workspace.loading .left {
+  display: none;
+}
+
 // make cursor lines stand out more
 .cursor-line {
   background-color: average(@syntax-background-color, @syntax-selection-color);

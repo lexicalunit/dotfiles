@@ -21,10 +21,10 @@ HOMEBREW_FORMULAS="                                                            \
     no-more-secrets node npth onepass oniguruma openssl ossp-uuid p11-kit      \
     pandoc pcre percona-toolkit pidof pinentry pkg-config plotutils pngquant   \
     postgresql protobuf pyenv pyenv-virtualenv pyenv-virtualenvwrapper         \
-    rabbitmq readline redis rust s3cmd sane-backends sbt scala scons sdl2      \
-    sdl2_image shellcheck sloccount spark sqlite sqliteodbc storm swig tree    \
-    unixodbc unrar v8 vegeta vramsteg watch wdiff webp wget wxmac x264 xvid xz \
-    yajl yaml-cpp youtube-dl zeromq zookeeper zsh"
+    rabbitmq readline redis ripgrep rust s3cmd sane-backends sbt scala scons   \
+    sdl2 sdl2_image shellcheck sloccount spark sqlite sqliteodbc storm swig    \
+    tree unixodbc unrar v8 vegeta vramsteg watch wdiff webp wget wxmac x264    \
+    xvid xz yajl yaml-cpp youtube-dl zeromq zookeeper zsh"
 
 HOMEBREW_CASKS="                                                               \
     1password adium amazon-music atom audacity balsamiq-mockups battle-net     \
@@ -161,7 +161,7 @@ ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS ATOM_PACKAGES CODE_PACKAGES
     CARGO_PACKAGES)
 
 ################################################################################
-# Utilities
+# Script Utilities
 ################################################################################
 cleanup_item_list() {
     # A useful function for cleaning up the above item lists.
@@ -238,6 +238,38 @@ usage() {
 
 # shellcheck source=../.shell_control
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
+################################################################################
+# Step Utilities
+################################################################################
+ensure_no_anaconda() {
+    # Anaconda is known to frequently break Homebrew builds, including Vim and
+    # MacVim, due to bundling many duplicates of system and Homebrew-available
+    # tools. Make sure to exit it before doing anything with Homebrew.
+    # It can also cause build issues for Atom packages with native modules.
+
+    if [[ -n "$CONDA_DEFAULT_ENV" ]]; then
+        if which deactivate >/dev/null 2>&1; then
+            run "source deactivate"
+        fi
+    fi
+
+    if [[ -n "$ANACONDA_ROOT" ]]; then
+        PATH="$(echo "$PATH" | sed "s@$ANACONDA_ROOT/bin@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
+        MANPATH="$(echo "$PATH" | sed "s@$ANACONDA_ROOT/share/man@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
+        export PATH
+        export MANPATH
+    fi
+    unset PYTHON_ENV
+}
+
+# Usage: in_array "$element" "${array[@]}"
+in_array () {
+  local e match="$1"
+  shift
+  for e; do [[ "$e" == "$match" ]] && return 0; done
+  return 1
+}
 
 ################################################################################
 # Step osx
@@ -1058,26 +1090,6 @@ step_java() {
 ################################################################################
 # Step brew
 ################################################################################
-ensure_no_anaconda() {
-    # Anaconda is known to frequently break Homebrew builds, including Vim and
-    # MacVim, due to bundling many duplicates of system and Homebrew-available
-    # tools. Make sure to exit it before doing anything with Homebrew.
-
-    if [[ -n "$CONDA_DEFAULT_ENV" ]]; then
-        if which deactivate >/dev/null 2>&1; then
-            run "source deactivate"
-        fi
-    fi
-
-    if [[ -n "$ANACONDA_ROOT" ]]; then
-        PATH="$(echo "$PATH" | sed "s@$ANACONDA_ROOT/bin@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
-        MANPATH="$(echo "$PATH" | sed "s@$ANACONDA_ROOT/share/man@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
-        export PATH
-        export MANPATH
-    fi
-    unset PYTHON_ENV
-}
-
 ensure_homebrew_updated() {
     if [[ -z "$(which brew)" ]]; then
         abort "Please run step brew first"
@@ -1101,12 +1113,15 @@ ensure_homebrew_updated_cleanup() {
 }
 
 install_brew_formula() {
-    local FORMULA="$1"
-    local INSTALLED="$2"
-    if ! echo "$INSTALLED" | grep -q "$FORMULA"; then
+    local FORMULA_NAME FORMULA="$1"
+    FORMULA_NAME="$(basename "$1" "/")"
+    shift
+
+    local INSTALLED=( $@ )
+    if ! in_array "$FORMULA_NAME" "${INSTALLED[@]}"; then
         # Use Docker for Mac instead of docker-machine.
         # See: https://docs.docker.com/docker-for-mac/
-        if [[ "$FORMULA" == "docker-compose" ]]; then
+        if [[ "$FORMULA_NAME" == "docker-compose" ]]; then
             run "brew install '$FORMULA' --without-docker-machine"
             show -i "Please install Docker for Mac: https://docs.docker.com/docker-for-mac/"
         else
@@ -1139,10 +1154,10 @@ step_brew() {
     ensure_homebrew_updated
 
     local INSTALLED
-    INSTALLED="$(brew ls)"
+    INSTALLED=( $(brew ls) )
     IFS=' '
     for I in $HOMEBREW_FORMULAS; do
-        install_brew_formula "$I" "$INSTALLED"
+        install_brew_formula "$I" "${INSTALLED[@]}"
     done
 
     ensure_homebrew_updated_cleanup
@@ -1158,19 +1173,15 @@ step_brew() {
     # install the git remote-hg helper
     run "ln -sf $(brew ls -v git | grep git-remote-hg) /usr/local/bin"
 
-    if ! type rg >/dev/null 2>&1; then
-        run "brew tap burntsushi/ripgrep https://github.com/BurntSushi/ripgrep.git"
-        run "brew install burntsushi/ripgrep/ripgrep-bin"
-    fi
-
     IFS=$'\n'
+    local arr=( $(echo "$HOMEBREW_FORMULAS" | tr ' ' '\n') )
     for I in $(brew ls); do
         name="${I%@*}"
-        if ! echo "$HOMEBREW_FORMULAS" | egrep -q "\\b$name\\b"; then
+        [[ "$name" == "imagemagick" ]] && name="$name@6"
+        [[ "$name" == "pandoc-sidenote" ]] && name="jez/formulae/$name"
+        if ! in_array "$name" "${arr[@]}"; then
             case "$I" in
-                "brew-cask") ;; "lib") ;; # ignored warnings
                 "go") ;; # installed as a separate step
-                "ripgrep-bin") ;; # installed above
                 *) show -i "$I installed but not managed by setup via brew" ;;
             esac
         fi
@@ -1236,6 +1247,9 @@ step_atom() {
         install_brew_cask atom || abort "can't install atom via brew-cask"
         ensure_homebrew_updated_cleanup
     fi
+
+    # Anaconda causes build issues for Atom packages with native modules.
+    ensure_no_anaconda
 
     local INSTALLED
     INSTALLED="$(apm list --installed --bare)"

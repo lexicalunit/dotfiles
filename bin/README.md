@@ -211,6 +211,7 @@ Usage: jsc [options] [files] [-- arguments]
   --strict-file=<file>       Parse the given file as if it were in strict mode (this option may be passed more than once)
   --module-file=<file>       Parse and evaluate the given file as module (this option may be passed more than once)
   --exception=<name>         Check the last script exits with an uncaught exception with the specified name
+  --watchdog-exception-ok    Uncaught watchdog exceptions exit with success
   --dumpException            Dump uncaught exception text
   --options                  Dumps all JSC VM options and exits
   --dumpOptions              Dumps all non-default JSC VM options before continuing
@@ -298,8 +299,8 @@ little-cms2, lz4, lzlib, makedepend, maven, md5sha1sum, memcached, mongodb,
 mpfr, mysql, ncftp, net-snmp, nettle, nginx, no-more-secrets, node, npth, 
 onepass, oniguruma, openssl, ossp-uuid, p11-kit, pandoc, pcre, percona-toolkit, 
 pidof, pinentry, pkg-config, plotutils, pngquant, postgresql, protobuf, pyenv, 
-pyenv-virtualenv, pyenv-virtualenvwrapper, rabbitmq, readline, redis, rust, 
-s3cmd, sane-backends, sbt, scala, scons, sdl2, sdl2_image, shellcheck, 
+pyenv-virtualenv, pyenv-virtualenvwrapper, rabbitmq, readline, redis, ripgrep, 
+rust, s3cmd, sane-backends, sbt, scala, scons, sdl2, sdl2_image, shellcheck, 
 sloccount, spark, sqlite, sqliteodbc, storm, swig, tree, unixodbc, unrar, v8, 
 vegeta, vramsteg, watch, wdiff, webp, wget, wxmac, x264, xvid, xz, yajl, 
 yaml-cpp, youtube-dl, zeromq, zookeeper, zsh

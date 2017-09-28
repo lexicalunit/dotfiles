@@ -154,17 +154,28 @@ GO_PACKAGES="                                                                  \
     golang.org/x/net/publicsuffix golang.org/x/net/route                       \
     golang.org/x/net/trace golang.org/x/net/webdav golang.org/x/net/xsrftoken  \
     golang.org/x/sys/plan9 golang.org/x/sys/windows                            \
-    golang.org/x/sys/windows/registry golang.org/x/tools/cmd/benchcmp          \
-    golang.org/x/tools/cmd/bundle golang.org/x/tools/cmd/callgraph             \
-    golang.org/x/tools/cmd/compilebench golang.org/x/tools/cmd/cover           \
-    golang.org/x/tools/cmd/digraph golang.org/x/tools/cmd/eg                   \
-    golang.org/x/tools/cmd/fiximports golang.org/x/tools/cmd/getgo             \
-    golang.org/x/tools/cmd/getgo/server golang.org/x/tools/cmd/go-contrib-init \
-    golang.org/x/tools/cmd/godex golang.org/x/tools/cmd/godoc                  \
-    golang.org/x/tools/cmd/goimports golang.org/x/tools/cmd/gomvpkg            \
-    golang.org/x/tools/cmd/gorename golang.org/x/tools/cmd/gotype              \
-    golang.org/x/tools/cmd/goyacc golang.org/x/tools/cmd/guru                  \
-    golang.org/x/tools/cmd/heapview                                            \
+    golang.org/x/sys/windows/registry golang.org/x/text                        \
+    golang.org/x/text/cmd/gotext golang.org/x/text/collate/build               \
+    golang.org/x/text/collate/tools/colcmp golang.org/x/text/currency          \
+    golang.org/x/text/encoding/ianaindex                                       \
+    golang.org/x/text/encoding/internal/enctest                                \
+    golang.org/x/text/encoding/unicode/utf32                                   \
+    golang.org/x/text/internal/export/idna golang.org/x/text/internal/testtext \
+    golang.org/x/text/internal/triegen golang.org/x/text/internal/ucd          \
+    golang.org/x/text/language/display golang.org/x/text/message               \
+    golang.org/x/text/number golang.org/x/text/search golang.org/x/text/secure \
+    golang.org/x/text/secure/precis golang.org/x/text/unicode                  \
+    golang.org/x/text/unicode/rangetable golang.org/x/text/unicode/runenames   \
+    golang.org/x/tools/cmd/benchcmp golang.org/x/tools/cmd/bundle              \
+    golang.org/x/tools/cmd/callgraph golang.org/x/tools/cmd/compilebench       \
+    golang.org/x/tools/cmd/cover golang.org/x/tools/cmd/digraph                \
+    golang.org/x/tools/cmd/eg golang.org/x/tools/cmd/fiximports                \
+    golang.org/x/tools/cmd/getgo golang.org/x/tools/cmd/getgo/server           \
+    golang.org/x/tools/cmd/go-contrib-init golang.org/x/tools/cmd/godex        \
+    golang.org/x/tools/cmd/godoc golang.org/x/tools/cmd/goimports              \
+    golang.org/x/tools/cmd/gomvpkg golang.org/x/tools/cmd/gorename             \
+    golang.org/x/tools/cmd/gotype golang.org/x/tools/cmd/goyacc                \
+    golang.org/x/tools/cmd/guru golang.org/x/tools/cmd/heapview                \
     golang.org/x/tools/cmd/heapview/internal/core                              \
     golang.org/x/tools/cmd/html2article golang.org/x/tools/cmd/present         \
     golang.org/x/tools/cmd/ssadump golang.org/x/tools/cmd/stress               \
@@ -1573,6 +1584,12 @@ step_go() {
     export PATH="$PATH:$GOPATH"
 
     run "go get -u all"
+
+    if ! type golist >/dev/null 2>&1; then
+        show -i "Utility golist is not installed in your PATH."
+        show -i "Please install it from https://github.com/lexicalunit/dotfiles/blob/master/bin/golist"
+        return 1
+    fi
 
     INSTALLED="$(golist | tr '\n' ' ')"
 

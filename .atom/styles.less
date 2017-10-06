@@ -6,6 +6,16 @@ atom-workspace.loading .left {
   display: none;
 }
 
+// Better line-number bracket-matcher color dependent on theme.
+.line-number.bracket-matcher {
+  & when (luminance(@syntax-background-color) <= 50%) {
+    background-color: lighten(average(@syntax-background-color, @syntax-selection-color), 10%);
+  }
+  & when (luminance(@syntax-background-color) > 50%) {
+    background-color: darken(average(@syntax-background-color, @syntax-selection-color), 10%);
+  }
+}
+
 // make cursor lines stand out more
 .cursor-line {
   background-color: average(@syntax-background-color, @syntax-selection-color);

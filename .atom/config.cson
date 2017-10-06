@@ -15,7 +15,8 @@
     matchUserInterfaceTheme: false
     scheme: "Solarized"
     style: "Light"
-  "bracket-matcher": {}
+  "bracket-matcher":
+    highlightMatchingLineNumber: true
   core:
     audioBeep: false
     closeEmptyWindows: false
@@ -124,7 +125,7 @@
     pep8ExecutablePath: "/usr/local/bin/pep8"
   "linter-ui-default":
     hidePanelWhenEmpty: true
-    panelHeight: 153
+    panelHeight: 163
     showProviderName: true
   "linter-write-good":
     additionalArgs: "--no-tooWordy"

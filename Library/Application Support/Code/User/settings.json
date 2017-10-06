@@ -11,7 +11,8 @@
     "editor.renderControlCharacters": true,
     "workbench.editor.closeOnFileDelete": false,
     "workbench.startupEditor": "newUntitledFile",
-    "workbench.iconTheme": "vs-seti",
+    "workbench.iconTheme": "vscode-icons",
     "window.nativeTabs": false,
-    "window.titleBarStyle": "native"
+    "window.titleBarStyle": "native",
+    "editor.renderIndentGuides": false
 }

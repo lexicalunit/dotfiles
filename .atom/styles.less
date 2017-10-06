@@ -1,12 +1,12 @@
 @import "syntax-variables";
 @import "ui-variables";
 
-// Hide left dock (typically tree-view) doing editor init time.
+// hide left dock (typically tree-view) doing editor init time
 atom-workspace.loading .left {
   display: none;
 }
 
-// Better line-number bracket-matcher color dependent on theme.
+// better line-number bracket-matcher color based on theme
 .line-number.bracket-matcher {
   & when (luminance(@syntax-background-color) <= 50%) {
     background-color: lighten(average(@syntax-background-color, @syntax-selection-color), 10%);
@@ -16,9 +16,14 @@ atom-workspace.loading .left {
   }
 }
 
+// easier to see bracket-matcher underlines
+.region.bracket-matcher {
+  border-bottom-style: solid;
+}
+
 // make cursor lines stand out more
 .cursor-line {
-  background-color: average(@syntax-background-color, @syntax-selection-color);
+  background-color: fade(average(@syntax-background-color, @syntax-selection-color), 50%) !important;
 }
 
 // remove dock toggle buttons

@@ -1,9 +1,11 @@
 @import "syntax-variables";
 @import "ui-variables";
 
-// hide left dock (typically tree-view) doing editor init time
-atom-workspace.loading .left {
-  display: none;
+// fixes tooltip pop-under issue with native-ui
+// see: https://github.com/fv0/native-ui/issues/84
+.theme-native-ui {
+  .tooltip { z-index: 1000 !important; }
+  .atom-dock-resize-handle { z-index: 100 !important; }
 }
 
 // better line-number bracket-matcher color based on theme
@@ -126,6 +128,12 @@ atom-text-editor.editor {
     text-shadow: none !important;
   }
 }
+
+// hide left dock (typically tree-view) during editor init time
+// see: https://discuss.atom.io/t/hide-treeview-by-default/7718/38
+// atom-workspace.loading .left {
+//   display: none;
+// }
 
 // 3D effects for tree-view and minimap (adjust @rotation as desired)
 #atom-perspective() {

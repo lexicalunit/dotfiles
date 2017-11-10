@@ -56,7 +56,7 @@ ATOM_PACKAGES="                                                                \
 
 CODE_PACKAGES="                                                                \
     DavidAnson.vscode-markdownlint HookyQR.beautify dbaeumer.vscode-eslint     \
-    donjayamanne.python lukehoban.Go magicstack.MagicPython                    \
+    lukehoban.Go magicstack.MagicPython ms-python.python                       \
     robertohuertasm.vscode-icons spywhere.guides                               \
     streetsidesoftware.code-spell-checker"
 

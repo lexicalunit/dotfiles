@@ -169,8 +169,8 @@ sort-lines, standard-formatter, tab-control, tabs-to-spaces,
 tinacious-design-syntax-purple, toggle-quotes, trailing-spaces, unity-ui
 
 Code Packages: DavidAnson.vscode-markdownlint, HookyQR.beautify, 
-dbaeumer.vscode-eslint, donjayamanne.python, lukehoban.Go, 
-magicstack.MagicPython, robertohuertasm.vscode-icons, spywhere.guides, 
+dbaeumer.vscode-eslint, lukehoban.Go, magicstack.MagicPython, ms-python.python, 
+robertohuertasm.vscode-icons, spywhere.guides, 
 streetsidesoftware.code-spell-checker
 
 Pip Packages: git-sweep3k, httpie, inflection, isort, patch, 

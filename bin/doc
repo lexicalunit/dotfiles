@@ -47,7 +47,6 @@ run "cd '$HOME/.tufte-pandoc-css'" || usage
 
 CMD="pandoc '$SRC'"
 CMD="$CMD --katex"
-CMD="$CMD --smart"
 CMD="$CMD --section-divs"
 CMD="$CMD --from markdown+tex_math_single_backslash"
 CMD="$CMD --filter pandoc-sidenote"

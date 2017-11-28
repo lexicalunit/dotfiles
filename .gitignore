@@ -68,8 +68,10 @@
 /.jline-jython.history
 /.jpm/settings.json
 /.jupyter/migrated
+/.kube
 /.lesshst
 /.m2
+/.minikube
 /.mysql_history
 /.ncftp
 /.node_repl_history

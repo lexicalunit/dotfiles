@@ -1267,8 +1267,10 @@ step_cask() {
 install_atom_pkg() {
     local PKG="$1"
     local INSTALLED="$2"
-    if ! echo "$INSTALLED" | egrep -qi "\\b${PKG}\\b"; then
-        run "apm install '$PKG'" || abort "can not install package '$PKG'"
+
+    type apm-beta >/dev/null 2>&1 && APMCMD="apm-beta" || APMCMD="apm"
+    if ! echo "$INSTALLED" | egrep -qi "^${PKG}\\b"; then
+        run "$APMCMD install '$PKG'" || abort "can not install package '$PKG'"
     else
         show "skipping $PKG: already installed"
     fi
@@ -1284,19 +1286,21 @@ step_atom() {
     # Anaconda causes build issues for Atom packages with native modules.
     ensure_no_anaconda
 
+    type apm-beta >/dev/null 2>&1 && APMCMD="apm-beta" || APMCMD="apm"
+
     local INSTALLED
-    INSTALLED="$(apm list --installed --bare)"
+    INSTALLED="$($APMCMD list --installed --bare)"
     IFS=' '
     for I in $ATOM_PACKAGES; do
         install_atom_pkg "$I" "$INSTALLED"
     done
-    run "apm upgrade --confirm false"
+    run "$APMCMD upgrade --confirm false"
 
     IFS=$'\n'
-    for I in $(apm list --installed --bare); do
+    for I in $($APMCMD list --installed --bare); do
         name="${I%@*}"
-        if ! echo "$ATOM_PACKAGES" | egrep -qi "\\b${name}\\b"; then
-            show -i "$I installed but not managed by setup via apm"
+        if ! echo "$ATOM_PACKAGES" | egrep -qi " ${name}\\b"; then
+            show -i "$I installed but not managed by setup via $APMCMD"
         fi
     done
 }

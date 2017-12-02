@@ -135,7 +135,6 @@
   "linter-ui-default":
     hidePanelWhenEmpty: true
     panelHeight: 153
-    showPanel: true
     showProviderName: true
   "linter-write-good":
     additionalArgs: "--no-tooWordy"

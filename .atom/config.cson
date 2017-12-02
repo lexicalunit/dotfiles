@@ -4,6 +4,7 @@
       analytics: false
   "atom-notes":
     directory: "~/Dropbox/nv"
+    orderByFuzzyFileNameMatch: true
   "atom-pair": null
   "autocomplete-plus":
     confirmCompletion: "tab and enter"

@@ -211,6 +211,7 @@ Usage: jsc [options] [files] [-- arguments]
   --strict-file=<file>       Parse the given file as if it were in strict mode (this option may be passed more than once)
   --module-file=<file>       Parse and evaluate the given file as module (this option may be passed more than once)
   --exception=<name>         Check the last script exits with an uncaught exception with the specified name
+  --watchdog-exception-ok    Uncaught watchdog exceptions exit with success
   --dumpException            Dump uncaught exception text
   --options                  Dumps all JSC VM options and exits
   --dumpOptions              Dumps all non-default JSC VM options before continuing
@@ -589,9 +590,9 @@ Options:
                                      youtube-dl guess ("auto_warning" to emit a warning when guessing). "error" just
                                      throws an error. The default value "fixup_error" repairs broken URLs, but emits an
                                      error if this is not possible instead of searching.
-    --ignore-config                  Do not read configuration files. When given in the global configuration file /etc
-                                     /youtube-dl.conf: Do not read the user configuration in ~/.config/youtube-dl/config
-                                     (%APPDATA%/youtube-dl/config.txt on Windows)
+    --ignore-config                  Do not read configuration files. When given in the global configuration file
+                                     /etc/youtube-dl.conf: Do not read the user configuration in ~/.config/youtube-
+                                     dl/config (%APPDATA%/youtube-dl/config.txt on Windows)
     --config-location PATH           Location of the configuration file; either the path to the config or its containing
                                      directory.
     --flat-playlist                  Do not extract the videos of a playlist, only list them.

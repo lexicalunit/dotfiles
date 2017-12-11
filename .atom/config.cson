@@ -2,6 +2,8 @@
   "atom-beautify":
     general:
       analytics: false
+  "atom-isort":
+    pythonPath: "~/anaconda3/bin"
   "atom-notes":
     directory: "~/Dropbox/nv"
     orderByFuzzyFileNameMatch: true
@@ -134,7 +136,8 @@
     pep8ExecutablePath: "/usr/local/bin/pep8"
   "linter-ui-default":
     hidePanelWhenEmpty: true
-    panelHeight: 153
+    panelHeight: 163
+    showPanel: true
     showProviderName: true
   "linter-write-good":
     additionalArgs: "--no-tooWordy"

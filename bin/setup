@@ -11,20 +11,20 @@ HOMEBREW_FORMULAS="                                                            \
     clang-format cloog cmake colordiff coreutils cppunit csv-fix dmd docker    \
     docker-compose doxygen erlang faac fasd ffmpeg fontconfig freetype gd gdbm \
     geoip gettext ghostscript gifsicle git git-flow git-review git-secrets     \
-    giter8 glib gmp gmp4 gnu-sed gnu-tar gnupg gnutls gradle htop hub icu4c    \
-    id3lib id3v2 imagemagick@6 isl jasper jbig2dec                             \
-    jez/formulae/pandoc-sidenote jhead jo jpeg jq kafkacat lame libassuan      \
-    libevent libffi libgcrypt libgpg-error libgphoto2 libicns libksba libmpc   \
-    libpng librdkafka libssh2 libtasn1 libtiff libtool libunistring libusb     \
-    libusb-compat libvo-aacenc libyaml little-cms2 lz4 lzlib makedepend maven  \
-    md5sha1sum memcached mongodb mpfr mysql ncftp net-snmp nettle nginx        \
-    no-more-secrets node npth onepass oniguruma openssl ossp-uuid p11-kit      \
-    pandoc pcre percona-toolkit pidof pinentry pkg-config plotutils pngquant   \
-    postgresql protobuf pyenv pyenv-virtualenv pyenv-virtualenvwrapper         \
-    rabbitmq readline redis ripgrep rust s3cmd sane-backends sbt scala scons   \
-    sdl2 sdl2_image shellcheck sloccount spark sqlite sqliteodbc storm swig    \
-    tree unixodbc unrar v8 vegeta vramsteg watch wdiff webp wget wxmac x264    \
-    xvid xz yajl yaml-cpp youtube-dl zeromq zookeeper zsh"
+    giter8 glib gmp gmp4 gnu-sed gnu-tar gnupg gnutls gradle hub icu4c id3lib  \
+    id3v2 imagemagick@6 isl jasper jbig2dec jez/formulae/pandoc-sidenote jhead \
+    jo jpeg jq kafkacat lame libassuan libevent libffi libgcrypt libgpg-error  \
+    libgphoto2 libicns libksba libmpc libpng librdkafka libssh2 libtasn1       \
+    libtiff libtool libunistring libusb libusb-compat libvo-aacenc libyaml     \
+    little-cms2 lz4 lzlib makedepend maven md5sha1sum memcached mongodb mpfr   \
+    mysql ncftp net-snmp nettle nginx no-more-secrets node npth onepass        \
+    oniguruma openssl ossp-uuid p11-kit pandoc pcre percona-toolkit pidof      \
+    pinentry pkg-config plotutils pngquant postgresql protobuf pyenv           \
+    pyenv-virtualenv pyenv-virtualenvwrapper rabbitmq readline redis ripgrep   \
+    rust s3cmd sane-backends sbt scala scons sdl2 sdl2_image shellcheck        \
+    sloccount spark sqlite sqliteodbc storm swig tree unixodbc unrar v8 vegeta \
+    vramsteg watch wdiff webp wget wxmac x264 xvid xz yajl yaml-cpp youtube-dl \
+    zeromq zookeeper zsh"
 
 HOMEBREW_CASKS="                                                               \
     1password adium amazon-music atom audacity balsamiq-mockups battle-net     \
@@ -61,8 +61,8 @@ CODE_PACKAGES="                                                                \
     streetsidesoftware.code-spell-checker"
 
 PIP_PACKAGES="                                                                 \
-    git-sweep3k httpie inflection isort patch python-json-logger termcolor     \
-    yapf"
+    git-sweep3k glances httpie inflection isort patch python-json-logger       \
+    termcolor yapf"
 
 CONDA_PACKAGES="                                                               \
     abstract-rendering alabaster anaconda anaconda-client anaconda-navigator   \

@@ -1,1 +1,1 @@
-/Users/atroschinetz/.zprezto/runcoms/zshenv
+.zprezto/runcoms/zshenv

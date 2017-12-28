@@ -12,3 +12,7 @@
 	path = .tufte-css
 	url = https://github.com/edwardtufte/tufte-css.git
 	branch = gh-pages
+[submodule ".zprezto"]
+	path = .zprezto
+	url = https://github.com/sorin-ionescu/prezto.git
+	ignore = dirty

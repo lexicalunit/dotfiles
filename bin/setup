@@ -1663,6 +1663,9 @@ step_env() {
     cd "$HOME" || exit 1
     run "git submodule update --init --recursive"
     run "git submodule update --init --recursive --remote"
+    if [[ -d ".zprezto/modules/prompt/functions" ]]; then
+        run "cp env/prompt_lexical_setup .zprezto/modules/prompt/functions"
+    fi
 }
 
 ################################################################################

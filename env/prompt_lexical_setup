@@ -1,0 +1,117 @@
+#! prompt_lexical_setup
+# shellcheck disable=SC2154
+# shellcheck disable=SC2034
+
+#
+# Based on the giddy theme.
+#
+# Authors:
+#   lexicalunit@lexicalunit.com
+#   Paul Gideon Dann <pdgiddie@gmail.com>
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+function +vi-set_novcs_prompt_symbol {
+  _prompt_lexical_symbol=')'
+}
+
+function +vi-set_vcs_prompt_symbol {
+  _prompt_lexical_symbol='±'
+}
+
+function +vi-git_precmd {
+  # Check for untracked files, since vcs_info does not.
+  if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
+    hook_com[unstaged]+='%F{green}?%f'
+  fi
+}
+
+function prompt_lexical_python_pacman {
+    local pac=""
+    if [[ -n "$PYTHON_ENV" ]]; then
+        pac="$PYTHON_ENV"
+        if [[ -n "$VIRTUAL_ENV" ]]; then
+            pac="$pac:$(basename "$VIRTUAL_ENV")"
+        elif [[ -n "$CONDA_DEFAULT_ENV" ]]; then
+            pac="$pac:$CONDA_DEFAULT_ENV"
+        fi
+        pac="$pac"
+    fi
+    _prompt_lexical_python_pacman="$pac"
+}
+
+# I don't want to use the ruby module, but I want rvm version in my prompt.
+# This function is a modified version of the one available in the ruby module.
+function prompt_lexial_ruby_info {
+    local version
+    local version_format
+    local version_formatted
+
+    # Clean up previous $ruby_info.
+    unset ruby_info
+    typeset -gA ruby_info
+
+    if (( $+commands[rvm-prompt] )); then
+      version="$(rvm-prompt)"
+    elif (( $+commands[rbenv] )); then
+      version="$(rbenv version-name)"
+    elif (( $+commands[ruby] )); then
+      version="${${$(ruby --version)[(w)1,(w)2]}/ /-}"
+    fi
+
+    # Format version.
+    if [[ -n "$version" ]]; then
+      zstyle -s ':prezto:module:ruby:info:version' format 'version_format'
+      zformat -f version_formatted "$version_format" "v:$version"
+      ruby_info[version]="$version_formatted"
+    fi
+}
+
+function prompt_lexical_precmd {
+  _prompt_lexical_pwd="${PWD/#$HOME/~}"
+  vcs_info
+  prompt_lexical_python_pacman
+  prompt_lexial_ruby_info
+}
+
+function prompt_lexical_setup {
+  setopt LOCAL_OPTIONS
+  unsetopt XTRACE KSH_ARRAYS
+  prompt_opts=(cr percent subst)
+
+  # Load required functions.
+  autoload -Uz vcs_info
+  autoload -Uz add-zsh-hook
+
+  # Add hook to set up prompt parameters before each command.
+  add-zsh-hook precmd prompt_lexical_precmd
+
+  # Set editor-info parameters.
+  zstyle ':prezto:module:editor:info:completing' format '%F{green}...%f'
+  zstyle ':prezto:module:editor:info:keymap:alternate' format '%F{yellow}--- COMMAND ---%f'
+
+  # Set vcs_info parameters.
+  zstyle ':vcs_info:*' check-for-changes true
+  zstyle ':vcs_info:*' formats ' on %F{magenta}%b%f%c%u'
+  zstyle ':vcs_info:*' actionformats ' on %F{magenta}%b%f%c%u %F{yellow}(%a)%f'
+  zstyle ':vcs_info:*' stagedstr '%F{green}+%f'
+  zstyle ':vcs_info:*' unstagedstr '%F{green}!%f'
+
+  # Set vcs_info hooks.
+  # NOTE: Prior to Zsh v4.3.12, there are no static hooks, no vcs_info_hookadd
+  #       function, and no 'no-vcs' hook.
+  zstyle ':vcs_info:*+start-up:*' hooks set_novcs_prompt_symbol
+  zstyle ':vcs_info:git*+set-message:*' hooks set_vcs_prompt_symbol git_precmd
+  zstyle ':vcs_info:*+set-message:*' hooks set_vcs_prompt_symbol
+
+  # Set ruby-info parameters.
+  zstyle ':prezto:module:ruby:info:version' format ' %F{yellow}[%v]%f'
+
+  # Define prompts.
+  PROMPT='%(?..%F{red}%B-> [%?]%b%f
+)%F{magenta}%n%f@%F{yellow}%m%f|%F{green}${_prompt_lexical_pwd}%f${vcs_info_msg_0_}${ruby_info:+${ruby_info[version]}} %F{blue}[${_prompt_lexical_python_pacman}]%f
+%F{blue}${_prompt_lexical_symbol}%f '
+  SPROMPT='zsh: correct %F{magenta}%R%f to %F{green}%r%f [nyae]? '
+}
+
+prompt_lexical_setup "$@"

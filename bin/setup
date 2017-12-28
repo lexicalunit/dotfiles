@@ -1662,7 +1662,7 @@ step_cargo() {
         install_brew_formula rust
         ensure_homebrew_updated_cleanup
     elif type brew >/dev/null 2>&1; then
-        run "brew upgrade cargo"
+        run "brew upgrade rust"
     fi
 
     declare -a INSTALLED

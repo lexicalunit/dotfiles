@@ -8,23 +8,23 @@
 # BEGIN GENERATED PACKAGE LISTS
 HOMEBREW_FORMULAS="                                                            \
     adns ammonite-repl autoconf automake avro-tools bash bison boost           \
-    clang-format cloog cmake colordiff coreutils cppunit csv-fix dmd docker    \
-    docker-compose doxygen erlang faac fasd ffmpeg fontconfig freetype gd gdbm \
-    geoip gettext ghostscript gifsicle git git-flow git-review git-secrets     \
-    giter8 glib gmp gmp4 gnu-sed gnu-tar gnupg gnutls gradle hub icu4c id3lib  \
-    id3v2 imagemagick@6 isl jasper jbig2dec jez/formulae/pandoc-sidenote jhead \
-    jo jpeg jq kafkacat lame libassuan libevent libffi libgcrypt libgpg-error  \
-    libgphoto2 libicns libksba libmpc libpng librdkafka libssh2 libtasn1       \
-    libtiff libtool libunistring libusb libusb-compat libvo-aacenc libyaml     \
-    little-cms2 lz4 lzlib makedepend maven md5sha1sum memcached mongodb mpfr   \
-    mysql ncftp net-snmp nettle nginx no-more-secrets node npth onepass        \
-    oniguruma openssl ossp-uuid p11-kit pandoc pcre percona-toolkit pidof      \
-    pinentry pkg-config plotutils pngquant postgresql protobuf pyenv           \
-    pyenv-virtualenv pyenv-virtualenvwrapper rabbitmq readline redis ripgrep   \
-    rust s3cmd sane-backends sbt scala scons sdl2 sdl2_image shellcheck        \
-    sloccount spark sqlite sqliteodbc storm swig tree unixodbc unrar v8 vegeta \
-    vramsteg watch wdiff webp wget wxmac x264 xvid xz yajl yaml-cpp youtube-dl \
-    zeromq zookeeper zsh"
+    clang-format cloog cmake colordiff coreutils cppunit csv-fix diff-so-fancy \
+    dmd docker docker-compose doxygen erlang faac fasd ffmpeg fontconfig       \
+    freetype gd gdbm geoip gettext ghostscript gifsicle git git-flow           \
+    git-review git-secrets giter8 glib gmp gmp4 gnu-sed gnu-tar gnupg gnutls   \
+    gradle hub icu4c id3lib id3v2 imagemagick@6 isl jasper jbig2dec            \
+    jez/formulae/pandoc-sidenote jhead jo jpeg jq kafkacat lame libassuan      \
+    libevent libffi libgcrypt libgpg-error libgphoto2 libicns libksba libmpc   \
+    libpng librdkafka libssh2 libtasn1 libtiff libtool libunistring libusb     \
+    libusb-compat libvo-aacenc libyaml little-cms2 lz4 lzlib makedepend maven  \
+    md5sha1sum memcached mongodb mpfr mysql ncftp net-snmp nettle nginx        \
+    no-more-secrets node npth onepass oniguruma openssl ossp-uuid p11-kit      \
+    pandoc pcre percona-toolkit pidof pinentry pkg-config plotutils pngquant   \
+    postgresql protobuf pyenv pyenv-virtualenv pyenv-virtualenvwrapper         \
+    rabbitmq readline redis ripgrep rust s3cmd sane-backends sbt scala scons   \
+    sdl2 sdl2_image shellcheck sloccount spark sqlite sqliteodbc storm swig    \
+    tree unixodbc unrar v8 vegeta vramsteg watch wdiff webp wget wxmac x264    \
+    xvid xz yajl yaml-cpp youtube-dl zeromq zookeeper zsh"
 
 HOMEBREW_CASKS="                                                               \
     1password adium amazon-music atom audacity balsamiq-mockups battle-net     \
@@ -1189,11 +1189,13 @@ step_brew() {
     ensure_homebrew_updated
 
     local INSTALLED
-    INSTALLED=($(brew ls))
-    IFS=' '
-    for I in $HOMEBREW_FORMULAS; do
-        install_brew_formula "$I" "${INSTALLED[@]}"
-    done
+    brew ls -1 | {
+        while IFS="" read -r line; do INSTALLED+=("$line"); done
+        IFS=' '
+        for I in $HOMEBREW_FORMULAS; do
+            install_brew_formula "$I" "${INSTALLED[@]}"
+        done
+    }
 
     ensure_homebrew_updated_cleanup
 
@@ -1208,30 +1210,37 @@ step_brew() {
     # install the git remote-hg helper
     run "ln -sf $(brew ls -v git | grep git-remote-hg) /usr/local/bin"
 
-    IFS=$'\n'
-    local arr=($(echo "$HOMEBREW_FORMULAS" | tr ' ' '\n'))
-    for I in $(brew ls); do
-        name="${I%@*}"
-        [[ "$name" == "imagemagick" ]] && name="$name@6"
-        [[ "$name" == "pandoc-sidenote" ]] && name="jez/formulae/$name"
-        if ! in_array "$name" "${arr[@]}"; then
-            case "$I" in
-            "go") ;; # installed as a separate step
-            *) show -i "$I installed but not managed by setup via brew" ;;
-            esac
-        fi
-    done
+    local arr=()
+    echo "$HOMEBREW_FORMULAS" | tr ' ' '\n' | {
+        while IFS="" read -r line; do arr+=("$line"); done
+        for I in $(brew ls); do
+            name="${I%@*}"
+            [[ "$name" == "imagemagick" ]] && name="$name@6"
+            [[ "$name" == "pandoc-sidenote" ]] && name="jez/formulae/$name"
+            if ! in_array "$name" "${arr[@]}"; then
+                case "$I" in
+                "go") ;; # installed as a separate step
+                *) show -i "$I installed but not managed by setup via brew" ;;
+                esac
+            fi
+        done
+    }
 }
 
 ################################################################################
 # Step cask
 ################################################################################
 install_brew_cask() {
-    local INSTALLED="$2"
-    if ! echo "$INSTALLED" | egrep -q "$(echo "\\b$1\\b" | sed 's/ (!)//g')"; then
-        run "brew cask install '$1'"
+    local FORMULA_NAME FORMULA="$1"
+    FORMULA_NAME="$(basename "$1" "/")"
+    shift
+
+    local INSTALLED
+    IFS=' ' read -r -a INSTALLED <<<"$@"
+    if ! in_array "$FORMULA_NAME" "${INSTALLED[@]}"; then
+        run "brew cask install '$FORMULA'"
     else
-        show "brew formula '$1' already installed"
+        show "brew cask formula '$FORMULA' already installed"
     fi
 }
 
@@ -1246,11 +1255,13 @@ step_cask() {
     ensure_homebrew_updated
 
     local INSTALLED
-    INSTALLED="$(brew cask list)"
-    IFS=' '
-    for I in $HOMEBREW_CASKS; do
-        install_brew_cask "$I" "$INSTALLED"
-    done
+    brew cask ls -1 | {
+        while IFS="" read -r line; do INSTALLED+=("$line"); done
+        IFS=' '
+        for I in $HOMEBREW_CASKS; do
+            install_brew_cask "$I" "${INSTALLED[@]}"
+        done
+    }
 
     ensure_homebrew_updated_cleanup
 
@@ -1267,11 +1278,12 @@ step_cask() {
 # Step atom
 ################################################################################
 install_atom_pkg() {
-    local PKG="$1"
-    local INSTALLED="$2"
+    local INSTALLED PKG="$1"
+    shift
+    IFS=' ' read -r -a INSTALLED <<<"$@"
 
     type apm-beta >/dev/null 2>&1 && APMCMD="apm-beta" || APMCMD="apm"
-    if ! echo "$INSTALLED" | egrep -qi "^${PKG}\\b"; then
+    if ! in_array "$PKG" "${INSTALLED[@]}"; then
         run "$APMCMD install '$PKG'" || abort "can not install package '$PKG'"
     else
         show "skipping $PKG: already installed"
@@ -1291,11 +1303,15 @@ step_atom() {
     type apm-beta >/dev/null 2>&1 && APMCMD="apm-beta" || APMCMD="apm"
 
     local INSTALLED
-    INSTALLED="$($APMCMD list --installed --bare)"
-    IFS=' '
-    for I in $ATOM_PACKAGES; do
-        install_atom_pkg "$I" "$INSTALLED"
-    done
+    INSTALLED=()
+    $APMCMD list --installed --bare | sed "s/@.*$//g" | {
+        while IFS="" read -r line; do INSTALLED+=("$line"); done
+        IFS=' '
+        for I in $ATOM_PACKAGES; do
+            install_atom_pkg "$I" "${INSTALLED[@]}"
+        done
+    }
+
     run "$APMCMD upgrade --confirm false"
 
     IFS=$'\n'
@@ -1311,9 +1327,11 @@ step_atom() {
 # Step code
 ################################################################################
 install_code_pkg() {
-    local PKG="$1"
-    local INSTALLED="$2"
-    if ! echo "$INSTALLED" | egrep -qi "\\b${PKG}\\b"; then
+    local INSTALLED PKG="$1"
+    shift
+    IFS=' ' read -r -a INSTALLED <<<"$@"
+
+    if ! in_array "$PKG" "${INSTALLED[@]}"; then
         run "code --install-extension '$PKG'" || abort "can not install package '$PKG'"
     else
         show "skipping $PKG: already installed"
@@ -1328,11 +1346,14 @@ step_code() {
     fi
 
     local INSTALLED
-    INSTALLED="$(code --list-extensions)"
-    IFS=' '
-    for I in $CODE_PACKAGES; do
-        install_code_pkg "$I" "$INSTALLED"
-    done
+    INSTALLED=()
+    code --list-extensions | {
+        while IFS="" read -r line; do INSTALLED+=("$line"); done
+        IFS=' '
+        for I in $CODE_PACKAGES; do
+            install_code_pkg "$I" "${INSTALLED[@]}"
+        done
+    }
 
     IFS=$'\n'
     for I in $(code --list-extensions); do
@@ -1516,14 +1537,16 @@ step_gem() {
     run "yes | gem update -q --system"
 
     declare -a GEM_LIST
-    GEM_LIST=($(gem list))
-
-    IFS=' '
-    for I in $GEM_PACKAGES; do
-        if ! echo "${GEM_LIST[*]}" | grep -q "$I"; then
-            run "yes | gem install -q $I"
-        fi
-    done
+    GEM_LIST=()
+    gem list | {
+        while IFS="" read -r line; do GEM_LIST+=("$line"); done
+        IFS=' '
+        for I in $GEM_PACKAGES; do
+            if ! echo "${GEM_LIST[*]}" | grep -q "$I"; then
+                run "yes | gem install -q $I"
+            fi
+        done
+    }
 
     IFS=$'\n'
     for I in $(gem outdated | awk '{print $1}'); do
@@ -1546,9 +1569,13 @@ step_gem() {
 # Step node
 ################################################################################
 step_node() {
-    ensure_homebrew_updated
-    install_brew_formula node
-    ensure_homebrew_updated_cleanup
+    if ! type node >/dev/null 2>&1; then
+        ensure_homebrew_updated
+        install_brew_formula node
+        ensure_homebrew_updated_cleanup
+    elif type brew >/dev/null 2>&1; then
+        run "brew upgrade cargo"
+    fi
 
     # Homebrew Caveat
     # If you update npm itself, do NOT use the npm update command.
@@ -1582,9 +1609,13 @@ step_node() {
 # Step go
 ################################################################################
 step_go() {
-    ensure_homebrew_updated
-    install_brew_formula go
-    ensure_homebrew_updated_cleanup
+    if ! type go >/dev/null 2>&1; then
+        ensure_homebrew_updated
+        install_brew_formula go
+        ensure_homebrew_updated_cleanup
+    elif type brew >/dev/null 2>&1; then
+        run "brew upgrade cargo"
+    fi
 
     export GOPATH="/usr/local/lib/gopath"
     mkdir -p "$GOPATH"
@@ -1626,23 +1657,30 @@ step_go() {
 # Step cargo
 ################################################################################
 step_cargo() {
-    ensure_homebrew_updated
-    install_brew_formula rust
-    ensure_homebrew_updated_cleanup
+    if ! type rustc >/dev/null 2>&1; then
+        ensure_homebrew_updated
+        install_brew_formula rust
+        ensure_homebrew_updated_cleanup
+    elif type brew >/dev/null 2>&1; then
+        run "brew upgrade cargo"
+    fi
 
-    INSTALLED=($(cargo install --list | grep -v "^ " | sed 's/ v.*//g'))
-
-    IFS=' '
-    for I in $CARGO_PACKAGES; do
-        if ! echo "${INSTALLED[*]}" | egrep -q "\b$I\b"; then
-            run "cargo install $I"
-        fi
-    done
+    declare -a INSTALLED
+    INSTALLED=()
+    cargo install --list | grep -v "^ " | sed 's/ v.*//g' | {
+        while IFS="" read -r line; do INSTALLED+=("$line"); done
+        IFS=' '
+        for I in $CARGO_PACKAGES; do
+            if ! echo "${INSTALLED[*]}" | egrep -q "\b$I\b"; then
+                run "cargo install $I"
+            fi
+        done
+    }
 
     run "cargo install-update -a"
 
     IFS=' '
-    for install_name in ${INSTALLED[*]}; do
+    for install_name in $(cargo install --list | grep -v "^ " | sed 's/ v.*//g'); do
         echo ") $install_name"
         FOUND="false"
         for pkg in $CARGO_PACKAGES; do

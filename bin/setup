@@ -204,14 +204,14 @@ cleanup_item_list() {
     declare -a lines
     items_var="$1"
     lines=("$items_var=\"")
-    eval "echo \$$items_var" \
-        | sed "s/  */ /g;s/^ *//g;" \
-        | tr ' ' '\n' \
-        | sort -u \
-        | tr '\n' ' ' \
-        | fold -w 75 -s \
-        | sed 's/^/    /g;s/ $//g' \
-        | {
+    eval "echo \$$items_var" |
+        sed "s/  */ /g;s/^ *//g;" |
+        tr ' ' '\n' |
+        sort -u |
+        tr '\n' ' ' |
+        fold -w 75 -s |
+        sed 's/^/    /g;s/ $//g' |
+        {
             while IFS='' read -r line; do lines+=("$line"); done
             for ((n = 0; n < ${#lines[@]}; n++)); do
                 line="${lines[$n]}"
@@ -234,10 +234,10 @@ show_items() {
     # Pretty prints an item list suitable for usage help.
     local list_name="$1"
     local list_title
-    list_title="$(echo "$list_name" \
-        | tr '[:upper:]' '[:lower:]' \
-        | tr '_' ' ' \
-        | awk '{for (i=1;i <= NF;i++) {
+    list_title="$(echo "$list_name" |
+        tr '[:upper:]' '[:lower:]' |
+        tr '_' ' ' |
+        awk '{for (i=1;i <= NF;i++) {
             sub(".",substr(toupper($i),1,1),$i)} print}')"
     local output="$list_title:"
     output="$output $(eval "echo \$$list_name" | sed "s/^ *//g;s/  */, /g")"
@@ -299,11 +299,11 @@ ensure_no_anaconda() {
 }
 
 # Usage: in_array "$element" "${array[@]}"
-in_array () {
-  local e match="$1"
-  shift
-  for e; do [[ "$e" == "$match" ]] && return 0; done
-  return 1
+in_array() {
+    local e match="$1"
+    shift
+    for e; do [[ "$e" == "$match" ]] && return 0; done
+    return 1
 }
 
 ################################################################################
@@ -1152,7 +1152,7 @@ install_brew_formula() {
     FORMULA_NAME="$(basename "$1" "/")"
     shift
 
-    IFS=' ' read -r -a INSTALLED <<< "$@"
+    IFS=' ' read -r -a INSTALLED <<<"$@"
     if ! in_array "$FORMULA_NAME" "${INSTALLED[@]}"; then
         # Use Docker for Mac instead of docker-machine.
         # See: https://docs.docker.com/docker-for-mac/
@@ -1189,7 +1189,7 @@ step_brew() {
     ensure_homebrew_updated
 
     local INSTALLED
-    INSTALLED=( $(brew ls) )
+    INSTALLED=($(brew ls))
     IFS=' '
     for I in $HOMEBREW_FORMULAS; do
         install_brew_formula "$I" "${INSTALLED[@]}"
@@ -1209,15 +1209,15 @@ step_brew() {
     run "ln -sf $(brew ls -v git | grep git-remote-hg) /usr/local/bin"
 
     IFS=$'\n'
-    local arr=( $(echo "$HOMEBREW_FORMULAS" | tr ' ' '\n') )
+    local arr=($(echo "$HOMEBREW_FORMULAS" | tr ' ' '\n'))
     for I in $(brew ls); do
         name="${I%@*}"
         [[ "$name" == "imagemagick" ]] && name="$name@6"
         [[ "$name" == "pandoc-sidenote" ]] && name="jez/formulae/$name"
         if ! in_array "$name" "${arr[@]}"; then
             case "$I" in
-                "go") ;; # installed as a separate step
-                *) show -i "$I installed but not managed by setup via brew" ;;
+            "go") ;; # installed as a separate step
+            *) show -i "$I installed but not managed by setup via brew" ;;
             esac
         fi
     done
@@ -1420,10 +1420,10 @@ step_python() {
         trap 'rm -rf $curl_output' EXIT
 
         local latest
-        latest="$(curl -s https://repo.continuum.io/archive/.files.json \
-            | jq 'to_entries | sort_by(.value.mtime) | reverse | .[].key' \
-            | grep Anaconda3- \
-            | grep -m 1 MacOSX-x86_64.sh | tr -d '"')" || abort "could not find latest Anaconda installer"
+        latest="$(curl -s https://repo.continuum.io/archive/.files.json |
+            jq 'to_entries | sort_by(.value.mtime) | reverse | .[].key' |
+            grep Anaconda3- |
+            grep -m 1 MacOSX-x86_64.sh | tr -d '"')" || abort "could not find latest Anaconda installer"
         [[ -n "$latest" ]] || abort "could not find latest Anaconda installer"
         latest="https://repo.continuum.io/archive/$latest"
         show "downloading $latest ..."
@@ -1516,7 +1516,7 @@ step_gem() {
     run "yes | gem update -q --system"
 
     declare -a GEM_LIST
-    GEM_LIST=( $(gem list) )
+    GEM_LIST=($(gem list))
 
     IFS=' '
     for I in $GEM_PACKAGES; do
@@ -1630,7 +1630,7 @@ step_cargo() {
     install_brew_formula rust
     ensure_homebrew_updated_cleanup
 
-    INSTALLED=( $(cargo install --list | grep -v "^ " | sed 's/ v.*//g') )
+    INSTALLED=($(cargo install --list | grep -v "^ " | sed 's/ v.*//g'))
 
     IFS=' '
     for I in $CARGO_PACKAGES; do
@@ -1697,10 +1697,10 @@ ALL=0
 DRYRUN=0
 while getopts "lfd" opt; do
     case "$opt" in
-        l) LISTING=1 ;;
-        f) FORCE=1 ;;
-        d) DRYRUN=1 ;;
-        *) usage ;;
+    l) LISTING=1 ;;
+    f) FORCE=1 ;;
+    d) DRYRUN=1 ;;
+    *) usage ;;
     esac
 done
 shift $((OPTIND - 1))

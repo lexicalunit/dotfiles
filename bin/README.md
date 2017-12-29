@@ -8,16 +8,9 @@ usage: alert [-qh] [message]
 ```
 
 * * *
-### [`bluetooth_reset`](bluetooth_reset)
+### [`capture_x`](capture_x)
 ```
-usage: bluetooth_reset [-h|--help]
-Resets bluetooth on OS X. Run without arguments first, then follow instructions.
-```
-
-* * *
-### [`capture`](capture)
-```
-usage: capture [-h|--help]
+usage: capture_x [-h|--help]
 
 Creates a screenshot of selected window on X11.
 ```
@@ -171,24 +164,10 @@ Uses `go list` to list all user installed go packages that aren't dependencies.
 ```
 
 * * *
-### [`imgcat`](imgcat)
-```
-Usage: imgcat [-p] filename ...
-   or: cat filename | imgcat
-```
-
-* * *
 ### [`install_fonts`](install_fonts)
 ```
 usage: install_fonts [-h|--help]
 Installs fonts that I like.
-```
-
-* * *
-### [`install_mysql`](install_mysql)
-```
-usage: install_mysql [-h|--help] [uninstall]
-If the 'uninstall' command is given, uninstalls MySQL instead.
 ```
 
 * * *
@@ -507,13 +486,6 @@ Discovers and then connects mongo shell to the cluster master node.
 ```
 usage: uninstall_homebrew [-h|--help]
 See https://gist.github.com/1173223 for details.
-```
-
-* * *
-### [`uninstall_macports`](uninstall_macports)
-```
-usage: uninstall_macports [-h|--help]
-See http://guide.macports.org/chunked/installing.macports.uninstalling.html for details.
 ```
 
 * * *

@@ -11,6 +11,6 @@ if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
 fi
 
 tempdir="$(mktemp -d -t tmp.XXXXXXXXXX)"
-tar xzpf "$HOME/.dircolors_examples.tgz" -C "$tempdir" || rm -rf "$tempdir"
+tar xzpf "$HOME/env/dircolors_examples.tgz" -C "$tempdir" || rm -rf "$tempdir"
 ls --color "$tempdir/colors/"
 rm -rf "$tempdir"

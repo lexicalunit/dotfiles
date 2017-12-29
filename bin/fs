@@ -45,6 +45,9 @@ while getopts "zj" opt; do
 
         # If I'm searching a non-js codebase with some js files in it.
         j) BAD+=("*.js" "*.js.*") ;;
+
+        # Ignore other opts.
+        *) ;;
     esac
 done
 shift $((OPTIND - 1))

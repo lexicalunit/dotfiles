@@ -36,6 +36,7 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 while getopts "k" opt; do
     case "$opt" in
         k) KEEP="yes" ;;
+        *) usage ;;
     esac
 done
 shift $((OPTIND - 1))

@@ -2,7 +2,7 @@
 
 # Lists (a-la 'ls -ltr') git controlled source files in current directory.
 
-if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
+usage() {
     (
         echo "usage: ${0##*/} [-h|--help] [-r]"
         echo "Lists (a-la 'ls -ltr') git controlled source files in current directory."
@@ -14,12 +14,17 @@ if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
         ) | column -ts:
     ) >&2
     exit 1
+}
+
+if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
+    usage
 fi
 
 RECURSIVE=""
 while getopts "r" opt; do
     case "$opt" in
         r) RECURSIVE="-r" ;;
+        *) usage ;;
     esac
 done
 shift $((OPTIND - 1))

@@ -56,8 +56,7 @@ with the argument `--help`.
 | Tool | Usage |
 | --- | --- |
 | [`alert`](bin/alert) | Provides shell level windowed alerting system. |
-| [`bluetooth_reset`](bin/bluetooth_reset) | Resets bluetooth on OS X. |
-| [`capture`](bin/capture) | Creates a screenshot of selected window on X11. |
+| [`capture_x`](bin/capture_x) | Creates a screenshot of selected window on X11. |
 | [`colortest`](bin/colortest) | Prints out an entire color palette of terminal color codes. |
 | [`daemons`](bin/daemons) | Finds and removes unwanted daemons and agents. |
 | [`deploy_dotfiles`](bin/deploy_dotfiles) | Installs bin and env from this repository to remote server via ssh. |
@@ -74,9 +73,7 @@ with the argument `--help`.
 | [`git_push_topic`](bin/git_push_topic) | Force updates remote topic branch with local branch. |
 | [`git_reauthor`](bin/git_reauthor) | In git, change the author name and/or email of a single commit. |
 | [`golist`](bin/golist) | Lists all user installed go packages. |
-| [`imgcat`](bin/imgcat) | Like cat but for images. |
 | [`install_fonts`](bin/install_fonts) | Installs fonts that I like. |
-| [`install_mysql`](bin/install_mysql) | Installs/uninstalls mysql from package. |
 | [`jsc`](bin/jsc) | Symbolic link to '/System/Library/Frameworks/JavaScriptCore.framewo... |
 | [`macosver`](bin/macosver) | Prints current OS X version information. |
 | [`nopw`](bin/nopw) | Enables password-less ssh TO username@remotehost FROM localhost. |
@@ -90,7 +87,6 @@ with the argument `--help`.
 | [`slept`](bin/slept) | Get time OS X system last went to sleep. |
 | [`smongo`](bin/smongo) | Opens mongo shell to master node. |
 | [`uninstall_homebrew`](bin/uninstall_homebrew) | Uninstalls Homebrew. |
-| [`uninstall_macports`](bin/uninstall_macports) | Uninstalls MacPorts. |
 | [`usages`](bin/usages) | Prints out documentation and usages for utilities. |
 | [`weather`](bin/weather) | Show the current weather directly in your terminal. |
 | [`woke`](bin/woke) | Get time OS X system last woke from sleep. |

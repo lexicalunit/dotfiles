@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -ue
 
 # Lists all user installed go packages.
 
@@ -10,21 +10,23 @@ if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
     exit 1
 fi
 
-IMPORTS=(
-    $(go list -f '{{ .Standard }}:{{ .ImportPath }}' ... | grep -v "^true" | cut -d: -f2)
-)
+DEPS=()
+IMPORTS=()
+go list -f '{{ join .Deps "\n" }}' ... | sort -u | {
+    while IFS='' read -r line; do DEPS+=("$line"); done
 
-DEPS=(
-    $(go list -f '{{ join .Deps "\n" }}' ... | sort -u)
-)
+    go list -f '{{ .Standard }}:{{ .ImportPath }}' ... | grep -v "^true" | cut -d: -f2 | {
+        while IFS='' read -r line; do IMPORTS+=("$line"); done
 
-DIFF=()
-for i in "${IMPORTS[@]}"; do
-    skip=
-    for j in "${DEPS[@]}"; do
-        [[ $i == $j ]] && { skip=1; break; }
-    done
-    [[ -n $skip ]] || DIFF+=("$i")
-done
+        DIFF=()
+        for i in "${IMPORTS[@]}"; do
+            skip=
+            for j in "${DEPS[@]}"; do
+                [[ "$i" == "$j" ]] && { skip=1; break; }
+            done
+            [[ -n $skip ]] || DIFF+=("$i")
+        done
 
-echo ${DIFF[@]} | tr ' ' '\n'
+        echo "${DIFF[*]}" | tr ' ' '\n'
+    }
+}

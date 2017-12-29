@@ -140,9 +140,9 @@ enterconda() {
     exitvirtualenv
 
     # assume anaconda is installed in your home directory unless specified
-    local ANACONDA_DIR_NAME="anaconda3"
+    local ANACONDA_DIR_NAME="/usr/local/miniconda3"
     if [[ -z "$1" ]]; then
-        export ANACONDA_ROOT="$HOME/$ANACONDA_DIR_NAME"
+        export ANACONDA_ROOT="$ANACONDA_DIR_NAME"
     else
         export ANACONDA_ROOT="$1"
     fi

@@ -65,31 +65,22 @@ PIP_PACKAGES="                                                                 \
     termcolor yapf"
 
 CONDA_PACKAGES="                                                               \
-    abstract-rendering alabaster anaconda anaconda-client anaconda-navigator   \
-    appnope appscript argcomplete astroid astropy babel backports              \
-    beautifulsoup4 bitarray blaze-core bokeh boto bottleneck cffi chest click  \
-    cloudpickle clyent colorama conda conda-build conda-env conda-manager      \
-    configobj contextlib2 cryptography curl cycler cython cytoolz dask         \
-    datashape decorator dill docutils dynd-python entrypoints et_xmlfile       \
-    fastcache filelock flake8 flask flask-cors freetype futures                \
-    get_terminal_size gevent greenlet h5py hdf5 heapdict icu idna imagesize    \
-    ipykernel ipython ipython-notebook ipython-qtconsole ipython_genutils      \
-    ipywidgets itsdangerous jbig jdcal jedi jinja2 jpeg jsonschema jupyter     \
-    jupyter_client jupyter_console jupyter_core launcher lazy-object-proxy     \
-    libdynd libpng libtiff libxml2 libxslt llvmlite locket lxml markupsafe     \
-    matplotlib mccabe mistune mkl mkl-service mpmath multipledispatch nb_conda \
-    nb_conda_kernels nbconvert nbformat nbpresent networkx nltk node-webkit    \
-    nose notebook numba numexpr numpy odo openpyxl openssl pandas partd        \
-    path.py pathlib2 patsy pep8 pexpect pickleshare pillow pip pkginfo ply     \
-    prompt_toolkit psutil ptyprocess py pyasn1 pycosat pycparser pycrypto      \
-    pycurl pyflakes pygments pylint pymongo pyopenssl pyparsing pyqt pytables  \
-    pytest python python-dateutil python.app pytz pyyaml pyzmq qt qtawesome    \
-    qtconsole qtpy readline redis redis-py requests rope ruamel_yaml           \
-    scikit-image scikit-learn scipy setuptools simplegeneric singledispatch    \
-    sip six snowballstemmer sockjs-tornado sphinx sphinx_rtd_theme spyder      \
-    spyder-app sqlalchemy sqlite statsmodels sympy terminado tk toolz tornado  \
-    traitlets unicodecsv wcwidth werkzeug wheel widgetsnbextension wrapt xlrd  \
-    xlsxwriter xlwings xlwt xz yaml zeromq zlib"
+    appnope asn1crypto astroid babel backports backports.functools_lru_cache   \
+    backports.shutil_get_terminal_size backports_abc beautifulsoup4 bokeh boto \
+    ca-certificates certifi cffi chardet click cloudpickle conda conda-env     \
+    configparser cryptography curl dask dask-core decorator distributed        \
+    docutils enum34 flake8 flask functools32 futures get_terminal_size gevent  \
+    greenlet heapdict idna intel-openmp ipaddress ipython ipython_genutils     \
+    itsdangerous jedi jinja2 jsonschema lazy-object-proxy libcxx libcxxabi     \
+    libedit libffi libgfortran libssh2 locket markupsafe mccabe mkl            \
+    msgpack-python ncurses nose numpy openssl p pandas parso partd pathlib2    \
+    pep8 pexpect pickleshare pip prompt_toolkit psutil ptyprocess pycodestyle  \
+    pycosat pycparser pycrypto pycurl pyflakes pygments pylint pymongo         \
+    pyopenssl pyparsing pysocks pytables pytest python-dateutil python.app     \
+    pytz pyyaml readline requests ruamel_yaml scandir scikit-learn scipy       \
+    setuptools simplegeneric singledispatch six sortedcontainers sqlalchemy    \
+    sqlite ssl_match_hostname tblib tk toolz tornado traitlets urllib3 wcwidth \
+    werkzeug wheel wrapt xz yaml zict zlib"
 
 GEM_PACKAGES="                                                                 \
     CFPropertyList actionmailer actionpack actionview activejob activesupport  \
@@ -1417,44 +1408,31 @@ step_python() {
     # PyYAML is required for yaml2json CLI tool, so it needs to work outside of anaconda environment.
     run "sudo /usr/bin/easy_install --upgrade PyYAML"
 
-    local ANACONDA_DIR_NAME="anaconda3"
+    local ANACONDA_DIR_NAME="/usr/local/miniconda3"
 
     # enter existing anaconda environment if it's detected
-    [[ -d "$HOME/$ANACONDA_DIR_NAME/bin" ]] && export PATH="$HOME/$ANACONDA_DIR_NAME/bin:$PATH"
+    [[ -d "$ANACONDA_DIR_NAME/bin" ]] && export PATH="$ANACONDA_DIR_NAME/bin:$PATH"
 
     if run "type conda >/dev/null 2>&1"; then
         MANAGE_WITH_ANACONDA=1
         if [[ "$MANAGE_WITH_ANACONDA" == 1 ]]; then
-            # Allow anaconda to manage all the packages we've installed so that we're reasonably sure
-            # that the installed versions will play nicely with each other.
-            run "conda update --yes --prefix '$HOME/$ANACONDA_DIR_NAME' anaconda"
+            # Allow anaconda to manage all the packages we've installed so that we're reasonably
+            # sure that the installed versions will play nicely with each other.
+            run "conda update --yes --prefix '$ANACONDA_DIR_NAME' conda"
         else
             # Remove anaconda so that `conda update --all` doesn't stupidly downgrade things.
             # See https://github.com/conda/conda/issues/463 for more details.
             run "conda remove --yes anaconda"
             # Ensures that we get the latest versions possible of installed packages.
             # Though we risk those versions maybe not playing well with each other.
-            run "conda update --yes --prefix '$HOME/$ANACONDA_DIR_NAME' --all"
+            run "conda update --yes --prefix '$ANACONDA_DIR_NAME' --all"
         fi
     else
-        curl_output="$(mktemp -d -t tmp.XXXXXXXXXX)"
-        trap 'rm -rf $curl_output' EXIT
-
-        local latest
-        latest="$(curl -s https://repo.continuum.io/archive/.files.json |
-            jq 'to_entries | sort_by(.value.mtime) | reverse | .[].key' |
-            grep Anaconda3- |
-            grep -m 1 MacOSX-x86_64.sh | tr -d '"')" || abort "could not find latest Anaconda installer"
-        [[ -n "$latest" ]] || abort "could not find latest Anaconda installer"
-        latest="https://repo.continuum.io/archive/$latest"
-        show "downloading $latest ..."
-        run "curl -o '$curl_output/anaconda.sh' '$latest'" || abort "could not download Anaconda installer"
-        [[ -e "$curl_output/anaconda.sh" ]] || abort "could not download Anaconda installer"
-        run "bash '$curl_output/anaconda.sh' -b" || abort "could not install Anaconda"
-
-        export PATH="$HOME/$ANACONDA_DIR_NAME/bin:$PATH"
+        ensure_homebrew_updated
+        install_brew_cask_formula miniconda
+        ensure_homebrew_updated_cleanup
+        export PATH="$ANACONDA_DIR_NAME/bin:$PATH"
         run "conda config --set changeps1 no"
-        run "rm -rf '$curl_output'"
     fi
 
     # Remove terrible Anaconda launcher apps from desktop (That's not where .app directories go anyway!)
@@ -1475,7 +1453,7 @@ step_python() {
     IFS=' '
     for I in $CONDA_PACKAGES; do
         if ! echo "$CONDA_LIST" | grep -q "$I"; then
-            echo run "conda install -f --yes $I"
+            run "conda install -f --yes $I"
         fi
     done
 

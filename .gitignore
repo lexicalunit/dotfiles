@@ -21,11 +21,8 @@
 /source
 
 # Work
-/.go_service_tools
 /.npmrc
 /.openvpn-connect.json
-/.profile_panama
-/.profile_uacf
 
 # Parallels
 /Applications\ (Parallels)
@@ -100,7 +97,6 @@
 /.zhistory
 /.zsh_history*
 /.zsh-update
-/anaconda*
 /Dropbox*
 /IdeaProjects
 /VirtualBox*

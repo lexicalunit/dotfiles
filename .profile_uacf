@@ -1,0 +1,35 @@
+#! .profile_uacf
+
+line() {
+    local FULL_WIDTH=70
+    art=$(echo -e "$1" | grep -oE '[^ ].*')
+    artlen=${#art}
+    buffer=$(expr $FULL_WIDTH - ${artlen:-0})
+    spaces=$(expr $buffer / 2)
+
+    printf "\033[41m\033[1;37m%${spaces}s" ' '
+    printf '%b' "${art}"
+    printf "%${spaces}s\033[m\n" ' '
+}
+
+ua() {
+while read l; do line "$l"; done << 'EOF'
+
+        `-:-                  .:-.
+  `-+shmNNNo                  :NNNmdy+:`
+-hmNNNNNNNNo                  :NNNNNNNNNd/
+`hNNNNNNNNNo                  :NNNNNNNNNm.
+ `omNNNNNNNs                  /NNNNNNNNy.
+   `+hNNNNNN+:/+oo+////+ooo+//mNNNNNdo.
+      .sNNNNNNmo.        `/dNNNNNNh:
+   `+hNNNNNN+:/+oo+////+ooo+//mNNNNNdo.
+ `omNNNNNNNs                  /NNNNNNNNy.
+`hNNNNNNNNNo                  :NNNNNNNNNm.
+-hmNNNNNNNNo                  :NNNNNNNNNd/
+  `-+sdmNNNo                  :NNNmdy+:`
+        `-:-                  .:-.
+
+            Protect This House
+
+EOF
+}

@@ -1429,7 +1429,7 @@ step_python() {
         fi
     else
         ensure_homebrew_updated
-        install_brew_cask_formula miniconda
+        install_brew_cask miniconda
         ensure_homebrew_updated_cleanup
         export PATH="$ANACONDA_DIR_NAME/bin:$PATH"
         run "conda config --set changeps1 no"

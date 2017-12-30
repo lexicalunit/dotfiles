@@ -15,7 +15,7 @@ if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
 fi
 
 # default location
-LOC="${1:-austin}"
+LOC="${1:-$(whereami)}"
 
 # force dark background color
 esc=$'\e'

@@ -65,7 +65,6 @@ with the argument `--help`.
 | [`faff`](bin/faff) | Sleeps for the given number of seconds, showing a progress bar. |
 | [`flip`](bin/flip) | Flips input upside down. |
 | [`fs`](bin/fs) | Tweak ripgrep to easily search codebases with committed files and f... |
-| [`giphy`](bin/giphy) | Gets a random gif from giphy and shows it via imgcat. |
 | [`git_authors`](bin/git_authors) | Git script for discovering who wrote the code at the current workin... |
 | [`git_ltr`](bin/git_ltr) | Lists (a-la 'ls -ltr') git controlled source files in current direc... |
 | [`git_name_change`](bin/git_name_change) | Clones a repo then changes the name and email address in entire his... |
@@ -74,14 +73,12 @@ with the argument `--help`.
 | [`git_reauthor`](bin/git_reauthor) | In git, change the author name and/or email of a single commit. |
 | [`golist`](bin/golist) | Lists all user installed go packages. |
 | [`install_fonts`](bin/install_fonts) | Installs fonts that I like. |
+| [`install_odbc`](bin/install_odbc) | Sets up ODBC. |
 | [`jsc`](bin/jsc) | Symbolic link to '/System/Library/Frameworks/JavaScriptCore.framewo... |
 | [`macosver`](bin/macosver) | Prints current OS X version information. |
 | [`nopw`](bin/nopw) | Enables password-less ssh TO username@remotehost FROM localhost. |
 | [`root`](bin/root) | Prints the root of the current repository. |
-| [`safari_cache`](bin/safari_cache) | Shows current Safari cache. |
-| [`safari_clean`](bin/safari_clean) | Cleans Safari caches and saved data on OS X. |
 | [`setup`](bin/setup) | Install applications and development environment on an OS X machine. |
-| [`setup_odbc`](bin/setup_odbc) | Sets up ODBC. |
 | [`share`](bin/share) | Easy way to manage temporary web shares. |
 | [`show_dircolors`](bin/show_dircolors) | Shows example output based on current dircolors settings. |
 | [`slept`](bin/slept) | Get time OS X system last went to sleep. |
@@ -89,6 +86,7 @@ with the argument `--help`.
 | [`uninstall_homebrew`](bin/uninstall_homebrew) | Uninstalls Homebrew. |
 | [`usages`](bin/usages) | Prints out documentation and usages for utilities. |
 | [`weather`](bin/weather) | Show the current weather directly in your terminal. |
+| [`whereami`](bin/whereami) | Prints your current city name using your geoip location. |
 | [`woke`](bin/woke) | Get time OS X system last woke from sleep. |
 | [`xdie`](bin/xdie) | Kills processes based on their window title. |
 | [`xf`](bin/xf) | Extract common file formats. |

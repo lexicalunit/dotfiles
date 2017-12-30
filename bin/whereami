@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+// Prints your current city name using your geoip location.
+
+if (process.argv.includes('--help') || process.argv.includes('-h')) {
+  console.log('usage: ' + process.argv[1])
+  process.exit(1)
+}
+
+let geoip = require('/usr/local/lib/node_modules/geoip-lite')
+const extip = require('/usr/local/lib/node_modules/external-ip')();
+
+extip((err, ip) => {
+  if (err) throw err
+  var geo = geoip.lookup(ip)
+  console.log(geo['city'])
+})

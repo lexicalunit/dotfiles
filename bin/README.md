@@ -96,13 +96,6 @@ options:
 ```
 
 * * *
-### [`giphy`](giphy)
-```
-usage: giphy [-h|--help] SEARCH TERMS
-Searches giphy for a random gif matching your search terms and shows.
-```
-
-* * *
 ### [`git_authors`](git_authors)
 ```
 usage: git_authors [-h|--help] PATH
@@ -171,6 +164,15 @@ Installs fonts that I like.
 ```
 
 * * *
+### [`install_odbc`](install_odbc)
+```
+usage: install_odbc [-h|--help]
+Attempts to install a working ODBC configuration to OS X.
+Uses unixODBC with FreeTDS from Homebrew.
+Requires hand editing to support your specific installation.
+```
+
+* * *
 ### [`jsc`](jsc)
 Symbolic link to '/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Resources/jsc'
 ```
@@ -216,21 +218,6 @@ Puts your public ssh key in the authorized_keys on the remote host.
 ```
 usage: root [-h|--help]
 Prints the root directory of the current source repository.
-```
-
-* * *
-### [`safari_cache`](safari_cache)
-```
-usage: safari_cache [-h|--help]
-Generates and displays a webpage displaying Safari's cache.
-```
-
-* * *
-### [`safari_clean`](safari_clean)
-```
-usage: safari_clean [-h|--help]
-Cleans Safari caches and saved data on OS X.
-Use 'yes | safari_clean' to auto-confirm the cleaning of everything.
 ```
 
 * * *
@@ -420,15 +407,6 @@ Cargo Packages: cargo-update, loc
 ```
 
 * * *
-### [`setup_odbc`](setup_odbc)
-```
-usage: setup_odbc [-h|--help]
-Attempts to install a working ODBC configuration to OS X.
-Uses unixODBC with FreeTDS from Homebrew.
-Requires hand editing to support your specific installation.
-```
-
-* * *
 ### [`share`](share)
 ```
 usage share [<file>|ls|names|ssh|get <name(s)>|put <file(s)>|rm <name>]
@@ -489,6 +467,12 @@ Shows the current weather in the given location.
 ```
 
 * * *
+### [`whereami`](whereami)
+```
+usage: /Users/amy/bin/whereami
+```
+
+* * *
 ### [`woke`](woke)
 ```
 usage: woke [-h|--help]
@@ -543,9 +527,9 @@ Options:
                                      youtube-dl guess ("auto_warning" to emit a warning when guessing). "error" just
                                      throws an error. The default value "fixup_error" repairs broken URLs, but emits an
                                      error if this is not possible instead of searching.
-    --ignore-config                  Do not read configuration files. When given in the global configuration file /etc
-                                     /youtube-dl.conf: Do not read the user configuration in ~/.config/youtube-dl/config
-                                     (%APPDATA%/youtube-dl/config.txt on Windows)
+    --ignore-config                  Do not read configuration files. When given in the global configuration file
+                                     /etc/youtube-dl.conf: Do not read the user configuration in ~/.config/youtube-
+                                     dl/config (%APPDATA%/youtube-dl/config.txt on Windows)
     --config-location PATH           Location of the configuration file; either the path to the config or its containing
                                      directory.
     --flat-playlist                  Do not extract the videos of a playlist, only list them.

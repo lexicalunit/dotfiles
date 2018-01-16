@@ -27,7 +27,7 @@ git submodule update --recursive --init
 1. Clone this repository into your home directory.
 1. Source your new environment by opening a new terminal or running [`. ~/.profile`](.profile).
 1. Execute the command [`setup all`](bin/setup) to step through configuration of system settings,
-   installation of applications, and creation of your complete OS X developer environment.
+   installation of applications, and creation of your complete developer environment.
 
 You can also use the tool [`bin/deploy_dotfiles`](bin/deploy_dotfiles) to automatically
 export these settings to a remote machine.
@@ -75,19 +75,19 @@ with the argument `--help`.
 | [`install_fonts`](bin/install_fonts) | Installs fonts that I like. |
 | [`install_odbc`](bin/install_odbc) | Sets up ODBC. |
 | [`jsc`](bin/jsc) | Symbolic link to '/System/Library/Frameworks/JavaScriptCore.framewo... |
-| [`macosver`](bin/macosver) | Prints current OS X version information. |
+| [`macosver`](bin/macosver) | Prints current macOS version information. |
 | [`nopw`](bin/nopw) | Enables password-less ssh TO username@remotehost FROM localhost. |
 | [`root`](bin/root) | Prints the root of the current repository. |
-| [`setup`](bin/setup) | Install applications and development environment on an OS X machine. |
+| [`setup`](bin/setup) | Install applications and development environment on an macOS or Lin... |
 | [`share`](bin/share) | Easy way to manage temporary web shares. |
 | [`show_dircolors`](bin/show_dircolors) | Shows example output based on current dircolors settings. |
-| [`slept`](bin/slept) | Get time OS X system last went to sleep. |
+| [`slept`](bin/slept) | Get time macOS system last went to sleep. |
 | [`smongo`](bin/smongo) | Opens mongo shell to master node. |
 | [`uninstall_homebrew`](bin/uninstall_homebrew) | Uninstalls Homebrew. |
 | [`usages`](bin/usages) | Prints out documentation and usages for utilities. |
 | [`weather`](bin/weather) | Show the current weather directly in your terminal. |
 | [`whereami`](bin/whereami) | Prints your current city name using your geoip location. |
-| [`woke`](bin/woke) | Get time OS X system last woke from sleep. |
+| [`woke`](bin/woke) | Get time macOS system last woke from sleep. |
 | [`xdie`](bin/xdie) | Kills processes based on their window title. |
 | [`xf`](bin/xf) | Extract common file formats. |
 | [`yaml2json`](bin/yaml2json) | Converts yaml input to json output. |
@@ -100,9 +100,9 @@ install packages/formulas/casks/whatever, see below for the list of included ite
 
 | Step | Description |
 | --- | --- |
-| osx | Override OS X defaults settings and configuration |
+| osx | Override macOS "defaults" settings and configuration |
 | xcode | Ensure that Xcode Command Line Tools are installed |
-| java | Ensure that Apple's java for OS X is installed |
+| java | Ensure that Apple's java for macOS is installed |
 | brew | Ensure Homebrew installed and formulas upgraded |
 | cask | Ensure Homebrew Casks are installed |
 | atom | Ensure Atom installed via Homebrew Cask and apm packages are upgraded |
@@ -279,7 +279,7 @@ Copyright 2006 Raph Levien. Released under the SIL Open Font License.
 
 The MIT License (MIT)
 
-Copyright (c) 2017, lexicalunit@lexicalunit.com
+Copyright (c) 2018, lexicalunit@lexicalunit.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

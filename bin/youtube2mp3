@@ -17,7 +17,7 @@ if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
 fi
 
 if ! type youtube-dl >/dev/null 2>&1; then
-    echo "error: youtube-dl not found, please install it (e.g. on OS X: brew install youtube-dl)" >&2
+    echo "error: youtube-dl not found, please install it (e.g. on macOS: brew install youtube-dl)" >&2
     exit 1
 fi
 

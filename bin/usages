@@ -56,9 +56,9 @@ for I in *; do
     DESC=""
     if [[ "$I" == "macosver" ]]; then
         if [[ $VERBOSE == 1 ]]; then
-            DESC=$'\n```\n'"usage: macosver"$'\n\n'"Simply prints out the OS X major and minor version."$'\n```\n'
+            DESC=$'\n```\n'"usage: macosver"$'\n\n'"Simply prints out the macOS major and minor version."$'\n```\n'
         else
-            DESC="Prints current OS X version information."
+            DESC="Prints current macOS version information."
         fi
     elif file -h "$I" | grep -q 'symbolic link to'; then
         if [[ $VERBOSE == 1 ]]; then

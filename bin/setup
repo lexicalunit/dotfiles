@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Install applications and development environment on an OS X machine.
+# Install applications and development environment on an macOS or Linux machine.
 
 ################################################################################
 # Settings
@@ -230,7 +230,7 @@ show_items() {
 usage() {
     (
         echo "usage: ${0##*/} [-l|-d|-f|-h|--help] [all|step-name(s)]"
-        echo "Automatically installs and configures a complete OS X developer environment."
+        echo "Automatically installs and configures a complete *nix developer environment."
         echo
         echo "options:"
         (
@@ -1724,9 +1724,9 @@ fi
 
 # key;  question
 steps=(
-    "osx;           Override OS X defaults settings and configuration"
+    "osx;           Override macOS \"defaults\" settings and configuration"
     "xcode;         Ensure that Xcode Command Line Tools are installed"
-    "java;          Ensure that Apple's java for OS X is installed"
+    "java;          Ensure that Apple's java for macOS is installed"
     "brew;          Ensure Homebrew installed and formulas upgraded"
     "cask;          Ensure Homebrew Casks are installed"
     "atom;          Ensure Atom installed via Homebrew Cask and apm packages are upgraded"

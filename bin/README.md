@@ -167,7 +167,7 @@ Installs fonts that I like.
 ### [`install_odbc`](install_odbc)
 ```
 usage: install_odbc [-h|--help]
-Attempts to install a working ODBC configuration to OS X.
+Attempts to install a working ODBC configuration to macOS.
 Uses unixODBC with FreeTDS from Homebrew.
 Requires hand editing to support your specific installation.
 ```
@@ -192,6 +192,7 @@ Usage: jsc [options] [files] [-- arguments]
   --strict-file=<file>       Parse the given file as if it were in strict mode (this option may be passed more than once)
   --module-file=<file>       Parse and evaluate the given file as module (this option may be passed more than once)
   --exception=<name>         Check the last script exits with an uncaught exception with the specified name
+  --watchdog-exception-ok    Uncaught watchdog exceptions exit with success
   --dumpException            Dump uncaught exception text
   --options                  Dumps all JSC VM options and exits
   --dumpOptions              Dumps all non-default JSC VM options before continuing
@@ -203,7 +204,7 @@ Usage: jsc [options] [files] [-- arguments]
 ```
 usage: macosver
 
-Simply prints out the OS X major and minor version.
+Simply prints out the macOS major and minor version.
 ```
 
 * * *
@@ -224,7 +225,7 @@ Prints the root directory of the current source repository.
 ### [`setup`](setup)
 ```
 usage: setup [-l|-d|-f|-h|--help] [all|step-name(s)]
-Automatically installs and configures a complete OS X developer environment.
+Automatically installs and configures a complete *nix developer environment.
 
 options:
     -h, --help     show usage help
@@ -235,9 +236,9 @@ options:
     step-name(s)   execute the given step(s)
 
 steps:
-    osx      Override OS X defaults settings and configuration
+    osx      Override macOS "defaults" settings and configuration
     xcode    Ensure that Xcode Command Line Tools are installed
-    java     Ensure that Apple's java for OS X is installed
+    java     Ensure that Apple's java for macOS is installed
     brew     Ensure Homebrew installed and formulas upgraded
     cask     Ensure Homebrew Casks are installed
     atom     Ensure Atom installed via Homebrew Cask and apm packages are upgraded
@@ -430,7 +431,7 @@ Shows example output based on current dircolors settings.
 ### [`slept`](slept)
 ```
 usage: slept [-h|--help]
-Uses sysctl to discover when the last time OS X slept was.
+Uses sysctl to discover when the last time macOS slept was.
 ```
 
 * * *
@@ -469,14 +470,14 @@ Shows the current weather in the given location.
 * * *
 ### [`whereami`](whereami)
 ```
-usage: /Users/amy/bin/whereami
+usage: /Users/atroschinetz/bin/whereami
 ```
 
 * * *
 ### [`woke`](woke)
 ```
 usage: woke [-h|--help]
-Uses sysctl to discover when the last time OS X woke was.
+Uses sysctl to discover when the last time macOS woke was.
 ```
 
 * * *
@@ -527,9 +528,9 @@ Options:
                                      youtube-dl guess ("auto_warning" to emit a warning when guessing). "error" just
                                      throws an error. The default value "fixup_error" repairs broken URLs, but emits an
                                      error if this is not possible instead of searching.
-    --ignore-config                  Do not read configuration files. When given in the global configuration file
-                                     /etc/youtube-dl.conf: Do not read the user configuration in ~/.config/youtube-
-                                     dl/config (%APPDATA%/youtube-dl/config.txt on Windows)
+    --ignore-config                  Do not read configuration files. When given in the global configuration file /etc
+                                     /youtube-dl.conf: Do not read the user configuration in ~/.config/youtube-dl/config
+                                     (%APPDATA%/youtube-dl/config.txt on Windows)
     --config-location PATH           Location of the configuration file; either the path to the config or its containing
                                      directory.
     --flat-playlist                  Do not extract the videos of a playlist, only list them.

@@ -41,8 +41,8 @@ export these settings to a remote machine.
 
 ## Environment: `~/env`
 
-* [`Solarized Light.itermcolors`](env/Solarized Light.itermcolors) and
-  [`Solarized Light xterm-256color.terminal`](env/Solarized Light xterm-256color.terminal)
+* `Solarized Light.itermcolors` and
+  `Solarized Light xterm-256color.terminal`
   themes to use in `Terminal.app` or [`iTerm.app`](http://iterm2.com/).
 * [`sane.css`](env/sane.css) style sheet for annoying websites.
 * Fonts that I like to use, install them with [`bin/install_fonts`](bin/install_fonts).

@@ -171,14 +171,15 @@ streetsidesoftware.code-spell-checker
 Pip Packages: git-sweep3k, glances, httpie, inflection, isort, patch, 
 python-json-logger, termcolor, yapf
 
-Conda Packages: asn1crypto, babel, beautifulsoup4, ca-certificates, certifi, 
-cffi, chardet, conda, conda-env, cryptography, decorator, flake8, idna, 
-ipython, ipython_genutils, jedi, libcxx, libcxxabi, libedit, libffi, ncurses, 
-nose, openssl, pep8, pexpect, pickleshare, pip, prompt_toolkit, ptyprocess, 
-pycosat, pycparser, pyflakes, pygments, pylint, pyopenssl, pysocks, pytest, 
-python-dateutil, python.app, pytz, pyyaml, readline, requests, ruamel_yaml, 
-setuptools, simplegeneric, six, sqlite, tk, traitlets, urllib3, wcwidth, wheel, 
-xz, yaml, zlib
+Conda Packages: appnope, asn1crypto, astroid, attrs, babel, ca-certificates, 
+certifi, cffi, chardet, conda, conda-env, coverage, cryptography, decorator, 
+flake8, hypothesis, idna, ipython, ipython_genutils, jedi, lazy-object-proxy, 
+libcxx, libcxxabi, libedit, libffi, mccabe, ncurses, nose, openssl, parso, 
+pep8, pexpect, pickleshare, pip, pluggy, prompt_toolkit, ptyprocess, py, 
+pycodestyle, pycosat, pycparser, pyflakes, pygments, pylint, pympler, 
+pyopenssl, pysocks, pytest, python-dateutil, python.app, pytz, pyyaml, 
+readline, requests, ruamel_yaml, setuptools, simplegeneric, six, sqlite, tk, 
+traitlets, urllib3, wcwidth, wheel, wrapt, xz, yaml, zlib, zope, zope.interface
 
 Gem Packages: CFPropertyList, actionmailer, actionpack, actionview, activejob, 
 activesupport, addressable, ast, bigdecimal, blankslate, builder, 

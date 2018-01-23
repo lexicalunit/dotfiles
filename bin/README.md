@@ -314,14 +314,15 @@ streetsidesoftware.code-spell-checker
 Pip Packages: git-sweep3k, glances, httpie, inflection, isort, patch, 
 python-json-logger, termcolor, yapf
 
-Conda Packages: asn1crypto, babel, beautifulsoup4, ca-certificates, certifi, 
-cffi, chardet, conda, conda-env, cryptography, decorator, flake8, idna, 
-ipython, ipython_genutils, jedi, libcxx, libcxxabi, libedit, libffi, ncurses, 
-nose, openssl, pep8, pexpect, pickleshare, pip, prompt_toolkit, ptyprocess, 
-pycosat, pycparser, pyflakes, pygments, pylint, pyopenssl, pysocks, pytest, 
-python-dateutil, python.app, pytz, pyyaml, readline, requests, ruamel_yaml, 
-setuptools, simplegeneric, six, sqlite, tk, traitlets, urllib3, wcwidth, wheel, 
-xz, yaml, zlib
+Conda Packages: appnope, asn1crypto, astroid, attrs, babel, ca-certificates, 
+certifi, cffi, chardet, conda, conda-env, coverage, cryptography, decorator, 
+flake8, hypothesis, idna, ipython, ipython_genutils, jedi, lazy-object-proxy, 
+libcxx, libcxxabi, libedit, libffi, mccabe, ncurses, nose, openssl, parso, 
+pep8, pexpect, pickleshare, pip, pluggy, prompt_toolkit, ptyprocess, py, 
+pycodestyle, pycosat, pycparser, pyflakes, pygments, pylint, pympler, 
+pyopenssl, pysocks, pytest, python-dateutil, python.app, pytz, pyyaml, 
+readline, requests, ruamel_yaml, setuptools, simplegeneric, six, sqlite, tk, 
+traitlets, urllib3, wcwidth, wheel, wrapt, xz, yaml, zlib, zope, zope.interface
 
 Gem Packages: CFPropertyList, actionmailer, actionpack, actionview, activejob, 
 activesupport, addressable, ast, bigdecimal, blankslate, builder, 
@@ -536,9 +537,9 @@ Options:
                                      youtube-dl guess ("auto_warning" to emit a warning when guessing). "error" just
                                      throws an error. The default value "fixup_error" repairs broken URLs, but emits an
                                      error if this is not possible instead of searching.
-    --ignore-config                  Do not read configuration files. When given in the global configuration file /etc
-                                     /youtube-dl.conf: Do not read the user configuration in ~/.config/youtube-dl/config
-                                     (%APPDATA%/youtube-dl/config.txt on Windows)
+    --ignore-config                  Do not read configuration files. When given in the global configuration file
+                                     /etc/youtube-dl.conf: Do not read the user configuration in ~/.config/youtube-
+                                     dl/config (%APPDATA%/youtube-dl/config.txt on Windows)
     --config-location PATH           Location of the configuration file; either the path to the config or its containing
                                      directory.
     --flat-playlist                  Do not extract the videos of a playlist, only list them.

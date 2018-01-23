@@ -8,6 +8,14 @@ usage: alert [-qh] [message]
 ```
 
 * * *
+### [`backmost`](backmost)
+```
+usage: backmost [-h|--help]
+
+    -h, --help: print usage help
+```
+
+* * *
 ### [`capture_x`](capture_x)
 ```
 usage: capture_x [-h|--help]

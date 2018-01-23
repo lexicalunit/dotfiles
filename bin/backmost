@@ -1,0 +1,93 @@
+#!/usr/bin/osascript
+
+-- Send the current frontmost windowed macOS application to the back.
+
+on run argv
+    set params to {}
+    repeat with arg in argv
+        repeat 1 times -- inner loop to allow continuation of outer loop
+            set arg to arg as text
+            if arg = "-h" or arg = "--help" then
+                return "usage: backmost [-h|--help]
+
+    -h, --help: print usage help"
+            end if
+
+            copy arg to end of params
+        end repeat
+    end repeat
+
+    -- TODO: Figure out how to get order of applications in Dock's Application Switcher list.
+    -- TODO: Move backmost application to back of hidden applications too.
+    -- TODO: Reduce application window flickering as script executes.
+    tell application "System Events"
+        set backmost to name of first application processes where frontmost is true
+        tell process backmost to set visible to false
+
+        set head to name of first application processes where frontmost is true
+
+        set others to name of application processes where visible is true and frontmost is false
+        repeat with other in others
+            set frontmost of process other to true
+        end repeat
+
+        set frontmost of process head to true
+    end tell
+end run
+
+-- ############################## Junk Code Below ##############################
+
+# application process Dock
+# application process Finder
+# application process System Events
+# application process SystemUIServer
+
+# tell application "System Events" to UI elements of UI element 1 of UI element 1 of UI element 1 of process "Finder"
+
+# tell application "System Events" to name of attributes of process "Dock"
+# tell application "System Events"
+#     # AXRole
+#     # AXRoleDescription
+#     # AXTitle
+#     # AXChildren
+#     # AXFocusedUIElement
+#     # AXEnhancedUserInterface
+#
+#     set atts to attributes of process "Dock" where name is "AXChildren"
+#     log atts
+#
+#     # set atts to attributes of process "Dock"
+#     # repeat with att in atts
+#     #     set n to name of att
+#     #     log n
+#     # end repeat
+# end tell
+
+# tell application "System Events"
+#     set elms to UI elements of process "Dock"
+#     # set orientation of "Dock" to "AXHorizontalOrientation"
+#     repeat with elm in elms
+#         set props to properties of elm
+#         # set orientation of props to "AXHorizontalOrientation"
+#         # set orientation of elm to "AXHorizontalOrientation"
+#     end repeat
+# end tell
+
+# tell application "Finder"
+#    name of first file of (path to preferences folder) whose name contains "applescript"
+# end tell
+
+# tell application "Dock"
+#     # AXProcessSwitcherList
+#     tell item 1
+#         get properties
+#     end tell
+# end tell
+
+# tell application "System Events"
+#     # set pp to application processes where visible is false and window is not null
+#     set pp to application processes where window is {}
+#     repeat with ppi in pp
+#         log ppi
+#     end repeat
+# end tell

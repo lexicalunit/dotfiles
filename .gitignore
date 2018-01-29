@@ -33,6 +33,7 @@
 /.aws
 /.base16_theme
 /.bash_history*
+/.bash_sessions
 /.bokeh
 /.bundle/cache
 /.cache/bower

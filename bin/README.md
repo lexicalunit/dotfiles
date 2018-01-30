@@ -259,12 +259,12 @@ steps:
     cargo    Ensure Rust packages are installed via cargo
     env      Update to latest all submodules in your dotfiles
 
-Homebrew Formulas: adns, ammonite-repl, autoconf, automake, avro-tools, bash, 
-bison, boost, clang-format, cloog, cmake, colordiff, coreutils, cppunit, 
-csv-fix, diff-so-fancy, dmd, docker, docker-compose, doxygen, erlang, faac, 
-fasd, ffmpeg, fontconfig, freetype, gd, gdbm, geoip, gettext, ghostscript, 
-gifsicle, git, git-flow, git-review, git-secrets, glib, gmp, gnu-sed, gnu-tar, 
-gnupg, gnutls, gradle, hub, icu4c, id3lib, id3v2, imagemagick@6, isl, jasper, 
+Homebrew Formulas: adns, autoconf, automake, avro-tools, bash, bison, boost, 
+clang-format, cloog, cmake, colordiff, coreutils, cppunit, csv-fix, 
+diff-so-fancy, dmd, docker, docker-compose, doxygen, erlang, faac, fasd, 
+ffmpeg, fontconfig, freetype, gd, gdbm, geoip, gettext, ghostscript, gifsicle, 
+git, git-flow, git-review, git-secrets, glib, gmp, gnu-sed, gnu-tar, gnupg, 
+gnutls, gradle, hub, icu4c, id3lib, id3v2, imagemagick@6, isl, jasper, 
 jbig2dec, jez/formulae/pandoc-sidenote, jhead, jo, jpeg, jq, kafkacat, lame, 
 libassuan, libevent, libffi, libgcrypt, libgpg-error, libgphoto2, libicns, 
 libidn2, libksba, libmpc, libpng, librdkafka, libssh2, libtasn1, libtiff, 

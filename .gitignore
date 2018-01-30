@@ -86,6 +86,7 @@
 /.scala_history
 /.sh_history*
 /.ssh
+/.subversion
 /.vagrant*
 /.vim/.netrwhist
 /.viminfo

@@ -328,11 +328,12 @@ activesupport, addressable, ast, bigdecimal, blankslate, builder,
 bundler-unload, claide, cocoapods, cocoapods-core, cocoapods-deintegrate, 
 cocoapods-downloader, cocoapods-plugins, cocoapods-search, cocoapods-stats, 
 cocoapods-trunk, cocoapods-try, coffee-script, coffee-script-source, colorator, 
-colored, colored2, commander, concurrent-ruby, crass, did_you_mean, erubis, 
-escape, execjs, executable-hooks, ffi, forwardable-extended, fourflusher, 
-fuzzy_match, gem-wrappers, gh_inspector, globalid, highline, i18n, io-console, 
-jekyll, jekyll-sass-converter, jekyll-watch, json, kramdown, liquid, listen, 
-lolcat, loofah, mail, mercenary, mime-types, mime-types-data, mini_portile2, 
+colored, colored2, commander, concurrent-ruby, crass, did_you_mean, 
+em-websocket, erubis, escape, eventmachine, execjs, executable-hooks, ffi, 
+forwardable-extended, fourflusher, fuzzy_match, gem-wrappers, gh_inspector, 
+globalid, highline, http_parser.rb, i18n, io-console, jekyll, 
+jekyll-sass-converter, jekyll-watch, json, kramdown, liquid, listen, lolcat, 
+loofah, mail, mercenary, mime-types, mime-types-data, mini_mime, mini_portile2, 
 minitest, molinillo, nanaimo, nap, net-telnet, netrc, nokogiri, openssl, paint, 
 parallel, parser, parslet, pathutil, pkg-config, power_assert, powerpack, 
 psych, public_suffix, puppet-lint, rack, rack-test, rails-deprecated_sanitizer, 
@@ -478,7 +479,7 @@ Shows the current weather in the given location.
 * * *
 ### [`whereami`](whereami)
 ```
-usage: /Users/amy/bin/whereami
+usage: /Users/amytroschinetz/bin/whereami
 ```
 
 * * *

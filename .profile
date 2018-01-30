@@ -265,6 +265,7 @@ if type htop >/dev/null 2>&1; then alias top='htop '; fi
 
 export RSYNC_RSH=rsh # use ssh over rsync
 alias ssh='ssh -Y -C ' # use compression over ssh connections
+test -f "$HOME/.ssh/id_rsa" && /usr/bin/ssh-add -K >/dev/null 2>&1 # use keychain for ssh keys
 
 fuck() {
     die $1

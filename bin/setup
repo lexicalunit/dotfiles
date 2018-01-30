@@ -708,12 +708,12 @@ step_osx() {
     run "defaults write com.apple.dock wvous-bl-modifier -int 0"
 
     show "Disable Ctrl+Up Mission Control shortcut"
-    run "defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 32 \"{ enabled = 0; }\""
-    run "defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 34 \"{ enabled = 0; }\""
+    run "defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 32 \"{enabled = 0; value = { parameters = (65535, 126, 8650752); type = 'standard'; }; }\""
+    run "defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 34 \"{enabled = 0; value = { parameters = (65535, 126, 8781824); type = 'standard'; }; }\""
 
     show "Disable Ctrl+Down Mission Control shortcut"
-    run "defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 33 \"{ enabled = 0; }\""
-    run "defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 35 \"{ enabled = 0; }\""
+    run "defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 33 \"{enabled = 0; value = { parameters = (65535, 125, 8650752); type = 'standard'; }; }\""
+    run "defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 35 \"{enabled = 0; value = { parameters = (65535, 125, 8781824); type = 'standard'; }; }\""
 
     ########################################
     # Safari & WebKit

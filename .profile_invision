@@ -1,0 +1,52 @@
+#! .profile_invision
+
+studio() {
+cat <<EOF
+
+╭━━━╮╭╮╱╱╱╱╱╭╮
+┃╭━╮┣╯╰╮╱╱╱╱┃┃
+┃╰━━╋╮╭╋╮╭┳━╯┣┳━━╮
+╰━━╮┃┃┃┃┃┃┃╭╮┣┫╭╮┃
+┃╰━╯┃┃╰┫╰╯┃╰╯┃┃╰╯┣╮
+╰━━━╯╰━┻━━┻━━┻┻━━┻╯
+
+EOF
+}
+
+invision() {
+    echo $'        \e[38;5;203m\e[48;5;21m''                                                      '$'\e[0m'
+    echo $'        \e[38;5;203m\e[48;5;21m''         '$'\e[48;5;231m''  -ooooooooooooooooooooooooooooo`  '$'\e[48;5;21m''          '$'\e[0m'
+    echo $'        \e[38;5;203m\e[48;5;21m''         '$'\e[48;5;231m'' -osssssssssssssssssssssssssssss+` '$'\e[48;5;21m''          '$'\e[0m'
+    echo $'        \e[38;5;203m\e[48;5;21m''         '$'\e[48;5;231m'' osssssssssssssssssssssssssssssss: '$'\e[48;5;21m''          '$'\e[0m'
+    echo $'        \e[38;5;203m\e[48;5;21m''         '$'\e[48;5;231m'' osssssssssssssssssssssssssssssss: '$'\e[48;5;21m''          '$'\e[0m'
+    echo $'        \e[38;5;203m\e[48;5;21m''         '$'\e[48;5;231m'' ossssssss.  -sssssssssssssssssss: '$'\e[48;5;21m''          '$'\e[0m'
+    echo $'        \e[38;5;203m\e[48;5;21m''         '$'\e[48;5;231m'' ossssssss:``/sssssssssssssssssss: '$'\e[48;5;21m''          '$'\e[0m'
+    echo $'        \e[38;5;203m\e[48;5;21m''         '$'\e[48;5;231m'' ossssso+++++so++++oso+/+osssssss: '$'\e[48;5;21m''          '$'\e[0m'
+    echo $'        \e[38;5;203m\e[48;5;21m''         '$'\e[48;5;231m'' osssss.    `s-    --     /ssssss: '$'\e[48;5;21m''          '$'\e[0m'
+    echo $'        \e[38;5;203m\e[48;5;21m''         '$'\e[48;5;231m'' osssssso`  /sss`  .oso.  .ssssss: '$'\e[48;5;21m''          '$'\e[0m'
+    echo $'        \e[38;5;203m\e[48;5;21m''         '$'\e[48;5;231m'' ossssss:  `sss/  `ssss.  :ssssss: '$'\e[48;5;21m''          '$'\e[0m'
+    echo $'        \e[38;5;203m\e[48;5;21m''         '$'\e[48;5;231m'' ossssss`  /sss`  :sss/  `ossssss: '$'\e[48;5;21m''          '$'\e[0m'
+    echo $'        \e[38;5;203m\e[48;5;21m''         '$'\e[48;5;231m'' osssss/  `ss+.  `ssss.  :s--ssss: '$'\e[48;5;21m''          '$'\e[0m'
+    echo $'        \e[38;5;203m\e[48;5;21m''         '$'\e[48;5;231m'' ossssso`  ``:`  /ssss/    -ossss: '$'\e[48;5;21m''          '$'\e[0m'
+    echo $'        \e[38;5;203m\e[48;5;21m''         '$'\e[48;5;231m'' osssssssooossooosssssssoosssssss: '$'\e[48;5;21m''          '$'\e[0m'
+    echo $'        \e[38;5;203m\e[48;5;21m''         '$'\e[48;5;231m'' osssssssssssssssssssssssssssssss: '$'\e[48;5;21m''          '$'\e[0m'
+    echo $'        \e[38;5;203m\e[48;5;21m''         '$'\e[48;5;231m'' osssssssssssssssssssssssssssssss- '$'\e[48;5;21m''          '$'\e[0m'
+    echo $'        \e[38;5;203m\e[48;5;21m''         '$'\e[48;5;231m'  '`+oooooooooooooooooooooooooooo+:  '$'\e[48;5;21m''          '$'\e[0m'
+    echo $'        \e[38;5;203m\e[48;5;21m''                                                      '$'\e[0m'
+    echo $'        \e[38;5;203m\e[48;5;21m''           Design better products, faster.            '$'\e[0m'
+    echo $'        \e[38;5;203m\e[48;5;21m''                                                      '$'\e[0m'
+}
+
+export NVM_DIR="$HOME/.nvm"
+# shellcheck source=/usr/local/opt/nvm/nvm.sh
+source "$(brew --prefix nvm)/nvm.sh"
+
+AWS_ACCESS_KEY_ID="$(security find-generic-password -a "$USER" -s invision_aws_access_key -w)"
+AWS_SECRET_ACCESS_KEY="$(security find-generic-password -a "$USER" -s invision_aws_secret_access_key -w)"
+GITHUB_TOKEN="$(security find-generic-password -a "$USER" -s invision_github_token -w)"
+export AWS_ACCESS_KEY_ID
+export AWS_SECRET_ACCESS_KEY
+export GITHUB_TOKEN
+export GOPATH="${GOPATH:-$HOME/code/go}"
+export USER_NAMESPACE="$USER-invisionapp"
+export TRAPEZOID_LOGGER_PORT=80

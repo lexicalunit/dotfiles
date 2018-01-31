@@ -137,7 +137,7 @@ vegeta, vramsteg, watch, wdiff, webp, wget, wxmac, x264, xvid, xz, yajl,
 yaml-cpp, youtube-dl, zeromq, zookeeper, zsh
 
 Homebrew Casks: 1password, atom, atom-beta, balsamiq-mockups, battle-net, 
-caffeine, clamxav, cyberduck, dbvisualizer, disk-inventory-x, dropbox, 
+caffeine, clamxav, cyberduck, dbvisualizer, disk-inventory-x, docker, dropbox, 
 evernote, fantastical, firefox, flux, google-chrome, google-hangouts, hipchat, 
 iexplorer, istumbler, iterm2, java, kaleidoscope, lingon-x, lisanet-gimp, 
 mactex, mysqlworkbench, oclint, silverlight, skype, slack, snes9x, sourcetree, 

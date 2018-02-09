@@ -43,18 +43,38 @@ invision() {
     echo $'\e[38;5;203m\e[48;5;21m''                                                                       '$'\e[0m'
 }
 
+# I typically use a conda environment for anything python related I want to install globally.
+# However for many InVision projects we expect to use the system standard Python 2.7.
+function _exit_conda_for_invision_projects() {
+    if [[ "$PWD" = *"/invision/"* ]]; then
+        exitconda
+    else
+        enterconda
+    fi
+}
+
+if [[ -n "$ZSH_VERSION" ]]; then
+    if [[ ! "$chpwd_functions" == *_exit_conda_for_invision_projects* ]]; then
+        chpwd_functions+=("_exit_conda_for_invision_projects")
+    fi
+fi
+
+# Setup Node version manager
 export NVM_DIR="$HOME/.nvm"
 # shellcheck source=/usr/local/opt/nvm/nvm.sh
 source "$(brew --prefix nvm)/nvm.sh"
 
+# Look for InVision Go code if GOPATH isn't already setup
+export GOPATH="${GOPATH:-$HOME/code/go}"
+
+# AWS and Github tokens
 AWS_ACCESS_KEY_ID="$(security find-generic-password -a "$USER" -s invision_aws_access_key -w)"
 AWS_SECRET_ACCESS_KEY="$(security find-generic-password -a "$USER" -s invision_aws_secret_access_key -w)"
 GITHUB_TOKEN="$(security find-generic-password -a "$USER" -s invision_github_token -w)"
 export AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY
 export GITHUB_TOKEN
-export GOPATH="${GOPATH:-$HOME/code/go}"
+
+# Applications
 export USER_NAMESPACE="$USER-invisionapp"
 export TRAPEZOID_LOGGER_PORT=80
-
-exitconda

@@ -1678,7 +1678,7 @@ step_env() {
 
     # install my prezto prompt
     if [[ -d ".zprezto/modules/prompt/functions" ]]; then
-        run "cp -uvf env/prompt_lexical_setup .zprezto/modules/prompt/functions"
+        run "cp -uvf '$HOME/env/prompt_lexical_setup' '$HOME/.zprezto/modules/prompt/functions'"
     fi
 
     # install git hooks

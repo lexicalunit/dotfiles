@@ -36,6 +36,8 @@ function prompt_lexical_python_pacman {
             pac="$pac:$CONDA_DEFAULT_ENV"
         fi
         pac="$pac"
+    else
+        pac="system"
     fi
     _prompt_lexical_python_pacman="$pac"
 }
@@ -108,9 +110,16 @@ function prompt_lexical_setup {
   zstyle ':prezto:module:ruby:info:version' format ' %F{yellow}[%v]%f'
 
   # Define prompts.
-  PROMPT='%(?..%F{red}%B-> [%?]%b%f
-)%F{magenta}%n%f@%F{yellow}%m%f|%F{green}${_prompt_lexical_pwd}%f${vcs_info_msg_0_}${ruby_info:+${ruby_info[version]}} %F{blue}[${_prompt_lexical_python_pacman}]%f
-%F{blue}${_prompt_lexical_symbol}%f '
+  USER_AT_MACHINE='%F{magenta}%n%f@%F{yellow}%m%f'
+  PROMPT_LAST_CMD_ERROR=$'%(?..%F{red}%B-> [%?]\n%b%f)'
+  PROMPT_DIR='%F{green}${_prompt_lexical_pwd}%f'
+  PROMPT_VCS='${vcs_info_msg_0_}'
+  PROMPT_RUBY='${ruby_info:+${ruby_info[version]}}'
+  PROMPT_PYTHON='%F{blue}[${_prompt_lexical_python_pacman}]%f'
+  PROMPT_LINE_ONE="$PROMPT_LAST_CMD_ERROR$USER_AT_MACHINE|$PROMPT_DIR$PROMPT_VCS$PROMPT_RUBY $PROMPT_PYTHON"
+  PROMPT_LINE_TWO='%F{blue}${_prompt_lexical_symbol}%f '
+  PROMPT="$PROMPT_LINE_ONE
+$PROMPT_LINE_TWO"
   SPROMPT='zsh: correct %F{magenta}%R%f to %F{green}%r%f [nyae]? '
 }
 

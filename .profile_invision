@@ -71,9 +71,7 @@ export GOPATH="${GOPATH:-$HOME/code/go}"
 AWS_ACCESS_KEY_ID="$(security find-generic-password -a "$USER" -s invision_aws_access_key -w)"
 AWS_SECRET_ACCESS_KEY="$(security find-generic-password -a "$USER" -s invision_aws_secret_access_key -w)"
 GITHUB_TOKEN="$(security find-generic-password -a "$USER" -s invision_github_token -w)"
-export AWS_ACCESS_KEY_ID
-export AWS_SECRET_ACCESS_KEY
-export GITHUB_TOKEN
+export AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY GITHUB_TOKEN
 
 # Applications
 export USER_NAMESPACE="$USER-invisionapp"

@@ -1,7 +1,0 @@
-#!/bin/bash -e
-
-# Installs git hooks needed to auto-generate README/LICENSE/setup files.
-
-cd "$HOME/.git/hooks"
-ln -sf "../../env/pre-commit" .
-ln -sf "../../env/post-commit" .

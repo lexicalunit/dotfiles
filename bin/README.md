@@ -165,13 +165,6 @@ Uses `go list` to list all user installed go packages that aren't dependencies.
 ```
 
 * * *
-### [`install_fonts`](install_fonts)
-```
-usage: install_fonts [-h|--help]
-Installs fonts that I like.
-```
-
-* * *
 ### [`install_odbc`](install_odbc)
 ```
 usage: install_odbc [-h|--help]
@@ -249,15 +242,15 @@ steps:
     java     Ensure that Apple's java for macOS is installed
     brew     Ensure Homebrew installed and formulas upgraded
     cask     Ensure Homebrew Casks are installed
-    atom     Ensure Atom installed via Homebrew Cask and apm packages are upgraded
-    code     Ensure VS Code installed via Homebrew Cask and its packages are installed
     zsh      Ensure shell is latest version of zsh from Homebrew
+    env      Update envrionment configuration and submodules
     python   Upgrade/Install Anaconda, pip packages, and conda packages
-    gem      Upgrade/Install gem packages and rubygems-update package
     node     Ensure Node modules are installed via npm
     go       Ensure Go packages are installed
     cargo    Ensure Rust packages are installed via cargo
-    env      Update to latest all submodules in your dotfiles
+    gem      Upgrade/Install gem packages and rubygems-update package
+    atom     Ensure Atom installed via Homebrew Cask and apm packages are upgraded
+    code     Ensure VS Code installed via Homebrew Cask and its packages are installed
 
 Homebrew Formulas: adns, autoconf, automake, avro-tools, bash, bison, boost, 
 clang-format, cloog, cmake, colordiff, coreutils, cppunit, csv-fix, 

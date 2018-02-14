@@ -9,11 +9,11 @@
 HOMEBREW_FORMULAS="                                                            \
     adns autoconf automake avro-tools bash bison boost clang-format cloog      \
     cmake colordiff coreutils cppunit csv-fix diff-so-fancy dmd docker         \
-    docker-compose doxygen erlang faac fasd ffmpeg fontconfig freetype gd gdbm \
-    geoip gettext ghostscript gifsicle git git-flow git-review git-secrets     \
-    glib gmp gnu-sed gnu-tar gnupg gnutls gradle hub icu4c id3lib id3v2        \
-    imagemagick@6 isl jasper jbig2dec jez/formulae/pandoc-sidenote jhead jo    \
-    jpeg jq kafkacat lame libassuan libevent libffi libgcrypt libgpg-error     \
+    docker-compose doxygen erlang faac fasd ffmpeg flake8 fontconfig freetype  \
+    gd gdbm geoip gettext ghostscript gifsicle git git-flow git-review         \
+    git-secrets glib gmp gnu-sed gnu-tar gnupg gnutls gradle hub icu4c id3lib  \
+    id3v2 imagemagick@6 isl jasper jbig2dec jez/formulae/pandoc-sidenote jhead \
+    jo jpeg jq kafkacat lame libassuan libevent libffi libgcrypt libgpg-error  \
     libgphoto2 libicns libidn2 libksba libmpc libpng librdkafka libssh2        \
     libtasn1 libtiff libtool libunistring libusb libusb-compat libvo-aacenc    \
     libyaml little-cms2 lz4 lzlib makedepend maven md5sha1sum memcached        \
@@ -61,16 +61,16 @@ CODE_PACKAGES="                                                                \
     streetsidesoftware.code-spell-checker"
 
 PIP_PACKAGES="                                                                 \
-    git-sweep3k glances httpie inflection isort patch python-json-logger       \
-    termcolor yapf"
+    git-sweep3k glances httpie inflection patch pyobjc python-json-logger      \
+    termcolor"
 
 CONDA_PACKAGES="                                                               \
     appnope asn1crypto astroid attrs babel ca-certificates certifi cffi        \
-    chardet conda conda-env coverage cryptography decorator flake8 hypothesis  \
-    idna ipython ipython_genutils jedi lazy-object-proxy libcxx libcxxabi      \
-    libedit libffi mccabe ncurses nose openssl parso pep8 pexpect pickleshare  \
-    pip pluggy prompt_toolkit ptyprocess py pycodestyle pycosat pycparser      \
-    pyflakes pygments pylint pympler pyopenssl pysocks pytest python-dateutil  \
+    chardet conda conda-env coverage cryptography decorator hypothesis idna    \
+    ipython ipython_genutils jedi lazy-object-proxy libcxx libcxxabi libedit   \
+    libffi mccabe ncurses nose openssl parso pep8 pexpect pickleshare pip      \
+    pluggy prompt_toolkit ptyprocess py pycodestyle pycosat pycparser pyflakes \
+    pygments pylint pympler pyopenssl pysocks pytest python-dateutil           \
     python.app pytz pyyaml readline requests ruamel_yaml setuptools            \
     simplegeneric six sqlite tk traitlets urllib3 wcwidth wheel wrapt xz yaml  \
     zlib zope zope.interface"
@@ -406,9 +406,27 @@ step_osx() {
 
     if [[ -e "$HOME/env/Rio.jpg" ]]; then
         show "Set wallpaper to $HOME/env/Rio.jpg"
-        run "rm -rf '$HOME/Library/Application' Support/Dock/desktoppicture.db"
-        run "sudo rm -rf /System/Library/CoreServices/DefaultDesktop.jpg"
-        run "sudo ln -s '$HOME/env/Rio.jpg' /System/Library/CoreServices/DefaultDesktop.jpg"
+
+        run "sudo cp -uvf '$HOME/env/Rio.jpg' /System/Library/CoreServices/DefaultDesktop.jpg"
+        run "sudo chown root:wheel '$HOME/env/Rio.jpg'"
+
+        run "sudo mkdir -p /Users/Shared/Background"
+        run "sudo cp -uvf '$HOME/env/Rio.jpg' /Users/Shared/Background/custombg.jpeg"
+        run "sudo chown -R root:wheel /Users/Shared/Background"
+
+        MINOR_MACOS_VERSION="$(sw_vers | grep ProductVersion: | cut -f2 | cut -f2 -d.)"
+        if [[ "$MINOR_MACOS_VERSION" -ge 9 ]]; then
+            run "sqlite3 '$HOME/Library/Application Support/Dock/desktoppicture.db' 'delete from data;'"
+            run "sqlite3 '$HOME/Library/Application Support/Dock/desktoppicture.db' 'insert into data values (\"$HOME/env/Rio.jpg\");'"
+        else
+            run "defaults write com.apple.desktop Background '{default = {ImageFilePath = \"/Users/Shared/Background/custombg.jpeg\"; };}'"
+        fi
+
+        if type set_wallpaper >/dev/null 2>&1; then
+            run "set_wallpaper --path '$HOME/env/Rio.jpg'"
+        fi
+
+        run "killall Dock"
     fi
 
     ########################################
@@ -1209,6 +1227,9 @@ step_brew() {
             fi
         done
     }
+
+    # setup user symlinks for some tools to make IDE integration easier
+    run "ln -sf '$(brew --prefix flake8)/bin/flake8' '$HOME/bin/.'"
 }
 
 ################################################################################
@@ -1400,6 +1421,15 @@ step_bash() {
 step_python() {
     # PyYAML is required for yaml2json CLI tool, so it needs to work outside of anaconda environment.
     run "sudo /usr/bin/easy_install --upgrade PyYAML"
+
+    # isort and yapf required for IDE integration, install at the system level
+    run "sudo /usr/bin/easy_install --upgrade pip"
+    run "sudo /usr/local/bin/pip install isort"
+    run "sudo /usr/local/bin/pip install yapf"
+
+    # setup user symlinks for some tools to make IDE integration easier
+    run "ln -sf '/usr/local/bin/isort' '$HOME/bin/.'"
+    run "ln -sf '/usr/local/bin/yapf' '$HOME/bin/.'"
 
     local ANACONDA_DIR_NAME="/usr/local/miniconda3"
 
@@ -1737,7 +1767,6 @@ fi
 
 # key;  question
 steps=(
-    "osx;           Override macOS \"defaults\" settings and configuration"
     "xcode;         Ensure that Xcode Command Line Tools are installed"
     "java;          Ensure that Apple's java for macOS is installed"
     "brew;          Ensure Homebrew installed and formulas upgraded"
@@ -1751,6 +1780,7 @@ steps=(
     "gem;           Upgrade/Install gem packages and rubygems-update package"
     "atom;          Ensure Atom installed via Homebrew Cask and apm packages are upgraded"
     "code;          Ensure VS Code installed via Homebrew Cask and its packages are installed"
+    "osx;           Override macOS \"defaults\" settings and configuration"
 )
 
 LISTING_OUTPUT=""

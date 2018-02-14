@@ -223,6 +223,18 @@ Prints the root directory of the current source repository.
 ```
 
 * * *
+### [`set_wallpaper`](set_wallpaper)
+```
+usage: set_wallpaper [-h] [--path PATH]
+
+Sets the desktop picture on all screens
+
+optional arguments:
+  -h, --help   show this help message and exit
+  --path PATH  The path of the image
+```
+
+* * *
 ### [`setup`](setup)
 ```
 usage: setup [-l|-d|-f|-h|--help] [all|step-name(s)]
@@ -237,7 +249,6 @@ options:
     step-name(s)   execute the given step(s)
 
 steps:
-    osx      Override macOS "defaults" settings and configuration
     xcode    Ensure that Xcode Command Line Tools are installed
     java     Ensure that Apple's java for macOS is installed
     brew     Ensure Homebrew installed and formulas upgraded
@@ -251,13 +262,14 @@ steps:
     gem      Upgrade/Install gem packages and rubygems-update package
     atom     Ensure Atom installed via Homebrew Cask and apm packages are upgraded
     code     Ensure VS Code installed via Homebrew Cask and its packages are installed
+    osx      Override macOS "defaults" settings and configuration
 
 Homebrew Formulas: adns, autoconf, automake, avro-tools, bash, bison, boost, 
 clang-format, cloog, cmake, colordiff, coreutils, cppunit, csv-fix, 
 diff-so-fancy, dmd, docker, docker-compose, doxygen, erlang, faac, fasd, 
-ffmpeg, fontconfig, freetype, gd, gdbm, geoip, gettext, ghostscript, gifsicle, 
-git, git-flow, git-review, git-secrets, glib, gmp, gnu-sed, gnu-tar, gnupg, 
-gnutls, gradle, hub, icu4c, id3lib, id3v2, imagemagick@6, isl, jasper, 
+ffmpeg, flake8, fontconfig, freetype, gd, gdbm, geoip, gettext, ghostscript, 
+gifsicle, git, git-flow, git-review, git-secrets, glib, gmp, gnu-sed, gnu-tar, 
+gnupg, gnutls, gradle, hub, icu4c, id3lib, id3v2, imagemagick@6, isl, jasper, 
 jbig2dec, jez/formulae/pandoc-sidenote, jhead, jo, jpeg, jq, kafkacat, lame, 
 libassuan, libevent, libffi, libgcrypt, libgpg-error, libgphoto2, libicns, 
 libidn2, libksba, libmpc, libpng, librdkafka, libssh2, libtasn1, libtiff, 
@@ -303,18 +315,18 @@ dbaeumer.vscode-eslint, lukehoban.Go, magicstack.MagicPython, ms-python.python,
 robertohuertasm.vscode-icons, spywhere.guides, 
 streetsidesoftware.code-spell-checker
 
-Pip Packages: git-sweep3k, glances, httpie, inflection, isort, patch, 
-python-json-logger, termcolor, yapf
+Pip Packages: git-sweep3k, glances, httpie, inflection, patch, pyobjc, 
+python-json-logger, termcolor
 
 Conda Packages: appnope, asn1crypto, astroid, attrs, babel, ca-certificates, 
 certifi, cffi, chardet, conda, conda-env, coverage, cryptography, decorator, 
-flake8, hypothesis, idna, ipython, ipython_genutils, jedi, lazy-object-proxy, 
-libcxx, libcxxabi, libedit, libffi, mccabe, ncurses, nose, openssl, parso, 
-pep8, pexpect, pickleshare, pip, pluggy, prompt_toolkit, ptyprocess, py, 
-pycodestyle, pycosat, pycparser, pyflakes, pygments, pylint, pympler, 
-pyopenssl, pysocks, pytest, python-dateutil, python.app, pytz, pyyaml, 
-readline, requests, ruamel_yaml, setuptools, simplegeneric, six, sqlite, tk, 
-traitlets, urllib3, wcwidth, wheel, wrapt, xz, yaml, zlib, zope, zope.interface
+hypothesis, idna, ipython, ipython_genutils, jedi, lazy-object-proxy, libcxx, 
+libcxxabi, libedit, libffi, mccabe, ncurses, nose, openssl, parso, pep8, 
+pexpect, pickleshare, pip, pluggy, prompt_toolkit, ptyprocess, py, pycodestyle, 
+pycosat, pycparser, pyflakes, pygments, pylint, pympler, pyopenssl, pysocks, 
+pytest, python-dateutil, python.app, pytz, pyyaml, readline, requests, 
+ruamel_yaml, setuptools, simplegeneric, six, sqlite, tk, traitlets, urllib3, 
+wcwidth, wheel, wrapt, xz, yaml, zlib, zope, zope.interface
 
 Gem Packages: CFPropertyList, actionmailer, actionpack, actionview, activejob, 
 activesupport, addressable, ast, bigdecimal, blankslate, builder, 

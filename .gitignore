@@ -31,9 +31,9 @@
 # Applications
 /.ammonite
 /.aws
+/.babel.json
 /.base16_theme
 /.bash_history*
-/.babel.json
 /.bash_sessions
 /.bokeh
 /.bundle/cache
@@ -88,6 +88,7 @@
 /.sbt
 /.scala_history
 /.sh_history*
+/.sqlite_history
 /.ssh
 /.subversion
 /.vagrant*

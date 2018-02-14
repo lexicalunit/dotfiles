@@ -291,7 +291,7 @@ in_array() {
 }
 
 ################################################################################
-# Step osx
+# Step osx -- a.k.a macOS
 ################################################################################
 step_osx() {
     # Much of this step has been crafted from https://mths.be/osx
@@ -425,8 +425,6 @@ step_osx() {
         if type set_wallpaper >/dev/null 2>&1; then
             run "set_wallpaper --path '$HOME/env/Rio.jpg'"
         fi
-
-        run "killall Dock"
     fi
 
     ########################################
@@ -886,7 +884,6 @@ step_osx() {
         '{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
         '{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
     show "Load new settings before rebuilding the index"
-    run "killall mds >/dev/null 2>&1"
     show "Make sure indexing is enabled for the main volume"
     run "sudo mdutil -i on / >/dev/null"
     show "Rebuild the index from scratch"
@@ -1081,24 +1078,10 @@ EOF
     ########################################
     # Kill affected applications
     ########################################
-    for app in "Activity Monitor" \
-        "Address Book" \
-        "Calendar" \
-        "cfprefsd" \
-        "Contacts" \
-        "Dock" \
-        "Finder" \
-        "Google Chrome Canary" \
-        "Google Chrome" \
-        "Mail" \
-        "Messages" \
-        "Photos" \
-        "Safari" \
-        "SystemUIServer" \
-        "Terminal" \
-        "iCal"; do
-        run "killall '$app' &>/dev/null"
-    done
+    run "nohup killall Calendar cfprefsd Contacts Mail mds Messages Photos Safari >/dev/null 2>&1" &
+    run "nohup killall 'Activity Monitor' 'Address Book' 'Google Chrome Canary' 'Google Chrome' >/dev/null 2>&1" &
+    run "nohup killall Dock Finder >/dev/null 2>&1" &
+    run "nohup killall SystemUIServer >/dev/null 2>&1" &
     show -i "Done. Note that some of these changes require a logout/restart to take effect."
 }
 

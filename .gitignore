@@ -70,6 +70,7 @@
 /.jupyter/migrated
 /.kube
 /.lesshst
+/.local/share/nvim/shada/main.shada
 /.m2
 /.minikube
 /.mysql_history
@@ -103,7 +104,7 @@
 /.zhistory
 /.zsh_history*
 /.zsh-update
-/Dropbox*
 /Creative\ Cloud\ Files
+/Dropbox*
 /IdeaProjects
 /VirtualBox*

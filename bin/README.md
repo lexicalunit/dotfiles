@@ -275,7 +275,7 @@ libassuan, libevent, libffi, libgcrypt, libgpg-error, libgphoto2, libicns,
 libidn2, libksba, libmpc, libpng, librdkafka, libssh2, libtasn1, libtiff, 
 libtool, libunistring, libusb, libusb-compat, libvo-aacenc, libyaml, 
 little-cms2, lz4, lzlib, makedepend, maven, md5sha1sum, memcached, mongodb, 
-mpfr, mysql, ncftp, net-snmp, nettle, nginx, no-more-secrets, node, npth, 
+mpfr, mysql, ncftp, net-snmp, nettle, nginx, no-more-secrets, node, npth, nvm, 
 onepass, oniguruma, openssl, ossp-uuid, p11-kit, pandoc, pcre, percona-toolkit, 
 pidof, pinentry, pkg-config, plotutils, pngquant, postgresql, protobuf, pyenv, 
 pyenv-virtualenv, pyenv-virtualenvwrapper, rabbitmq, readline, redis, ripgrep, 
@@ -349,8 +349,8 @@ screengif, test-unit, thread_safe, toml, trollop, tzinfo,
 unicode-display_width, xcodeproj, xmlrpc
 
 Node Modules: JSON, all-contributors-cli, bower, coffee-script, coffeelint, 
-cson, decaffeinate, dockerlint, eslint, js-beautify, json-stable-stringify, 
-moment, nesh, raml2html, standard, tmpin
+cson, decaffeinate, dockerlint, eslint, external-ip, geoip-lite, js-beautify, 
+json-stable-stringify, moment, nesh, raml2html, standard, tmpin
 
 Go Packages: github.com/acroca/go-symbols, github.com/alecthomas/gometalinter, 
 github.com/cweill/gotests/gotests, github.com/derekparker/delve/cmd/dlv, 
@@ -542,9 +542,9 @@ Options:
                                      youtube-dl guess ("auto_warning" to emit a warning when guessing). "error" just
                                      throws an error. The default value "fixup_error" repairs broken URLs, but emits an
                                      error if this is not possible instead of searching.
-    --ignore-config                  Do not read configuration files. When given in the global configuration file /etc
-                                     /youtube-dl.conf: Do not read the user configuration in ~/.config/youtube-dl/config
-                                     (%APPDATA%/youtube-dl/config.txt on Windows)
+    --ignore-config                  Do not read configuration files. When given in the global configuration file
+                                     /etc/youtube-dl.conf: Do not read the user configuration in ~/.config/youtube-
+                                     dl/config (%APPDATA%/youtube-dl/config.txt on Windows)
     --config-location PATH           Location of the configuration file; either the path to the config or its containing
                                      directory.
     --flat-playlist                  Do not extract the videos of a playlist, only list them.

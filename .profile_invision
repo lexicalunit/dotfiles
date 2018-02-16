@@ -46,9 +46,9 @@ invision() {
 # I typically use a conda environment for anything python related I want to install globally.
 # However for many InVision projects we expect to use the system standard Python 2.7.
 function _exit_conda_for_invision_projects() {
-    if [[ "$PWD" = *"/invision/"* ]]; then
+    if [[ "$PWD" = *"/invision/"* && "$OLDPWD" != *"/invision/"* ]]; then
         exitconda
-    else
+    elif [[ "$OLDPWD" = *"/invision/"* ]]; then
         enterconda
     fi
 }
@@ -59,10 +59,19 @@ if [[ -n "$ZSH_VERSION" ]]; then
     fi
 fi
 
-# Setup Node version manager
-export NVM_DIR="$HOME/.nvm"
-# shellcheck source=/usr/local/opt/nvm/nvm.sh
-source "$(brew --prefix nvm)/nvm.sh"
+function _enter_nvm_for_invision_projects() {
+    if [[ "$PWD" = *"/invision/"* && "$OLDPWD" != *"/invision/"* ]]; then
+        nvm use v8.9.4 >/dev/null
+    elif [[ "$OLDPWD" = *"/invision/"* ]]; then
+        nvm use system >/dev/null
+    fi
+}
+
+if [[ -n "$ZSH_VERSION" ]]; then
+    if [[ ! "$chpwd_functions" == *_enter_nvm_for_invision_projects* ]]; then
+        chpwd_functions+=("_enter_nvm_for_invision_projects")
+    fi
+fi
 
 # Look for InVision Go code if GOPATH isn't already setup
 export GOPATH="${GOPATH:-$HOME/code/go}"

@@ -50,6 +50,13 @@ if type brew >/dev/null 2>&1; then
     export PATH
     export MANPATH
     export PYTHONPATH
+
+    # node version manager
+    export NVM_DIR="$HOME/.nvm"
+    if brew --prefix nvm >/dev/null 2>&1; then
+        # shellcheck source=/usr/local/opt/nvm/nvm.sh
+        source "$(brew --prefix nvm)/nvm.sh"
+    fi
 fi
 
 # Add specific application paths, such as Python, rvm, etc...

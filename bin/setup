@@ -18,13 +18,13 @@ HOMEBREW_FORMULAS="                                                            \
     libtasn1 libtiff libtool libunistring libusb libusb-compat libvo-aacenc    \
     libyaml little-cms2 lz4 lzlib makedepend maven md5sha1sum memcached        \
     mongodb mpfr mysql ncftp net-snmp nettle nginx no-more-secrets node npth   \
-    onepass oniguruma openssl ossp-uuid p11-kit pandoc pcre percona-toolkit    \
-    pidof pinentry pkg-config plotutils pngquant postgresql protobuf pyenv     \
-    pyenv-virtualenv pyenv-virtualenvwrapper rabbitmq readline redis ripgrep   \
-    rust s3cmd sane-backends sbt scala scons sdl2 sdl2_image shellcheck        \
-    sloccount spark sqlite sqliteodbc storm swig tree unixodbc unrar v8 vegeta \
-    vramsteg watch wdiff webp wget wxmac x264 xvid xz yajl yaml-cpp youtube-dl \
-    zeromq zookeeper zsh"
+    nvm onepass oniguruma openssl ossp-uuid p11-kit pandoc pcre                \
+    percona-toolkit pidof pinentry pkg-config plotutils pngquant postgresql    \
+    protobuf pyenv pyenv-virtualenv pyenv-virtualenvwrapper rabbitmq readline  \
+    redis ripgrep rust s3cmd sane-backends sbt scala scons sdl2 sdl2_image     \
+    shellcheck sloccount spark sqlite sqliteodbc storm swig tree unixodbc      \
+    unrar v8 vegeta vramsteg watch wdiff webp wget wxmac x264 xvid xz yajl     \
+    yaml-cpp youtube-dl zeromq zookeeper zsh"
 
 HOMEBREW_CASKS="                                                               \
     1password atom atom-beta balsamiq-mockups battle-net caffeine clamxav      \
@@ -97,8 +97,8 @@ GEM_PACKAGES="                                                                 \
 
 NODE_MODULES="                                                                 \
     JSON all-contributors-cli bower coffee-script coffeelint cson decaffeinate \
-    dockerlint eslint js-beautify json-stable-stringify moment nesh raml2html  \
-    standard tmpin"
+    dockerlint eslint external-ip geoip-lite js-beautify json-stable-stringify \
+    moment nesh raml2html standard tmpin"
 
 GO_PACKAGES="                                                                  \
     github.com/acroca/go-symbols github.com/alecthomas/gometalinter            \
@@ -1559,6 +1559,12 @@ step_node() {
         ensure_homebrew_updated_cleanup
     elif type brew >/dev/null 2>&1; then
         run "brew upgrade cargo"
+    fi
+
+    # Ensure that we're installing to the system's Node
+    if type nvm >/dev/null 2>&1; then
+        run "nvm alias default system"
+        run "nvm use system"
     fi
 
     # Homebrew Caveat

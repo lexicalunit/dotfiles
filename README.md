@@ -127,7 +127,7 @@ libassuan, libevent, libffi, libgcrypt, libgpg-error, libgphoto2, libicns,
 libidn2, libksba, libmpc, libpng, librdkafka, libssh2, libtasn1, libtiff, 
 libtool, libunistring, libusb, libusb-compat, libvo-aacenc, libyaml, 
 little-cms2, lz4, lzlib, makedepend, maven, md5sha1sum, memcached, mongodb, 
-mpfr, mysql, ncftp, net-snmp, nettle, nginx, no-more-secrets, node, npth, 
+mpfr, mysql, ncftp, net-snmp, nettle, nginx, no-more-secrets, node, npth, nvm, 
 onepass, oniguruma, openssl, ossp-uuid, p11-kit, pandoc, pcre, percona-toolkit, 
 pidof, pinentry, pkg-config, plotutils, pngquant, postgresql, protobuf, pyenv, 
 pyenv-virtualenv, pyenv-virtualenvwrapper, rabbitmq, readline, redis, ripgrep, 
@@ -201,8 +201,8 @@ screengif, test-unit, thread_safe, toml, trollop, tzinfo,
 unicode-display_width, xcodeproj, xmlrpc
 
 Node Modules: JSON, all-contributors-cli, bower, coffee-script, coffeelint, 
-cson, decaffeinate, dockerlint, eslint, js-beautify, json-stable-stringify, 
-moment, nesh, raml2html, standard, tmpin
+cson, decaffeinate, dockerlint, eslint, external-ip, geoip-lite, js-beautify, 
+json-stable-stringify, moment, nesh, raml2html, standard, tmpin
 
 Go Packages: github.com/acroca/go-symbols, github.com/alecthomas/gometalinter, 
 github.com/cweill/gotests/gotests, github.com/derekparker/delve/cmd/dlv, 

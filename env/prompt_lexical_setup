@@ -42,6 +42,10 @@ function prompt_lexical_python_pacman {
     _prompt_lexical_python_pacman="$pac"
 }
 
+function prompt_lexical_nvm {
+    _prompt_lexical_nvm="$(nvm current)"
+}
+
 # I don't want to use the ruby module, but I want rvm version in my prompt.
 # This function is a modified version of the one available in the ruby module.
 function prompt_lexial_ruby_info {
@@ -74,6 +78,7 @@ function prompt_lexical_precmd {
   vcs_info
   prompt_lexical_python_pacman
   prompt_lexial_ruby_info
+  prompt_lexical_nvm
 }
 
 function prompt_lexical_setup {
@@ -116,7 +121,8 @@ function prompt_lexical_setup {
   PROMPT_VCS='${vcs_info_msg_0_}'
   PROMPT_RUBY='${ruby_info:+${ruby_info[version]}}'
   PROMPT_PYTHON='%F{blue}[${_prompt_lexical_python_pacman}]%f'
-  PROMPT_LINE_ONE="$PROMPT_LAST_CMD_ERROR$USER_AT_MACHINE|$PROMPT_DIR$PROMPT_VCS$PROMPT_RUBY $PROMPT_PYTHON"
+  PROMPT_NVM='%F{green}[${_prompt_lexical_nvm}]%f'
+  PROMPT_LINE_ONE="$PROMPT_LAST_CMD_ERROR$USER_AT_MACHINE|$PROMPT_DIR$PROMPT_VCS$PROMPT_RUBY $PROMPT_PYTHON $PROMPT_NVM"
   PROMPT_LINE_TWO='%F{blue}${_prompt_lexical_symbol}%f '
   PROMPT="$PROMPT_LINE_ONE
 $PROMPT_LINE_TWO"

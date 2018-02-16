@@ -36,7 +36,7 @@ HOMEBREW_CASKS="                                                               \
     visual-studio-code vlc whatsapp xquartz"
 
 ATOM_PACKAGES="                                                                \
-    MagicPython activate-power-mode aesthetic-ui atom-beautify atom-isort      \
+    activate-power-mode aesthetic-ui atom-beautify atom-isort                  \
     atom-language-avro atom-notes auto-update-packages autocomplete-python     \
     base16-syntax busy-signal column-select cursor-indicator docblockr         \
     event-watch file-icons flatwhite-syntax force-tab format-shell git-blame   \

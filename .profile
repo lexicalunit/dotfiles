@@ -208,6 +208,7 @@ if type atom >/dev/null 2>&1; then
     # export EDITOR='atom -w'
     # export CVSEDITOR='atom -w'
     export OSXEDITOR='atom -w'
+    alias e='atom -a . '
     alias edit='atom '
     ew() { atom "$(which "$1")"; }
     eman() { man "$@" | col -bx | tmpin atom -w & }
@@ -226,6 +227,7 @@ fi
 
 # setup atom beta if it's installed
 if type atom-beta >/dev/null 2>&1; then
+    alias e='atom-beta -a . '
     alias edit='atom-beta '
     alias atom='atom-beta '
     alias apm='apm-beta '

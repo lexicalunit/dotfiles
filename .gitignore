@@ -85,6 +85,7 @@
 /.psql_history
 /.pyenv
 /.pyhistory
+/.python-eggs
 /.rvm
 /.sbt
 /.scala_history

@@ -311,8 +311,8 @@ lw() {
     fi
 }
 
+# shellcheck disable=SC2120
 hist() {
-    [[ $1 == "--workaround-sc2120" ]] && return
     if [[ "$SHELL" =~ "zsh" ]]; then
         if [[ -n "$*" ]]; then
             history 1 | grep -E "^\\s*[0-9]*\\s*.*$*.*$"
@@ -323,7 +323,6 @@ hist() {
         history | grep -E "^\\s*[0-9]*\\s*.*$*.*$"
     fi
 }
-hist --workaround-sc2120 # see: https://github.com/koalaman/shellcheck/wiki/SC2120
 
 # use gnu-sed if available
 if type gsed >/dev/null 2>&1; then

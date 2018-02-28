@@ -372,6 +372,11 @@ _interactive_log "setting up rvm"
 # https://github.com/sorin-ionescu/prezto/blob/master/modules/utility/init.zsh
 unalias cd
 
+# I don't like the "--color=auto" alias that prezto adds, use env vars instead.
+alias grep='nocorrect grep '
+export GREP_OPTIONS='--color=always'
+export GREP_COLOR='1;35;40'
+
 # shellcheck source=.rvm/scripts/rvm
 # shellcheck disable=SC1091
 test -s "$HOME/.rvm/scripts/rvm" && source "$_"

@@ -64,6 +64,9 @@ test -d /usr/local/lib/svn-python && PYTHONPATH="$_:$PYTHONPATH"
 test -d /opt/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
 test -d /usr/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
 
+# Add npm dev installed dependencies per project
+PATH="node_modules/.bin:$PATH"
+
 # Visual Studio Code
 test -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" && PATH="$PATH:$_"
 

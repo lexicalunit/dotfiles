@@ -22,11 +22,6 @@ else
     test -d /opt/X11/bin && PATH="$PATH:$_"
 fi
 
-# Then add specific paths that I use.
-test -d /usr/local/opt/ruby/bin && PATH="$PATH:$_"
-test -d /opt/local/bin && PATH="$PATH:$_"
-test -d /opt/local/sbin && PATH="$PATH:$_"
-
 # Export currently built PATH so the rest of this script has access to them.
 if test -e /usr/libexec/path_helper; then
     eval "$($_ -s)"

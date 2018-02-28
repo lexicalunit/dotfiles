@@ -106,13 +106,15 @@
   "isotope-ui":
     minimalMode: true
   linter:
-    lintOnChange: true
+    lintOnChange: false
   "linter-flake8":
     executablePath: "~/bin/flake8"
     maxLineLength: 100
   "linter-pep8":
     maxLineLength: 300
     pep8ExecutablePath: "/usr/local/bin/pep8"
+  "linter-shellcheck":
+    enableNotice: true
   "linter-ui-default":
     hidePanelWhenEmpty: true
     panelHeight: 163

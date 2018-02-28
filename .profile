@@ -38,7 +38,8 @@ if type brew >/dev/null 2>&1; then
     # Don't use brew installed python. Prefer an Anaconda distro instead.
     # test -d "$BREW_PREFIX/lib/python2.7/site-packages" && PYTHONPATH="$PYTHONPATH:$_"
     BREW_COREUTILS_PREFIX="$(brew --prefix coreutils 2>/dev/null)"
-    if [[ $? == 0 ]]; then
+    HAS_COREUTILS=$?
+    if [[ $HAS_COREUTILS -eq 0 ]]; then
         test -d "$BREW_COREUTILS_PREFIX/libexec/gnubin" && PATH="$_:$PATH"
         test -d "$BREW_COREUTILS_PREFIX/libexec/gnuman" && MANPATH="$_:$MANPATH"
     fi
@@ -50,6 +51,7 @@ if type brew >/dev/null 2>&1; then
     export NVM_DIR="$HOME/.nvm"
     if brew --prefix nvm >/dev/null 2>&1; then
         # shellcheck source=/usr/local/opt/nvm/nvm.sh
+        # shellcheck disable=SC1091
         source "$(brew --prefix nvm)/nvm.sh"
     fi
 fi
@@ -105,7 +107,7 @@ set -o emacs
 ################################################################################
 _interactive_log "setting up base16-shell"
 BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+[ -n "$PS1" ] && [ -s "$BASE16_SHELL/profile_helper.sh" ] && eval "$("$BASE16_SHELL/profile_helper.sh")"
 type -f _base16 >/dev/null 2>&1 && _base16 "$BASE16_SHELL/scripts/base16-solarized-light.sh" solarized-light
 
 ################################################################################
@@ -122,6 +124,7 @@ entervirtualenv() {
 
     if type virtualenvwrapper.sh >/dev/null 2>&1; then
         # shellcheck source=virtualenvwrapper.sh
+        # shellcheck disable=SC1091
         source "$(which virtualenvwrapper.sh)"
     fi
     export PYTHON_ENV="virtualenv"
@@ -169,6 +172,7 @@ enterconda() {
 exitconda() {
     if [[ -n "$CONDA_DEFAULT_ENV" ]]; then
         if which deactivate >/dev/null 2>&1; then
+            # shellcheck disable=SC1091
             source deactivate
         fi
     fi
@@ -272,10 +276,9 @@ alias ssh='ssh -Y -C ' # use compression over ssh connections
 test -f "$HOME/.ssh/id_rsa" && /usr/bin/ssh-add -K >/dev/null 2>&1 # use keychain for ssh keys
 
 fuck() {
-    die $1
-    if [[ $? == 0 ]]; then
+    if die "$1"; then
         echo
-        echo " (╯°□°）╯︵$(echo $1 | flip 2>/dev/null)"
+        echo " (╯°□°）╯︵$(echo "$1" | flip 2>/dev/null)"
         echo
     fi
 }
@@ -288,6 +291,7 @@ lw() {
     echo "$LOC"
     FINFO="$(file -h "$LOC")"
     if [[ "$FINFO" =~ "symbolic link to" ]]; then
+        # shellcheck disable=SC2001
         SYLOC="$(echo "$FINFO" | sed 's@.*symbolic link to\s*\(.*\)@\1@')"
         if [[ "$SYLOC" != /* ]]; then
             LOC="$(dirname "$LOC")/$SYLOC"
@@ -324,6 +328,7 @@ if type gsed >/dev/null 2>&1; then
 fi
 
 # shellcheck source=.docker_functions
+# shellcheck disable=SC1091
 test -f "$HOME/.docker_functions" && source "$_"
 
 ################################################################################
@@ -334,6 +339,7 @@ IFS=$'\n'
 for I in $(/bin/ls -1 ~/.profile_* 2>/dev/null) ; do
     _interactive_log "sourcing $(basename "$I")"
     # shellcheck source=$I
+    # shellcheck disable=SC1091
     source "$I"
 done
 [[ "$SHELL" =~ "zsh" ]] && setopt nomatch
@@ -343,12 +349,14 @@ IFS=' '
 # setup shell_control
 ################################################################################
 # shellcheck source=.shell_control
+# shellcheck disable=SC1091
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 ################################################################################
 # always assume we want our default anaconda environment
 ################################################################################
 _interactive_log "setting up conda environment"
+# shellcheck disable=SC2119
 enterconda || true
 
 ################################################################################
@@ -362,6 +370,7 @@ _interactive_log "setting up rvm"
 unalias cd
 
 # shellcheck source=.rvm/scripts/rvm
+# shellcheck disable=SC1091
 test -s "$HOME/.rvm/scripts/rvm" && source "$_"
 
 alias cd='nocorrect cd'

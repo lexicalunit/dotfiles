@@ -116,7 +116,7 @@ install packages/formulas/casks/whatever, see below for the list of included ite
 | code | Ensure VS Code installed via Homebrew Cask and its packages are installed |
 | osx | Override macOS "defaults" settings and configuration |
 
-Homebrew Formulas: adns, autoconf, automake, avro-tools, bash, bison, boost, 
+[1;35;40m[KHomebrew Formulas:[m[K adns, autoconf, automake, avro-tools, bash, bison, boost, 
 clang-format, cloog, cmake, colordiff, coreutils, cppunit, csv-fix, 
 diff-so-fancy, dmd, docker, docker-compose, doxygen, erlang, faac, fasd, 
 ffmpeg, flake8, fontconfig, freetype, gd, gdbm, geoip, gettext, ghostscript, 

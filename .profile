@@ -35,24 +35,42 @@ if type brew >/dev/null 2>&1; then
     BREW_PREFIX="$(brew --prefix)"
     test -d "$BREW_PREFIX/bin" && PATH="$_:$PATH"
     test -d "$BREW_PREFIX/sbin" && PATH="$_:$PATH"
+
     # Don't use brew installed python. Prefer an Anaconda distro instead.
     # test -d "$BREW_PREFIX/lib/python2.7/site-packages" && PYTHONPATH="$PYTHONPATH:$_"
-    BREW_COREUTILS_PREFIX="$(brew --prefix coreutils 2>/dev/null)"
-    HAS_COREUTILS=$?
-    if [[ $HAS_COREUTILS -eq 0 ]]; then
+
+    # Note: brew --prefix package is really slow, so just hard code the values.
+    # See more: https://github.com/Homebrew/brew/issues/3097
+    # BREW_COREUTILS_PREFIX="$(brew --prefix coreutils 2>/dev/null)"
+    BREW_COREUTILS_PREFIX="/usr/local/opt/coreutils"
+    (
+        if [[ "$(brew --prefix coreutils)" != "$BREW_COREUTILS_PREFIX" ]]; then
+            echo "warning: coreutils not installed at $BREW_COREUTILS_PREFIX" >&2
+        fi &
+    )
+    if [[ -d "$BREW_COREUTILS_PREFIX" ]]; then
         test -d "$BREW_COREUTILS_PREFIX/libexec/gnubin" && PATH="$_:$PATH"
         test -d "$BREW_COREUTILS_PREFIX/libexec/gnuman" && MANPATH="$_:$MANPATH"
     fi
+
     export PATH
     export MANPATH
     export PYTHONPATH
 
     # node version manager
     export NVM_DIR="$HOME/.nvm"
-    if brew --prefix nvm >/dev/null 2>&1; then
+    # Note: brew --prefix package is too slow, see above.
+    # BREW_NVM_PREFIX="$(brew --prefix nvm 2>/dev/null)"
+    BREW_NVM_PREFIX="/usr/local/opt/nvm"
+    (
+        if [[ "$(brew --prefix nvm)" != "$BREW_NVM_PREFIX" ]]; then
+            echo "warning: nvm not installed at $BREW_NVM_PREFIX" >&2
+        fi &
+    )
+    if [[ -d "$BREW_NVM_PREFIX" ]]; then
         # shellcheck source=/usr/local/opt/nvm/nvm.sh
         # shellcheck disable=SC1091
-        source "$(brew --prefix nvm)/nvm.sh"
+        source "$BREW_NVM_PREFIX/nvm.sh"
     fi
 fi
 

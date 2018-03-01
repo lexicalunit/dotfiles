@@ -2,7 +2,7 @@
     "workbench.colorTheme": "Solarized Light",
     "go.lintTool": "gometalinter",
     "go.formatTool": "goimports",
-    "go.toolsGopath": "/usr/local/lib/gopath",
+    "go.toolsGopath": "/usr/local/lib/gopath:~/source/invision/go",
     "editor.fontFamily": "Inconsolata",
     "editor.fontSize": 20,
     "editor.renderWhitespace": "boundary",

@@ -249,8 +249,8 @@ options:
     step-name(s)   execute the given step(s)
 
 steps:
-    dotfiles   Ensure home directory is a git repository for dotfiles
     xcode      Ensure that Xcode Command Line Tools are installed
+    dotfiles   Ensure home directory is a git repository for dotfiles
     java       Ensure that Apple's java for macOS is installed
     brew       Ensure Homebrew installed and formulas upgraded
     cask       Ensure Homebrew Casks are installed

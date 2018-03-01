@@ -9,17 +9,9 @@ keeping everything as lightweight as possible.
 Configure and install everything:
 
 ```bash
-cd ~
-curl -LOks https://github.com/lexicalunit/dotfiles/tarball/master
-tar xvzf master --strip 1 -C .
-rm master
+cd && curl -LOks https://github.com/lexicalunit/dotfiles/tarball/master
+tar xvzf master --strip 1 -C . && rm master
 bin/setup -f all
-git init
-git remote add origin git@github.com:lexicalunit/dotfiles.git
-git fetch origin master
-git reset --hard FETCH_HEAD
-git branch -u origin/master
-git submodule update --recursive --init
 ```
 
 ## Usage
@@ -101,6 +93,7 @@ install packages/formulas/casks/whatever, see below for the list of included ite
 
 | Step | Description |
 | --- | --- |
+| dotfiles | Ensure home directory is a git repository for dotfiles |
 | xcode | Ensure that Xcode Command Line Tools are installed |
 | java | Ensure that Apple's java for macOS is installed |
 | brew | Ensure Homebrew installed and formulas upgraded |

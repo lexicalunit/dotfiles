@@ -256,6 +256,7 @@ usage() {
 }
 
 # shellcheck source=../.shell_control
+# shellcheck disable=SC1091
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 ################################################################################
@@ -828,9 +829,6 @@ step_osx() {
     show "Copy email addresses as \`foo@example.com\` instead of \`Foo Bar <foo@example.com>\` in Mail.app"
     run "defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false"
 
-    show "Add the keyboard shortcut ⌘ + Enter to send an email in Mail.app"
-    run "defaults write com.apple.mail NSUserKeyEquivalents -dict-add 'Send' '@\U21a9'"
-
     show "Display emails in threaded mode, sorted by date (oldest at the top)"
     run "defaults write com.apple.mail DraftsViewerAttributes -dict-add 'DisplayInThreadedMode' -string 'yes'"
     run "defaults write com.apple.mail DraftsViewerAttributes -dict-add 'SortedDescending' -string 'yes'"
@@ -1168,7 +1166,7 @@ step_brew() {
     fi
 
     if [[ -z "$(which brew)" ]]; then
-        abort "failed to install Homebrew"
+        abort "Failed to install Homebrew"
     fi
 
     ensure_homebrew_updated
@@ -1256,7 +1254,7 @@ step_cask() {
     IFS=$'\n'
     for I in $(brew cask list); do
         name="${I%@*}"
-        if ! echo "$HOMEBREW_CASKS" | egrep -q "$(echo "\\b$name\\b" | sed 's/ (!)//g')"; then
+        if ! echo "$HOMEBREW_CASKS" | grep -Eq "$(echo "\\b$name\\b" | sed 's/ (!)//g')"; then
             show -i "$I installed but not managed by setup via brew cask"
         fi
     done
@@ -1272,7 +1270,7 @@ install_atom_pkg() {
 
     type apm-beta >/dev/null 2>&1 && APMCMD="apm-beta" || APMCMD="apm"
     if ! in_array "$PKG" "${INSTALLED[@]}"; then
-        run "$APMCMD install '$PKG'" || abort "can not install package '$PKG'"
+        run "$APMCMD install '$PKG'" || abort "Can not install package '$PKG'"
     else
         show "skipping $PKG: already installed"
     fi
@@ -1281,7 +1279,7 @@ install_atom_pkg() {
 step_atom() {
     if ! type atom >/dev/null 2>&1; then
         ensure_homebrew_updated
-        install_brew_cask atom || abort "can't install atom via brew-cask"
+        install_brew_cask atom || abort "Can't install atom via brew-cask"
         ensure_homebrew_updated_cleanup
     fi
 
@@ -1305,7 +1303,7 @@ step_atom() {
     IFS=$'\n'
     for I in $($APMCMD list --installed --bare); do
         name="${I%@*}"
-        if ! echo "$ATOM_PACKAGES" | egrep -qi " ${name}\\b"; then
+        if ! echo "$ATOM_PACKAGES" | grep -Eqi " ${name}\\b"; then
             show -i "$I installed but not managed by setup via $APMCMD"
         fi
     done
@@ -1320,7 +1318,7 @@ install_code_pkg() {
     IFS=' ' read -r -a INSTALLED <<<"$@"
 
     if ! in_array "$PKG" "${INSTALLED[@]}"; then
-        run "code --install-extension '$PKG'" || abort "can not install package '$PKG'"
+        run "code --install-extension '$PKG'" || abort "Can not install package '$PKG'"
     else
         show "skipping $PKG: already installed"
     fi
@@ -1329,7 +1327,7 @@ install_code_pkg() {
 step_code() {
     if ! type code >/dev/null 2>&1; then
         ensure_homebrew_updated
-        install_brew_cask visual-studio-code || abort "can't install VS Code via brew-cask"
+        install_brew_cask visual-studio-code || abort "Can't install VS Code via brew-cask"
         ensure_homebrew_updated_cleanup
     fi
 
@@ -1346,7 +1344,7 @@ step_code() {
     IFS=$'\n'
     for I in $(code --list-extensions); do
         name="${I%@*}"
-        if ! echo "$CODE_PACKAGES" | egrep -qi "\\b${name}\\b"; then
+        if ! echo "$CODE_PACKAGES" | grep -Eqi "\\b${name}\\b"; then
             show -i "$I installed but not managed by setup via code"
         fi
     done
@@ -1455,7 +1453,7 @@ step_python() {
 
     # Install conda packages that don't come pre-installed with Anaconda
     local CONDA_LIST
-    CONDA_LIST="$(conda list -e | cut -f1 -d= | egrep -v '^#|^_|anaconda')"
+    CONDA_LIST="$(conda list -e | cut -f1 -d= | grep -Ev '^#|^_|anaconda')"
     IFS=' '
     for I in $CONDA_PACKAGES; do
         if ! echo "$CONDA_LIST" | grep -q "$I"; then
@@ -1474,7 +1472,7 @@ step_python() {
         if [[ "$name" == "#" || "$name" == "_license" ]]; then
             continue
         fi
-        if ! echo "$PIP_PACKAGES" | egrep -q "\\b$name\\b" && ! echo "$CONDA_PACKAGES" | egrep -q "\\b$name\\b"; then
+        if ! echo "$PIP_PACKAGES" | grep -Eq "\\b$name\\b" && ! echo "$CONDA_PACKAGES" | grep -Eq "\\b$name\\b"; then
             show -i "$I installed but not managed by setup via pip or anaconda"
         fi
     done
@@ -1487,14 +1485,15 @@ ensure_rvm_ruby() {
     if which ruby | grep -q "/usr/bin/ruby"; then
         if [[ ! -e "$HOME/.rvm/scripts/rvm" ]]; then
             run "gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"
-            run "\curl -sSL https://get.rvm.io | bash -s stable" || abort "failed to install rvm"
+            run "\\curl -sSL https://get.rvm.io | bash -s stable" || abort "Failed to install rvm"
         fi
         if ! type rvm >/dev/null 2>&1; then
             # shellcheck source=.rvm/scripts/rvm
+            # shellcheck disable=SC1091
             test -s "$HOME/.rvm/scripts/rvm" && source "$_"
         fi
         if [[ -z "$(rvm list strings)" ]]; then
-            run "rvm install ruby --latest" || abort "could not install ruby via rvm"
+            run "rvm install ruby --latest" || abort "Could not install ruby via rvm"
             run "rvm alias create default '$(rvm list strings)'"
         fi
     fi
@@ -1502,17 +1501,18 @@ ensure_rvm_ruby() {
     if ! type rvm >/dev/null 2>&1; then
         abort "rvm not installed"
     fi
-    run "rvm get head" || abort "could not update rvm"
+    run "rvm get head" || abort "Could not update rvm"
 
     # shellcheck source=.rvm/scripts/rvm
+    # shellcheck disable=SC1091
     test -s "$HOME/.rvm/scripts/rvm" && source "$_"
-    run "rvm use '$(rvm list default string)'" || abort "could not select default ruby via rvm"
+    run "rvm use '$(rvm list default string)'" || abort "Could not select default ruby via rvm"
 }
 
 step_gem() {
     ensure_rvm_ruby
     if which ruby | grep -q "/usr/bin/ruby"; then
-        abort "system ruby detected, please ensure ruby installed via rvm"
+        abort "System ruby detected, please ensure ruby installed via rvm"
     fi
 
     show "Note that some gems have dependencies that should be installed by brew first..."
@@ -1543,7 +1543,7 @@ step_gem() {
         if [[ "$name" == "*** LOCAL GEMS ***" ]]; then
             continue
         fi
-        if ! echo "$GEM_PACKAGES rubygems-update" | egrep -q "$(echo "\\b$name\\b" | cut -d' ' -f1)"; then
+        if ! echo "$GEM_PACKAGES rubygems-update" | grep -Eq "$(echo "\\b$name\\b" | cut -d' ' -f1)"; then
             show -i "$I installed but not managed by setup via gem"
         fi
     done
@@ -1578,7 +1578,7 @@ step_node() {
 
     IFS=' '
     for I in $NODE_MODULES; do
-        if ! echo "$INSTALLED" | egrep -q "\b$I\b"; then
+        if ! echo "$INSTALLED" | grep -Eq "\\b$I\\b"; then
             run "npm install -g $I"
         fi
     done
@@ -1589,7 +1589,7 @@ step_node() {
         if [[ "$name" == "npm" ]]; then
             continue
         fi
-        if ! echo "$NODE_MODULES" | egrep -q "\b$name\b"; then
+        if ! echo "$NODE_MODULES" | grep -Eq "\\b$name\\b"; then
             show -i "$I installed but not managed by setup via npm"
         fi
     done
@@ -1623,7 +1623,7 @@ step_go() {
 
     IFS=' '
     for I in $GO_PACKAGES; do
-        if ! echo "$INSTALLED" | egrep -q "\b$I\b"; then
+        if ! echo "$INSTALLED" | grep -Eq "\\b$I\\b"; then
             run "go get -u $I"
         fi
     done
@@ -1632,7 +1632,7 @@ step_go() {
     for install_name in $INSTALLED; do
         FOUND="false"
         for pkg in $GO_PACKAGES; do
-            if echo "$install_name" | egrep -q "\b$pkg\b"; then
+            if echo "$install_name" | grep -Eq "\\b$pkg\\b"; then
                 FOUND="true"
                 break
             fi
@@ -1661,7 +1661,7 @@ step_cargo() {
         while IFS="" read -r line; do INSTALLED+=("$line"); done
         IFS=' '
         for I in $CARGO_PACKAGES; do
-            if ! echo "${INSTALLED[*]}" | egrep -q "\b$I\b"; then
+            if ! echo "${INSTALLED[*]}" | grep -Eq "\\b$I\\b"; then
                 run "cargo install $I"
             fi
         done
@@ -1675,7 +1675,7 @@ step_cargo() {
         FOUND="false"
         for pkg in $CARGO_PACKAGES; do
             echo "  - $pkg"
-            if echo "$install_name" | egrep -q "\b$pkg\b"; then
+            if echo "$install_name" | grep -Eq "\\b$pkg\\b"; then
                 FOUND="true"
                 break
             fi
@@ -1710,6 +1710,24 @@ step_env() {
 }
 
 ################################################################################
+# Step dotfiles
+################################################################################
+step_dotfiles() {
+    run "cd '$HOME'"
+    ROOT="$(git rev-parse --show-toplevel 2>&1)"
+    if [[ "$ROOT" != "$PWD" ]]; then
+        echo run "git init" || abort "Please ensure git is installed"
+        echo run "git remote add origin git@github.com:lexicalunit/dotfiles.git"
+        echo run "git fetch origin master" || abort "Please ensure ssh access to github"
+        echo run "git reset --hard FETCH_HEAD"
+        echo run "git branch -u origin/master"
+        echo run "git submodule update --recursive --init"
+    else
+        show "dotfiles already setup"
+    fi
+}
+
+################################################################################
 # Main
 ################################################################################
 if [[ $(id -u) == 0 ]]; then
@@ -1717,11 +1735,11 @@ if [[ $(id -u) == 0 ]]; then
     exit 1
 fi
 
-if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
+if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
     usage
 fi
 
-if echo "$*" | egrep -q -- "\b--items\b|\b-i\b"; then
+if echo "$*" | grep -Eq -- "\\b--items\\b|\\b-i\\b"; then
     IFS=' '
     for I in "${ITEM_LISTS[@]}"; do
         cleanup_item_list "$I"
@@ -1756,6 +1774,7 @@ fi
 
 # key;  question
 steps=(
+    "dotfiles;      Ensure home directory is a git repository for dotfiles"
     "xcode;         Ensure that Xcode Command Line Tools are installed"
     "java;          Ensure that Apple's java for macOS is installed"
     "brew;          Ensure Homebrew installed and formulas upgraded"
@@ -1775,7 +1794,7 @@ steps=(
 LISTING_OUTPUT=""
 
 IFS=$'\n'
-let steps_taken=0
+(( steps_taken = 0 ))
 for step in "${steps[@]}"; do
     key="$(echo "$step" | cut -d';' -f1)"
     question="$(echo "$step" | cut -d';' -f2 | sed 's/^ *//g')"
@@ -1786,11 +1805,11 @@ for step in "${steps[@]}"; do
         continue
     fi
 
-    if [[ $ALL == 0 ]] && ! echo "$*" | egrep -q "\b$key\b"; then
+    if [[ $ALL == 0 ]] && ! echo "$*" | grep -Eq "\\b$key\\b"; then
         continue
     fi
 
-    let steps_taken=$((steps_taken + 1))
+    (( steps_taken = steps_taken + 1 ))
     ask "[$key] $question?"
     if [[ "$REPLY" == "y" ]]; then
         show "Beginning step [$key]"

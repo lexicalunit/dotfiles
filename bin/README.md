@@ -249,20 +249,21 @@ options:
     step-name(s)   execute the given step(s)
 
 steps:
-    xcode    Ensure that Xcode Command Line Tools are installed
-    java     Ensure that Apple's java for macOS is installed
-    brew     Ensure Homebrew installed and formulas upgraded
-    cask     Ensure Homebrew Casks are installed
-    zsh      Ensure shell is latest version of zsh from Homebrew
-    env      Update envrionment configuration and submodules
-    python   Upgrade/Install Anaconda, pip packages, and conda packages
-    node     Ensure Node modules are installed via npm
-    go       Ensure Go packages are installed
-    cargo    Ensure Rust packages are installed via cargo
-    gem      Upgrade/Install gem packages and rubygems-update package
-    atom     Ensure Atom installed via Homebrew Cask and apm packages are upgraded
-    code     Ensure VS Code installed via Homebrew Cask and its packages are installed
-    osx      Override macOS "defaults" settings and configuration
+    dotfiles   Ensure home directory is a git repository for dotfiles
+    xcode      Ensure that Xcode Command Line Tools are installed
+    java       Ensure that Apple's java for macOS is installed
+    brew       Ensure Homebrew installed and formulas upgraded
+    cask       Ensure Homebrew Casks are installed
+    zsh        Ensure shell is latest version of zsh from Homebrew
+    env        Update envrionment configuration and submodules
+    python     Upgrade/Install Anaconda, pip packages, and conda packages
+    node       Ensure Node modules are installed via npm
+    go         Ensure Go packages are installed
+    cargo      Ensure Rust packages are installed via cargo
+    gem        Upgrade/Install gem packages and rubygems-update package
+    atom       Ensure Atom installed via Homebrew Cask and apm packages are upgraded
+    code       Ensure VS Code installed via Homebrew Cask and its packages are installed
+    osx        Override macOS "defaults" settings and configuration
 
 Homebrew Formulas: adns, autoconf, automake, avro-tools, bash, bison, boost, 
 clang-format, cloog, cmake, colordiff, coreutils, cppunit, csv-fix, 

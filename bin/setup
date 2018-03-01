@@ -66,14 +66,14 @@ PIP_PACKAGES="                                                                 \
 
 CONDA_PACKAGES="                                                               \
     appnope asn1crypto astroid attrs babel ca-certificates certifi cffi        \
-    chardet conda conda-env coverage cryptography decorator hypothesis idna    \
-    ipython ipython_genutils jedi lazy-object-proxy libcxx libcxxabi libedit   \
-    libffi mccabe ncurses nose openssl parso pep8 pexpect pickleshare pip      \
-    pluggy prompt_toolkit ptyprocess py pycodestyle pycosat pycparser pyflakes \
-    pygments pylint pympler pyopenssl pysocks pytest python-dateutil           \
-    python.app pytz pyyaml readline requests ruamel_yaml setuptools            \
-    simplegeneric six sqlite tk traitlets urllib3 wcwidth wheel wrapt xz yaml  \
-    zlib zope zope.interface"
+    chardet conda conda-env coverage cryptography decorator flake8 hypothesis  \
+    idna ipython ipython_genutils isort jedi lazy-object-proxy libcxx          \
+    libcxxabi libedit libffi mccabe ncurses nose openssl parso pep8 pexpect    \
+    pickleshare pip pluggy prompt_toolkit ptyprocess py pycodestyle pycosat    \
+    pycparser pyflakes pygments pylint pympler pyopenssl pysocks pytest        \
+    python-dateutil python.app pytz pyyaml readline requests ruamel_yaml       \
+    setuptools simplegeneric six sqlite tk traitlets urllib3 wcwidth wheel     \
+    wrapt xz yaml zlib zope zope.interface"
 
 GEM_PACKAGES="                                                                 \
     CFPropertyList actionmailer actionpack actionview activejob activesupport  \
@@ -1255,7 +1255,9 @@ step_cask() {
     for I in $(brew cask list); do
         name="${I%@*}"
         if ! echo "$HOMEBREW_CASKS" | grep -Eq "$(echo "\\b$name\\b" | sed 's/ (!)//g')"; then
-            show -i "$I installed but not managed by setup via brew cask"
+            if [[ "$I" != "miniconda" ]]; then
+                show -i "$I installed but not managed by setup via brew cask"
+            fi
         fi
     done
 }
@@ -1558,7 +1560,7 @@ step_node() {
         install_brew_formula node
         ensure_homebrew_updated_cleanup
     elif type brew >/dev/null 2>&1; then
-        run "brew upgrade cargo"
+        run "brew upgrade node"
     fi
 
     # Ensure that we're installing to the system's Node
@@ -1604,7 +1606,7 @@ step_go() {
         install_brew_formula go
         ensure_homebrew_updated_cleanup
     elif type brew >/dev/null 2>&1; then
-        run "brew upgrade cargo"
+        run "brew upgrade go"
     fi
 
     export GOPATH="/usr/local/lib/gopath"

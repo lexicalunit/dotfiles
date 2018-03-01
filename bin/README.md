@@ -321,13 +321,13 @@ python-json-logger, termcolor
 
 Conda Packages: appnope, asn1crypto, astroid, attrs, babel, ca-certificates, 
 certifi, cffi, chardet, conda, conda-env, coverage, cryptography, decorator, 
-hypothesis, idna, ipython, ipython_genutils, jedi, lazy-object-proxy, libcxx, 
-libcxxabi, libedit, libffi, mccabe, ncurses, nose, openssl, parso, pep8, 
-pexpect, pickleshare, pip, pluggy, prompt_toolkit, ptyprocess, py, pycodestyle, 
-pycosat, pycparser, pyflakes, pygments, pylint, pympler, pyopenssl, pysocks, 
-pytest, python-dateutil, python.app, pytz, pyyaml, readline, requests, 
-ruamel_yaml, setuptools, simplegeneric, six, sqlite, tk, traitlets, urllib3, 
-wcwidth, wheel, wrapt, xz, yaml, zlib, zope, zope.interface
+flake8, hypothesis, idna, ipython, ipython_genutils, isort, jedi, 
+lazy-object-proxy, libcxx, libcxxabi, libedit, libffi, mccabe, ncurses, nose, 
+openssl, parso, pep8, pexpect, pickleshare, pip, pluggy, prompt_toolkit, 
+ptyprocess, py, pycodestyle, pycosat, pycparser, pyflakes, pygments, pylint, 
+pympler, pyopenssl, pysocks, pytest, python-dateutil, python.app, pytz, pyyaml, 
+readline, requests, ruamel_yaml, setuptools, simplegeneric, six, sqlite, tk, 
+traitlets, urllib3, wcwidth, wheel, wrapt, xz, yaml, zlib, zope, zope.interface
 
 Gem Packages: CFPropertyList, actionmailer, actionpack, actionview, activejob, 
 activesupport, addressable, ast, bigdecimal, blankslate, builder, 
@@ -618,6 +618,9 @@ Options:
     --buffer-size SIZE               Size of download buffer (e.g. 1024 or 16K) (default is 1024)
     --no-resize-buffer               Do not automatically adjust the buffer size. By default, the buffer size is
                                      automatically resized from an initial value of SIZE.
+    --http-chunk-size SIZE           Size of a chunk for chunk-based HTTP downloading (e.g. 10485760 or 10M) (default is
+                                     disabled). May be useful for bypassing bandwidth throttling imposed by a webserver
+                                     (experimental)
     --playlist-reverse               Download playlist videos in reverse order
     --playlist-random                Download playlist videos in random order
     --xattr-set-filesize             Set file xattribute ytdl.filesize with expected file size (experimental)
@@ -691,8 +694,7 @@ Options:
   Workarounds:
     --encoding ENCODING              Force the specified encoding (experimental)
     --no-check-certificate           Suppress HTTPS certificate validation
-    --prefer-insecure                Use an unencrypted connection to retrieve information about the video. (Currently
-                                     supported only for YouTube)
+    --prefer-insecure                Use an unencrypted connection to retrieve information whenever possible
     --user-agent UA                  Specify a custom user agent
     --referer URL                    Specify a custom referer, use if the video access is restricted to one domain
     --add-header FIELD:VALUE         Specify a custom HTTP header and its value, separated by a colon ':'. You can use

@@ -165,13 +165,13 @@ python-json-logger, termcolor
 
 Conda Packages: appnope, asn1crypto, astroid, attrs, babel, ca-certificates, 
 certifi, cffi, chardet, conda, conda-env, coverage, cryptography, decorator, 
-hypothesis, idna, ipython, ipython_genutils, jedi, lazy-object-proxy, libcxx, 
-libcxxabi, libedit, libffi, mccabe, ncurses, nose, openssl, parso, pep8, 
-pexpect, pickleshare, pip, pluggy, prompt_toolkit, ptyprocess, py, pycodestyle, 
-pycosat, pycparser, pyflakes, pygments, pylint, pympler, pyopenssl, pysocks, 
-pytest, python-dateutil, python.app, pytz, pyyaml, readline, requests, 
-ruamel_yaml, setuptools, simplegeneric, six, sqlite, tk, traitlets, urllib3, 
-wcwidth, wheel, wrapt, xz, yaml, zlib, zope, zope.interface
+flake8, hypothesis, idna, ipython, ipython_genutils, isort, jedi, 
+lazy-object-proxy, libcxx, libcxxabi, libedit, libffi, mccabe, ncurses, nose, 
+openssl, parso, pep8, pexpect, pickleshare, pip, pluggy, prompt_toolkit, 
+ptyprocess, py, pycodestyle, pycosat, pycparser, pyflakes, pygments, pylint, 
+pympler, pyopenssl, pysocks, pytest, python-dateutil, python.app, pytz, pyyaml, 
+readline, requests, ruamel_yaml, setuptools, simplegeneric, six, sqlite, tk, 
+traitlets, urllib3, wcwidth, wheel, wrapt, xz, yaml, zlib, zope, zope.interface
 
 Gem Packages: CFPropertyList, actionmailer, actionpack, actionview, activejob, 
 activesupport, addressable, ast, bigdecimal, blankslate, builder, 

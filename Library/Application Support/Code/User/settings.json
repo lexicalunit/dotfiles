@@ -7,7 +7,6 @@
     "editor.renderWhitespace": "boundary",
     "editor.wordWrapColumn": 100,
     "go.formatTool": "goimports",
-    "go.inferGopath": true,
     "go.lintTool": "gometalinter",
     "go.toolsGopath": "/usr/local/lib/gopath:/usr/local/lib/invision/gopath",
     "window.nativeTabs": false,

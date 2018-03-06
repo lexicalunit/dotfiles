@@ -1,8 +1,8 @@
 [core]
-	excludesfile = ~/.gitignore_global
-	whitespace = trailing-space,space-before-tab
 	autocrlf = false
+	excludesfile = ~/.gitignore_global
 	pager = diff-so-fancy | less --tabs=4 -RFX
+	whitespace = trailing-space,space-before-tab
 [push]
 	default = tracking
 [difftool "Kaleidoscope"]
@@ -12,27 +12,37 @@
 	renames = copies
 	tool = Kaleidoscope
 [mergetool "kaleidoscope"]
-	prompt = false
 	cmd = ksdiff --merge --output "$MERGED" --base "$BASE" -- "$LOCAL" --snapshot "$REMOTE" --snapshot
+	prompt = false
 	trustExitCode = true
 [merge]
 	stat = true
 	tool = Kaleidoscope
 [alias]
+	authors = !git_authors "$(pwd)"
+	b = !git rev-parse --abbrev-ref HEAD
+	br = branch
+	ca = commit --amend
+	ci = commit
+	cl = clone
+	co = checkout
+	cp = cherry-pick
+	f = fetch --prune
+	find = "!git ls-files | grep --color -Ei"
 	lg = !git_pretty_log
+	ltr = !cd ${GIT_PREFIX:-.} && git_ltr
+	name-change = !bash git_name_change
+	pl = pull
+	pt = !bash git_push_topic
+	pu = push
+	push-topic = !bash git_push_topic
+	r = reset
+	reauthor = !bash git_reauthor
 	s = status -uno
 	su = status
-	co = checkout
-	ci = commit
-	ca = commit --amend
-	b = !git rev-parse --abbrev-ref HEAD
-	authors = !git_authors "$(pwd)"
-	push-topic = !bash git_push_topic
-	reauthor = !bash git_reauthor
-	name-change = !bash git_name_change
-	ltr = !cd ${GIT_PREFIX:-.} && git_ltr
+	undo = reset HEAD~1 --soft
+	up = pull --rebase
 	wdiff = diff --color-words --word-diff
-	r = !git review -Rv -t $(git rev-parse --abbrev-ref HEAD)
 [color]
 	ui = true
 [color "branch"]
@@ -40,11 +50,11 @@
 	local = yellow
 	remote = green
 [color "diff"]
-	meta = yellow
-	frag = magenta bold
-	old = red bold
-	new = green bold
 	commit = yellow bold
+	frag = magenta bold
+	meta = yellow
+	new = green bold
+	old = red bold
 	whitespace = red reverse
 [color "status"]
 	added = yellow
@@ -56,7 +66,7 @@
 	autosetuprebase = always
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true

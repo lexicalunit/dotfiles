@@ -93,6 +93,7 @@
 /.sqlite_history
 /.ssh
 /.subversion
+/.v8flags*
 /.vagrant*
 /.vim/.netrwhist
 /.viminfo

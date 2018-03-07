@@ -314,7 +314,7 @@ tinacious-design-syntax-purple, toggle-quotes, trailing-spaces, unity-ui
 Code Packages: DavidAnson.vscode-markdownlint, HookyQR.beautify, 
 dbaeumer.vscode-eslint, lukehoban.Go, magicstack.MagicPython, ms-python.python, 
 robertohuertasm.vscode-icons, spywhere.guides, 
-streetsidesoftware.code-spell-checker
+streetsidesoftware.code-spell-checker, waderyan.gitblame
 
 Pip Packages: git-sweep3k, glances, httpie, inflection, patch, pyobjc, 
 python-json-logger, termcolor
@@ -701,7 +701,8 @@ Options:
   Workarounds:
     --encoding ENCODING              Force the specified encoding (experimental)
     --no-check-certificate           Suppress HTTPS certificate validation
-    --prefer-insecure                Use an unencrypted connection to retrieve information whenever possible
+    --prefer-insecure                Use an unencrypted connection to retrieve information about the video. (Currently
+                                     supported only for YouTube)
     --user-agent UA                  Specify a custom user agent
     --referer URL                    Specify a custom referer, use if the video access is restricted to one domain
     --add-header FIELD:VALUE         Specify a custom HTTP header and its value, separated by a colon ':'. You can use

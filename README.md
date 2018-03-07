@@ -158,7 +158,7 @@ tinacious-design-syntax-purple, toggle-quotes, trailing-spaces, unity-ui
 Code Packages: DavidAnson.vscode-markdownlint, HookyQR.beautify, 
 dbaeumer.vscode-eslint, lukehoban.Go, magicstack.MagicPython, ms-python.python, 
 robertohuertasm.vscode-icons, spywhere.guides, 
-streetsidesoftware.code-spell-checker
+streetsidesoftware.code-spell-checker, waderyan.gitblame
 
 Pip Packages: git-sweep3k, glances, httpie, inflection, patch, pyobjc, 
 python-json-logger, termcolor

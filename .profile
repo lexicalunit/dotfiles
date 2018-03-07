@@ -237,18 +237,18 @@ if type atom >/dev/null 2>&1; then
     export OSXEDITOR='atom -w'
     alias e='atom -a . '
     alias edit='atom '
-    ew() { atom "$(which "$1")"; }
+    ew() { type "$1" >/dev/null 2>&1 && atom "$(which "$1")"; }
     eman() { man "$@" | col -bx | tmpin atom -w & }
 elif type subl >/dev/null 2>&1; then
     # export EDITOR='subl -w'
     # export CVSEDITOR='subl -w'
     export OSXEDITOR='subl -w'
     alias edit='subl '
-    ew() { subl "$(which "$1")"; }
+    ew() { type "$1" >/dev/null 2>&1 && subl "$(which "$1")"; }
     eman() { man "$@" | col -bx | subl -w & }
 elif type vim >/dev/null 2>&1; then
     alias edit='vim '
-    ew() { vim "$(which "$1")"; }
+    ew() { type "$1" >/dev/null 2>&1 && vim "$(which "$1")"; }
     eman() { man "$@" | col -bx | vim -; }
 fi
 
@@ -258,7 +258,7 @@ if type atom-beta >/dev/null 2>&1; then
     alias edit='atom-beta '
     alias atom='atom-beta '
     alias apm='apm-beta '
-    ew() { atom-beta "$(which "$1")"; }
+    ew() { type "$1" >/dev/null 2>&1 && atom-beta "$(which "$1")"; }
 fi
 
 vman() { man "$@" | col -bx | vim -; }

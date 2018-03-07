@@ -36,8 +36,18 @@ export these settings to a remote machine.
 * `Solarized Light.itermcolors` and
   `Solarized Light xterm-256color.terminal`
   themes to use in `Terminal.app` or [`iTerm.app`](http://iterm2.com/).
-* [`sane.css`](env/sane.css) style sheet for annoying websites.
-* Fonts that I like to use, install them with [`bin/install_fonts`](bin/install_fonts).
+* `com.googlecode.iterm2.plist` are my settings for [`iTerm.app`](http://iterm2.com/).
+* [`Rio.jpg`](env/Rio.jpg) is my favorite Desktop image.
+* [`Inconsolata.otf`](env/Inconsolata.otf) is my favorite font for writing code,
+  it's automatically installed during the `bin/setup env` step.
+* The [`post-commit`](env/post-commit) and [`pre-commit`](env/pre-commit) files are git hooks
+  use to maintain this repository. They're also installed as part of the `bin/setup env` step.
+* [`prompt_lexical_setup`](env/prompt_lexical_setup) is my
+  [prezto](https://github.com/sorin-ionescu/prezto) prompt theme, installed as part of the
+  `bin/setup env` step.
+* [`nice.css`](env/nice.css) is a nice style sheet useful for overriding annoying websites.
+* [`dircolors_examples.tgz`](env/dircolors_examples.tgz) is used by
+  [`bin/show_dircolors`](bin/show_dircolors).
 
 ## Utilities: `~/bin`
 

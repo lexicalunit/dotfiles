@@ -168,6 +168,16 @@ usage: git_reauthor [-f] commit-to-change [branch-to-rewrite [new-name [new-emai
 ```
 
 * * *
+### [`git_up`](git_up)
+```
+usage: git_up [-h|--help] [-r]
+Rebase branch on the latest changes for the remote parent branch.
+
+options:
+    -h, --help   show usage help
+```
+
+* * *
 ### [`golist`](golist)
 ```
 usage: golist [-h|--help]
@@ -560,9 +570,9 @@ Options:
                                      youtube-dl guess ("auto_warning" to emit a warning when guessing). "error" just
                                      throws an error. The default value "fixup_error" repairs broken URLs, but emits an
                                      error if this is not possible instead of searching.
-    --ignore-config                  Do not read configuration files. When given in the global configuration file
-                                     /etc/youtube-dl.conf: Do not read the user configuration in ~/.config/youtube-
-                                     dl/config (%APPDATA%/youtube-dl/config.txt on Windows)
+    --ignore-config                  Do not read configuration files. When given in the global configuration file /etc
+                                     /youtube-dl.conf: Do not read the user configuration in ~/.config/youtube-dl/config
+                                     (%APPDATA%/youtube-dl/config.txt on Windows)
     --config-location PATH           Location of the configuration file; either the path to the config or its containing
                                      directory.
     --flat-playlist                  Do not extract the videos of a playlist, only list them.

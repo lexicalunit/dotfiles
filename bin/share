@@ -16,6 +16,7 @@ usage() {
 
 [[ -f "$HOME/.webshare" ]] || usage
 # shellcheck source=.webshare
+# shellcheck disable=1091
 source "$HOME/.webshare"
 [[ -n "$SHARE_USER" ]] || usage
 [[ -n "$SHARE_HOST" ]] || usage
@@ -25,15 +26,13 @@ source "$HOME/.webshare"
 share_put() {
     for I in "$@"; do
         NAME="$(basename "$I")"
-        rsync --chmod=a+r --rsh="ssh -c blowfish" "$I" "$SHARE_USER@$SHARE_HOST:$SHARE_DEST/$NAME"
-        if [[ $? == 0 ]]; then
+        if rsync --chmod=a+r --rsh="ssh -c blowfish" "$I" "$SHARE_USER@$SHARE_HOST:$SHARE_DEST/$NAME"; then
             echo "$SHARE_URI/$NAME"
         fi
     done
 }
 
 list_files() {
-    # Note that we DO want to expand $SHARE_DEST locally here.
     local cmd="                     \
         find $SHARE_DEST            \
             -maxdepth 1             \
@@ -43,6 +42,9 @@ list_files() {
             -print0                 \
         | xargs -0 ls -1tr          \
     "
+
+    # Note that we DO want to expand $SHARE_DEST locally here.
+    # shellcheck disable=SC2029
     ssh "$SHARE_USER@$SHARE_HOST" "$cmd"
 }
 
@@ -60,7 +62,7 @@ case "$1" in
         ;;
 
     names | n*)
-        if echo "$*" | egrep -q -- "-p|--private"; then
+        if echo "$*" | grep -Eq -- "-p|--private"; then
             SHARE_DEST="$SHARE_DEST/private"
             SHARE_URI="$SHARE_URI/private"
         fi
@@ -68,7 +70,7 @@ case "$1" in
         ;;
 
     list | ls | l | ll | find | f | l* | f*)
-        if echo "$*" | egrep -q -- "-p|--private"; then
+        if echo "$*" | grep -Eq -- "-p|--private"; then
             SHARE_DEST="$SHARE_DEST/private"
             SHARE_URI="$SHARE_URI/private"
         fi
@@ -77,7 +79,7 @@ case "$1" in
 
     put | p | up | p* | u*)
         [[ -n "$2" ]] || usage
-        if echo "$2" | egrep -q -- "-p|--private"; then
+        if echo "$2" | grep -Eq -- "-p|--private"; then
             shift
             SHARE_DEST="$SHARE_DEST/private"
             SHARE_URI="$SHARE_URI/private"
@@ -88,7 +90,7 @@ case "$1" in
 
     get | g*)
         [[ -n "$2" ]] || usage
-        if echo "$2" | egrep -q -- "-p|--private"; then
+        if echo "$2" | grep -Eq -- "-p|--private"; then
             shift
             SHARE_DEST="$SHARE_DEST/private"
             SHARE_URI="$SHARE_URI/private"
@@ -105,13 +107,15 @@ case "$1" in
 
     del | delete | rm)
         [[ -n "$2" ]] || usage
-        if echo "$2" | egrep -q -- "-p|--private"; then
+        if echo "$2" | grep -Eq -- "-p|--private"; then
             shift
             SHARE_DEST="$SHARE_DEST/private"
             SHARE_URI="$SHARE_URI/private"
         fi
         NAME="$2"
+
         # Note that we DO want to expand $SHARE_DEST/$NAME locally here.
+        # shellcheck disable=SC2029
         ssh "$SHARE_USER@$SHARE_HOST" "rm -fv $SHARE_DEST/$NAME"
         ;;
 esac

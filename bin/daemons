@@ -2,12 +2,13 @@
 
 # Finds and removes unwanted daemons and agents.
 
-if echo "$*" | egrep -q -- "\b--help\b|\b-h\b" || [[ -z "$1" ]]; then
+if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b" || [[ -z "$1" ]]; then
     echo "usage: ${0##*/} [-h|--help] [PATTERN|FILE_PATH]" >&2
     exit 1
 fi
 
 # shellcheck source=../.shell_control
+# shellcheck disable=1091
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 # Creating an empty temporary workspace so that a given PATTERN will
@@ -26,7 +27,7 @@ if [[ ! -e "$1" ]]; then
         ~/Library/LaunchDaemons \
         -type f \
         2>/dev/null \
-        | egrep -i "$@"
+        | grep -Ei "$@"
 else
     run "sudo launchctl unload -w '$1'"
     run "sudo rm -f '$1'"

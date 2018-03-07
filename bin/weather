@@ -10,7 +10,7 @@ usage() {
     exit 1
 }
 
-if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
+if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
     usage
 fi
 
@@ -28,5 +28,5 @@ if [[ $(tput cols) -gt 120 ]]; then
 fi
 
 echo -e "$bg$eol"
-curl -s "http://wttr.in/$LOC$NARROW" | sed "s/^/$bg$eol  /;s/\[0m/\[0m$bg/g"
+curl -s "http://wttr.in/$LOC$NARROW" | sed "s/^/$bg$eol  /;s/\\[0m/\\[0m$bg/g"
 echo -e "$bg$eol"

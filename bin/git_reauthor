@@ -18,7 +18,7 @@ usage()
     exit 1
 }
 
-if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
+if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
     usage
 fi
 
@@ -42,6 +42,7 @@ TARG_NAME="${3-}"
 TARG_EMAIL="${4-}"
 export TARG_COMMIT TARG_NAME TARG_EMAIL
 
+# shellcheck disable=SC2016
 filt='
 
     if test "$GIT_COMMIT" = "$TARG_COMMIT"; then

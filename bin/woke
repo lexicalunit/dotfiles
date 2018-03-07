@@ -2,7 +2,7 @@
 
 # Get time macOS system last woke from sleep.
 
-if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
+if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
     echo "usage: $(basename "$0") [-h|--help]" 1>&2
     echo "Uses sysctl to discover when the last time macOS woke was." 1>&2
     exit 1

@@ -2,7 +2,7 @@
 
 # Sets up ODBC.
 
-if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
+if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
     echo "usage: ${0##*/} [-h|--help]" 1>&2
     echo "Attempts to install a working ODBC configuration to macOS." 1>&2
     echo "Uses unixODBC with FreeTDS from Homebrew." 1>&2
@@ -11,6 +11,7 @@ if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
 fi
 
 # shellcheck source=.shell_control
+# shellcheck disable=1091
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 ###############################################################################
@@ -45,7 +46,7 @@ if [[ -d /opt/vertica/lib64 ]]; then
 elif [[ -d /opt/vertica/lib ]]; then
     VERTICA_LIBRARY_PATH="/opt/vertica/lib"
 fi
-VERTICA_DRIVER="$(find $VERTICA_LIBRARY_PATH -name "libverticaodbc.*" | egrep "$VERTICA_LIBRARY_PATH/libverticaodbc.(dylib|so)\$")"
+VERTICA_DRIVER="$(find $VERTICA_LIBRARY_PATH -name "libverticaodbc.*" | grep -E "$VERTICA_LIBRARY_PATH/libverticaodbc.(dylib|so)\$")"
 MSSQL_DRIVER="$(brew ls -v freetds | grep libtdsodbc.so)"
 
 # osql requires drivers be executable
@@ -110,7 +111,7 @@ run "cat $HOME/.odbc.ini"
 # installing configuration files
 ###############################################################################
 install_to() {
-    local install_to_path="$@"
+    local install_to_path="$*"
     run "sudo mkdir -p $install_to_path/" || abort "can't create directory $install_to_path"
     run "sudo cp -vf $HOME/.odbcinst.ini $install_to_path/odbcinst.ini" || abort "can't install $install_to_path/odbcinst.ini"
     run "sudo cp -vf $HOME/.odbc.ini $install_to_path/odbc.ini" || abort "can't install $install_to_path/odbc.ini"

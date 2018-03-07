@@ -115,7 +115,7 @@
     pep8ExecutablePath: "/usr/local/bin/pep8"
   "linter-shellcheck":
     enableNotice: true
-    userParameters: "-e SC1008"
+    userParameters: "-x -e SC1008"
   "linter-ui-default":
     hidePanelWhenEmpty: true
     panelHeight: 163

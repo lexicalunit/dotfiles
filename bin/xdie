@@ -7,16 +7,17 @@ if [[ "$1" = "-p" ]]; then
     shift
 fi
 
-if [[ -z "$*" ]] || echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
+if [[ -z "$*" ]] || echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
     echo "usage: $(basename "$0") [-p|-h|--help] REGEX"
     echo "Kills all windows matching REGEX. Use -p for pretend mode."
     exit 1
 fi
 
 # shellcheck source=.shell_control
+# shellcheck disable=SC1091
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
-LIST="$(xlsclients -l | egrep "^Window 0x([0-9]|[a-z])*:\$|^\W*Name:\W*.*\$" | sed 'N;s/:\n/ /g' | grep "$1")"
+LIST="$(xlsclients -l | grep -E "^Window 0x([0-9]|[a-z])*:\$|^\\W*Name:\\W*.*\$" | sed 'N;s/:\n/ /g' | grep "$1")"
 if [[ "$LIST" = "" ]]; then
     show "no windows found"
     exit 0

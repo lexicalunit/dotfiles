@@ -2,7 +2,7 @@
 
 # Prints the root of the current repository.
 
-if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
+if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
     echo "usage: ${0##*/} [-h|--help]" 1>&2
     echo "Prints the root directory of the current source repository." 1>&2
     exit 1

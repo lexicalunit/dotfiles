@@ -2,7 +2,7 @@
 
 # Prints out documentation and usages for utilities.
 
-if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
+if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
     (
         echo "usage: ${0##*/} [-t|--table|-v|--verbose|-h|--help]"
         echo "Prints out documentation and usage information for everything in current directory."
@@ -22,14 +22,14 @@ stty columns 120 2>/dev/null
 
 # -t or --table enabled table mode for generating markdown output
 TABLE=0
-if echo "$*" | egrep -q -- "--table|-t"; then
+if echo "$*" | grep -Eq -- "--table|-t"; then
     TABLE=1
     echo "| Tool | Usage |"
     echo "| --- | --- |"
 fi
 
 VERBOSE=0
-if echo "$*" | egrep -q -- "--verbose|-v"; then
+if echo "$*" | grep -Eq -- "--verbose|-v"; then
     VERBOSE=1
 fi
 
@@ -38,7 +38,7 @@ for I in *; do
         continue
     fi
 
-    if egrep -q "^$I\$" .gitignore; then
+    if grep -Eq "^$I\$" .gitignore; then
         continue
     fi
 
@@ -64,6 +64,7 @@ for I in *; do
         if [[ $VERBOSE == 1 ]]; then
             echo
         fi
+        # shellcheck disable=SC2012
         DESC="Symbolic link to '$(ls -l "$I" | sed 's@.* -> \(.*\)@\1@')'"
     elif [[ $VERBOSE == 0 ]]; then
         DESC="$(head -n 3 "$I" | tail -n 1 | sed 's@[^ ]* \(.*\)@\1@')"

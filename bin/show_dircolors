@@ -4,7 +4,7 @@
 # Helps in creating a .dircolors color profile for ls by printing
 # out a directory containing a variety of different kinds of files.
 
-if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
+if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
     echo "usage: ${0##*/} [-h|--help]" 1>&2
     echo "Shows example output based on current dircolors settings." 1>&2
     exit 1

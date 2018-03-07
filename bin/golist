@@ -2,7 +2,7 @@
 
 # Lists all user installed go packages.
 
-if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
+if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
     (
         echo "usage: ${0##*/} [-h|--help]"
         echo "Uses \`go list\` to list all user installed go packages that aren't dependencies."

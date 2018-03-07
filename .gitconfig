@@ -42,7 +42,7 @@
 	s = status -uno
 	su = status
 	undo = reset HEAD~1 --soft
-	up = "pull --rebase"
+	up = !git_up
 	wdiff = diff --color-words --word-diff
 [color]
 	ui = true

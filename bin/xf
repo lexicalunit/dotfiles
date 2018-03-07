@@ -3,7 +3,7 @@
 # Extract common file formats.
 
 # Display usage if no parameters given
-if [[ -z "$*" ]] || echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
+if [[ -z "$*" ]] || echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
     echo "usage: ${0##*/} <archive> - extract common file formats"
     exit
 fi

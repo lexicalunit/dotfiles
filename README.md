@@ -75,6 +75,7 @@ with the argument `--help`.
 | [`git_pretty_log`](bin/git_pretty_log) | Git script for printing beautiful logs. |
 | [`git_push_topic`](bin/git_push_topic) | Force updates remote topic branch with local branch. |
 | [`git_reauthor`](bin/git_reauthor) | In git, change the author name and/or email of a single commit. |
+| [`git_up`](bin/git_up) | Rebase branch on the latest changes for the remote parent branch. |
 | [`golist`](bin/golist) | Lists all user installed go packages. |
 | [`install_odbc`](bin/install_odbc) | Sets up ODBC. |
 | [`jsc`](bin/jsc) | Symbolic link to '/System/Library/Frameworks/JavaScriptCore.framewo... |

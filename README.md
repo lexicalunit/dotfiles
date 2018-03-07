@@ -71,6 +71,7 @@ with the argument `--help`.
 | [`git_authors`](bin/git_authors) | Git script for discovering who wrote the code at the current workin... |
 | [`git_ltr`](bin/git_ltr) | Lists (a-la 'ls -ltr') git controlled source files in current direc... |
 | [`git_name_change`](bin/git_name_change) | Clones a repo then changes the name and email address in entire his... |
+| [`git_parent`](bin/git_parent) | Finds the direct parent of the current branch in git. |
 | [`git_pretty_log`](bin/git_pretty_log) | Git script for printing beautiful logs. |
 | [`git_push_topic`](bin/git_push_topic) | Force updates remote topic branch with local branch. |
 | [`git_reauthor`](bin/git_reauthor) | In git, change the author name and/or email of a single commit. |

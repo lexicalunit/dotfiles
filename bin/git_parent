@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Finds the direct parent of the current branch in git.
+
+usage() {
+    (
+        echo "usage: ${0##*/} [-h|--help] [-r]"
+        echo "Finds the direct parent of the current branch in git."
+        echo
+        echo "options:"
+        (
+            echo "    -h, --help: show usage help"
+        ) | column -ts:
+    ) >&2
+    exit 1
+}
+
+if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
+    usage
+fi
+
+while getopts "r" opt; do
+    case "$opt" in
+        *) usage ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+vbc=$(git rev-parse --abbrev-ref HEAD)
+vbc_col=$(( $(git show-branch | grep '^[^\[]*\*' | head -1 | cut -d'*' -f1 | wc -c) - 1 ))
+swimming_lane_start_row=$(( $(git show-branch | grep -n "^[\\-]*$" | cut -d: -f1) + 1 ))
+git show-branch | tail -n +$swimming_lane_start_row | grep -v "^[^\\[]*\\[$vbc" | grep "^.\\{$vbc_col\\}[^ ]" | head -n1 | sed 's/.*\[\(.*\)\].*/\1/' | sed 's/[\^~].*//'

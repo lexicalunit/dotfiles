@@ -32,6 +32,7 @@
 	lg = !git_pretty_log
 	ltr = !cd ${GIT_PREFIX:-.} && git_ltr
 	name-change = !bash git_name_change
+	parent = !git_parent
 	pl = pull
 	pt = !bash git_push_topic
 	pu = push
@@ -41,7 +42,7 @@
 	s = status -uno
 	su = status
 	undo = reset HEAD~1 --soft
-	up = pull --rebase
+	up = "pull --rebase"
 	wdiff = diff --color-words --word-diff
 [color]
 	ui = true

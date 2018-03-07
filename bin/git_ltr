@@ -16,7 +16,7 @@ usage() {
     exit 1
 }
 
-if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
+if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
     usage
 fi
 
@@ -30,7 +30,7 @@ done
 shift $((OPTIND - 1))
 
 git_list() {
-    eval "git ls-tree $RECURSIVE --name-only HEAD" | while read filename; do
+    eval "git ls-tree $RECURSIVE --name-only HEAD" | while read -r filename; do
         echo "$(git log -1 --format="%ad" -- "$filename")"$'\t'"$filename"
     done
 }

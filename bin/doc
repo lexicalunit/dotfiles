@@ -26,11 +26,12 @@ usage() {
     exit 1
 }
 
-if echo "$*" | egrep -q -- "\b--help\b|\b-h\b" || [[ -z "$1" ]]; then
+if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b" || [[ -z "$1" ]]; then
     usage
 fi
 
 # shellcheck source=.shell_control
+# shellcheck disable=SC1091
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 while getopts "k" opt; do

@@ -129,6 +129,16 @@ clones the given repo, changing the name and email address in entire history
 ```
 
 * * *
+### [`git_parent`](git_parent)
+```
+usage: git_parent [-h|--help] [-r]
+Finds the direct parent of the current branch in git.
+
+options:
+    -h, --help   show usage help
+```
+
+* * *
 ### [`git_pretty_log`](git_pretty_log)
 ```
 usage: git_pretty_log [-h|--help] [ARGS]

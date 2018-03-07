@@ -2,17 +2,18 @@
 
 # Force updates remote topic branch with local branch.
 
-if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
+if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
     echo "usage: ${0##*/} [-h|--help]" 1>&2
     echo "Preforms command 'git push -fu origin \$BRANCH', force pushing feature branch up to remote origin." 1>&2
     exit 1
 fi
 
 # shellcheck source=../.shell_control
+# shellcheck disable=SC1091
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 if [[ "$BRANCH" == "master" || "$BRANCH" == "develop" ]];
     then abort "$BRANCH is not a topic branch"
 fi
-run "git push -fu origin $BRANCH"
+run "git push $* -fu origin $BRANCH"

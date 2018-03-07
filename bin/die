@@ -14,7 +14,7 @@ usage() {
     exit 1
 }
 
-if echo "$*" | egrep -q -- "\b--help\b|\b-h\b"; then
+if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
     usage
 fi
 
@@ -30,7 +30,8 @@ while getopts "hqn" opt; do
 done
 shift $((OPTIND - 1))
 
-LIST="$(ps -ww -ew -o pid,user,command | egrep -v "bin/die|grep" | grep -i "$1")"
+# shellcheck disable=SC2009
+LIST="$(ps -ww -ew -o pid,user,command | grep -Ev "bin/die|grep" | grep -i "$1")"
 if [ "$LIST" = "" ]; then
     if [[ "$QUIET" == 0 ]]; then
         echo "no processes found"

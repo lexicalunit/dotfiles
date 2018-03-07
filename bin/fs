@@ -2,7 +2,7 @@
 
 # Tweak ripgrep to easily search codebases with committed files and files I generally don't search.
 
-if echo "$*" | egrep -q -- "\b--help\b|\b-h\b" || [[ -z "$1" ]]; then
+if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b" || [[ -z "$1" ]]; then
     (
         echo "usage: ${0##*/} [-h|--help] [-z] [-j] [ -- [ripgrep options]] <QUERY>"
         echo "Use ripgrep to search a codebase."
@@ -74,4 +74,4 @@ show() {
 }
 show "$CMD$ARGS"
 
-eval "$CMD" $ARGS
+eval "$CMD" "$ARGS"

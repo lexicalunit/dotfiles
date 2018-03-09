@@ -23,6 +23,11 @@ dcl() {
     fi
 }
 
+ds() {
+    run "docker ps -aq | xargs docker update --restart=no"
+    run "docker ps -aq | xargs docker stop"
+}
+
 dcli() {
     dcl images
 }

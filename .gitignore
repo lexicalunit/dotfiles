@@ -54,6 +54,7 @@
 /.docker
 /.dropbox
 /.electron
+/.electron-gyp
 /.fasd
 /.gem
 /.gemrc

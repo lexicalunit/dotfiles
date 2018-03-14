@@ -37,5 +37,4 @@ fi
 
 set -ue
 PARENT="$(git parent)"
-run "git fetch --prune origin"
-run "git rebase origin/$PARENT"
+run "git sync && git rebase origin/$PARENT"

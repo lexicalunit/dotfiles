@@ -41,6 +41,7 @@
 	reauthor = !bash git_reauthor
 	s = status -uno
 	su = status
+	sync = !git_sync
 	undo = reset HEAD~1 --soft
 	up = !git_up
 	wdiff = diff --color-words --word-diff

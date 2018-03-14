@@ -101,6 +101,7 @@
 /.virtualenvs
 /.vscode/extensions
 /.wget-hsts
+/.yo-rc-global.json
 /.z
 /.z.*
 /.zcomp*

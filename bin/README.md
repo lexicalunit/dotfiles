@@ -325,8 +325,8 @@ virtualbox, visual-studio-code, vlc, whatsapp, xquartz
 
 Atom Packages: activate-power-mode, aesthetic-ui, atom-beautify, atom-isort, 
 atom-language-avro, atom-notes, auto-update-packages, autocomplete-python, 
-base16-syntax, busy-signal, column-select, cursor-indicator, docblockr, 
-event-watch, file-icons, flatwhite-syntax, force-tab, format-shell, git-blame, 
+base16-syntax, better-git-blame, busy-signal, column-select, cursor-indicator, 
+docblockr, event-watch, file-icons, flatwhite-syntax, force-tab, format-shell, 
 highlight-selected, indent-guide-improved, intentions, isotope-light-ui, 
 isotope-ui, language-applescript, language-atom-notes, language-babel, 
 language-cmake, language-diff, language-docker, language-groovy, 
@@ -580,9 +580,9 @@ Options:
                                      youtube-dl guess ("auto_warning" to emit a warning when guessing). "error" just
                                      throws an error. The default value "fixup_error" repairs broken URLs, but emits an
                                      error if this is not possible instead of searching.
-    --ignore-config                  Do not read configuration files. When given in the global configuration file /etc
-                                     /youtube-dl.conf: Do not read the user configuration in ~/.config/youtube-dl/config
-                                     (%APPDATA%/youtube-dl/config.txt on Windows)
+    --ignore-config                  Do not read configuration files. When given in the global configuration file
+                                     /etc/youtube-dl.conf: Do not read the user configuration in ~/.config/youtube-
+                                     dl/config (%APPDATA%/youtube-dl/config.txt on Windows)
     --config-location PATH           Location of the configuration file; either the path to the config or its containing
                                      directory.
     --flat-playlist                  Do not extract the videos of a playlist, only list them.

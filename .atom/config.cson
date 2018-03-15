@@ -18,6 +18,8 @@
     matchUserInterfaceTheme: false
     scheme: "Solarized"
     style: "Light"
+  "better-git-blame":
+    searchInLayerEnabled: false
   "bracket-matcher":
     highlightMatchingLineNumber: true
   core:

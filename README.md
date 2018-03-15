@@ -152,8 +152,8 @@ virtualbox, visual-studio-code, vlc, whatsapp, xquartz
 
 Atom Packages: activate-power-mode, aesthetic-ui, atom-beautify, atom-isort, 
 atom-language-avro, atom-notes, auto-update-packages, autocomplete-python, 
-base16-syntax, busy-signal, column-select, cursor-indicator, docblockr, 
-event-watch, file-icons, flatwhite-syntax, force-tab, format-shell, git-blame, 
+base16-syntax, better-git-blame, busy-signal, column-select, cursor-indicator, 
+docblockr, event-watch, file-icons, flatwhite-syntax, force-tab, format-shell, 
 highlight-selected, indent-guide-improved, intentions, isotope-light-ui, 
 isotope-ui, language-applescript, language-atom-notes, language-babel, 
 language-cmake, language-diff, language-docker, language-groovy, 

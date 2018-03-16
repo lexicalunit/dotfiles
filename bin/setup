@@ -97,8 +97,8 @@ GEM_PACKAGES="                                                                 \
 
 NODE_MODULES="                                                                 \
     JSON all-contributors-cli bower coffee-script coffeelint cson decaffeinate \
-    dockerlint eslint external-ip geoip-lite js-beautify json-stable-stringify \
-    moment nesh raml2html standard tmpin"
+    dockerlint eslint external-ip generator-code geoip-lite js-beautify        \
+    json-stable-stringify moment nesh raml2html standard tmpin yo"
 
 GO_PACKAGES="                                                                  \
     github.com/acroca/go-symbols github.com/alecthomas/gometalinter            \

@@ -207,8 +207,9 @@ screengif, test-unit, thread_safe, toml, trollop, tzinfo,
 unicode-display_width, xcodeproj, xmlrpc
 
 Node Modules: JSON, all-contributors-cli, bower, coffee-script, coffeelint, 
-cson, decaffeinate, dockerlint, eslint, external-ip, geoip-lite, js-beautify, 
-json-stable-stringify, moment, nesh, raml2html, standard, tmpin
+cson, decaffeinate, dockerlint, eslint, external-ip, generator-code, 
+geoip-lite, js-beautify, json-stable-stringify, moment, nesh, raml2html, 
+standard, tmpin, yo
 
 Go Packages: github.com/acroca/go-symbols, github.com/alecthomas/gometalinter, 
 github.com/cweill/gotests/gotests, github.com/derekparker/delve/cmd/dlv, 

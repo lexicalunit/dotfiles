@@ -51,6 +51,7 @@
       "welcome"
       "wrap-guide"
       "event-watch"
+      "linter-write-good"
     ]
     openEmptyEditorOnStart: false
     packagesWithKeymapsDisabled: [

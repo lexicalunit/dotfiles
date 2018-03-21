@@ -17,8 +17,8 @@ HOMEBREW_FORMULAS="                                                            \
     libgphoto2 libicns libidn2 libksba libmpc libpng librdkafka libssh2        \
     libtasn1 libtiff libtool libunistring libusb libusb-compat libvo-aacenc    \
     libyaml little-cms2 lz4 lzlib makedepend maven md5sha1sum memcached        \
-    mongodb mpfr mysql ncftp net-snmp nettle nginx no-more-secrets node npth   \
-    nvm onepass oniguruma openssl ossp-uuid p11-kit pandoc pcre                \
+    mongodb mpfr mtr mysql ncftp net-snmp nettle nginx no-more-secrets node    \
+    npth nvm onepass oniguruma openssl ossp-uuid p11-kit pandoc pcre           \
     percona-toolkit pidof pinentry pkg-config plotutils pngquant postgresql    \
     protobuf pyenv pyenv-virtualenv pyenv-virtualenvwrapper rabbitmq readline  \
     redis ripgrep rust s3cmd sane-backends sbt scala scons sdl2 sdl2_image     \

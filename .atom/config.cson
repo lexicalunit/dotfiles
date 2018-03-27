@@ -228,6 +228,10 @@
   editor:
     softTabs: true
     tabLength: 2
+".css.source.stylus":
+  editor:
+    softTabs: true
+    tabLength: 2
 ".dockerfile.source":
   editor:
     softTabs: true

@@ -338,7 +338,7 @@ linter-ui-default, linter-write-good, minimap, minimap-find-and-replace,
 minimap-git-diff, minimap-highlight-selected, minimap-selection, 
 multi-wrap-guide, native-ui, no-title-bar, pretty-json, python-yapf, 
 red-wavy-underline, ruby-block, set-syntax, soft-wrap-indicator, sort-lines, 
-standard-formatter, tab-control, tabs-to-spaces, 
+standard-formatter, stylus, tab-control, tabs-to-spaces, 
 tinacious-design-syntax-purple, toggle-quotes, trailing-spaces, unity-ui
 
 Code Packages: DavidAnson.vscode-markdownlint, HookyQR.beautify, 

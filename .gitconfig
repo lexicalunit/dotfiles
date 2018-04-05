@@ -33,9 +33,9 @@
 	ltr = !cd ${GIT_PREFIX:-.} && git_ltr
 	name-change = !bash git_name_change
 	parent = !git_parent
+	ph = push
 	pl = pull
 	pt = !bash git_push_topic
-	pu = push
 	push-topic = !bash git_push_topic
 	r = reset
 	reauthor = !bash git_reauthor

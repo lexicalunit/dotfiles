@@ -4,8 +4,8 @@
 
 usage() {
     (
-        echo "usage: ${0##*/} [-h|--help] [-r]"
-        echo "Fetch and fast-forward to the latest for origin/master."
+        echo "usage: ${0##*/} [parent] [-h|--help] [-r]"
+        echo "Fetch and fast-forward to the latest for origin/master or origin/parent."
         echo
         echo "options:"
         (
@@ -26,7 +26,9 @@ while getopts "r" opt; do
 done
 shift $((OPTIND - 1))
 
+PARENT="${1:-master}"
+
 set -ue
 git checkout --quiet --detach
-git fetch --prune origin master:master
+git fetch --prune origin "$PARENT":"$PARENT"
 git checkout --quiet -

@@ -170,8 +170,8 @@ usage: git_reauthor [-f] commit-to-change [branch-to-rewrite [new-name [new-emai
 * * *
 ### [`git_sync`](git_sync)
 ```
-usage: git_sync [-h|--help] [-r]
-Fetch and fast-forward to the latest for origin/master.
+usage: git_sync [parent] [-h|--help] [-r]
+Fetch and fast-forward to the latest for origin/master or origin/parent.
 
 options:
     -h, --help   show usage help

@@ -37,4 +37,4 @@ fi
 
 set -ue
 PARENT="$(git parent)"
-run "git sync && git rebase origin/$PARENT"
+run "git sync '$PARENT' && git rebase 'origin/$PARENT'"

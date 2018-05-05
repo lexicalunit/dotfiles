@@ -37,7 +37,9 @@
 /.bash_sessions
 /.bokeh
 /.bundle/cache
+/.cache/babl
 /.cache/bower
+/.cache/fontconfig
 /.cargo
 /.ccache
 /.coffee_history

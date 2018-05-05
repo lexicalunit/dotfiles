@@ -86,6 +86,7 @@ with the argument `--help`.
 | [`set_wallpaper`](bin/set_wallpaper) | Uses Cocoa classes via PyObjC to set a desktop wallpaper on all scr... |
 | [`setup`](bin/setup) | Install applications and development environment on an macOS or Lin... |
 | [`share`](bin/share) | Easy way to manage temporary web shares. |
+| [`shfmt`](bin/shfmt) | Symbolic link to '/usr/local/bin/shfmt' |
 | [`show_dircolors`](bin/show_dircolors) | Shows example output based on current dircolors settings. |
 | [`slept`](bin/slept) | Get time macOS system last went to sleep. |
 | [`smongo`](bin/smongo) | Opens mongo shell to master node. |

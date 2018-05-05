@@ -474,6 +474,42 @@ The ~/.webshare script must set environment variables:
 ```
 
 * * *
+### [`shfmt`](shfmt)
+Symbolic link to '/usr/local/bin/shfmt'
+```
+usage: shfmt [flags] [path ...]
+
+If no arguments are given, standard input will be used. If a given path
+is a directory, it will be recursively searched for shell files - both
+by filename extension and by shebang.
+
+  -version  show version and exit
+
+  -l        list files whose formatting differs from shfmt's
+  -w        write result to file instead of stdout
+  -d        display diffs when formatting differs
+  -s        simplify the code
+
+Parser options:
+
+  -ln str   language variant to parse (bash/posix/mksh, default "bash")
+  -p        shorthand for -ln=posix
+
+Printer options:
+
+  -i uint   indent: 0 for tabs (default), >0 for number of spaces
+  -bn       binary ops like && and | may start a line
+  -ci       switch cases will be indented
+  -kp       keep column alignment paddings
+  -mn       minify program to reduce its size (implies -s)
+
+Utilities:
+
+  -f        recursively find all shell files and print the paths
+  -tojson   print AST to stdout as a typed JSON
+```
+
+* * *
 ### [`show_dircolors`](show_dircolors)
 ```
 usage: show_dircolors [-h|--help]

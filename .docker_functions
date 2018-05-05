@@ -45,7 +45,7 @@ dps() {
 }
 
 running_in_docker() {
-    awk -F/ '$2 == "docker"' /proc/self/cgroup | read
+    awk -F/ '$2 == "docker"' /proc/self/cgroup 2>/dev/null | read
 }
 
 # add variable DOCKER_ID with UID of most recent container

@@ -6,6 +6,13 @@
     pythonPath: "~/anaconda3/bin"
   "atom-notes":
     directory: "~/Dropbox/nv"
+    extensions: [
+      ".md"
+      ".markdown"
+      ".adoc"
+      ".txt"
+      ".dot"
+    ]
     orderByFuzzyFileNameMatch: true
   "atom-pair": null
   "autocomplete-plus":
@@ -52,6 +59,7 @@
       "wrap-guide"
       "event-watch"
       "linter-write-good"
+      "markdown-preview"
     ]
     openEmptyEditorOnStart: false
     packagesWithKeymapsDisabled: [
@@ -137,6 +145,16 @@
       "source.gfm.notes"
     ]
     liveUpdate: false
+  "markdown-preview-plus":
+    grammars: [
+      "source.gfm"
+      "source.litcoffee"
+      "text.html.basic"
+      "text.md"
+      "text.plain"
+      "text.plain.null-grammar"
+      "source.gfm.notes"
+    ]
   minimap:
     plugins:
       "find-and-replace": true

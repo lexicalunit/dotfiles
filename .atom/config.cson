@@ -309,6 +309,10 @@
   editor:
     softTabs: true
     tabLength: 2
+".source.ts":
+  editor:
+    softTabs: true
+    tabLength: 2
 ".source.yaml":
   editor:
     tabLength: 2

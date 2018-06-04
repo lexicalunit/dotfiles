@@ -47,6 +47,7 @@
 /.conda/environments.txt
 /.conda/pkgs/urls
 /.conda/pkgs/urls.txt
+/.config/.mono/certs/Trust/
 /.config/configstore
 /.config/QtProject
 /.config/rq

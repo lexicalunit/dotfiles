@@ -309,8 +309,8 @@ no-more-secrets, node, npth, nvm, onepass, oniguruma, openssl, ossp-uuid,
 p11-kit, pandoc, pcre, pidof, pinentry, pkg-config, plotutils, pngquant, 
 postgresql, pyenv, pyenv-virtualenv, pyenv-virtualenvwrapper, readline, redis, 
 ripgrep, rust, s3cmd, shellcheck, shfmt, sloccount, sqlite, sqliteodbc, swig, 
-tree, unixodbc, v8, vegeta, watch, wdiff, webp, wget, x264, xvid, xz, yajl, 
-yaml-cpp, youtube-dl, zsh
+tree, unixodbc, v8, vegeta, vramsteg, watch, wdiff, webp, wget, x264, xvid, xz, 
+yajl, yaml-cpp, youtube-dl, zsh
 
 Homebrew Casks: 1password, atom, atom-beta, balsamiq-mockups, battle-net, 
 caffeine, clamxav, dbvisualizer, disk-inventory-x, docker, dropbox, evernote, 

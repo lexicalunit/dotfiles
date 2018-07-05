@@ -10,6 +10,7 @@
 [diff]
 	prompt = false
 	renames = copies
+	colorMoved = zebra
 	tool = Kaleidoscope
 [mergetool "kaleidoscope"]
 	cmd = ksdiff --merge --output "$MERGED" --base "$BASE" -- "$LOCAL" --snapshot "$REMOTE" --snapshot

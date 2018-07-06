@@ -11,7 +11,7 @@ fi
 unalias rm
 
 # First setup shared profile settings, then setup zsh specific settings.
-SHELL="$(which zsh)"
+SHELL="$(command -v zsh)"
 export SHELL
 
 ################################################################################
@@ -27,6 +27,7 @@ fi
 autoload -Uz bashcompinit && bashcompinit
 _source_completions() {
   if [[ -d "$1" ]]; then
+      # shellcheck disable=SC2167
       for I in "$1"/*; do
           # shellcheck source=.profile
           source "$I" 2>/dev/null
@@ -56,5 +57,9 @@ alias sd='fasd -sid'     # interactive directory selection
 alias sf='fasd -sif'     # interactive file selection
 alias z='fasd_cd -d'     # cd, same functionality as j in autojump
 alias zz='fasd_cd -d -i' # cd with interactive selection
+
+# disable the super annoying "did you mean?" feature in zsh
+unsetopt correct
+unsetopt correctall
 
 fi # if $INTERACTIVE

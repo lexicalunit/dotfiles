@@ -806,8 +806,8 @@ Options:
     --fixup POLICY                   Automatically correct known faults of the file. One of never (do nothing), warn
                                      (only emit a warning), detect_or_warn (the default; fix file if we can, warn
                                      otherwise)
-    --prefer-avconv                  Prefer avconv over ffmpeg for running the postprocessors (default)
-    --prefer-ffmpeg                  Prefer ffmpeg over avconv for running the postprocessors
+    --prefer-avconv                  Prefer avconv over ffmpeg for running the postprocessors
+    --prefer-ffmpeg                  Prefer ffmpeg over avconv for running the postprocessors (default)
     --ffmpeg-location PATH           Location of the ffmpeg/avconv binary; either the path to the binary or its
                                      containing directory.
     --exec CMD                       Execute a command on the file after downloading, similar to find's -exec syntax.

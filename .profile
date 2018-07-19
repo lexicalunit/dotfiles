@@ -104,6 +104,11 @@ export PATH
 export PYTHONPATH
 export PKG_CONFIG_PATH
 
+# Additional application setup
+# shellcheck source=~/.travis/travis.sh
+# shellcheck disable=SC1090
+test -f "$HOME/.travis/travis.sh" && source "$_"
+
 USER="$(whoami)"
 HOST="$(uname -n)"
 PLATFORM="$(uname)"
@@ -146,7 +151,7 @@ entervirtualenv() {
     if type virtualenvwrapper.sh >/dev/null 2>&1; then
         # shellcheck source=virtualenvwrapper.sh
         # shellcheck disable=SC1091
-        source "$(which virtualenvwrapper.sh)"
+        source "$(command -v virtualenvwrapper.sh)"
     fi
     export PYTHON_ENV="virtualenv"
 }
@@ -192,7 +197,7 @@ enterconda() {
 
 exitconda() {
     if [[ -n "$CONDA_DEFAULT_ENV" ]]; then
-        if which deactivate >/dev/null 2>&1; then
+        if command -v deactivate >/dev/null 2>&1; then
             # shellcheck disable=SC1091
             source deactivate
         fi
@@ -237,18 +242,18 @@ if type atom >/dev/null 2>&1; then
     export OSXEDITOR='atom -w'
     alias e='atom -a . '
     alias edit='atom '
-    ew() { type "$1" >/dev/null 2>&1 && atom "$(which "$1")"; }
+    ew() { type "$1" >/dev/null 2>&1 && atom "$(command -v "$1")"; }
     eman() { man "$@" | col -bx | tmpin atom -w & }
 elif type subl >/dev/null 2>&1; then
     # export EDITOR='subl -w'
     # export CVSEDITOR='subl -w'
     export OSXEDITOR='subl -w'
     alias edit='subl '
-    ew() { type "$1" >/dev/null 2>&1 && subl "$(which "$1")"; }
+    ew() { type "$1" >/dev/null 2>&1 && subl "$(command -v "$1")"; }
     eman() { man "$@" | col -bx | subl -w & }
 elif type vim >/dev/null 2>&1; then
     alias edit='vim '
-    ew() { type "$1" >/dev/null 2>&1 && vim "$(which "$1")"; }
+    ew() { type "$1" >/dev/null 2>&1 && vim "$(command -v "$1")"; }
     eman() { man "$@" | col -bx | vim -; }
 fi
 
@@ -258,7 +263,7 @@ if type atom-beta >/dev/null 2>&1; then
     alias edit='atom-beta '
     alias atom='atom-beta '
     alias apm='apm-beta '
-    ew() { type "$1" >/dev/null 2>&1 && atom-beta "$(which "$1")"; }
+    ew() { type "$1" >/dev/null 2>&1 && atom-beta "$(command -v "$1")"; }
 fi
 
 vman() { man "$@" | col -bx | vim -; }
@@ -314,7 +319,7 @@ lw() {
     local LOC
     local FINFO
     local REAL
-    LOC="$(which "$1")"
+    LOC="$(command -v "$1")"
     echo "$LOC"
     FINFO="$(file -h "$LOC")"
     if [[ "$FINFO" =~ "symbolic link to" ]]; then

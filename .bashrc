@@ -1,7 +1,8 @@
 #! .bashrc
+# shellcheck disable=SC1117
 
 # First setup shared profile settings, then setup bash specific settings.
-SHELL="$(which bash)"
+SHELL="$(command -v bash)"
 export SHELL
 
 if [[ -f "$HOME/.profile" ]]; then
@@ -55,6 +56,7 @@ _bash_history_append() {
 ################################################################################
 _source_completions() {
     if [[ -d "$1" ]]; then
+        # shellcheck disable=SC2167
         for I in "$1"/*; do
             # shellcheck source=.profile
             source "$I" 2>/dev/null
@@ -165,7 +167,7 @@ _prompt_command() {
     local  BLACK="\[\e[0m\]"
     local   GREY="\[\e[0;38;5;241m\]"
 
-    # "\w" or "${PWD/#$HOME/~}" not sure which to go with...
+    # "\w" or "${PWD/#$HOME/~}" not sure what to go with...
     local TERMINAL_TITLE
     local PROMPT_LINE_1
     local PROMPT_LINE_2

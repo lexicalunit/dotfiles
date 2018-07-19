@@ -98,6 +98,8 @@
 /.sqlite_history
 /.ssh
 /.subversion
+/.travis/config.yml
+/.travis/travis.sh
 /.v8flags*
 /.vagrant*
 /.vim/.netrwhist

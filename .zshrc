@@ -62,4 +62,7 @@ alias zz='fasd_cd -d -i' # cd with interactive selection
 unsetopt correct
 unsetopt correctall
 
+# stop asking me twice
+setopt rm_star_silent
+
 fi # if $INTERACTIVE

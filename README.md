@@ -189,16 +189,18 @@ setuptools, simplegeneric, six, snowballstemmer, sphinx, sphinxcontrib,
 sphinxcontrib-websupport, sqlite, tk, traitlets, typing, urllib3, wcwidth, 
 wheel, wrapt, xz, yaml, zlib, zope, zope.interface
 
-Gem Packages: addressable, ast, bigdecimal, bundler, bundler-unload, 
+Gem Packages: addressable, ast, backports, bigdecimal, bundler, bundler-unload, 
 coffee-script, coffee-script-source, colorator, commander, concurrent-ruby, 
-did_you_mean, em-websocket, eventmachine, execjs, executable-hooks, ffi, 
-forwardable-extended, gem-wrappers, highline, http_parser.rb, i18n, io-console, 
-jaro_winkler, jekyll, jekyll-sass-converter, jekyll-watch, json, kramdown, 
-liquid, listen, lolcat, manpages, mercenary, minitest, net-telnet, openssl, 
-paint, parallel, parser, pathutil, power_assert, powerpack, psych, 
-public_suffix, rainbow, rake, rb-fsevent, rb-inotify, rdoc, rouge, rubocop, 
-ruby-progressbar, ruby_dep, rubygems-bundler, rvm, safe_yaml, sass, 
-sass-listen, test-unit, trollop, unicode-display_width, xmlrpc
+connection_pool, did_you_mean, em-websocket, ethon, eventmachine, execjs, 
+executable-hooks, faraday, faraday_middleware, ffi, forwardable-extended, 
+gem-wrappers, gh, highline, http_parser.rb, i18n, io-console, jaro_winkler, 
+jekyll, jekyll-sass-converter, jekyll-watch, json, kramdown, launchy, liquid, 
+listen, lolcat, manpages, mercenary, minitest, multi_json, multipart-post, 
+net-http-persistent, net-http-pipeline, net-telnet, openssl, paint, parallel, 
+parser, pathutil, power_assert, powerpack, psych, public_suffix, pusher-client, 
+rainbow, rake, rb-fsevent, rb-inotify, rdoc, rouge, rubocop, ruby-progressbar, 
+ruby_dep, rubygems-bundler, rvm, safe_yaml, sass, sass-listen, test-unit, 
+travis, trollop, typhoeus, unicode-display_width, xmlrpc
 
 Node Modules: JSON, all-contributors-cli, coffee-script, coffeelint, cson, 
 decaffeinate, dockerlint, eslint, external-ip, generator-code, geoip-lite, 

@@ -1667,6 +1667,7 @@ step_env() {
 
     # install git hooks
     run "cd '$HOME/.git/hooks'" || exit 1
+    run "find . -type f -print0 | xargs -0 rm -v"
     run "ln -sf '../../env/pre-commit' ."
     run "ln -sf '../../env/post-commit' ."
 

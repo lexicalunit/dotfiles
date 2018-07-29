@@ -308,9 +308,9 @@ md5sha1sum, memcached, mpfr, mtr, mysql, ncftp, net-snmp, nettle, nginx,
 no-more-secrets, node, npth, nvm, onepass, oniguruma, openssl, ossp-uuid, 
 p11-kit, pandoc, pcre, pidof, pinentry, pkg-config, plotutils, pngquant, 
 postgresql, pyenv, pyenv-virtualenv, pyenv-virtualenvwrapper, readline, redis, 
-ripgrep, rust, s3cmd, shellcheck, shfmt, sloccount, sqlite, sqliteodbc, swig, 
-tree, unixodbc, v8, vegeta, vramsteg, watch, wdiff, webp, wget, x264, xvid, xz, 
-yajl, yaml-cpp, youtube-dl, zsh
+ripgrep, rust, shellcheck, shfmt, sloccount, sqlite, sqliteodbc, swig, tree, 
+unixodbc, v8, vegeta, vramsteg, watch, wdiff, webp, wget, x264, xvid, xz, yajl, 
+yaml-cpp, youtube-dl, zsh
 
 Homebrew Casks: 1password, atom, atom-beta, balsamiq-mockups, battle-net, 
 caffeine, clamxav, dbvisualizer, disk-inventory-x, docker, dropbox, evernote, 
@@ -465,6 +465,7 @@ Printer options:
   -i uint   indent: 0 for tabs (default), >0 for number of spaces
   -bn       binary ops like && and | may start a line
   -ci       switch cases will be indented
+  -sr       redirect operators will be followed by a space
   -kp       keep column alignment paddings
   -mn       minify program to reduce its size (implies -s)
 

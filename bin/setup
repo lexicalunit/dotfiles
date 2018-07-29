@@ -19,7 +19,7 @@ HOMEBREW_FORMULAS="                                                            \
     nginx no-more-secrets node npth nvm onepass oniguruma openssl ossp-uuid    \
     p11-kit pandoc pcre pidof pinentry pkg-config plotutils pngquant           \
     postgresql pyenv pyenv-virtualenv pyenv-virtualenvwrapper readline redis   \
-    ripgrep rust s3cmd shellcheck shfmt sloccount sqlite sqliteodbc swig tree  \
+    ripgrep rust shellcheck shfmt sloccount sqlite sqliteodbc swig tree        \
     unixodbc v8 vegeta vramsteg watch wdiff webp wget x264 xvid xz yajl        \
     yaml-cpp youtube-dl zsh"
 

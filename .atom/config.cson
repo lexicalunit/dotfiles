@@ -73,6 +73,7 @@
       "solarized-light-syntax"
     ]
     titleBar: "custom"
+    useTreeSitterParsers: true
   "cursor-indicator":
     displayPrefix: "|"
   "dark-flat-ui":

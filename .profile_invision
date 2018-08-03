@@ -61,9 +61,11 @@ fi
 
 _enter_nvm_for_invision_projects() {
     if [[ "$PWD" = *"/invision/"* && "$OLDPWD" != *"/invision/"* ]]; then
-        nvm use v8.9.4 >/dev/null
+        nvm use v8 >/dev/null
+        exitconda
     elif [[ "$PWD" != *"/invision/"* && "$OLDPWD" = *"/invision/"* ]]; then
         nvm use system >/dev/null
+        enterconda
     fi
 }
 

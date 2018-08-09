@@ -205,14 +205,17 @@
       "source.makefile"
       "source.plist"
       "source.python"
+      "source.rst"
       "source.shell"
       "source.sql"
       "source.yaml"
       "text.git-commit"
       "text.html.basic"
       "text.html.erb"
+      "text.md"
       "text.plain"
       "text.plain.null-grammar"
+      "text.restructuredtext"
       "text.todo"
     ]
   "tab-control":

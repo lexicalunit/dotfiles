@@ -82,6 +82,7 @@ with the argument `--help`.
 | [`jsc`](bin/jsc) | Symbolic link to '/System/Library/Frameworks/JavaScriptCore.framewo... |
 | [`macosver`](bin/macosver) | Prints current macOS version information. |
 | [`nopw`](bin/nopw) | Enables password-less ssh TO username@remotehost FROM localhost. |
+| [`prettier`](bin/prettier) | Symbolic link to '/usr/local/bin/prettier' |
 | [`root`](bin/root) | Prints the root of the current repository. |
 | [`set_wallpaper`](bin/set_wallpaper) | Uses Cocoa classes via PyObjC to set a desktop wallpaper on all scr... |
 | [`setup`](bin/setup) | Install applications and development environment on an macOS or Lin... |
@@ -163,10 +164,10 @@ linter-flake8, linter-jsonlint, linter-rubocop, linter-shellcheck, linter-tidy,
 linter-tslint, linter-ui-default, linter-write-good, markdown-preview-plus, 
 minimap, minimap-find-and-replace, minimap-git-diff, 
 minimap-highlight-selected, minimap-selection, multi-wrap-guide, native-ui, 
-no-title-bar, pigments, pretty-json, python-yapf, red-wavy-underline, 
-ruby-block, set-syntax, soft-wrap-indicator, sort-lines, standard-formatter, 
-tab-control, tabs-to-spaces, tinacious-design-syntax-purple, toggle-quotes, 
-trailing-spaces, unity-ui
+no-title-bar, pigments, prettier-atom, pretty-json, python-yapf, 
+red-wavy-underline, ruby-block, set-syntax, soft-wrap-indicator, sort-lines, 
+standard-formatter, tab-control, tabs-to-spaces, 
+tinacious-design-syntax-purple, toggle-quotes, trailing-spaces, unity-ui
 
 Code Packages: DavidAnson.vscode-markdownlint, HookyQR.beautify, 
 dbaeumer.vscode-eslint, eg2.tslint, magicstack.MagicPython, ms-python.python, 
@@ -204,7 +205,8 @@ travis, trollop, typhoeus, unicode-display_width, xmlrpc
 
 Node Modules: JSON, all-contributors-cli, coffee-script, coffeelint, cson, 
 decaffeinate, dockerlint, eslint, external-ip, generator-code, geoip-lite, 
-js-beautify, json-stable-stringify, moment, nesh, raml2html, standard, tmpin, yo
+js-beautify, json-stable-stringify, moment, nesh, prettier, raml2html, 
+standard, tmpin, yo
 
 Go Packages: github.com/acroca/go-symbols, github.com/cweill/gotests/gotests, 
 github.com/davidrjenni/reftools/cmd/fillstruct, 

@@ -47,9 +47,9 @@ ATOM_PACKAGES="                                                                \
     linter-shellcheck linter-tidy linter-tslint linter-ui-default              \
     linter-write-good markdown-preview-plus minimap minimap-find-and-replace   \
     minimap-git-diff minimap-highlight-selected minimap-selection              \
-    multi-wrap-guide native-ui no-title-bar pigments pretty-json python-yapf   \
-    red-wavy-underline ruby-block set-syntax soft-wrap-indicator sort-lines    \
-    standard-formatter tab-control tabs-to-spaces                              \
+    multi-wrap-guide native-ui no-title-bar pigments prettier-atom pretty-json \
+    python-yapf red-wavy-underline ruby-block set-syntax soft-wrap-indicator   \
+    sort-lines standard-formatter tab-control tabs-to-spaces                   \
     tinacious-design-syntax-purple toggle-quotes trailing-spaces unity-ui"
 
 CODE_PACKAGES="                                                                \
@@ -92,7 +92,7 @@ GEM_PACKAGES="                                                                 \
 NODE_MODULES="                                                                 \
     JSON all-contributors-cli coffee-script coffeelint cson decaffeinate       \
     dockerlint eslint external-ip generator-code geoip-lite js-beautify        \
-    json-stable-stringify moment nesh raml2html standard tmpin yo"
+    json-stable-stringify moment nesh prettier raml2html standard tmpin yo"
 
 GO_PACKAGES="                                                                  \
     github.com/acroca/go-symbols github.com/cweill/gotests/gotests             \

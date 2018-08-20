@@ -246,6 +246,103 @@ Puts your public ssh key in the authorized_keys on the remote host.
 ```
 
 * * *
+### [`prettier`](prettier)
+Symbolic link to '/usr/local/bin/prettier'
+```
+Usage: prettier [options] [file/glob ...]
+
+By default, output is written to stdout.
+Stdin is read if it is piped to Prettier and no files are given.
+
+Output options:
+
+  -l, --list-different     Print the names of files that are different from Prettier's formatting.
+  --write                  Edit files in-place. (Beware!)
+
+Format options:
+
+  --arrow-parens <avoid|always>
+                           Include parentheses around a sole arrow function parameter.
+                           Defaults to avoid.
+  --no-bracket-spacing     Do not print spaces between brackets.
+  --jsx-bracket-same-line  Put > on the last line instead of at a new line.
+                           Defaults to false.
+  --parser <flow|babylon|typescript|css|less|scss|json|json5|json-stringify|graphql|markdown|vue|yaml>
+                           Which parser to use.
+  --print-width <int>      The line length where Prettier will try wrap.
+                           Defaults to 80.
+  --prose-wrap <always|never|preserve>
+                           How to wrap prose.
+                           Defaults to preserve.
+  --no-semi                Do not print semicolons, except at the beginning of lines which may need them.
+  --single-quote           Use single quotes instead of double quotes.
+                           Defaults to false.
+  --tab-width <int>        Number of spaces per indentation level.
+                           Defaults to 2.
+  --trailing-comma <none|es5|all>
+                           Print trailing commas wherever possible when multi-line.
+                           Defaults to none.
+  --use-tabs               Indent with tabs instead of spaces.
+                           Defaults to false.
+
+Config options:
+
+  --config <path>          Path to a Prettier configuration file (.prettierrc, package.json, prettier.config.js).
+  --no-config              Do not look for a configuration file.
+  --config-precedence <cli-override|file-override|prefer-file>
+                           Define in which order config files and CLI options should be evaluated.
+                           Defaults to cli-override.
+  --no-editorconfig        Don't take .editorconfig into account when parsing configuration.
+  --find-config-path <path>
+                           Find and print the path to a configuration file for the given input file.
+  --ignore-path <path>     Path to a file with patterns describing files to ignore.
+                           Defaults to .prettierignore.
+  --plugin <path>          Add a plugin. Multiple plugins can be passed as separate `--plugin`s.
+                           Defaults to [].
+  --plugin-search-dir <path>
+                           Custom directory that contains prettier plugins in node_modules subdirectory.
+                           Overrides default behavior when plugins are searched relatively to the location of Prettier.
+                           Multiple values are accepted.
+                           Defaults to [].
+  --with-node-modules      Process files inside 'node_modules' directory.
+
+Editor options:
+
+  --cursor-offset <int>    Print (to stderr) where a cursor at the given position would move to after formatting.
+                           This option cannot be used with --range-start and --range-end.
+                           Defaults to -1.
+  --range-end <int>        Format code ending at a given character offset (exclusive).
+                           The range will extend forwards to the end of the selected statement.
+                           This option cannot be used with --cursor-offset.
+                           Defaults to Infinity.
+  --range-start <int>      Format code starting at a given character offset.
+                           The range will extend backwards to the start of the first line containing the selected statement.
+                           This option cannot be used with --cursor-offset.
+                           Defaults to 0.
+
+Other options:
+
+  --no-color               Do not colorize error messages.
+  --file-info <path>       Extract the following info (as JSON) for a given file path. Reported fields:
+                           * ignored (boolean) - true if file path is filtered by --ignore-path
+                           * inferredParser (string | null) - name of parser inferred from file path
+  -h, --help <flag>        Show CLI usage, or details about the given flag.
+                           Example: --help write
+  --insert-pragma          Insert @format pragma into file's first docblock comment.
+                           Defaults to false.
+  --loglevel <silent|error|warn|log|debug>
+                           What level of logs to report.
+                           Defaults to log.
+  --require-pragma         Require either '@prettier' or '@format' to be present in the file's first docblock comment
+                           in order for it to be formatted.
+                           Defaults to false.
+  --stdin                  Force reading input from stdin.
+  --stdin-filepath <path>  Path to the file to pretend that stdin comes from.
+  --support-info           Print support information as JSON.
+  -v, --version            Print Prettier version.
+```
+
+* * *
 ### [`root`](root)
 ```
 usage: root [-h|--help]
@@ -335,10 +432,10 @@ linter-flake8, linter-jsonlint, linter-rubocop, linter-shellcheck, linter-tidy,
 linter-tslint, linter-ui-default, linter-write-good, markdown-preview-plus, 
 minimap, minimap-find-and-replace, minimap-git-diff, 
 minimap-highlight-selected, minimap-selection, multi-wrap-guide, native-ui, 
-no-title-bar, pigments, pretty-json, python-yapf, red-wavy-underline, 
-ruby-block, set-syntax, soft-wrap-indicator, sort-lines, standard-formatter, 
-tab-control, tabs-to-spaces, tinacious-design-syntax-purple, toggle-quotes, 
-trailing-spaces, unity-ui
+no-title-bar, pigments, prettier-atom, pretty-json, python-yapf, 
+red-wavy-underline, ruby-block, set-syntax, soft-wrap-indicator, sort-lines, 
+standard-formatter, tab-control, tabs-to-spaces, 
+tinacious-design-syntax-purple, toggle-quotes, trailing-spaces, unity-ui
 
 Code Packages: DavidAnson.vscode-markdownlint, HookyQR.beautify, 
 dbaeumer.vscode-eslint, eg2.tslint, magicstack.MagicPython, ms-python.python, 
@@ -376,7 +473,8 @@ travis, trollop, typhoeus, unicode-display_width, xmlrpc
 
 Node Modules: JSON, all-contributors-cli, coffee-script, coffeelint, cson, 
 decaffeinate, dockerlint, eslint, external-ip, generator-code, geoip-lite, 
-js-beautify, json-stable-stringify, moment, nesh, raml2html, standard, tmpin, yo
+js-beautify, json-stable-stringify, moment, nesh, prettier, raml2html, 
+standard, tmpin, yo
 
 Go Packages: github.com/acroca/go-symbols, github.com/cweill/gotests/gotests, 
 github.com/davidrjenni/reftools/cmd/fillstruct, 

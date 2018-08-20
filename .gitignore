@@ -21,6 +21,7 @@
 /source
 
 # Work
+/.gitconfig-user-*
 /.npmrc
 /.openvpn-connect.json
 

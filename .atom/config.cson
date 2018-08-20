@@ -61,6 +61,10 @@
       "linter-write-good"
       "markdown-preview"
       "language-gfm"
+      "python-yapf"
+      "atom-isort"
+      "atom-language-avro"
+      "linter-coffeelint"
     ]
     openEmptyEditorOnStart: false
     packagesWithKeymapsDisabled: [

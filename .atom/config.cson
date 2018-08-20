@@ -291,6 +291,10 @@
   editor:
     softTabs: true
     tabLength: 2
+".md.text":
+  editor:
+    softWrap: false
+    softWrapAtPreferredLineLength: false
 ".null-grammar.plain.text":
   editor:
     softTabs: true

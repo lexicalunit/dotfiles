@@ -92,7 +92,8 @@ GEM_PACKAGES="                                                                 \
 NODE_MODULES="                                                                 \
     JSON all-contributors-cli coffee-script coffeelint cson decaffeinate       \
     dockerlint eslint external-ip generator-code geoip-lite js-beautify        \
-    json-stable-stringify moment nesh prettier raml2html standard tmpin yo"
+    json-stable-stringify moment nesh npm-check-updates prettier raml2html     \
+    standard tmpin yo"
 
 GO_PACKAGES="                                                                  \
     github.com/acroca/go-symbols github.com/cweill/gotests                     \

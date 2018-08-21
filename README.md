@@ -205,8 +205,8 @@ travis, trollop, typhoeus, unicode-display_width, xmlrpc
 
 Node Modules: JSON, all-contributors-cli, coffee-script, coffeelint, cson, 
 decaffeinate, dockerlint, eslint, external-ip, generator-code, geoip-lite, 
-js-beautify, json-stable-stringify, moment, nesh, prettier, raml2html, 
-standard, tmpin, yo
+js-beautify, json-stable-stringify, moment, nesh, npm-check-updates, prettier, 
+raml2html, standard, tmpin, yo
 
 Go Packages: github.com/acroca/go-symbols, github.com/cweill/gotests, 
 github.com/davidrjenni/reftools, github.com/fatih/gomodifytags, 

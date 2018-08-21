@@ -190,8 +190,12 @@ options:
 * * *
 ### [`golist`](golist)
 ```
-usage: golist [-h|--help]
+usage: golist [-h|--help] [-r]
 Uses `go list` to list all user installed go packages that aren't dependencies.
+
+options:
+    -h, --help   show usage help
+    -r           show only the top level repos
 ```
 
 * * *
@@ -476,49 +480,14 @@ decaffeinate, dockerlint, eslint, external-ip, generator-code, geoip-lite,
 js-beautify, json-stable-stringify, moment, nesh, prettier, raml2html, 
 standard, tmpin, yo
 
-Go Packages: github.com/acroca/go-symbols, github.com/cweill/gotests/gotests, 
-github.com/davidrjenni/reftools/cmd/fillstruct, 
-github.com/davidrjenni/reftools/cmd/fillswitch, 
-github.com/davidrjenni/reftools/cmd/fillswitch/test-fixtures/broken_typeswi, 
-github.com/davidrjenni/reftools/cmd/fillswitch/test-fixtures/empty_switch, 
-github.com/davidrjenni/reftools/cmd/fillswitch/test-fixtures/multipkgs, 
-github.com/davidrjenni/reftools/cmd/fillswitch/test-fixtures/switch_1, 
-github.com/davidrjenni/reftools/cmd/fillswitch/test-fixtures/typeswitch_1, 
-github.com/davidrjenni/reftools/cmd/fillswitch/test-fixtures/typeswitch_2, 
-github.com/davidrjenni/reftools/cmd/fillswitch/test-fixtures/typeswitch_3, 
-github.com/davidrjenni/reftools/cmd/fillswitch/test-fixtures/typeswitch_4, 
-github.com/davidrjenni/reftools/cmd/fillswitch/test-fixtures/typeswitch_5, 
-github.com/davidrjenni/reftools/cmd/fixplurals, github.com/fatih/gomodifytags, 
-github.com/golang/lint, github.com/golang/lint/golint, 
-github.com/haya14busa/goplay/cmd/goplay, github.com/haya14busa/goplay/socket, 
-github.com/josharian/impl, github.com/karrick/godirwalk/examples/clean-empties, 
-github.com/karrick/godirwalk/examples/walk-fast, 
-github.com/karrick/godirwalk/examples/walk-stdlib, github.com/mdempsky/gocode, 
-github.com/ramya-rao-a/go-outline, github.com/rogpeppe/godef, 
-github.com/rogpeppe/godef/go/sym, github.com/uudashr/gopkgs/cmd/gopkgs, 
-golang.org/x/lint, golang.org/x/net/context/ctxhttp, golang.org/x/net/dict, 
-golang.org/x/net/dns/dnsmessage, golang.org/x/net/html/charset, 
-golang.org/x/net/http/httpproxy, golang.org/x/net/http2/h2i, 
-golang.org/x/net/icmp, golang.org/x/net/internal/sockstest, 
-golang.org/x/net/nettest, golang.org/x/net/netutil, golang.org/x/net/proxy, 
-golang.org/x/net/publicsuffix, golang.org/x/net/route, golang.org/x/net/trace, 
-golang.org/x/net/webdav, golang.org/x/net/xsrftoken, 
-golang.org/x/tools/cmd/benchcmp, golang.org/x/tools/cmd/bundle, 
-golang.org/x/tools/cmd/callgraph, golang.org/x/tools/cmd/compilebench, 
-golang.org/x/tools/cmd/cover, golang.org/x/tools/cmd/digraph, 
-golang.org/x/tools/cmd/eg, golang.org/x/tools/cmd/fiximports, 
-golang.org/x/tools/cmd/getgo, golang.org/x/tools/cmd/getgo/server, 
-golang.org/x/tools/cmd/go-contrib-init, golang.org/x/tools/cmd/godex, 
-golang.org/x/tools/cmd/godoc, golang.org/x/tools/cmd/goimports, 
-golang.org/x/tools/cmd/gomvpkg, golang.org/x/tools/cmd/gorename, 
-golang.org/x/tools/cmd/gotype, golang.org/x/tools/cmd/goyacc, 
-golang.org/x/tools/cmd/guru, golang.org/x/tools/cmd/heapview, 
-golang.org/x/tools/cmd/heapview/internal/core, 
-golang.org/x/tools/cmd/html2article, golang.org/x/tools/cmd/present, 
-golang.org/x/tools/cmd/ssadump, golang.org/x/tools/cmd/stress, 
-golang.org/x/tools/cmd/stringer, golang.org/x/tools/cmd/tip, 
-golang.org/x/tools/cmd/toolstash, golang.org/x/tools/go/gccgoexportdata, 
-golang.org/x/tools/go/vcs, tch
+Go Packages: github.com/acroca/go-symbols, github.com/cweill/gotests, 
+github.com/davidrjenni/reftools, github.com/fatih/gomodifytags, 
+github.com/golang/lint, github.com/haya14busa/goplay, 
+github.com/josharian/impl, github.com/karrick/godirwalk, 
+github.com/mdempsky/gocode, github.com/ramya-rao-a/go-outline, 
+github.com/rogpeppe/godef, github.com/uudashr/gopkgs, golang.org/x/crypto, 
+golang.org/x/lint, golang.org/x/net, golang.org/x/sys, golang.org/x/text, 
+golang.org/x/tools
 
 Cargo Packages: cargo-update, loc
 ```

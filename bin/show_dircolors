@@ -10,7 +10,12 @@ if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
     exit 1
 fi
 
+if ! type gls >/dev/null 2>&1; then
+    echo "error: please \`brew install coreutils\` first." >&2
+    exit 1
+fi
+
 tempdir="$(mktemp -d -t tmp.XXXXXXXXXX)"
 tar xzpf "$HOME/env/dircolors_examples.tgz" -C "$tempdir" || rm -rf "$tempdir"
-ls --color "$tempdir/colors/"
+gls --color "$tempdir/colors/"
 rm -rf "$tempdir"

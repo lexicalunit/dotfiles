@@ -406,12 +406,15 @@ alias cd='nocorrect cd'
 # Finally setup ls to ensure we override any aliases, like from prezto.
 if type exa >/dev/null 2>&1; then
     alias ls='exa '
-elif type dircolors >/dev/null 2>&1; then
-    eval "$(dircolors -b "$HOME/.dircolors" 2>/dev/null)" # sets LS_COLORS
+    alias ll='ls -lg --git --header --group-directories-first --git-ignore --time-style="long-iso" '
+else
     alias ls='ls -hF --color=auto'
-    export CLICOLOR=1
+    alias ll='ls -l '
+fi
+if type dircolors >/dev/null 2>&1; then
+    eval "$(dircolors -b "$HOME/.dircolors" 2>/dev/null)" # sets LS_COLORS
 fi
 alias l='ls '
-alias ll='ls -l '
+export CLICOLOR=1
 
 fi # if $INTERACTIVE

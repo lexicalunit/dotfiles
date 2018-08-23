@@ -223,14 +223,6 @@ export SAVEHIST="$TERMINAL_HISTORY_SIZE"
 ################################################################################
 # setup terminal colors and editors
 ################################################################################
-if type dircolors >/dev/null 2>&1; then
-    eval "$(dircolors -b "$HOME/.dircolors" 2>/dev/null)" # sets LS_COLORS
-    alias ls='ls -hF --color=auto'
-fi
-export CLICOLOR=1
-alias l='ls '
-alias ll='ls -l '
-
 # setup editor
 export EDITOR=vim
 export CVSEDITOR=vim
@@ -408,6 +400,18 @@ export GREP_COLOR='1;35;40'
 # shellcheck disable=SC1091
 test -s "$HOME/.rvm/scripts/rvm" && source "$_"
 
+# I hate autocorrection in CLI, disable it because prezto enables it.
 alias cd='nocorrect cd'
+
+# Finally setup ls to ensure we override any aliases, like from prezto.
+if type exa >/dev/null 2>&1; then
+    alias ls='exa '
+elif type dircolors >/dev/null 2>&1; then
+    eval "$(dircolors -b "$HOME/.dircolors" 2>/dev/null)" # sets LS_COLORS
+    alias ls='ls -hF --color=auto'
+    export CLICOLOR=1
+fi
+alias l='ls '
+alias ll='ls -l '
 
 fi # if $INTERACTIVE

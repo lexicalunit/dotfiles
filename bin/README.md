@@ -397,7 +397,7 @@ steps:
     osx        Override macOS "defaults" settings and configuration
 
 Homebrew Formulas: adns, autoconf, automake, bash, clang-format, cmake, 
-colordiff, coreutils, csv-fix, diff-so-fancy, docker, doxygen, faac, fasd, 
+colordiff, coreutils, csv-fix, diff-so-fancy, docker, doxygen, exa, faac, fasd, 
 ffmpeg, flake8, fontconfig, freetype, gd, gdbm, geoip, gettext, ghostscript, 
 gifsicle, git, git-flow, git-review, git-secrets, glib, gmp, gnu-sed, gnu-tar, 
 gnupg, gnutls, hub, icu4c, id3lib, imagemagick@6, isl, jasper, jbig2dec, 
@@ -409,17 +409,16 @@ md5sha1sum, memcached, mpfr, mtr, mysql, ncftp, net-snmp, nettle, nginx,
 no-more-secrets, node, npth, nvm, onepass, oniguruma, openssl, ossp-uuid, 
 p11-kit, pandoc, pcre, pidof, pinentry, pkg-config, plotutils, pngquant, 
 postgresql, pyenv, pyenv-virtualenv, pyenv-virtualenvwrapper, readline, redis, 
-ripgrep, rust, shellcheck, shfmt, sloccount, sqlite, sqliteodbc, swig, tree, 
-unixodbc, v8, vegeta, vramsteg, watch, wdiff, webp, wget, x264, xvid, xz, yajl, 
-yaml-cpp, youtube-dl, zsh
+ripgrep, rust, shellcheck, shfmt, sqlite, tree, v8, vegeta, vramsteg, watch, 
+wdiff, webp, wget, x264, xvid, xz, yajl, yaml-cpp, youtube-dl, zsh
 
-Homebrew Casks: 1password, atom, atom-beta, balsamiq-mockups, battle-net, 
-caffeine, clamxav, dbvisualizer, disk-inventory-x, docker, dropbox, evernote, 
-fantastical, firefox, flux, google-chrome, google-hangouts, iexplorer, 
-istumbler, iterm2, java, kaleidoscope, lingon-x, lisanet-gimp, mactex, 
-mysqlworkbench, silverlight, skype, slack, snes9x, sourcetree, spectacle, 
-spotify, steam, sublime-text, texstudio, transmission, vagrant, virtualbox, 
-visual-studio-code, vlc, whatsapp, xquartz
+Homebrew Casks: 1password, atom, atom-beta, battle-net, caffeine, clamxav, 
+dbvisualizer, disk-inventory-x, docker, dropbox, evernote, fantastical, 
+firefox, flux, google-chrome, google-hangouts, iexplorer, istumbler, iterm2, 
+java, kaleidoscope, lingon-x, lisanet-gimp, mactex, mysqlworkbench, 
+silverlight, skype, slack, snes9x, sourcetree, spectacle, spotify, steam, 
+sublime-text, texstudio, transmission, vagrant, virtualbox, visual-studio-code, 
+vlc, whatsapp, xquartz
 
 Atom Packages: activate-power-mode, aesthetic-ui, atom-beautify, atom-isort, 
 atom-language-avro, atom-notes, atom-typescript, auto-update-packages, 

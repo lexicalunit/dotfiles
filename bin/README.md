@@ -415,10 +415,10 @@ wdiff, webp, wget, x264, xvid, xz, yajl, yaml-cpp, youtube-dl, zsh
 Homebrew Casks: 1password, atom, atom-beta, battle-net, caffeine, clamxav, 
 dbvisualizer, disk-inventory-x, docker, dropbox, evernote, fantastical, 
 firefox, flux, google-chrome, google-hangouts, iexplorer, istumbler, iterm2, 
-java, kaleidoscope, lingon-x, lisanet-gimp, mactex, mysqlworkbench, 
-silverlight, skype, slack, snes9x, sourcetree, spectacle, spotify, steam, 
-sublime-text, texstudio, transmission, vagrant, virtualbox, visual-studio-code, 
-vlc, whatsapp, xquartz
+java, kaleidoscope, lingon-x, mactex, mcgimp-std, mysqlworkbench, silverlight, 
+skype, slack, snes9x, sourcetree, spectacle, spotify, steam, sublime-text, 
+texstudio, transmission, vagrant, virtualbox, visual-studio-code, vlc, 
+whatsapp, xquartz
 
 Atom Packages: activate-power-mode, aesthetic-ui, atom-beautify, atom-isort, 
 atom-language-avro, atom-notes, atom-typescript, auto-update-packages, 

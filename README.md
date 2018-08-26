@@ -60,6 +60,7 @@ with the argument `--help`.
 | [`alert`](bin/alert) | Provides shell level windowed alerting system. |
 | [`backmost`](bin/backmost) | Send the current frontmost windowed macOS application to the back. |
 | [`capture_x`](bin/capture_x) | Creates a screenshot of selected window on X11. |
+| [`cht`](bin/cht) | [X] open section |
 | [`colortest`](bin/colortest) | Prints out an entire color palette of terminal color codes. |
 | [`daemons`](bin/daemons) | Finds and removes unwanted daemons and agents. |
 | [`deploy_dotfiles`](bin/deploy_dotfiles) | Installs bin and env from this repository to remote server via ssh. |

@@ -1638,6 +1638,10 @@ step_env() {
 
     # install fonts
     run "cp -uvf '$HOME'/env/*.otf /Library/Fonts/."
+
+    # install cht.sh
+    run "curl https://cht.sh/:cht.sh > '$HOME/bin/cht'"
+    run "chmod +x '$HOME/bin/cht'"
 }
 
 ################################################################################

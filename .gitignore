@@ -43,6 +43,7 @@
 /.cache/fontconfig
 /.cargo
 /.ccache
+/.cht.sh/history
 /.cmake
 /.coffee_history
 /.conan

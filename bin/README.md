@@ -24,6 +24,16 @@ Creates a screenshot of selected window on X11.
 ```
 
 * * *
+### [`cht`](cht)
+```
+Usage:
+
+    cht --help           show this help
+    cht --shell [LANG]   shell mode (open LANG if specified)
+    cht QUERY            process QUERY and exit
+```
+
+* * *
 ### [`colortest`](colortest)
 ```
 usage: colortest

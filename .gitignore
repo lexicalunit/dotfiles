@@ -52,6 +52,7 @@
 /.conda/pkgs/urls.txt
 /.config/.mono/certs/Trust/
 /.config/configstore
+/.config/gtk-2.0/
 /.config/QtProject
 /.config/rq
 /.config/texstudio
@@ -80,6 +81,7 @@
 /.kube
 /.lesshst
 /.local/share/nvim/shada/main.shada
+/.local/share/recently-used.xbel
 /.m2
 /.minikube
 /.mysql_history

@@ -34,6 +34,17 @@ Usage:
 ```
 
 * * *
+### [`codeclimate`](codeclimate)
+```
+usage: codeclimate [-h|--help] [-v]
+Runs Code Climate on the current working directory.
+
+options:
+    -h, --help   show usage help
+    -v           verbose, show docker command
+```
+
+* * *
 ### [`colortest`](colortest)
 ```
 usage: colortest

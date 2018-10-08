@@ -1705,7 +1705,27 @@ if [[ $LISTING == 0 && -z "$1" ]]; then
     usage
 fi
 
-[[ $1 == all ]] && ALL=1
+if [[ $1 == all ]]; then
+    ALL=1
+    shift
+fi
+
+ARGS="$*"
+
+# update everything but osx
+if echo "$ARGS" | grep -Eq -- "\\bmost\\b"; then
+    ARGS="$ARGS apps dot"
+fi
+
+# update applications
+if echo "$ARGS" | grep -Eq -- "\\bapps\\b"; then
+    ARGS="$ARGS xcode java brew cask python node go cargo gem atom code"
+fi
+
+# update environment and dotfiles
+if echo "$ARGS" | grep -Eq -- "\\bdot\\b"; then
+    ARGS="$ARGS dotfiles zsh env"
+fi
 
 # key;  question
 steps=(
@@ -1715,7 +1735,7 @@ steps=(
     "brew;          Ensure Homebrew installed and formulas upgraded"
     "cask;          Ensure Homebrew Casks are installed"
     "zsh;           Ensure shell is latest version of zsh from Homebrew"
-    "env;           Update envrionment configuration and submodules"
+    "env;           Update environment configuration and submodules"
     "python;        Upgrade/Install Anaconda, pip packages, and conda packages"
     "node;          Ensure Node modules are installed via npm"
     "go;            Ensure Go packages are installed"
@@ -1740,7 +1760,7 @@ for step in "${steps[@]}"; do
         continue
     fi
 
-    if [[ $ALL == 0 ]] && ! echo "$*" | grep -Eq "\\b$key\\b"; then
+    if [[ $ALL == 0 ]] && ! echo "$ARGS" | grep -Eq "\\b$key\\b"; then
         continue
     fi
 

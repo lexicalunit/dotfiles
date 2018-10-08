@@ -407,7 +407,7 @@ steps:
     brew       Ensure Homebrew installed and formulas upgraded
     cask       Ensure Homebrew Casks are installed
     zsh        Ensure shell is latest version of zsh from Homebrew
-    env        Update envrionment configuration and submodules
+    env        Update environment configuration and submodules
     python     Upgrade/Install Anaconda, pip packages, and conda packages
     node       Ensure Node modules are installed via npm
     go         Ensure Go packages are installed

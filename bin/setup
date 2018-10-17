@@ -92,9 +92,9 @@ GEM_PACKAGES="                                                                 \
 
 NODE_MODULES="                                                                 \
     JSON all-contributors-cli coffee-script coffeelint cson decaffeinate       \
-    dockerlint eslint external-ip generator-code geoip-lite js-beautify        \
-    json-stable-stringify moment nesh npm-check-updates prettier raml2html     \
-    standard tmpin yo"
+    dockerlint eslint external-ip generator-code generator-generator           \
+    geoip-lite js-beautify json-stable-stringify moment nesh npm-check-updates \
+    prettier raml2html standard tmpin tslint typescript yo"
 
 GO_PACKAGES="                                                                  \
     github.com/acroca/go-symbols github.com/cweill/gotests                     \
@@ -1506,7 +1506,7 @@ step_node() {
     run "npm update -g"
 
     local INSTALLED
-    INSTALLED="$(npm list -g --depth 0 | grep @ | cut -d' ' -f2 | cut -d@ -f1)"
+    INSTALLED="$(npm list -g --depth 0 2>/dev/null | sed 's/^.*UNMET PEER DEPENDENCY \([^@]*\)@\([^ ]*\).*$/├── UNMET-\1@\2/g' | grep @ | cut -d' ' -f2 | cut -d@ -f1)"
 
     IFS=' '
     for I in $NODE_MODULES; do
@@ -1521,7 +1521,10 @@ step_node() {
         if [[ "$name" == "npm" ]]; then
             continue
         fi
-        if ! echo "$NODE_MODULES" | grep -Eq "\\b$name\\b"; then
+        if [[ $name == "UNMET-"* ]]; then
+            UNMET="${name#*-}"
+            show -i "UNMET PEER DEPENDENCY: $UNMET; you should probably npm install it"
+        elif ! echo "$NODE_MODULES" | grep -Eq "\\b$name\\b"; then
             show -i "$I installed but not managed by setup via npm"
         fi
     done

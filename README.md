@@ -206,9 +206,10 @@ ruby_dep, rubygems-bundler, rvm, safe_yaml, sass, sass-listen, test-unit,
 travis, trollop, typhoeus, unicode-display_width, xmlrpc
 
 Node Modules: JSON, all-contributors-cli, coffee-script, coffeelint, cson, 
-decaffeinate, dockerlint, eslint, external-ip, generator-code, geoip-lite, 
-js-beautify, json-stable-stringify, moment, nesh, npm-check-updates, prettier, 
-raml2html, standard, tmpin, yo
+decaffeinate, dockerlint, eslint, external-ip, generator-code, 
+generator-generator, geoip-lite, js-beautify, json-stable-stringify, moment, 
+nesh, npm-check-updates, prettier, raml2html, standard, tmpin, tslint, 
+typescript, yo
 
 Go Packages: github.com/acroca/go-symbols, github.com/cweill/gotests, 
 github.com/davidrjenni/reftools, github.com/fatih/gomodifytags, 

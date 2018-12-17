@@ -1,0 +1,37 @@
+#!/bin/bash -e
+
+# Cleans up package manager caches.
+
+usage() {
+    echo "usage: ${0##*/} [options]" 1>&2
+    echo "" 1>&2
+    echo "Cleans up package manager caches." 1>&2
+    echo ""
+    echo "options:"
+    echo " -h or --help shows usage help" 1>&2
+    exit 1
+}
+
+if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
+    usage
+fi
+
+# shellcheck source=.shell_control
+# shellcheck disable=SC1091
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
+# brew
+run "brew cleanup"
+
+# rvm
+run "rvm cleanup all"
+
+# cargo
+run "rm -rf '$HOME/.cargo/registry'"
+run "rm -rf '$HOME/.cargo/git'"
+
+# conda
+run "conda clean -a --yes"
+
+# npm
+run "npm -g cache clean --force"

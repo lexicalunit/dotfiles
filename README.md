@@ -61,6 +61,7 @@ with the argument `--help`.
 | [`backmost`](bin/backmost) | Send the current frontmost windowed macOS application to the back. |
 | [`capture_x`](bin/capture_x) | Creates a screenshot of selected window on X11. |
 | [`cht`](bin/cht) | [X] open section |
+| [`cleanup`](bin/cleanup) | Cleans up package manager caches. |
 | [`codeclimate`](bin/codeclimate) | Runs Code Climate on the current working directory. |
 | [`colortest`](bin/colortest) | Prints out an entire color palette of terminal color codes. |
 | [`daemons`](bin/daemons) | Finds and removes unwanted daemons and agents. |

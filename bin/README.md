@@ -34,6 +34,17 @@ Usage:
 ```
 
 * * *
+### [`cleanup`](cleanup)
+```
+usage: cleanup [options]
+
+Cleans up package manager caches.
+
+options:
+ -h or --help shows usage help
+```
+
+* * *
 ### [`codeclimate`](codeclimate)
 ```
 usage: codeclimate [-h|--help] [-v]

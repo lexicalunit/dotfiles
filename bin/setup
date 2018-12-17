@@ -16,21 +16,20 @@ HOMEBREW_FORMULAS="                                                            \
     libgpg-error libidn2 libksba libmpc libogg libpng librdkafka libssh2       \
     libtasn1 libtiff libtool libunistring libusb libusb-compat libvo-aacenc    \
     libvorbis libvpx libyaml little-cms2 lz4 lzlib makedepend md5sha1sum       \
-    memcached mpfr mtr mysql ncftp ncurses net-snmp nettle nginx               \
-    no-more-secrets node npth nvm onepass oniguruma openssl opus ossp-uuid     \
-    p11-kit pandoc pcre pcre2 pidof pinentry pkg-config plotutils pngquant     \
-    postgresql pyenv pyenv-virtualenv pyenv-virtualenvwrapper python readline  \
-    redis ripgrep rlwrap rust sdl2 shellcheck shfmt snappy sqlite theora tree  \
-    v8 vegeta vramsteg watch wdiff webp wget x264 x265 xvid xz yajl yaml-cpp   \
-    youtube-dl zsh"
+    memcached mpfr mtr mysql ncftp ncurses net-snmp nettle nginx node npth nvm \
+    onepass oniguruma openjpeg openssl opus ossp-uuid p11-kit pandoc pcre      \
+    pcre2 pidof pinentry pkg-config plotutils pngquant postgresql pyenv        \
+    pyenv-virtualenv pyenv-virtualenvwrapper python readline redis ripgrep     \
+    rlwrap rust sdl2 shellcheck shfmt snappy sqlite theora tree v8 vegeta      \
+    vramsteg watch wdiff webp wget x264 x265 xvid xz yajl yaml-cpp youtube-dl  \
+    zsh"
 
 HOMEBREW_CASKS="                                                               \
-    1password atom atom-beta battle-net caffeine clamxav dbvisualizer          \
-    disk-inventory-x docker dropbox fantastical firefox flux google-chrome     \
-    google-hangouts iexplorer istumbler iterm2 java kaleidoscope lingon-x      \
-    mactex mcgimp-std mysqlworkbench silverlight skype slack snes9x sourcetree \
-    spectacle spotify steam sublime-text texstudio transmission vagrant        \
-    virtualbox visual-studio-code vlc whatsapp xquartz"
+    1password atom atom-beta caffeine clamxav dbvisualizer disk-inventory-x    \
+    docker dropbox fantastical firefox flux google-chrome iexplorer istumbler  \
+    iterm2 java kaleidoscope lingon-x mactex mcgimp-std mysqlworkbench         \
+    silverlight skype slack snes9x sourcetree spectacle spotify sublime-text   \
+    texstudio transmission vagrant visual-studio-code vlc whatsapp xquartz"
 
 ATOM_PACKAGES="                                                                \
     activate-power-mode aesthetic-ui atom-beautify atom-isort                  \
@@ -63,38 +62,18 @@ PIP_PACKAGES="                                                                 \
     git-sweep3k glances httpie inflection patch python-json-logger termcolor"
 
 CONDA_PACKAGES="                                                               \
-    alabaster appnope asn1crypto astroid atomicwrites attrs babel backcall     \
-    ca-certificates certifi cffi chardet conda conda-env coverage cryptography \
-    decorator docutils flake8 hypothesis idna imagesize ipython                \
-    ipython_genutils isort jedi jinja2 lazy-object-proxy libcxx libcxxabi      \
-    libedit libffi markupsafe mccabe more-itertools ncurses nose numpydoc      \
-    openssl packaging parso pep8 pexpect pickleshare pip pluggy prompt_toolkit \
-    ptyprocess py pycodestyle pycosat pycparser pyflakes pygments pylint       \
-    pympler pyopenssl pyparsing pysocks pytest python-dateutil python.app pytz \
-    pyyaml readline requests ruamel_yaml setuptools simplegeneric six          \
-    snowballstemmer sphinx sphinxcontrib sphinxcontrib-websupport sqlite tk    \
-    traitlets typing urllib3 wcwidth wheel wrapt xz yaml zlib zope             \
-    zope.interface"
+    flake8 ipython isort jedi nose pep8 pygments pylint pytest python-dateutil \
+    pytz pyyaml readline requests setuptools six"
 
 GEM_PACKAGES="                                                                 \
-    addressable ast backports bigdecimal bundler bundler-unload coffee-script  \
-    coffee-script-source colorator commander concurrent-ruby connection_pool   \
-    did_you_mean em-websocket ethon eventmachine execjs executable-hooks       \
-    faraday faraday_middleware ffi forwardable-extended gem-wrappers gh        \
-    highline http_parser.rb i18n io-console jaro_winkler jekyll                \
-    jekyll-sass-converter jekyll-watch json kramdown launchy liquid listen     \
-    lolcat manpages mercenary minitest multi_json multipart-post               \
-    net-http-persistent net-http-pipeline net-telnet openssl paint parallel    \
-    parser pathutil power_assert powerpack psych public_suffix pusher-client   \
-    rainbow rake rb-fsevent rb-inotify rdoc rouge rubocop ruby-progressbar     \
-    ruby_dep rubygems-bundler rvm safe_yaml sass sass-listen test-unit travis  \
-    trollop typhoeus unicode-display_width xmlrpc"
+    jekyll lolcat rake rdoc rubocop"
 
 NODE_MODULES="                                                                 \
     JSON all-contributors-cli coffee-script coffeelint cson decaffeinate       \
     dockerlint eslint external-ip generator-code generator-generator           \
     geoip-lite js-beautify json-stable-stringify moment nesh npm-check-updates \
-    prettier raml2html standard tmpin tslint typescript yo"
+    npm-remote-ls npm-why prettier raml2html standard tmpin tslint typescript  \
+    yo"
 
 GO_PACKAGES="                                                                  \
     github.com/acroca/go-symbols github.com/cweill/gotests                     \
@@ -1361,6 +1340,7 @@ step_python() {
             run "conda remove --yes anaconda"
             # Ensures that we get the latest versions possible of installed packages.
             # Though we risk those versions maybe not playing well with each other.
+            run "conda update --yes -n base conda"
             run "conda update --yes --prefix '$ANACONDA_DIR_NAME' --all"
         fi
     else
@@ -1394,20 +1374,25 @@ step_python() {
     done
 
     # Fix annoying ipython settings
-    run "ipython profile create"
-    run "perl -pi -e 's/.*confirm_exit.*/c.TerminalInteractiveShell.confirm_exit = False/' $HOME/.ipython/profile_default/ipython_config.py"
-    run "perl -pi -e 's/.*display_banner.*/c.TerminalIPythonApp.display_banner = False/' $HOME/.ipython/profile_default/ipython_config.py"
+    if type ipython >/dev/null 2>&1; then
+        run "ipython profile create"
+        run "perl -pi -e 's/.*confirm_exit.*/c.TerminalInteractiveShell.confirm_exit = False/' $HOME/.ipython/profile_default/ipython_config.py"
+        run "perl -pi -e 's/.*display_banner.*/c.TerminalIPythonApp.display_banner = False/' $HOME/.ipython/profile_default/ipython_config.py"
+    fi
 
-    IFS=$'\n'
-    for I in $CONDA_LIST; do
-        name="${I%@*}"
-        if [[ "$name" == "#" || "$name" == "_license" ]]; then
-            continue
-        fi
-        if ! echo "$PIP_PACKAGES" | grep -Eq "\\b$name\\b" && ! echo "$CONDA_PACKAGES" | grep -Eq "\\b$name\\b"; then
-            show -i "$I installed but not managed by setup via pip or anaconda"
-        fi
-    done
+    # Don't list out installed conda packages because most of them are just the packages
+    # that come as part of miniconda3. There's no way to filter these out of the `conda list`
+    # command and the list of things include and their dependencies change all the damn time.
+    # IFS=$'\n'
+    # for I in $CONDA_LIST; do
+    #     name="${I%@*}"
+    #     if [[ "$name" == "#" || "$name" == "_license" ]]; then
+    #         continue
+    #     fi
+    #     if ! echo "$PIP_PACKAGES" | grep -Eq "\\b$name\\b" && ! echo "$CONDA_PACKAGES" | grep -Eq "\\b$name\\b"; then
+    #         show -i "$I installed but not managed by setup via pip or anaconda"
+    #     fi
+    # done
 }
 
 ################################################################################
@@ -1416,8 +1401,9 @@ step_python() {
 ensure_rvm_ruby() {
     if command -v ruby | grep -q "/usr/bin/ruby"; then
         if [[ ! -e "$HOME/.rvm/scripts/rvm" ]]; then
-            run "gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3"
-            run "\\curl -sSL https://get.rvm.io | bash -s stable" || abort "Failed to install rvm"
+            run "command curl -sSL https://rvm.io/mpapis.asc | gpg --import -"
+            run "command curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -"
+            run "\\curl -sSL https://get.rvm.io | bash -s stable --ruby" || abort "Failed to install rvm"
         fi
         if ! type rvm >/dev/null 2>&1; then
             # shellcheck source=.rvm/scripts/rvm
@@ -1469,16 +1455,17 @@ step_gem() {
         run "yes | gem update -q $I"
     done
 
-    IFS=$'\n'
-    for I in $(gem list -l); do
-        name="${I%@*}"
-        if [[ "$name" == "*** LOCAL GEMS ***" ]]; then
-            continue
-        fi
-        if ! echo "$GEM_PACKAGES rubygems-update" | grep -Eq "$(echo "\\b$name\\b" | cut -d' ' -f1)"; then
-            show -i "$I installed but not managed by setup via gem"
-        fi
-    done
+    # Every damn gem has a thousand dependencies that I don't want to enumerate.
+    # IFS=$'\n'
+    # for I in $(gem list -l); do
+    #     name="${I%@*}"
+    #     if [[ "$name" == "*** LOCAL GEMS ***" ]]; then
+    #         continue
+    #     fi
+    #     if ! echo "$GEM_PACKAGES rubygems-update" | grep -Eq "$(echo "\\b$name\\b" | cut -d' ' -f1)"; then
+    #         show -i "$I installed but not managed by setup via gem"
+    #     fi
+    # done
 }
 
 ################################################################################

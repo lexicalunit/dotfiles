@@ -25,6 +25,11 @@ while getopts "r" opt; do
 done
 shift $((OPTIND - 1))
 
+if ! command -v go >/dev/null 2>&1; then
+    echo "go is not installed (or is not in your PATH)" >&2
+    exit 1
+fi
+
 DEPS=()
 IMPORTS=()
 go list -f '{{ join .Deps "\n" }}' ... | sort -u | {

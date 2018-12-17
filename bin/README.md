@@ -290,9 +290,17 @@ Format options:
                            Include parentheses around a sole arrow function parameter.
                            Defaults to avoid.
   --no-bracket-spacing     Do not print spaces between brackets.
+  --end-of-line <auto|lf|crlf|cr>
+                           Which end of line characters to apply.
+                           Defaults to auto.
+  --html-whitespace-sensitivity <css|strict|ignore>
+                           How to handle whitespaces in HTML.
+                           Defaults to css.
   --jsx-bracket-same-line  Put > on the last line instead of at a new line.
                            Defaults to false.
-  --parser <flow|babylon|typescript|css|less|scss|json|json5|json-stringify|graphql|markdown|vue|yaml>
+  --jsx-single-quote       Use single quotes in JSX.
+                           Defaults to false.
+  --parser <flow|babylon|typescript|css|less|scss|json|json5|json-stringify|graphql|markdown|mdx|vue|yaml|html|angular>
                            Which parser to use.
   --print-width <int>      The line length where Prettier will try wrap.
                            Defaults to 80.
@@ -377,13 +385,10 @@ Prints the root directory of the current source repository.
 * * *
 ### [`set_wallpaper`](set_wallpaper)
 ```
-usage: set_wallpaper [-h] [--path PATH]
-
-Sets the desktop picture on all screens
-
-optional arguments:
-  -h, --help   show this help message and exit
-  --path PATH  The path of the image
+Traceback (most recent call last):
+  File "./set_wallpaper", line 15, in <module>
+    from AppKit import NSScreen, NSWorkspace
+ModuleNotFoundError: No module named 'AppKit'
 ```
 
 * * *
@@ -427,19 +432,19 @@ libevent, libffi, libgcrypt, libgpg-error, libidn2, libksba, libmpc, libogg,
 libpng, librdkafka, libssh2, libtasn1, libtiff, libtool, libunistring, libusb, 
 libusb-compat, libvo-aacenc, libvorbis, libvpx, libyaml, little-cms2, lz4, 
 lzlib, makedepend, md5sha1sum, memcached, mpfr, mtr, mysql, ncftp, ncurses, 
-net-snmp, nettle, nginx, no-more-secrets, node, npth, nvm, onepass, oniguruma, 
+net-snmp, nettle, nginx, node, npth, nvm, onepass, oniguruma, openjpeg, 
 openssl, opus, ossp-uuid, p11-kit, pandoc, pcre, pcre2, pidof, pinentry, 
 pkg-config, plotutils, pngquant, postgresql, pyenv, pyenv-virtualenv, 
 pyenv-virtualenvwrapper, python, readline, redis, ripgrep, rlwrap, rust, sdl2, 
 shellcheck, shfmt, snappy, sqlite, theora, tree, v8, vegeta, vramsteg, watch, 
 wdiff, webp, wget, x264, x265, xvid, xz, yajl, yaml-cpp, youtube-dl, zsh
 
-Homebrew Casks: 1password, atom, atom-beta, battle-net, caffeine, clamxav, 
-dbvisualizer, disk-inventory-x, docker, dropbox, fantastical, firefox, flux, 
-google-chrome, google-hangouts, iexplorer, istumbler, iterm2, java, 
-kaleidoscope, lingon-x, mactex, mcgimp-std, mysqlworkbench, silverlight, skype, 
-slack, snes9x, sourcetree, spectacle, spotify, steam, sublime-text, texstudio, 
-transmission, vagrant, virtualbox, visual-studio-code, vlc, whatsapp, xquartz
+Homebrew Casks: 1password, atom, atom-beta, caffeine, clamxav, dbvisualizer, 
+disk-inventory-x, docker, dropbox, fantastical, firefox, flux, google-chrome, 
+iexplorer, istumbler, iterm2, java, kaleidoscope, lingon-x, mactex, mcgimp-std, 
+mysqlworkbench, silverlight, skype, slack, snes9x, sourcetree, spectacle, 
+spotify, sublime-text, texstudio, transmission, vagrant, visual-studio-code, 
+vlc, whatsapp, xquartz
 
 Atom Packages: activate-power-mode, aesthetic-ui, atom-beautify, atom-isort, 
 atom-language-avro, atom-notes, atom-typescript, auto-update-packages, 
@@ -469,37 +474,16 @@ streetsidesoftware.code-spell-checker, waderyan.gitblame
 Pip Packages: git-sweep3k, glances, httpie, inflection, patch, 
 python-json-logger, termcolor
 
-Conda Packages: alabaster, appnope, asn1crypto, astroid, atomicwrites, attrs, 
-babel, backcall, ca-certificates, certifi, cffi, chardet, conda, conda-env, 
-coverage, cryptography, decorator, docutils, flake8, hypothesis, idna, 
-imagesize, ipython, ipython_genutils, isort, jedi, jinja2, lazy-object-proxy, 
-libcxx, libcxxabi, libedit, libffi, markupsafe, mccabe, more-itertools, 
-ncurses, nose, numpydoc, openssl, packaging, parso, pep8, pexpect, pickleshare, 
-pip, pluggy, prompt_toolkit, ptyprocess, py, pycodestyle, pycosat, pycparser, 
-pyflakes, pygments, pylint, pympler, pyopenssl, pyparsing, pysocks, pytest, 
-python-dateutil, python.app, pytz, pyyaml, readline, requests, ruamel_yaml, 
-setuptools, simplegeneric, six, snowballstemmer, sphinx, sphinxcontrib, 
-sphinxcontrib-websupport, sqlite, tk, traitlets, typing, urllib3, wcwidth, 
-wheel, wrapt, xz, yaml, zlib, zope, zope.interface
+Conda Packages: flake8, ipython, isort, jedi, nose, pep8, pygments, pylint, 
+pytest, python-dateutil, pytz, pyyaml, readline, requests, setuptools, six
 
-Gem Packages: addressable, ast, backports, bigdecimal, bundler, bundler-unload, 
-coffee-script, coffee-script-source, colorator, commander, concurrent-ruby, 
-connection_pool, did_you_mean, em-websocket, ethon, eventmachine, execjs, 
-executable-hooks, faraday, faraday_middleware, ffi, forwardable-extended, 
-gem-wrappers, gh, highline, http_parser.rb, i18n, io-console, jaro_winkler, 
-jekyll, jekyll-sass-converter, jekyll-watch, json, kramdown, launchy, liquid, 
-listen, lolcat, manpages, mercenary, minitest, multi_json, multipart-post, 
-net-http-persistent, net-http-pipeline, net-telnet, openssl, paint, parallel, 
-parser, pathutil, power_assert, powerpack, psych, public_suffix, pusher-client, 
-rainbow, rake, rb-fsevent, rb-inotify, rdoc, rouge, rubocop, ruby-progressbar, 
-ruby_dep, rubygems-bundler, rvm, safe_yaml, sass, sass-listen, test-unit, 
-travis, trollop, typhoeus, unicode-display_width, xmlrpc
+Gem Packages: jekyll, lolcat, rake, rdoc, rubocop
 
 Node Modules: JSON, all-contributors-cli, coffee-script, coffeelint, cson, 
 decaffeinate, dockerlint, eslint, external-ip, generator-code, 
 generator-generator, geoip-lite, js-beautify, json-stable-stringify, moment, 
-nesh, npm-check-updates, prettier, raml2html, standard, tmpin, tslint, 
-typescript, yo
+nesh, npm-check-updates, npm-remote-ls, npm-why, prettier, raml2html, standard, 
+tmpin, tslint, typescript, yo
 
 Go Packages: github.com/acroca/go-symbols, github.com/cweill/gotests, 
 github.com/davidrjenni/reftools, github.com/fatih/gomodifytags, 

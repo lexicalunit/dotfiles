@@ -396,13 +396,10 @@ Prints the root directory of the current source repository.
 * * *
 ### [`set_wallpaper`](set_wallpaper)
 ```
-usage: set_wallpaper [-h] [--path PATH]
-
-Sets the desktop picture on all screens
-
-optional arguments:
-  -h, --help   show this help message and exit
-  --path PATH  The path of the image
+Traceback (most recent call last):
+  File "./set_wallpaper", line 15, in <module>
+    from AppKit import NSScreen, NSWorkspace
+ModuleNotFoundError: No module named 'AppKit'
 ```
 
 * * *
@@ -670,9 +667,9 @@ Options:
                                      youtube-dl guess ("auto_warning" to emit a warning when guessing). "error" just
                                      throws an error. The default value "fixup_error" repairs broken URLs, but emits an
                                      error if this is not possible instead of searching.
-    --ignore-config                  Do not read configuration files. When given in the global configuration file /etc
-                                     /youtube-dl.conf: Do not read the user configuration in ~/.config/youtube-dl/config
-                                     (%APPDATA%/youtube-dl/config.txt on Windows)
+    --ignore-config                  Do not read configuration files. When given in the global configuration file
+                                     /etc/youtube-dl.conf: Do not read the user configuration in ~/.config/youtube-
+                                     dl/config (%APPDATA%/youtube-dl/config.txt on Windows)
     --config-location PATH           Location of the configuration file; either the path to the config or its containing
                                      directory.
     --flat-playlist                  Do not extract the videos of a playlist, only list them.

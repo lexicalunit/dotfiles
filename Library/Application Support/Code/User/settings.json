@@ -5,7 +5,7 @@
     "editor.renderControlCharacters": true,
     "editor.renderIndentGuides": false,
     "editor.renderWhitespace": "boundary",
-    "editor.wordWrapColumn": 100,
+    "editor.wordWrapColumn": 120,
     "go.formatTool": "goimports",
     "go.lintTool": "gometalinter",
     "go.toolsGopath": "/usr/local/lib/gopath:/usr/local/lib/invision/gopath",
@@ -36,5 +36,6 @@
     "shellcheck.customArgs": [
         "-e SC2239"
     ],
-    "explorer.openEditors.visible": 0
+    "explorer.openEditors.visible": 0,
+    "editor.wordWrap": "bounded"
 }

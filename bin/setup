@@ -8,7 +8,7 @@
 # BEGIN GENERATED PACKAGE LISTS
 HOMEBREW_FORMULAS="                                                            \
     adns autoconf automake bash clang-format cmake colordiff coreutils csv-fix \
-    diff-so-fancy docker doxygen exa faac fasd ffmpeg flake8 fontconfig        \
+    diff-so-fancy docker doxygen duti exa faac fasd ffmpeg flake8 fontconfig   \
     freetype gd gdbm geoip gettext ghostscript gifsicle git git-flow           \
     git-review git-secrets glib gmp gnu-sed gnu-tar gnupg gnutls hub icu4c     \
     id3lib imagemagick@6 isl jasper jbig2dec jez/formulae/pandoc-sidenote      \
@@ -29,7 +29,8 @@ HOMEBREW_CASKS="                                                               \
     docker dropbox fantastical firefox flux google-chrome iexplorer istumbler  \
     iterm2 java kaleidoscope lingon-x mactex mcgimp-std mysqlworkbench         \
     silverlight skype slack snes9x sourcetree spectacle spotify sublime-text   \
-    texstudio transmission vagrant visual-studio-code vlc whatsapp xquartz"
+    texstudio the-unarchiver transmission vagrant visual-studio-code vlc       \
+    whatsapp xquartz"
 
 ATOM_PACKAGES="                                                                \
     activate-power-mode aesthetic-ui atom-beautify atom-isort                  \
@@ -1172,6 +1173,18 @@ step_cask() {
 }
 
 ################################################################################
+# Step ext
+################################################################################
+step_ext() {
+    if ! command -v duti >/dev/null 2>&1; then
+        ensure_homebrew_updated
+        install_brew_formula duti || abort "Can't install duti via brew"
+        ensure_homebrew_updated_cleanup
+    fi
+    run "duti -v '$HOME/env/extensions.duti'"
+}
+
+################################################################################
 # Step atom
 ################################################################################
 install_atom_pkg() {
@@ -1711,7 +1724,7 @@ fi
 
 # update applications
 if echo "$ARGS" | grep -Eq -- "\\bapps\\b"; then
-    ARGS="$ARGS xcode java brew cask python node go cargo gem atom code"
+    ARGS="$ARGS xcode java brew cask ext python node go cargo gem atom code"
 fi
 
 # update environment and dotfiles
@@ -1726,6 +1739,7 @@ steps=(
     "java;          Ensure that Apple's java for macOS is installed"
     "brew;          Ensure Homebrew installed and formulas upgraded"
     "cask;          Ensure Homebrew Casks are installed"
+    "ext;           Ensure file extension associations are correct"
     "zsh;           Ensure shell is latest version of zsh from Homebrew"
     "env;           Update environment configuration and submodules"
     "python;        Upgrade/Install Anaconda, pip packages, and conda packages"

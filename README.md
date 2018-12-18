@@ -116,6 +116,7 @@ install packages/formulas/casks/whatever, see below for the list of included ite
 | java | Ensure that Apple's java for macOS is installed |
 | brew | Ensure Homebrew installed and formulas upgraded |
 | cask | Ensure Homebrew Casks are installed |
+| ext | Ensure file extension associations are correct |
 | zsh | Ensure shell is latest version of zsh from Homebrew |
 | env | Update environment configuration and submodules |
 | python | Upgrade/Install Anaconda, pip packages, and conda packages |
@@ -128,18 +129,18 @@ install packages/formulas/casks/whatever, see below for the list of included ite
 | osx | Override macOS "defaults" settings and configuration |
 
 Homebrew Formulas: adns, autoconf, automake, bash, clang-format, cmake, 
-colordiff, coreutils, csv-fix, diff-so-fancy, docker, doxygen, exa, faac, fasd, 
-ffmpeg, flake8, fontconfig, freetype, gd, gdbm, geoip, gettext, ghostscript, 
-gifsicle, git, git-flow, git-review, git-secrets, glib, gmp, gnu-sed, gnu-tar, 
-gnupg, gnutls, hub, icu4c, id3lib, imagemagick@6, isl, jasper, jbig2dec, 
-jez/formulae/pandoc-sidenote, jhead, jo, jpeg, jq, kafkacat, lame, libassuan, 
-libevent, libffi, libgcrypt, libgpg-error, libidn2, libksba, libmpc, libogg, 
-libpng, librdkafka, libssh2, libtasn1, libtiff, libtool, libunistring, libusb, 
-libusb-compat, libvo-aacenc, libvorbis, libvpx, libyaml, little-cms2, lz4, 
-lzlib, makedepend, md5sha1sum, memcached, mpfr, mtr, mysql, ncftp, ncurses, 
-net-snmp, nettle, nginx, node, npth, nvm, onepass, oniguruma, openjpeg, 
-openssl, opus, ossp-uuid, p11-kit, pandoc, pcre, pcre2, pidof, pinentry, 
-pkg-config, plotutils, pngquant, postgresql, pyenv, pyenv-virtualenv, 
+colordiff, coreutils, csv-fix, diff-so-fancy, docker, doxygen, duti, exa, faac, 
+fasd, ffmpeg, flake8, fontconfig, freetype, gd, gdbm, geoip, gettext, 
+ghostscript, gifsicle, git, git-flow, git-review, git-secrets, glib, gmp, 
+gnu-sed, gnu-tar, gnupg, gnutls, hub, icu4c, id3lib, imagemagick@6, isl, 
+jasper, jbig2dec, jez/formulae/pandoc-sidenote, jhead, jo, jpeg, jq, kafkacat, 
+lame, libassuan, libevent, libffi, libgcrypt, libgpg-error, libidn2, libksba, 
+libmpc, libogg, libpng, librdkafka, libssh2, libtasn1, libtiff, libtool, 
+libunistring, libusb, libusb-compat, libvo-aacenc, libvorbis, libvpx, libyaml, 
+little-cms2, lz4, lzlib, makedepend, md5sha1sum, memcached, mpfr, mtr, mysql, 
+ncftp, ncurses, net-snmp, nettle, nginx, node, npth, nvm, onepass, oniguruma, 
+openjpeg, openssl, opus, ossp-uuid, p11-kit, pandoc, pcre, pcre2, pidof, 
+pinentry, pkg-config, plotutils, pngquant, postgresql, pyenv, pyenv-virtualenv, 
 pyenv-virtualenvwrapper, python, readline, redis, ripgrep, rlwrap, rust, sdl2, 
 shellcheck, shfmt, snappy, sqlite, theora, tree, v8, vegeta, vramsteg, watch, 
 wdiff, webp, wget, x264, x265, xvid, xz, yajl, yaml-cpp, youtube-dl, zsh
@@ -148,8 +149,8 @@ Homebrew Casks: 1password, atom, atom-beta, caffeine, clamxav, dbvisualizer,
 disk-inventory-x, docker, dropbox, fantastical, firefox, flux, google-chrome, 
 iexplorer, istumbler, iterm2, java, kaleidoscope, lingon-x, mactex, mcgimp-std, 
 mysqlworkbench, silverlight, skype, slack, snes9x, sourcetree, spectacle, 
-spotify, sublime-text, texstudio, transmission, vagrant, visual-studio-code, 
-vlc, whatsapp, xquartz
+spotify, sublime-text, texstudio, the-unarchiver, transmission, vagrant, 
+visual-studio-code, vlc, whatsapp, xquartz
 
 Atom Packages: activate-power-mode, aesthetic-ui, atom-beautify, atom-isort, 
 atom-language-avro, atom-notes, atom-typescript, auto-update-packages, 

@@ -1,0 +1,115 @@
+# source files with vscode
+com.microsoft.VSCode .S all
+com.microsoft.VSCode .asp all
+com.microsoft.VSCode .bat all
+com.microsoft.VSCode .c all
+com.microsoft.VSCode .cc all
+com.microsoft.VSCode .cfg all
+com.microsoft.VSCode .cgi all
+com.microsoft.VSCode .coffee all
+com.microsoft.VSCode .conf all
+com.microsoft.VSCode .config all
+com.microsoft.VSCode .cpp all
+com.microsoft.VSCode .cs all
+com.microsoft.VSCode .css all
+com.microsoft.VSCode .csv all
+com.microsoft.VSCode .dat all
+com.microsoft.VSCode .dtd all
+com.microsoft.VSCode .duti all
+com.microsoft.VSCode .erl all
+com.microsoft.VSCode .h all
+com.microsoft.VSCode .hpp all
+com.microsoft.VSCode .hrl all
+com.microsoft.VSCode .htm editor
+com.microsoft.VSCode .html editor
+com.microsoft.VSCode .ini all
+com.microsoft.VSCode .java all
+com.microsoft.VSCode .js all
+com.microsoft.VSCode .json all
+com.microsoft.VSCode .jsp editor
+com.microsoft.VSCode .less all
+com.microsoft.VSCode .lisp all
+com.microsoft.VSCode .log all
+com.microsoft.VSCode .m all
+com.microsoft.VSCode .markdown all
+com.microsoft.VSCode .md all
+com.microsoft.VSCode .pch all
+com.microsoft.VSCode .php all
+com.microsoft.VSCode .pl all
+com.microsoft.VSCode .plist editor
+com.microsoft.VSCode .py all
+com.microsoft.VSCode .rb all
+com.microsoft.VSCode .rst all
+com.microsoft.VSCode .scss all
+com.microsoft.VSCode .sh all
+com.microsoft.VSCode .txt all
+com.microsoft.VSCode .tex all
+com.microsoft.VSCode .xhtml editor
+com.microsoft.VSCode .xml all
+com.microsoft.VSCode Makefile all
+com.microsoft.VSCode Rakefile all
+com.microsoft.VSCode README all
+com.microsoft.VSCode public.plain-text all
+com.microsoft.VSCode public.shell-script all
+com.microsoft.VSCode public.unix-executable all
+
+# imagery with preview
+com.apple.Preview .ai all
+com.apple.Preview .bmp all
+com.apple.Preview .jpeg all
+com.apple.Preview .jpg all
+com.apple.Preview .pdf all
+com.apple.Preview .png all
+com.apple.Preview .ps all
+com.apple.Preview .psd all
+com.apple.Preview .tif all
+com.apple.Preview .tiff all
+
+# video with VLC
+org.videolan.vlc .3gp all
+org.videolan.vlc .asf all
+org.videolan.vlc .asx all
+org.videolan.vlc .avi all
+org.videolan.vlc .flv all
+org.videolan.vlc .mkv all
+org.videolan.vlc .mov all
+org.videolan.vlc .mp4 all
+org.videolan.vlc .mpg all
+org.videolan.vlc .ogm all
+org.videolan.vlc .rm all
+org.videolan.vlc .swf all
+org.videolan.vlc .vob all
+org.videolan.vlc .webm all
+org.videolan.vlc .wmv all
+
+# audio with VLC
+org.videolan.vlc .aac all
+org.videolan.vlc .aif all
+org.videolan.vlc .flac all
+org.videolan.vlc .iff all
+org.videolan.vlc .m3u all
+org.videolan.vlc .mid all
+org.videolan.vlc .mp3 all
+org.videolan.vlc .mpa all
+org.videolan.vlc .ogg all
+org.videolan.vlc .ra all
+org.videolan.vlc .wav all
+
+# torrents with Transmission
+org.m0k.transmission .torrent
+
+# archives with The Unarchiver
+cx.c3.theunarchiver .7z all
+cx.c3.theunarchiver .cab all
+cx.c3.theunarchiver .gtar all
+cx.c3.theunarchiver .gz all
+cx.c3.theunarchiver .hqx all
+cx.c3.theunarchiver .jar all
+cx.c3.theunarchiver .msi all
+cx.c3.theunarchiver .rar all
+cx.c3.theunarchiver .sit all
+cx.c3.theunarchiver .sit all
+cx.c3.theunarchiver .tar all
+cx.c3.theunarchiver .tar.gz all
+cx.c3.theunarchiver .tgz all
+cx.c3.theunarchiver .zip all

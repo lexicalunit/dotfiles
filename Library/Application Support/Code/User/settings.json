@@ -14,5 +14,13 @@
     "workbench.colorTheme": "Solarized Light",
     "workbench.editor.closeOnFileDelete": false,
     "workbench.iconTheme": "vscode-icons",
-    "workbench.startupEditor": "newUntitledFile"
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.colorCustomizations": {
+        "editorCursor.foreground": "#057eff",
+        "[Solarized Light]": {
+            "editor.selectionHighlightBackground": "#eee8d5",
+            "editor.selectionHighlightBorder": "#76736a",
+        }
+    },
+    "editor.rulers": [72, 80, 100, 120]
 }

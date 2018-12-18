@@ -10,16 +10,16 @@
     "go.lintTool": "gometalinter",
     "go.toolsGopath": "/usr/local/lib/gopath:/usr/local/lib/invision/gopath",
     "window.nativeTabs": false,
-    "window.titleBarStyle": "native",
     "workbench.colorTheme": "Solarized Light",
     "workbench.editor.closeOnFileDelete": false,
     "workbench.iconTheme": "vscode-icons",
-    "workbench.startupEditor": "newUntitledFile",
+    "workbench.startupEditor": "none",
     "workbench.colorCustomizations": {
         "editorCursor.foreground": "#057eff",
         "[Solarized Light]": {
             "editor.selectionHighlightBackground": "#eee8d5",
             "editor.selectionHighlightBorder": "#76736a",
+            "editor.lineHighlightBackground": "#f9f2df"
         }
     },
     "editor.rulers": [
@@ -29,5 +29,12 @@
         120
     ],
     "workbench.statusBar.feedback.visible": false,
-    "shellformat.flag": "-s -i 4"
+    "shellformat.flag": "-s -i 4",
+    "files.trimTrailingWhitespace": true,
+    "editor.codeLens": true,
+    "files.insertFinalNewline": true,
+    "shellcheck.customArgs": [
+        "-e SC2239"
+    ],
+    "explorer.openEditors.visible": 0
 }

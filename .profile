@@ -223,39 +223,34 @@ export SAVEHIST="$TERMINAL_HISTORY_SIZE"
 ################################################################################
 # setup terminal colors and editors
 ################################################################################
-# setup editor
+# setup editors (default to vim)
 export EDITOR=vim
 export CVSEDITOR=vim
 export XEDITOR=vim
 export IGNOREEOF=0
-if type atom >/dev/null 2>&1; then
-    # export EDITOR='atom -w'
-    # export CVSEDITOR='atom -w'
-    export OSXEDITOR='atom -w'
+alias e='vim . '
+alias edit='vim '
+ew() { type "$1" >/dev/null 2>&1 && vim "$(command -v "$1")"; }
+if type code >/dev/null 2>&1; then
+    alias e='code -a . '
+    alias edit='code '
+    ew() { type "$1" >/dev/null 2>&1 && code "$(command -v "$1")"; }
+elif type atom-beta >/dev/null 2>&1; then
+    alias e='atom-beta -a . '
+    alias edit='atom-beta '
+    ew() { type "$1" >/dev/null 2>&1 && atom-beta "$(command -v "$1")"; }
+
+    # also forward atom calls to atom-beta
+    alias atom='atom-beta '
+    alias apm='apm-beta '
+elif type atom >/dev/null 2>&1; then
     alias e='atom -a . '
     alias edit='atom '
     ew() { type "$1" >/dev/null 2>&1 && atom "$(command -v "$1")"; }
-    eman() { man "$@" | col -bx | tmpin atom -w & }
 elif type subl >/dev/null 2>&1; then
-    # export EDITOR='subl -w'
-    # export CVSEDITOR='subl -w'
-    export OSXEDITOR='subl -w'
+    alias e='subl -a . '
     alias edit='subl '
     ew() { type "$1" >/dev/null 2>&1 && subl "$(command -v "$1")"; }
-    eman() { man "$@" | col -bx | subl -w & }
-elif type vim >/dev/null 2>&1; then
-    alias edit='vim '
-    ew() { type "$1" >/dev/null 2>&1 && vim "$(command -v "$1")"; }
-    eman() { man "$@" | col -bx | vim -; }
-fi
-
-# setup atom beta if it's installed
-if type atom-beta >/dev/null 2>&1; then
-    alias e='atom-beta -a . '
-    alias edit='atom-beta '
-    alias atom='atom-beta '
-    alias apm='apm-beta '
-    ew() { type "$1" >/dev/null 2>&1 && atom-beta "$(command -v "$1")"; }
 fi
 
 vman() { man "$@" | col -bx | vim -; }

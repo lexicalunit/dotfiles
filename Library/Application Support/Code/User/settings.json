@@ -1,41 +1,53 @@
 {
-    "editor.cursorBlinking": "phase",
-    "editor.fontFamily": "Inconsolata",
-    "editor.fontSize": 20,
-    "editor.renderControlCharacters": true,
-    "editor.renderIndentGuides": false,
-    "editor.renderWhitespace": "boundary",
-    "editor.wordWrapColumn": 120,
-    "go.formatTool": "goimports",
-    "go.lintTool": "gometalinter",
-    "go.toolsGopath": "/usr/local/lib/gopath:/usr/local/lib/invision/gopath",
-    "window.nativeTabs": false,
-    "workbench.colorTheme": "Solarized Light",
-    "workbench.editor.closeOnFileDelete": false,
-    "workbench.iconTheme": "vscode-icons",
-    "workbench.startupEditor": "none",
-    "workbench.colorCustomizations": {
-        "editorCursor.foreground": "#057eff",
-        "[Solarized Light]": {
-            "editor.selectionHighlightBackground": "#eee8d5",
-            "editor.selectionHighlightBorder": "#76736a",
-            "editor.lineHighlightBackground": "#f9f2df"
-        }
-    },
-    "editor.rulers": [
-        72,
-        80,
-        100,
-        120
-    ],
-    "workbench.statusBar.feedback.visible": false,
-    "shellformat.flag": "-s -i 4",
-    "files.trimTrailingWhitespace": true,
-    "editor.codeLens": true,
-    "files.insertFinalNewline": true,
-    "shellcheck.customArgs": [
-        "-e SC2239"
-    ],
-    "explorer.openEditors.visible": 0,
-    "editor.wordWrap": "bounded"
+  "editor.cursorBlinking": "phase",
+  "editor.fontFamily": "Inconsolata",
+  "editor.fontSize": 20,
+  "editor.renderControlCharacters": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.wordWrapColumn": 120,
+  "go.formatTool": "goimports",
+  "go.lintTool": "gometalinter",
+  "go.toolsGopath": "/usr/local/lib/gopath:/usr/local/lib/invision/gopath",
+  "window.nativeTabs": false,
+  "workbench.colorTheme": "Solarized Light",
+  "workbench.editor.closeOnFileDelete": false,
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.startupEditor": "none",
+  "workbench.colorCustomizations": {
+    "editorCursor.foreground": "#057eff",
+    "[Solarized Light]": {
+      "editor.selectionHighlightBackground": "#eee8d5",
+      "editor.selectionHighlightBorder": "#76736a",
+      "editor.lineHighlightBackground": "#f9f2df"
+    }
+  },
+  "editor.rulers": [72, 80, 100, 120],
+  "workbench.statusBar.feedback.visible": false,
+  "shellformat.flag": "-s -i 4",
+  "files.trimTrailingWhitespace": true,
+  "editor.codeLens": true,
+  "files.insertFinalNewline": true,
+  "shellcheck.customArgs": ["-e SC2239"],
+  "explorer.openEditors.visible": 10,
+  "editor.wordWrap": "bounded",
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.renderIndentGuides": false,
+  "workbench.editor.showTabs": false,
+  "[css]": {
+    "editor.tabSize": 2
+  },
+  "[javascript]": {
+    "editor.detectIndentation": false,
+    "editor.tabSize": 2
+  },
+  "[javascriptreact]": {
+    "editor.tabSize": 2
+  },
+  "[json]": {
+    "editor.tabSize": 2
+  },
+  "[shellscript]": {
+    "editor.detectIndentation": false,
+    "editor.tabSize": 4
+  }
 }

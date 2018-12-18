@@ -40,17 +40,6 @@
   }
 }
 
-// better indent guides for light syntax themes
-.indent-guide-improved {
-  background-color: @syntax-indent-guide-color;
-  &.indent-guide-stack {
-    background-color: darken(@syntax-indent-guide-color, 30%);
-    &.indent-guide-active {
-      background-color: darken(@syntax-indent-guide-color, 40%);
-    }
-  }
-}
-
 // make cursor pulse instead of blink
 atom-text-editor.editor {
   .cursor {
@@ -100,56 +89,3 @@ atom-text-editor.editor {
   }
 }
 #atom-nicer-invisibles;
-
-// make final wrap guide stand out more
-atom-text-editor.editor {
-  .vertical .multi-wrap-guide:last-child .multi-wrap-guide-line {
-    background-color: fadeout(red, 60%);
-  }
-}
-
-// less ugly soft-wrap-indicator
-.soft-wrap-indicator {
-  color: inherit !important;
-  text-decoration: none !important;
-
-  &:hover {
-    text-decoration: none !important;
-    color: inherit !important;
-  }
-
-  &:active {
-    text-decoration: none !important;
-    color: inherit !important;
-  }
-
-  &.lit {
-    color: #10BB10 !important;
-    text-shadow: none !important;
-  }
-}
-
-// hide left dock (typically tree-view) during editor init time
-// see: https://discuss.atom.io/t/hide-treeview-by-default/7718/38
-// atom-workspace.loading .left {
-//   display: none;
-// }
-
-// 3D effects for tree-view and minimap (adjust @rotation as desired)
-#atom-perspective() {
-  @viewing-distance: 12in;
-  @rotation: 10deg;
-  .tree-view {
-    transform: translateY(-10vh) perspective(@viewing-distance) rotateY(@rotation);
-    padding-top: 8vh;
-    padding-bottom: 12vh;
-    transform-origin: left;
-    width: 120%;
-    height: 120%;
-  }
-  body /deep/ atom-text-editor-minimap {
-    transform: perspective(@viewing-distance) rotateY(-@rotation);
-    transform-origin: right;
-  }
-}
-// #atom-perspective;

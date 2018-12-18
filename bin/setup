@@ -34,8 +34,8 @@ HOMEBREW_CASKS="                                                               \
 
 ATOM_PACKAGES="                                                                \
     atom-notes auto-update-packages highlight-selected language-markdown       \
-    markdown-preview-plus minimap minimap-highlight-selected minimap-selection \
-    native-ui no-title-bar soft-wrap-indicator sort-lines trailing-spaces"
+    minimap minimap-highlight-selected minimap-selection native-ui sort-lines  \
+    trailing-spaces"
 
 CODE_PACKAGES="                                                                \
     BriteSnow.vscode-toggle-quotes DavidAnson.vscode-markdownlint              \

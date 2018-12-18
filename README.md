@@ -153,9 +153,8 @@ spotify, sublime-text, texstudio, the-unarchiver, transmission, vagrant,
 visual-studio-code, vlc, whatsapp, xquartz
 
 Atom Packages: atom-notes, auto-update-packages, highlight-selected, 
-language-markdown, markdown-preview-plus, minimap, minimap-highlight-selected, 
-minimap-selection, native-ui, no-title-bar, soft-wrap-indicator, sort-lines, 
-trailing-spaces
+language-markdown, minimap, minimap-highlight-selected, minimap-selection, 
+native-ui, sort-lines, trailing-spaces
 
 Code Packages: BriteSnow.vscode-toggle-quotes, DavidAnson.vscode-markdownlint, 
 HookyQR.beautify, bibhasdn.unique-lines, dbaeumer.vscode-eslint, 

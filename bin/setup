@@ -340,7 +340,7 @@ step_osx() {
             run "defaults write com.apple.desktop Background '{default = {ImageFilePath = \"/Users/Shared/Background/custombg.jpeg\"; };}'"
         fi
 
-        if type set_wallpaper >/dev/null 2>&1; then
+        if command -v set_wallpaper >/dev/null 2>&1; then
             run "set_wallpaper --path '$HOME/env/Rio.jpg'"
         fi
     fi
@@ -1192,7 +1192,7 @@ install_atom_pkg() {
     shift
     IFS=' ' read -r -a INSTALLED <<<"$@"
 
-    type apm-beta >/dev/null 2>&1 && APMCMD="apm-beta" || APMCMD="apm"
+    command -v apm-beta >/dev/null 2>&1 && APMCMD="apm-beta" || APMCMD="apm"
     if ! in_array "$PKG" "${INSTALLED[@]}"; then
         run "$APMCMD install '$PKG'" || abort "Can not install package '$PKG'"
     else
@@ -1201,7 +1201,7 @@ install_atom_pkg() {
 }
 
 step_atom() {
-    if ! type atom >/dev/null 2>&1; then
+    if ! command -v atom >/dev/null 2>&1; then
         ensure_homebrew_updated
         install_brew_cask atom || abort "Can't install atom via brew-cask"
         ensure_homebrew_updated_cleanup
@@ -1210,7 +1210,7 @@ step_atom() {
     # Anaconda causes build issues for Atom packages with native modules.
     ensure_no_anaconda
 
-    type apm-beta >/dev/null 2>&1 && APMCMD="apm-beta" || APMCMD="apm"
+    command -v apm-beta >/dev/null 2>&1 && APMCMD="apm-beta" || APMCMD="apm"
 
     local INSTALLED
     INSTALLED=()
@@ -1249,7 +1249,7 @@ install_code_pkg() {
 }
 
 step_code() {
-    if ! type code >/dev/null 2>&1; then
+    if ! command -v code >/dev/null 2>&1; then
         ensure_homebrew_updated
         install_brew_cask visual-studio-code || abort "Can't install VS Code via brew-cask"
         ensure_homebrew_updated_cleanup
@@ -1341,7 +1341,7 @@ step_python() {
     # enter existing anaconda environment if it's detected
     [[ -d "$ANACONDA_DIR_NAME/bin" ]] && export PATH="$ANACONDA_DIR_NAME/bin:$PATH"
 
-    if run "type conda >/dev/null 2>&1"; then
+    if run "command -v conda >/dev/null 2>&1"; then
         MANAGE_WITH_ANACONDA=0
         if [[ "$MANAGE_WITH_ANACONDA" == 1 ]]; then
             # Allow anaconda to manage all the packages we've installed so that we're reasonably
@@ -1387,7 +1387,7 @@ step_python() {
     done
 
     # Fix annoying ipython settings
-    if type ipython >/dev/null 2>&1; then
+    if command -v ipython >/dev/null 2>&1; then
         run "ipython profile create"
         run "perl -pi -e 's/.*confirm_exit.*/c.TerminalInteractiveShell.confirm_exit = False/' $HOME/.ipython/profile_default/ipython_config.py"
         run "perl -pi -e 's/.*display_banner.*/c.TerminalIPythonApp.display_banner = False/' $HOME/.ipython/profile_default/ipython_config.py"
@@ -1418,7 +1418,7 @@ ensure_rvm_ruby() {
             run "command curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -"
             run "\\curl -sSL https://get.rvm.io | bash -s stable --ruby" || abort "Failed to install rvm"
         fi
-        if ! type rvm >/dev/null 2>&1; then
+        if ! command -v rvm >/dev/null 2>&1; then
             # shellcheck source=.rvm/scripts/rvm
             # shellcheck disable=SC1091
             test -s "$HOME/.rvm/scripts/rvm" && source "$_"
@@ -1429,7 +1429,7 @@ ensure_rvm_ruby() {
         fi
     fi
 
-    if ! type rvm >/dev/null 2>&1; then
+    if ! command -v rvm >/dev/null 2>&1; then
         abort "rvm not installed"
     fi
     run "rvm get head" || abort "Could not update rvm"
@@ -1485,16 +1485,16 @@ step_gem() {
 # Step node
 ################################################################################
 step_node() {
-    if ! type node >/dev/null 2>&1; then
+    if ! command -v node >/dev/null 2>&1; then
         ensure_homebrew_updated
         install_brew_formula node
         ensure_homebrew_updated_cleanup
-    elif type brew >/dev/null 2>&1; then
+    elif command -v brew >/dev/null 2>&1; then
         run "brew upgrade node"
     fi
 
     # Ensure that we're installing to the system's Node
-    if type nvm >/dev/null 2>&1; then
+    if command -v nvm >/dev/null 2>&1; then
         run "nvm alias default system"
         run "nvm use system"
     fi
@@ -1534,11 +1534,11 @@ step_node() {
 # Step go
 ################################################################################
 step_go() {
-    if ! type go >/dev/null 2>&1; then
+    if ! command -v go >/dev/null 2>&1; then
         ensure_homebrew_updated
         install_brew_formula go
         ensure_homebrew_updated_cleanup
-    elif type brew >/dev/null 2>&1; then
+    elif command -v brew >/dev/null 2>&1; then
         run "brew upgrade go"
     fi
 
@@ -1548,7 +1548,7 @@ step_go() {
 
     run "go get -u all"
 
-    if ! type golist >/dev/null 2>&1; then
+    if ! command -v golist >/dev/null 2>&1; then
         show -i "Utility golist is not installed in your PATH."
         show -i "Please install it from https://github.com/lexicalunit/dotfiles/blob/master/bin/golist"
         return 1
@@ -1582,11 +1582,11 @@ step_go() {
 # Step cargo
 ################################################################################
 step_cargo() {
-    if ! type rustc >/dev/null 2>&1; then
+    if ! command -v rustc >/dev/null 2>&1; then
         ensure_homebrew_updated
         install_brew_formula rust
         ensure_homebrew_updated_cleanup
-    elif type brew >/dev/null 2>&1; then
+    elif command -v brew >/dev/null 2>&1; then
         run "brew upgrade rust"
     fi
 

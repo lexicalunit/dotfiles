@@ -172,10 +172,14 @@ red-wavy-underline, ruby-block, set-syntax, soft-wrap-indicator, sort-lines,
 standard-formatter, tab-control, tabs-to-spaces, 
 tinacious-design-syntax-purple, toggle-quotes, trailing-spaces, unity-ui
 
-Code Packages: DavidAnson.vscode-markdownlint, HookyQR.beautify, 
-dbaeumer.vscode-eslint, eg2.tslint, magicstack.MagicPython, ms-python.python, 
-ms-vscode.Go, robertohuertasm.vscode-icons, spywhere.guides, 
-streetsidesoftware.code-spell-checker, waderyan.gitblame
+Code Packages: BriteSnow.vscode-toggle-quotes, DavidAnson.vscode-markdownlint, 
+HookyQR.beautify, bibhasdn.unique-lines, dbaeumer.vscode-eslint, 
+eamodio.gitlens, eg2.tslint, esbenp.prettier-vscode, foxundermoon.shell-format, 
+lehni.vscode-titlebar-less-macos, magicstack.MagicPython, 
+mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
+mohsen1.prettify-json, ms-python.python, ms-vscode.Go, pmneo.tsimporter, 
+robertohuertasm.vscode-icons, spywhere.guides, 
+streetsidesoftware.code-spell-checker, timonwong.shellcheck, waderyan.gitblame
 
 Pip Packages: git-sweep3k, glances, httpie, inflection, patch, 
 python-json-logger, termcolor

@@ -1,5 +1,4 @@
 # source files with vscode
-com.microsoft.VSCode .S all
 com.microsoft.VSCode .asp all
 com.microsoft.VSCode .bat all
 com.microsoft.VSCode .c all
@@ -40,18 +39,25 @@ com.microsoft.VSCode .plist editor
 com.microsoft.VSCode .py all
 com.microsoft.VSCode .rb all
 com.microsoft.VSCode .rst all
+com.microsoft.VSCode .S all
 com.microsoft.VSCode .scss all
 com.microsoft.VSCode .sh all
-com.microsoft.VSCode .txt all
+com.microsoft.VSCode .styl all
+com.microsoft.VSCode .stylintrc all
 com.microsoft.VSCode .tex all
+com.microsoft.VSCode .ts all
+com.microsoft.VSCode .tsx all
+com.microsoft.VSCode .txt all
 com.microsoft.VSCode .xhtml editor
 com.microsoft.VSCode .xml all
+com.microsoft.VSCode .yaml all
+com.microsoft.VSCode .yml all
 com.microsoft.VSCode Makefile all
-com.microsoft.VSCode Rakefile all
-com.microsoft.VSCode README all
 com.microsoft.VSCode public.plain-text all
 com.microsoft.VSCode public.shell-script all
 com.microsoft.VSCode public.unix-executable all
+com.microsoft.VSCode Rakefile all
+com.microsoft.VSCode README all
 
 # imagery with preview
 com.apple.Preview .ai all

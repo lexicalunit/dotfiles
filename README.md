@@ -152,11 +152,9 @@ mysqlworkbench, silverlight, skype, slack, snes9x, sourcetree, spectacle,
 spotify, sublime-text, texstudio, the-unarchiver, transmission, vagrant, 
 visual-studio-code, vlc, whatsapp, xquartz
 
-Atom Packages: atom-notes, auto-update-packages, busy-signal, 
-highlight-selected, intentions, language-markdown, linter, linter-ui-default, 
-markdown-preview-plus, minimap, minimap-highlight-selected, minimap-selection, 
-multi-wrap-guide, native-ui, no-title-bar, red-wavy-underline, set-syntax, 
-soft-wrap-indicator, sort-lines, tab-control, tabs-to-spaces, toggle-quotes, 
+Atom Packages: atom-notes, auto-update-packages, highlight-selected, 
+language-markdown, markdown-preview-plus, minimap, minimap-highlight-selected, 
+minimap-selection, native-ui, no-title-bar, soft-wrap-indicator, sort-lines, 
 trailing-spaces
 
 Code Packages: BriteSnow.vscode-toggle-quotes, DavidAnson.vscode-markdownlint, 

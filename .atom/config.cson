@@ -70,6 +70,10 @@
       "styleguide"
       "symbols-view"
       "tree-view"
+      "archive-view"
+      "fuzzy-finder"
+      "go-to-line"
+      "language-source"
     ]
     openEmptyEditorOnStart: false
     restorePreviousWindowsOnStart: "no"

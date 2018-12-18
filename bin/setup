@@ -33,11 +33,9 @@ HOMEBREW_CASKS="                                                               \
     whatsapp xquartz"
 
 ATOM_PACKAGES="                                                                \
-    atom-notes auto-update-packages busy-signal highlight-selected intentions  \
-    language-markdown linter linter-ui-default markdown-preview-plus minimap   \
-    minimap-highlight-selected minimap-selection multi-wrap-guide native-ui    \
-    no-title-bar red-wavy-underline set-syntax soft-wrap-indicator sort-lines  \
-    tab-control tabs-to-spaces toggle-quotes trailing-spaces"
+    atom-notes auto-update-packages highlight-selected language-markdown       \
+    markdown-preview-plus minimap minimap-highlight-selected minimap-selection \
+    native-ui no-title-bar soft-wrap-indicator sort-lines trailing-spaces"
 
 CODE_PACKAGES="                                                                \
     BriteSnow.vscode-toggle-quotes DavidAnson.vscode-markdownlint              \

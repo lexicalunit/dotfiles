@@ -1,9 +1,4 @@
 "*":
-  "atom-beautify":
-    general:
-      analytics: false
-  "atom-isort":
-    pythonPath: "~/anaconda3/bin"
   "atom-notes":
     directory: "~/Dropbox/nv"
     extensions: [
@@ -14,64 +9,69 @@
       ".dot"
     ]
     orderByFuzzyFileNameMatch: true
-  "atom-pair": null
-  "autocomplete-plus":
-    confirmCompletion: "tab and enter"
-  "autocomplete-python":
-    useKite: false
   "autoupdate-packages":
     lastUpdateTimestamp: 1483837964658
-  "base16-syntax":
-    matchUserInterfaceTheme: false
-    scheme: "Solarized"
-    style: "Light"
-  "better-git-blame":
-    searchInLayerEnabled: false
-  "bracket-matcher":
-    highlightMatchingLineNumber: true
   core:
     audioBeep: false
     closeEmptyWindows: false
     disabledPackages: [
-      "activate-power-mode"
-      "aesthetic-ui"
-      "atom-metaweather"
       "autoflow"
       "autosave"
       "background-tips"
       "bookmarks"
-      "docblockr"
       "encoding-selector"
       "exception-reporting"
-      "flatwhite-syntax"
-      "isotope-light-ui"
-      "isotope-ui"
-      "linter-clang"
       "metrics"
-      "nvatom"
-      "open-on-github"
-      "pigments"
-      "ruby-block"
-      "tinacious-design-syntax-purple"
-      "unity-ui"
-      "update-package-dependencies"
       "welcome"
       "wrap-guide"
-      "event-watch"
-      "linter-write-good"
       "markdown-preview"
       "language-gfm"
-      "python-yapf"
-      "atom-isort"
-      "atom-language-avro"
-      "linter-coffeelint"
-      "prettier-atom"
-      "standard-formatter"
+      "autocomplete-css"
+      "autocomplete-html"
+      "autocomplete-snippets"
+      "dev-live-reload"
+      "git-diff"
+      "github"
+      "grammar-selector"
+      "language-c"
+      "language-clojure"
+      "language-coffee-script"
+      "language-csharp"
+      "language-css"
+      "language-git"
+      "language-go"
+      "language-html"
+      "language-hyperlink"
+      "language-java"
+      "language-javascript"
+      "language-json"
+      "language-less"
+      "language-make"
+      "language-mustache"
+      "language-objective-c"
+      "language-perl"
+      "language-php"
+      "language-property-list"
+      "language-python"
+      "language-ruby"
+      "language-ruby-on-rails"
+      "language-rust-bundled"
+      "language-sass"
+      "language-shellscript"
+      "language-sql"
+      "language-todo"
+      "language-toml"
+      "language-typescript"
+      "language-xml"
+      "language-yaml"
+      "open-on-github"
+      "package-generator"
+      "snippets"
+      "styleguide"
+      "symbols-view"
+      "tree-view"
     ]
     openEmptyEditorOnStart: false
-    packagesWithKeymapsDisabled: [
-      "format-shell"
-    ]
     restorePreviousWindowsOnStart: "no"
     telemetryConsent: "no"
     themes: [
@@ -82,9 +82,6 @@
     useTreeSitterParsers: true
   "cursor-indicator":
     displayPrefix: "|"
-  "dark-flat-ui":
-    accentColor: "purple"
-    coloredTabs: false
   editor:
     autoIndentOnPaste: false
     fontFamily: "Inconsolata"
@@ -98,61 +95,10 @@
     showInvisibles: true
     softWrapAtPreferredLineLength: true
     tabLength: 4
-  "event-watch":
-    displayColorStatusbar: "#268bd2"
-    displayColorTooltip: "#268bd2"
-    displayColorWarningStatusbar: "IndianRed"
-    displayColorWarningTooltip: "IndianRed"
-    displayFontWeightStatusbar: "400"
-    displayFontWeightTooltip: "400"
-    tooltipFontWeight: "700"
-    warnThresholdMinutes: 30
-  "format-shell":
-    indent: 4
-    showNotifications: true
-  "git-blame":
-    columnWidth: 395
-  "git-diff":
-    showIconsInEditorGutter: true
-  "go-plus":
-    disabledBundledPackages: [
-      "go-debug"
-      "go-signature-statusbar"
-    ]
-    panel: {}
   "highlight-selected":
     onlyHighlightWholeWords: true
-  "isotope-ui":
-    minimalMode: true
   linter:
     lintOnChange: false
-  "linter-flake8":
-    executablePath: "~/bin/flake8"
-    maxLineLength: 100
-  "linter-pep8":
-    maxLineLength: 300
-    pep8ExecutablePath: "/usr/local/bin/pep8"
-  "linter-shellcheck":
-    enableNotice: true
-    userParameters: "-x -e SC1008"
-  "linter-ui-default":
-    hidePanelWhenEmpty: true
-    panelHeight: 163
-    showPanel: true
-    showProviderName: true
-  "linter-write-good":
-    additionalArgs: "--no-tooWordy"
-  "markdown-preview":
-    grammars: [
-      "source.gfm"
-      "source.litcoffee"
-      "text.html.basic"
-      "text.md"
-      "text.plain"
-      "text.plain.null-grammar"
-      "source.gfm.notes"
-    ]
-    liveUpdate: false
   "markdown-preview-plus":
     grammars: [
       "source.gfm"
@@ -167,7 +113,6 @@
     plugins:
       "find-and-replace": true
       "find-and-replaceDecorationsZIndex": 0
-      "git-diff": true
       "git-diffDecorationsZIndex": 0
       "highlight-selected": true
       "highlight-selectedDecorationsZIndex": 0
@@ -185,16 +130,6 @@
       macTransparency: false
   "no-title-bar":
     automaticTrafficLightsPaddingOffset: 1
-  nvatom:
-    directory: "~/Dropbox/nv"
-  "one-light-ui":
-    fontSize: 11
-    hideDockButtons: true
-  "pretty-json": {}
-  "python-yapf":
-    checkOnSave: false
-    yapfPath: "~/bin/yapf"
-    yapfStyle: "{based_on_style: pep8, column_limit: 100}"
   "spell-check":
     grammars: [
       "source.asciidoc"
@@ -226,13 +161,11 @@
     ]
   "tab-control":
     autoSaveChanges: true
-  tabs: {}
   "tree-view":
     hideIgnoredNames: true
     hideVcsIgnoredFiles: true
   welcome:
     showOnStartup: false
-  whitespace: {}
 ".basic.html.text":
   editor:
     softTabs: true
@@ -277,6 +210,7 @@
   "multi-wrap-guide":
     rows: [
       50
+      72
     ]
 ".go.source":
   editor:

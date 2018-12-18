@@ -33,25 +33,11 @@ HOMEBREW_CASKS="                                                               \
     whatsapp xquartz"
 
 ATOM_PACKAGES="                                                                \
-    activate-power-mode aesthetic-ui atom-beautify atom-isort                  \
-    atom-language-avro atom-notes atom-typescript auto-update-packages         \
-    autocomplete-python base16-syntax better-git-blame busy-signal             \
-    column-select cursor-indicator docblockr event-watch file-icons            \
-    flatwhite-syntax force-tab format-shell highlight-selected hyperclick      \
-    indent-guide-improved intentions isotope-light-ui isotope-ui               \
-    language-applescript language-babel language-cmake language-diff           \
-    language-docker language-dot language-groovy language-latex                \
-    language-markdown language-protobuf language-restructuredtext              \
-    language-rust language-scala language-stylus line-length-break linter      \
-    linter-clang linter-coffeelint linter-csslint linter-docker linter-erb     \
-    linter-eslint linter-flake8 linter-jsonlint linter-rubocop                 \
-    linter-shellcheck linter-tidy linter-tslint linter-ui-default              \
-    linter-write-good markdown-preview-plus minimap minimap-find-and-replace   \
-    minimap-git-diff minimap-highlight-selected minimap-selection              \
-    multi-wrap-guide native-ui no-title-bar pigments prettier-atom pretty-json \
-    python-yapf red-wavy-underline ruby-block set-syntax soft-wrap-indicator   \
-    sort-lines standard-formatter tab-control tabs-to-spaces                   \
-    tinacious-design-syntax-purple toggle-quotes trailing-spaces unity-ui"
+    atom-notes auto-update-packages busy-signal highlight-selected intentions  \
+    language-markdown linter linter-ui-default markdown-preview-plus minimap   \
+    minimap-highlight-selected minimap-selection multi-wrap-guide native-ui    \
+    no-title-bar red-wavy-underline set-syntax soft-wrap-indicator sort-lines  \
+    tab-control tabs-to-spaces toggle-quotes trailing-spaces"
 
 CODE_PACKAGES="                                                                \
     BriteSnow.vscode-toggle-quotes DavidAnson.vscode-markdownlint              \

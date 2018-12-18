@@ -74,6 +74,8 @@
       "fuzzy-finder"
       "go-to-line"
       "language-source"
+      "about"
+      "line-ending-selector"
     ]
     openEmptyEditorOnStart: false
     restorePreviousWindowsOnStart: "no"
@@ -165,6 +167,8 @@
     ]
   "tab-control":
     autoSaveChanges: true
+  tabs:
+    alwaysShowTabBar: false
   "tree-view":
     hideIgnoredNames: true
     hideVcsIgnoredFiles: true

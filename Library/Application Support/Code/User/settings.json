@@ -11,7 +11,6 @@
   "window.nativeTabs": false,
   "workbench.colorTheme": "Solarized Light",
   "workbench.editor.closeOnFileDelete": false,
-  "workbench.iconTheme": "vscode-icons",
   "workbench.startupEditor": "none",
   "workbench.colorCustomizations": {
     "editorCursor.foreground": "#057eff",
@@ -25,15 +24,19 @@
   "workbench.statusBar.feedback.visible": false,
   "shellformat.flag": "-s -i 4",
   "files.trimTrailingWhitespace": true,
-  "editor.codeLens": true,
+  "editor.codeLens": false,
   "files.insertFinalNewline": true,
   "shellcheck.customArgs": ["-e SC2239"],
-  "explorer.openEditors.visible": 10,
+  "explorer.openEditors.visible": 0,
   "editor.wordWrap": "bounded",
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.renderIndentGuides": false,
-  "workbench.editor.showTabs": false,
+  "workbench.editor.showTabs": true,
   "[css]": {
+    "editor.tabSize": 2
+  },
+  "[typescript]": {
+    "editor.detectIndentation": false,
     "editor.tabSize": 2
   },
   "[javascript]": {
@@ -49,5 +52,23 @@
   "[shellscript]": {
     "editor.detectIndentation": false,
     "editor.tabSize": 4
+  },
+  "workbench.iconTheme": "vscode-icons",
+  "explorer.autoReveal": false,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          "comment",
+          "comment.block",
+          "comment.block.documentation",
+          "comment.line",
+          "markup.italic"
+        ],
+        "settings": {
+          "fontStyle": ""
+        }
+      }
+    ]
   }
 }

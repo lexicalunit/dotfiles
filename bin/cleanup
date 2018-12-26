@@ -39,8 +39,11 @@ run "conda clean -a --yes"
 # npm
 run "npm -g cache clean --force"
 
+# atom
+run "apm clean"
+
 # report
 AFTER="$(df -B1 --output=avail "$HOME" | grep -iv avail)"
 show "disk space available after cleanup: $(numfmt --to=iec-i --suffix=B -- "$BEFORE")"
-RECLAIMED="$((BEFORE - AFTER))"
+RECLAIMED="$((AFTER - BEFORE))"
 show "disk space reclaimed by cleanup: $(numfmt --to=iec-i --suffix=B -- "$RECLAIMED")"

@@ -24,26 +24,39 @@ BEFORE="$(df -B1 --output=avail "$HOME" | grep -iv avail)"
 show "disk space available before cleanup: $(numfmt --to=iec-i --suffix=B -- "$BEFORE")"
 
 # brew
-run "brew cleanup"
+command -v brew >/dev/null 2>&1 && run "brew cleanup"
 
 # rvm
-run "rvm cleanup all"
+command -v rvm >/dev/null 2>&1 && run "rvm cleanup all"
+
+# gem
+command -v gem >/dev/null 2>&1 && run "gem cleanup"
+
+# babel
+test -e "$HOME/.babel.json" && run "rm -f '$_'"
 
 # cargo
-run "rm -rf '$HOME/.cargo/registry'"
-run "rm -rf '$HOME/.cargo/git'"
+if command -v cargo >/dev/null 2>&1; then
+    run "rm -rf '$HOME/.cargo/registry'"
+    run "rm -rf '$HOME/.cargo/git'"
+fi
 
 # conda
-run "conda clean -a --yes"
+command -v conda >/dev/null 2>&1 && run "conda clean -a --yes"
 
 # npm
-run "npm -g cache clean --force"
+command -v npm >/dev/null 2>&1 && run "npm -g cache clean --force"
+
+# node-gyp
+test -d "$HOME/.node-gyp" && run "rm -rf '$_'"
 
 # atom
-run "apm clean"
+command -v apm >/dev/null 2>&1 && run "apm clean"
 
 # report
 AFTER="$(df -B1 --output=avail "$HOME" | grep -iv avail)"
 show "disk space available after cleanup: $(numfmt --to=iec-i --suffix=B -- "$BEFORE")"
 RECLAIMED="$((AFTER - BEFORE))"
-show "disk space reclaimed by cleanup: $(numfmt --to=iec-i --suffix=B -- "$RECLAIMED")"
+if [[ "$RECLAIMED" -gt "0" ]]; then
+    show "disk space reclaimed by cleanup: $(numfmt --to=iec-i --suffix=B -- "$RECLAIMED")"
+fi

@@ -29,5 +29,13 @@
         "key": "shift+alt+i",
         "command": "-editor.action.insertCursorAtEndOfEachLineSelected",
         "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+m",
+        "command": "-editor.action.toggleTabFocusMode"
+    },
+    {
+        "key": "ctrl+cmd+w",
+        "command": "-workbench.action.toggleTabsVisibility"
     }
 ]

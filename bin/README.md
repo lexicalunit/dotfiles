@@ -479,8 +479,8 @@ pytest, python-dateutil, pytz, pyyaml, readline, requests, setuptools, six
 
 Gem Packages: jekyll, lolcat, rake, rdoc, rubocop
 
-Node Modules: JSON, all-contributors-cli, coffee-script, coffeelint, cson, 
-decaffeinate, dockerlint, eslint, external-ip, generator-code, 
+Node Modules: @ibm/plex, JSON, all-contributors-cli, coffee-script, coffeelint, 
+cson, decaffeinate, dockerlint, eslint, external-ip, generator-code, 
 generator-generator, geoip-lite, js-beautify, json-stable-stringify, moment, 
 nesh, npm-check-updates, npm-remote-ls, npm-why, prettier, raml2html, standard, 
 tmpin, tslint, typescript, yo

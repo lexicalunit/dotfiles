@@ -89,7 +89,7 @@
     displayPrefix: "|"
   editor:
     autoIndentOnPaste: false
-    fontFamily: "Inconsolata"
+    fontFamily: "IBMPlexMono, Inconsolata"
     fontSize: 20
     invisibles:
       cr: "↩"

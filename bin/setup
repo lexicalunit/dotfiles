@@ -59,11 +59,11 @@ GEM_PACKAGES="                                                                 \
     jekyll lolcat rake rdoc rubocop"
 
 NODE_MODULES="                                                                 \
-    JSON all-contributors-cli coffee-script coffeelint cson decaffeinate       \
-    dockerlint eslint external-ip generator-code generator-generator           \
-    geoip-lite js-beautify json-stable-stringify moment nesh npm-check-updates \
-    npm-remote-ls npm-why prettier raml2html standard tmpin tslint typescript  \
-    yo"
+    @ibm/plex JSON all-contributors-cli coffee-script coffeelint cson          \
+    decaffeinate dockerlint eslint external-ip generator-code                  \
+    generator-generator geoip-lite js-beautify json-stable-stringify moment    \
+    nesh npm-check-updates npm-remote-ls npm-why prettier raml2html standard   \
+    tmpin tslint typescript yo"
 
 GO_PACKAGES="                                                                  \
     github.com/acroca/go-symbols github.com/cweill/gotests                     \
@@ -1503,6 +1503,9 @@ step_node() {
             run "npm install -g $I"
         fi
     done
+
+    # install the @ibm/plex monospace fonts
+    run "cp -uvf '$(npm -g config get prefix)/lib/node_modules/@ibm/plex/IBM-Plex-Mono/fonts/complete/ttf'/*.ttf /Library/Fonts/."
 
     IFS=$'\n'
     for I in $INSTALLED; do

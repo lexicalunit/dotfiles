@@ -396,10 +396,13 @@ Prints the root directory of the current source repository.
 * * *
 ### [`set_wallpaper`](set_wallpaper)
 ```
-Traceback (most recent call last):
-  File "./set_wallpaper", line 15, in <module>
-    from AppKit import NSScreen, NSWorkspace
-ModuleNotFoundError: No module named 'AppKit'
+usage: set_wallpaper [-h] [--path PATH]
+
+Sets the desktop picture on all screens
+
+optional arguments:
+  -h, --help   show this help message and exit
+  --path PATH  The path of the image
 ```
 
 * * *
@@ -452,15 +455,16 @@ shellcheck, shfmt, snappy, sqlite, theora, tree, v8, vegeta, vramsteg, watch,
 wdiff, webp, wget, x264, x265, xvid, xz, yajl, yaml-cpp, youtube-dl, zsh
 
 Homebrew Casks: 1password, atom, atom-beta, caffeine, clamxav, dbvisualizer, 
-disk-inventory-x, docker, dropbox, fantastical, firefox, flux, google-chrome, 
-iexplorer, istumbler, iterm2, java, kaleidoscope, lingon-x, mactex, mcgimp-std, 
-mysqlworkbench, silverlight, skype, slack, snes9x, sourcetree, spectacle, 
-spotify, sublime-text, texstudio, the-unarchiver, transmission, vagrant, 
-visual-studio-code, vlc, whatsapp, xquartz
+disk-inventory-x, docker, dropbox, fantastical, firefox, flux, 
+font-hack-nerd-font, google-chrome, iexplorer, istumbler, iterm2, java, 
+kaleidoscope, lingon-x, mactex, mcgimp-std, mysqlworkbench, silverlight, skype, 
+slack, snes9x, sourcetree, spectacle, spotify, sublime-text, texstudio, 
+the-unarchiver, transmission, vagrant, visual-studio-code, vlc, whatsapp, 
+xquartz
 
 Atom Packages: atom-notes, auto-update-packages, highlight-selected, 
 language-markdown, minimap, minimap-highlight-selected, minimap-selection, 
-native-ui, sort-lines, trailing-spaces
+native-ui, pen-paper-coffee-syntax, sort-lines, trailing-spaces, typewriter
 
 Code Packages: BriteSnow.vscode-toggle-quotes, DavidAnson.vscode-markdownlint, 
 HookyQR.beautify, bibhasdn.unique-lines, dbaeumer.vscode-eslint, 
@@ -655,9 +659,9 @@ Options:
                                      youtube-dl guess ("auto_warning" to emit a warning when guessing). "error" just
                                      throws an error. The default value "fixup_error" repairs broken URLs, but emits an
                                      error if this is not possible instead of searching.
-    --ignore-config                  Do not read configuration files. When given in the global configuration file
-                                     /etc/youtube-dl.conf: Do not read the user configuration in ~/.config/youtube-
-                                     dl/config (%APPDATA%/youtube-dl/config.txt on Windows)
+    --ignore-config                  Do not read configuration files. When given in the global configuration file /etc
+                                     /youtube-dl.conf: Do not read the user configuration in ~/.config/youtube-dl/config
+                                     (%APPDATA%/youtube-dl/config.txt on Windows)
     --config-location PATH           Location of the configuration file; either the path to the config or its containing
                                      directory.
     --flat-playlist                  Do not extract the videos of a playlist, only list them.

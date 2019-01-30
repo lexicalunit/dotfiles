@@ -146,15 +146,16 @@ shellcheck, shfmt, snappy, sqlite, theora, tree, v8, vegeta, vramsteg, watch,
 wdiff, webp, wget, x264, x265, xvid, xz, yajl, yaml-cpp, youtube-dl, zsh
 
 Homebrew Casks: 1password, atom, atom-beta, caffeine, clamxav, dbvisualizer, 
-disk-inventory-x, docker, dropbox, fantastical, firefox, flux, google-chrome, 
-iexplorer, istumbler, iterm2, java, kaleidoscope, lingon-x, mactex, mcgimp-std, 
-mysqlworkbench, silverlight, skype, slack, snes9x, sourcetree, spectacle, 
-spotify, sublime-text, texstudio, the-unarchiver, transmission, vagrant, 
-visual-studio-code, vlc, whatsapp, xquartz
+disk-inventory-x, docker, dropbox, fantastical, firefox, flux, 
+font-hack-nerd-font, google-chrome, iexplorer, istumbler, iterm2, java, 
+kaleidoscope, lingon-x, mactex, mcgimp-std, mysqlworkbench, silverlight, skype, 
+slack, snes9x, sourcetree, spectacle, spotify, sublime-text, texstudio, 
+the-unarchiver, transmission, vagrant, visual-studio-code, vlc, whatsapp, 
+xquartz
 
 Atom Packages: atom-notes, auto-update-packages, highlight-selected, 
 language-markdown, minimap, minimap-highlight-selected, minimap-selection, 
-native-ui, sort-lines, trailing-spaces
+native-ui, pen-paper-coffee-syntax, sort-lines, trailing-spaces, typewriter
 
 Code Packages: BriteSnow.vscode-toggle-quotes, DavidAnson.vscode-markdownlint, 
 HookyQR.beautify, bibhasdn.unique-lines, dbaeumer.vscode-eslint, 

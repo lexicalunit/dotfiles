@@ -80,6 +80,7 @@
 /.jupyter/migrated
 /.kube
 /.lesshst
+/.local/share/IsolatedStorage
 /.local/share/nvim/shada/main.shada
 /.local/share/recently-used.xbel
 /.m2

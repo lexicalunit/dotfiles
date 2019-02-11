@@ -26,7 +26,6 @@
   "files.trimTrailingWhitespace": true,
   "editor.codeLens": false,
   "files.insertFinalNewline": true,
-  "shellcheck.customArgs": ["-e SC2239"],
   "explorer.openEditors.visible": 0,
   "editor.wordWrap": "bounded",
   "editor.multiCursorModifier": "ctrlCmd",

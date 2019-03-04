@@ -414,6 +414,9 @@ options:
     -d             dry-run
     -f             force install, do not ask for any confirmation
     all            executes all steps
+    apps           executes steps that update applications
+    dot            executes dotfiles, zsh, and env
+    most           executes apps and dot
     step-name(s)   execute the given step(s)
 
 steps:

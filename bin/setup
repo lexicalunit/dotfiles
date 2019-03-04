@@ -147,6 +147,9 @@ usage() {
             echo "    -d: dry-run"
             echo "    -f: force install, do not ask for any confirmation"
             echo "    all: executes all steps"
+            echo "    apps: executes steps that update applications"
+            echo "    dot: executes dotfiles, zsh, and env"
+            echo "    most: executes apps and dot"
             echo "    step-name(s): execute the given step(s)"
         ) | column -ts:
         echo

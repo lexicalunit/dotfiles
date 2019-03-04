@@ -28,7 +28,7 @@
   "files.insertFinalNewline": true,
   "explorer.openEditors.visible": 0,
   "editor.wordWrap": "bounded",
-  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.multiCursorModifier": "alt",
   "editor.renderIndentGuides": false,
   "workbench.editor.showTabs": true,
   "[css]": {

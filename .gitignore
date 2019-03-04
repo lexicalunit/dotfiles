@@ -29,6 +29,12 @@
 /Applications\ (Parallels)
 /Parallels
 
+# Wine
+/.config/menus/applications-merged/
+/.local/share/applications/wine/Programs
+/.local/share/desktop-directories
+/.local/share/mime/packages
+
 # Applications
 /.ammonite
 /.aws

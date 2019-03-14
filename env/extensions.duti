@@ -24,6 +24,7 @@ com.microsoft.VSCode .html editor
 com.microsoft.VSCode .ini all
 com.microsoft.VSCode .java all
 com.microsoft.VSCode .js all
+com.microsoft.VSCode .jsx all
 com.microsoft.VSCode .json all
 com.microsoft.VSCode .jsp editor
 com.microsoft.VSCode .less all

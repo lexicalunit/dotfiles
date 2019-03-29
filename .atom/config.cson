@@ -73,6 +73,7 @@
       "tree-view"
       "welcome"
       "wrap-guide"
+      "typewriter"
     ]
     openEmptyEditorOnStart: false
     restorePreviousWindowsOnStart: "no"

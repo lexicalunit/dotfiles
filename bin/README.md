@@ -292,7 +292,9 @@ Stdin is read if it is piped to Prettier and no files are given.
 
 Output options:
 
-  -l, --list-different     Print the names of files that are different from Prettier's formatting.
+  -c, --check              Check if the given files are formatted, print a human-friendly summary
+                           message and paths to unformatted files (see also --list-different).
+  -l, --list-different     Print the names of files that are different from Prettier's formatting (see also --check).
   --write                  Edit files in-place. (Beware!)
 
 Format options:
@@ -311,7 +313,7 @@ Format options:
                            Defaults to false.
   --jsx-single-quote       Use single quotes in JSX.
                            Defaults to false.
-  --parser <flow|babylon|typescript|css|less|scss|json|json5|json-stringify|graphql|markdown|mdx|vue|yaml|html|angular>
+  --parser <flow|babel|babel-flow|typescript|css|less|scss|json|json5|json-stringify|graphql|markdown|mdx|vue|yaml|html|angular>
                            Which parser to use.
   --print-width <int>      The line length where Prettier will try wrap.
                            Defaults to 80.

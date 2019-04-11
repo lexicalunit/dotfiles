@@ -94,11 +94,11 @@
       cr: "↩"
       eol: " "
       tab: "¬"
-    preferredLineLength: 100
+    preferredLineLength: 120
     scrollPastEnd: true
     showInvisibles: true
     softWrap: true
-    softWrapAtPreferredLineLength: true
+    softWrapAtPreferredLineLength: false
     tabLength: 2
   "highlight-selected":
     onlyHighlightWholeWords: true

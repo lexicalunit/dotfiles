@@ -52,7 +52,6 @@
     "editor.detectIndentation": false,
     "editor.tabSize": 4
   },
-  "workbench.iconTheme": "vscode-icons",
   "explorer.autoReveal": false,
   "editor.tokenColorCustomizations": {
     "textMateRules": [
@@ -77,5 +76,5 @@
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "workbench.settings.editor": "json",
-  "terminal.integrated.fontFamily": "Hack Nerd Font",
+  "terminal.integrated.fontFamily": "Hack Nerd Font"
 }

@@ -277,6 +277,7 @@ alias memcheck='valgrind --tool=memcheck --leak-check=yes -show-reachable=yes -f
 alias pygmentize='pygmentize -O bg=dark'
 alias yapf='yapf --style="{based_on_style: pep8, column_limit: 120}" '
 alias fa='rg '
+alias ltr='ls -l -tmodified -snew '
 
 # git shortcuts
 alias gits='git s '

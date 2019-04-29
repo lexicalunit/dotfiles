@@ -313,13 +313,16 @@ Format options:
                            Defaults to false.
   --jsx-single-quote       Use single quotes in JSX.
                            Defaults to false.
-  --parser <flow|babel|babel-flow|typescript|css|less|scss|json|json5|json-stringify|graphql|markdown|mdx|vue|yaml|html|angular>
+  --parser <flow|babel|babel-flow|typescript|css|less|scss|json|json5|json-stringify|graphql|markdown|mdx|vue|yaml|html|angular|lwc>
                            Which parser to use.
   --print-width <int>      The line length where Prettier will try wrap.
                            Defaults to 80.
   --prose-wrap <always|never|preserve>
                            How to wrap prose.
                            Defaults to preserve.
+  --quote-props <as-needed|consistent|preserve>
+                           Change when properties in objects are quoted.
+                           Defaults to as-needed.
   --no-semi                Do not print semicolons, except at the beginning of lines which may need them.
   --single-quote           Use single quotes instead of double quotes.
                            Defaults to false.
@@ -469,13 +472,15 @@ language-markdown, minimap, minimap-highlight-selected, minimap-selection,
 native-ui, pen-paper-coffee-syntax, sort-lines, trailing-spaces, typewriter
 
 Code Packages: BriteSnow.vscode-toggle-quotes, DavidAnson.vscode-markdownlint, 
-HookyQR.beautify, bibhasdn.unique-lines, dbaeumer.vscode-eslint, 
-eamodio.gitlens, eg2.tslint, esbenp.prettier-vscode, foxundermoon.shell-format, 
+GrapeCity.gc-excelviewer, HookyQR.beautify, ban.spellright, 
+bibhasdn.unique-lines, dbaeumer.vscode-eslint, eamodio.gitlens, eg2.tslint, 
+esbenp.prettier-vscode, foxundermoon.shell-format, 
 lehni.vscode-titlebar-less-macos, magicstack.MagicPython, 
 mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
-mohsen1.prettify-json, ms-python.python, ms-vscode.Go, pmneo.tsimporter, 
-robertohuertasm.vscode-icons, spywhere.guides, 
-streetsidesoftware.code-spell-checker, timonwong.shellcheck, waderyan.gitblame
+mohsen1.prettify-json, ms-python.python, ms-vscode.Go, 
+ms-vsliveshare.vsliveshare, pmneo.tsimporter, robertohuertasm.vscode-icons, 
+spywhere.guides, streetsidesoftware.code-spell-checker, sysoev.language-stylus, 
+timonwong.shellcheck, vscode-icons-team.vscode-icons, waderyan.gitblame
 
 Pip Packages: git-sweep3k, glances, httpie, inflection, patch, 
 python-json-logger, termcolor

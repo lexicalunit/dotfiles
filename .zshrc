@@ -65,4 +65,7 @@ unsetopt correctall
 # stop asking me twice
 setopt rm_star_silent
 
+# setup fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 fi # if $INTERACTIVE

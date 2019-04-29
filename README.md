@@ -128,9 +128,9 @@ install packages/formulas/casks/whatever, see below for the list of included ite
 | code | Ensure VS Code installed via Homebrew Cask and its packages are installed |
 | osx | Override macOS "defaults" settings and configuration |
 
-Homebrew Formulas: adns, autoconf, automake, bash, clang-format, cmake, 
+Homebrew Formulas: adns, autoconf, automake, bash, bat, clang-format, cmake, 
 colordiff, coreutils, csv-fix, diff-so-fancy, docker, doxygen, duti, exa, faac, 
-fasd, ffmpeg, flake8, fontconfig, freetype, gd, gdbm, geoip, gettext, 
+fasd, ffmpeg, flake8, fontconfig, freetype, fzf, gd, gdbm, geoip, gettext, 
 ghostscript, gifsicle, git, git-flow, git-review, git-secrets, glib, gmp, 
 gnu-sed, gnu-tar, gnupg, gnutls, hub, icu4c, id3lib, imagemagick@6, isl, 
 jasper, jbig2dec, jez/formulae/pandoc-sidenote, jhead, jo, jpeg, jq, kafkacat, 

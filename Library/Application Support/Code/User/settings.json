@@ -1,6 +1,7 @@
 {
   "editor.cursorBlinking": "phase",
-  "editor.fontFamily": "IBMPlexMono, Inconsolata",
+  "editor.fontFamily": "Fira Code, IBMPlexMono, Inconsolata",
+  "editor.fontLigatures": true,
   "editor.fontSize": 18,
   "editor.renderControlCharacters": true,
   "editor.renderWhitespace": "boundary",

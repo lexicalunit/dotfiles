@@ -26,11 +26,11 @@ HOMEBREW_FORMULAS="                                                            \
 
 HOMEBREW_CASKS="                                                               \
     1password atom atom-beta caffeine clamxav dbvisualizer disk-inventory-x    \
-    docker dropbox fantastical firefox flux font-hack-nerd-font google-chrome  \
-    iexplorer istumbler iterm2 java kaleidoscope lingon-x mactex mcgimp-std    \
-    mysqlworkbench silverlight skype slack snes9x sourcetree spectacle spotify \
-    sublime-text texstudio the-unarchiver transmission vagrant                 \
-    visual-studio-code vlc whatsapp xquartz"
+    docker dropbox fantastical firefox flux font-fira-code font-hack-nerd-font \
+    google-chrome iexplorer istumbler iterm2 java kaleidoscope lingon-x mactex \
+    mcgimp-std mysqlworkbench silverlight skype slack snes9x sourcetree        \
+    spectacle spotify sublime-text texstudio the-unarchiver transmission       \
+    vagrant visual-studio-code vlc whatsapp xquartz"
 
 ATOM_PACKAGES="                                                                \
     atom-notes auto-update-packages highlight-selected language-markdown       \

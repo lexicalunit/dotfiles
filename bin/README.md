@@ -261,9 +261,12 @@ Usage: jsc [options] [files] [-- arguments]
   --exception=<name>         Check the last script exits with an uncaught exception with the specified name
   --watchdog-exception-ok    Uncaught watchdog exceptions exit with success
   --dumpException            Dump uncaught exception text
+  --footprint                Dump memory footprint after done executing
   --options                  Dumps all JSC VM options and exits
   --dumpOptions              Dumps all non-default JSC VM options before continuing
   --<jsc VM option>=<value>  Sets the specified JSC VM option
+
+Files with a .mjs extension will always be evaluated as modules.
 ```
 
 * * *
@@ -460,7 +463,7 @@ shellcheck, shfmt, snappy, sqlite, theora, tree, v8, vegeta, vramsteg, watch,
 wdiff, webp, wget, x264, x265, xvid, xz, yajl, yaml-cpp, youtube-dl, zsh
 
 Homebrew Casks: 1password, atom, atom-beta, caffeine, clamxav, dbvisualizer, 
-disk-inventory-x, docker, dropbox, fantastical, firefox, flux, 
+disk-inventory-x, docker, dropbox, fantastical, firefox, flux, font-fira-code, 
 font-hack-nerd-font, google-chrome, iexplorer, istumbler, iterm2, java, 
 kaleidoscope, lingon-x, mactex, mcgimp-std, mysqlworkbench, silverlight, skype, 
 slack, snes9x, sourcetree, spectacle, spotify, sublime-text, texstudio, 

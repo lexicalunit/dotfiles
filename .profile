@@ -276,7 +276,15 @@ alias profile='valgrind --tool=callgrind --dump-instr=yes --simulate-cache=yes -
 alias memcheck='valgrind --tool=memcheck --leak-check=yes -show-reachable=yes -fno-inline --logfile=memcheck.log '
 alias pygmentize='pygmentize -O bg=dark'
 alias yapf='yapf --style="{based_on_style: pep8, column_limit: 120}" '
-alias fa='rg '
+fa() {
+    rg --type-not svg \
+       --trim \
+       --sort modified \
+       --smart-case \
+       --pretty \
+       --max-columns "$(stty size | cut -d' ' -f2)" \
+       "$@"
+}
 alias ltr='ls -l -tmodified -snew '
 
 # git shortcuts

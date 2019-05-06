@@ -23,8 +23,38 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 BEFORE="$(df -B1 --output=avail "$HOME" | grep -iv avail)"
 show "disk space available before cleanup: $(numfmt --to=iec-i --suffix=B -- "$BEFORE")"
 
+# grab and hold sudo
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+# trash
+run "sudo rm -rf /Volumes/*/.Trashes/*"
+run "sudo rm -rf ~/.Trash/*"
+
+# macos
+run "sudo rm -rf /private/var/log/asl/*.asl"
+run "sudo rm -rf /Library/Logs/DiagnosticReports/*"
+run "rm -rf ~/Library/Containers/com.apple.mail/Data/Library/Logs/Mail/*"
+run "rm -rf ~/Library/Logs/CoreSimulator/*"
+
+# adobe
+run "sudo rm -rf ~/Library/Application\ Support/Adobe/Common/Media\ Cache\ Files/*"
+run "sudo rm -rf /Library/Logs/Adobe/*"
+
+# itunes
+run "rm -rf ~/Music/iTunes/iTunes\ Media/Mobile\ Applications/*"
+run "rm -rf ~/Library/Application\ Support/MobileSync/Backup/*"
+
+# xcode
+run "rm -rf ~/Library/Developer/Xcode/DerivedData/*"
+run "rm -rf ~/Library/Developer/Xcode/Archives/*"
+
 # brew
-command -v brew >/dev/null 2>&1 && run "brew cleanup"
+if command -v brew >/dev/null 2>&1; then
+    run "brew cleanup"
+    run "rm -rf $(brew --cache)"
+    run "brew tap --repair"
+fi
 
 # rvm
 command -v rvm >/dev/null 2>&1 && run "rvm cleanup all"
@@ -47,11 +77,28 @@ command -v conda >/dev/null 2>&1 && run "conda clean -a --yes"
 # npm
 command -v npm >/dev/null 2>&1 && run "npm -g cache clean --force"
 
+# yarn
+command -v yarn >/dev/null 2>&1 && run "yarn -g cache clean --force"
+
 # node-gyp
 test -d "$HOME/.node-gyp" && run "rm -rf '$_'"
 
 # atom
 command -v apm >/dev/null 2>&1 && run "apm clean"
+
+# docker
+show "docker: checking if up..."
+if command -v docker >/dev/null 2>&1 && docker stats --no-stream >/dev/null 2>&1 ; then
+    run "docker container prune -f"
+    run "docker image prune -f"
+    run "docker volume prune -f"
+    run "docker network prune -f"
+else
+    show "docker: not up"
+fi
+
+# inactive memory
+run "sudo purge"
 
 # report
 AFTER="$(df -B1 --output=avail "$HOME" | grep -iv avail)"

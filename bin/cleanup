@@ -1,11 +1,11 @@
 #!/bin/bash -e
 
-# Cleans up package manager caches.
+# Cleans system and application caches on macOS.
 
 usage() {
     echo "usage: ${0##*/} [options]" 1>&2
     echo "" 1>&2
-    echo "Cleans up package manager caches." 1>&2
+    echo "Cleans system and application caches on macOS." 1>&2
     echo ""
     echo "options:"
     echo " -h or --help shows usage help" 1>&2

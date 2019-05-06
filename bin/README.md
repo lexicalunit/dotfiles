@@ -38,7 +38,7 @@ Usage:
 ```
 usage: cleanup [options]
 
-Cleans up package manager caches.
+Cleans system and application caches on macOS.
 
 options:
  -h or --help shows usage help

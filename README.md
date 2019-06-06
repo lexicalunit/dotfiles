@@ -60,7 +60,7 @@ with the argument `--help`.
 | [`alert`](bin/alert) | Provides shell level windowed alerting system. |
 | [`backmost`](bin/backmost) | Send the current frontmost windowed macOS application to the back. |
 | [`capture_x`](bin/capture_x) | Creates a screenshot of selected window on X11. |
-| [`cht`](bin/cht) | [X] open section |
+| [`cht`](bin/cht) | # |
 | [`cleanup`](bin/cleanup) | Cleans system and application caches on macOS. |
 | [`codeclimate`](bin/codeclimate) | Runs Code Climate on the current working directory. |
 | [`colortest`](bin/colortest) | Prints out an entire color palette of terminal color codes. |
@@ -164,8 +164,8 @@ esbenp.prettier-vscode, foxundermoon.shell-format,
 lehni.vscode-titlebar-less-macos, magicstack.MagicPython, 
 mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
 mohsen1.prettify-json, ms-python.python, ms-vscode.Go, 
-ms-vsliveshare.vsliveshare, pmneo.tsimporter, robertohuertasm.vscode-icons, 
-spywhere.guides, streetsidesoftware.code-spell-checker, sysoev.language-stylus, 
+ms-vsliveshare.vsliveshare, pmneo.tsimporter, spywhere.guides, 
+streetsidesoftware.code-spell-checker, sysoev.language-stylus, 
 timonwong.shellcheck, vscode-icons-team.vscode-icons, waderyan.gitblame
 
 Pip Packages: git-sweep3k, glances, httpie, inflection, patch, 

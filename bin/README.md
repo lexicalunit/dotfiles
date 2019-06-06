@@ -28,9 +28,22 @@ Creates a screenshot of selected window on X11.
 ```
 Usage:
 
-    cht --help           show this help
-    cht --shell [LANG]   shell mode (open LANG if specified)
-    cht QUERY            process QUERY and exit
+    cht [OPTIONS|QUERY]
+
+Options:
+
+    QUERY                   process QUERY and exit
+
+    --help                  show this help
+    --shell [LANG]          shell mode (open LANG if specified)
+
+    --standalone-install [DIR|help]
+                            install cheat.sh in the standalone mode
+                            (by default, into ~/.cheat.sh/)
+
+    --mode [auto|lite]      set (or display) mode of operation
+                            * auto - prefer the local installation
+                            * lite - use the cheat sheet server
 ```
 
 * * *
@@ -481,8 +494,8 @@ esbenp.prettier-vscode, foxundermoon.shell-format,
 lehni.vscode-titlebar-less-macos, magicstack.MagicPython, 
 mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
 mohsen1.prettify-json, ms-python.python, ms-vscode.Go, 
-ms-vsliveshare.vsliveshare, pmneo.tsimporter, robertohuertasm.vscode-icons, 
-spywhere.guides, streetsidesoftware.code-spell-checker, sysoev.language-stylus, 
+ms-vsliveshare.vsliveshare, pmneo.tsimporter, spywhere.guides, 
+streetsidesoftware.code-spell-checker, sysoev.language-stylus, 
 timonwong.shellcheck, vscode-icons-team.vscode-icons, waderyan.gitblame
 
 Pip Packages: git-sweep3k, glances, httpie, inflection, patch, 

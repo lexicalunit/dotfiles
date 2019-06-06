@@ -287,6 +287,12 @@ fa() {
 }
 alias ltr='ls -l -tmodified -snew '
 
+if type npm >/dev/null 2>&1; then
+linked() {
+    npm ls -g --depth=0 --link=true "$@" 2>/dev/null
+}
+fi
+
 # git shortcuts
 alias gits='git s '
 alias gitsu='git s -u '

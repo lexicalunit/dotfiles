@@ -16,7 +16,7 @@ HOMEBREW_FORMULAS="                                                            \
     libevent libffi libgcrypt libgpg-error libidn2 libksba libmpc libogg       \
     libpng librdkafka libssh2 libtasn1 libtiff libtool libunistring libusb     \
     libusb-compat libvo-aacenc libvorbis libvpx libyaml little-cms2 lz4 lzlib  \
-    makedepend md5sha1sum memcached mpfr mtr mysql ncftp ncurses net-snmp      \
+    makedepend mas md5sha1sum memcached mpfr mtr mysql ncftp ncurses net-snmp  \
     nettle nginx node npth nvm onepass oniguruma openjpeg openssl opus         \
     ossp-uuid p11-kit pandoc pcre pcre2 pidof pinentry pkg-config plotutils    \
     pngquant postgresql pyenv pyenv-virtualenv pyenv-virtualenvwrapper python  \
@@ -25,8 +25,8 @@ HOMEBREW_FORMULAS="                                                            \
     yajl yaml-cpp youtube-dl zsh"
 
 HOMEBREW_CASKS="                                                               \
-    1password atom atom-beta caffeine clamxav dbvisualizer disk-inventory-x    \
-    docker dropbox fantastical firefox flux font-fira-code font-hack-nerd-font \
+    1password atom atom-beta clamxav dbvisualizer disk-inventory-x docker      \
+    dropbox fantastical firefox flux font-fira-code font-hack-nerd-font        \
     google-chrome iexplorer istumbler iterm2 java kaleidoscope lingon-x mactex \
     mcgimp-std mysqlworkbench silverlight skype slack snes9x sourcetree        \
     spectacle spotify sublime-text texstudio the-unarchiver transmission       \
@@ -1084,6 +1084,8 @@ step_brew() {
         abort "Failed to install Homebrew"
     fi
 
+    run "find '$(brew --prefix)' -maxdepth 1 -print0 | xargs -0 -n 1 -P 8 sudo chown -R '$(whoami)'"
+
     ensure_homebrew_updated
 
     local INSTALLED
@@ -1107,6 +1109,19 @@ step_brew() {
 
     # install the git remote-hg helper
     run "ln -sf $(brew ls -v git | grep git-remote-hg) /usr/local/bin"
+
+    # install Amphetamine via Mac Apple Store CLI
+    if [[ ! -e "/Applications/Amphetamine.app" ]]; then
+        local AMPH_ID
+        AMPH_ID="$(mas search Amphetamine | awk '{print $1}')"
+        if [[ -n "$AMPH_ID" ]]; then
+            show -i "Attempting to install Amphetamine via the Mac App Store CLI..."
+            run "mas install '$AMPH_ID'"
+            run "open /Applications/Amphetamine.app"
+        else
+        show -i "Failed to install Amphetamine via Mac App Store CLI."
+        fi
+    fi
 
     local arr=()
     echo "$HOMEBREW_FORMULAS" | tr ' ' '\n' | {
@@ -1748,7 +1763,7 @@ steps=(
     "xcode;         Ensure that Xcode Command Line Tools are installed"
     "dotfiles;      Ensure home directory is a git repository for dotfiles"
     "java;          Ensure that Apple's java for macOS is installed"
-    "brew;          Ensure Homebrew installed and formulas upgraded"
+    "brew;          Ensure Homebrew installed, formulas upgraded, and Amphetamine installed"
     "cask;          Ensure Homebrew Casks are installed"
     "ext;           Ensure file extension associations are correct"
     "zsh;           Ensure shell is latest version of zsh from Homebrew"

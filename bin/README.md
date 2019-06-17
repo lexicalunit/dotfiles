@@ -444,7 +444,7 @@ steps:
     xcode      Ensure that Xcode Command Line Tools are installed
     dotfiles   Ensure home directory is a git repository for dotfiles
     java       Ensure that Apple's java for macOS is installed
-    brew       Ensure Homebrew installed and formulas upgraded
+    brew       Ensure Homebrew installed, formulas upgraded, and Amphetamine installed
     cask       Ensure Homebrew Casks are installed
     ext        Ensure file extension associations are correct
     zsh        Ensure shell is latest version of zsh from Homebrew
@@ -467,15 +467,16 @@ jasper, jbig2dec, jez/formulae/pandoc-sidenote, jhead, jo, jpeg, jq, kafkacat,
 lame, libassuan, libevent, libffi, libgcrypt, libgpg-error, libidn2, libksba, 
 libmpc, libogg, libpng, librdkafka, libssh2, libtasn1, libtiff, libtool, 
 libunistring, libusb, libusb-compat, libvo-aacenc, libvorbis, libvpx, libyaml, 
-little-cms2, lz4, lzlib, makedepend, md5sha1sum, memcached, mpfr, mtr, mysql, 
-ncftp, ncurses, net-snmp, nettle, nginx, node, npth, nvm, onepass, oniguruma, 
-openjpeg, openssl, opus, ossp-uuid, p11-kit, pandoc, pcre, pcre2, pidof, 
-pinentry, pkg-config, plotutils, pngquant, postgresql, pyenv, pyenv-virtualenv, 
-pyenv-virtualenvwrapper, python, readline, redis, ripgrep, rlwrap, rust, sdl2, 
-shellcheck, shfmt, snappy, sqlite, theora, tree, v8, vegeta, vramsteg, watch, 
-wdiff, webp, wget, x264, x265, xvid, xz, yajl, yaml-cpp, youtube-dl, zsh
+little-cms2, lz4, lzlib, makedepend, mas, md5sha1sum, memcached, mpfr, mtr, 
+mysql, ncftp, ncurses, net-snmp, nettle, nginx, node, npth, nvm, onepass, 
+oniguruma, openjpeg, openssl, opus, ossp-uuid, p11-kit, pandoc, pcre, pcre2, 
+pidof, pinentry, pkg-config, plotutils, pngquant, postgresql, pyenv, 
+pyenv-virtualenv, pyenv-virtualenvwrapper, python, readline, redis, ripgrep, 
+rlwrap, rust, sdl2, shellcheck, shfmt, snappy, sqlite, theora, tree, v8, 
+vegeta, vramsteg, watch, wdiff, webp, wget, x264, x265, xvid, xz, yajl, 
+yaml-cpp, youtube-dl, zsh
 
-Homebrew Casks: 1password, atom, atom-beta, caffeine, clamxav, dbvisualizer, 
+Homebrew Casks: 1password, atom, atom-beta, clamxav, dbvisualizer, 
 disk-inventory-x, docker, dropbox, fantastical, firefox, flux, font-fira-code, 
 font-hack-nerd-font, google-chrome, iexplorer, istumbler, iterm2, java, 
 kaleidoscope, lingon-x, mactex, mcgimp-std, mysqlworkbench, silverlight, skype, 

@@ -166,8 +166,8 @@ lehni.vscode-titlebar-less-macos, magicstack.MagicPython,
 mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
 mohsen1.prettify-json, ms-python.python, ms-vscode.Go, 
 ms-vsliveshare.vsliveshare, pmneo.tsimporter, spywhere.guides, 
-streetsidesoftware.code-spell-checker, sysoev.language-stylus, 
-timonwong.shellcheck, vscode-icons-team.vscode-icons, waderyan.gitblame
+sysoev.language-stylus, timonwong.shellcheck, vscode-icons-team.vscode-icons, 
+waderyan.gitblame
 
 Pip Packages: git-sweep3k, glances, httpie, inflection, patch, 
 python-json-logger, termcolor

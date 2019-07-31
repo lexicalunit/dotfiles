@@ -1,0 +1,59 @@
+#!/bin/bash -e
+
+# Gives you a total clean slate in your node project.
+
+usage() {
+    echo "usage: ${0##*/} [options]" 1>&2
+    echo "" 1>&2
+    echo "Gives you a total clean slate in your node project." 1>&2
+    echo ""
+    echo "options:"
+    echo " -h or --help shows usage help" 1>&2
+    exit 1
+}
+
+if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
+    usage
+fi
+
+show() {
+    if [[ "$1" == "-r" ]]; then
+        shift
+        echo -n $'\e[38;5;40m$\e[38;5;63m '
+    else
+        echo -n $'\e[1;34m>\e[0m\e[31m '
+    fi
+    echo -n "$@"
+    echo -n $'\e[0m'
+    echo
+}
+
+run() {
+    show -r "$@"
+    eval "$@"
+    return $?
+}
+
+clean_test_cache() {
+    if npm run | grep -qE "^\s*test$"; then
+        run "npm run test -- --clearCache" && return 0
+    fi
+    if command -v jq >/dev/null 2>&1 && command -v jest >/dev/null 2>&1; then
+        run "jest --showConfig | jq '.configs[].cacheDirectory' | sort -u | xargs -n 1 -P 8 rm -rf" && return 0
+    fi
+    show "warning: could not clear test cache"
+}
+
+if command -v npm >/dev/null 2>&1; then
+    clean_test_cache
+    run "npm -g cache clean --force"
+    run "npm cache clean --force"
+fi
+test -e "$HOME/.babel.json" && run "rm -f '$_'"
+test -d "$HOME/.node-gyp" && run "rm -rf '$_'"
+test -d node_modules && run "rm -rf '$_'"
+command -v git >/dev/null 2>&1 && run "git clean -dfx"
+NPM_VERSION="$(npm --version)"
+NODE_VERSION="$(node --version)"
+show "running \`npm install\` using node: $NODE_VERSION, npm: $NPM_VERSION ..."
+npm install

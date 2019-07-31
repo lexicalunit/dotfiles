@@ -291,6 +291,17 @@ Simply prints out the macOS major and minor version.
 ```
 
 * * *
+### [`nodeula-rasa`](nodeula-rasa)
+```
+usage: nodeula-rasa [options]
+
+Gives you a total clean slate in your node project.
+
+options:
+ -h or --help shows usage help
+```
+
+* * *
 ### [`nopw`](nopw)
 ```
 usage: nopw [-h|-help] [ssh connection options] username@remotehost

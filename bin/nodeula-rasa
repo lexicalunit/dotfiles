@@ -35,24 +35,43 @@ run() {
 }
 
 clean_test_cache() {
-    if npm run | grep -qE "^\s*test$"; then
-        run "npm run test -- --clearCache" && return 0
-    fi
+    # Test scripts don't always accept a --clearCache option, and we don't want to just run tests.
+    # if npm run | grep -qE "^\s*test$"; then
+    #     run "npm run test -- --clearCache" && return 0
+    # fi
+
     if command -v jq >/dev/null 2>&1 && command -v jest >/dev/null 2>&1; then
         run "jest --showConfig | jq '.configs[].cacheDirectory' | sort -u | xargs -n 1 -P 8 rm -rf" && return 0
     fi
     show "warning: could not clear test cache"
 }
 
+# clear node's require cache
+run "node -e 'Object.keys(require.cache).forEach(function(k) { delete require.cache[k]; })'"
+
 if command -v npm >/dev/null 2>&1; then
+    # attempt to find and clean any test caches
     clean_test_cache
+
+    # clean global and local npm caches
+    export npm_config_loglevel=silent
     run "npm -g cache clean --force"
     run "npm cache clean --force"
+    unset npm_config_loglevel
 fi
+
+# bable cache
 test -e "$HOME/.babel.json" && run "rm -f '$_'"
+
+# node-gyp cache
 test -d "$HOME/.node-gyp" && run "rm -rf '$_'"
+
+# project node_modules
 test -d node_modules && run "rm -rf '$_'"
+
+# blow away any untracked files or local change
 command -v git >/dev/null 2>&1 && run "git clean -dfx"
+
 NPM_VERSION="$(npm --version)"
 NODE_VERSION="$(node --version)"
 show "running \`npm install\` using node: $NODE_VERSION, npm: $NPM_VERSION ..."

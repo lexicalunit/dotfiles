@@ -35,6 +35,12 @@
 /.local/share/desktop-directories
 /.local/share/mime/packages
 
+# Minecraft
+/Twitch
+/.mputils/settings.dat
+/.mono/registry/last-btime
+/.config/.mono/keypairs
+
 # Applications
 /.ammonite
 /.aws

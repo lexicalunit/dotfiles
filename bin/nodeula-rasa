@@ -34,6 +34,13 @@ run() {
     return $?
 }
 
+ask() {
+    echo -n $'\n\e[1;35m'
+    read -p "$1 (y/n) [n] ... "
+    echo -n $'\e[0;0m'
+}
+
+
 clean_test_cache() {
     # Test scripts don't always accept a --clearCache option, and we don't want to just run tests.
     # if npm run | grep -qE "^\s*test$"; then
@@ -45,6 +52,11 @@ clean_test_cache() {
     fi
     show "warning: could not clear test cache"
 }
+
+ask "Blow away all untracked files and local changes in your repository and all node related caches?"
+if [[ $REPLY != "y" ]]; then
+    exit 1
+fi
 
 # clear node's require cache
 run "node -e 'Object.keys(require.cache).forEach(function(k) { delete require.cache[k]; })'"
@@ -69,7 +81,7 @@ test -d "$HOME/.node-gyp" && run "rm -rf '$_'"
 # project node_modules
 test -d node_modules && run "rm -rf '$_'"
 
-# blow away any untracked files or local change
+# blow away any untracked files or local changes
 command -v git >/dev/null 2>&1 && run "git clean -dfx"
 
 NPM_VERSION="$(npm --version)"

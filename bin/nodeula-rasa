@@ -42,15 +42,16 @@ ask() {
 
 
 clean_test_cache() {
-    # Test scripts don't always accept a --clearCache option, and we don't want to just run tests.
+    # Sadly not all test scripts don't accept a --clearCache option...
     # if npm run | grep -qE "^\s*test$"; then
-    #     run "npm run test -- --clearCache" && return 0
+    #     run "npm run test -- --clearCache"
     # fi
 
-    if command -v jq >/dev/null 2>&1 && command -v jest >/dev/null 2>&1; then
-        run "jest --showConfig | jq '.configs[].cacheDirectory' | sort -u | xargs -n 1 -P 8 rm -rf" && return 0
+    if ! command -v jq >/dev/null 2>&1 && command -v jest >/dev/null 2>&1; then
+        show "warning: you must install jq if you want this script to clear your test cache"
+    elif command -v jq >/dev/null 2>&1 && command -v jest >/dev/null 2>&1; then
+        run "jest --showConfig | jq '.configs[].cacheDirectory' | sort -u | xargs -n 1 -P 8 rm -rf"
     fi
-    show "warning: could not clear test cache"
 }
 
 ask "Blow away all untracked files and local changes in your repository and all node related caches?"

@@ -77,5 +77,11 @@
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "workbench.settings.editor": "json",
-  "terminal.integrated.fontFamily": "Hack Nerd Font"
+  "terminal.integrated.fontFamily": "Hack Nerd Font",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ]
 }

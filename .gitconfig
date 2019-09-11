@@ -5,20 +5,10 @@
 	whitespace = trailing-space,space-before-tab
 [push]
 	default = tracking
-[difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path "$MERGED" -- "$LOCAL" "$REMOTE"
 [diff]
 	prompt = false
 	renames = copies
 	colorMoved = zebra
-	tool = Kaleidoscope
-[mergetool "kaleidoscope"]
-	cmd = ksdiff --merge --output "$MERGED" --base "$BASE" -- "$LOCAL" --snapshot "$REMOTE" --snapshot
-	prompt = false
-	trustExitCode = true
-[merge]
-	stat = true
-	tool = Kaleidoscope
 [alias]
 	authors = !git_authors "$(pwd)"
 	b = !git rev-parse --abbrev-ref HEAD
@@ -75,11 +65,6 @@
 	trustExitCode = true
 [user]
 	useconfigonly = true
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
 [credential]
 	helper = osxkeychain
 [includeIf "gitdir:~/source/"]

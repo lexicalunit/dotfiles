@@ -73,12 +73,15 @@ function prompt_lexial_ruby_info {
     fi
 }
 
+alias tabtitle='printf "\e]1;%s\a"'
+
 function prompt_lexical_precmd {
   _prompt_lexical_pwd="${PWD/#$HOME/~}"
   vcs_info
   prompt_lexical_python_pacman
   prompt_lexial_ruby_info
   prompt_lexical_nvm
+  printf "\e]1;%s\a" "$(print -P '%~')"
 }
 
 function prompt_lexical_setup {

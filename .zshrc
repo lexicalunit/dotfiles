@@ -68,4 +68,7 @@ setopt rm_star_silent
 # setup fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Disable autotitle
+DISABLE_AUTO_TITLE="true"
+
 fi # if $INTERACTIVE

@@ -73,8 +73,6 @@ function prompt_lexial_ruby_info {
     fi
 }
 
-alias tabtitle='printf "\e]1;%s\a"'
-
 function prompt_lexical_precmd {
   _prompt_lexical_pwd="${PWD/#$HOME/~}"
   vcs_info

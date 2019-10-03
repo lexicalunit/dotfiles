@@ -359,6 +359,8 @@
 	<integer>1048840</integer>
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
+	<key>MinimalTabStyleTreatLeftInsetAsPartOfFirstTab</key>
+	<false/>
 	<key>NSNavLastRootDirectory</key>
 	<string>~/env</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
@@ -1053,16 +1055,17 @@
 	</array>
 	<key>NoSyncAllAppVersions</key>
 	<array>
+		<string>3.3.2</string>
 		<string>3.2.9</string>
 		<string>3.3.1</string>
-		<string>3.3.2</string>
+		<string>3.3.3</string>
 	</array>
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1920, 1200}}</string>
 		<key>topLeft</key>
-		<string>{350, 946}</string>
+		<string>{403, 564}</string>
 	</dict>
 	<key>NoSyncHaveRequestedFullDiskAccess</key>
 	<true/>
@@ -1071,7 +1074,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>150C47A9-543D-4EC7-87EC-B678C550236D</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>6</integer>
+	<integer>8</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -1433,6 +1436,14 @@
 				<true/>
 				<key>name</key>
 				<string>currentTab.currentSession.terminalIconName</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
+				<string>currentTab.currentSession.terminalWindowName</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
 			</dict>
@@ -1818,12 +1829,14 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-09-12T00:04:27Z</date>
+	<date>2019-09-25T15:33:33Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateRelaunchingMarker</key>
-	<true/>
+	<false/>
 	<key>ShowFullScreenTabBar</key>
+	<true/>
+	<key>ShowNewOutputIndicator</key>
 	<true/>
 	<key>SmartPlacement</key>
 	<true/>
@@ -1837,15 +1850,19 @@
 	<integer>5</integer>
 	<key>TabViewType</key>
 	<integer>0</integer>
+	<key>TabsHaveCloseButton</key>
+	<true/>
 	<key>UKCrashReporterLastCrashReportDate</key>
 	<real>1558365824</real>
 	<key>UseBorder</key>
+	<false/>
+	<key>UseUnevenTabs</key>
 	<false/>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.3.2</string>
+	<string>3.3.3</string>
 </dict>
 </plist>

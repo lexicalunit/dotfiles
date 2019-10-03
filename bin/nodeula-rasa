@@ -34,15 +34,9 @@ run() {
     return $?
 }
 
-ask() {
-    echo -n $'\n\e[1;35m'
-    read -p "$1 (y/n) [n] ... "
-    echo -n $'\e[0;0m'
-}
-
-
 clean_test_cache() {
-    # Sadly not all test scripts don't accept a --clearCache option...
+    # Not all test scripts accept a "--clearCache" option, so we can't
+    # assume that this will even work, though it may for your project.
     # if npm run | grep -qE "^\s*test$"; then
     #     run "npm run test -- --clearCache"
     # fi
@@ -54,7 +48,9 @@ clean_test_cache() {
     fi
 }
 
-ask "Blow away all untracked files and local changes in your repository and all node related caches?"
+# cake sure the user doesn't accidently blow away their changes
+ask "Blow away $(tput setaf 7)$(tput setab 1)$(tput bold)$(tput smul)all untracked files and local changes in your repository$(tput sgr0) and all node related caches?"
+read -p "$1 (y/n) [n] ... "
 if [[ $REPLY != "y" ]]; then
     exit 1
 fi

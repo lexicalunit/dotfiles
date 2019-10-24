@@ -48,7 +48,7 @@ clean_test_cache() {
     fi
 }
 
-# cake sure the user doesn't accidently blow away their changes
+# make sure the user doesn't accidently blow away their changes
 echo -n "Blow away $(tput setaf 7)$(tput setab 1)$(tput bold)$(tput smul)all untracked files and local changes in your repository$(tput sgr0) and all node related caches?"
 read -rp "$1 (y/n) [n] ... "
 if [[ $REPLY != "y" ]]; then

@@ -75,6 +75,7 @@
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "workbench.settings.editor": "json",
   "terminal.integrated.fontFamily": "Hack Nerd Font",
+  "javascript.validate.enable": false,
   "eslint.validate": [
     "javascript",
     "javascriptreact",

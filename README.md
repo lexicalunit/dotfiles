@@ -139,16 +139,16 @@ jasper, jbig2dec, jez/formulae/pandoc-sidenote, jhead, jo, jpeg, jq, kafkacat,
 lame, leptonica, libass, libassuan, libbluray, libevent, libffi, libgcrypt, 
 libgpg-error, libidn2, libksba, libmpc, libogg, libpng, librdkafka, 
 libsamplerate, libsndfile, libsoxr, libssh2, libtasn1, libtiff, libtool, 
-libunistring, libusb, libusb-compat, libvo-aacenc, libvorbis, libvpx, libyaml, 
-little-cms2, lz4, lzlib, lzo, makedepend, mas, md5sha1sum, memcached, mpfr, 
-mtr, mysql, ncftp, ncurses, net-snmp, nettle, nginx, node, npth, nvm, onepass, 
-oniguruma, opencore-amr, openjpeg, openssl, opus, ossp-uuid, p11-kit, pandoc, 
-pcre, pcre2, pidof, pinentry, pixman, pkg-config, plotutils, pngquant, 
-postgresql, pyenv, pyenv-virtualenv, pyenv-virtualenvwrapper, python, readline, 
-redis, ripgrep, rlwrap, rtmpdump, rubberband, rust, sdl2, shellcheck, shfmt, 
-snappy, speex, sqlite, tesseract, theora, tree, unbound, v8, vegeta, vramsteg, 
-watch, wdiff, webp, wget, x264, x265, xvid, xz, yajl, yaml-cpp, youtube-dl, 
-zsh, zstd
+libunistring, libusb, libusb-compat, libvidstab, libvo-aacenc, libvorbis, 
+libvpx, libyaml, little-cms2, lz4, lzlib, lzo, makedepend, mas, md5sha1sum, 
+memcached, mpfr, mtr, mysql, ncftp, ncurses, net-snmp, nettle, nginx, node, 
+npth, nvm, onepass, oniguruma, opencore-amr, openjpeg, openssl, opus, 
+ossp-uuid, p11-kit, pandoc, pcre, pcre2, pidof, pinentry, pixman, pkg-config, 
+plotutils, pngquant, postgresql, pyenv, pyenv-virtualenv, 
+pyenv-virtualenvwrapper, python, readline, redis, ripgrep, rlwrap, rtmpdump, 
+rubberband, rust, sdl2, shellcheck, shfmt, snappy, speex, sqlite, tesseract, 
+theora, tree, unbound, v8, vegeta, vramsteg, watch, wdiff, webp, wget, x264, 
+x265, xvid, xz, yajl, yaml-cpp, youtube-dl, zsh, zstd
 
 Homebrew Casks: 1password, atom, atom-beta, clamxav, dbvisualizer, 
 disk-inventory-x, docker, dropbox, fantastical, firefox, flux, font-fira-code, 
@@ -163,15 +163,14 @@ language-markdown, minimap, minimap-highlight-selected, minimap-selection,
 native-ui, pen-paper-coffee-syntax, sort-lines, trailing-spaces, typewriter
 
 Code Packages: BriteSnow.vscode-toggle-quotes, DavidAnson.vscode-markdownlint, 
-GrapeCity.gc-excelviewer, HookyQR.beautify, ban.spellright, 
-bibhasdn.unique-lines, dbaeumer.vscode-eslint, eamodio.gitlens, eg2.tslint, 
-esbenp.prettier-vscode, foxundermoon.shell-format, 
+GrapeCity.gc-excelviewer, HookyQR.beautify, James-Yu.latex-workshop, 
+ban.spellright, bibhasdn.unique-lines, dbaeumer.vscode-eslint, eamodio.gitlens, 
+eg2.tslint, esbenp.prettier-vscode, foxundermoon.shell-format, 
 lehni.vscode-titlebar-less-macos, magicstack.MagicPython, 
 mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
 mohsen1.prettify-json, ms-python.python, ms-vscode.Go, 
-ms-vsliveshare.vsliveshare, pmneo.tsimporter, spywhere.guides, 
-sysoev.language-stylus, timonwong.shellcheck, vscode-icons-team.vscode-icons, 
-waderyan.gitblame
+richie5um2.vscode-sort-json, spywhere.guides, sysoev.language-stylus, 
+timonwong.shellcheck, vscode-icons-team.vscode-icons, waderyan.gitblame
 
 Pip Packages: git-sweep3k, glances, httpie, inflection, patch, 
 python-json-logger, termcolor
@@ -187,14 +186,15 @@ generator-generator, geoip-lite, js-beautify, json-stable-stringify, moment,
 nesh, npm-check-updates, npm-remote-ls, npm-why, prettier, raml2html, standard, 
 tmpin, tslint, typescript, yo
 
-Go Packages: github.com/acroca/go-symbols, github.com/cweill/gotests, 
-github.com/davidrjenni/reftools, github.com/fatih/gomodifytags, 
-github.com/golang/lint, github.com/haya14busa/goplay, 
-github.com/josharian/impl, github.com/karrick/godirwalk, 
-github.com/mdempsky/gocode, github.com/ramya-rao-a/go-outline, 
-github.com/rogpeppe/godef, github.com/uudashr/gopkgs, golang.org/x/crypto, 
-golang.org/x/lint, golang.org/x/net, golang.org/x/sync, golang.org/x/sys, 
-golang.org/x/text, golang.org/x/tools
+Go Packages: github.com/BurntSushi/toml, github.com/acroca/go-symbols, 
+github.com/cweill/gotests, github.com/davidrjenni/reftools, 
+github.com/fatih/gomodifytags, github.com/golang/lint, 
+github.com/haya14busa/goplay, github.com/josharian/impl, 
+github.com/karrick/godirwalk, github.com/mdempsky/gocode, 
+github.com/ramya-rao-a/go-outline, github.com/rogpeppe/godef, 
+github.com/uudashr/gopkgs, golang.org/x/crypto, golang.org/x/lint, 
+golang.org/x/net, golang.org/x/sync, golang.org/x/sys, golang.org/x/text, 
+golang.org/x/tools, honnef.co/go/tools
 
 Cargo Packages: cargo-update, loc
 

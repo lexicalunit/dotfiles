@@ -49,6 +49,16 @@ run "rm -rf ~/Library/Application\ Support/MobileSync/Backup/*"
 run "rm -rf ~/Library/Developer/Xcode/DerivedData/*"
 run "rm -rf ~/Library/Developer/Xcode/Archives/*"
 
+# various user caches
+test -d "$HOME/.bundle/cache" && run "rm -f '$_'"
+test -d "$HOME/.cache" && run "rm -rf '$_'"
+test -d "$HOME/.ccache" && run "rm -rf '$_'"
+test -d "$HOME/.electron-gyp" && run "rm -rf '$_'"
+test -d "$HOME/.electron" && run "rm -rf '$_'"
+test -d "$HOME/.node-gyp" && run "rm -rf '$_'"
+test -d "$HOME/.pylint.d" && run "rm -rf '$_'"
+test -e "$HOME/.babel.json" && run "rm -f '$_'"
+
 # brew
 if command -v brew >/dev/null 2>&1; then
     run "brew cleanup"
@@ -62,13 +72,10 @@ command -v rvm >/dev/null 2>&1 && run "rvm cleanup all"
 # gem
 command -v gem >/dev/null 2>&1 && run "gem cleanup"
 
-# babel
-test -e "$HOME/.babel.json" && run "rm -f '$_'"
-
 # cargo
 if command -v cargo >/dev/null 2>&1; then
-    run "rm -rf '$HOME/.cargo/registry'"
-    run "rm -rf '$HOME/.cargo/git'"
+    test -e "$HOME/.cargo/registry" && run "rm -rf '$_'"
+    test -e "$HOME/.cargo/git" && run "rm -rf '$_'"
 fi
 
 # conda
@@ -79,9 +86,6 @@ command -v npm >/dev/null 2>&1 && run "npm -g cache clean --force"
 
 # yarn
 command -v yarn >/dev/null 2>&1 && run "yarn -g cache clean --force"
-
-# node-gyp
-test -d "$HOME/.node-gyp" && run "rm -rf '$_'"
 
 # atom
 command -v apm >/dev/null 2>&1 && run "apm clean"

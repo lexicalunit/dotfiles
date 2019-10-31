@@ -109,6 +109,7 @@
 /.psql_history
 /.pyenv
 /.pyhistory
+/.pylint.d
 /.python-eggs
 /.rvm
 /.sbt

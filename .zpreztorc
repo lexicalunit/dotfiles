@@ -19,17 +19,17 @@ zstyle ':prezto:*:*' color 'yes'
 # Set the Prezto modules to load (browse modules).
 # The order matters.
 zstyle ':prezto:load' pmodule \
-  'environment' \
-  'terminal' \
-  'editor' \
-  'history' \
-  'history-substring-search' \
-  'spectrum' \
-  'utility' \
-  'completion' \
-  'fasd' \
-  'autosuggestions' \
-  'prompt'
+    'environment' \
+    'terminal' \
+    'editor' \
+    'history' \
+    'history-substring-search' \
+    'spectrum' \
+    'utility' \
+    'completion' \
+    'fasd' \
+    'autosuggestions' \
+    'prompt'
 
 #
 # Autosuggestions
@@ -135,9 +135,9 @@ zstyle ':prezto:module:prompt' theme 'lexical'
 #
 # Set syntax highlighting styles.
 zstyle ':prezto:module:syntax-highlighting' styles \
-  'builtin' 'bg=blue' \
-  'command' 'bg=blue' \
-  'function' 'bg=blue'
+    'builtin' 'bg=blue' \
+    'command' 'bg=blue' \
+    'function' 'bg=blue'
 
 #
 # Terminal

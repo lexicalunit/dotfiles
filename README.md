@@ -68,6 +68,7 @@ with the argument `--help`.
 | [`deploy_dotfiles`](bin/deploy_dotfiles) | Installs bin and env from this repository to remote server via ssh. |
 | [`die`](bin/die) | Kills processes based on process name. |
 | [`doc`](bin/doc) | Builds HTML output from Markdown file. |
+| [`dogs`](bin/dogs) | Streams system logs for docker containers. |
 | [`faff`](bin/faff) | Sleeps for the given number of seconds, showing a progress bar. |
 | [`flip`](bin/flip) | Flips input upside down. |
 | [`fs`](bin/fs) | Tweak ripgrep to easily search codebases with committed files and f... |
@@ -148,7 +149,7 @@ plotutils, pngquant, postgresql, pyenv, pyenv-virtualenv,
 pyenv-virtualenvwrapper, python, readline, redis, ripgrep, rlwrap, rtmpdump, 
 rubberband, rust, sdl2, shellcheck, shfmt, snappy, speex, sqlite, tesseract, 
 theora, tree, unbound, v8, vegeta, vramsteg, watch, wdiff, webp, wget, x264, 
-x265, xvid, xz, yajl, yaml-cpp, youtube-dl, zsh, zstd
+x265, xvid, xz, yajl, yaml-cpp, yarn, youtube-dl, zsh, zstd
 
 Homebrew Casks: 1password, atom, atom-beta, clamxav, dbvisualizer, 
 disk-inventory-x, docker, dropbox, fantastical, firefox, flux, font-fira-code, 

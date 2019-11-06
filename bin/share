@@ -18,10 +18,10 @@ usage() {
 # shellcheck source=.webshare
 # shellcheck disable=1091
 source "$HOME/.webshare"
-[[ -n "$SHARE_USER" ]] || usage
-[[ -n "$SHARE_HOST" ]] || usage
-[[ -n "$SHARE_DEST" ]] || usage
-[[ -n "$SHARE_URI" ]] || usage
+[[ -n $SHARE_USER ]] || usage
+[[ -n $SHARE_HOST ]] || usage
+[[ -n $SHARE_DEST ]] || usage
+[[ -n $SHARE_URI ]] || usage
 
 share_put() {
     for I in "$@"; do
@@ -48,74 +48,74 @@ list_files() {
     ssh "$SHARE_USER@$SHARE_HOST" "$cmd"
 }
 
-[[ -n "$1" ]] || usage
+[[ -n $1 ]] || usage
 
 # shortcut for put
-if [[ -f "$1" ]]; then
+if [[ -f $1 ]]; then
     share_put "$1"
     exit 0
 fi
 
 case "$1" in
-    help | -h | --help | h* | -*)
-        usage
-        ;;
+help | -h | --help | h* | -*)
+    usage
+    ;;
 
-    names | n*)
-        if echo "$*" | grep -Eq -- "-p|--private"; then
-            SHARE_DEST="$SHARE_DEST/private"
-            SHARE_URI="$SHARE_URI/private"
-        fi
-        list_files | sed "s@$SHARE_DEST/@@g"
-        ;;
+names | n*)
+    if echo "$*" | grep -Eq -- "-p|--private"; then
+        SHARE_DEST="$SHARE_DEST/private"
+        SHARE_URI="$SHARE_URI/private"
+    fi
+    list_files | sed "s@$SHARE_DEST/@@g"
+    ;;
 
-    list | ls | l | ll | find | f | l* | f*)
-        if echo "$*" | grep -Eq -- "-p|--private"; then
-            SHARE_DEST="$SHARE_DEST/private"
-            SHARE_URI="$SHARE_URI/private"
-        fi
-        list_files | sed "s@$SHARE_DEST/@$SHARE_URI/@g"
-        ;;
+list | ls | l | ll | find | f | l* | f*)
+    if echo "$*" | grep -Eq -- "-p|--private"; then
+        SHARE_DEST="$SHARE_DEST/private"
+        SHARE_URI="$SHARE_URI/private"
+    fi
+    list_files | sed "s@$SHARE_DEST/@$SHARE_URI/@g"
+    ;;
 
-    put | p | up | p* | u*)
-        [[ -n "$2" ]] || usage
-        if echo "$2" | grep -Eq -- "-p|--private"; then
-            shift
-            SHARE_DEST="$SHARE_DEST/private"
-            SHARE_URI="$SHARE_URI/private"
-        fi
+put | p | up | p* | u*)
+    [[ -n $2 ]] || usage
+    if echo "$2" | grep -Eq -- "-p|--private"; then
         shift
-        share_put "$@"
-        ;;
+        SHARE_DEST="$SHARE_DEST/private"
+        SHARE_URI="$SHARE_URI/private"
+    fi
+    shift
+    share_put "$@"
+    ;;
 
-    get | g*)
-        [[ -n "$2" ]] || usage
-        if echo "$2" | grep -Eq -- "-p|--private"; then
-            shift
-            SHARE_DEST="$SHARE_DEST/private"
-            SHARE_URI="$SHARE_URI/private"
-        fi
+get | g*)
+    [[ -n $2 ]] || usage
+    if echo "$2" | grep -Eq -- "-p|--private"; then
         shift
-        for I in "$@"; do
-            scp "$SHARE_USER@$SHARE_HOST:$SHARE_DEST/$I" .
-        done
-        ;;
+        SHARE_DEST="$SHARE_DEST/private"
+        SHARE_URI="$SHARE_URI/private"
+    fi
+    shift
+    for I in "$@"; do
+        scp "$SHARE_USER@$SHARE_HOST:$SHARE_DEST/$I" .
+    done
+    ;;
 
-    ssh | open | shell | s*)
-        ssh "$SHARE_USER@$SHARE_HOST"
-        ;;
+ssh | open | shell | s*)
+    ssh "$SHARE_USER@$SHARE_HOST"
+    ;;
 
-    del | delete | rm)
-        [[ -n "$2" ]] || usage
-        if echo "$2" | grep -Eq -- "-p|--private"; then
-            shift
-            SHARE_DEST="$SHARE_DEST/private"
-            SHARE_URI="$SHARE_URI/private"
-        fi
-        NAME="$2"
+del | delete | rm)
+    [[ -n $2 ]] || usage
+    if echo "$2" | grep -Eq -- "-p|--private"; then
+        shift
+        SHARE_DEST="$SHARE_DEST/private"
+        SHARE_URI="$SHARE_URI/private"
+    fi
+    NAME="$2"
 
-        # Note that we DO want to expand $SHARE_DEST/$NAME locally here.
-        # shellcheck disable=SC2029
-        ssh "$SHARE_USER@$SHARE_HOST" "rm -fv $SHARE_DEST/$NAME"
-        ;;
+    # Note that we DO want to expand $SHARE_DEST/$NAME locally here.
+    # shellcheck disable=SC2029
+    ssh "$SHARE_USER@$SHARE_HOST" "rm -fv $SHARE_DEST/$NAME"
+    ;;
 esac

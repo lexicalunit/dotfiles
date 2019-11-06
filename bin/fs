@@ -2,7 +2,7 @@
 
 # Tweak ripgrep to easily search codebases with committed files and files I generally don't search.
 
-if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b" || [[ -z "$1" ]]; then
+if echo "$*" | grep -Eq -- '--help\b|-h\b' || [[ -z $1 ]]; then
     (
         echo "usage: ${0##*/} [-h|--help] [-z] [-j] [ -- [ripgrep options]] <QUERY>"
         echo "Use ripgrep to search a codebase."
@@ -40,14 +40,14 @@ BAD=(
 CMD="rg"
 while getopts "zj" opt; do
     case "$opt" in
-        # If I need to search in .gitignored files.
-        z) CMD="$CMD --no-ignore" ;;
+    # If I need to search in .gitignored files.
+    z) CMD="$CMD --no-ignore" ;;
 
-        # If I'm searching a non-js codebase with some js files in it.
-        j) BAD+=("*.js" "*.js.*") ;;
+    # If I'm searching a non-js codebase with some js files in it.
+    j) BAD+=("*.js" "*.js.*") ;;
 
-        # Ignore other opts.
-        *) ;;
+    # Ignore other opts.
+    *) ;;
     esac
 done
 shift $((OPTIND - 1))
@@ -60,7 +60,7 @@ done
 
 # Properly quote args to ripgrep.
 ARGS=""
-while [[ -n "$1" ]]; do
+while [[ -n $1 ]]; do
     ARGS="$ARGS '$1'"
     shift
 done

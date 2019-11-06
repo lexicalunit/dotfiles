@@ -1,6 +1,7 @@
 #! .docker_functions
 
 # shellcheck source=.shell_control
+# shellcheck disable=SC1091
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 # Docker Aliases
@@ -10,11 +11,11 @@ alias dc="docker-compose"
 dcl() {
     run "docker ps -aq | xargs docker kill"
     run "docker ps -aq | xargs docker rm"
-    if [[ "$1" == "images" ]]; then # optionally remove old images
+    if [[ $1 == "images" ]]; then # optionally remove old images
         run "docker images -aq -f dangling=true | xargs docker rmi --force"
         DOCKER_VERSION="$(docker --version | sed 's/Docker version //g;s/,.*//g')"
-        MAJOR="$(echo $DOCKER_VERSION | cut -d. -f1)"
-        MINOR="$(echo $DOCKER_VERSION | cut -d. -f2)"
+        MAJOR="$(echo "$DOCKER_VERSION" | cut -d. -f1)"
+        MINOR="$(echo "$DOCKER_VERSION" | cut -d. -f2)"
         if [[ $MAJOR -gt 1 ]] || [[ $MAJOR -eq 1 && $MINOR -ge 9 ]]; then
             run "docker volume ls -qf dangling=true | xargs docker volume rm"
         else
@@ -33,19 +34,19 @@ dcli() {
 }
 
 dps() {
-    docker ps | while read line; do
-        if [[ "$line" =~ "CONTAINER ID" ]]; then
+    docker ps | while read -r line; do
+        if [[ $line =~ "CONTAINER ID" ]]; then
             echo -e "IP ADDRESS\t$line"
         else
             CID=$(echo $line | awk '{print $1}')
-            IP=$(docker inspect -f "{{ .NetworkSettings.IPAddress }}" $CID)
+            IP=$(docker inspect -f "{{ .NetworkSettings.IPAddress }}" "$CID")
             printf "%s\t%s\n" "${IP}" "${line}"
         fi
     done
 }
 
 running_in_docker() {
-    awk -F/ '$2 == "docker"' /proc/self/cgroup 2>/dev/null | read
+    awk -F/ '$2 == "docker"' /proc/self/cgroup 2>/dev/null | read -r
 }
 
 # add variable DOCKER_ID with UID of most recent container
@@ -73,17 +74,18 @@ alias docker-run='docker run -it '
 
 function docker-container-grep() {
     PATTERN=$*
-    docker ps -a | grep $PATTERN | grep -v ^CONTAINER
+    docker ps -a | grep "$PATTERN" | grep -v ^CONTAINER
 }
 
 function docker-container-grep-running() {
     PATTERN=$*
-    docker ps | grep $PATTERN | grep -v ^CONTAINER
+    docker ps | grep "$PATTERN" | grep -v ^CONTAINER
 }
 
 function docker-container-kill-pattern() {
     PATTERN=$*
-    docker-container-grep-running $PATTERN | awk '{print $1}' | xargs -rI % bash -c 'echo $(docker kill %; echo "killed!");'
+    # shellcheck disable=SC2016
+    docker-container-grep-running "$PATTERN" | awk '{print $1}' | xargs -rI % bash -c 'echo $(docker kill %; echo "killed!");'
 }
 
 function docker-container-most-recent() {
@@ -97,8 +99,8 @@ function docker-container-most-recent-killed() {
 function docker-container-diff-most-recent() {
     LAST_CONTAINER=$(docker-container-most-recent)
 
-    if [ ! -z "$LAST_CONTAINER" ]; then
-        docker diff $LAST_CONTAINER
+    if [ -n "$LAST_CONTAINER" ]; then
+        docker diff "$LAST_CONTAINER"
     else
         echo "There are no running containers!"
     fi
@@ -109,8 +111,8 @@ function docker-container-get-ip() {
     if [ -z "$CONTAINER_ID" ]; then
         CONTAINER_ID=$(docker-container-most-recent)
     fi
-    if [ ! -z "$CONTAINER_ID" ]; then
-        docker inspect --format '{{ .NetworkSettings.IPAddress }}' $CONTAINER_ID
+    if [ -n "$CONTAINER_ID" ]; then
+        docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$CONTAINER_ID"
     else
         echo "There are no running containers!"
     fi
@@ -118,8 +120,8 @@ function docker-container-get-ip() {
 
 function docker-container-inspect-most-recent() {
     LAST_CONTAINER=$(docker-container-most-recent)
-    if [ ! -z "$LAST_CONTAINER" ]; then
-        docker inspect $LAST_CONTAINER
+    if [ -n "$LAST_CONTAINER" ]; then
+        docker inspect "$LAST_CONTAINER"
     else
         echo "There are no running containers!"
     fi
@@ -130,8 +132,8 @@ function docker-container-get-root() {
     if [ -z "$CONTAINER_ID" ]; then
         CONTAINER_ID=$(docker-container-most-recent)
     fi
-    if [ ! -z "$CONTAINER_ID" ]; then
-        docker inspect --format '{{ .HostsPath }}' $CONTAINER_ID
+    if [ -n "$CONTAINER_ID" ]; then
+        docker inspect --format '{{ .HostsPath }}' "$CONTAINER_ID"
     else
         echo "There are no running containers!"
     fi
@@ -141,22 +143,25 @@ function docker-container-map-port() {
     CONTAINER_ID=$1
     SRC_PORT=$2
     DST_PORT=$3
-    CONTAINER_IP=$(docker-container-get-ip $CONTAINER_ID)
-    iptables -t nat -A DOCKER -p tcp --dport $SRC_PORT -j DNAT --to-destination $CONTAINER_IP:$DST_PORT
+    CONTAINER_IP=$(docker-container-get-ip "$CONTAINER_ID")
+    iptables -t nat -A DOCKER -p tcp --dport "$SRC_PORT" -j DNAT --to-destination "$CONTAINER_IP:$DST_PORT"
 }
 
 function docker-container-remove-all() {
+    # shellcheck disable=SC2016
     docker ps -a | grep -v ^CONTAINER | awk '{print $1}' | xargs -rI % bash -c 'echo $(docker kill %; echo "killed!"); echo $(docker rm %; echo "removed!")'
 }
 
 function docker-container-remove-all-non-running() {
+    # shellcheck disable=SC2016
     docker ps -a | grep -v ^CONTAINER | grep Exit | awk '{print $1}' | xargs -rI % bash -c 'echo $(docker kill %; echo "killed!"); echo $(docker rm %; echo "removed!")'
 }
 
 function docker-container-remove-pattern() {
     PATTERN=$*
-    docker-container-kill-pattern $PATTERN
-    docker-container-grep $PATTERN | awk '{print $1}' | xargs -rI % bash -c 'echo $(docker rm %; echo "removed!")'
+    docker-container-kill-pattern "$PATTERN"
+    # shellcheck disable=SC2016
+    docker-container-grep "$PATTERN" | awk '{print $1}' | xargs -rI % bash -c 'echo $(docker rm %; echo "removed!")'
 }
 
 function docker-enter() {
@@ -173,13 +178,13 @@ function docker-enter() {
             exit 1
         fi
         shift
-        "$NSENTER" --target $CONTAINER_ID --mount --uts --ipc --net --pid -- "$@"
+        "$NSENTER" --target "$CONTAINER_ID" --mount --uts --ipc --net --pid -- "$@"
     fi
 }
 
 function docker-image-grep() {
     PATTERN=$*
-    docker images | grep $PATTERN | grep -v ^REPOSITORY
+    docker images | grep "$PATTERN" | grep -v ^REPOSITORY
 }
 
 function docker-image-most-recent() {
@@ -188,14 +193,17 @@ function docker-image-most-recent() {
 
 function docker-image-remove-all() {
     docker-container-remove-all
+    # shellcheck disable=SC2016
     docker images -a | grep -v ^REPOSITORY | awk '{print $3}' | xargs -rI % bash -c 'echo $(docker rmi %; echo "removed!");'
 }
 
 function docker-image-remove-orphan() {
+    # shellcheck disable=SC2016
     docker images | grep "<none>" | awk '{print $3}' | xargs -rI % bash -c 'echo $(docker rmi %; echo "removed!");'
 }
 
 function docker-image-remove-pattern() {
     PATTERN=$*
-    docker-image-grep $PATTERN | awk '{print $1}' | xargs -rI % bash -c 'echo $(docker rmi %; echo "removed!");'
+    # shellcheck disable=SC2016
+    docker-image-grep "$PATTERN" | awk '{print $1}' | xargs -rI % bash -c 'echo $(docker rmi %; echo "removed!");'
 }

@@ -24,7 +24,7 @@ HOMEBREW_FORMULAS="                                                            \
     pyenv-virtualenv pyenv-virtualenvwrapper python readline redis ripgrep     \
     rlwrap rtmpdump rubberband rust sdl2 shellcheck shfmt snappy speex sqlite  \
     tesseract theora tree unbound v8 vegeta vramsteg watch wdiff webp wget     \
-    x264 x265 xvid xz yajl yaml-cpp youtube-dl zsh zstd"
+    x264 x265 xvid xz yajl yaml-cpp yarn youtube-dl zsh zstd"
 
 HOMEBREW_CASKS="                                                               \
     1password atom atom-beta clamxav dbvisualizer disk-inventory-x docker      \
@@ -114,6 +114,7 @@ cleanup_item_list() {
                     for ((i = 1; i <= leftover; i++)); do
                         echo -n ' '
                     done
+                    # shellcheck disable=SC1003
                     echo '\'
                 else
                     echo '"'
@@ -175,9 +176,11 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 # Step Utilities
 ################################################################################
 array_contains() {
-    local seeking=$1; shift
+    local seeking=$1
+    shift
     local in=1
     for element; do
+        # shellcheck disable=SC2053
         if [[ $element == $seeking ]]; then
             in=0
             break
@@ -750,6 +753,7 @@ step_osx() {
     run "defaults write com.apple.mail DisableReplyAnimations -bool true"
     run "defaults write com.apple.mail DisableSendAnimations -bool true"
 
+    # shellcheck disable=SC2016
     show 'Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app'
     run "defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false"
 
@@ -1076,6 +1080,7 @@ step_brew() {
 
     if [[ -z "$(command -v brew)" ]]; then
         show "installing homebrew..."
+        # shellcheck disable=SC2016
         run 'ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
         export PATH="$PATH:/usr/local/bin" # make sure brew is in your PATH before continuing
     else
@@ -1116,12 +1121,12 @@ step_brew() {
     if [[ ! -e "/Applications/Amphetamine.app" ]]; then
         local AMPH_ID
         AMPH_ID="$(mas search Amphetamine | awk '{print $1}')"
-        if [[ -n "$AMPH_ID" ]]; then
+        if [[ -n $AMPH_ID ]]; then
             show -i "Attempting to install Amphetamine via the Mac App Store CLI..."
             run "mas install '$AMPH_ID'"
             run "open /Applications/Amphetamine.app"
         else
-        show -i "Failed to install Amphetamine via Mac App Store CLI."
+            show -i "Failed to install Amphetamine via Mac App Store CLI."
         fi
     fi
 
@@ -1172,6 +1177,7 @@ step_cask() {
 
     ensure_homebrew_updated
 
+    # shellcheck disable=SC2207
     TAP=($(brew tap))
     array_contains 'homebrew/cask-fonts' "${TAP[@]}" || run "brew tap homebrew/cask-fonts"
 
@@ -1703,11 +1709,11 @@ if [[ $(id -u) == 0 ]]; then
     exit 1
 fi
 
-if echo "$*" | grep -Eq -- '\b--help\b|\b-h\b'; then
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     usage
 fi
 
-if echo "$*" | grep -Eq -- '\b--items\b|\b-i\b'; then
+if echo "$*" | grep -Eq -- '--items\b|-i\b'; then
     IFS=' '
     for I in "${ITEM_LISTS[@]}"; do
         cleanup_item_list "$I"
@@ -1746,17 +1752,17 @@ fi
 ARGS="$*"
 
 # update everything but osx
-if echo "$ARGS" | grep -Eq -- '\bmost\b'; then
+if echo "$ARGS" | grep -Eq -- 'most\b'; then
     ARGS="$ARGS apps dot"
 fi
 
 # update applications
-if echo "$ARGS" | grep -Eq -- '\bapps\b'; then
+if echo "$ARGS" | grep -Eq -- 'apps\b'; then
     ARGS="$ARGS xcode java brew cask ext python node go cargo gem atom code"
 fi
 
 # update environment and dotfiles
-if echo "$ARGS" | grep -Eq -- '\bdot\b'; then
+if echo "$ARGS" | grep -Eq -- 'dot\b'; then
     ARGS="$ARGS dotfiles zsh env"
 fi
 

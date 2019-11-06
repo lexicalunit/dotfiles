@@ -13,7 +13,7 @@ line() {
 }
 
 ua() {
-while read l; do line "$l"; done << 'EOF'
+    while read l; do line "$l"; done <<'EOF'
 
         `-:-                  .:-.
   `-+shmNNNo                  :NNNmdy+:`

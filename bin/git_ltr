@@ -16,15 +16,15 @@ usage() {
     exit 1
 }
 
-if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     usage
 fi
 
 RECURSIVE=""
 while getopts "r" opt; do
     case "$opt" in
-        r) RECURSIVE="-r" ;;
-        *) usage ;;
+    r) RECURSIVE="-r" ;;
+    *) usage ;;
     esac
 done
 shift $((OPTIND - 1))
@@ -35,6 +35,6 @@ git_list() {
     done
 }
 
-git_list \
-    | sort -t' ' -k5,5n -k2,2M -k3,3n -k4,4n \
-    | column -ts$'\t'
+git_list |
+    sort -t' ' -k5,5n -k2,2M -k3,3n -k4,4n |
+    column -ts$'\t'

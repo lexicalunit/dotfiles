@@ -26,7 +26,7 @@ usage() {
     exit 1
 }
 
-if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b" || [[ -z "$1" ]]; then
+if echo "$*" | grep -Eq -- '--help\b|-h\b' || [[ -z $1 ]]; then
     usage
 fi
 
@@ -36,8 +36,8 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 
 while getopts "k" opt; do
     case "$opt" in
-        k) KEEP="yes" ;;
-        *) usage ;;
+    k) KEEP="yes" ;;
+    *) usage ;;
     esac
 done
 shift $((OPTIND - 1))

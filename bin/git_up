@@ -15,13 +15,13 @@ usage() {
     exit 1
 }
 
-if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     usage
 fi
 
 while getopts "r" opt; do
     case "$opt" in
-        *) usage ;;
+    *) usage ;;
     esac
 done
 shift $((OPTIND - 1))
@@ -31,8 +31,8 @@ shift $((OPTIND - 1))
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-if [[ "$BRANCH" == "master" || "$BRANCH" == "develop" ]];
-    then abort "$BRANCH is not a topic branch"
+if [[ $BRANCH == "master" || $BRANCH == "develop" ]]; then
+    abort "$BRANCH is not a topic branch"
 fi
 
 set -ue

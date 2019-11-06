@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Streams system logs for docker containers.
+
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
+    echo "usage: ${0##*/} [-h|--help]" 1>&2
+    echo "Streams system logs for docker containers." 1>&2
+    exit 1
+fi
+
+# shellcheck source=.shell_control
+# shellcheck disable=SC1091
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
+pred='process matches ".*(ocker|vpnkit).*"
+  || (process in {"taskgated-helper", "launchservicesd", "kernel"} && eventMessage contains[c] "docker")'
+run "/usr/bin/log stream --style syslog --level=debug --color=always --predicate '$pred'"

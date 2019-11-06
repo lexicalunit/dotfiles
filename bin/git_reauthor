@@ -3,8 +3,7 @@
 # In git, change the author name and/or email of a single commit.
 # Source: http://stackoverflow.com/a/3042706
 
-usage()
-{
+usage() {
     echo "usage: ${0##*/} [-f] commit-to-change [branch-to-rewrite [new-name [new-email]]]" >&2
     echo "" >&2
     echo "  If -f is supplied it is passed to 'git filter-branch'." >&2
@@ -18,7 +17,7 @@ usage()
     exit 1
 }
 
-if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     usage
 fi
 
@@ -28,8 +27,7 @@ if test "x$1" = "x-f"; then
     shift
 fi
 
-abort()
-{
+abort() {
     printf '%s\n' "$@"
     exit 128
 }

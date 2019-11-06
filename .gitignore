@@ -26,8 +26,7 @@
 /.openvpn-connect.json
 
 # Parallels
-/Applications\ (Parallels)
-/Parallels
+/*Parallels*
 
 # Wine
 /.config/menus/applications-merged/
@@ -127,6 +126,7 @@
 /.virtualenvs
 /.vscode/extensions
 /.wget-hsts
+/.yarnrc
 /.yo-rc-global.json
 /.z
 /.z.*

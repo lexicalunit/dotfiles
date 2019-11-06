@@ -10,7 +10,7 @@ usage() {
     exit 1
 }
 
-if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     usage
 fi
 
@@ -19,7 +19,9 @@ LOC="${1:-$(whereami)}"
 
 # force dark background color
 esc=$'\e'
+# shellcheck disable=SC1087
 bg="$esc[48;5;232m"
+# shellcheck disable=SC1087
 eol="$esc[K"
 
 NARROW="?n"

@@ -12,7 +12,7 @@ usage() {
     exit 1
 }
 
-if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     usage
 fi
 
@@ -25,7 +25,11 @@ show "disk space available before cleanup: $(numfmt --to=iec-i --suffix=B -- "$B
 
 # grab and hold sudo
 sudo -v
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+while true; do
+    sudo -n true
+    sleep 60
+    kill -0 "$$" || exit
+done 2>/dev/null &
 
 # trash
 run "sudo rm -rf /Volumes/*/.Trashes/*"
@@ -50,7 +54,7 @@ run "rm -rf ~/Library/Developer/Xcode/DerivedData/*"
 run "rm -rf ~/Library/Developer/Xcode/Archives/*"
 
 # various user caches
-test -d "$HOME/.bundle/cache" && run "rm -f '$_'"
+test -d "$HOME/.bundle/cache" && run "rm -rf '$_'"
 test -d "$HOME/.cache" && run "rm -rf '$_'"
 test -d "$HOME/.ccache" && run "rm -rf '$_'"
 test -d "$HOME/.electron-gyp" && run "rm -rf '$_'"
@@ -92,11 +96,8 @@ command -v apm >/dev/null 2>&1 && run "apm clean"
 
 # docker
 show "docker: checking if up..."
-if command -v docker >/dev/null 2>&1 && docker stats --no-stream >/dev/null 2>&1 ; then
-    run "docker container prune -f"
-    run "docker image prune -f"
-    run "docker volume prune -f"
-    run "docker network prune -f"
+if command -v docker >/dev/null 2>&1 && docker stats --no-stream >/dev/null 2>&1; then
+    run "docker system prune --volumes -f"
 else
     show "docker: not up"
 fi
@@ -108,6 +109,6 @@ run "sudo purge"
 AFTER="$(df -B1 --output=avail "$HOME" | grep -iv avail)"
 show "disk space available after cleanup: $(numfmt --to=iec-i --suffix=B -- "$BEFORE")"
 RECLAIMED="$((AFTER - BEFORE))"
-if [[ "$RECLAIMED" -gt "0" ]]; then
+if [[ $RECLAIMED -gt "0" ]]; then
     show "disk space reclaimed by cleanup: $(numfmt --to=iec-i --suffix=B -- "$RECLAIMED")"
 fi

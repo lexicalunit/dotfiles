@@ -12,12 +12,12 @@ usage() {
     exit 1
 }
 
-if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     usage
 fi
 
 show() {
-    if [[ "$1" == "-r" ]]; then
+    if [[ $1 == "-r" ]]; then
         shift
         echo -n $'\e[38;5;40m$\e[38;5;63m '
     else
@@ -81,7 +81,9 @@ test -d node_modules && run "rm -rf '$_'"
 # blow away any untracked files or local changes
 command -v git >/dev/null 2>&1 && run "git clean -dfx"
 
-NPM_VERSION="$(npm --version)"
-NODE_VERSION="$(node --version)"
-show "running \`npm install\` using node: $NODE_VERSION, npm: $NPM_VERSION ..."
-npm install
+if echo "$*" | grep -Eq -- '\b--install\b|\b-i\b'; then
+    NPM_VERSION="$(npm --version)"
+    NODE_VERSION="$(node --version)"
+    show "running \`npm install\` using node: $NODE_VERSION, npm: $NPM_VERSION ..."
+    npm install
+fi

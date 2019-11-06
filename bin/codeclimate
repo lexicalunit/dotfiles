@@ -16,22 +16,21 @@ usage() {
     exit 1
 }
 
-if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     usage
 fi
 
 VERBOSE=0
 while getopts "v" opt; do
     case "$opt" in
-        v) VERBOSE=1 ;;
-        *) usage ;;
+    v) VERBOSE=1 ;;
+    *) usage ;;
     esac
 done
 shift $((OPTIND - 1))
 
-
 # See: https://github.com/codeclimate/codeclimate#usage
-[[ -n "$1" ]] && CC_CMD="$*" || CC_CMD="help"
+[[ -n $1 ]] && CC_CMD="$*" || CC_CMD="help"
 DOCKER_CMD="docker run"
 DOCKER_CMD="$DOCKER_CMD --interactive --tty --rm"
 DOCKER_CMD="$DOCKER_CMD --env CODECLIMATE_CODE=\"$PWD\""
@@ -40,5 +39,5 @@ DOCKER_CMD="$DOCKER_CMD --volume /var/run/docker.sock:/var/run/docker.sock"
 DOCKER_CMD="$DOCKER_CMD --volume /tmp/cc:/tmp/cc"
 DOCKER_CMD="$DOCKER_CMD codeclimate/codeclimate"
 DOCKER_CMD="$DOCKER_CMD $CC_CMD"
-[[ "$VERBOSE" == "1" ]] && echo "$DOCKER_CMD"
+[[ $VERBOSE == "1" ]] && echo "$DOCKER_CMD"
 eval "$DOCKER_CMD"

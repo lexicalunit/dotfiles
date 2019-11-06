@@ -2,12 +2,12 @@
 
 # Kills processes based on their window title.
 
-if [[ "$1" = "-p" ]]; then
+if [[ $1 == "-p" ]]; then
     PRETEND=1
     shift
 fi
 
-if [[ -z "$*" ]] || echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
+if [[ -z $* ]] || echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     echo "usage: $(basename "$0") [-p|-h|--help] REGEX"
     echo "Kills all windows matching REGEX. Use -p for pretend mode."
     exit 1
@@ -17,8 +17,8 @@ fi
 # shellcheck disable=SC1091
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
-LIST="$(xlsclients -l | grep -E "^Window 0x([0-9]|[a-z])*:\$|^\\W*Name:\\W*.*\$" | sed 'N;s/:\n/ /g' | grep "$1")"
-if [[ "$LIST" = "" ]]; then
+LIST="$(xlsclients -l | grep -E '^Window 0x([0-9]|[a-z])*:$|^\W*Name:\W*.*$' | sed 'N;s/:\n/ /g' | grep "$1")"
+if [[ $LIST == "" ]]; then
     show "no windows found"
     exit 0
 fi
@@ -26,7 +26,7 @@ fi
 show "$(echo "$LIST" | wc -l) windows found:"
 show "$LIST"
 
-if [[ -z "$PRETEND" ]]; then
+if [[ -z $PRETEND ]]; then
     show "Killing windows... "
     run "echo '$LIST' | awk '{print $2}' | xargs -I{} xkill -id {}"
 else

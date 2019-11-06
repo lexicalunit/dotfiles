@@ -2,7 +2,7 @@
 
 # Finds and removes unwanted daemons and agents.
 
-if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b" || [[ -z "$1" ]]; then
+if echo "$*" | grep -Eq -- '--help\b|-h\b' || [[ -z $1 ]]; then
     echo "usage: ${0##*/} [-h|--help] [PATTERN|FILE_PATH]" >&2
     exit 1
 fi
@@ -17,7 +17,7 @@ wd="$(mktemp -d -t tmp.XXXXXXXXXX)"
 trap 'rm -rf $wd' EXIT
 cd "$wd" || abort "could not create workspace"
 
-if [[ ! -e "$1" ]]; then
+if [[ ! -e $1 ]]; then
     find \
         /Library/LaunchAgents \
         /Library/LaunchDaemons \
@@ -26,8 +26,8 @@ if [[ ! -e "$1" ]]; then
         ~/Library/LaunchAgents \
         ~/Library/LaunchDaemons \
         -type f \
-        2>/dev/null \
-        | grep -Ei "$@"
+        2>/dev/null |
+        grep -Ei "$@"
 else
     run "sudo launchctl unload -w '$1'"
     run "sudo rm -f '$1'"

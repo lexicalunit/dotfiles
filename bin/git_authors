@@ -2,7 +2,7 @@
 
 # Git script for discovering who wrote the code at the current working directory.
 
-if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b" || [[ -z "$*" ]]; then
+if echo "$*" | grep -Eq -- '--help\b|-h\b' || [[ -z $* ]]; then
     echo "usage: ${0##*/} [-h|--help] PATH" 1>&2
     echo "For git, shows who wrote the code found at the current directory." 1>&2
     exit 1
@@ -16,5 +16,5 @@ cmd="git ls-tree -r -z --name-only HEAD -- ."
 cmd="$cmd | xargs -0 -n1 git blame --line-porcelain HEAD 2>/dev/null"
 cmd="$cmd | grep '^author '"
 cmd="$cmd | sort | uniq -c | sort -nr"
-[[ -z "$GIT_PREFIX" ]] || cd "$GIT_PREFIX" || exit
+[[ -z $GIT_PREFIX ]] || cd "$GIT_PREFIX" || exit
 run "$cmd"

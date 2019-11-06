@@ -3,7 +3,7 @@
 # Extract common file formats.
 
 # Display usage if no parameters given
-if [[ -z "$*" ]] || echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
+if [[ -z $* ]] || echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     echo "usage: ${0##*/} <archive> - extract common file formats"
     exit
 fi
@@ -12,8 +12,8 @@ fi
 # req_progs=(7z unrar unzip)
 req_progs=(unrar unzip)
 for p in ${req_progs[*]}; do
-    hash "$p" 2>&- \
-        || {
+    hash "$p" 2>&- ||
+        {
             echo >&2 " Required program \"$p\" not installed."
             exit 1
         }
@@ -27,19 +27,19 @@ fi
 
 # Extract file by using extension as reference
 case "$@" in
-    # *.7z      ) 7z  x       "$@"                ;;
-    *.tar.bz2) tar xvjf "$@" ;;
-    *.bz2) bunzip2 "$@" ;;
-    *.deb) ar vx "$@" ;;
-    *.tar.gz) tar xvf "$@" ;;
-    *.gz) gunzip "$@" ;;
-    *.tar) tar xvf "$@" ;;
-    *.tbz2) tar xvjf "$@" ;;
-    *.tar.xz) tar xvf "$@" ;;
-    *.tgz) tar xvzf "$@" ;;
-    *.rar) unrar x "$@" ;;
-    # *.rar     ) 7z  x       "$@"                ;;
-    *.zip) unzip "$@" ;;
-    *.Z) uncompress "$@" ;;
-    *) echo " Unsupported file format" ;;
+# *.7z      ) 7z  x       "$@"                ;;
+*.tar.bz2) tar xvjf "$@" ;;
+*.bz2) bunzip2 "$@" ;;
+*.deb) ar vx "$@" ;;
+*.tar.gz) tar xvf "$@" ;;
+*.gz) gunzip "$@" ;;
+*.tar) tar xvf "$@" ;;
+*.tbz2) tar xvjf "$@" ;;
+*.tar.xz) tar xvf "$@" ;;
+*.tgz) tar xvzf "$@" ;;
+*.rar) unrar x "$@" ;;
+# *.rar     ) 7z  x       "$@"                ;;
+*.zip) unzip "$@" ;;
+*.Z) uncompress "$@" ;;
+*) echo " Unsupported file format" ;;
 esac

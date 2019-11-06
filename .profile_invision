@@ -1,7 +1,7 @@
 #! .profile_invision
 
 studio() {
-cat <<EOF
+    cat <<EOF
 
 ╭━━━╮╭╮╱╱╱╱╱╭╮
 ┃╭━╮┣╯╰╮╱╱╱╱┃┃
@@ -46,50 +46,50 @@ invision() {
 # I typically use a conda environment for anything python related I want to install globally.
 # However for InVision projects we expect to use the system standard Python 2.7.
 _exit_conda_for_invision_projects() {
-    if [[ "$PWD" = *"/invision/"* && "$OLDPWD" != *"/invision/"* ]]; then
+    if [[ $PWD == *"/invision/"* && $OLDPWD != *"/invision/"* ]]; then
         exitconda
-    elif [[ "$PWD" != *"/invision/"* && "$OLDPWD" = *"/invision/"* ]]; then
+    elif [[ $PWD != *"/invision/"* && $OLDPWD == *"/invision/"* ]]; then
         enterconda
     fi
 }
 
-if [[ -n "$ZSH_VERSION" ]]; then
-    if [[ ! "${chpwd_functions[*]}" == *_exit_conda_for_invision_projects* ]]; then
+if [[ -n $ZSH_VERSION ]]; then
+    if [[ ${chpwd_functions[*]} != *_exit_conda_for_invision_projects* ]]; then
         chpwd_functions+=("_exit_conda_for_invision_projects")
     fi
 fi
 
 _enter_nvm_for_invision_projects() {
-    if [[ "$PWD" = *"/invision/"* && "$OLDPWD" != *"/invision/"* ]]; then
+    if [[ $PWD == *"/invision/"* && $OLDPWD != *"/invision/"* ]]; then
         nvm use v10 >/dev/null
         exitconda
-    elif [[ "$PWD" != *"/invision/"* && "$OLDPWD" = *"/invision/"* ]]; then
+    elif [[ $PWD != *"/invision/"* && $OLDPWD == *"/invision/"* ]]; then
         nvm use system >/dev/null
         enterconda
     fi
 }
 
-if [[ -n "$ZSH_VERSION" ]]; then
-    if [[ ! "${chpwd_functions[*]}" == *_enter_nvm_for_invision_projects* ]]; then
+if [[ -n $ZSH_VERSION ]]; then
+    if [[ ${chpwd_functions[*]} != *_enter_nvm_for_invision_projects* ]]; then
         chpwd_functions+=("_enter_nvm_for_invision_projects")
     fi
 fi
 
 _enter_go_path_for_invision_projects() {
-    if [[ "$PWD" = *"/invision/"* && "$OLDPWD" != *"/invision/"* ]]; then
+    if [[ $PWD == *"/invision/"* && $OLDPWD != *"/invision/"* ]]; then
         # gotta strip out things setup by .profile...
         test -d "$GOPATH/bin" && PATH="$(echo "$PATH" | sed "s@$GOPATH/bin@@g;s@::*@:@g;s@:\$@@g;s@^:@@g")"
         GOPATH="/usr/local/lib/invision/gopath"
-        if [[ ! -d "$GOPATH" ]]; then
+        if [[ ! -d $GOPATH ]]; then
             mkdir -p "$GOPATH/bin"
         fi
         test -d "$GOPATH/bin" && PATH="$PATH:$_"
         export PATH GOPATH
-    elif [[ "$PWD" != *"/invision/"* && "$OLDPWD" = *"/invision/"* ]]; then
+    elif [[ $PWD != *"/invision/"* && $OLDPWD == *"/invision/"* ]]; then
         # reverse the above...
         test -d "$GOPATH/bin" && PATH="$(echo "$PATH" | sed "s@$GOPATH/bin@@g;s@::*@:@g;s@:\$@@g;s@^:@@g")"
         GOPATH="/usr/local/lib/gopath"
-        if [[ ! -d "$GOPATH" ]]; then
+        if [[ ! -d $GOPATH ]]; then
             mkdir -p "$GOPATH/bin"
         fi
         test -d "$GOPATH/bin" && PATH="$PATH:$_"
@@ -97,8 +97,8 @@ _enter_go_path_for_invision_projects() {
     fi
 }
 
-if [[ -n "$ZSH_VERSION" ]]; then
-    if [[ ! "${chpwd_functions[*]}" == *_enter_go_path_for_invision_projects* ]]; then
+if [[ -n $ZSH_VERSION ]]; then
+    if [[ ${chpwd_functions[*]} != *_enter_go_path_for_invision_projects* ]]; then
         chpwd_functions+=("_enter_go_path_for_invision_projects")
     fi
 fi

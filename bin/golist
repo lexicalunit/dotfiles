@@ -2,7 +2,7 @@
 
 # Lists all user installed go packages.
 
-if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     (
         echo "usage: ${0##*/} [-h|--help] [-r]"
         echo "Uses \`go list\` to list all user installed go packages that aren't dependencies."
@@ -42,7 +42,10 @@ go list -f '{{ join .Deps "\n" }}' ... | sort -u | {
         for i in "${IMPORTS[@]}"; do
             skip=
             for j in "${DEPS[@]}"; do
-                [[ "$i" == "$j" ]] && { skip=1; break; }
+                [[ $i == "$j" ]] && {
+                    skip=1
+                    break
+                }
             done
             [[ -n $skip ]] || DIFF+=("$i")
         done
@@ -50,7 +53,7 @@ go list -f '{{ join .Deps "\n" }}' ... | sort -u | {
         echo "${DIFF[*]}" | tr ' ' '\n'
     }
 } | if [[ $REPO == 1 ]]; then
-        sed 's@^\([^/]*/[^/]*/[^/]*\)\(.*\)$@\1@g' | sort -u
-    else
-        cat
-    fi
+    sed 's@^\([^/]*/[^/]*/[^/]*\)\(.*\)$@\1@g' | sort -u
+else
+    cat
+fi

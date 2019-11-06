@@ -122,6 +122,13 @@ options:
 ```
 
 * * *
+### [`dogs`](dogs)
+```
+usage: dogs [-h|--help]
+Streams system logs for docker containers.
+```
+
+* * *
 ### [`faff`](faff)
 ```
 usage: faff SECONDS [-h|--help]
@@ -488,7 +495,7 @@ plotutils, pngquant, postgresql, pyenv, pyenv-virtualenv,
 pyenv-virtualenvwrapper, python, readline, redis, ripgrep, rlwrap, rtmpdump, 
 rubberband, rust, sdl2, shellcheck, shfmt, snappy, speex, sqlite, tesseract, 
 theora, tree, unbound, v8, vegeta, vramsteg, watch, wdiff, webp, wget, x264, 
-x265, xvid, xz, yajl, yaml-cpp, youtube-dl, zsh, zstd
+x265, xvid, xz, yajl, yaml-cpp, yarn, youtube-dl, zsh, zstd
 
 Homebrew Casks: 1password, atom, atom-beta, clamxav, dbvisualizer, 
 disk-inventory-x, docker, dropbox, fantastical, firefox, flux, font-fira-code, 

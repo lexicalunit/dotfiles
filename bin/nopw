@@ -2,7 +2,7 @@
 
 # Enables password-less ssh TO username@remotehost FROM localhost.
 
-if [[ -z "$1" ]] || echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
+if [[ -z $1 ]] || echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     echo "usage: ${0##*/} [-h|-help] [ssh connection options] username@remotehost" 1>&2
     echo "Puts your public ssh key in the authorized_keys on the remote host."
     exit 1

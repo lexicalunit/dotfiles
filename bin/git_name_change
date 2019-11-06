@@ -2,21 +2,24 @@
 
 # Clones a repo then changes the name and email address in entire history.
 
-usage()
-{
+usage() {
     echo "usage: ${0##*/} REPO_URL OLD_EMAIL NEW_NAME NEW_EMAIL" >&2
     echo "clones the given repo, changing the name and email address in entire history" >&2
     exit 1
 }
 
-if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     usage
 fi
 
-REPO_URL="$1"; shift;
-OLD_EMAIL="$1"; shift;
-NEW_NAME="$1"; shift;
-NEW_EMAIL="$1"; shift;
+REPO_URL="$1"
+shift
+OLD_EMAIL="$1"
+shift
+NEW_NAME="$1"
+shift
+NEW_EMAIL="$1"
+shift
 
 if [ -z "$REPO_URL" ] || [ -z "$OLD_EMAIL" ] || [ -z "$NEW_NAME" ] || [ -z "$NEW_EMAIL" ]; then
     usage

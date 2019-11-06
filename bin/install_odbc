@@ -2,7 +2,7 @@
 
 # Sets up ODBC.
 
-if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     echo "usage: ${0##*/} [-h|--help]" 1>&2
     echo "Attempts to install a working ODBC configuration to macOS." 1>&2
     echo "Uses unixODBC with FreeTDS from Homebrew." 1>&2
@@ -133,7 +133,7 @@ fi
 # user environment
 ###############################################################################
 ask "You will need to install the following into your bash profile, do you understand?"
-[[ "$REPLY" != "y" ]] && abort "Please seek out an IT person or a developer."
+[[ $REPLY != "y" ]] && abort "Please seek out an IT person or a developer."
 cat <<ENDOFBASHRC
 ################################################################################
 # Vertica Setup

@@ -11,7 +11,7 @@ usage() {
     youtube-dl --help
 }
 
-if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     usage >&2
     exit 1
 fi

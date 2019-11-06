@@ -2,7 +2,7 @@
 
 # Git script for printing beautiful logs.
 
-if echo "$*" | grep -Eq -- "\\b--help\\b|\\b-h\\b"; then
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     echo "usage: ${0##*/} [-h|--help] [ARGS]" 1>&2
     echo "Forwards any additional ARGS to the git log command." 1>&2
     exit 1
@@ -38,7 +38,7 @@ max_hash_width() {
 
 git_pretty_log() {
     local columnize
-    if [[ "$(max_hash_width "$@")" -le "$MAX_HASH_WIDTH" ]]; then
+    if [[ "$(max_hash_width "$@")" -le $MAX_HASH_WIDTH ]]; then
         columnize=true
     else
         columnize=false
@@ -49,20 +49,20 @@ git_pretty_log() {
     # 3. Color merge commits specially
     # 4. Page only if we're asked to (GIT_NO_PAGER)
     # 5. Page only if needed
-    if [[ $columnize = true ]]; then
+    if [[ $columnize == true ]]; then
         make_log "$(make_format '}')" "$@"
     else
         make_log "$(make_format ' ')" "$@"
-    fi \
-        | sed -Ee 's/([[:digit:]]+ [[:alpha:]]+), [[:digit:]]+ months? ago/\1/' \
-        | sed -Ee 's/([[:digit:]]+ [[:alpha:]]+) ago/\1/' \
-        | sed -Ee "s/(Merge (branch|remote-tracking branch|pull request) .*$)/$(printf '\033[31m')\\1$(printf '\033[0m')/" \
-        | if [[ $columnize = true ]]; then
+    fi |
+        sed -Ee 's/([[:digit:]]+ [[:alpha:]]+), [[:digit:]]+ months? ago/\1/' |
+        sed -Ee 's/([[:digit:]]+ [[:alpha:]]+) ago/\1/' |
+        sed -Ee "s/(Merge (branch|remote-tracking branch|pull request) .*$)/$(printf '\033[31m')\\1$(printf '\033[0m')/" |
+        if [[ $columnize == true ]]; then
             column -ts '}'
         else
             cat
-        fi \
-        | if [ -n "$GIT_NO_PAGER" ]; then
+        fi |
+        if [ -n "$GIT_NO_PAGER" ]; then
             cat
         else
             less --quit-if-one-screen --no-init --RAW-CONTROL-CHARS --chop-long-lines

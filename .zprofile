@@ -4,6 +4,10 @@ if [[ -z "$LANG" ]]; then
   export LANG='en_US.UTF-8'
 fi
 
+# additional zsh completions
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
+
 # Ensure path arrays do not contain duplicates.
 typeset -gU cdpath fpath mailpath path
 

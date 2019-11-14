@@ -54,26 +54,23 @@
   },
   "explorer.autoReveal": false,
   "editor.tokenColorCustomizations": {
-    "textMateRules": [
-      {
-        "scope": [
-          "comment",
-          "comment.block",
-          "comment.block.documentation",
-          "comment.line",
-          "markup.italic"
-        ],
-        "settings": {
-          // "fontStyle": ""
-        }
+    "textMateRules": [{
+      "scope": [
+        "comment",
+        "comment.block",
+        "comment.block.documentation",
+        "comment.line",
+        "markup.italic"
+      ],
+      "settings": {
+        // "fontStyle": ""
       }
-    ]
+    }]
   },
   "importSorter.importStringConfiguration.trailingComma": "multiLine",
   "importSorter.importStringConfiguration.tabSize": 2,
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "javascript.preferences.importModuleSpecifier": "non-relative",
-  "workbench.settings.editor": "json",
   "terminal.integrated.fontFamily": "Hack Nerd Font",
   "javascript.validate.enable": false,
   "eslint.validate": [
@@ -82,5 +79,18 @@
     "typescript",
     "typescriptreact"
   ],
-  "editor.formatOnSave": false
+  "editor.formatOnSave": false,
+  "spellright.language": [
+    "en"
+  ],
+  "spellright.documentTypes": [
+    "markdown",
+    "latex",
+    "plaintext",
+    "shellscript"
+  ],
+  "window.restoreWindows": "none",
+  "window.openFoldersInNewWindow": "on",
+  "workbench.settings.useSplitJSON": true,
+  "workbench.settings.editor": "json"
 }

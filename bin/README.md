@@ -367,6 +367,9 @@ Format options:
                            Defaults to none.
   --use-tabs               Indent with tabs instead of spaces.
                            Defaults to false.
+  --vue-indent-script-and-style
+                           Indent script and style tags in Vue files.
+                           Defaults to false.
 
 Config options:
 

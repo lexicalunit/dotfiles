@@ -109,6 +109,7 @@
 /.pyenv
 /.pyhistory
 /.pylint.d
+/.python_history
 /.python-eggs
 /.rvm
 /.sbt

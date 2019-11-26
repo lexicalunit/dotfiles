@@ -92,5 +92,7 @@
   "window.restoreWindows": "none",
   "window.openFoldersInNewWindow": "on",
   "workbench.settings.useSplitJSON": true,
-  "workbench.settings.editor": "json"
+  "workbench.settings.editor": "json",
+  "telemetry.enableTelemetry": false,
+  "gitlens.advanced.telemetry.enabled": false
 }

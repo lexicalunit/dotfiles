@@ -1180,6 +1180,7 @@ step_cask() {
     # shellcheck disable=SC2207
     TAP=($(brew tap))
     array_contains 'homebrew/cask-fonts' "${TAP[@]}" || run "brew tap homebrew/cask-fonts"
+    array_contains 'homebrew/cask-versions' "${TAP[@]}" || run "brew tap homebrew/cask-versions"
 
     local INSTALLED
     brew cask ls -1 | {

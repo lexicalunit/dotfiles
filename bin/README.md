@@ -281,12 +281,9 @@ Usage: jsc [options] [files] [-- arguments]
   --exception=<name>         Check the last script exits with an uncaught exception with the specified name
   --watchdog-exception-ok    Uncaught watchdog exceptions exit with success
   --dumpException            Dump uncaught exception text
-  --footprint                Dump memory footprint after done executing
   --options                  Dumps all JSC VM options and exits
   --dumpOptions              Dumps all non-default JSC VM options before continuing
   --<jsc VM option>=<value>  Sets the specified JSC VM option
-
-Files with a .mjs extension will always be evaluated as modules.
 ```
 
 * * *
@@ -649,7 +646,7 @@ Shows the current weather in the given location.
 * * *
 ### [`whereami`](whereami)
 ```
-usage: /Users/amytroschinetz/bin/whereami
+usage: /Users/amy/bin/whereami
 ```
 
 * * *

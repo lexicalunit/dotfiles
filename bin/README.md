@@ -500,7 +500,7 @@ x265, xvid, xz, yajl, yaml-cpp, yarn, youtube-dl, zsh, zstd
 Homebrew Casks: 1password, atom, atom-beta, clamxav, dbvisualizer, 
 disk-inventory-x, docker, dropbox, fantastical, firefox, flux, font-fira-code, 
 font-hack-nerd-font, google-chrome, iexplorer, istumbler, iterm2, java, 
-kaleidoscope, lingon-x, mactex, mcgimp-std, mysqlworkbench, silverlight, skype, 
+kaleidoscope, lingon-x, mactex, mcgimp, mysqlworkbench, silverlight, skype, 
 slack, snes9x, sourcetree, spectacle, spotify, steam, sublime-text, texstudio, 
 the-unarchiver, transmission, vagrant, visual-studio-code, vlc, whatsapp, 
 xquartz

@@ -90,9 +90,11 @@
     "shellscript"
   ],
   "window.restoreWindows": "none",
-  "window.openFoldersInNewWindow": "on",
+  "window.openFoldersInNewWindow": "off",
   "workbench.settings.useSplitJSON": true,
   "workbench.settings.editor": "json",
   "telemetry.enableTelemetry": false,
-  "gitlens.advanced.telemetry.enabled": false
+  "gitlens.advanced.telemetry.enabled": false,
+  "window.openWithoutArgumentsInNewWindow": "off",
+  "window.closeWhenEmpty": true
 }

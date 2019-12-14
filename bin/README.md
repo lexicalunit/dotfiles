@@ -650,7 +650,8 @@ Shows the current weather in the given location.
 * * *
 ### [`whereami`](whereami)
 ```
-usage: /Users/amytroschinetz/bin/whereami
+usage: whereami
+Prints your current city name using your geoip location.
 ```
 
 * * *

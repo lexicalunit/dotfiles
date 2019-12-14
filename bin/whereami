@@ -2,8 +2,11 @@
 
 // Prints your current city name using your geoip location.
 
+const path = require('path')
+
 if (process.argv.includes('--help') || process.argv.includes('-h')) {
-  console.log('usage: ' + process.argv[1])
+  console.log('usage: ' + path.basename(process.argv[1]))
+  console.log('Prints your current city name using your geoip location.')
   process.exit(1)
 }
 

@@ -21,7 +21,12 @@
       "editor.lineHighlightBackground": "#f9f2df"
     }
   },
-  "editor.rulers": [72, 80, 100, 120],
+  "editor.rulers": [
+    72,
+    80,
+    100,
+    120
+  ],
   "shellformat.flag": "-s -i 4",
   "files.trimTrailingWhitespace": true,
   "editor.codeLens": false,
@@ -54,18 +59,20 @@
   },
   "explorer.autoReveal": false,
   "editor.tokenColorCustomizations": {
-    "textMateRules": [{
-      "scope": [
-        "comment",
-        "comment.block",
-        "comment.block.documentation",
-        "comment.line",
-        "markup.italic"
-      ],
-      "settings": {
-        // "fontStyle": ""
+    "textMateRules": [
+      {
+        "scope": [
+          "comment",
+          "comment.block",
+          "comment.block.documentation",
+          "comment.line",
+          "markup.italic"
+        ],
+        "settings": {
+          // "fontStyle": ""
+        }
       }
-    }]
+    ]
   },
   "importSorter.importStringConfiguration.trailingComma": "multiLine",
   "importSorter.importStringConfiguration.tabSize": 2,
@@ -96,5 +103,12 @@
   "telemetry.enableTelemetry": false,
   "gitlens.advanced.telemetry.enabled": false,
   "window.openWithoutArgumentsInNewWindow": "off",
-  "window.closeWhenEmpty": true
+  "window.closeWhenEmpty": true,
+  "spellright.spellContext": "body comments strings",
+  "spellright.spellContextByClass": {
+    "shellscript": "body comments",
+  },
+  "spellright.notificationClassByParser": {
+    "code": "information"
+  }
 }

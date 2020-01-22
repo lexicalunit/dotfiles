@@ -18,7 +18,9 @@ dcl() {
         MINOR="$(echo "$DOCKER_VERSION" | cut -d. -f2)"
         if [[ $MAJOR -gt 1 ]] || [[ $MAJOR -eq 1 && $MINOR -ge 9 ]]; then
             run "docker volume ls -qf dangling=true | xargs docker volume rm"
+            run "docker system prune --volumes -f"
         else
+            run "docker system prune -f"
             show -i "docker version less than 1.9, can not clean up dangling any dangling volumes"
         fi
     fi

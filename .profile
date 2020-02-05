@@ -171,7 +171,7 @@ if $INTERACTIVE; then
         exitvirtualenv
 
         # assume anaconda is installed in your home directory unless specified
-        local ANACONDA_DIR_NAME="/usr/local/miniconda3"
+        local ANACONDA_DIR_NAME="/usr/local/Caskroom/miniconda/base"
         if [[ -z $1 ]]; then
             export ANACONDA_ROOT="$ANACONDA_DIR_NAME"
         else

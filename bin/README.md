@@ -480,26 +480,26 @@ steps:
     code       Ensure VS Code installed via Homebrew Cask and its packages are installed
     osx        Override macOS "defaults" settings and configuration
 
-Homebrew Formulas: adns, aom, autoconf, automake, bash, bat, cairo, 
+Homebrew Formulas: adns, aom, autoconf, automake, avro-c, bash, bat, cairo, 
 clang-format, cmake, colordiff, coreutils, csv-fix, diff-so-fancy, docker, 
 doxygen, duti, entr, exa, faac, fasd, ffmpeg, flac, flake8, fontconfig, 
 freetype, frei0r, fribidi, fzf, gd, gdbm, geoip, gettext, ghostscript, giflib, 
 gifsicle, git, git-flow, git-review, git-secrets, glib, gmp, gnu-sed, gnu-tar, 
 gnupg, gnutls, graphite2, harfbuzz, hub, icu4c, id3lib, imagemagick@6, isl, 
-jasper, jbig2dec, jez/formulae/pandoc-sidenote, jhead, jo, jpeg, jq, kafkacat, 
-lame, leptonica, libass, libassuan, libbluray, libevent, libffi, libgcrypt, 
-libgpg-error, libidn2, libksba, libmpc, libogg, libpng, librdkafka, 
-libsamplerate, libsndfile, libsoxr, libssh2, libtasn1, libtiff, libtool, 
-libunistring, libusb, libusb-compat, libvidstab, libvo-aacenc, libvorbis, 
-libvpx, libyaml, little-cms2, lz4, lzlib, lzo, makedepend, mas, md5sha1sum, 
-memcached, mpfr, mtr, mysql, ncftp, ncurses, net-snmp, nettle, nginx, node, 
-npth, nvm, onepass, oniguruma, opencore-amr, openjpeg, openssl, opus, 
-ossp-uuid, p11-kit, pandoc, pcre, pcre2, pidof, pinentry, pixman, pkg-config, 
-plotutils, pngquant, postgresql, pyenv, pyenv-virtualenv, 
-pyenv-virtualenvwrapper, python, readline, redis, ripgrep, rlwrap, rtmpdump, 
-rubberband, rust, sdl2, shellcheck, shfmt, snappy, speex, sqlite, tesseract, 
-theora, tree, unbound, v8, vegeta, vramsteg, watch, wdiff, webp, wget, x264, 
-x265, xvid, xz, yajl, yaml-cpp, yarn, youtube-dl, zsh, zstd
+jansson, jasper, jbig2dec, jez/formulae/pandoc-sidenote, jhead, jo, jpeg, jq, 
+kafkacat, krb5, lame, leptonica, libass, libassuan, libbluray, libevent, 
+libffi, libgcrypt, libgpg-error, libidn2, libksba, libmpc, libogg, libpng, 
+librdkafka, libsamplerate, libserdes, libsndfile, libsoxr, libssh2, libtasn1, 
+libtiff, libtool, libunistring, libusb, libusb-compat, libvidstab, 
+libvo-aacenc, libvorbis, libvpx, libyaml, little-cms2, lz4, lzlib, lzo, 
+makedepend, mas, md5sha1sum, memcached, mpfr, mtr, mysql, ncftp, ncurses, 
+net-snmp, nettle, nginx, node, npth, nvm, oniguruma, opencore-amr, openjpeg, 
+openssl, opus, ossp-uuid, p11-kit, pandoc, pcre, pcre2, pidof, pinentry, 
+pixman, pkg-config, plotutils, pngquant, postgresql, protobuf, pyenv, 
+pyenv-virtualenv, pyenv-virtualenvwrapper, python, readline, redis, ripgrep, 
+rlwrap, rtmpdump, rubberband, rust, sdl2, shellcheck, shfmt, snappy, speex, 
+sqlite, tesseract, theora, tree, unbound, v8, vegeta, vramsteg, watch, wdiff, 
+webp, wget, x264, x265, xvid, xz, yajl, yaml-cpp, yarn, youtube-dl, zsh, zstd
 
 Homebrew Casks: 1password, atom, atom-beta, clamxav, dbvisualizer, 
 disk-inventory-x, docker, dropbox, fantastical, firefox, flux, font-fira-code, 
@@ -516,7 +516,7 @@ native-ui, pen-paper-coffee-syntax, sort-lines, trailing-spaces, typewriter
 Code Packages: BriteSnow.vscode-toggle-quotes, DavidAnson.vscode-markdownlint, 
 GrapeCity.gc-excelviewer, HookyQR.beautify, James-Yu.latex-workshop, 
 ban.spellright, bibhasdn.unique-lines, dbaeumer.vscode-eslint, eamodio.gitlens, 
-eg2.tslint, esbenp.prettier-vscode, foxundermoon.shell-format, 
+esbenp.prettier-vscode, foxundermoon.shell-format, 
 lehni.vscode-titlebar-less-macos, magicstack.MagicPython, 
 mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
 mohsen1.prettify-json, ms-python.python, ms-vscode.Go, 
@@ -531,11 +531,11 @@ pytest, python-dateutil, pytz, pyyaml, readline, requests, setuptools, six
 
 Gem Packages: jekyll, lolcat, rake, rdoc, rubocop
 
-Node Modules: @ibm/plex, JSON, all-contributors-cli, coffee-script, coffeelint, 
+Node Modules: @ibm/plex, JSON, all-contributors-cli, coffeelint, coffeescript, 
 cson, decaffeinate, dockerlint, eslint, external-ip, generator-code, 
 generator-generator, geoip-lite, js-beautify, json-stable-stringify, moment, 
 nesh, npm-check-updates, npm-remote-ls, npm-why, prettier, raml2html, standard, 
-tmpin, tslint, typescript, yo
+tmpin, typescript, yo
 
 Go Packages: github.com/BurntSushi/toml, github.com/acroca/go-symbols, 
 github.com/cweill/gotests, github.com/davidrjenni/reftools, 
@@ -579,6 +579,7 @@ by filename extension and by shebang.
   -w        write result to file instead of stdout
   -d        error with a diff when the formatting differs
   -s        simplify the code
+  -mn       minify the code to reduce its size (implies -s)
 
 Parser options:
 
@@ -592,7 +593,6 @@ Printer options:
   -ci       switch cases will be indented
   -sr       redirect operators will be followed by a space
   -kp       keep column alignment paddings
-  -mn       minify program to reduce its size (implies -s)
 
 Utilities:
 

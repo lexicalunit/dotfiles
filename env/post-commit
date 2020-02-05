@@ -6,6 +6,6 @@ if [[ -e .commit ]]; then
 
     # add generated files to commit
     run "rm .commit"
-    run "git add LICENSE README.md bin/README.md bin/setup" >/dev/null
+    run "git add LICENSE README.md bin/README.md bin/equip" >/dev/null
     run "git commit --amend -C HEAD --no-verify" >/dev/null
 fi

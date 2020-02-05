@@ -93,7 +93,7 @@ ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS ATOM_PACKAGES CODE_PACKAGES
 cleanup_item_list() {
     # A useful function for cleaning up the above item lists.
     # This is an implementation detail, and is used by update scripts.
-    # Usage: setup -i (aka --items)
+    # Usage: equip -i (aka --items)
     local items_var lines leftover
     declare -a lines
     items_var="$1"
@@ -1141,7 +1141,7 @@ step_brew() {
             if ! in_array "$name" "${arr[@]}"; then
                 case "$I" in
                 "go") ;; # installed as a separate step
-                *) show -i "$I installed but not managed by setup via brew" ;;
+                *) show -i "$I installed but not managed by equip via brew" ;;
                 esac
             fi
         done
@@ -1199,7 +1199,7 @@ step_cask() {
         name="${I%@*}"
         if ! echo "$HOMEBREW_CASKS" | grep -Eq "$(echo "\\b$name\\b" | sed 's/ (!)//g')"; then
             if [[ $I != "miniconda" ]]; then
-                show -i "$I installed but not managed by setup via brew cask"
+                show -i "$I installed but not managed by equip via brew cask"
             fi
         fi
     done
@@ -1261,7 +1261,7 @@ step_atom() {
     for I in $($APMCMD list --installed --bare); do
         name="${I%@*}"
         if ! echo "$ATOM_PACKAGES" | grep -Eqi " ${name}\\b"; then
-            show -i "$I installed but not managed by setup via $APMCMD"
+            show -i "$I installed but not managed by equip via $APMCMD"
         fi
     done
 }
@@ -1302,7 +1302,7 @@ step_code() {
     for I in $(code --list-extensions); do
         name="${I%@*}"
         if ! echo "$CODE_PACKAGES" | grep -Eqi "\\b${name}\\b"; then
-            show -i "$I installed but not managed by setup via code"
+            show -i "$I installed but not managed by equip via code"
         fi
     done
 }
@@ -1436,7 +1436,7 @@ step_python() {
     #         continue
     #     fi
     #     if ! echo "$PIP_PACKAGES" | grep -Eq "\\b$name\\b" && ! echo "$CONDA_PACKAGES" | grep -Eq "\\b$name\\b"; then
-    #         show -i "$I installed but not managed by setup via pip or anaconda"
+    #         show -i "$I installed but not managed by equip via pip or anaconda"
     #     fi
     # done
 }
@@ -1509,7 +1509,7 @@ step_gem() {
     #         continue
     #     fi
     #     if ! echo "$GEM_PACKAGES rubygems-update" | grep -Eq "$(echo "\\b$name\\b" | cut -d' ' -f1)"; then
-    #         show -i "$I installed but not managed by setup via gem"
+    #         show -i "$I installed but not managed by equip via gem"
     #     fi
     # done
 }
@@ -1561,7 +1561,7 @@ step_node() {
             UNMET="${name#*-}"
             show -i "UNMET PEER DEPENDENCY: $UNMET; you should probably npm install it"
         elif ! echo "$NODE_MODULES" | grep -Eq "\\b$name\\b"; then
-            show -i "$I installed but not managed by setup via npm"
+            show -i "$I installed but not managed by equip via npm"
         fi
     done
 }
@@ -1609,7 +1609,7 @@ step_go() {
             fi
         done
         if [[ $FOUND != "true" ]]; then
-            show -i "$install_name installed but not managed by setup via go get"
+            show -i "$install_name installed but not managed by equip via go get"
         fi
     done
 }
@@ -1652,7 +1652,7 @@ step_cargo() {
             fi
         done
         if [[ $FOUND != "true" ]]; then
-            show -i "$install_name installed but not managed by setup via cargo"
+            show -i "$install_name installed but not managed by equip via cargo"
         fi
     done
 }

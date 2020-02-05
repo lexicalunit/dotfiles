@@ -6,10 +6,10 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 run "touch .commit"
 
 #########################################################################
-# bin/setup
+# bin/equip
 #########################################################################
 run "cd '$HOME/bin'"
-python - <<DOC >setup.new
+python - <<DOC >equip.new
 import subprocess
 import sys
 
@@ -21,13 +21,13 @@ except:
 
 if __name__ == '__main__':
     inside = False
-    with open('setup', 'r') as f:
+    with open('equip', 'r') as f:
         for line in f:
             if line.startswith('# BEGIN GENERATED PACKAGE LISTS'):
                 sys.stdout.write(line)
                 inside = True
             elif line.startswith('# END GENERATED PACKAGE LISTS'):
-                output = subprocess.check_output(['setup', '-i'])[:-1]
+                output = subprocess.check_output(['equip', '-i'])[:-1]
                 if isinstance(output, bytes):
                     output = output.decode('utf-8')
                 sys.stdout.write(output)
@@ -37,8 +37,8 @@ if __name__ == '__main__':
                 sys.stdout.write(line)
 DOC
 
-run "mv -f setup.new setup"
-run "chmod +x setup"
+run "mv -f equip.new equip"
+run "chmod +x equip"
 
 #########################################################################
 # bin/README.md
@@ -59,16 +59,16 @@ $READMECONTENT
 
 $(./usages -t)
 
-# What does \`setup all\` install?
+# What does \`equip all\` install?
 
-Glad you asked! \`setup all\` will go through the following steps one by one. For the steps that
+Glad you asked! \`equip all\` will go through the following steps one by one. For the steps that
 install packages/formulas/casks/whatever, see below for the list of included items.
 
 | Step | Description |
 | --- | --- |
-$(./setup -l | sed 's/^\([^ ]*\) *\(.*\)$/| \1 | \2 |/g')
+$(./equip -l | sed 's/^\([^ ]*\) *\(.*\)$/| \1 | \2 |/g')
 
-$(./setup -h 2>&1 | grep -A5000 'Homebrew Formulas:')
+$(./equip -h 2>&1 | grep -A5000 'Homebrew Formulas:')
 EOF
 
 #########################################################################

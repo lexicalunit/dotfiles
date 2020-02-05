@@ -129,6 +129,111 @@ Streams system logs for docker containers.
 ```
 
 * * *
+### [`equip`](equip)
+```
+usage: equip [-l|-d|-f|-h|--help] [all|step-name(s)]
+Automatically installs and configures a complete *nix developer environment.
+
+options:
+    -h, --help     show usage help
+    -l             list available step names
+    -d             dry-run
+    -f             force install, do not ask for any confirmation
+    all            executes all steps
+    apps           executes steps that update applications
+    dot            executes dotfiles, zsh, and env
+    most           executes apps and dot
+    step-name(s)   execute the given step(s)
+
+steps:
+    xcode      Ensure that Xcode Command Line Tools are installed
+    dotfiles   Ensure home directory is a git repository for dotfiles
+    java       Ensure that Apple's java for macOS is installed
+    brew       Ensure Homebrew installed, formulas upgraded, and Amphetamine installed
+    cask       Ensure Homebrew Casks are installed
+    ext        Ensure file extension associations are correct
+    zsh        Ensure shell is latest version of zsh from Homebrew
+    env        Update environment configuration and submodules
+    python     Upgrade/Install Anaconda, pip packages, and conda packages
+    node       Ensure Node modules are installed via npm
+    go         Ensure Go packages are installed
+    cargo      Ensure Rust packages are installed via cargo
+    gem        Upgrade/Install gem packages and rubygems-update package
+    atom       Ensure Atom installed via Homebrew Cask and apm packages are upgraded
+    code       Ensure VS Code installed via Homebrew Cask and its packages are installed
+    osx        Override macOS "defaults" settings and configuration
+
+Homebrew Formulas: adns, aom, autoconf, automake, avro-c, bash, bat, cairo, 
+clang-format, cmake, colordiff, coreutils, csv-fix, diff-so-fancy, docker, 
+doxygen, duti, entr, exa, faac, fasd, ffmpeg, flac, flake8, fontconfig, 
+freetype, frei0r, fribidi, fzf, gd, gdbm, geoip, gettext, ghostscript, giflib, 
+gifsicle, git, git-flow, git-review, git-secrets, glib, gmp, gnu-sed, gnu-tar, 
+gnupg, gnutls, graphite2, harfbuzz, hub, icu4c, id3lib, imagemagick@6, isl, 
+jansson, jasper, jbig2dec, jez/formulae/pandoc-sidenote, jhead, jo, jpeg, jq, 
+kafkacat, krb5, lame, leptonica, libass, libassuan, libbluray, libevent, 
+libffi, libgcrypt, libgpg-error, libidn2, libksba, libmpc, libogg, libpng, 
+librdkafka, libsamplerate, libserdes, libsndfile, libsoxr, libssh2, libtasn1, 
+libtiff, libunistring, libusb, libusb-compat, libvidstab, libvo-aacenc, 
+libvorbis, libvpx, libyaml, little-cms2, lz4, lzlib, lzo, makedepend, mas, 
+md5sha1sum, memcached, mpfr, mtr, mysql, ncftp, ncurses, net-snmp, nettle, 
+nginx, node, npth, nvm, oniguruma, opencore-amr, openjpeg, openssl, opus, 
+ossp-uuid, p11-kit, pandoc, pcre, pcre2, pidof, pinentry, pixman, pkg-config, 
+plotutils, pngquant, postgresql, protobuf, pyenv, pyenv-virtualenv, 
+pyenv-virtualenvwrapper, python, readline, redis, ripgrep, rlwrap, rtmpdump, 
+rubberband, rust, sdl2, shellcheck, shfmt, snappy, speex, sqlite, tesseract, 
+theora, tree, unbound, v8, vegeta, vramsteg, watch, wdiff, webp, wget, x264, 
+x265, xvid, xz, yajl, yaml-cpp, yarn, youtube-dl, zsh, zstd
+
+Homebrew Casks: 1password, atom, atom-beta, clamxav, dbvisualizer, 
+disk-inventory-x, docker, dropbox, fantastical, firefox, flux, font-fira-code, 
+font-hack-nerd-font, google-chrome, iexplorer, istumbler, iterm2, java, 
+kaleidoscope, lingon-x, mactex, mcgimp, mysqlworkbench, silverlight, skype, 
+slack, snes9x, sourcetree, spectacle, spotify, steam, sublime-text, texstudio, 
+the-unarchiver, transmission, vagrant, visual-studio-code, vlc, whatsapp, 
+xquartz
+
+Atom Packages: atom-notes, auto-update-packages, highlight-selected, 
+language-markdown, minimap, minimap-highlight-selected, minimap-selection, 
+native-ui, pen-paper-coffee-syntax, sort-lines, trailing-spaces, typewriter
+
+Code Packages: BriteSnow.vscode-toggle-quotes, DavidAnson.vscode-markdownlint, 
+GrapeCity.gc-excelviewer, HookyQR.beautify, James-Yu.latex-workshop, 
+ban.spellright, bibhasdn.unique-lines, dbaeumer.vscode-eslint, eamodio.gitlens, 
+esbenp.prettier-vscode, foxundermoon.shell-format, 
+lehni.vscode-titlebar-less-macos, magicstack.MagicPython, 
+mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
+mohsen1.prettify-json, ms-python.python, ms-vscode.Go, 
+richie5um2.vscode-sort-json, spywhere.guides, sysoev.language-stylus, 
+timonwong.shellcheck, vscode-icons-team.vscode-icons, waderyan.gitblame
+
+Pip Packages: git-sweep3k, glances, httpie, inflection, patch, 
+python-json-logger, termcolor
+
+Conda Packages: flake8, ipython, isort, jedi, nose, pep8, pygments, pylint, 
+pytest, python-dateutil, pytz, pyyaml, readline, requests, setuptools, six
+
+Gem Packages: jekyll, lolcat, rake, rdoc, rubocop
+
+Node Modules: @ibm/plex, JSON, all-contributors-cli, coffeelint, coffeescript, 
+cson, decaffeinate, dockerlint, eslint, external-ip, generator-code, 
+generator-generator, geoip-lite, js-beautify, json-stable-stringify, moment, 
+nesh, npm-check-updates, npm-remote-ls, npm-why, prettier, raml2html, standard, 
+tmpin, typescript, yo
+
+Go Packages: github.com/BurntSushi/toml, github.com/acroca/go-symbols, 
+github.com/cweill/gotests, github.com/davidrjenni/reftools, 
+github.com/fatih/gomodifytags, github.com/golang/lint, 
+github.com/haya14busa/goplay, github.com/josharian/impl, 
+github.com/karrick/godirwalk, github.com/mdempsky/gocode, 
+github.com/ramya-rao-a/go-outline, github.com/rogpeppe/godef, 
+github.com/uudashr/gopkgs, golang.org/x/crypto, golang.org/x/lint, 
+golang.org/x/net, golang.org/x/sync, golang.org/x/sys, golang.org/x/text, 
+golang.org/x/tools, honnef.co/go/tools
+
+Cargo Packages: cargo-update, loc
+```
+
+* * *
 ### [`faff`](faff)
 ```
 usage: faff SECONDS [-h|--help]
@@ -443,111 +548,6 @@ Traceback (most recent call last):
   File "./set_wallpaper", line 15, in <module>
     from AppKit import NSScreen, NSWorkspace
 ModuleNotFoundError: No module named 'AppKit'
-```
-
-* * *
-### [`equip`](equip)
-```
-usage: equip [-l|-d|-f|-h|--help] [all|step-name(s)]
-Automatically installs and configures a complete *nix developer environment.
-
-options:
-    -h, --help     show usage help
-    -l             list available step names
-    -d             dry-run
-    -f             force install, do not ask for any confirmation
-    all            executes all steps
-    apps           executes steps that update applications
-    dot            executes dotfiles, zsh, and env
-    most           executes apps and dot
-    step-name(s)   execute the given step(s)
-
-steps:
-    xcode      Ensure that Xcode Command Line Tools are installed
-    dotfiles   Ensure home directory is a git repository for dotfiles
-    java       Ensure that Apple's java for macOS is installed
-    brew       Ensure Homebrew installed, formulas upgraded, and Amphetamine installed
-    cask       Ensure Homebrew Casks are installed
-    ext        Ensure file extension associations are correct
-    zsh        Ensure shell is latest version of zsh from Homebrew
-    env        Update environment configuration and submodules
-    python     Upgrade/Install Anaconda, pip packages, and conda packages
-    node       Ensure Node modules are installed via npm
-    go         Ensure Go packages are installed
-    cargo      Ensure Rust packages are installed via cargo
-    gem        Upgrade/Install gem packages and rubygems-update package
-    atom       Ensure Atom installed via Homebrew Cask and apm packages are upgraded
-    code       Ensure VS Code installed via Homebrew Cask and its packages are installed
-    osx        Override macOS "defaults" settings and configuration
-
-Homebrew Formulas: adns, aom, autoconf, automake, avro-c, bash, bat, cairo,
-clang-format, cmake, colordiff, coreutils, csv-fix, diff-so-fancy, docker,
-doxygen, duti, entr, exa, faac, fasd, ffmpeg, flac, flake8, fontconfig,
-freetype, frei0r, fribidi, fzf, gd, gdbm, geoip, gettext, ghostscript, giflib,
-gifsicle, git, git-flow, git-review, git-secrets, glib, gmp, gnu-sed, gnu-tar,
-gnupg, gnutls, graphite2, harfbuzz, hub, icu4c, id3lib, imagemagick@6, isl,
-jansson, jasper, jbig2dec, jez/formulae/pandoc-sidenote, jhead, jo, jpeg, jq,
-kafkacat, krb5, lame, leptonica, libass, libassuan, libbluray, libevent,
-libffi, libgcrypt, libgpg-error, libidn2, libksba, libmpc, libogg, libpng,
-librdkafka, libsamplerate, libserdes, libsndfile, libsoxr, libssh2, libtasn1,
-libtiff, libunistring, libusb, libusb-compat, libvidstab, libvo-aacenc,
-libvorbis, libvpx, libyaml, little-cms2, lz4, lzlib, lzo, makedepend, mas,
-md5sha1sum, memcached, mpfr, mtr, mysql, ncftp, ncurses, net-snmp, nettle,
-nginx, node, npth, nvm, oniguruma, opencore-amr, openjpeg, openssl, opus,
-ossp-uuid, p11-kit, pandoc, pcre, pcre2, pidof, pinentry, pixman, pkg-config,
-plotutils, pngquant, postgresql, protobuf, pyenv, pyenv-virtualenv,
-pyenv-virtualenvwrapper, python, readline, redis, ripgrep, rlwrap, rtmpdump,
-rubberband, rust, sdl2, shellcheck, shfmt, snappy, speex, sqlite, tesseract,
-theora, tree, unbound, v8, vegeta, vramsteg, watch, wdiff, webp, wget, x264,
-x265, xvid, xz, yajl, yaml-cpp, yarn, youtube-dl, zsh, zstd
-
-Homebrew Casks: 1password, atom, atom-beta, clamxav, dbvisualizer,
-disk-inventory-x, docker, dropbox, fantastical, firefox, flux, font-fira-code,
-font-hack-nerd-font, google-chrome, iexplorer, istumbler, iterm2, java,
-kaleidoscope, lingon-x, mactex, mcgimp, mysqlworkbench, silverlight, skype,
-slack, snes9x, sourcetree, spectacle, spotify, steam, sublime-text, texstudio,
-the-unarchiver, transmission, vagrant, visual-studio-code, vlc, whatsapp,
-xquartz
-
-Atom Packages: atom-notes, auto-update-packages, highlight-selected,
-language-markdown, minimap, minimap-highlight-selected, minimap-selection,
-native-ui, pen-paper-coffee-syntax, sort-lines, trailing-spaces, typewriter
-
-Code Packages: BriteSnow.vscode-toggle-quotes, DavidAnson.vscode-markdownlint,
-GrapeCity.gc-excelviewer, HookyQR.beautify, James-Yu.latex-workshop,
-ban.spellright, bibhasdn.unique-lines, dbaeumer.vscode-eslint, eamodio.gitlens,
-esbenp.prettier-vscode, foxundermoon.shell-format,
-lehni.vscode-titlebar-less-macos, magicstack.MagicPython,
-mgmcdermott.vscode-language-babel, mike-co.import-sorter,
-mohsen1.prettify-json, ms-python.python, ms-vscode.Go,
-richie5um2.vscode-sort-json, spywhere.guides, sysoev.language-stylus,
-timonwong.shellcheck, vscode-icons-team.vscode-icons, waderyan.gitblame
-
-Pip Packages: git-sweep3k, glances, httpie, inflection, patch,
-python-json-logger, termcolor
-
-Conda Packages: flake8, ipython, isort, jedi, nose, pep8, pygments, pylint,
-pytest, python-dateutil, pytz, pyyaml, readline, requests, setuptools, six
-
-Gem Packages: jekyll, lolcat, rake, rdoc, rubocop
-
-Node Modules: @ibm/plex, JSON, all-contributors-cli, coffeelint, coffeescript,
-cson, decaffeinate, dockerlint, eslint, external-ip, generator-code,
-generator-generator, geoip-lite, js-beautify, json-stable-stringify, moment,
-nesh, npm-check-updates, npm-remote-ls, npm-why, prettier, raml2html, standard,
-tmpin, typescript, yo
-
-Go Packages: github.com/BurntSushi/toml, github.com/acroca/go-symbols,
-github.com/cweill/gotests, github.com/davidrjenni/reftools,
-github.com/fatih/gomodifytags, github.com/golang/lint,
-github.com/haya14busa/goplay, github.com/josharian/impl,
-github.com/karrick/godirwalk, github.com/mdempsky/gocode,
-github.com/ramya-rao-a/go-outline, github.com/rogpeppe/godef,
-github.com/uudashr/gopkgs, golang.org/x/crypto, golang.org/x/lint,
-golang.org/x/net, golang.org/x/sync, golang.org/x/sys, golang.org/x/text,
-golang.org/x/tools, honnef.co/go/tools
-
-Cargo Packages: cargo-update, loc
 ```
 
 * * *

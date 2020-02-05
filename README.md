@@ -69,6 +69,7 @@ with the argument `--help`.
 | [`die`](bin/die) | Kills processes based on process name. |
 | [`doc`](bin/doc) | Builds HTML output from Markdown file. |
 | [`dogs`](bin/dogs) | Streams system logs for docker containers. |
+| [`equip`](bin/equip) | Install applications and development environment on an macOS or Lin... |
 | [`faff`](bin/faff) | Sleeps for the given number of seconds, showing a progress bar. |
 | [`flip`](bin/flip) | Flips input upside down. |
 | [`fs`](bin/fs) | Tweak ripgrep to easily search codebases with committed files and f... |
@@ -90,7 +91,6 @@ with the argument `--help`.
 | [`prettier`](bin/prettier) | Symbolic link to '/usr/local/bin/prettier' |
 | [`root`](bin/root) | Prints the root of the current repository. |
 | [`set_wallpaper`](bin/set_wallpaper) | Uses Cocoa classes via PyObjC to set a desktop wallpaper on all scr... |
-| [`equip`](bin/equip) | Install applications and development environment on an macOS or Lin... |
 | [`share`](bin/share) | Easy way to manage temporary web shares. |
 | [`shfmt`](bin/shfmt) | Symbolic link to '/usr/local/bin/shfmt' |
 | [`show_dircolors`](bin/show_dircolors) | Shows example output based on current dircolors settings. |
@@ -130,71 +130,71 @@ install packages/formulas/casks/whatever, see below for the list of included ite
 | code | Ensure VS Code installed via Homebrew Cask and its packages are installed |
 | osx | Override macOS "defaults" settings and configuration |
 
-Homebrew Formulas: adns, aom, autoconf, automake, avro-c, bash, bat, cairo,
-clang-format, cmake, colordiff, coreutils, csv-fix, diff-so-fancy, docker,
-doxygen, duti, entr, exa, faac, fasd, ffmpeg, flac, flake8, fontconfig,
-freetype, frei0r, fribidi, fzf, gd, gdbm, geoip, gettext, ghostscript, giflib,
-gifsicle, git, git-flow, git-review, git-secrets, glib, gmp, gnu-sed, gnu-tar,
-gnupg, gnutls, graphite2, harfbuzz, hub, icu4c, id3lib, imagemagick@6, isl,
-jansson, jasper, jbig2dec, jez/formulae/pandoc-sidenote, jhead, jo, jpeg, jq,
-kafkacat, krb5, lame, leptonica, libass, libassuan, libbluray, libevent,
-libffi, libgcrypt, libgpg-error, libidn2, libksba, libmpc, libogg, libpng,
-librdkafka, libsamplerate, libserdes, libsndfile, libsoxr, libssh2, libtasn1,
-libtiff, libunistring, libusb, libusb-compat, libvidstab, libvo-aacenc,
-libvorbis, libvpx, libyaml, little-cms2, lz4, lzlib, lzo, makedepend, mas,
-md5sha1sum, memcached, mpfr, mtr, mysql, ncftp, ncurses, net-snmp, nettle,
-nginx, node, npth, nvm, oniguruma, opencore-amr, openjpeg, openssl, opus,
-ossp-uuid, p11-kit, pandoc, pcre, pcre2, pidof, pinentry, pixman, pkg-config,
-plotutils, pngquant, postgresql, protobuf, pyenv, pyenv-virtualenv,
-pyenv-virtualenvwrapper, python, readline, redis, ripgrep, rlwrap, rtmpdump,
-rubberband, rust, sdl2, shellcheck, shfmt, snappy, speex, sqlite, tesseract,
-theora, tree, unbound, v8, vegeta, vramsteg, watch, wdiff, webp, wget, x264,
+Homebrew Formulas: adns, aom, autoconf, automake, avro-c, bash, bat, cairo, 
+clang-format, cmake, colordiff, coreutils, csv-fix, diff-so-fancy, docker, 
+doxygen, duti, entr, exa, faac, fasd, ffmpeg, flac, flake8, fontconfig, 
+freetype, frei0r, fribidi, fzf, gd, gdbm, geoip, gettext, ghostscript, giflib, 
+gifsicle, git, git-flow, git-review, git-secrets, glib, gmp, gnu-sed, gnu-tar, 
+gnupg, gnutls, graphite2, harfbuzz, hub, icu4c, id3lib, imagemagick@6, isl, 
+jansson, jasper, jbig2dec, jez/formulae/pandoc-sidenote, jhead, jo, jpeg, jq, 
+kafkacat, krb5, lame, leptonica, libass, libassuan, libbluray, libevent, 
+libffi, libgcrypt, libgpg-error, libidn2, libksba, libmpc, libogg, libpng, 
+librdkafka, libsamplerate, libserdes, libsndfile, libsoxr, libssh2, libtasn1, 
+libtiff, libunistring, libusb, libusb-compat, libvidstab, libvo-aacenc, 
+libvorbis, libvpx, libyaml, little-cms2, lz4, lzlib, lzo, makedepend, mas, 
+md5sha1sum, memcached, mpfr, mtr, mysql, ncftp, ncurses, net-snmp, nettle, 
+nginx, node, npth, nvm, oniguruma, opencore-amr, openjpeg, openssl, opus, 
+ossp-uuid, p11-kit, pandoc, pcre, pcre2, pidof, pinentry, pixman, pkg-config, 
+plotutils, pngquant, postgresql, protobuf, pyenv, pyenv-virtualenv, 
+pyenv-virtualenvwrapper, python, readline, redis, ripgrep, rlwrap, rtmpdump, 
+rubberband, rust, sdl2, shellcheck, shfmt, snappy, speex, sqlite, tesseract, 
+theora, tree, unbound, v8, vegeta, vramsteg, watch, wdiff, webp, wget, x264, 
 x265, xvid, xz, yajl, yaml-cpp, yarn, youtube-dl, zsh, zstd
 
-Homebrew Casks: 1password, atom, atom-beta, clamxav, dbvisualizer,
-disk-inventory-x, docker, dropbox, fantastical, firefox, flux, font-fira-code,
-font-hack-nerd-font, google-chrome, iexplorer, istumbler, iterm2, java,
-kaleidoscope, lingon-x, mactex, mcgimp, mysqlworkbench, silverlight, skype,
-slack, snes9x, sourcetree, spectacle, spotify, steam, sublime-text, texstudio,
-the-unarchiver, transmission, vagrant, visual-studio-code, vlc, whatsapp,
+Homebrew Casks: 1password, atom, atom-beta, clamxav, dbvisualizer, 
+disk-inventory-x, docker, dropbox, fantastical, firefox, flux, font-fira-code, 
+font-hack-nerd-font, google-chrome, iexplorer, istumbler, iterm2, java, 
+kaleidoscope, lingon-x, mactex, mcgimp, mysqlworkbench, silverlight, skype, 
+slack, snes9x, sourcetree, spectacle, spotify, steam, sublime-text, texstudio, 
+the-unarchiver, transmission, vagrant, visual-studio-code, vlc, whatsapp, 
 xquartz
 
-Atom Packages: atom-notes, auto-update-packages, highlight-selected,
-language-markdown, minimap, minimap-highlight-selected, minimap-selection,
+Atom Packages: atom-notes, auto-update-packages, highlight-selected, 
+language-markdown, minimap, minimap-highlight-selected, minimap-selection, 
 native-ui, pen-paper-coffee-syntax, sort-lines, trailing-spaces, typewriter
 
-Code Packages: BriteSnow.vscode-toggle-quotes, DavidAnson.vscode-markdownlint,
-GrapeCity.gc-excelviewer, HookyQR.beautify, James-Yu.latex-workshop,
-ban.spellright, bibhasdn.unique-lines, dbaeumer.vscode-eslint, eamodio.gitlens,
-esbenp.prettier-vscode, foxundermoon.shell-format,
-lehni.vscode-titlebar-less-macos, magicstack.MagicPython,
-mgmcdermott.vscode-language-babel, mike-co.import-sorter,
-mohsen1.prettify-json, ms-python.python, ms-vscode.Go,
-richie5um2.vscode-sort-json, spywhere.guides, sysoev.language-stylus,
+Code Packages: BriteSnow.vscode-toggle-quotes, DavidAnson.vscode-markdownlint, 
+GrapeCity.gc-excelviewer, HookyQR.beautify, James-Yu.latex-workshop, 
+ban.spellright, bibhasdn.unique-lines, dbaeumer.vscode-eslint, eamodio.gitlens, 
+esbenp.prettier-vscode, foxundermoon.shell-format, 
+lehni.vscode-titlebar-less-macos, magicstack.MagicPython, 
+mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
+mohsen1.prettify-json, ms-python.python, ms-vscode.Go, 
+richie5um2.vscode-sort-json, spywhere.guides, sysoev.language-stylus, 
 timonwong.shellcheck, vscode-icons-team.vscode-icons, waderyan.gitblame
 
-Pip Packages: git-sweep3k, glances, httpie, inflection, patch,
+Pip Packages: git-sweep3k, glances, httpie, inflection, patch, 
 python-json-logger, termcolor
 
-Conda Packages: flake8, ipython, isort, jedi, nose, pep8, pygments, pylint,
+Conda Packages: flake8, ipython, isort, jedi, nose, pep8, pygments, pylint, 
 pytest, python-dateutil, pytz, pyyaml, readline, requests, setuptools, six
 
 Gem Packages: jekyll, lolcat, rake, rdoc, rubocop
 
-Node Modules: @ibm/plex, JSON, all-contributors-cli, coffeelint, coffeescript,
-cson, decaffeinate, dockerlint, eslint, external-ip, generator-code,
-generator-generator, geoip-lite, js-beautify, json-stable-stringify, moment,
-nesh, npm-check-updates, npm-remote-ls, npm-why, prettier, raml2html, standard,
+Node Modules: @ibm/plex, JSON, all-contributors-cli, coffeelint, coffeescript, 
+cson, decaffeinate, dockerlint, eslint, external-ip, generator-code, 
+generator-generator, geoip-lite, js-beautify, json-stable-stringify, moment, 
+nesh, npm-check-updates, npm-remote-ls, npm-why, prettier, raml2html, standard, 
 tmpin, typescript, yo
 
-Go Packages: github.com/BurntSushi/toml, github.com/acroca/go-symbols,
-github.com/cweill/gotests, github.com/davidrjenni/reftools,
-github.com/fatih/gomodifytags, github.com/golang/lint,
-github.com/haya14busa/goplay, github.com/josharian/impl,
-github.com/karrick/godirwalk, github.com/mdempsky/gocode,
-github.com/ramya-rao-a/go-outline, github.com/rogpeppe/godef,
-github.com/uudashr/gopkgs, golang.org/x/crypto, golang.org/x/lint,
-golang.org/x/net, golang.org/x/sync, golang.org/x/sys, golang.org/x/text,
+Go Packages: github.com/BurntSushi/toml, github.com/acroca/go-symbols, 
+github.com/cweill/gotests, github.com/davidrjenni/reftools, 
+github.com/fatih/gomodifytags, github.com/golang/lint, 
+github.com/haya14busa/goplay, github.com/josharian/impl, 
+github.com/karrick/godirwalk, github.com/mdempsky/gocode, 
+github.com/ramya-rao-a/go-outline, github.com/rogpeppe/godef, 
+github.com/uudashr/gopkgs, golang.org/x/crypto, golang.org/x/lint, 
+golang.org/x/net, golang.org/x/sync, golang.org/x/sys, golang.org/x/text, 
 golang.org/x/tools, honnef.co/go/tools
 
 Cargo Packages: cargo-update, loc

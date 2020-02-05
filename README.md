@@ -61,7 +61,6 @@ with the argument `--help`.
 | [`alert`](bin/alert) | Provides shell level windowed alerting system. |
 | [`backmost`](bin/backmost) | Send the current frontmost windowed macOS application to the back. |
 | [`capture_x`](bin/capture_x) | Creates a screenshot of selected window on X11. |
-| [`cht`](bin/cht) | # |
 | [`cleanup`](bin/cleanup) | Cleans system and application caches on macOS. |
 | [`codeclimate`](bin/codeclimate) | Runs Code Climate on the current working directory. |
 | [`colortest`](bin/colortest) | Prints out an entire color palette of terminal color codes. |

@@ -24,29 +24,6 @@ Creates a screenshot of selected window on X11.
 ```
 
 * * *
-### [`cht`](cht)
-```
-Usage:
-
-    cht [OPTIONS|QUERY]
-
-Options:
-
-    QUERY                   process QUERY and exit
-
-    --help                  show this help
-    --shell [LANG]          shell mode (open LANG if specified)
-
-    --standalone-install [DIR|help]
-                            install cheat.sh in the standalone mode
-                            (by default, into ~/.cheat.sh/)
-
-    --mode [auto|lite]      set (or display) mode of operation
-                            * auto - prefer the local installation
-                            * lite - use the cheat sheet server
-```
-
-* * *
 ### [`cleanup`](cleanup)
 ```
 usage: cleanup [options]

@@ -11,6 +11,7 @@ Configure and install everything:
 ```bash
 cd && curl -LOks https://github.com/lexicalunit/dotfiles/tarball/master
 tar xvzf master --strip 1 -C . && rm master
+bin/equip -f dotfiles
 bin/equip -f all
 ```
 

@@ -1664,6 +1664,10 @@ step_cargo() {
 # Step env
 ################################################################################
 step_env() {
+    if ! git status >/dev/null 2>&1; then
+        abort "Please run step dotfiles first"
+    fi
+
     # install submodules
     run "cd '$HOME'" || exit 1
     run "git submodule update --init --recursive"

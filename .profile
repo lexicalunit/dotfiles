@@ -97,7 +97,7 @@ test -d "$GOPATH/bin" && PATH="$PATH:$_"
 test -d /usr/local/opt/go/libexec/bin && PATH="$PATH:$_"
 export GOPATH
 
-# Make sure user utilities take precedence
+# User utilities
 test -d "$HOME/bin" && PATH="$_:$PATH"
 
 export PATH
@@ -431,3 +431,7 @@ if $INTERACTIVE; then
     export CLICOLOR=1
 
 fi # if $INTERACTIVE
+
+# Make sure user utilities always take precedence
+test -d "$HOME/bin" && PATH="$_:$PATH"
+export PATH

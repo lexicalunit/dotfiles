@@ -1092,7 +1092,8 @@ step_brew() {
         abort "Failed to install Homebrew"
     fi
 
-    run "find '$(brew --prefix)' -maxdepth 1 -print0 | xargs -0 -n 1 -P 8 sudo chown -R '$(whoami)'"
+    run "sudo -v"
+    run "find '$(brew --prefix)' -mindepth 1 -maxdepth 1 -print0 | xargs -0 -n 1 -P 8 sudo chown -R '$(whoami)'"
 
     ensure_homebrew_updated
 

@@ -24,6 +24,7 @@
 /.gitconfig-user-*
 /.npmrc
 /.openvpn-connect.json
+/.gdk.yml
 
 # Parallels
 /*Parallels*

@@ -16,7 +16,7 @@ HOMEBREW_FORMULAS="                                                            \
     jez/formulae/pandoc-sidenote jhead jo jpeg jq kafkacat krb5 lame leptonica \
     libass libassuan libbluray libevent libffi libgcrypt libgpg-error libidn2  \
     libksba libmpc libogg libpng librdkafka libsamplerate libserdes libsndfile \
-    libsoxr libssh2 libtasn1 libtiff libunistring libusb libusb-compat         \
+    libsoxr libssh2 libtasn1 libtiff libtool libunistring libusb libusb-compat \
     libvidstab libvo-aacenc libvorbis libvpx libyaml little-cms2 lz4 lzlib lzo \
     makedepend mas md5sha1sum memcached mpfr mtr mysql ncftp ncurses net-snmp  \
     nettle nginx node npth nvm oniguruma opencore-amr openjpeg openssl opus    \
@@ -1045,8 +1045,10 @@ ensure_homebrew_updated() {
     ensure_no_anaconda
 
     # unlink keg-only formulas which should not be not symlinked into /usr/local
-    KEG_ONLY="gettext libffi openssl readline sqlite"
-    run "brew unlink $KEG_ONLY"
+    KEG_ONLY=(gettext libffi libtool openssl readline sqlite)
+    for f in "${KEG_ONLY[@]}"; do
+        run "brew unlink $f"
+    done
 
     run "brew update"
     run "brew upgrade"
@@ -1113,11 +1115,11 @@ step_brew() {
     run "chmod +w /usr/local/Cellar/pcre/*/lib/*.dylib 2>/dev/null"
 
     # install glibtool and glibtoolize as the defaults
-    run "ln -sf /usr/local/bin/glibtool /usr/local/bin/libtool"
-    run "ln -sf /usr/local/bin/glibtoolize /usr/local/bin/libtoolize"
+    # run "ln -sf /usr/local/bin/glibtool /usr/local/bin/libtool"
+    # run "ln -sf /usr/local/bin/glibtoolize /usr/local/bin/libtoolize"
 
     # install the git remote-hg helper
-    run "ln -sf $(brew ls -v git | grep git-remote-hg) /usr/local/bin"
+    # run "ln -sf $(brew ls -v git | grep git-remote-hg) /usr/local/bin"
 
     # install Amphetamine via Mac Apple Store CLI
     if [[ ! -e "/Applications/Amphetamine.app" ]]; then

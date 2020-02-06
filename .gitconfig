@@ -71,3 +71,8 @@
 	path = .gitconfig-user
 [includeIf "gitdir:~/source/invision/"]
 	path = .gitconfig-user-invision
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

@@ -37,4 +37,8 @@ fi
 
 set -ue
 PARENT="$(git parent)"
-run "git sync '$PARENT' && git rebase 'origin/$PARENT'"
+if [[ -n "$PARENT" ]]; then
+    run "git sync '$PARENT' && git rebase 'origin/$PARENT'"
+else
+    run "git sync && git rebase origin/master"
+fi

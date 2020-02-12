@@ -9,3 +9,6 @@
 "atom-text-editor":
   # Replaces `editor:select-line` with `atom-notes:toggle`
   "cmd-l": "atom-notes:toggle"
+
+  # Use the same spell check shortcut as vscode
+  "cmd-.": "spell-check:correct-misspelling"

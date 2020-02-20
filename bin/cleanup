@@ -75,6 +75,7 @@ test -d "$HOME/.electron-gyp" && run "rm -rf '$_'"
 test -d "$HOME/.electron" && run "rm -rf '$_'"
 test -d "$HOME/.node-gyp" && run "rm -rf '$_'"
 test -d "$HOME/.pylint.d" && run "rm -rf '$_'"
+test -d "$HOME/.solargraph" && run "rm -rf '$_'"
 test -e "$HOME/.babel.json" && run "rm -f '$_'"
 
 # brew

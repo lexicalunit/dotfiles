@@ -116,6 +116,7 @@
 /.sbt
 /.scala_history
 /.sh_history*
+/.solargraph
 /.sqlite_history
 /.ssh
 /.subversion

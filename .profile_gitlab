@@ -53,3 +53,6 @@ if [[ -n $ZSH_VERSION ]]; then
         chpwd_functions+=("_enter_go_path_for_gitlab_projects")
     fi
 fi
+
+# Makes our rspec start up times significantly faster.
+export ENABLE_SPRING=1

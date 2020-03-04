@@ -1,7 +1,7 @@
 AllCops:
   TargetRubyVersion: 2.3
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
   IgnoredPatterns:
     - \A#
@@ -17,7 +17,7 @@ Style/StringLiterals:
   Enabled: false
   EnforcedStyle: double_quotes
 
-Style/TrailingCommaInLiteral:
+Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: comma
 
 Style/TrailingCommaInArguments:

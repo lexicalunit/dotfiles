@@ -7,7 +7,7 @@
   "editor.renderWhitespace": "boundary",
   "editor.wordWrapColumn": 120,
   "go.formatTool": "goimports",
-  "go.lintTool": "gometalinter",
+  "go.lintTool": "golint",
   "go.toolsGopath": "/usr/local/lib/gopath:/usr/local/lib/invision/gopath",
   "window.nativeTabs": false,
   "workbench.colorTheme": "Solarized Light",
@@ -37,6 +37,9 @@
   "editor.renderIndentGuides": false,
   "workbench.editor.showTabs": true,
   "[css]": {
+    "editor.tabSize": 2
+  },
+  "[ruby]": {
     "editor.tabSize": 2
   },
   "[typescript]": {

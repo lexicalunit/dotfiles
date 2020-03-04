@@ -277,13 +277,45 @@ if $INTERACTIVE; then
     alias pygmentize='pygmentize -O bg=dark'
     alias yapf='yapf --style="{based_on_style: pep8, column_limit: 120}" '
     fa() {
-        rg --type-not svg \
+        rg \
+            --type-not svg \
             --trim \
             --sort modified \
             --smart-case \
             --pretty \
             --max-columns "$(stty size | cut -d' ' -f2)" \
             "$@"
+    }
+    ra() {
+        rg \
+            --type-not csv \
+            --type-not json \
+            --type-not lock \
+            --type-not markdown \
+            --type-not svg \
+            --type-not yaml \
+            -g '!*_spec*' \
+            -g '!*.env' \
+            -g '!*.example' \
+            -g '!*.gitignore' \
+            -g '!*.po' \
+            -g '!*.postgresql' \
+            -g '!*.pot' \
+            -g '!*.rake' \
+            -g '!*.sample' \
+            -g '!*/qa/*' \
+            -g '!*/spec/*' \
+            -g '!qa/*' \
+            -g '!spec/*' \
+            --trim \
+            --sort modified \
+            --smart-case \
+            --pretty \
+            --max-columns "$(stty size | cut -d' ' -f2)" \
+            "$@"
+    }
+    rab() {
+        ra -g '!*.haml' -g '!*.vue' -g '!*.erb' -g '!*.js' "$@"
     }
     alias ltr='ls -l -tmodified -snew '
 

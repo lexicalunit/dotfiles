@@ -373,6 +373,17 @@ Files with a .mjs extension will always be evaluated as modules.
 ```
 
 * * *
+### [`m`](m)
+```
+usage: m [options]
+
+Toggle blinkstick between busy and available.
+
+options:
+ -h or --help shows usage help
+```
+
+* * *
 ### [`macosver`](macosver)
 ```
 usage: macosver

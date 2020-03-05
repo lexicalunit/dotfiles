@@ -1368,6 +1368,9 @@ step_python() {
     run "sudo /usr/local/bin/pip install isort"
     run "sudo /usr/local/bin/pip install yapf"
 
+    # I want to use the blinkstick binary in Automator flows
+    run "sudo /usr/local/bin/pip install blinkstick"
+
     # setup user symlinks for some tools to make IDE integration easier
     run "ln -sf '/usr/local/bin/isort' '$HOME/bin/.'"
     run "ln -sf '/usr/local/bin/yapf' '$HOME/bin/.'"

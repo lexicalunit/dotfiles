@@ -113,5 +113,7 @@
   },
   "spellright.notificationClassByParser": {
     "code": "information"
-  }
+  },
+  "ruby.rubocop.useBundler": true,
+  "ruby.rubocop.suppressRubocopWarnings": true
 }

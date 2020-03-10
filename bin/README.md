@@ -16,6 +16,17 @@ usage: backmost [-h|--help]
 ```
 
 * * *
+### [`busy`](busy)
+```
+usage: busy [options]
+
+Turn on a busy light.
+
+options:
+ -h or --help shows usage help
+```
+
+* * *
 ### [`capture_x`](capture_x)
 ```
 usage: capture_x [-h|--help]

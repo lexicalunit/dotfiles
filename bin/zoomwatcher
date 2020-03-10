@@ -16,32 +16,27 @@ if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     usage
 fi
 
+# shellcheck source=.blinkstick_control
+# shellcheck disable=SC1091
+source "$HOME/.blinkstick_control" || echo "$(tput bold)error: ~/.blinkstick_control not installed!$(tput sgr0)" >&2
+
 APP="zoom.us"
 OP="osascript -e 'tell application \"System Events\" to (name of processes) contains \"$APP\"'"
 
-LOCK="/tmp/.blinkstick-toggle"
-rm -f "$LOCK"
-touch "$LOCK"
-
-is_red() {
-    test "$(cat "$LOCK")" == "red"
-}
-
 is_running() {
-    INS="$(eval "$OP")"
-    test "$INS" == "true"
+    test "$(eval "$OP")" == "true"
 }
 
 while true; do
-    if is_running; then
-        if ! is_red; then
-            echo "red" > "$LOCK"
-            /usr/local/bin/blinkstick --set-color red
-        fi
-    else
-        if is_red; then
-            echo "green" > "$LOCK"
-            /usr/local/bin/blinkstick --set-color green
+    if ! blink_is_busy; then
+        if is_running; then
+            if ! blink_is_red; then
+                blink_set_color red
+            fi
+        else
+            if ! blink_is_green; then
+                blink_set_color green
+            fi
         fi
     fi
     sleep 1

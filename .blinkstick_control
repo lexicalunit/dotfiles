@@ -1,0 +1,32 @@
+#!.blinkstick_control
+
+BLINK_LOCK="/tmp/.blinkstick-toggle"
+touch "$BLINK_LOCK"
+
+BS="/usr/local/bin/blinkstick"
+
+blink_is_color() {
+    test "$(cat "$BLINK_LOCK")" == "$1"
+}
+
+blink_is_red() {
+    blink_is_color red
+}
+
+blink_is_green() {
+    blink_is_color green
+}
+
+blink_is_busy() {
+    blink_is_color busy
+}
+
+blink_set_color() {
+    echo "$1" > "$BLINK_LOCK"
+    eval "$BS --set-color '$1'"
+}
+
+blink_set_busy() {
+    echo "busy" > "$BLINK_LOCK"
+    eval "$BS --set-color '$1'"
+}

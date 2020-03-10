@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# A service that watches for zoom and turns a blinkstick red if it is running.
+
+usage() {
+    echo "usage: ${0##*/} [options]" 1>&2
+    echo "" 1>&2
+    echo "A service that watches for zoom and turns a blinkstick red if it is running." 1>&2
+    echo ""
+    echo "options:"
+    echo " -h or --help shows usage help" 1>&2
+    exit 1
+}
+
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
+    usage
+fi
+
+APP="zoom.us"
+OP="osascript -e 'tell application \"System Events\" to (name of processes) contains \"$APP\"'"
+
+LOCK="/tmp/.blinkstick-toggle"
+rm -f "$LOCK"
+touch "$LOCK"
+
+is_red() {
+    test "$(cat "$LOCK")" == "red"
+}
+
+is_running() {
+    INS="$(eval "$OP")"
+    test "$INS" == "true"
+}
+
+while true; do
+    if is_running; then
+        if ! is_red; then
+            echo "red" > "$LOCK"
+            /usr/local/bin/blinkstick --set-color red
+        fi
+    else
+        if is_red; then
+            echo "green" > "$LOCK"
+            /usr/local/bin/blinkstick --set-color green
+        fi
+    fi
+    sleep 1
+done

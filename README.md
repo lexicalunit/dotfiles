@@ -85,7 +85,6 @@ with the argument `--help`.
 | [`golist`](bin/golist) | Lists all user installed go packages. |
 | [`install_odbc`](bin/install_odbc) | Sets up ODBC. |
 | [`jsc`](bin/jsc) | Symbolic link to '/System/Library/Frameworks/JavaScriptCore.framewo... |
-| [`m`](bin/m) | Toggle blinkstick between busy and available. |
 | [`macosver`](bin/macosver) | Prints current macOS version information. |
 | [`nodeula-rasa`](bin/nodeula-rasa) | Gives you a total clean slate in your node project. |
 | [`nopw`](bin/nopw) | Enables password-less ssh TO username@remotehost FROM localhost. |
@@ -106,6 +105,7 @@ with the argument `--help`.
 | [`xf`](bin/xf) | Extract common file formats. |
 | [`yaml2json`](bin/yaml2json) | Converts yaml input to json output. |
 | [`youtube2mp3`](bin/youtube2mp3) | Downloads the audio from a youtube video given the URL. |
+| [`zoomwatcher`](bin/zoomwatcher) | A service that watches for zoom and turns a blinkstick red if it is... |
 
 # What does `equip all` install?
 

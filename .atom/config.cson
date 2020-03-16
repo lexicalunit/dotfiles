@@ -135,6 +135,7 @@
       "text.plain.null-grammar"
       "text.plain"
     ]
+    useLocales: false
   tabs:
     alwaysShowTabBar: false
   typewriter:

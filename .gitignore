@@ -107,6 +107,7 @@
 /.odbc.ini
 /.oracle_jre_usage
 /.pgpass
+/.pry_history
 /.psql_history
 /.pyenv
 /.pyhistory

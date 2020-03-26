@@ -5,6 +5,10 @@ touch "$BLINK_LOCK"
 
 BS="/usr/local/bin/blinkstick"
 
+blink_reset() {
+    rm "$BLINK_LOCK"
+}
+
 blink_is_color() {
     test "$(cat "$BLINK_LOCK" 2>/dev/null)" == "$1"
 }

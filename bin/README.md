@@ -16,6 +16,17 @@ usage: backmost [-h|--help]
 ```
 
 * * *
+### [`br`](br)
+```
+usage: br [options]
+
+Reset blinkstick files.
+
+options:
+ -h or --help shows usage help
+```
+
+* * *
 ### [`busy`](busy)
 ```
 usage: busy [options]

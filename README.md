@@ -87,6 +87,7 @@ with the argument `--help`.
 | [`golist`](bin/golist) | Lists all user installed go packages. |
 | [`install_odbc`](bin/install_odbc) | Sets up ODBC. |
 | [`jsc`](bin/jsc) | Symbolic link to '/System/Library/Frameworks/JavaScriptCore.framewo... |
+| [`ks`](bin/ks) | Sometimes spring server gets caddywhompus, this script kills it. |
 | [`macosver`](bin/macosver) | Prints current macOS version information. |
 | [`nodeula-rasa`](bin/nodeula-rasa) | Gives you a total clean slate in your node project. |
 | [`nopw`](bin/nopw) | Enables password-less ssh TO username@remotehost FROM localhost. |

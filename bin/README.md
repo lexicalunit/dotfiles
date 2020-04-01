@@ -397,6 +397,17 @@ Files with a .mjs extension will always be evaluated as modules.
 ```
 
 * * *
+### [`ks`](ks)
+```
+usage: ks [options]
+
+Sometimes spring server gets caddywhompus, this script kills it.
+
+options:
+ -h or --help shows usage help
+```
+
+* * *
 ### [`macosver`](macosver)
 ```
 usage: macosver

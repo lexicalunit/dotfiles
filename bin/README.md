@@ -29,7 +29,7 @@ options:
 * * *
 ### [`busy`](busy)
 ```
-usage: busy [options]
+usage: busy [color] [options]
 
 Turn on a busy light.
 

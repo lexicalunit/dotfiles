@@ -3,7 +3,7 @@
 # Turn on a busy light.
 
 usage() {
-    echo "usage: ${0##*/} [options]" 1>&2
+    echo "usage: ${0##*/} [color] [options]" 1>&2
     echo "" 1>&2
     echo "Turn on a busy light." 1>&2
     echo ""
@@ -26,9 +26,11 @@ release() {
 
 trap release EXIT
 
+COLOR="${1:-red}"
+
 while true; do
     if ! blink_is_busy; then
-        blink_set_busy red
+        blink_set_busy "$COLOR"
     fi
     sleep 10
 done

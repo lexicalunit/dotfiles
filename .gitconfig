@@ -69,8 +69,8 @@
 	helper = osxkeychain
 [includeIf "gitdir:~/source/"]
 	path = .gitconfig-user
-[includeIf "gitdir:~/source/invision/"]
-	path = .gitconfig-user-invision
+[includeIf "gitdir:~/source/gitlab/"]
+	path = .gitconfig-user-gitlab
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

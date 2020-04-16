@@ -116,3 +116,6 @@ hirs
 hrc
 shellcheck
 blinkstick
+tox
+setuptools
+isort

@@ -97,6 +97,7 @@
 /.local/share/pry/pry_history
 /.local/share/recently-used.xbel
 /.m2
+/.matplotlib
 /.minikube
 /.mysql_history
 /.ncftp
@@ -122,6 +123,7 @@
 /.sqlite_history
 /.ssh
 /.subversion
+/.tox
 /.travis/config.yml
 /.travis/travis.sh
 /.v8flags*

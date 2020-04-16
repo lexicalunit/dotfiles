@@ -434,6 +434,17 @@ Puts your public ssh key in the authorized_keys on the remote host.
 ```
 
 * * *
+### [`npm-update`](npm-update)
+```
+usage: npm-update [options]
+
+Tries to update package dependencies to latest using ncu, npm, and audit.
+
+options:
+ -h or --help shows usage help
+```
+
+* * *
 ### [`prettier`](prettier)
 Symbolic link to '/usr/local/bin/prettier'
 ```

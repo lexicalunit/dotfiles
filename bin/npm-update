@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Tries to update package dependencies to latest using ncu, npm, and audit.
+
+usage() {
+    echo "usage: ${0##*/} [options]" 1>&2
+    echo "" 1>&2
+    echo "Tries to update package dependencies to latest using ncu, npm, and audit." 1>&2
+    echo ""
+    echo "options:"
+    echo " -h or --help shows usage help" 1>&2
+    exit 1
+}
+
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
+    usage
+fi
+
+# shellcheck source=.shell_control
+# shellcheck disable=SC1091
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
+# sometimes a single iteration doesn't do it, probably b/c npm is awful
+for _ in {1..2}; do
+    run "npm i"
+    run "ncu -u"
+done
+
+run "npm audit fix --force"

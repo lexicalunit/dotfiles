@@ -60,6 +60,16 @@
     "editor.detectIndentation": false,
     "editor.tabSize": 4
   },
+  "[python]": {
+    "editor.rulers": [
+        90
+    ],
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
+  "python.formatting.provider": "black",
   "explorer.autoReveal": false,
   "editor.tokenColorCustomizations": {
     "textMateRules": [
@@ -115,5 +125,7 @@
     "code": "information"
   },
   "ruby.rubocop.useBundler": true,
-  "ruby.rubocop.suppressRubocopWarnings": true
+  "ruby.rubocop.suppressRubocopWarnings": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.pylintEnabled": false,
 }

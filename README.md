@@ -91,6 +91,7 @@ with the argument `--help`.
 | [`macosver`](bin/macosver) | Prints current macOS version information. |
 | [`nodeula-rasa`](bin/nodeula-rasa) | Gives you a total clean slate in your node project. |
 | [`nopw`](bin/nopw) | Enables password-less ssh TO username@remotehost FROM localhost. |
+| [`npm-update`](bin/npm-update) | Tries to update package dependencies to latest using ncu, npm, and ... |
 | [`prettier`](bin/prettier) | Symbolic link to '/usr/local/bin/prettier' |
 | [`root`](bin/root) | Prints the root of the current repository. |
 | [`set_wallpaper`](bin/set_wallpaper) | Uses Cocoa classes via PyObjC to set a desktop wallpaper on all scr... |

@@ -36,6 +36,7 @@
 	undo = reset HEAD~1 --soft
 	up = !git_up
 	wdiff = diff --color-words --word-diff
+	what = !bash git_what
 [color]
 	ui = true
 [color "branch"]

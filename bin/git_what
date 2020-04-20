@@ -1,0 +1,19 @@
+#!/bin/bash -e
+
+# Build a useful git description of the changes in this branch.
+
+usage() {
+    echo "usage: ${0##*/} [options]" 1>&2
+    echo "" 1>&2
+    echo "Build a useful git description of the changes in this branch." 1>&2
+    echo ""
+    echo "options:"
+    echo " -h or --help shows usage help" 1>&2
+    exit 1
+}
+
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
+    usage
+fi
+
+git --no-pager log --reverse --format="**%H %s**%n%n%b" master..

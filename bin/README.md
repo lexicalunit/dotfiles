@@ -346,6 +346,17 @@ options:
 ```
 
 * * *
+### [`git_what`](git_what)
+```
+usage: git_what [options]
+
+Build a useful git description of the changes in this branch.
+
+options:
+ -h or --help shows usage help
+```
+
+* * *
 ### [`golist`](golist)
 ```
 usage: golist [-h|--help] [-r]

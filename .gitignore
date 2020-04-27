@@ -35,6 +35,9 @@
 /.local/share/desktop-directories
 /.local/share/mime/packages
 
+# Poetry
+/.local/share/virtualenvs
+
 # Minecraft
 /Twitch
 /.mputils/settings.dat

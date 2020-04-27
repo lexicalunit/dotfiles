@@ -182,10 +182,10 @@ richie5um2.vscode-sort-json, spywhere.guides, sysoev.language-stylus,
 timonwong.shellcheck, vscode-icons-team.vscode-icons, waderyan.gitblame
 
 Pip Packages: git-sweep3k, glances, httpie, inflection, patch, 
-python-json-logger, termcolor
+python-json-logger, pyyaml, termcolor
 
 Conda Packages: flake8, ipython, isort, jedi, nose, pep8, pygments, pylint, 
-pytest, python-dateutil, pytz, pyyaml, readline, requests, setuptools, six
+pytest, python-dateutil, pytz, readline, requests, setuptools, six
 
 Gem Packages: jekyll, lolcat, rake, rdoc, rubocop
 

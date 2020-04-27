@@ -122,3 +122,5 @@ isort
 py
 codcov
 mit
+pytest-mpl
+Homebrew

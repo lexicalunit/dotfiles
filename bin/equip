@@ -53,11 +53,12 @@ CODE_PACKAGES="                                                                \
     timonwong.shellcheck vscode-icons-team.vscode-icons waderyan.gitblame"
 
 PIP_PACKAGES="                                                                 \
-    git-sweep3k glances httpie inflection patch python-json-logger termcolor"
+    git-sweep3k glances httpie inflection patch python-json-logger pyyaml      \
+    termcolor"
 
 CONDA_PACKAGES="                                                               \
     flake8 ipython isort jedi nose pep8 pygments pylint pytest python-dateutil \
-    pytz pyyaml readline requests setuptools six"
+    pytz readline requests setuptools six"
 
 GEM_PACKAGES="                                                                 \
     jekyll lolcat rake rdoc rubocop"

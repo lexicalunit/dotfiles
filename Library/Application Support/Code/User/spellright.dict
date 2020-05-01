@@ -124,3 +124,5 @@ codcov
 mit
 pytest-mpl
 Homebrew
+pytest
+pypi

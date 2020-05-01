@@ -54,5 +54,6 @@ if [[ -n $ZSH_VERSION ]]; then
     fi
 fi
 
-# Makes our rspec start up times significantly faster.
-export ENABLE_SPRING=1
+# This should makes our rspec start up times significantly faster,
+# but spring seems to shit the bed all the time and it's not worth it.
+export ENABLE_SPRING=0

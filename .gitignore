@@ -95,6 +95,7 @@
 /.jupyter/migrated
 /.kube
 /.lesshst
+/.local/share/heroku
 /.local/share/IsolatedStorage
 /.local/share/nvim/shada/main.shada
 /.local/share/pry/pry_history
@@ -104,6 +105,7 @@
 /.minikube
 /.mysql_history
 /.ncftp
+/.netrc
 /.node_repl_history
 /.node-gyp
 /.npm

@@ -32,7 +32,7 @@
   "editor.codeLens": false,
   "files.insertFinalNewline": true,
   "explorer.openEditors.visible": 0,
-  "editor.wordWrap": "bounded",
+  "editor.wordWrap": "off",
   "editor.multiCursorModifier": "alt",
   "editor.renderIndentGuides": false,
   "workbench.editor.showTabs": true,

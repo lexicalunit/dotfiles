@@ -76,11 +76,11 @@ fi
 
 # Add specific application paths, such as Python, rvm, etc...
 test -d "$HOME/.cargo/bin" && PATH="$PATH:$_"
-test -d "$HOME/.rvm/bin" && PATH="$PATH:$_"
 test -d "$HOME/.log-ninja" && PATH="$PATH:$_"
 test -d /usr/local/lib/svn-python && PYTHONPATH="$_:$PYTHONPATH"
 test -d /opt/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
 test -d /usr/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
+test -d "$HOME/.rvm/bin" && PATH="$_:$PATH" # rvm throws a fit if its path isn't first
 
 # Add npm dev installed dependencies per project
 PATH="node_modules/.bin:$PATH"

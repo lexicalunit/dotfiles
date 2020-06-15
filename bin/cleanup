@@ -22,12 +22,17 @@ set -e
 # shellcheck disable=SC1091
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
+# check if gatekeeper is enabled
+GATEKEEPER="$(spctl --status)"
+
 DONE=0
 BEFORE="$(df -B1 --output=avail "$HOME" | grep -iv avail)"
-GATEKEEPER="$(spctl --status)"
 show "disk space available before cleanup: $(numfmt --to=iec-i --suffix=B -- "$BEFORE")"
 
 report() {
+    if [[ "$GATEKEEPER" == "assessments enabled" ]]; then
+        run "sudo spctl --master-enable"
+    fi
     if [[ $DONE == 0 ]]; then
         show -i "clean up ended prematurely because a command failed!"
     fi
@@ -36,9 +41,6 @@ report() {
     RECLAIMED="$((AFTER - BEFORE))"
     if [[ $RECLAIMED -gt "0" ]]; then
         show "disk space reclaimed by cleanup: $(numfmt --to=iec-i --suffix=B -- "$RECLAIMED")"
-    fi
-    if [[ "$GATEKEEPER" == "assessments enabled" ]]; then
-        sudo spctl --master-enable
     fi
 }
 trap report EXIT
@@ -53,7 +55,7 @@ done 2>/dev/null &
 
 # disable gatekeeper
 if [[ "$GATEKEEPER" == "assessments enabled" ]]; then
-    sudo spctl --master-disable
+    run "sudo spctl --master-disable"
 fi
 
 # trash

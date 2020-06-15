@@ -79,16 +79,51 @@ run "rm -rf ~/Library/Application\ Support/MobileSync/Backup/*"
 # xcode
 run "rm -rf ~/Library/Developer/Xcode/DerivedData/*"
 run "rm -rf ~/Library/Developer/Xcode/Archives/*"
+if command -v xcrun >/dev/null 2>&1; then
+    run "osascript -e 'tell application \"com.apple.CoreSimulator.CoreSimulatorService\" to quit'"
+    run "osascript -e 'tell application \"iOS Simulator\" to quit'"
+    run "osascript -e 'tell application \"Simulator\" to quit'"
+    run "xcrun simctl erase all"
+fi
+
+# cocoapods
+test -d "$HOME/Library/Caches/CocoaPods" && run "rm -rf '$_'/*"
+
+# chrome
+test -d "$HOME/Library/Caches/Google/Chrome" && run "rm -rf '$_'/*"
+
+# gradle
+test -d "$HOME/.gradle/caches/" && run "rm -rf '$_'"
+
+# dropbox
+test -d "$HOME/Dropbox/.dropbox.cache" && run "rm -rf '$_'/*"
+
+# composer
+command -v composer >/dev/null 2>&1 && run "composer clearcache"
+
+# bundler
+test -d "$HOME/.bundle/cache" && run "rm -rf '$_'"
 
 # various user caches
-test -d "$HOME/.bundle/cache" && run "rm -rf '$_'"
 test -d "$HOME/.cache" && run "rm -rf '$_'"
+
+# ccache
 test -d "$HOME/.ccache" && run "rm -rf '$_'"
+
+# electron
 test -d "$HOME/.electron-gyp" && run "rm -rf '$_'"
 test -d "$HOME/.electron" && run "rm -rf '$_'"
+
+# node-gyp
 test -d "$HOME/.node-gyp" && run "rm -rf '$_'"
+
+# pylint
 test -d "$HOME/.pylint.d" && run "rm -rf '$_'"
+
+# solargraph
 test -d "$HOME/.solargraph" && run "rm -rf '$_'"
+
+# babel
 test -e "$HOME/.babel.json" && run "rm -f '$_'"
 
 # brew
@@ -115,6 +150,14 @@ command -v go >/dev/null 2>&1 && run "go clean -cache -modcache -testcache -r"
 
 # conda
 command -v conda >/dev/null 2>&1 && run "conda clean -a --yes"
+
+# pip
+test -d "$HOME/Library/Caches/pip" && run "rm -rf '$_'"
+
+# pyenv
+if [[ -n "$PYENV_VIRTUALENV_CACHE_PATH" ]]; then
+    test -d "$PYENV_VIRTUALENV_CACHE_PATH" && run "rm -rf '$_'"
+fi
 
 # npm
 command -v npm >/dev/null 2>&1 && run "npm -g cache clean --force"

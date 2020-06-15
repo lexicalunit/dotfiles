@@ -37,6 +37,17 @@ report() {
 }
 trap report EXIT
 
+git_cleanup() {
+    find "$HOME" -maxdepth 3 \
+        -not \( -path "$HOME/Library" -prune \) \
+        -not \( -path "$HOME/.Trash" -prune \) \
+        -type d -name .git | while read -r root;
+    do
+        run "cd $root" || exit 1
+        run "git gc"
+    done
+}
+
 # grab and hold sudo
 sudo -v
 while true; do
@@ -108,6 +119,9 @@ command -v npm >/dev/null 2>&1 && run "npm -g cache clean --force"
 
 # atom
 command -v apm >/dev/null 2>&1 && run "apm clean"
+
+# git
+command -v git >/dev/null 2>&1 && git_cleanup
 
 # docker
 show "docker: checking if up..."

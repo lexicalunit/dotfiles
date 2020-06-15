@@ -582,9 +582,9 @@ Symbolic link to '/usr/local/bin/shfmt'
 ```
 usage: shfmt [flags] [path ...]
 
-If no arguments are given, standard input will be used. If a given path
-is a directory, it will be recursively searched for shell files - both
-by filename extension and by shebang.
+If the only argument is a dash ('-') or no arguments are given, standard input
+will be used. If a given path is a directory, it will be recursively searched
+for shell files - both by filename extension and by shebang.
 
   -version  show version and exit
 
@@ -606,6 +606,7 @@ Printer options:
   -ci       switch cases will be indented
   -sr       redirect operators will be followed by a space
   -kp       keep column alignment paddings
+  -fn       function opening braces are placed on a separate line
 
 Utilities:
 
@@ -952,8 +953,8 @@ Options:
     --prefer-ffmpeg                  Prefer ffmpeg over avconv for running the postprocessors (default)
     --ffmpeg-location PATH           Location of the ffmpeg/avconv binary; either the path to the binary or its
                                      containing directory.
-    --exec CMD                       Execute a command on the file after downloading, similar to find's -exec syntax.
-                                     Example: --exec 'adb push {} /sdcard/Music/ && rm {}'
+    --exec CMD                       Execute a command on the file after downloading and post-processing, similar to
+                                     find's -exec syntax. Example: --exec 'adb push {} /sdcard/Music/ && rm {}'
     --convert-subs FORMAT            Convert the subtitles to other format (currently supported: srt|ass|vtt|lrc)
 ```
 

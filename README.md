@@ -177,12 +177,12 @@ native-ui, pen-paper-coffee-syntax, sort-lines, trailing-spaces, typewriter
 Code Packages: BriteSnow.vscode-toggle-quotes, DavidAnson.vscode-markdownlint, 
 GrapeCity.gc-excelviewer, HookyQR.beautify, James-Yu.latex-workshop, 
 ban.spellright, bibhasdn.unique-lines, dbaeumer.vscode-eslint, eamodio.gitlens, 
-esbenp.prettier-vscode, foxundermoon.shell-format, 
+esbenp.prettier-vscode, foxundermoon.shell-format, golang.Go, 
 lehni.vscode-titlebar-less-macos, magicstack.MagicPython, 
 mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
-mohsen1.prettify-json, ms-python.python, ms-vscode.Go, 
-richie5um2.vscode-sort-json, spywhere.guides, sysoev.language-stylus, 
-timonwong.shellcheck, vscode-icons-team.vscode-icons, waderyan.gitblame
+mohsen1.prettify-json, ms-python.python, richie5um2.vscode-sort-json, 
+spywhere.guides, sysoev.language-stylus, timonwong.shellcheck, 
+vscode-icons-team.vscode-icons, waderyan.gitblame
 
 Pip Packages: git-sweep3k, glances, httpie, inflection, patch, 
 python-json-logger, pyyaml, termcolor

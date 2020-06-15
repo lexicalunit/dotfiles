@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 # Cleans system and application caches on macOS.
 
@@ -15,6 +15,8 @@ usage() {
 if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     usage
 fi
+
+set -e
 
 # shellcheck source=.shell_control
 # shellcheck disable=SC1091
@@ -36,17 +38,6 @@ report() {
     fi
 }
 trap report EXIT
-
-git_cleanup() {
-    find "$HOME" -maxdepth 3 \
-        -not \( -path "$HOME/Library" -prune \) \
-        -not \( -path "$HOME/.Trash" -prune \) \
-        -type d -name .git | while read -r root;
-    do
-        run "cd $root" || exit 1
-        run "git gc"
-    done
-}
 
 # grab and hold sudo
 sudo -v
@@ -121,7 +112,16 @@ command -v npm >/dev/null 2>&1 && run "npm -g cache clean --force"
 command -v apm >/dev/null 2>&1 && run "apm clean"
 
 # git
-command -v git >/dev/null 2>&1 && git_cleanup
+if command -v git >/dev/null 2>&1; then
+    find "$HOME" -maxdepth 3 \
+        -not \( -path "$HOME/Library" -prune \) \
+        -not \( -path "$HOME/.Trash" -prune \) \
+        -type d -name .git | while read -r root;
+    do
+        run "cd $root"
+        run "git gc"
+    done
+fi
 
 # docker
 show "docker: checking if up..."

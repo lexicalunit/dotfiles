@@ -100,7 +100,7 @@ fi
 command -v rvm >/dev/null 2>&1 && run "rvm cleanup all"
 
 # gem
-command -v gem >/dev/null 2>&1 && run "gem cleanup"
+command -v gem >/dev/null 2>&1 && run "yes | gem cleanup"
 
 # cargo
 if command -v cargo >/dev/null 2>&1; then
@@ -115,7 +115,7 @@ command -v conda >/dev/null 2>&1 && run "conda clean -a --yes"
 command -v npm >/dev/null 2>&1 && run "npm -g cache clean --force"
 
 # yarn
-# command -v yarn >/dev/null 2>&1 && run "yarn -g cache clean --force"
+command -v yarn >/dev/null 2>&1 && run "yarn cache clean --all --force"
 
 # atom
 command -v apm >/dev/null 2>&1 && run "apm clean"
@@ -127,8 +127,7 @@ if command -v git >/dev/null 2>&1; then
         -not \( -path "$HOME/.Trash" -prune \) \
         -type d -name .git | while read -r root;
     do
-        run "cd $root"
-        run "git gc"
+        run "cd $root && git gc --auto"
     done
 fi
 

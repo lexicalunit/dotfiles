@@ -202,13 +202,17 @@ native-ui, pen-paper-coffee-syntax, sort-lines, trailing-spaces, typewriter
 
 Code Packages: BriteSnow.vscode-toggle-quotes, DavidAnson.vscode-markdownlint, 
 GrapeCity.gc-excelviewer, HookyQR.beautify, James-Yu.latex-workshop, 
-ban.spellright, bibhasdn.unique-lines, dbaeumer.vscode-eslint, eamodio.gitlens, 
-esbenp.prettier-vscode, foxundermoon.shell-format, golang.Go, 
-lehni.vscode-titlebar-less-macos, magicstack.MagicPython, 
-mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
-mohsen1.prettify-json, ms-python.python, richie5um2.vscode-sort-json, 
-spywhere.guides, sysoev.language-stylus, timonwong.shellcheck, 
-vscode-icons-team.vscode-icons, waderyan.gitblame
+PascalReitermann93.vscode-yaml-sort, ban.spellright, be5invis.toml, 
+bibhasdn.unique-lines, bung87.vscode-gemfile, dbaeumer.vscode-eslint, 
+eamodio.gitlens, esbenp.prettier-vscode, exiasr.hadolint, 
+foxundermoon.shell-format, freakypie.code-python-isort, golang.Go, 
+karunamurti.haml, lehni.vscode-titlebar-less-macos, magicstack.MagicPython, 
+mgmcdermott.vscode-language-babel, mike-co.import-sorter, misogi.ruby-rubocop, 
+mohsen1.prettify-json, ms-azuretools.vscode-docker, ms-python.python, 
+octref.vetur, otoniel-isidoro.vscode-ruby-ctags, rebornix.ruby, 
+richie5um2.vscode-sort-json, sianglim.slim, spywhere.guides, 
+sysoev.language-stylus, timonwong.shellcheck, vscode-icons-team.vscode-icons, 
+waderyan.gitblame, wingrunr21.vscode-ruby
 
 Pip Packages: git-sweep3k, glances, httpie, inflection, patch, 
 python-json-logger, pyyaml, termcolor

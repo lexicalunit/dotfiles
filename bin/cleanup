@@ -101,8 +101,8 @@ fi
 # rvm
 command -v rvm >/dev/null 2>&1 && run "rvm cleanup all"
 
-# gem
-command -v gem >/dev/null 2>&1 && run "yes | gem cleanup"
+# gem (but don't uninstall old versions of gems, they may be in-use!)
+command -v gem >/dev/null 2>&1 && run "no | gem cleanup"
 
 # cargo
 if command -v cargo >/dev/null 2>&1; then

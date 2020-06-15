@@ -1794,6 +1794,9 @@ steps=(
     "atom;          Ensure Atom installed via Homebrew Cask and apm packages are upgraded"
     "code;          Ensure VS Code installed via Homebrew Cask and its packages are installed"
     'osx;           Override macOS "defaults" settings and configuration'
+    "dot;           Runs steps: dotfiles zsh env"
+    "apps;          Runs steps: xcode java brew cask ext python node go cargo gem atom code"
+    "most;          Runs steps: apps dot (basically everything but the osx step)"
 )
 
 LISTING_OUTPUT=""
@@ -1806,7 +1809,7 @@ for step in "${steps[@]}"; do
     function="step_$key"
 
     if [[ $LISTING == 1 ]]; then
-        LISTING_OUTPUT="$LISTING_OUTPUT$key: $question"$'\n'
+        LISTING_OUTPUT="$LISTING_OUTPUT$key; $question"$'\n'
         continue
     fi
 
@@ -1823,7 +1826,7 @@ for step in "${steps[@]}"; do
 done
 
 if [[ $LISTING == 1 ]]; then
-    echo -n "$LISTING_OUTPUT" | column -ts:
+    echo -n "$LISTING_OUTPUT" | column -ts ';'
 fi
 
 if [[ $LISTING == 0 && $steps_taken == 0 ]]; then

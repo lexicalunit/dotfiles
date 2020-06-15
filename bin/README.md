@@ -161,6 +161,9 @@ steps:
     atom       Ensure Atom installed via Homebrew Cask and apm packages are upgraded
     code       Ensure VS Code installed via Homebrew Cask and its packages are installed
     osx        Override macOS "defaults" settings and configuration
+    dot        Runs steps: dotfiles zsh env
+    apps       Runs steps: xcode java brew cask ext python node go cargo gem atom code
+    most       Runs steps: apps dot (basically everything but the osx step)
 
 Homebrew Formulas: adns, aom, autoconf, automake, avro-c, bash, bat, cairo, 
 clang-format, cmake, colordiff, coreutils, csv-fix, diff-so-fancy, docker, 

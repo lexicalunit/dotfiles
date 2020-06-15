@@ -110,6 +110,9 @@ if command -v cargo >/dev/null 2>&1; then
     test -e "$HOME/.cargo/git" && run "rm -rf '$_'"
 fi
 
+# go
+command -v go >/dev/null 2>&1 && run "go clean -cache -modcache -testcache -r"
+
 # conda
 command -v conda >/dev/null 2>&1 && run "conda clean -a --yes"
 

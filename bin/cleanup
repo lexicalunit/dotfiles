@@ -24,6 +24,7 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 
 DONE=0
 BEFORE="$(df -B1 --output=avail "$HOME" | grep -iv avail)"
+GATEKEEPER="$(spctl --status)"
 show "disk space available before cleanup: $(numfmt --to=iec-i --suffix=B -- "$BEFORE")"
 
 report() {
@@ -36,6 +37,9 @@ report() {
     if [[ $RECLAIMED -gt "0" ]]; then
         show "disk space reclaimed by cleanup: $(numfmt --to=iec-i --suffix=B -- "$RECLAIMED")"
     fi
+    if [[ "$GATEKEEPER" == "assessments enabled" ]]; then
+        sudo spctl --master-enable
+    fi
 }
 trap report EXIT
 
@@ -46,6 +50,11 @@ while true; do
     sleep 60
     kill -0 "$$" || exit
 done 2>/dev/null &
+
+# disable gatekeeper
+if [[ "$GATEKEEPER" == "assessments enabled" ]]; then
+    sudo spctl --master-disable
+fi
 
 # trash
 run "sudo rm -rf /Volumes/*/.Trashes/*"

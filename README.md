@@ -56,15 +56,16 @@ Installed into your [`~/bin`](bin) directory, these tools will be on your `PATH`
 documentation see the [`README.md` for `~/bin`](bin/README.md), or of course run any of the tools
 with the argument `--help`.
 
-> **Note:** The scripts in this repository are written assuming that you're using
+> **Note:** Some scripts in this repository are written assuming that you're using
 > [zsh](http://www.zsh.org/) as your shell. As of
 > [macOS Catalina](https://support.apple.com/en-us/HT208050) the default shell is `zsh`.
-> However, these scripts are written with a `/bin/bash`
+> However, most scripts in `~/bin` are written with a `/bin/bash`
 > [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) because I like to use
 > [shellcheck](https://github.com/koalaman/shellcheck) to ensure code quality. Where possible I've
 > tried to maintain backwards compatibility with `bash`, but I make no guarantees. You should start
 > using `zsh` as soon as possible. It's so much better. In the future there will hopefully be
-> [direct support](https://github.com/koalaman/shellcheck/issues/809) for `#!/usr/bin/env zsh`.
+> [direct support](https://github.com/koalaman/shellcheck/issues/809)
+> for `#!/usr/bin/env zsh` in `shellcheck`.
 
 | Tool | Usage |
 | --- | --- |

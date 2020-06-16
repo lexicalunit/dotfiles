@@ -16,6 +16,20 @@ if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     usage
 fi
 
+array_contains() {
+    local seeking=$1
+    shift
+    local in=1
+    for element; do
+        # shellcheck disable=SC2053
+        if [[ $element == $seeking ]]; then
+            in=0
+            break
+        fi
+    done
+    return $in
+}
+
 set -e
 
 # shellcheck source=.shell_control
@@ -80,9 +94,21 @@ run "rm -rf ~/Library/Application\ Support/MobileSync/Backup/*"
 run "rm -rf ~/Library/Developer/Xcode/DerivedData/*"
 run "rm -rf ~/Library/Developer/Xcode/Archives/*"
 if command -v xcrun >/dev/null 2>&1; then
-    run "osascript -e 'tell application \"com.apple.CoreSimulator.CoreSimulatorService\" to quit'"
-    run "osascript -e 'tell application \"iOS Simulator\" to quit'"
-    run "osascript -e 'tell application \"Simulator\" to quit'"
+    if command -v mapfile >/dev/null 2>&1; then # bash
+        mapfile -t APPS < <( osascript -e 'tell application "System Events" to return every application process' | tr ',' '\n' | sed 's/^ *application process //g' )
+    else # assuming zsh or some other sensible shell
+        # shellcheck disable=SC2207
+        IFS=$'\n' APPS=($(osascript -e 'tell application "System Events" to return every application process' | tr ',' '\n' | sed 's/^ *application process //g'))
+    fi
+    if array_contains 'com.apple.CoreSimulator.CoreSimulatorService' "${APPS[@]}"; then
+        run "osascript -e 'tell application \"com.apple.CoreSimulator.CoreSimulatorService\" to quit'"
+    fi
+    if array_contains 'iOS Simulator' "${APPS[@]}"; then
+        run "osascript -e 'tell application \"iOS Simulator\" to quit'"
+    fi
+    if array_contains 'Simulator' "${APPS[@]}"; then
+        run "osascript -e 'tell application \"Simulator\" to quit'"
+    fi
     run "xcrun simctl erase all"
 fi
 

@@ -148,6 +148,7 @@ install packages/formulas/casks/whatever, see below for the list of included ite
 | dot | Runs steps: dotfiles zsh env |
 | apps | Runs steps: xcode java brew cask ext python node go cargo gem atom code |
 | most | Runs steps: apps dot (basically everything but the osx step) |
+| all | Runs all steps |
 
 Homebrew Formulas: adns, aom, autoconf, automake, avro-c, bash, bat, cairo, 
 clang-format, cmake, colordiff, coreutils, csv-fix, diff-so-fancy, docker, 

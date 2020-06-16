@@ -1801,6 +1801,7 @@ steps=(
     "dot;           Runs steps: dotfiles zsh env"
     "apps;          Runs steps: xcode java brew cask ext python node go cargo gem atom code"
     "most;          Runs steps: apps dot (basically everything but the osx step)"
+    "all;          Runs all steps"
 )
 
 LISTING_OUTPUT=""

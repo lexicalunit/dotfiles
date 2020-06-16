@@ -94,12 +94,8 @@ run "rm -rf ~/Library/Application\ Support/MobileSync/Backup/*"
 run "rm -rf ~/Library/Developer/Xcode/DerivedData/*"
 run "rm -rf ~/Library/Developer/Xcode/Archives/*"
 if command -v xcrun >/dev/null 2>&1; then
-    if command -v mapfile >/dev/null 2>&1; then # bash
-        mapfile -t APPS < <( osascript -e 'tell application "System Events" to return every application process' | tr ',' '\n' | sed 's/^ *application process //g' )
-    else # assuming zsh or some other sensible shell
-        # shellcheck disable=SC2207
-        IFS=$'\n' APPS=($(osascript -e 'tell application "System Events" to return every application process' | tr ',' '\n' | sed 's/^ *application process //g'))
-    fi
+    # shellcheck disable=SC2207
+    IFS=$'\n' APPS=($(osascript -e 'tell application "System Events" to return every application process' | tr ',' '\n' | sed 's/^ *application process //g'))
     if array_contains 'com.apple.CoreSimulator.CoreSimulatorService' "${APPS[@]}"; then
         run "osascript -e 'tell application \"com.apple.CoreSimulator.CoreSimulatorService\" to quit'"
     fi

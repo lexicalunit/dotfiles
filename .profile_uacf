@@ -1,4 +1,4 @@
-#! .profile_uacf
+# .profile_uacf
 
 line() {
     local FULL_WIDTH=70

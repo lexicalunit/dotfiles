@@ -1,4 +1,4 @@
-#! .zshrc
+# .zshrc
 # shellcheck disable=SC1090
 # shellcheck disable=SC2034
 
@@ -9,10 +9,6 @@ fi
 
 # Get rid of interactive rm from prezto's utility module, which I otherwise want.
 unalias rm
-
-# First setup shared profile settings, then setup zsh specific settings.
-SHELL="$(command -v zsh)"
-export SHELL
 
 ################################################################################
 # interactive settings

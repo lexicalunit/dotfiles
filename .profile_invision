@@ -1,4 +1,4 @@
-#! .profile_invision
+# .profile_invision
 
 studio() {
     cat <<EOF

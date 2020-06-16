@@ -1,4 +1,4 @@
-#! .profile
+# .profile
 
 INTERACTIVE=false
 if [[ $- == *i* ]]; then

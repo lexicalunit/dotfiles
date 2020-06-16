@@ -1,4 +1,4 @@
-#! .profile_gitlab
+# .profile_gitlab
 
 gitlab() {
       printf "

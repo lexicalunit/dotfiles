@@ -1,4 +1,4 @@
-#! .shell_control
+# .shell_control
 
 show() {
     # usage: show [-i|-r] <message>
@@ -54,6 +54,7 @@ ask() {
         return 0
     fi
     echo -n $'\n\e[1;35m'
+    # shellcheck disable=SC2162
     read -p "$1 (y/n) [n] ... "
     echo -n $'\e[0;0m'
 }
@@ -65,11 +66,14 @@ query() {
         return 0
     fi
     echo -n $'\n\e[1;35m'
-    if [[ $SHELL =~ "zsh" ]]; then
+    SH="$(ps -p $$ | tail -n 1 | sed 's/^.* //g')"
+    if [[ $SH =~ "zsh" ]]; then
         printf "%s " "$1 ... "
+        # shellcheck disable=SC2162
         read REPLY
     else
-        read -p REPLY "$1 ... "
+        # shellcheck disable=SC2162
+        read -p "$1 ... " REPLY
     fi
     echo -n $'\e[0;0m'
 }

@@ -1,9 +1,5 @@
-#! .bashrc
+# .bashrc
 # shellcheck disable=SC1117
-
-# First setup shared profile settings, then setup bash specific settings.
-SHELL="$(command -v bash)"
-export SHELL
 
 if [[ -f "$HOME/.profile" ]]; then
     # shellcheck source=.profile

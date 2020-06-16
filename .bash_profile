@@ -1,6 +1,4 @@
-#! .bash_profile
-
-SHELL="$(command -v bash)"
+# .bash_profile
 
 if [[ -f "$HOME/.profile" ]]; then
     # shellcheck source=.profile

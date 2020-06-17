@@ -32,9 +32,35 @@ array_contains() {
 
 set -e
 
-# shellcheck source=.shell_control
-# shellcheck disable=SC1091
-source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+show() {
+    local important=0
+    if [[ $1 == "-i" ]]; then
+        shift
+        important=1
+        echo -n $'\e[38;5;196m'"$(tput bold)! "
+    elif [[ $1 == "-r" ]]; then
+        shift
+        echo -n $'\e[38;5;40m$\e[38;5;63m '
+    else
+        echo -n $'\e[1;34m>\e[0m\e[31m '
+    fi
+
+    echo -n "$@"
+
+    if [[ $important == "1" ]]; then
+        echo -n " $(tput sgr0)"$'\e[0m'
+    else
+        echo -n $'\e[0m'
+    fi
+
+    echo
+}
+
+run() {
+    show -r "$@"
+    eval "$@"
+    return $?
+}
 
 # check if gatekeeper is enabled
 GATEKEEPER="$(spctl --status)"
@@ -42,6 +68,17 @@ GATEKEEPER="$(spctl --status)"
 DONE=0
 BEFORE="$(df -B1 --output=avail "$HOME" | grep -iv avail)"
 show "disk space available before cleanup: $(numfmt --to=iec-i --suffix=B -- "$BEFORE")"
+
+# by default, execute these commands from your home directory
+run "cd"
+
+# This has to be done before we setup the exit trap because rvm is absolute garbage software.
+if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
+    # shellcheck source=.rvm/scripts/rvm
+    # shellcheck disable=SC1091
+    source "$HOME/.rvm/scripts/rvm"
+    run "rvm use '$(rvm list default string)'"
+fi
 
 report() {
     if [[ "$GATEKEEPER" == "assessments enabled" ]]; then
@@ -71,9 +108,6 @@ done 2>/dev/null &
 if [[ "$GATEKEEPER" == "assessments enabled" ]]; then
     run "sudo spctl --master-disable"
 fi
-
-# by default, execute these commands from your home directory
-cd
 
 # trash
 run "sudo rm -rf /Volumes/*/.Trashes/*"
@@ -159,10 +193,7 @@ if command -v brew >/dev/null 2>&1; then
 fi
 
 # rvm and gem
-if command -v rvm >/dev/null 2>&1; then
-    run "rvm cleanup all"
-    run "rvm use '$(rvm list default string)'"
-fi
+command -v rvm >/dev/null 2>&1 && run "rvm cleanup all"
 command -v gem >/dev/null 2>&1 && run "yes | gem cleanup"
 
 # cargo
@@ -196,13 +227,21 @@ command -v apm >/dev/null 2>&1 && run "apm clean"
 
 # git
 if command -v git >/dev/null 2>&1; then
-    find "$HOME" -maxdepth 3 \
+    set +e
+    find "$HOME" -maxdepth 4 \
         -not \( -path "$HOME/Library" -prune \) \
         -not \( -path "$HOME/.Trash" -prune \) \
-        -type d -name .git | while read -r root;
+        -type d -name .git | while read -r GDIR;
     do
-        run "( cd $root && git prune && git gc --auto )"
+        REPO_ROOT="$(dirname "$GDIR")"
+        run "cd '$REPO_ROOT'"
+        if [[ "$PWD" == "$REPO_ROOT" ]]; then
+            run "git prune"
+            run "git gc --auto"
+        fi
     done
+    run "cd"
+    set -e
 fi
 
 # docker

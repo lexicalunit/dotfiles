@@ -72,6 +72,9 @@ if [[ "$GATEKEEPER" == "assessments enabled" ]]; then
     run "sudo spctl --master-disable"
 fi
 
+# by default, execute these commands from your home directory
+cd
+
 # trash
 run "sudo rm -rf /Volumes/*/.Trashes/*"
 run "sudo rm -rf ~/.Trash/*"
@@ -155,10 +158,11 @@ if command -v brew >/dev/null 2>&1; then
     run "brew tap --repair"
 fi
 
-# rvm
-command -v rvm >/dev/null 2>&1 && run "rvm cleanup all"
-
-# gem
+# rvm and gem
+if command -v rvm >/dev/null 2>&1; then
+    run "rvm cleanup all"
+    run "rvm use '$(rvm list default string)'"
+fi
 command -v gem >/dev/null 2>&1 && run "yes | gem cleanup"
 
 # cargo
@@ -197,7 +201,7 @@ if command -v git >/dev/null 2>&1; then
         -not \( -path "$HOME/.Trash" -prune \) \
         -type d -name .git | while read -r root;
     do
-        run "cd $root && git prune && git gc --auto"
+        run "( cd $root && git prune && git gc --auto )"
     done
 fi
 

@@ -397,11 +397,11 @@
 	<key>NSWindow Frame NSNavPanelAutosaveName</key>
 	<string>523 486 799 448 0 0 1792 1097 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>574 411 700 548 0 0 1792 1097 </string>
+	<string>1398 651 700 548 0 0 3440 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>3 1327 88 90 0 0 3440 1417 </string>
-	<key>NSWindow Frame iTerm Window 1</key>
 	<string>57 9 3383 690 0 0 3440 1417 </string>
+	<key>NSWindow Frame iTerm Window 1</key>
+	<string>313 345 1105 850 0 0 3440 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>1210 567 1105 850 0 0 3440 1417 </string>
 	<key>New Bookmarks</key>
@@ -1110,7 +1110,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>5D5004CA-CE60-4C58-9532-2B7C98F4648C</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>28</integer>
+	<integer>33</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -1877,13 +1877,15 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-06-04T16:56:13Z</date>
+	<date>2020-06-15T20:45:38Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
+	<key>SUSkippedVersion</key>
+	<string>3.3.11</string>
 	<key>SUUpdateRelaunchingMarker</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
-	<false/>
+	<true/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>StretchTabsToFillBar</key>

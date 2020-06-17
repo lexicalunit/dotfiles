@@ -158,8 +158,8 @@ fi
 # rvm
 command -v rvm >/dev/null 2>&1 && run "rvm cleanup all"
 
-# gem (but don't uninstall old versions of gems, they may be in-use!)
-command -v gem >/dev/null 2>&1 && run "yes n | gem cleanup"
+# gem
+command -v gem >/dev/null 2>&1 && run "yes | gem cleanup"
 
 # cargo
 if command -v cargo >/dev/null 2>&1; then
@@ -197,7 +197,7 @@ if command -v git >/dev/null 2>&1; then
         -not \( -path "$HOME/.Trash" -prune \) \
         -type d -name .git | while read -r root;
     do
-        run "cd $root && git gc --auto"
+        run "cd $root && git prune && git gc --auto"
     done
 fi
 

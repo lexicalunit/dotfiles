@@ -80,7 +80,9 @@ test -d "$HOME/.log-ninja" && PATH="$PATH:$_"
 test -d /usr/local/lib/svn-python && PYTHONPATH="$_:$PYTHONPATH"
 test -d /opt/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
 test -d /usr/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
-test -d "$HOME/.rvm/bin" && PATH="$_:$PATH" # rvm throws a fit if its path isn't first
+
+# Note that rvm complains loudly if it isn't the first path, rvm is bad, just ignore it
+test -d "$HOME/.rvm/bin" && PATH="$_:$PATH"
 
 # Add npm dev installed dependencies per project
 PATH="node_modules/.bin:$PATH"

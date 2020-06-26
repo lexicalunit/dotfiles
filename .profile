@@ -317,7 +317,7 @@ if $INTERACTIVE; then
             "$@"
     }
     rab() {
-        ra -g '!*.haml' -g '!*.vue' -g '!*.erb' -g '!*.js' "$@"
+        ra -g '!*.scss' -g '!*.haml' -g '!*.vue' -g '!*.erb' -g '!*.js' "$@"
     }
     alias ltr='ls -l -tmodified -snew '
 

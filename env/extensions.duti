@@ -75,6 +75,7 @@ com.microsoft.VSCode .sass all
 com.microsoft.VSCode .scss all
 com.microsoft.VSCode .sh all
 com.microsoft.VSCode .snap all
+com.microsoft.VSCode .sql all
 com.microsoft.VSCode .styl all
 com.microsoft.VSCode .stylintrc all
 com.microsoft.VSCode .tex all

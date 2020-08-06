@@ -49,7 +49,6 @@
       "language-perl"
       "language-php"
       "language-property-list"
-      "language-python"
       "language-ruby-on-rails"
       "language-ruby"
       "language-rust-bundled"
@@ -101,6 +100,8 @@
     tabLength: 2
   "highlight-selected":
     onlyHighlightWholeWords: true
+  "linter-ui-default":
+    showPanel: true
   "markdown-preview-plus":
     grammars: [
       "source.gfm.notes"

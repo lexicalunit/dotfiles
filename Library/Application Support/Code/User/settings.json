@@ -128,4 +128,7 @@
   "ruby.rubocop.suppressRubocopWarnings": true,
   "python.linting.flake8Enabled": true,
   "python.linting.pylintEnabled": false,
+  "python.languageServer": "Pylance",
+  "python.analysis.typeCheckingMode": "basic",
+  "window.zoomLevel": 0
 }

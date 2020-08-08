@@ -82,6 +82,7 @@
 /.finda
 /.gem
 /.gemrc
+/.gitflow_export
 /.gnupg
 /.gradle
 /.htoprc

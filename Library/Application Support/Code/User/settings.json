@@ -130,5 +130,6 @@
   "python.linting.pylintEnabled": false,
   "python.languageServer": "Pylance",
   "python.analysis.typeCheckingMode": "basic",
-  "window.zoomLevel": 0
+  "window.zoomLevel": 0,
+  "python.showStartPage": false
 }

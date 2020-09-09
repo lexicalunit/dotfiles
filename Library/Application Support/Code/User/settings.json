@@ -1,6 +1,6 @@
 {
   "editor.cursorBlinking": "phase",
-  "editor.fontFamily": "Fira Code, IBMPlexMono, Inconsolata",
+  "editor.fontFamily": "Fira Code, Inconsolata",
   "editor.fontLigatures": true,
   "editor.fontSize": 18,
   "editor.renderControlCharacters": true,
@@ -131,5 +131,6 @@
   "python.languageServer": "Pylance",
   "python.analysis.typeCheckingMode": "basic",
   "window.zoomLevel": 0,
-  "python.showStartPage": false
+  "python.showStartPage": false,
+  "extensions.ignoreRecommendations": false
 }

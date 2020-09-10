@@ -344,6 +344,13 @@ options:
 ```
 
 * * *
+### [`git_tidy`](git_tidy)
+```
+usage: git_tidy [-h|--help]
+Cleans up all the junk this repository.
+```
+
+* * *
 ### [`git_up`](git_up)
 ```
 usage: git_up [-h|--help] [-r]

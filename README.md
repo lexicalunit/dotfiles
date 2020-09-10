@@ -94,6 +94,7 @@ with the argument `--help`.
 | [`git_push_topic`](bin/git_push_topic) | Force updates remote topic branch with local branch. |
 | [`git_reauthor`](bin/git_reauthor) | In git, change the author name and/or email of a single commit. |
 | [`git_sync`](bin/git_sync) | Fetch and fast-forward to the latest for origin/master. |
+| [`git_tidy`](bin/git_tidy) | Tidies up all the junk this repository. |
 | [`git_up`](bin/git_up) | Rebase branch on the latest changes for the remote parent branch. |
 | [`git_what`](bin/git_what) | Build a useful git description of the changes in this branch. |
 | [`golist`](bin/golist) | Lists all user installed go packages. |

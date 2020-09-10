@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Tidies up all the junk this repository.
+
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
+    echo "usage: ${0##*/} [-h|--help]" 1>&2
+    echo "Cleans up all the junk this repository." 1>&2
+    exit 1
+fi
+
+# shellcheck source=../.shell_control
+# shellcheck disable=SC1091
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
+run "git fetch --prune"
+run "git gc --aggressive"
+THREADS="$(sysctl -n hw.ncpu)"
+run "git repack -Ad --threads=$THREADS"
+run "git prune"

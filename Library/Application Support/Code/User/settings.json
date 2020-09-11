@@ -132,5 +132,6 @@
   "python.analysis.typeCheckingMode": "basic",
   "window.zoomLevel": 0,
   "python.showStartPage": false,
-  "extensions.ignoreRecommendations": false
+  "extensions.ignoreRecommendations": false,
+  "telemetry.enableCrashReporter": false
 }

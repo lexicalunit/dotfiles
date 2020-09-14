@@ -138,6 +138,7 @@
 /.vim/.netrwhist
 /.viminfo
 /.virtualenvs
+/.vscode/argv.json
 /.vscode/extensions
 /.wget-hsts
 /.yarnrc

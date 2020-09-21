@@ -312,6 +312,13 @@ Forwards any additional ARGS to the git log command.
 ```
 
 * * *
+### [`git_pt`](git_pt)
+```
+usage: git_pt [-h|--help]
+Runs prettier on vue/js/ts files in the latest commit.
+```
+
+* * *
 ### [`git_push_topic`](git_push_topic)
 ```
 usage: git_push_topic [-h|--help]

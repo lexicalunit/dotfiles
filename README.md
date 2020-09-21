@@ -91,6 +91,7 @@ with the argument `--help`.
 | [`git_name_change`](bin/git_name_change) | Clones a repo then changes the name and email address in entire his... |
 | [`git_parent`](bin/git_parent) | Finds the direct parent of the current branch in git. |
 | [`git_pretty_log`](bin/git_pretty_log) | Git script for printing beautiful logs. |
+| [`git_pt`](bin/git_pt) | Runs prettier on vue/js/ts files in the latest commit. |
 | [`git_push_topic`](bin/git_push_topic) | Force updates remote topic branch with local branch. |
 | [`git_reauthor`](bin/git_reauthor) | In git, change the author name and/or email of a single commit. |
 | [`git_sync`](bin/git_sync) | Fetch and fast-forward to the latest for origin/master. |

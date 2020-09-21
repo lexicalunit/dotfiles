@@ -1,5 +1,5 @@
-# to edit: sudo chflags noschg .gitconfig
-# to lock: sudo chflags schg .gitconfig
+# to edit: sudo chflags noschg ~/.gitconfig && sudo chown `whoami` ~/.gitconfig
+# to lock: sudo chown root ~/.gitconfig && sudo chflags schg ~/.gitconfig
 
 [core]
 	autocrlf = false
@@ -23,8 +23,9 @@
 	cp = cherry-pick
 	f = fetch --prune
 	find = "!git ls-files | grep --color -Ei"
-    tidy = !git_tidy
-    lg = !git_pretty_log
+	tidy = !git_tidy
+	lg = !git_pretty_log
+	pt = !git_pt
 	ltr = !cd ${GIT_PREFIX:-.} && git_ltr
 	name-change = !bash git_name_change
 	parent = !git_parent

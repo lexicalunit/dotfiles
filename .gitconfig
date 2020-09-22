@@ -23,11 +23,10 @@
 	cp = cherry-pick
 	f = fetch --prune
 	find = "!git ls-files | grep --color -Ei"
-	tidy = !git_tidy
 	lg = !git_pretty_log
-	pt = !git_pt
 	ltr = !cd ${GIT_PREFIX:-.} && git_ltr
 	name-change = !bash git_name_change
+	p = !git_p
 	parent = !git_parent
 	ph = push
 	pl = pull
@@ -38,6 +37,7 @@
 	s = status -uno
 	su = status
 	sync = !git_sync
+	tidy = !git_tidy
 	undo = reset HEAD~1 --soft
 	up = !git_up
 	wdiff = diff --color-words --word-diff

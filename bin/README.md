@@ -295,6 +295,13 @@ clones the given repo, changing the name and email address in entire history
 ```
 
 * * *
+### [`git_p`](git_p)
+```
+usage: git_p [-h|--help]
+Runs prettier on vue/js/ts files in the latest commit.
+```
+
+* * *
 ### [`git_parent`](git_parent)
 ```
 usage: git_parent [-h|--help] [-r]
@@ -309,13 +316,6 @@ options:
 ```
 usage: git_pretty_log [-h|--help] [ARGS]
 Forwards any additional ARGS to the git log command.
-```
-
-* * *
-### [`git_pt`](git_pt)
-```
-usage: git_pt [-h|--help]
-Runs prettier on vue/js/ts files in the latest commit.
 ```
 
 * * *

@@ -89,9 +89,9 @@ with the argument `--help`.
 | [`git_authors`](bin/git_authors) | Git script for discovering who wrote the code at the current workin... |
 | [`git_ltr`](bin/git_ltr) | Lists (a-la 'ls -ltr') git controlled source files in current direc... |
 | [`git_name_change`](bin/git_name_change) | Clones a repo then changes the name and email address in entire his... |
+| [`git_p`](bin/git_p) | Runs prettier on vue/js/ts files in the latest commit. |
 | [`git_parent`](bin/git_parent) | Finds the direct parent of the current branch in git. |
 | [`git_pretty_log`](bin/git_pretty_log) | Git script for printing beautiful logs. |
-| [`git_pt`](bin/git_pt) | Runs prettier on vue/js/ts files in the latest commit. |
 | [`git_push_topic`](bin/git_push_topic) | Force updates remote topic branch with local branch. |
 | [`git_reauthor`](bin/git_reauthor) | In git, change the author name and/or email of a single commit. |
 | [`git_sync`](bin/git_sync) | Fetch and fast-forward to the latest for origin/master. |

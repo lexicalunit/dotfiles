@@ -26,7 +26,8 @@
 	lg = !git_pretty_log
 	ltr = !cd ${GIT_PREFIX:-.} && git_ltr
 	name-change = !bash git_name_change
-	p = !git_p
+	pretty = !git_pretty "$@"
+	jest = !git_jest "$@"
 	parent = !git_parent
 	ph = push
 	pl = pull

@@ -106,6 +106,11 @@ export PATH
 export PYTHONPATH
 export PKG_CONFIG_PATH
 
+# ensure that brew installed `expect` functions correctly
+if [[ -d /usr/local/lib ]]; then
+    export TCLLIBPATH="/usr/local/lib"
+fi
+
 # Additional application setup
 # shellcheck source=~/.travis/travis.sh
 # shellcheck disable=SC1090

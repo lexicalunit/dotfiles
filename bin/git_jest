@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Runs jest tests that have changed within in the latest N commits.
+
+set -ue
+
+usage() {
+    (
+        echo "usage: ${0##*/} [-h|--help] [N]"
+        echo "Runs jest tests that have changed within in the latest N commits."
+        echo
+        echo "options:"
+        (
+            echo "    -h, --help: show usage help"
+            echo "    N: number of commits to consider, default is 1"
+        ) | column -ts:
+    ) >&2
+    exit 1
+}
+
+# shellcheck source=../.shell_control
+# shellcheck disable=SC1091
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
+BACK=${2:-1}
+BACK=$((BACK - 1))
+REFS="HEAD"
+for i in $(seq 1 $BACK); do
+    REFS="$REFS HEAD~$i"
+done
+
+tf="$(mktemp -t tmp.XXXXXXXXXX)"
+trap 'rm -f $tf' EXIT
+
+git show --pretty="" --name-only $REFS | grep -iE "_spec\.js$|_spec\.ts$" |
+    while read -r JSFILE; do
+        echo "    $JSFILE \\" >> "$tf"
+    done
+
+run "jest --config jest.config.js -- \\
+$(sort -u <"$tf")"

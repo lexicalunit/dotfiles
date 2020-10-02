@@ -168,7 +168,7 @@ steps:
 
 Homebrew Formulas: adns, aom, autoconf, automake, avro-c, bash, bat, cairo, 
 clang-format, cmake, colordiff, coreutils, csv-fix, diff-so-fancy, docker, 
-doxygen, duti, entr, exa, exiftool, faac, fasd, ffmpeg, flac, flake8, 
+doxygen, duti, entr, exa, exiftool, expect, faac, fasd, ffmpeg, flac, flake8, 
 fontconfig, freetype, frei0r, fribidi, fzf, gd, gdbm, geoip, gettext, 
 ghostscript, giflib, gifsicle, git, git-flow, git-lfs, git-review, git-secrets, 
 glib, gmp, gnu-sed, gnu-tar, gnupg, gnutls, graphicsmagick, graphite2, 
@@ -277,6 +277,14 @@ For git, shows who wrote the code found at the current directory.
 ```
 
 * * *
+### [`git_jest`](git_jest)
+```
+[38;5;40m$[38;5;63m jest --config jest.config.js -- \
+[0m
+/Users/atroschinetz/.shell_control: line 34: jest: command not found
+```
+
+* * *
 ### [`git_ltr`](git_ltr)
 ```
 usage: git_ltr [-h|--help] [-r]
@@ -295,13 +303,6 @@ clones the given repo, changing the name and email address in entire history
 ```
 
 * * *
-### [`git_p`](git_p)
-```
-usage: git_p [-h|--help]
-Runs prettier on vue/js/ts files in the latest commit.
-```
-
-* * *
 ### [`git_parent`](git_parent)
 ```
 usage: git_parent [-h|--help] [-r]
@@ -309,6 +310,12 @@ Finds the direct parent of the current branch in git.
 
 options:
     -h, --help   show usage help
+```
+
+* * *
+### [`git_pretty`](git_pretty)
+```
+
 ```
 
 * * *

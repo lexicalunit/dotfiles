@@ -87,10 +87,11 @@ with the argument `--help`.
 | [`flip`](bin/flip) | Flips input upside down. |
 | [`fs`](bin/fs) | Tweak ripgrep to easily search codebases with committed files and f... |
 | [`git_authors`](bin/git_authors) | Git script for discovering who wrote the code at the current workin... |
+| [`git_jest`](bin/git_jest) | Runs jest tests that have changed within in the latest N commits. |
 | [`git_ltr`](bin/git_ltr) | Lists (a-la 'ls -ltr') git controlled source files in current direc... |
 | [`git_name_change`](bin/git_name_change) | Clones a repo then changes the name and email address in entire his... |
-| [`git_p`](bin/git_p) | Runs prettier on vue/js/ts files in the latest commit. |
 | [`git_parent`](bin/git_parent) | Finds the direct parent of the current branch in git. |
+| [`git_pretty`](bin/git_pretty) | Runs prettier on vue/js/ts files in the most recent N commits. |
 | [`git_pretty_log`](bin/git_pretty_log) | Git script for printing beautiful logs. |
 | [`git_push_topic`](bin/git_push_topic) | Force updates remote topic branch with local branch. |
 | [`git_reauthor`](bin/git_reauthor) | In git, change the author name and/or email of a single commit. |
@@ -155,7 +156,7 @@ install packages/formulas/casks/whatever, see below for the list of included ite
 
 Homebrew Formulas: adns, aom, autoconf, automake, avro-c, bash, bat, cairo, 
 clang-format, cmake, colordiff, coreutils, csv-fix, diff-so-fancy, docker, 
-doxygen, duti, entr, exa, exiftool, faac, fasd, ffmpeg, flac, flake8, 
+doxygen, duti, entr, exa, exiftool, expect, faac, fasd, ffmpeg, flac, flake8, 
 fontconfig, freetype, frei0r, fribidi, fzf, gd, gdbm, geoip, gettext, 
 ghostscript, giflib, gifsicle, git, git-flow, git-lfs, git-review, git-secrets, 
 glib, gmp, gnu-sed, gnu-tar, gnupg, gnutls, graphicsmagick, graphite2, 

@@ -57,6 +57,9 @@ if type brew >/dev/null 2>&1; then
     export MANPATH
     export PYTHONPATH
 
+    # ensure that brew installed `expect` functions correctly
+    export TCLLIBPATH="$BREW_PREFIX/lib"
+
     # node version manager
     export NVM_DIR="$HOME/.nvm"
     # Note: brew --prefix package is too slow, see above.
@@ -105,11 +108,6 @@ test -d "$HOME/bin" && PATH="$_:$PATH"
 export PATH
 export PYTHONPATH
 export PKG_CONFIG_PATH
-
-# ensure that brew installed `expect` functions correctly
-if [[ -d /usr/local/lib ]]; then
-    export TCLLIBPATH="/usr/local/lib"
-fi
 
 # Additional application setup
 # shellcheck source=~/.travis/travis.sh

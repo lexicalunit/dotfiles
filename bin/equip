@@ -1065,6 +1065,10 @@ ensure_homebrew_updated_cleanup() {
     # Must be called sometime after ensure_homebrew_updated() has been called,
     # and after any other brew commands such as install have also been called.
     run "brew link --force --overwrite sqlite imagemagick@6"
+
+    # Spotify has started forcing itself to be started at login like some kind
+    # of fucking malware. Nuke that shit from orbit.
+    run "rm -rf /Applications/Spotify.app/Contents/Library/LoginItems/*" || true
 }
 
 install_brew_formula() {

@@ -162,3 +162,5 @@ pydantic
 dunamai
 endlines
 jekyll
+docstring
+redis

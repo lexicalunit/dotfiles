@@ -279,9 +279,7 @@ For git, shows who wrote the code found at the current directory.
 * * *
 ### [`git_jest`](git_jest)
 ```
-[38;5;40m$[38;5;63m jest --config jest.config.js -- \
-[0m
-/Users/atroschinetz/.shell_control: line 34: jest: command not found
+
 ```
 
 * * *
@@ -345,6 +343,12 @@ usage: git_reauthor [-f] commit-to-change [branch-to-rewrite [new-name [new-emai
 
   If <new-name> (or <new-email>) is not provided or is empty, the normal
   user.name (user.email) Git configuration value will be used.
+```
+
+* * *
+### [`git_rspec`](git_rspec)
+```
+
 ```
 
 * * *

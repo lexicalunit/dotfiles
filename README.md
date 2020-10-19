@@ -95,6 +95,7 @@ with the argument `--help`.
 | [`git_pretty_log`](bin/git_pretty_log) | Git script for printing beautiful logs. |
 | [`git_push_topic`](bin/git_push_topic) | Force updates remote topic branch with local branch. |
 | [`git_reauthor`](bin/git_reauthor) | In git, change the author name and/or email of a single commit. |
+| [`git_rspec`](bin/git_rspec) | Runs rspec tests that have changed within in the latest N commits. |
 | [`git_sync`](bin/git_sync) | Fetch and fast-forward to the latest for origin/master. |
 | [`git_tidy`](bin/git_tidy) | Tidies up all the junk this repository. |
 | [`git_up`](bin/git_up) | Rebase branch on the latest changes for the remote parent branch. |

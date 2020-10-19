@@ -122,6 +122,7 @@
 /.pylint.d
 /.python_history
 /.python-eggs
+/.rediscli_history
 /.rvm
 /.sbt
 /.scala_history

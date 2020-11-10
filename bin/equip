@@ -1110,7 +1110,7 @@ step_brew() {
     ensure_homebrew_updated
 
     local INSTALLED
-    brew ls -1 | {
+    brew list --formula -1 | {
         while IFS="" read -r line; do INSTALLED+=("$line"); done
         IFS=' '
         for I in $HOMEBREW_FORMULAS; do
@@ -1147,7 +1147,7 @@ step_brew() {
     local arr=()
     echo "$HOMEBREW_FORMULAS" | tr ' ' '\n' | {
         while IFS="" read -r line; do arr+=("$line"); done
-        for I in $(brew ls); do
+        for I in $(brew list --formula -1); do
             name="${I%@*}"
             [[ $name == "imagemagick" ]] && name="$name@6"
             [[ $name == "pandoc-sidenote" ]] && name="jez/formulae/$name"

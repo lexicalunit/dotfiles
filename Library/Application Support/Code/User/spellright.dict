@@ -166,3 +166,5 @@ docstring
 redis
 Grafana
 hacky
+vendored
+proto

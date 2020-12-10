@@ -86,20 +86,20 @@ with the argument `--help`.
 | [`faff`](bin/faff) | Sleeps for the given number of seconds, showing a progress bar. |
 | [`flip`](bin/flip) | Flips input upside down. |
 | [`fs`](bin/fs) | Tweak ripgrep to easily search codebases with committed files and f... |
+| [`git-jest`](bin/git-jest) | Runs jest tests that have changed within in the latest N commits. |
+| [`git-lg`](bin/git-lg) | Git script for printing beautiful logs. |
+| [`git-name-change`](bin/git-name-change) | Clones a repo then changes the name and email address in entire his... |
+| [`git-parent`](bin/git-parent) | Finds the direct parent of the current branch in git. |
+| [`git-pretty`](bin/git-pretty) | Runs prettier on vue/js/ts files in the most recent N commits. |
+| [`git-pt`](bin/git-pt) | Force updates remote topic branch with local branch. |
+| [`git-reauthor`](bin/git-reauthor) | In git, change the author name and/or email of a single commit. |
+| [`git-rspec`](bin/git-rspec) | Runs rspec tests that have changed within in the latest N commits. |
+| [`git-sync`](bin/git-sync) | Fetch and fast-forward to the latest for origin/master. |
+| [`git-tidy`](bin/git-tidy) | Tidies up all the junk this repository. |
+| [`git-up`](bin/git-up) | Rebase branch on the latest changes for the remote parent branch. |
+| [`git-what`](bin/git-what) | Build a useful git description of the changes in this branch. |
 | [`git_authors`](bin/git_authors) | Git script for discovering who wrote the code at the current workin... |
-| [`git_jest`](bin/git_jest) | Runs jest tests that have changed within in the latest N commits. |
 | [`git_ltr`](bin/git_ltr) | Lists (a-la 'ls -ltr') git controlled source files in current direc... |
-| [`git_name_change`](bin/git_name_change) | Clones a repo then changes the name and email address in entire his... |
-| [`git_parent`](bin/git_parent) | Finds the direct parent of the current branch in git. |
-| [`git_pretty`](bin/git_pretty) | Runs prettier on vue/js/ts files in the most recent N commits. |
-| [`git_pretty_log`](bin/git_pretty_log) | Git script for printing beautiful logs. |
-| [`git_push_topic`](bin/git_push_topic) | Force updates remote topic branch with local branch. |
-| [`git_reauthor`](bin/git_reauthor) | In git, change the author name and/or email of a single commit. |
-| [`git_rspec`](bin/git_rspec) | Runs rspec tests that have changed within in the latest N commits. |
-| [`git_sync`](bin/git_sync) | Fetch and fast-forward to the latest for origin/master. |
-| [`git_tidy`](bin/git_tidy) | Tidies up all the junk this repository. |
-| [`git_up`](bin/git_up) | Rebase branch on the latest changes for the remote parent branch. |
-| [`git_what`](bin/git_what) | Build a useful git description of the changes in this branch. |
 | [`golist`](bin/golist) | Lists all user installed go packages. |
 | [`install_odbc`](bin/install_odbc) | Sets up ODBC. |
 | [`jsc`](bin/jsc) | Symbolic link to '/System/Library/Frameworks/JavaScriptCore.framewo... |

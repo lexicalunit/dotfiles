@@ -18,9 +18,38 @@ usage() {
     exit 1
 }
 
-# shellcheck source=../.shell_control
-# shellcheck disable=SC1091
-source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+show() {
+    # usage: show [-i|-r] <message>
+    # -i: show an important message
+    # -r: show a command
+    local important=0
+    if [[ $1 == "-i" ]]; then
+        shift
+        important=1
+        echo -n $'\e[38;5;196m'"$(tput bold)! "
+    elif [[ $1 == "-r" ]]; then
+        shift
+        echo -n $'\e[38;5;40m$\e[38;5;63m '
+    else
+        echo -n $'\e[1;34m>\e[0m\e[31m '
+    fi
+
+    echo -n "$@"
+
+    if [[ $important == "1" ]]; then
+        echo -n " $(tput sgr0)"$'\e[0m'
+    else
+        echo -n $'\e[0m'
+    fi
+
+    echo
+}
+
+run() {
+    show -r "$@"
+    eval "$@"
+    return $?
+}
 
 BACK=${2:-1}
 BACK=$((BACK - 1))
@@ -38,6 +67,6 @@ git show --pretty="" --name-only $REFS | grep -iE "_spec\.rb$" |
     done
 
 if [[ -s "$tf" ]]; then
-    run "rspec \\
+    run "bin/rspec \\
 $(sort -u <"$tf")"
 fi

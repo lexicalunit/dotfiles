@@ -270,40 +270,29 @@ options:
 ```
 
 * * *
-### [`git_authors`](git_authors)
-```
-usage: git_authors [-h|--help] PATH
-For git, shows who wrote the code found at the current directory.
-```
-
-* * *
-### [`git_jest`](git_jest)
+### [`git-jest`](git-jest)
 ```
 
 ```
 
 * * *
-### [`git_ltr`](git_ltr)
+### [`git-lg`](git-lg)
 ```
-usage: git_ltr [-h|--help] [-r]
-Lists (a-la 'ls -ltr') git controlled source files in current directory.
-
-options:
-    -h, --help   show usage help
-    -r           recursive
+usage: git-lg [-h|--help] [ARGS]
+Forwards any additional ARGS to the git log command.
 ```
 
 * * *
-### [`git_name_change`](git_name_change)
+### [`git-name-change`](git-name-change)
 ```
-usage: git_name_change REPO_URL OLD_EMAIL NEW_NAME NEW_EMAIL
+usage: git-name-change REPO_URL OLD_EMAIL NEW_NAME NEW_EMAIL
 clones the given repo, changing the name and email address in entire history
 ```
 
 * * *
-### [`git_parent`](git_parent)
+### [`git-parent`](git-parent)
 ```
-usage: git_parent [-h|--help] [-r]
+usage: git-parent [-h|--help] [-r]
 Finds the direct parent of the current branch in git.
 
 options:
@@ -311,29 +300,22 @@ options:
 ```
 
 * * *
-### [`git_pretty`](git_pretty)
+### [`git-pretty`](git-pretty)
 ```
 
 ```
 
 * * *
-### [`git_pretty_log`](git_pretty_log)
+### [`git-pt`](git-pt)
 ```
-usage: git_pretty_log [-h|--help] [ARGS]
-Forwards any additional ARGS to the git log command.
-```
-
-* * *
-### [`git_push_topic`](git_push_topic)
-```
-usage: git_push_topic [-h|--help]
+usage: git-pt [-h|--help]
 Preforms command 'git push -fu origin $BRANCH', force pushing feature branch up to remote origin.
 ```
 
 * * *
-### [`git_reauthor`](git_reauthor)
+### [`git-reauthor`](git-reauthor)
 ```
-usage: git_reauthor [-f] commit-to-change [branch-to-rewrite [new-name [new-email]]]
+usage: git-reauthor [-f] commit-to-change [branch-to-rewrite [new-name [new-email]]]
 
   If -f is supplied it is passed to 'git filter-branch'.
 
@@ -346,15 +328,15 @@ usage: git_reauthor [-f] commit-to-change [branch-to-rewrite [new-name [new-emai
 ```
 
 * * *
-### [`git_rspec`](git_rspec)
+### [`git-rspec`](git-rspec)
 ```
 
 ```
 
 * * *
-### [`git_sync`](git_sync)
+### [`git-sync`](git-sync)
 ```
-usage: git_sync [parent] [-h|--help] [-r]
+usage: git-sync [parent] [-h|--help] [-r]
 Fetch and fast-forward to the latest for origin/master or origin/parent.
 
 options:
@@ -362,16 +344,16 @@ options:
 ```
 
 * * *
-### [`git_tidy`](git_tidy)
+### [`git-tidy`](git-tidy)
 ```
-usage: git_tidy [-h|--help]
+usage: git-tidy [-h|--help]
 Cleans up all the junk this repository.
 ```
 
 * * *
-### [`git_up`](git_up)
+### [`git-up`](git-up)
 ```
-usage: git_up [-h|--help] [-r]
+usage: git-up [-h|--help] [-r]
 Rebase branch on the latest changes for the remote parent branch.
 
 options:
@@ -379,14 +361,32 @@ options:
 ```
 
 * * *
-### [`git_what`](git_what)
+### [`git-what`](git-what)
 ```
-usage: git_what [options]
+usage: git-what [options]
 
 Build a useful git description of the changes in this branch.
 
 options:
  -h or --help shows usage help
+```
+
+* * *
+### [`git_authors`](git_authors)
+```
+usage: git_authors [-h|--help] PATH
+For git, shows who wrote the code found at the current directory.
+```
+
+* * *
+### [`git_ltr`](git_ltr)
+```
+usage: git_ltr [-h|--help] [-r]
+Lists (a-la 'ls -ltr') git controlled source files in current directory.
+
+options:
+    -h, --help   show usage help
+    -r           recursive
 ```
 
 * * *

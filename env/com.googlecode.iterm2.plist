@@ -401,11 +401,11 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>1398 651 700 548 0 0 3440 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>57 0 1105 850 0 0 3440 1417 </string>
+	<string>57 9 3383 690 0 0 3440 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>5 1327 115 90 0 0 3440 1417 </string>
+	<string>2 1287 178 130 0 0 3440 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>2124 359 1105 850 0 0 3440 1417 </string>
+	<string>2 1207 196 210 0 0 3440 1417 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1108,12 +1108,12 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {3440, 1440}}</string>
 		<key>topLeft</key>
-		<string>{269, 595}</string>
+		<string>{737, 850}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
 	<string>5D5004CA-CE60-4C58-9532-2B7C98F4648C</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>60</integer>
+	<integer>84</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -1882,13 +1882,15 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-09-17T18:07:30Z</date>
+	<date>2020-12-14T00:56:28Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
+	<key>SUSkippedVersion</key>
+	<string>3.4.3</string>
 	<key>SUUpdateRelaunchingMarker</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
-	<true/>
+	<false/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>StretchTabsToFillBar</key>

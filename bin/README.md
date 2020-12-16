@@ -189,17 +189,18 @@ sqlite, tesseract, theora, tree, unbound, v8, vegeta, vramsteg, watch, wdiff,
 webp, wget, x264, x265, xvid, xz, yajl, yaml-cpp, yarn, youtube-dl, zlib, zsh, 
 zstd
 
-Homebrew Casks: 1password, atom, atom-beta, clamxav, dbvisualizer, 
-disk-inventory-x, docker, dropbox, fantastical, firefox, flux, font-fira-code, 
-font-hack-nerd-font, google-chrome, iexplorer, istumbler, iterm2, java, 
-kaleidoscope, lingon-x, mactex, mcgimp, mysqlworkbench, silverlight, skype, 
-slack, snes9x, sourcetree, spectacle, spotify, steam, sublime-text, texstudio, 
-the-unarchiver, transmission, vagrant, visual-studio-code, vlc, whatsapp, 
-xquartz
+Homebrew Casks: 1password, atom, atom-beta, chromedriver, clamxav, 
+dbvisualizer, disk-inventory-x, docker, dropbox, fantastical, firefox, flux, 
+font-fira-code, font-hack-nerd-font, google-chrome, graphiql, iexplorer, 
+istumbler, iterm2, java, kaleidoscope, lingon-x, mactex, mcgimp, 
+mysqlworkbench, silverlight, skype, slack, snes9x, sourcetree, spectacle, 
+spotify, steam, sublime-text, texstudio, the-unarchiver, transmission, vagrant, 
+visual-studio-code, vlc, whatsapp, xquartz
 
-Atom Packages: atom-notes, auto-update-packages, highlight-selected, 
-language-markdown, minimap, minimap-highlight-selected, minimap-selection, 
-native-ui, pen-paper-coffee-syntax, sort-lines, trailing-spaces, typewriter
+Atom Packages: atom-notes, auto-update-packages, busy-signal, 
+highlight-selected, intentions, language-markdown, linter, linter-ui-default, 
+minimap, minimap-highlight-selected, minimap-selection, native-ui, 
+pen-paper-coffee-syntax, sort-lines, trailing-spaces, typewriter
 
 Code Packages: BriteSnow.vscode-toggle-quotes, DavidAnson.vscode-markdownlint, 
 GrapeCity.gc-excelviewer, HookyQR.beautify, James-Yu.latex-workshop, 
@@ -207,13 +208,15 @@ PascalReitermann93.vscode-yaml-sort, ban.spellright, be5invis.toml,
 bibhasdn.unique-lines, bung87.vscode-gemfile, dbaeumer.vscode-eslint, 
 eamodio.gitlens, esbenp.prettier-vscode, exiasr.hadolint, 
 foxundermoon.shell-format, freakypie.code-python-isort, golang.Go, 
-karunamurti.haml, lehni.vscode-titlebar-less-macos, magicstack.MagicPython, 
-mgmcdermott.vscode-language-babel, mike-co.import-sorter, misogi.ruby-rubocop, 
-mohsen1.prettify-json, ms-azuretools.vscode-docker, ms-python.python, 
-octref.vetur, otoniel-isidoro.vscode-ruby-ctags, rebornix.ruby, 
-richie5um2.vscode-sort-json, sianglim.slim, spywhere.guides, 
-sysoev.language-stylus, timonwong.shellcheck, vscode-icons-team.vscode-icons, 
-waderyan.gitblame, wingrunr21.vscode-ruby
+joe-re.sql-language-server, karunamurti.haml, lehni.vscode-titlebar-less-macos, 
+magicstack.MagicPython, mgmcdermott.vscode-language-babel, 
+mike-co.import-sorter, misogi.ruby-rubocop, mohsen1.prettify-json, 
+ms-azuretools.vscode-docker, ms-python.python, ms-python.vscode-pylance, 
+ms-toolsai.jupyter, octref.vetur, otoniel-isidoro.vscode-ruby-ctags, 
+rebornix.ruby, richie5um2.vscode-sort-json, sianglim.slim, 
+sissel.shopify-liquid, spywhere.guides, sysoev.language-stylus, 
+timonwong.shellcheck, vscode-icons-team.vscode-icons, waderyan.gitblame, 
+wingrunr21.vscode-ruby
 
 Pip Packages: git-sweep3k, glances, httpie, inflection, patch, 
 python-json-logger, pyyaml, termcolor
@@ -224,10 +227,10 @@ pytest, python-dateutil, pytz, readline, requests, setuptools, six
 Gem Packages: jekyll, lolcat, rake, rdoc, rubocop
 
 Node Modules: @ibm/plex, JSON, all-contributors-cli, coffeelint, coffeescript, 
-cson, decaffeinate, dockerlint, eslint, external-ip, generator-code, 
-generator-generator, geoip-lite, js-beautify, json-stable-stringify, moment, 
-nesh, npm-check-updates, npm-remote-ls, npm-why, prettier, raml2html, standard, 
-tmpin, typescript, yo
+create-react-app, cson, decaffeinate, dockerlint, eslint, external-ip, 
+generator-code, generator-generator, geoip-lite, js-beautify, 
+json-stable-stringify, moment, nesh, npm-check-updates, npm-remote-ls, npm-why, 
+prettier, raml2html, standard, tmpin, typescript, yo
 
 Go Packages: github.com/BurntSushi/toml, github.com/acroca/go-symbols, 
 github.com/cweill/gotests, github.com/davidrjenni/reftools, 
@@ -946,7 +949,7 @@ Options:
     -p, --password PASSWORD          Account password. If this option is left out, youtube-dl will ask interactively.
     -2, --twofactor TWOFACTOR        Two-factor authentication code
     -n, --netrc                      Use .netrc authentication data
-    --video-password PASSWORD        Video password (vimeo, smotri, youku)
+    --video-password PASSWORD        Video password (vimeo, youku)
 
   Adobe Pass Options:
     --ap-mso MSO                     Adobe Pass multiple-system operator (TV provider) identifier, use --ap-list-mso for

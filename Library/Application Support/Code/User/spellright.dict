@@ -127,7 +127,6 @@ Homebrew
 pytest
 pypi
 heroku
-rvm
 distro
 virtualenvwrapper
 virtualenv
@@ -169,3 +168,4 @@ hacky
 vendored
 proto
 datetime
+asdf

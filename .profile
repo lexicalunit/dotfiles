@@ -57,6 +57,13 @@ if type brew >/dev/null 2>&1; then
     export MANPATH
     export PYTHONPATH
 
+    # asdf setup
+    ASDF_PREFIX="$(brew --prefix asdf 2>/dev/null || true)"
+    if [[ -d "$ASDF_PREFIX" ]]; then
+        # shellcheck disable=SC1090
+        source "$ASDF_PREFIX/asdf.sh"
+    fi
+
     # ensure that brew installed `expect` functions correctly
     export TCLLIBPATH="$BREW_PREFIX/lib"
 
@@ -71,21 +78,17 @@ if type brew >/dev/null 2>&1; then
         fi &
     )
     if [[ -d $BREW_NVM_PREFIX ]]; then
-        # shellcheck source=/usr/local/opt/nvm/nvm.sh
-        # shellcheck disable=SC1091
+        # shellcheck disable=SC1090
         source "$BREW_NVM_PREFIX/nvm.sh"
     fi
 fi
 
-# Add specific application paths, such as Python, rvm, etc...
+# Add specific application paths, such as Python, asdf, etc...
 test -d "$HOME/.cargo/bin" && PATH="$PATH:$_"
 test -d "$HOME/.log-ninja" && PATH="$PATH:$_"
 test -d /usr/local/lib/svn-python && PYTHONPATH="$_:$PYTHONPATH"
 test -d /opt/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
 test -d /usr/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
-
-# Note that rvm complains loudly if it isn't the first path, rvm is bad, just ignore it
-test -d "$HOME/.rvm/bin" && PATH="$_:$PATH"
 
 # Add npm dev installed dependencies per project
 PATH="node_modules/.bin:$PATH"
@@ -282,14 +285,14 @@ if $INTERACTIVE; then
     alias pygmentize='pygmentize -O bg=dark'
     alias yapf='yapf --style="{based_on_style: pep8, column_limit: 120}" '
     fa() {
-        rg \
-            --type-not svg \
-            --trim \
-            --sort modified \
-            --smart-case \
-            --pretty \
-            --max-columns "$(stty size | cut -d' ' -f2)" \
-            "$@"
+        run "rg \
+--type-not svg \
+--trim \
+--sort modified \
+--smart-case \
+--pretty \
+--max-columns \"$(stty size | cut -d' ' -f2)\" \
+\"$@\""
     }
     ra() {
         rg \
@@ -433,22 +436,13 @@ if $INTERACTIVE; then
     enterconda || true
 
     ################################################################################
-    # setup rvm -- must go last otherwise rvm complains about PATH
+    # general environment setup
     ################################################################################
-    _interactive_log "setting up rvm"
-
-    # Workaround https://github.com/rvm/rvm/pull/4120 by unaliasing cd before rvm.
-    # Then re-alias cd again.
-    # https://github.com/sorin-ionescu/prezto/blob/master/modules/utility/init.zsh
-    unalias cd
+    _interactive_log "setting up envrionment"
 
     # Override prezto's grep configuration
     alias grep='nocorrect grep --color=auto'
     export GREP_COLOR='1;35;40'
-
-    # shellcheck source=.rvm/scripts/rvm
-    # shellcheck disable=SC1091
-    test -s "$HOME/.rvm/scripts/rvm" && source "$_"
 
     # I hate autocorrection in CLI, disable it because prezto enables it.
     alias cd='nocorrect cd'

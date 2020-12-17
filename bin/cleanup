@@ -72,14 +72,6 @@ show "disk space available before cleanup: $(numfmt --to=iec-i --suffix=B -- "$B
 # by default, execute these commands from your home directory
 run "cd"
 
-# This has to be done before we setup the exit trap because rvm is absolute garbage software.
-if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
-    # shellcheck source=.rvm/scripts/rvm
-    # shellcheck disable=SC1091
-    source "$HOME/.rvm/scripts/rvm"
-    run "rvm use '$(rvm list default string)'"
-fi
-
 report() {
     if [[ "$GATEKEEPER" == "assessments enabled" ]]; then
         run "sudo spctl --master-enable"
@@ -192,8 +184,7 @@ if command -v brew >/dev/null 2>&1; then
     run "brew tap --repair"
 fi
 
-# rvm and gem
-command -v rvm >/dev/null 2>&1 && run "rvm cleanup all"
+# gem
 command -v gem >/dev/null 2>&1 && run "yes | gem cleanup"
 
 # cargo

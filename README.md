@@ -155,10 +155,10 @@ install packages/formulas/casks/whatever, see below for the list of included ite
 | most | Runs steps: apps dot (basically everything but the osx step) |
 | all | Runs all steps |
 
-Homebrew Formulas: adns, aom, autoconf, automake, avro-c, bash, bat, cairo, 
-clang-format, cmake, colordiff, coreutils, csv-fix, diff-so-fancy, docker, 
-doxygen, duti, entr, exa, exiftool, expect, faac, fasd, ffmpeg, flac, flake8, 
-fontconfig, freetype, frei0r, fribidi, fzf, gd, gdbm, geoip, gettext, 
+Homebrew Formulas: adns, aom, asdf, autoconf, automake, avro-c, bash, bat, 
+cairo, clang-format, cmake, colordiff, coreutils, csv-fix, diff-so-fancy, 
+docker, doxygen, duti, entr, exa, exiftool, expect, faac, fasd, ffmpeg, flac, 
+flake8, fontconfig, freetype, frei0r, fribidi, fzf, gd, gdbm, geoip, gettext, 
 ghostscript, giflib, gifsicle, git, git-flow, git-lfs, git-review, git-secrets, 
 glib, gmp, gnu-sed, gnu-tar, gnupg, gnutls, graphicsmagick, graphite2, 
 harfbuzz, hub, icu4c, id3lib, imagemagick@6, isl, jansson, jasper, jbig2dec, 

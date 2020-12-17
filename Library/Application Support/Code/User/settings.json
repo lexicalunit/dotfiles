@@ -133,5 +133,6 @@
   "window.zoomLevel": 0,
   "python.showStartPage": false,
   "extensions.ignoreRecommendations": true,
-  "telemetry.enableCrashReporter": false
+  "telemetry.enableCrashReporter": false,
+  "gitlens.currentLine.pullRequests.enabled": false
 }

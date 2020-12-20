@@ -7,8 +7,9 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
     source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Get rid of interactive rm from prezto's utility module, which I otherwise want.
+# Get rid of annoying interactive commands from prezto's utility module
 unalias rm
+unalias cp
 
 ################################################################################
 # interactive settings

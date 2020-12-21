@@ -93,6 +93,7 @@ with the argument `--help`.
 | [`git-pretty`](bin/git-pretty) | Runs prettier on vue/js/ts files in the most recent N commits. |
 | [`git-pt`](bin/git-pt) | Force updates remote topic branch with local branch. |
 | [`git-reauthor`](bin/git-reauthor) | In git, change the author name and/or email of a single commit. |
+| [`git-recon`](bin/git-recon) | A tool for reconciling your local git repositories. |
 | [`git-rspec`](bin/git-rspec) | Runs rspec tests that have changed within in the latest N commits. |
 | [`git-sync`](bin/git-sync) | Fetch and fast-forward to the latest for origin/master. |
 | [`git-tidy`](bin/git-tidy) | Tidies up all the junk this repository. |

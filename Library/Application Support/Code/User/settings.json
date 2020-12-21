@@ -6,6 +6,9 @@
   "editor.renderControlCharacters": true,
   "editor.renderWhitespace": "boundary",
   "editor.wordWrapColumn": 120,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": false
+  },
   "go.formatTool": "goimports",
   "go.lintTool": "golint",
   "go.toolsGopath": "/usr/local/lib/gopath:/usr/local/lib/invision/gopath",
@@ -44,14 +47,22 @@
   },
   "[typescript]": {
     "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
     "editor.tabSize": 2
   },
   "[javascript]": {
     "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
     "editor.tabSize": 2
   },
   "[javascriptreact]": {
+    "editor.formatOnSave": true,
     "editor.tabSize": 2
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
     "editor.tabSize": 2

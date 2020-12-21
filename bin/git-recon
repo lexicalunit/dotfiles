@@ -1,0 +1,206 @@
+#!/usr/bin/env bash
+
+# A tool for reconciling your local git repositories.
+# Source: https://gitlab.com/leipert-projects/git-recon
+
+CURR_DIR="$(pwd)"
+
+VERBOSE_MODE=true
+PORCELAIN_MODE=false
+RECURSIVE_MODE=false
+
+function help() {
+    cat <<EndOfMessage
+git-recon - reconcile your local git repos [version v1.0.1]
+
+USAGE
+    git recon [--version] [--help] [--recursive] [--porcelain]
+
+OPTIONS
+    --recursive   Recursively check subfolders, if the current directory is
+                  NOT a git folder, this will be enabled by default
+    --porcelain   Machine readable output
+    --help        Prints this help
+    --version     Prints current version
+
+
+git-recon is a tool for reconciling your local git repositories.
+
+git has a lot of things to keep track of: files, branches, tags, stashes,
+submodules and worktrees.
+With git-recon you can quickly check the status of all of them.
+EndOfMessage
+}
+
+function indent() { sed 's/^/    /'; }
+
+function success() {
+    # shellcheck disable=SC2059
+    printf "\U2705 $1\n" "${@:2}"
+}
+
+function error() {
+    # shellcheck disable=SC2059
+    printf "\U274C $1\n" "${@:2}"
+}
+
+function check_remotes {
+    local remotes
+    remotes=$(git remote -v)
+
+    if [ "$remotes" != "" ]; then
+        success "%s Remotes configured" "$(echo "$remotes" | wc -l)"
+        if [ "$VERBOSE_MODE" == "true" ]; then
+            echo "$remotes" | indent | indent
+        fi
+    else
+        error "No remote configured, did you ever push this repo?"
+        return 1
+    fi
+}
+
+function check_branches {
+    local branches
+    branches=$(git log --branches --not --remotes --no-walk --decorate --pretty='format:Refs:%d; Last commit: %h %s')
+
+    if [ "$branches" != "" ]; then
+        error "%s branches with unpushed commits" "$(echo "$branches" | wc -l)"
+        if [ "$VERBOSE_MODE" == "true" ]; then
+            echo "$branches" | indent | indent
+        fi
+        return 1
+    else
+        success "No branch contains unpushed commits"
+    fi
+}
+
+function check_tags {
+    local tags
+    tags=$(comm -23 <(git show-ref --tags | cut -d ' ' -f 2) <(git ls-remote --tags origin | cut -f 2) | sed 's#refs/tags/##g')
+
+    if [ "$tags" != "" ]; then
+        error "%s unpushed tags" "$(echo "$tags" | wc -l)"
+        if [ "$VERBOSE_MODE" == "true" ]; then
+            echo "$tags" | indent | indent
+        fi
+        return 1
+    else
+        success "No unpushed tags"
+    fi
+}
+
+function check_stashes {
+    local stashes
+    stashes=$(git stash list)
+
+    if [ "$stashes" != "" ]; then
+        error "%s stashes found" "$(echo "$stashes" | wc -l)"
+        if [ "$VERBOSE_MODE" == "true" ]; then
+            echo "$stashes" | indent | indent
+        fi
+        return 1
+    else
+        success "No stashes found"
+    fi
+}
+
+function check_status {
+    local files
+    files=$(git status --porcelain)
+
+    if [ "$files" != "" ]; then
+        error "Unclean repo state, %s files touched " "$(echo "$files" | wc -l)"
+        if [ "$VERBOSE_MODE" == "true" ]; then
+            echo "$files" | indent | indent
+        fi
+        return 1
+    else
+        success "The repo status is clean"
+    fi
+}
+
+function run_checks {
+    fail=0
+    check_remotes || return 1
+    check_branches || fail=1
+    check_tags || fail=1
+    check_stashes || fail=1
+    check_status || fail=1
+    return $fail
+}
+
+function check_repo {
+    local DIR
+    cd "$(dirname "$1")" || return 1
+    DIR="$(pwd)"
+    if [ "$PORCELAIN_MODE" != "true" ]; then
+        printf "Checking: %s\n\n" "$DIR"
+    fi
+    output=$(run_checks)
+    success=$?
+    if [ "$PORCELAIN_MODE" == "true" ]; then
+        if [ "$success" == "0" ]; then
+            echo "SYNC $DIR"
+        else
+            echo "???? $DIR"
+        fi
+    else
+        echo "$output" | indent
+        echo ""
+        if [ "$success" == "0" ]; then
+            success "$DIR is synced up with remote"
+        else
+            error "$DIR is not synced up with remote"
+        fi
+    fi
+
+    cd "$CURR_DIR" || return 1
+}
+
+function find_git_dirs() {
+    if command -v fd &>/dev/null; then
+        fd --hidden --no-ignore-vcs --glob --print0 '.git' "$CURR_DIR" | sort -z -d
+    else
+        find "$CURR_DIR" -iname '.git' -print0 | sort -z -d
+    fi
+}
+
+function execute() {
+    if { [ -d .git ] || [ -f .git ]; } && [ "$RECURSIVE_MODE" == "false" ]; then
+        check_repo "$CURR_DIR/.git"
+    else
+        while IFS= read -r -d '' file; do
+            check_repo "$file"
+            echo ""
+        done < <(find_git_dirs)
+    fi
+}
+
+while [ $# -ne 0 ]; do
+    arg="$1"
+    case "$arg" in
+    --recursive)
+        RECURSIVE_MODE=true
+        ;;
+    --porcelain)
+        VERBOSE_MODE=false
+        PORCELAIN_MODE=true
+        ;;
+    --help)
+        help
+        exit 0
+        ;;
+    --version)
+        echo "git-recon version v1.0.1"
+        exit 0
+        ;;
+    *) ;;
+    esac
+    shift
+done
+
+if [ "$PORCELAIN_MODE" == "true" ]; then
+    execute | column -t
+else
+    execute
+fi

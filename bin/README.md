@@ -331,6 +331,29 @@ usage: git-reauthor [-f] commit-to-change [branch-to-rewrite [new-name [new-emai
 ```
 
 * * *
+### [`git-recon`](git-recon)
+```
+git-recon - reconcile your local git repos [version v1.0.1]
+
+USAGE
+    git recon [--version] [--help] [--recursive] [--porcelain]
+
+OPTIONS
+    --recursive   Recursively check subfolders, if the current directory is
+                  NOT a git folder, this will be enabled by default
+    --porcelain   Machine readable output
+    --help        Prints this help
+    --version     Prints current version
+
+
+git-recon is a tool for reconciling your local git repositories.
+
+git has a lot of things to keep track of: files, branches, tags, stashes,
+submodules and worktrees.
+With git-recon you can quickly check the status of all of them.
+```
+
+* * *
 ### [`git-rspec`](git-rspec)
 ```
 

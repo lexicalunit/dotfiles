@@ -221,8 +221,8 @@ wingrunr21.vscode-ruby
 Pip Packages: git-sweep3k, glances, httpie, inflection, patch, 
 python-json-logger, pyyaml, termcolor
 
-Conda Packages: flake8, ipython, isort, jedi, nose, pep8, pygments, pylint, 
-pytest, python-dateutil, pytz, readline, requests, setuptools, six
+Conda Packages: flake8, ipython, isort, jedi, nose, pep8, poetry, pygments, 
+pylint, pytest, python-dateutil, pytz, readline, requests, setuptools, six
 
 Gem Packages: jekyll, lolcat, rake, rdoc, rubocop
 

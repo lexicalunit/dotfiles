@@ -48,7 +48,8 @@
   "[typescript]": {
     "editor.detectIndentation": false,
     "editor.formatOnSave": true,
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascript]": {
     "editor.detectIndentation": false,

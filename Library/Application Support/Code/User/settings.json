@@ -40,7 +40,9 @@
   "editor.renderIndentGuides": false,
   "workbench.editor.showTabs": true,
   "[css]": {
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[ruby]": {
     "editor.tabSize": 2

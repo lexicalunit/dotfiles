@@ -74,6 +74,7 @@
 /.config/QtProject
 /.config/rq
 /.config/texstudio
+/.config/yarn/global
 /.cups/lpoptions
 /.dbvis
 /.docker

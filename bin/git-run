@@ -1,0 +1,82 @@
+#!/bin/bash
+
+# Runs a command on files that have recently changed.
+
+set -ue
+
+usage() {
+    (
+        echo "usage: ${0##*/} [-h|--help] COMMAND PATTERN [-N]"
+        echo "Runs the given command on files matching the given pattern that"
+        echo "have changed within in the latest N commits. Or if there are any"
+        echo "uncomitted changes, run the command on those matching files."
+        echo
+        echo "options:"
+        (
+            echo "    -h, --help: show usage help"
+            echo "    -N: number of commits to consider, default is -1"
+        ) | column -ts:
+    ) >&2
+    exit 1
+}
+
+show() {
+    # usage: show [-i|-r] <message>
+    # -i: show an important message
+    # -r: show a command
+    local important=0
+    if [[ $1 == "-i" ]]; then
+        shift
+        important=1
+        echo -n $'\e[38;5;196m'"$(tput bold)! "
+    elif [[ $1 == "-r" ]]; then
+        shift
+        echo -n $'\e[38;5;40m$\e[38;5;63m '
+    else
+        echo -n $'\e[1;34m>\e[0m\e[31m '
+    fi
+
+    echo -n "$@"
+
+    if [[ $important == "1" ]]; then
+        echo -n " $(tput sgr0)"$'\e[0m'
+    else
+        echo -n $'\e[0m'
+    fi
+
+    echo
+}
+
+run() {
+    show -r "$@"
+    eval "$@"
+    return $?
+}
+
+COMMAND="$1"
+PATTERN="$2"
+LOOKBACK=${3:--1}
+
+tf="$(mktemp -t tmp.XXXXXXXXXX)"
+trap 'rm -f $tf' EXIT
+
+write_lines() {
+    while read -r MATCHING_FILE; do
+        echo "    $MATCHING_FILE \\" >> "$tf"
+    done
+}
+
+CHANGED=$(git status --porcelain | sed -e 's/^.. //' | grep -iE "$PATTERN" || true)
+if [[ -n "$CHANGED" ]]; then
+    echo "$CHANGED"
+else
+    git log --pretty="" --name-only "$LOOKBACK" | grep -iE "$PATTERN" || true
+fi | write_lines
+
+if [[ -s "$tf" ]]; then
+    run "$COMMAND \\
+$(sort -u <"$tf" | sed '$ s/\\$//g')"
+else
+    echo "no matching files" >&2
+    exit 1
+fi

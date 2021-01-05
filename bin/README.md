@@ -273,12 +273,6 @@ options:
 ```
 
 * * *
-### [`git-jest`](git-jest)
-```
-
-```
-
-* * *
 ### [`git-lg`](git-lg)
 ```
 usage: git-lg [-h|--help] [ARGS]
@@ -354,9 +348,9 @@ With git-recon you can quickly check the status of all of them.
 ```
 
 * * *
-### [`git-rspec`](git-rspec)
+### [`git-run`](git-run)
 ```
-
+./git-run: line 57: $2: unbound variable
 ```
 
 * * *

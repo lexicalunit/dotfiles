@@ -31,7 +31,8 @@
 	su = status
 	undo = reset HEAD~1 --soft
 	wdiff = diff --color-words --word-diff
-	what = !bash git_what
+	rspec = run 'bin/rspec' '_spec\\.rb$'
+	jest = run 'jest --config jest.config.js --' '_spec\\.js$|_spec\\.ts$'
 [color]
 	ui = true
 [color "branch"]

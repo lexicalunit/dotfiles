@@ -86,7 +86,6 @@ with the argument `--help`.
 | [`faff`](bin/faff) | Sleeps for the given number of seconds, showing a progress bar. |
 | [`flip`](bin/flip) | Flips input upside down. |
 | [`fs`](bin/fs) | Tweak ripgrep to easily search codebases with committed files and f... |
-| [`git-jest`](bin/git-jest) | Runs jest tests that have changed within in the latest N commits. |
 | [`git-lg`](bin/git-lg) | Git script for printing beautiful logs. |
 | [`git-name-change`](bin/git-name-change) | Clones a repo then changes the name and email address in entire his... |
 | [`git-parent`](bin/git-parent) | Finds the direct parent of the current branch in git. |
@@ -94,7 +93,7 @@ with the argument `--help`.
 | [`git-pt`](bin/git-pt) | Force updates remote topic branch with local branch. |
 | [`git-reauthor`](bin/git-reauthor) | In git, change the author name and/or email of a single commit. |
 | [`git-recon`](bin/git-recon) | A tool for reconciling your local git repositories. |
-| [`git-rspec`](bin/git-rspec) | Runs rspec tests that have changed within in the latest N commits. |
+| [`git-run`](bin/git-run) | Runs a command on files that have recently changed. |
 | [`git-sync`](bin/git-sync) | Fetch and fast-forward to the latest for origin/master. |
 | [`git-tidy`](bin/git-tidy) | Tidies up all the junk this repository. |
 | [`git-up`](bin/git-up) | Rebase branch on the latest changes for the remote parent branch. |
@@ -243,7 +242,7 @@ Copyright 2006 Raph Levien. Released under the SIL Open Font License.
 
 The MIT License (MIT)
 
-Copyright (c) 2020, lexicalunit@lexicalunit.com
+Copyright (c) 2021, lexicalunit@lexicalunit.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

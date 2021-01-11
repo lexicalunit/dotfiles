@@ -148,5 +148,6 @@
   "python.showStartPage": false,
   "extensions.ignoreRecommendations": true,
   "telemetry.enableCrashReporter": false,
-  "gitlens.currentLine.pullRequests.enabled": false
+  "gitlens.currentLine.pullRequests.enabled": false,
+  "shellcheck.customArgs": ["-x"]
 }

@@ -31,7 +31,7 @@ done
 shift $((OPTIND - 1))
 
 # shellcheck disable=SC2009
-LIST="$(ps -ww -ew -o pid,user,command | grep -Ev "bin/die|grep" | grep -i "$1")"
+LIST="$(ps -ww -ew -o pid,user,command | grep -Ev "bin/die|grep" | grep -Ei "$1")"
 if [ "$LIST" = "" ]; then
     if [[ $QUIET == 0 ]]; then
         echo "no processes found"

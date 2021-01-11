@@ -253,6 +253,17 @@ Sleeps for the given number of seconds, showing a progress bar.
 ```
 
 * * *
+### [`fgdk`](fgdk)
+```
+usage: fgdk [options]
+
+Sometimes GitLab Developer Kit caddywhompus, this script kills it.
+
+options:
+ -h or --help shows usage help
+```
+
+* * *
 ### [`flip`](flip)
 ```
 usage: echo 'text' | flip
@@ -434,17 +445,6 @@ Requires hand editing to support your specific installation.
 Symbolic link to '/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Resources/jsc'
 ```
 ./usages: line 74: ./jsc: No such file or directory
-```
-
-* * *
-### [`ks`](ks)
-```
-usage: ks [options]
-
-Sometimes spring server gets caddywhompus, this script kills it.
-
-options:
- -h or --help shows usage help
 ```
 
 * * *

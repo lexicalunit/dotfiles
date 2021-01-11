@@ -84,6 +84,7 @@ with the argument `--help`.
 | [`dogs`](bin/dogs) | Streams system logs for docker containers. |
 | [`equip`](bin/equip) | Install applications and development environment on an macOS or Lin... |
 | [`faff`](bin/faff) | Sleeps for the given number of seconds, showing a progress bar. |
+| [`fgdk`](bin/fgdk) | Sometimes GitLab Developer Kit caddywhompus, this script kills it. |
 | [`flip`](bin/flip) | Flips input upside down. |
 | [`fs`](bin/fs) | Tweak ripgrep to easily search codebases with committed files and f... |
 | [`git-lg`](bin/git-lg) | Git script for printing beautiful logs. |
@@ -103,7 +104,6 @@ with the argument `--help`.
 | [`golist`](bin/golist) | Lists all user installed go packages. |
 | [`install_odbc`](bin/install_odbc) | Sets up ODBC. |
 | [`jsc`](bin/jsc) | Symbolic link to '/System/Library/Frameworks/JavaScriptCore.framewo... |
-| [`ks`](bin/ks) | Sometimes spring server gets caddywhompus, this script kills it. |
 | [`macosver`](bin/macosver) | Prints current macOS version information. |
 | [`nodeula-rasa`](bin/nodeula-rasa) | Gives you a total clean slate in your node project. |
 | [`nopw`](bin/nopw) | Enables password-less ssh TO username@remotehost FROM localhost. |

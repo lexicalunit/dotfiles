@@ -170,3 +170,5 @@ proto
 datetime
 asdf
 Dockerfile
+gdk
+getcwd

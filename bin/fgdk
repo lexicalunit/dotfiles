@@ -1,0 +1,29 @@
+#!/bin/bash -e
+
+# Sometimes GitLab Developer Kit caddywhompus, this script kills it.
+
+usage() {
+    echo "usage: ${0##*/} [options]" 1>&2
+    echo "" 1>&2
+    echo "Sometimes GitLab Developer Kit caddywhompus, this script kills it." 1>&2
+    echo ""
+    echo "options:"
+    echo " -h or --help shows usage help" 1>&2
+    exit 1
+}
+
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
+    usage
+fi
+
+# shellcheck source=.shell_control
+# shellcheck disable=SC1091
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
+if [[ "$(basename "$PWD")" == "gitlab-development-kit" ]]; then
+    run "gdk stop"
+    run "sleep 1"
+fi
+run "die 'ruby|rails|postgresql|praefect|webpack|spring|runsvdir'"
+run "find /var/folders -type d -iname 'spring-[0-9]*' -print0 2>/dev/null | xargs -0 -n 1 -P 8 rm -rf"
+run "go clean -cache"

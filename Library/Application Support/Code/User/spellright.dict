@@ -172,3 +172,5 @@ asdf
 Dockerfile
 gdk
 getcwd
+dependabot
+dockerignore

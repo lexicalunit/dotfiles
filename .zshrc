@@ -2,6 +2,9 @@
 # shellcheck disable=SC1090
 # shellcheck disable=SC2034
 
+# to edit: sudo chflags noschg ~/.zshrc && sudo chown `whoami` ~/.zshrc
+# to lock: sudo chown root ~/.zshrc && sudo chflags schg ~/.zshrc
+
 # Prezto
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
     source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"

@@ -3,7 +3,7 @@
 BLINK_LOCK="/tmp/.blinkstick-toggle"
 touch "$BLINK_LOCK"
 
-BS="/usr/local/bin/blinkstick"
+BS="/usr/bin/python /usr/local/bin/blinkstick"
 
 blink_reset() {
     rm "$BLINK_LOCK"

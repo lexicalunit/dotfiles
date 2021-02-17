@@ -7,35 +7,36 @@
 ################################################################################
 # BEGIN GENERATED PACKAGE LISTS
 HOMEBREW_FORMULAS="                                                            \
-    adns aom asdf autoconf automake avro-c bash bat cairo clang-format cmake   \
-    colordiff coreutils csv-fix diff-so-fancy docker doxygen duti entr exa     \
-    exiftool expect faac fasd ffmpeg flac flake8 fontconfig freetype frei0r    \
-    fribidi fzf gd gdbm geoip gettext ghostscript giflib gifsicle git git-flow \
-    git-lfs git-review git-secrets glib gmp gnu-sed gnu-tar gnupg gnutls       \
-    graphicsmagick graphite2 harfbuzz hub icu4c id3lib imagemagick@6 isl       \
-    jansson jasper jbig2dec jez/formulae/pandoc-sidenote jhead jo jpeg jq      \
-    kafkacat krb5 lame leptonica libass libassuan libbluray libevent libffi    \
+    adns aom asdf autoconf automake avro-c bash bat bdw-gc c-ares cairo        \
+    clang-format cmake colordiff coreutils dav1d defaultbrowser diff-so-fancy  \
+    doxygen duti entr exa exiftool expect faac fasd ffmpeg flac flake8         \
+    fontconfig freetype frei0r fribidi fzf gd gdbm geoip gettext ghostscript   \
+    giflib gifsicle git git-flow git-lfs git-review git-secrets glib gmp       \
+    gnu-sed gnu-tar gnupg gnutls gobject-introspection graphicsmagick          \
+    graphite2 guile harfbuzz hub icu4c id3lib imagemagick@6 isl jansson jasper \
+    jbig2dec jemalloc jez/formulae/pandoc-sidenote jhead jo jpeg jq kafkacat   \
+    krb5 lame leptonica libass libassuan libbluray libev libevent libffi       \
     libgcrypt libgpg-error libidn2 libksba libmpc libogg libpng librdkafka     \
-    libsamplerate libserdes libsndfile libsoxr libssh2 libtasn1 libtiff        \
-    libtool libunistring libusb libusb-compat libvidstab libvo-aacenc          \
+    libsamplerate libserdes libsndfile libsodium libsoxr libssh2 libtasn1      \
+    libtiff libtool libunistring libusb libusb-compat libvidstab libvo-aacenc  \
     libvorbis libvpx libyaml little-cms2 lz4 lzlib lzo makedepend mas          \
-    md5sha1sum memcached minio mpfr mtr mysql ncftp ncurses net-snmp nettle    \
-    nginx node npth nvm oniguruma opencore-amr openjpeg openssl opus ossp-uuid \
+    memcached minio mpfr mtr mysql ncftp ncurses net-snmp nettle nghttp2 nginx \
+    node npth nvm oniguruma opencore-amr openjpeg openssl opus ossp-uuid       \
     p11-kit pandoc pcre pcre2 pidof pinentry pixman pkg-config plotutils       \
     pngquant postgresql protobuf pyenv pyenv-virtualenv                        \
-    pyenv-virtualenvwrapper python re2 readline redis ripgrep rlwrap rtmpdump  \
-    rubberband runit rust sdl2 shellcheck shfmt snappy speex sqlite tesseract  \
-    theora tree unbound v8 vegeta vramsteg watch wdiff webp wget x264 x265     \
-    xvid xz yajl yaml-cpp yarn youtube-dl zlib zsh zstd"
+    pyenv-virtualenvwrapper python rav1e re2 readline redis ripgrep rlwrap     \
+    rtmpdump rubberband runit sdl2 shellcheck shfmt snappy speex sqlite srt    \
+    tcl-tk tesseract theora tree unbound unixodbc v8 vegeta vramsteg watch     \
+    wdiff webp wget x264 x265 xvid xz yajl yaml-cpp yarn youtube-dl zeromq     \
+    zimg zlib zstd"
 
 HOMEBREW_CASKS="                                                               \
     1password atom atom-beta chromedriver clamxav dbvisualizer                 \
     disk-inventory-x docker dropbox fantastical firefox flux font-fira-code    \
-    font-hack-nerd-font google-chrome graphiql iexplorer istumbler iterm2 java \
-    kaleidoscope lingon-x mactex mcgimp mysqlworkbench silverlight skype slack \
+    font-hack-nerd-font google-chrome graphiql iexplorer istumbler iterm2      \
+    kaleidoscope lingon-x mactex mcgimp mysqlworkbench silverlight slack       \
     snes9x sourcetree spectacle spotify steam sublime-text texstudio           \
-    the-unarchiver transmission vagrant visual-studio-code vlc whatsapp        \
-    xquartz"
+    the-unarchiver transmission vagrant visual-studio-code vlc"
 
 ATOM_PACKAGES="                                                                \
     atom-notes auto-update-packages busy-signal highlight-selected intentions  \
@@ -49,16 +50,14 @@ CODE_PACKAGES="                                                                \
     PascalReitermann93.vscode-yaml-sort ban.spellright be5invis.toml           \
     bibhasdn.unique-lines bung87.vscode-gemfile dbaeumer.vscode-eslint         \
     eamodio.gitlens esbenp.prettier-vscode exiasr.hadolint                     \
-    foxundermoon.shell-format freakypie.code-python-isort golang.Go            \
+    foxundermoon.shell-format freakypie.code-python-isort                      \
     joe-re.sql-language-server karunamurti.haml                                \
     lehni.vscode-titlebar-less-macos magicstack.MagicPython                    \
     mgmcdermott.vscode-language-babel mike-co.import-sorter                    \
-    misogi.ruby-rubocop mohsen1.prettify-json ms-azuretools.vscode-docker      \
-    ms-python.python ms-python.vscode-pylance ms-toolsai.jupyter octref.vetur  \
-    otoniel-isidoro.vscode-ruby-ctags rebornix.ruby                            \
+    mohsen1.prettify-json ms-azuretools.vscode-docker ms-python.python         \
+    ms-python.vscode-pylance ms-toolsai.jupyter octref.vetur                   \
     richie5um2.vscode-sort-json sianglim.slim sissel.shopify-liquid            \
-    spywhere.guides sysoev.language-stylus timonwong.shellcheck                \
-    vscode-icons-team.vscode-icons waderyan.gitblame wingrunr21.vscode-ruby"
+    spywhere.guides sysoev.language-stylus timonwong.shellcheck"
 
 PIP_PACKAGES="                                                                 \
     git-sweep3k glances httpie inflection patch python-json-logger pyyaml      \
@@ -79,15 +78,7 @@ NODE_MODULES="                                                                 \
     prettier raml2html standard tmpin typescript yo"
 
 GO_PACKAGES="                                                                  \
-    github.com/BurntSushi/toml github.com/acroca/go-symbols                    \
-    github.com/cweill/gotests github.com/davidrjenni/reftools                  \
-    github.com/fatih/gomodifytags github.com/golang/lint                       \
-    github.com/haya14busa/goplay github.com/josharian/impl                     \
-    github.com/karrick/godirwalk github.com/mdempsky/gocode                    \
-    github.com/ramya-rao-a/go-outline github.com/rogpeppe/godef                \
-    github.com/uudashr/gopkgs golang.org/x/crypto golang.org/x/lint            \
-    golang.org/x/net golang.org/x/sync golang.org/x/sys golang.org/x/text      \
-    golang.org/x/tools honnef.co/go/tools"
+    github.com/BurntSushi/toml"
 
 CARGO_PACKAGES="                                                               \
     cargo-update loc"
@@ -108,15 +99,16 @@ cleanup_item_list() {
     declare -a lines
     items_var="$1"
     lines=("$items_var=\"")
-    eval "echo \$$items_var" |
-        sed "s/  */ /g;s/^ *//g;" |
-        tr ' ' '\n' |
-        sort -u |
-        tr '\n' ' ' |
-        fold -w 75 -s |
-        sed 's/^/    /g;s/ $//g' |
+    eval "echo \$$items_var" | \
+        sed "s/  */ /g;s/^ *//g;" | \
+        tr ' ' '\n' | \
+        sort -u | \
+        tr '\n' ' ' | \
+        sed '$s/ $/\n/' | \
+        fold -w 75 -s - | \
+        sed 's/^/    /g;s/ $//g' | \
         {
-            while IFS='' read -r line; do lines+=("$line"); done
+            while IFS=$'\n' read -r line; do lines+=("$line"); done
             for ((n = 0; n < ${#lines[@]}; n++)); do
                 line="${lines[$n]}"
                 leftover="$((80 - ${#line} - 1))"
@@ -343,26 +335,28 @@ step_osx() {
     show "Disable auto-correct"
     run "defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false"
 
-    if [[ -e "$HOME/env/Rio.jpg" ]]; then
-        show "Set wallpaper to $HOME/env/Rio.jpg"
+    DESKTOP_WALLPAPER="$HOME/env/Rio Sunrise.jpg"
+    if [[ -e "$DESKTOP_WALLPAPER" ]]; then
+        show "Set wallpaper to $DESKTOP_WALLPAPER"
 
-        run "sudo cp -uvf '$HOME/env/Rio.jpg' /System/Library/CoreServices/DefaultDesktop.jpg"
-        run "sudo chown root:wheel '$HOME/env/Rio.jpg'"
+        # NOTE: Doesn't seem to work on BigSur
+        run "sudo chown root:wheel '$DESKTOP_WALLPAPER'"
+        run "sudo cp -uvf '$DESKTOP_WALLPAPER' /System/Library/CoreServices/DefaultDesktop.jpg"
 
         run "sudo mkdir -p /Users/Shared/Background"
-        run "sudo cp -uvf '$HOME/env/Rio.jpg' /Users/Shared/Background/custombg.jpeg"
+        run "sudo cp -uvf '$DESKTOP_WALLPAPER' /Users/Shared/Background/custombg.jpeg"
         run "sudo chown -R root:wheel /Users/Shared/Background"
 
         MINOR_MACOS_VERSION="$(sw_vers | grep ProductVersion: | cut -f2 | cut -f2 -d.)"
         if [[ $MINOR_MACOS_VERSION -ge 9 ]]; then
             run "sqlite3 '$HOME/Library/Application Support/Dock/desktoppicture.db' 'delete from data;'"
-            run "sqlite3 '$HOME/Library/Application Support/Dock/desktoppicture.db' 'insert into data values (\"$HOME/env/Rio.jpg\");'"
+            run "sqlite3 '$HOME/Library/Application Support/Dock/desktoppicture.db' 'insert into data values (\"$DESKTOP_WALLPAPER\");'"
         else
             run "defaults write com.apple.desktop Background '{default = {ImageFilePath = \"/Users/Shared/Background/custombg.jpeg\"; };}'"
         fi
 
         if command -v set_wallpaper >/dev/null 2>&1; then
-            run "set_wallpaper --path '$HOME/env/Rio.jpg'"
+            run "set_wallpaper --path '$DESKTOP_WALLPAPER'"
         fi
     fi
 
@@ -403,11 +397,11 @@ step_osx() {
     run "defaults write NSGlobalDomain AppleKeyboardUIMode -int 3"
 
     show "Use scroll gesture with the Ctrl (^) modifier key to zoom"
-    run "defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true"
-    run "defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144"
+    run "sudo defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true"
+    run "sudo defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144"
 
     show "Follow the keyboard focus while zoomed in"
-    run "defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true"
+    run "sudo defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true"
 
     show "Disable press-and-hold for keys in favor of key repeat"
     run "defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false"
@@ -786,8 +780,8 @@ step_osx() {
     # run "sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search"
 
     # Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
-    show "Disable Spotlight indexing for any volume that gets mounted and has not yet been indexed before."
-    run "sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array '/Volumes'"
+    # show "Disable Spotlight indexing for any volume that gets mounted and has not yet been indexed before."
+    # run "sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array '/Volumes'"
 
     # Yosemite-specific search results (remove them if you are using macOS 10.9 or older):
     #   MENU_DEFINITION
@@ -901,8 +895,8 @@ EOF
     show "Prevent Time Machine from prompting to use new hard drives as backup volume"
     run "defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true"
 
-    show "Disable local Time Machine backups"
-    run "hash tmutil &> /dev/null && sudo tmutil disablelocal"
+    # show "Disable local Time Machine backups"
+    # run "hash tmutil &> /dev/null && sudo tmutil disablelocal"
 
     ########################################
     # Activity Monitor
@@ -1020,6 +1014,20 @@ EOF
     run "nohup killall Dock Finder >/dev/null 2>&1" &
     run "nohup killall SystemUIServer >/dev/null 2>&1" &
     show -i "Done. Note that some of these changes require a logout/restart to take effect."
+
+    ########################################
+    # Default Web Browser
+    ########################################
+    if command -v defaultbrowser >/dev/null 2>&1; then
+        show "Attempting to set Firefox as default Web Browser..."
+        run "defaultbrowser firefox"
+    fi
+
+    ########################################
+    # Keyboard Remapping
+    ########################################
+    show "Remap 'caps lock' to 'esc'"
+    run "hidutil property --set '{\"UserKeyMapping\":[{\"HIDKeyboardModifierMappingSrc\":0x700000039,\"HIDKeyboardModifierMappingDst\":0x700000029}]}'"
 }
 
 ################################################################################
@@ -1034,14 +1042,6 @@ step_xcode() {
         run "sudo xcodebuild -license" || abort "Xcode agreement NOT accepted"
     fi
     show "Xcode Command Line Tools are properly installed."
-}
-
-################################################################################
-# Step java
-################################################################################
-step_java() {
-    show "Checking if java's installed..."
-    run "java -version"
 }
 
 ################################################################################
@@ -1109,12 +1109,12 @@ step_brew() {
     fi
 
     run "sudo -v"
-    run "find '$(brew --prefix)' -mindepth 1 -maxdepth 1 -print0 | xargs -0 -n 1 -P 8 sudo chown -R '$(whoami)'"
+    run "find '$(brew --prefix)' -mindepth 1 -maxdepth 1 -print0 | xargs -0 -n 1 -P $(sysctl -n hw.ncpu) sudo chown -R '$(whoami)'"
 
     ensure_homebrew_updated
 
     local INSTALLED
-    brew list --formula -1 | {
+    brew ls --formula -1 | {
         while IFS="" read -r line; do INSTALLED+=("$line"); done
         IFS=' '
         for I in $HOMEBREW_FORMULAS; do
@@ -1133,7 +1133,7 @@ step_brew() {
     # run "ln -sf /usr/local/bin/glibtoolize /usr/local/bin/libtoolize"
 
     # install the git remote-hg helper
-    # run "ln -sf $(brew ls -v git | grep git-remote-hg) /usr/local/bin"
+    # run "ln -sf $(brew ls --formula -v git | grep git-remote-hg) /usr/local/bin"
 
     # install Amphetamine via Mac Apple Store CLI
     if [[ ! -e "/Applications/Amphetamine.app" ]]; then
@@ -1151,13 +1151,15 @@ step_brew() {
     local arr=()
     echo "$HOMEBREW_FORMULAS" | tr ' ' '\n' | {
         while IFS="" read -r line; do arr+=("$line"); done
-        for I in $(brew list --formula -1); do
+        for I in $(brew ls --formula -1); do
             name="${I%@*}"
             [[ $name == "imagemagick" ]] && name="$name@6"
             [[ $name == "pandoc-sidenote" ]] && name="jez/formulae/$name"
             if ! in_array "$name" "${arr[@]}"; then
                 case "$I" in
                 "go") ;; # installed as a separate step
+                "rust") ;; # installed as a separate step
+                "zsh") ;; # installed as a separate step
                 *) show -i "$I installed but not managed by equip via brew" ;;
                 esac
             fi
@@ -1201,7 +1203,7 @@ step_cask() {
     array_contains 'homebrew/cask-versions' "${TAP[@]}" || run "brew tap homebrew/cask-versions"
 
     local INSTALLED
-    brew cask ls -1 | {
+    brew ls --cask -1 | {
         while IFS="" read -r line; do INSTALLED+=("$line"); done
         IFS=' '
         for I in $HOMEBREW_CASKS; do
@@ -1212,7 +1214,7 @@ step_cask() {
     ensure_homebrew_updated_cleanup
 
     IFS=$'\n'
-    for I in $(brew list --cask); do
+    for I in $(brew ls --cask); do
         name="${I%@*}"
         if ! echo "$HOMEBREW_CASKS" | grep -Eq "$(echo "\\b$name\\b" | sed 's/ (!)//g')"; then
             if [[ $I != "miniconda" ]]; then
@@ -1348,7 +1350,7 @@ ensure_shell() {
 
     ensure_homebrew_updated_cleanup
 
-    SHELL_BINARY="$(brew ls "$NAME" | grep "^.*/bin/.*$NAME\$")"
+    SHELL_BINARY="$(brew ls --formula "$NAME" | grep "^.*/bin/.*$NAME\$")"
     ensure_add_shell "$SHELL_BINARY"
 
     BREW_SHELL_BINARY="$(brew --prefix)/bin/$NAME"
@@ -1378,7 +1380,8 @@ step_python() {
     run "sudo /usr/bin/easy_install --upgrade PyYAML"
 
     # isort and yapf required for IDE integration, install at the system level
-    run "sudo /usr/bin/easy_install --upgrade pip"
+    run "curl https://bootstrap.pypa.io/2.7/get-pip.py -o /tmp/get-pip.py"
+    run "sudo /usr/bin/python /tmp/get-pip.py"
     run "sudo /usr/local/bin/pip install isort"
     run "sudo /usr/local/bin/pip install yapf"
 
@@ -1476,12 +1479,15 @@ ensure_asdf_ruby() {
     # shellcheck disable=SC1090
     source "$(brew --prefix asdf)/asdf.sh"
 
+    # Install the version of ruby that's in my .tool-versions
+    RUBY_VERSION="3.0.0"
+
     if [[ -z "$(asdf list ruby 2>/dev/null)" ]]; then
-        if ! brew list --formula | grep -q readline; then
+        if ! brew ls --formula | grep -q readline; then
             abort "Please run step brew first, readline not installed via brew"
         fi
 
-        if ! brew list --formula | grep -q openssl; then
+        if ! brew ls --formula | grep -q openssl; then
             abort "Please run step brew first, openssl not installed via brew"
         fi
 
@@ -1490,8 +1496,11 @@ ensure_asdf_ruby() {
         # shellcheck disable=SC2155
         export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl)"
 
-        run "asdf install ruby latest" || abort "failed to install latest version of ruby via asdf"
+        # Install the version of ruby that's in my .tool-versions
+        run "asdf install ruby $RUBY_VERSION" || abort "failed to install latest version of ruby via asdf"
     fi
+
+    run "asdf local ruby $RUBY_VERSION system"
 }
 
 step_gem() {
@@ -1712,15 +1721,28 @@ step_dotfiles() {
     run "cd '$HOME'"
     ROOT="$(git rev-parse --show-toplevel 2>&1)"
     if [[ $ROOT != "$PWD" ]]; then
-        echo run "git init" || abort "Please ensure git is installed"
-        echo run "git remote add origin git@github.com:lexicalunit/dotfiles.git"
-        echo run "git fetch origin master" || abort "Please ensure ssh access to github"
-        echo run "git reset --hard FETCH_HEAD"
-        echo run "git branch -u origin/master"
-        echo run "git submodule update --recursive --init"
-    else
-        show "dotfiles already setup"
+        run "git init" || abort "Please ensure git is installed"
     fi
+
+    if ! git remote -v | grep -q git@github.com:lexicalunit/dotfiles.git; then
+        run "git remote add origin git@github.com:lexicalunit/dotfiles.git"
+    fi
+
+    BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+    if [[ $BRANCH != "master" ]]; then
+        abort "Branch '$BRANCH' is not the default branch, please checkout the 'master' branch"
+    fi
+
+    run "git fetch origin master" || abort "Please setup ssh access to github: https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh"
+
+    CHANGES="$(git status --porcelain=v1 2>/dev/null | wc -l)"
+    if [[ "$CHANGES" != "0" ]]; then
+        abort "Please commit or discard existing changes before proceeding"
+    fi
+
+    run "git reset --hard FETCH_HEAD"
+    run "git branch -u origin/master"
+    run "git submodule update --recursive --init"
 }
 
 ################################################################################
@@ -1780,7 +1802,7 @@ fi
 
 # update applications
 if echo "$ARGS" | grep -Eq -- 'apps\b'; then
-    ARGS="$ARGS xcode java brew cask ext python node go cargo gem atom code"
+    ARGS="$ARGS xcode brew cask ext python node go cargo gem atom code"
 fi
 
 # update environment and dotfiles
@@ -1792,7 +1814,6 @@ fi
 steps=(
     "xcode;         Ensure that Xcode Command Line Tools are installed"
     "dotfiles;      Ensure home directory is a git repository for dotfiles"
-    "java;          Ensure that Apple's java for macOS is installed"
     "brew;          Ensure Homebrew installed, formulas upgraded, and Amphetamine installed"
     "cask;          Ensure Homebrew Casks are installed"
     "ext;           Ensure file extension associations are correct"
@@ -1807,7 +1828,7 @@ steps=(
     "code;          Ensure VS Code installed via Homebrew Cask and its packages are installed"
     'osx;           Override macOS "defaults" settings and configuration'
     "dot;           Runs steps: dotfiles zsh env"
-    "apps;          Runs steps: xcode java brew cask ext python node go cargo gem atom code"
+    "apps;          Runs steps: xcode brew cask ext python node go cargo gem atom code"
     "most;          Runs steps: apps dot (basically everything but the osx step)"
     "all;          Runs all steps"
 )

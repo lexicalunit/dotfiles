@@ -71,6 +71,7 @@
 /.config/.mono/certs/Trust/
 /.config/configstore
 /.config/gtk-2.0/
+/.config/iterm2/AppSupport
 /.config/QtProject
 /.config/rq
 /.config/texstudio
@@ -153,6 +154,7 @@
 /.zhistory
 /.zoomus/
 /.zsh_history*
+/.zsh_sessions
 /.zsh-update
 /Creative\ Cloud\ Files
 /Dropbox*

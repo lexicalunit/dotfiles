@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 
 # Uses Cocoa classes via PyObjC to set a desktop wallpaper on all screens.
 

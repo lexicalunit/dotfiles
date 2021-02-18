@@ -190,10 +190,10 @@ vegeta, vramsteg, watch, wdiff, webp, wget, x264, x265, xvid, xz, yajl,
 yaml-cpp, yarn, youtube-dl, zeromq, zimg, zlib, zstd
 
 Homebrew Casks: 1password, atom, atom-beta, chromedriver, clamxav, 
-dbvisualizer, disk-inventory-x, docker, dropbox, fantastical, firefox, flux, 
-font-fira-code, font-hack-nerd-font, google-chrome, graphiql, iexplorer, 
+dbvisualizer, discord, disk-inventory-x, docker, dropbox, fantastical, firefox, 
+flux, font-fira-code, font-hack-nerd-font, google-chrome, graphiql, iexplorer, 
 istumbler, iterm2, kaleidoscope, lingon-x, mactex, mcgimp, mysqlworkbench, 
-silverlight, slack, snes9x, sourcetree, spectacle, spotify, steam, 
+signal, silverlight, slack, snes9x, sourcetree, spectacle, spotify, steam, 
 sublime-text, texstudio, the-unarchiver, transmission, vagrant, 
 visual-studio-code, vlc
 

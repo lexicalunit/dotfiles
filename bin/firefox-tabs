@@ -1,0 +1,35 @@
+#!/usr/local/bin/python3
+
+# Attempts to list the currently open urls in your Firefox tabs.
+
+import argparse
+import json
+import pathlib
+
+import lz4.block
+
+parser = argparse.ArgumentParser(description="List open urls in Firefox tabs")
+args = vars(parser.parse_args())
+
+
+def dump_urls(filepath: pathlib.Path):
+    stream = open(filepath, "rb")
+    stream.read(8)  # skip past the b"mozLz40\0" header
+    compressed_bytes = stream.read()
+    uncompressed_bytes = lz4.block.decompress(compressed_bytes)
+    text = uncompressed_bytes.decode("utf-8")
+    data = json.loads(text)
+    for window in data["windows"]:
+        for tab in window["tabs"]:
+            for entry in tab["entries"]:
+                print(entry["url"])
+
+
+if __name__ == "__main__":
+    home = pathlib.Path.home()
+    firefox = home / "Library" / "Application Support" / "Firefox"
+    profiles = (firefox / "Profiles").glob("*.default-release")
+    for profile in profiles:
+        recovery = profile / "sessionstore-backups" / "recovery.jsonlz4"
+        if recovery.exists():
+            dump_urls(recovery)

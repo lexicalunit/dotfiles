@@ -85,6 +85,7 @@ with the argument `--help`.
 | [`equip`](bin/equip) | Install applications and development environment on an macOS or Lin... |
 | [`faff`](bin/faff) | Sleeps for the given number of seconds, showing a progress bar. |
 | [`fgdk`](bin/fgdk) | Sometimes GitLab Developer Kit caddywhompus, this script kills it. |
+| [`firefox-tabs`](bin/firefox-tabs) | Attempts to list the currently open urls in your Firefox tabs. |
 | [`flip`](bin/flip) | Flips input upside down. |
 | [`fs`](bin/fs) | Tweak ripgrep to easily search codebases with committed files and f... |
 | [`git-lg`](bin/git-lg) | Git script for printing beautiful logs. |
@@ -207,8 +208,9 @@ spywhere.guides, sysoev.language-stylus, timonwong.shellcheck
 Pip Packages: git-sweep3k, glances, httpie, inflection, patch, 
 python-json-logger, pyyaml, termcolor
 
-Conda Packages: flake8, ipython, isort, jedi, nose, pep8, poetry, pygments, 
-pylint, pytest, python-dateutil, pytz, readline, requests, setuptools, six
+Conda Packages: flake8, ipython, isort, jedi, lz4, nose, pep8, poetry, 
+pygments, pylint, pytest, python-dateutil, pytz, readline, requests, 
+setuptools, six
 
 Gem Packages: jekyll, lolcat, rake, rdoc, rubocop
 

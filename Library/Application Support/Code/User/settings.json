@@ -9,9 +9,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": false
   },
-  "go.formatTool": "goimports",
-  "go.lintTool": "golint",
-  "go.toolsGopath": "/usr/local/lib/gopath:/usr/local/lib/invision/gopath",
   "window.nativeTabs": false,
   "workbench.colorTheme": "Solarized Light",
   "workbench.editor.closeOnFileDelete": false,
@@ -128,7 +125,6 @@
   "workbench.settings.useSplitJSON": true,
   "workbench.settings.editor": "json",
   "telemetry.enableTelemetry": false,
-  "gitlens.advanced.telemetry.enabled": false,
   "window.openWithoutArgumentsInNewWindow": "off",
   "window.closeWhenEmpty": true,
   "spellright.spellContext": "body comments strings",
@@ -138,8 +134,6 @@
   "spellright.notificationClassByParser": {
     "code": "information"
   },
-  "ruby.rubocop.useBundler": true,
-  "ruby.rubocop.suppressRubocopWarnings": true,
   "python.linting.flake8Enabled": true,
   "python.linting.pylintEnabled": false,
   "python.languageServer": "Pylance",
@@ -149,5 +143,8 @@
   "extensions.ignoreRecommendations": true,
   "telemetry.enableCrashReporter": false,
   "gitlens.currentLine.pullRequests.enabled": false,
-  "shellcheck.customArgs": ["-x"]
+  "shellcheck.customArgs": [
+    "-x"
+  ],
+  "terminal.integrated.inheritEnv": false
 }

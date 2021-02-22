@@ -22,9 +22,11 @@ source "$HOME/.blinkstick_control" || echo "$(tput bold)error: ~/.blinkstick_con
 
 APP="zoom.us"
 OP="osascript -e 'tell application \"System Events\" to (name of processes) contains \"$APP\"'"
+FIREFOX_TABS="$HOME/bin/firefox-tabs"
 
 is_running() {
-    test "$(eval "$OP")" == "true"
+    TABS="$($FIREFOX_TABS | /usr/bin/grep 'meet.google.com')"
+    test "$(eval "$OP")" = "true" || test -n "$TABS"
 }
 
 while true; do

@@ -64,7 +64,7 @@ PIP_PACKAGES="                                                                 \
     termcolor"
 
 CONDA_PACKAGES="                                                               \
-    flake8 ipython isort jedi nose pep8 poetry pygments pylint pytest          \
+    flake8 ipython isort jedi lz4 nose pep8 poetry pygments pylint pytest      \
     python-dateutil pytz readline requests setuptools six"
 
 GEM_PACKAGES="                                                                 \

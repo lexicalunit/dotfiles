@@ -85,6 +85,7 @@ fi
 
 # Add specific application paths, such as Python, asdf, etc...
 test -d "$HOME/.cargo/bin" && PATH="$PATH:$_"
+test -d "$HOME/.local/bin" && PATH="$PATH:$_"
 test -d "$HOME/.log-ninja" && PATH="$PATH:$_"
 test -d /usr/local/lib/svn-python && PYTHONPATH="$_:$PYTHONPATH"
 test -d /opt/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"

@@ -218,8 +218,9 @@ spywhere.guides, sysoev.language-stylus, timonwong.shellcheck
 Pip Packages: git-sweep3k, glances, httpie, inflection, patch, 
 python-json-logger, pyyaml, termcolor
 
-Conda Packages: flake8, ipython, isort, jedi, nose, pep8, poetry, pygments, 
-pylint, pytest, python-dateutil, pytz, readline, requests, setuptools, six
+Conda Packages: flake8, ipython, isort, jedi, lz4, nose, pep8, poetry, 
+pygments, pylint, pytest, python-dateutil, pytz, readline, requests, 
+setuptools, six
 
 Gem Packages: jekyll, lolcat, rake, rdoc, rubocop
 
@@ -250,6 +251,17 @@ Sometimes GitLab Developer Kit caddywhompus, this script kills it.
 
 options:
  -h or --help shows usage help
+```
+
+* * *
+### [`firefox-tabs`](firefox-tabs)
+```
+usage: firefox-tabs [-h]
+
+List open urls in Firefox tabs
+
+optional arguments:
+  -h, --help  show this help message and exit
 ```
 
 * * *

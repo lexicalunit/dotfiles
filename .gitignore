@@ -38,6 +38,19 @@
 # Poetry
 /.local/share/virtualenvs
 
+# Python pip/pipx user local
+/.local/bin
+/.local/lib
+/.local/pipx/logs
+/.local/pipx/shared
+/.local/pipx/venvs
+
+# Pyenv
+/env/lib
+/env/share
+/env/bin
+/env/pyvenv.cfg
+
 # Minecraft
 /Twitch
 /.mputils/settings.dat
@@ -58,6 +71,7 @@
 /.cache/babl
 /.cache/bower
 /.cache/fontconfig
+/.cache/pre-commit
 /.cache/prezto
 /.cargo
 /.ccache

@@ -1728,8 +1728,8 @@ step_dotfiles() {
         run "git remote add origin git@github.com:lexicalunit/dotfiles.git"
     fi
 
-    BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-    if [[ $BRANCH != "master" ]]; then
+    BRANCH="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
+    if [[ $BRANCH != "master" && $BRANCH != "HEAD" ]]; then
         abort "Branch '$BRANCH' is not the default branch, please checkout the 'master' branch"
     fi
 
@@ -1737,7 +1737,10 @@ step_dotfiles() {
 
     CHANGES="$(git status --porcelain=v1 2>/dev/null | wc -l)"
     if [[ "$CHANGES" != "0" ]]; then
-        abort "Please commit or discard existing changes before proceeding"
+        ask "There are existing changes in your working tree, continue anyway?"
+        if [[ $REPLY != "y" ]]; then
+            abort "Please commit or discard existing changes before proceeding"
+        fi
     fi
 
     run "git reset --hard FETCH_HEAD"

@@ -1007,15 +1007,6 @@ EOF
     run "defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true"
 
     ########################################
-    # Kill affected applications
-    ########################################
-    run "nohup killall Calendar cfprefsd Contacts Mail mds Messages Photos Safari >/dev/null 2>&1" &
-    run "nohup killall 'Activity Monitor' 'Address Book' 'Google Chrome Canary' 'Google Chrome' >/dev/null 2>&1" &
-    run "nohup killall Dock Finder >/dev/null 2>&1" &
-    run "nohup killall SystemUIServer >/dev/null 2>&1" &
-    show -i "Done. Note that some of these changes require a logout/restart to take effect."
-
-    ########################################
     # Default Web Browser
     ########################################
     if command -v defaultbrowser >/dev/null 2>&1; then
@@ -1028,6 +1019,15 @@ EOF
     ########################################
     show "Remap 'caps lock' to 'esc'"
     run "hidutil property --set '{\"UserKeyMapping\":[{\"HIDKeyboardModifierMappingSrc\":0x700000039,\"HIDKeyboardModifierMappingDst\":0x700000029}]}'"
+
+    ########################################
+    # Kill affected applications
+    ########################################
+    run "nohup killall Calendar cfprefsd Contacts Mail mds Messages Photos Safari >/dev/null 2>&1" &
+    run "nohup killall 'Activity Monitor' 'Address Book' 'Google Chrome Canary' 'Google Chrome' >/dev/null 2>&1" &
+    run "nohup killall Dock Finder >/dev/null 2>&1" &
+    run "nohup killall SystemUIServer >/dev/null 2>&1" &
+    show -i "Done. Note that some of these changes require a logout/restart to take effect."
 }
 
 ################################################################################
@@ -1851,6 +1851,11 @@ for step in "${steps[@]}"; do
     fi
 
     if [[ $ALL == 0 ]] && ! echo "$ARGS" | grep -Eq "\\b$key\\b"; then
+        continue
+    fi
+
+    # don't try to run the meta steps directly
+    if echo "$step" | grep -Eq '\bdot\b|\bapps\b|\bmost\b|\ball\b'; then
         continue
     fi
 

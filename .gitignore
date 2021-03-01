@@ -116,6 +116,7 @@
 /.jupyter/migrated
 /.kube
 /.lesshst
+/.local/share/gem
 /.local/share/heroku
 /.local/share/IsolatedStorage
 /.local/share/nvim/shada/main.shada

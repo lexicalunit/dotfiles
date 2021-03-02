@@ -76,9 +76,6 @@
         90
     ],
     "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": true
-    }
   },
   "python.formatting.provider": "black",
   "explorer.autoReveal": false,

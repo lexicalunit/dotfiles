@@ -9,33 +9,33 @@
 HOMEBREW_FORMULAS="                                                            \
     adns aom asdf autoconf automake avro-c bash bat bdw-gc c-ares cairo        \
     clang-format cmake colordiff coreutils dav1d defaultbrowser diff-so-fancy  \
-    doxygen duti entr exa exiftool expect faac fasd ffmpeg flac flake8         \
-    fontconfig freetype frei0r fribidi fzf gd gdbm geoip gettext ghostscript   \
-    giflib gifsicle git git-flow git-lfs git-review git-secrets glib gmp       \
-    gnu-sed gnu-tar gnupg gnutls gobject-introspection graphicsmagick          \
-    graphite2 guile harfbuzz hub icu4c id3lib imagemagick@6 isl jansson jasper \
-    jbig2dec jemalloc jez/formulae/pandoc-sidenote jhead jo jpeg jq kafkacat   \
-    krb5 lame leptonica libass libassuan libbluray libev libevent libffi       \
-    libgcrypt libgpg-error libidn2 libksba libmpc libogg libpng librdkafka     \
-    libsamplerate libserdes libsndfile libsodium libsoxr libssh2 libtasn1      \
-    libtiff libtool libunistring libusb libusb-compat libvidstab libvo-aacenc  \
-    libvorbis libvpx libyaml little-cms2 lzlib lzo makedepend mas memcached    \
-    minio mpfr mtr mysql ncftp ncurses net-snmp nettle nghttp2 nginx node npth \
-    nvm oniguruma opencore-amr openjpeg openssl opus ossp-uuid p11-kit pandoc  \
-    pcre pcre2 pidof pinentry pixman pkg-config plotutils pngquant postgresql  \
-    protobuf pyenv pyenv-virtualenv pyenv-virtualenvwrapper python rav1e re2   \
-    readline redis ripgrep rlwrap rtmpdump rubberband runit sdl2 shellcheck    \
-    shfmt snappy speex sqlite srt tcl-tk tesseract theora tree unbound         \
-    unixodbc v8 vegeta vramsteg watch wdiff webp wget x264 x265 xvid xz yajl   \
-    yaml-cpp yarn youtube-dl zeromq zimg zlib zstd"
+    doxygen duti entr exa exiftool expect faac fasd flac flake8 fontconfig     \
+    freetype frei0r fribidi fzf gd gdbm geoip gettext ghostscript giflib       \
+    gifsicle git git-flow git-lfs git-review git-secrets glib gmp gnu-sed      \
+    gnu-tar gobject-introspection graphicsmagick graphite2 guile harfbuzz hub  \
+    icu4c id3lib imagemagick@6 isl jansson jasper jbig2dec jemalloc            \
+    jez/formulae/pandoc-sidenote jhead jo jpeg jq kafkacat krb5 lame leptonica \
+    libass libassuan libbluray libev libevent libffi libgcrypt libgpg-error    \
+    libidn2 libksba libmpc libogg libpng librdkafka libsamplerate libserdes    \
+    libsndfile libsodium libsoxr libssh2 libtasn1 libtiff libtool libunistring \
+    libusb libusb-compat libvidstab libvo-aacenc libvorbis libvpx libyaml      \
+    little-cms2 lzlib lzo makedepend mas memcached minio mpfr mtr mysql ncftp  \
+    ncurses net-snmp nettle nginx node npth nvm oniguruma opencore-amr         \
+    openjpeg openssl opus ossp-uuid p11-kit pandoc pcre pcre2 pidof pinentry   \
+    pixman pkg-config plotutils pngquant postgresql protobuf pyenv             \
+    pyenv-virtualenv pyenv-virtualenvwrapper python rav1e re2 readline redis   \
+    ripgrep rlwrap rtmpdump rubberband runit sdl2 shellcheck shfmt snappy      \
+    speex sqlite srt tcl-tk tesseract theora tree unixodbc v8 vegeta vramsteg  \
+    watch wdiff webp wget x264 x265 xvid xz yajl yaml-cpp yarn youtube-dl      \
+    zeromq zimg zlib zstd"
 
 HOMEBREW_CASKS="                                                               \
-    1password atom atom-beta chromedriver clamxav dbvisualizer discord         \
-    disk-inventory-x docker dropbox fantastical firefox flux font-fira-code    \
-    font-hack-nerd-font google-chrome graphiql iexplorer istumbler iterm2      \
-    kaleidoscope lingon-x mactex mcgimp mysqlworkbench signal silverlight      \
-    slack snes9x sourcetree spectacle spotify steam sublime-text texstudio     \
-    the-unarchiver transmission vagrant visual-studio-code vlc"
+    1password atom atom-beta chromedriver clamxav discord disk-inventory-x     \
+    docker dropbox fantastical firefox flux font-fira-code font-hack-nerd-font \
+    google-chrome graphiql iexplorer istumbler iterm2 kaleidoscope lingon-x    \
+    mactex mysqlworkbench signal silverlight slack snes9x sourcetree spectacle \
+    spotify steam sublime-text tableplus texstudio the-unarchiver transmission \
+    vagrant visual-studio-code vlc"
 
 ATOM_PACKAGES="                                                                \
     atom-notes auto-update-packages busy-signal highlight-selected intentions  \
@@ -1136,15 +1136,9 @@ step_brew() {
 
     # install Amphetamine via Mac Apple Store CLI
     if [[ ! -e "/Applications/Amphetamine.app" ]]; then
-        local AMPH_ID
-        AMPH_ID="$(mas search Amphetamine | awk '{print $1}')"
-        if [[ -n $AMPH_ID ]]; then
-            show -i "Attempting to install Amphetamine via the Mac App Store CLI..."
-            run "mas install '$AMPH_ID'"
-            run "open /Applications/Amphetamine.app"
-        else
-            show -i "Failed to install Amphetamine via Mac App Store CLI."
-        fi
+        show -i "Attempting to install Amphetamine via the Mac App Store CLI..."
+        run "mas lucky Amphetamine"
+        run "open /Applications/Amphetamine.app"
     fi
 
     local arr=()

@@ -1369,7 +1369,7 @@ step_bash() {
 # Step python
 ################################################################################
 step_python() {
-    # PyYAML is required for yaml2json CLI tool, so it needs to work outside of anaconda environment.
+    # PyYAML is required for yaml2json CLI tool, needed outside anaconda environment
     run "sudo /usr/bin/easy_install --upgrade PyYAML"
 
     # isort and yapf required for IDE integration, install at the system level
@@ -1377,6 +1377,11 @@ step_python() {
     run "sudo /usr/bin/python /tmp/get-pip.py"
     run "sudo /usr/local/bin/pip install isort"
     run "sudo /usr/local/bin/pip install yapf"
+
+    # lz4 needs to be installed for the system python3 environment for bin/firefox-tabs
+    if [[ -e "/Library/Developer/CommandLineTools/usr/bin/python3" ]]; then
+        run "/Library/Developer/CommandLineTools/usr/bin/python3 -m pip install -U lz4 --user"
+    fi
 
     # I want to use the blinkstick binary in Automator flows
     run "sudo /usr/local/bin/pip install blinkstick"

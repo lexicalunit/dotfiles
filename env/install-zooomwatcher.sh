@@ -38,4 +38,7 @@ cat >"$AGENT" <<EOF
 </plist>
 EOF
 
+rm -f /tmp/zoomwatcher.err
+rm -f /tmp/zoomwatcher.out
+launchctl unload "$AGENT" 2>/dev/null || true
 launchctl load "$AGENT"

@@ -42,7 +42,7 @@ if $INTERACTIVE; then
     _source_completions ~/.complete 2>/dev/null
 
     # setup zsh run-help
-    unalias run-help 2>/dev/null
+    unalias run-help
     autoload run-help
     export HELPDIR="/usr/local/share/zsh/help"
     alias help='run-help '

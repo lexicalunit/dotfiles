@@ -17,10 +17,6 @@ blink_is_red() {
     blink_is_color red
 }
 
-blink_is_purple() {
-    blink_is_color purple
-}
-
 blink_is_green() {
     blink_is_color green
 }

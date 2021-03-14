@@ -100,7 +100,8 @@
     tabLength: 2
   "highlight-selected":
     onlyHighlightWholeWords: true
-  "linter-ui-default": {}
+  "linter-ui-default":
+    showPanel: true
   "markdown-preview-plus":
     grammars: [
       "source.gfm.notes"

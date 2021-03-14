@@ -166,49 +166,52 @@ steps:
     all        Runs all steps
 
 Homebrew Formulas: adns, aom, asdf, autoconf, automake, avro-c, bash, bat, 
-bdw-gc, c-ares, cairo, clang-format, cmake, colordiff, coreutils, dav1d, 
+bdw-gc, cairo, clang-format, cmake, colordiff, coreutils, dav1d, 
 defaultbrowser, diff-so-fancy, doxygen, duti, entr, exa, exiftool, expect, 
 faac, fasd, flac, flake8, fontconfig, freetype, frei0r, fribidi, fzf, gd, gdbm, 
 geoip, gettext, ghostscript, giflib, gifsicle, git, git-flow, git-lfs, 
-git-review, git-secrets, glib, gmp, gnu-sed, gnu-tar, gobject-introspection, 
+git-secrets, glib, gmp, gnu-sed, gnu-tar, gobject-introspection, 
 graphicsmagick, graphite2, guile, harfbuzz, hub, icu4c, id3lib, imagemagick@6, 
 isl, jansson, jasper, jbig2dec, jemalloc, jez/formulae/pandoc-sidenote, jhead, 
-jo, jpeg, jq, kafkacat, krb5, lame, leptonica, libass, libassuan, libbluray, 
-libev, libevent, libffi, libgcrypt, libgpg-error, libidn2, libksba, libmpc, 
-libogg, libpng, librdkafka, libsamplerate, libserdes, libsndfile, libsodium, 
+jo, jpeg, jq, krb5, lame, leptonica, libass, libassuan, libbluray, libev, 
+libevent, libffi, libgcrypt, libgpg-error, libidn2, libksba, libmpc, libogg, 
+libpng, libpthread-stubs, libsamplerate, libserdes, libsndfile, libsodium, 
 libsoxr, libssh2, libtasn1, libtiff, libtool, libunistring, libusb, 
-libusb-compat, libvidstab, libvo-aacenc, libvorbis, libvpx, libyaml, 
-little-cms2, lzlib, lzo, makedepend, mas, memcached, minio, mpfr, mtr, mysql, 
-ncftp, ncurses, net-snmp, nettle, nginx, node, npth, nvm, oniguruma, 
-opencore-amr, openjpeg, openssl, opus, ossp-uuid, p11-kit, pandoc, pcre, pcre2, 
-pidof, pinentry, pixman, pkg-config, plotutils, pngquant, postgresql, protobuf, 
-pyenv, pyenv-virtualenv, pyenv-virtualenvwrapper, python, rav1e, re2, readline, 
-redis, ripgrep, rlwrap, rtmpdump, rubberband, runit, sdl2, shellcheck, shfmt, 
-snappy, speex, sqlite, srt, tcl-tk, tesseract, theora, tmux, tree, unixodbc, 
-v8, vegeta, vramsteg, watch, wdiff, webp, wget, x264, x265, xvid, xz, yajl, 
+libusb-compat, libvidstab, libvo-aacenc, libvorbis, libvpx, libx11, libxau, 
+libxcb, libxdmcp, libxext, libxrender, libyaml, little-cms2, lz4, lzlib, lzo, 
+makedepend, mas, memcached, minio, mpdecimal, mpfr, mtr, mysql, ncftp, ncurses, 
+net-snmp, nettle, nginx, node, npth, nvm, oniguruma, opencore-amr, openjpeg, 
+openssl, opus, ossp-uuid, p11-kit, pandoc, pcre, pcre2, pidof, pinentry, 
+pixman, pkg-config, plotutils, pngquant, postgresql, protobuf, pyenv, 
+pyenv-virtualenv, pyenv-virtualenvwrapper, python, rav1e, re2, readline, redis, 
+ripgrep, rlwrap, rtmpdump, rubberband, runit, sdl2, shellcheck, shfmt, snappy, 
+speex, sqlite, srt, tcl-tk, tesseract, theora, tree, unixodbc, v8, vegeta, 
+vramsteg, watch, wdiff, webp, wget, x264, x265, xorgproto, xvid, xz, yajl, 
 yaml-cpp, yarn, youtube-dl, zeromq, zimg, zlib, zstd
 
 Homebrew Casks: 1password, atom, atom-beta, chromedriver, clamxav, discord, 
 disk-inventory-x, docker, dropbox, fantastical, firefox, flux, font-fira-code, 
 font-hack-nerd-font, google-chrome, graphiql, iexplorer, istumbler, iterm2, 
-kaleidoscope, lingon-x, mactex, signal, slack, snes9x, sourcetree, spectacle, 
-spotify, steam, sublime-text, tableplus, texstudio, the-unarchiver, 
-transmission, vagrant, visual-studio-code, vlc
+kaleidoscope, lingon-x, mactex, mysqlworkbench, signal, silverlight, slack, 
+snes9x, sourcetree, spectacle, spotify, steam, sublime-text, tableplus, 
+texstudio, the-unarchiver, transmission, vagrant, visual-studio-code, vlc
 
 Atom Packages: atom-notes, auto-update-packages, busy-signal, 
 highlight-selected, intentions, language-markdown, linter, linter-ui-default, 
 minimap, minimap-highlight-selected, minimap-selection, native-ui, 
 pen-paper-coffee-syntax, sort-lines, trailing-spaces, typewriter
 
-Code Packages: DavidAnson.vscode-markdownlint, HookyQR.beautify, 
-James-Yu.latex-workshop, PascalReitermann93.vscode-yaml-sort, ban.spellright, 
-be5invis.toml, bibhasdn.unique-lines, bung87.vscode-gemfile, 
-dbaeumer.vscode-eslint, eamodio.gitlens, esbenp.prettier-vscode, 
-exiasr.hadolint, foxundermoon.shell-format, freakypie.code-python-isort, 
-joe-re.sql-language-server, karunamurti.haml, magicstack.magicpython, 
-mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
-mohsen1.prettify-json, ms-azuretools.vscode-docker, ms-python.python, 
-ms-python.vscode-pylance, ms-toolsai.jupyter, richie5um2.vscode-sort-json, 
+Code Packages: BriteSnow.vscode-toggle-quotes, DavidAnson.vscode-markdownlint, 
+GrapeCity.gc-excelviewer, HookyQR.beautify, James-Yu.latex-workshop, 
+PascalReitermann93.vscode-yaml-sort, ban.spellright, be5invis.toml, 
+bibhasdn.unique-lines, bung87.vscode-gemfile, dbaeumer.vscode-eslint, 
+eamodio.gitlens, esbenp.prettier-vscode, exiasr.hadolint, 
+foxundermoon.shell-format, freakypie.code-python-isort, 
+joe-re.sql-language-server, karunamurti.haml, lehni.vscode-titlebar-less-macos, 
+magicstack.MagicPython, mgmcdermott.vscode-language-babel, 
+mike-co.import-sorter, mohsen1.prettify-json, ms-azuretools.vscode-docker, 
+ms-python.python, ms-python.vscode-pylance, ms-toolsai.jupyter, octref.vetur, 
+richie5um2.vscode-sort-json, sianglim.slim, sissel.shopify-liquid, 
 spywhere.guides, sysoev.language-stylus, timonwong.shellcheck
 
 Pip Packages: git-sweep3k, glances, httpie, inflection, patch, 
@@ -281,13 +284,6 @@ options:
 ```
 
 * * *
-### [`git-authors`](git-authors)
-```
-usage: git-authors [-h|--help] PATH
-For git, shows who wrote the code found at the current directory.
-```
-
-* * *
 ### [`git-lg`](git-lg)
 ```
 usage: git-lg [-h|--help] [ARGS]
@@ -327,6 +323,21 @@ options:
 ```
 usage: git-pt [-h|--help]
 Preforms command 'git push -fu origin $BRANCH', force pushing feature branch up to remote origin.
+```
+
+* * *
+### [`git-reauthor`](git-reauthor)
+```
+usage: git-reauthor [-f] commit-to-change [branch-to-rewrite [new-name [new-email]]]
+
+  If -f is supplied it is passed to 'git filter-branch'.
+
+  If <branch-to-rewrite> is not provided or is empty HEAD will be used.
+  Use '--all' or a space separated list (e.g. 'master next') to rewrite
+  multiple branches.
+
+  If <new-name> (or <new-email>) is not provided or is empty, the normal
+  user.name (user.email) Git configuration value will be used.
 ```
 
 * * *
@@ -401,6 +412,13 @@ Build a useful git description of the changes in this branch.
 
 options:
  -h or --help shows usage help
+```
+
+* * *
+### [`git_authors`](git_authors)
+```
+usage: git_authors [-h|--help] PATH
+For git, shows who wrote the code found at the current directory.
 ```
 
 * * *
@@ -596,17 +614,6 @@ Other options:
   --stdin-filepath <path>  Path to the file to pretend that stdin comes from.
   --support-info           Print support information as JSON.
   -v, --version            Print Prettier version.
-```
-
-* * *
-### [`rc`](rc)
-```
-usage: rc
-
-Spin or attach to tumx running Check development services.
-
-options:
- -h or --help shows usage help
 ```
 
 * * *

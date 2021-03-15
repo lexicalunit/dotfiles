@@ -36,35 +36,36 @@
   "editor.multiCursorModifier": "alt",
   "editor.renderIndentGuides": false,
   "workbench.editor.showTabs": true,
+  "[yaml]": {
+    "editor.formatOnSave": false
+  },
   "[css]": {
     "editor.tabSize": 2,
-    "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[ruby]": {
+    "editor.detectIndentation": false,
     "editor.tabSize": 2
   },
   "[typescript]": {
     "editor.detectIndentation": false,
-    "editor.formatOnSave": true,
     "editor.tabSize": 2,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascript]": {
     "editor.detectIndentation": false,
-    "editor.formatOnSave": true,
     "editor.tabSize": 2
   },
   "[javascriptreact]": {
-    "editor.formatOnSave": true,
+    "editor.detectIndentation": false,
     "editor.tabSize": 2
   },
   "[typescriptreact]": {
-    "editor.formatOnSave": true,
     "editor.tabSize": 2,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
+    "editor.detectIndentation": false,
     "editor.tabSize": 2
   },
   "[shellscript]": {
@@ -72,10 +73,9 @@
     "editor.tabSize": 4
   },
   "[python]": {
-    "editor.rulers": [
-        90
-    ],
-    "editor.formatOnSave": true,
+    "editor.detectIndentation": false,
+    "editor.tabSize": 4,
+    "editor.rulers": [90],
   },
   "python.formatting.provider": "black",
   "explorer.autoReveal": false,
@@ -107,7 +107,7 @@
     "typescript",
     "typescriptreact"
   ],
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "spellright.language": [
     "en"
   ],
@@ -143,5 +143,14 @@
   "shellcheck.customArgs": [
     "-x"
   ],
-  "terminal.integrated.inheritEnv": false
+  "terminal.integrated.inheritEnv": false,
+  "workbench.editorAssociations": [
+    {
+      "viewType": "jupyter.notebook.ipynb",
+      "filenamePattern": "*.ipynb"
+    }
+  ],
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  }
 }

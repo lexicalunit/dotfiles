@@ -1,0 +1,53 @@
+#!/bin/bash -e
+
+# Get your latest paystub as PDF from Check's API.
+
+usage() {
+    echo "usage: ${0##*/}" 1>&2
+    echo "" 1>&2
+    echo "Get your latest paystub as PDF from Check's API." 1>&2
+    echo ""
+    echo "options:"
+    echo " -h or --help shows usage help" 1>&2
+    exit 1
+}
+
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
+    usage
+fi
+
+# In Keychain Access create a "New Password Item" with the following details.
+# - name: "check_api_key_prod"
+# - account: Your $USER name
+# - password: Your Bearer API Key
+CHECK_API_KEY_PROD="$(security find-generic-password -a "$USER" -s check_api_key_prod -w 2>/dev/null)"
+
+# Do the same as above for your Check employee id.
+CHECK_API_EMPLOYEE_ID_PROD="$(security find-generic-password -a "$USER" -s check_api_employee_id_prod -w 2>/dev/null)"
+
+OUTPUT="$(mktemp -t tmp.XXXXXXXXXX)"
+trap 'rm -f $OUTPUT' EXIT
+
+echo -n $'\e[1;34m>\e[0m\e[31m '
+echo -n "fetching employee information... "
+curl -sS --location "https://api.checkhq.com/employees/$CHECK_API_EMPLOYEE_ID_PROD/paystubs" \
+    --header "Authorization: Bearer $CHECK_API_KEY_PROD" \
+    --output "$OUTPUT"
+echo "done"
+echo -n $'\e[0m'
+
+PAYDAY="$(jq -r '.results[0].payday' <"$OUTPUT")"
+PAYROLL_ID="$(jq -r '.results[0].payroll' <"$OUTPUT")"
+PAYSTUB="paystub-$PAYDAY.pdf"
+
+echo -n $'\e[1;34m>\e[0m\e[31m '
+echo -n "rendering latest paystub... "
+curl -sS --location \
+    "https://api.checkhq.com/employees/$CHECK_API_EMPLOYEE_ID_PROD/paystubs/$PAYROLL_ID" \
+    --header "Authorization: Bearer $CHECK_API_KEY_PROD" \
+    --header "Accept: application/pdf" \
+    --output "$PAYSTUB"
+echo "created $PAYSTUB"
+echo -n $'\e[0m'
+
+open "$PAYSTUB"

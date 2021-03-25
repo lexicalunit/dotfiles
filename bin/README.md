@@ -484,6 +484,17 @@ options:
 ```
 
 * * *
+### [`paystub`](paystub)
+```
+usage: paystub
+
+Get your latest paystub as PDF from Check's API.
+
+options:
+ -h or --help shows usage help
+```
+
+* * *
 ### [`prettier`](prettier)
 Symbolic link to '/usr/local/bin/prettier'
 ```

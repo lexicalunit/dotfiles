@@ -309,7 +309,12 @@ options:
 * * *
 ### [`git-pretty`](git-pretty)
 ```
+usage: git-pretty [-h|--help] [N]
+Runs prettier on vue/js/ts files in the most recent N commits.
 
+options:
+    -h, --help   show usage help
+    N            number of commits to consider, default is 1
 ```
 
 * * *
@@ -360,7 +365,14 @@ With git-recon you can quickly check the status of all of them.
 * * *
 ### [`git-run`](git-run)
 ```
-./git-run: line 57: $2: unbound variable
+usage: git-run [-h|--help] COMMAND PATTERN [-N]
+Runs the given command on files matching the given pattern that
+have changed within in the latest N commits. Or if there are any
+uncomitted changes, run the command on those matching files.
+
+options:
+    -h, --help   show usage help
+    -N           number of commits to consider, default is -1
 ```
 
 * * *
@@ -437,13 +449,6 @@ usage: install_odbc [-h|--help]
 Attempts to install a working ODBC configuration to macOS.
 Uses unixODBC with FreeTDS from Homebrew.
 Requires hand editing to support your specific installation.
-```
-
-* * *
-### [`jsc`](jsc)
-Symbolic link to '/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Resources/jsc'
-```
-./usages: line 74: ./jsc: No such file or directory
 ```
 
 * * *

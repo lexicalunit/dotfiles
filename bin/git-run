@@ -2,7 +2,7 @@
 
 # Runs a command on files that have recently changed.
 
-set -ue
+set -e
 
 usage() {
     (
@@ -20,35 +20,16 @@ usage() {
     exit 1
 }
 
-show() {
-    # usage: show [-i|-r] <message>
-    # -i: show an important message
-    # -r: show a command
-    local important=0
-    if [[ $1 == "-i" ]]; then
-        shift
-        important=1
-        echo -n $'\e[38;5;196m'"$(tput bold)! "
-    elif [[ $1 == "-r" ]]; then
-        shift
-        echo -n $'\e[38;5;40m$\e[38;5;63m '
-    else
-        echo -n $'\e[1;34m>\e[0m\e[31m '
-    fi
+if echo "$*" | grep -Eq -- '--help\b|-h\b' || [[ -z $1 ]] || [[ -z $2 ]]; then
+    usage
+fi
 
-    echo -n "$@"
-
-    if [[ $important == "1" ]]; then
-        echo -n " $(tput sgr0)"$'\e[0m'
-    else
-        echo -n $'\e[0m'
-    fi
-
-    echo
-}
+set -u
 
 run() {
-    show -r "$@"
+    echo -n $'\e[38;5;40m$\e[38;5;63m '
+    echo -n "$@"
+    echo $'\e[0m'
     eval "$@"
     return $?
 }
@@ -62,18 +43,18 @@ trap 'rm -f $tf' EXIT
 
 write_lines() {
     while read -r MATCHING_FILE; do
-        echo "    $MATCHING_FILE \\" >> "$tf"
+        echo "    $MATCHING_FILE \\" >>"$tf"
     done
 }
 
 CHANGED=$(git status --porcelain | sed -e 's/^.. //' | grep -iE "$PATTERN" || true)
-if [[ -n "$CHANGED" ]]; then
+if [[ -n $CHANGED ]]; then
     echo "$CHANGED"
 else
     git log --pretty="" --name-only "$LOOKBACK" | grep -iE "$PATTERN" || true
 fi | write_lines
 
-if [[ -s "$tf" ]]; then
+if [[ -s $tf ]]; then
     run "$COMMAND \\
 $(sort -u <"$tf" | sed '$ s/\\$//g')"
 else

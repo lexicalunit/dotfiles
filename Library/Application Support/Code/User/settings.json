@@ -77,6 +77,12 @@
     "editor.tabSize": 4,
     "editor.rulers": [90],
   },
+  "files.associations": {
+    ".gitconfig": "ini"
+  },
+  "[ini]": {
+    "editor.formatOnSave": false
+  },
   "python.formatting.provider": "black",
   "explorer.autoReveal": false,
   "editor.tokenColorCustomizations": {

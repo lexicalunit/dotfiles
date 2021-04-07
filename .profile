@@ -59,7 +59,7 @@ if type brew >/dev/null 2>&1; then
 
     # asdf setup
     ASDF_PREFIX="$(brew --prefix asdf 2>/dev/null || true)"
-    if [[ -d "$ASDF_PREFIX" ]]; then
+    if [[ -d $ASDF_PREFIX ]]; then
         # shellcheck disable=SC1090
         source "$ASDF_PREFIX/asdf.sh"
     fi
@@ -286,14 +286,17 @@ if $INTERACTIVE; then
     alias pygmentize='pygmentize -O bg=dark'
     alias yapf='yapf --style="{based_on_style: pep8, column_limit: 120}" '
     fa() {
-        run "rg \
---type-not svg \
---trim \
---sort modified \
---smart-case \
---pretty \
---max-columns \"$(stty size | cut -d' ' -f2)\" \
-\"$@\""
+        local PARAMS PARAM
+        for PARAM in "$@"; do
+            PARAMS="${PARAMS} \"${PARAM}\""
+        done
+        run rg \
+            --type-not svg \
+            --trim \
+            --sort modified \
+            --smart-case \
+            --pretty \
+            --max-columns "$(stty size | cut -d' ' -f2)" "${PARAMS}"
     }
     ra() {
         rg \

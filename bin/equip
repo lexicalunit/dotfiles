@@ -44,18 +44,15 @@ ATOM_PACKAGES="                                                                \
     pen-paper-coffee-syntax sort-lines trailing-spaces typewriter"
 
 CODE_PACKAGES="                                                                \
-    BriteSnow.vscode-toggle-quotes DavidAnson.vscode-markdownlint              \
-    GrapeCity.gc-excelviewer HookyQR.beautify James-Yu.latex-workshop          \
+    DavidAnson.vscode-markdownlint HookyQR.beautify James-Yu.latex-workshop    \
     PascalReitermann93.vscode-yaml-sort ban.spellright be5invis.toml           \
     bibhasdn.unique-lines bung87.vscode-gemfile dbaeumer.vscode-eslint         \
     eamodio.gitlens esbenp.prettier-vscode exiasr.hadolint                     \
     foxundermoon.shell-format freakypie.code-python-isort                      \
-    joe-re.sql-language-server karunamurti.haml                                \
-    lehni.vscode-titlebar-less-macos magicstack.MagicPython                    \
+    joe-re.sql-language-server karunamurti.haml magicstack.magicpython         \
     mgmcdermott.vscode-language-babel mike-co.import-sorter                    \
     mohsen1.prettify-json ms-azuretools.vscode-docker ms-python.python         \
-    ms-python.vscode-pylance ms-toolsai.jupyter octref.vetur                   \
-    richie5um2.vscode-sort-json sianglim.slim sissel.shopify-liquid            \
+    ms-python.vscode-pylance ms-toolsai.jupyter richie5um2.vscode-sort-json    \
     spywhere.guides sysoev.language-stylus timonwong.shellcheck"
 
 PIP_PACKAGES="                                                                 \
@@ -98,14 +95,14 @@ cleanup_item_list() {
     declare -a lines
     items_var="$1"
     lines=("$items_var=\"")
-    eval "echo \$$items_var" | \
-        sed "s/  */ /g;s/^ *//g;" | \
-        tr ' ' '\n' | \
-        sort -u | \
-        tr '\n' ' ' | \
-        sed '$s/ $/\n/' | \
-        fold -w 75 -s - | \
-        sed 's/^/    /g;s/ $//g' | \
+    eval "echo \$$items_var" |
+        sed "s/  */ /g;s/^ *//g;" |
+        tr ' ' '\n' |
+        sort -u |
+        tr '\n' ' ' |
+        sed '$s/ $/\n/' |
+        fold -w 75 -s - |
+        sed 's/^/    /g;s/ $//g' |
         {
             while IFS=$'\n' read -r line; do lines+=("$line"); done
             for ((n = 0; n < ${#lines[@]}; n++)); do
@@ -335,7 +332,7 @@ step_osx() {
     run "defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false"
 
     DESKTOP_WALLPAPER="$HOME/env/Rio Sunrise.jpg"
-    if [[ -e "$DESKTOP_WALLPAPER" ]]; then
+    if [[ -e $DESKTOP_WALLPAPER ]]; then
         show "Set wallpaper to $DESKTOP_WALLPAPER"
 
         # NOTE: Doesn't seem to work on BigSur
@@ -1150,9 +1147,9 @@ step_brew() {
             [[ $name == "pandoc-sidenote" ]] && name="jez/formulae/$name"
             if ! in_array "$name" "${arr[@]}"; then
                 case "$I" in
-                "go") ;; # installed as a separate step
+                "go") ;;   # installed as a separate step
                 "rust") ;; # installed as a separate step
-                "zsh") ;; # installed as a separate step
+                "zsh") ;;  # installed as a separate step
                 *) show -i "$I installed but not managed by equip via brew" ;;
                 esac
             fi
@@ -1734,7 +1731,7 @@ step_dotfiles() {
     run "git fetch origin master" || abort "Please setup ssh access to github: https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh"
 
     CHANGES="$(git status --porcelain=v1 2>/dev/null | wc -l)"
-    if [[ "$CHANGES" != "0" ]]; then
+    if [[ $CHANGES != "0" ]]; then
         ask "There are existing changes in your working tree, continue anyway?"
         if [[ $REPLY != "y" ]]; then
             abort "Please commit or discard existing changes before proceeding"

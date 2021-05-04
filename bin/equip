@@ -1284,7 +1284,7 @@ install_code_pkg() {
     IFS=' ' read -r -a INSTALLED <<<"$@"
 
     if ! in_array "$PKG" "${INSTALLED[@]}"; then
-        run "code --install-extension '$PKG'" || abort "Can not install package '$PKG'"
+        run "code --force --install-extension '$PKG'" || abort "Can not install package '$PKG'"
     else
         show "skipping $PKG: already installed"
     fi

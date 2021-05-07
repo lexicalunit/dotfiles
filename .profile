@@ -113,6 +113,10 @@ export PATH
 export PYTHONPATH
 export PKG_CONFIG_PATH
 
+# Load nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
 # Additional application setup
 # shellcheck source=~/.travis/travis.sh
 # shellcheck disable=SC1090

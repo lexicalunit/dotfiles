@@ -33,7 +33,7 @@ _enter_virtualenv_for_check_projects() {
         entervirtualenv
         [[ -d env ]] && source env/bin/activate
     elif [[ $PWD != *"/check/"* && $OLDPWD == *"/check/"* ]]; then
-        [[ -d env ]] && deactivate
+        type deactivate >/dev/null 2>&1 && deactivate
         exitvirtualenv
         enterconda
     fi

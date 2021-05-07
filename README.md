@@ -92,7 +92,6 @@ with the argument `--help`.
 | [`git-parent`](bin/git-parent) | Finds the direct parent of the current branch in git. |
 | [`git-pretty`](bin/git-pretty) | Runs prettier on vue/js/ts files in the most recent N commits. |
 | [`git-pt`](bin/git-pt) | Force updates remote topic branch with local branch. |
-| [`git-reauthor`](bin/git-reauthor) | In git, change the author name and/or email of a single commit. |
 | [`git-recon`](bin/git-recon) | A tool for reconciling your local git repositories. |
 | [`git-run`](bin/git-run) | Runs a command on files that have recently changed. |
 | [`git-sync`](bin/git-sync) | Fetch and fast-forward to the latest for origin/master. |

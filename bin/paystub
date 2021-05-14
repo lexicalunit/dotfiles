@@ -6,8 +6,8 @@ usage() {
     echo "usage: ${0##*/}" 1>&2
     echo "" 1>&2
     echo "Get your latest paystub as PDF from Check's API." 1>&2
-    echo ""
-    echo "options:"
+    echo "" 1>&2
+    echo "options:" 1>&2
     echo " -h or --help shows usage help" 1>&2
     exit 1
 }

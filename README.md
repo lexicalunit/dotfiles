@@ -179,9 +179,9 @@ yaml-cpp, yarn, youtube-dl, zeromq, zimg, zlib, zstd
 Homebrew Casks: 1password, atom, atom-beta, chromedriver, clamxav, discord, 
 disk-inventory-x, docker, dropbox, fantastical, firefox, flux, font-fira-code, 
 font-hack-nerd-font, google-chrome, graphiql, iexplorer, istumbler, iterm2, 
-kaleidoscope, lingon-x, mactex, mysqlworkbench, signal, silverlight, slack, 
-snes9x, sourcetree, spectacle, spotify, steam, sublime-text, tableplus, 
-texstudio, the-unarchiver, transmission, vagrant, visual-studio-code, vlc
+kaleidoscope, lingon-x, mactex, signal, slack, snes9x, sourcetree, spectacle, 
+spotify, steam, sublime-text, tableplus, texstudio, the-unarchiver, 
+transmission, vagrant, visual-studio-code, vlc
 
 Atom Packages: atom-notes, auto-update-packages, busy-signal, 
 highlight-selected, intentions, language-markdown, linter, linter-ui-default, 

@@ -31,6 +31,21 @@ export these settings to a remote machine.
 * Re-run [`equip all`](bin/equip) periodically to update applications and configuration.
 * Don't forget to `git pull` any updates!
 
+## Not Automated
+
+There's some things that I would like to have automated but I haven't found a way yet.
+
+- Automatically start up after being installed: Dropbox, Spectacle, Flux
+- Automatically setup launch at startup: Spectacle, Amphetamine
+- Automatically setup iterm2's config location
+- Automatically set up the Dock's icons
+- Automatically install Firefox extensions
+- Disable "Show recent applications in Dock"
+- Enable zoom via <kbd>ctrl</kbd> + mouse wheel scroll
+- Enable zoom follows mouse pointer
+- Change TouchBar settings to be always expanded
+- Enable text to speech for selected text via <kbd>option</kbd> + <kbd>esc</kbd>
+
 ## Environment: `~/env`
 
 * `Solarized Light.itermcolors` and

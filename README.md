@@ -123,6 +123,7 @@ with the argument `--help`.
 | [`npm-update`](bin/npm-update) | Tries to update package dependencies to latest using ncu, npm, and ... |
 | [`paystub`](bin/paystub) | Get your latest paystub as PDF from Check's API. |
 | [`prettier`](bin/prettier) | Symbolic link to '/usr/local/bin/prettier' |
+| [`rc`](bin/rc) | Spin or attach to tumx running Check development services. |
 | [`root`](bin/root) | Prints the root of the current repository. |
 | [`set_wallpaper`](bin/set_wallpaper) | Uses Cocoa classes via PyObjC to set a desktop wallpaper on all scr... |
 | [`share`](bin/share) | Easy way to manage temporary web shares. |
@@ -187,8 +188,8 @@ opencore-amr, openjpeg, openssl, opus, ossp-uuid, p11-kit, pandoc, pcre, pcre2,
 pidof, pinentry, pixman, pkg-config, plotutils, pngquant, postgresql, protobuf, 
 pyenv, pyenv-virtualenv, pyenv-virtualenvwrapper, python, rav1e, re2, readline, 
 redis, ripgrep, rlwrap, rtmpdump, rubberband, runit, sdl2, shellcheck, shfmt, 
-snappy, speex, sqlite, srt, tcl-tk, tesseract, theora, tree, unixodbc, v8, 
-vegeta, vramsteg, watch, wdiff, webp, wget, x264, x265, xvid, xz, yajl, 
+snappy, speex, sqlite, srt, tcl-tk, tesseract, theora, tmux, tree, unixodbc, 
+v8, vegeta, vramsteg, watch, wdiff, webp, wget, x264, x265, xvid, xz, yajl, 
 yaml-cpp, yarn, youtube-dl, zeromq, zimg, zlib, zstd
 
 Homebrew Casks: 1password, atom, atom-beta, chromedriver, clamxav, discord, 

@@ -184,8 +184,8 @@ opencore-amr, openjpeg, openssl, opus, ossp-uuid, p11-kit, pandoc, pcre, pcre2,
 pidof, pinentry, pixman, pkg-config, plotutils, pngquant, postgresql, protobuf, 
 pyenv, pyenv-virtualenv, pyenv-virtualenvwrapper, python, rav1e, re2, readline, 
 redis, ripgrep, rlwrap, rtmpdump, rubberband, runit, sdl2, shellcheck, shfmt, 
-snappy, speex, sqlite, srt, tcl-tk, tesseract, theora, tree, unixodbc, v8, 
-vegeta, vramsteg, watch, wdiff, webp, wget, x264, x265, xvid, xz, yajl, 
+snappy, speex, sqlite, srt, tcl-tk, tesseract, theora, tmux, tree, unixodbc, 
+v8, vegeta, vramsteg, watch, wdiff, webp, wget, x264, x265, xvid, xz, yajl, 
 yaml-cpp, yarn, youtube-dl, zeromq, zimg, zlib, zstd
 
 Homebrew Casks: 1password, atom, atom-beta, chromedriver, clamxav, discord, 
@@ -596,6 +596,17 @@ Other options:
   --stdin-filepath <path>  Path to the file to pretend that stdin comes from.
   --support-info           Print support information as JSON.
   -v, --version            Print Prettier version.
+```
+
+* * *
+### [`rc`](rc)
+```
+usage: rc
+
+Spin or attach to tumx running Check development services.
+
+options:
+ -h or --help shows usage help
 ```
 
 * * *

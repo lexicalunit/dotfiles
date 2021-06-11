@@ -13,7 +13,6 @@
 	renames = copies
 	colorMoved = zebra
 [alias]
-	authors = !git_authors "$(pwd)"
 	b = !git rev-parse --abbrev-ref HEAD
 	br = branch
 	ca = commit --amend --no-verify

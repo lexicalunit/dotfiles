@@ -21,15 +21,20 @@ fi
 source "$HOME/.blinkstick_control" || echo "$(tput bold)error: ~/.blinkstick_control not installed!$(tput sgr0)" >&2
 
 FIREFOX_TABS="$HOME/bin/firefox-tabs"
+BRAVE_CLI="/usr/local/bin/brave-cli"
+
+export PATH="$PATH:/usr/local/bin"
 
 in_meeting() {
-    TABS="$($FIREFOX_TABS | /usr/bin/grep 'meet.google.com')"
+    FF_TABS="$($FIREFOX_TABS | /usr/bin/grep 'meet.google.com')"
+    BR_TABS="$($BRAVE_CLI list links | /usr/bin/grep 'meet.google.com')"
     OP="osascript -e 'tell application \"System Events\" to (name of processes) contains \"zoom.us\"'"
-    test "$(eval "$OP")" = "true" || test -n "$TABS"
+    test "$(eval "$OP")" = "true" || test -n "$FF_TABS" || test -n "$BR_TABS"
 }
 
 in_game() {
-    TABS="$($FIREFOX_TABS | /usr/bin/grep 'spelltable.com')"
+    FF_TABS="$($FIREFOX_TABS | /usr/bin/grep 'spelltable.com')"
+    BR_TABS="$($BRAVE_CLI list links | /usr/bin/grep 'spelltable.com')"
     ps -efw | grep "Steam" | grep -Eiv "helper|ipcserver|grep" || test -n "$TABS"
 }
 

@@ -27,15 +27,27 @@ export PATH="$PATH:/usr/local/bin"
 
 in_meeting() {
     FF_TABS="$($FIREFOX_TABS | /usr/bin/grep 'meet.google.com')"
-    BR_TABS="$($BRAVE_CLI list links | /usr/bin/grep 'meet.google.com')"
-    OP="osascript -e 'tell application \"System Events\" to (name of processes) contains \"zoom.us\"'"
-    test "$(eval "$OP")" = "true" || test -n "$FF_TABS" || test -n "$BR_TABS"
+    ZOOM="osascript -e 'tell application \"System Events\" to (name of processes) contains \"zoom.us\"'"
+
+    BRAVE="osascript -e 'tell application \"System Events\" to (name of processes) contains \"Brave Browser\"'"
+    BR_TABS=""
+    if test "$(eval "$BRAVE")" = "true"; then
+        BR_TABS="$($BRAVE_CLI list links | /usr/bin/grep 'meet.google.com')"
+    fi
+
+    test "$(eval "$ZOOM")" = "true" || test -n "$FF_TABS" || test -n "$BR_TABS"
 }
 
 in_game() {
     FF_TABS="$($FIREFOX_TABS | /usr/bin/grep 'spelltable.com')"
-    BR_TABS="$($BRAVE_CLI list links | /usr/bin/grep 'spelltable.com')"
-    ps -efw | grep "Steam" | grep -Eiv "helper|ipcserver|grep" || test -n "$TABS"
+
+    BRAVE="osascript -e 'tell application \"System Events\" to (name of processes) contains \"Brave Browser\"'"
+    BR_TABS=""
+    if test "$(eval "$BRAVE")" = "true"; then
+        BR_TABS="$($BRAVE_CLI list links | /usr/bin/grep 'spelltable.com')"
+    fi
+
+    ps -efw | grep "Steam" | grep -Eiv "helper|ipcserver|grep" || test -n "$TABS" || test -n "$BR_TABS"
 }
 
 while true; do

@@ -67,6 +67,7 @@ while true; do
     ZOOM="$(eval "$ZOOM")"
     BR_TABS="$(eval brave_tabs)"
     FF_TABS="$(eval firefox_tabs)"
+    ZOOM="$(eval zoom_running)"
 
     if ! blink_is_busy; then
         if in_meeting; then

@@ -281,6 +281,13 @@ options:
 ```
 
 * * *
+### [`git-authors`](git-authors)
+```
+usage: git-authors [-h|--help] PATH
+For git, shows who wrote the code found at the current directory.
+```
+
+* * *
 ### [`git-lg`](git-lg)
 ```
 usage: git-lg [-h|--help] [ARGS]
@@ -394,13 +401,6 @@ Build a useful git description of the changes in this branch.
 
 options:
  -h or --help shows usage help
-```
-
-* * *
-### [`git_authors`](git_authors)
-```
-usage: git_authors [-h|--help] PATH
-For git, shows who wrote the code found at the current directory.
 ```
 
 * * *

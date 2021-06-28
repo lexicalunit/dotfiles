@@ -157,5 +157,8 @@
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },
   "security.workspace.trust.untrustedFiles": "open",
-  "workbench.editor.untitled.hint": "hidden"
+  "workbench.editor.untitled.hint": "hidden",
+  "workbench.editor.restoreViewState": false,
+  "window.newWindowDimensions": "inherit",
+  "files.hotExit": "off"
 }

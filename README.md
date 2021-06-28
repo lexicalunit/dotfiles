@@ -102,6 +102,7 @@ with the argument `--help`.
 | [`firefox-tabs`](bin/firefox-tabs) | Attempts to list the currently open urls in your Firefox tabs. |
 | [`flip`](bin/flip) | Flips input upside down. |
 | [`fs`](bin/fs) | Tweak ripgrep to easily search codebases with committed files and f... |
+| [`git-authors`](bin/git-authors) | Git script for discovering who wrote the code at the current workin... |
 | [`git-lg`](bin/git-lg) | Git script for printing beautiful logs. |
 | [`git-name-change`](bin/git-name-change) | Clones a repo then changes the name and email address in entire his... |
 | [`git-parent`](bin/git-parent) | Finds the direct parent of the current branch in git. |
@@ -113,7 +114,6 @@ with the argument `--help`.
 | [`git-tidy`](bin/git-tidy) | Tidies up all the junk this repository. |
 | [`git-up`](bin/git-up) | Rebase branch on the latest changes for the remote parent branch. |
 | [`git-what`](bin/git-what) | Build a useful git description of the changes in this branch. |
-| [`git_authors`](bin/git_authors) | Git script for discovering who wrote the code at the current workin... |
 | [`git_ltr`](bin/git_ltr) | Lists (a-la 'ls -ltr') git controlled source files in current direc... |
 | [`golist`](bin/golist) | Lists all user installed go packages. |
 | [`install_odbc`](bin/install_odbc) | Sets up ODBC. |

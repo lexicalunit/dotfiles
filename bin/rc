@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Spin or attach to tumx running Check development services.
+# Spin up or attach to tumx running Check development services.
 
 usage() {
     echo "usage: ${0##*/}" 1>&2

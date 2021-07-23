@@ -73,7 +73,7 @@ show "disk space available before cleanup: $(numfmt --to=iec-i --suffix=B -- "$B
 run "cd"
 
 report() {
-    if [[ "$GATEKEEPER" == "assessments enabled" ]]; then
+    if [[ $GATEKEEPER == "assessments enabled" ]]; then
         run "sudo spctl --master-enable"
     fi
     if [[ $DONE == 0 ]]; then
@@ -97,7 +97,7 @@ while true; do
 done 2>/dev/null &
 
 # disable gatekeeper
-if [[ "$GATEKEEPER" == "assessments enabled" ]]; then
+if [[ $GATEKEEPER == "assessments enabled" ]]; then
     run "sudo spctl --master-disable"
 fi
 
@@ -122,20 +122,20 @@ run "rm -rf ~/Library/Application\ Support/MobileSync/Backup/*"
 # xcode
 run "rm -rf ~/Library/Developer/Xcode/DerivedData/*"
 run "rm -rf ~/Library/Developer/Xcode/Archives/*"
-if command -v xcrun >/dev/null 2>&1; then
-    # shellcheck disable=SC2207
-    IFS=$'\n' APPS=($(osascript -e 'tell application "System Events" to return every application process' | tr ',' '\n' | sed 's/^ *application process //g'))
-    if array_contains 'com.apple.CoreSimulator.CoreSimulatorService' "${APPS[@]}"; then
-        run "osascript -e 'tell application \"com.apple.CoreSimulator.CoreSimulatorService\" to quit'"
-    fi
-    if array_contains 'iOS Simulator' "${APPS[@]}"; then
-        run "osascript -e 'tell application \"iOS Simulator\" to quit'"
-    fi
-    if array_contains 'Simulator' "${APPS[@]}"; then
-        run "osascript -e 'tell application \"Simulator\" to quit'"
-    fi
-    run "xcrun simctl erase all"
-fi
+# if command -v xcrun >/dev/null 2>&1; then
+#     # shellcheck disable=SC2207
+#     IFS=$'\n' APPS=($(osascript -e 'tell application "System Events" to return every application process' | tr ',' '\n' | sed 's/^ *application process //g'))
+#     if array_contains 'com.apple.CoreSimulator.CoreSimulatorService' "${APPS[@]}"; then
+#         run "osascript -e 'tell application \"com.apple.CoreSimulator.CoreSimulatorService\" to quit'"
+#     fi
+#     if array_contains 'iOS Simulator' "${APPS[@]}"; then
+#         run "osascript -e 'tell application \"iOS Simulator\" to quit'"
+#     fi
+#     if array_contains 'Simulator' "${APPS[@]}"; then
+#         run "osascript -e 'tell application \"Simulator\" to quit'"
+#     fi
+#     run "xcrun simctl erase all"
+# fi
 
 # cocoapods
 test -d "$HOME/Library/Caches/CocoaPods" && run "rm -rf '$_'/*"
@@ -194,7 +194,7 @@ if command -v cargo >/dev/null 2>&1; then
 fi
 
 # go
-command -v go >/dev/null 2>&1 && run "go clean -cache -modcache -testcache -r"
+command -v go >/dev/null 2>&1 && run "go clean -cache -modcache -testcache"
 
 # conda
 command -v conda >/dev/null 2>&1 && run "conda clean -a --yes"
@@ -203,7 +203,7 @@ command -v conda >/dev/null 2>&1 && run "conda clean -a --yes"
 test -d "$HOME/Library/Caches/pip" && run "rm -rf '$_'"
 
 # pyenv
-if [[ -n "$PYENV_VIRTUALENV_CACHE_PATH" ]]; then
+if [[ -n $PYENV_VIRTUALENV_CACHE_PATH ]]; then
     test -d "$PYENV_VIRTUALENV_CACHE_PATH" && run "rm -rf '$_'"
 fi
 
@@ -222,11 +222,10 @@ if command -v git >/dev/null 2>&1; then
     find "$HOME" -maxdepth 4 \
         -not \( -path "$HOME/Library" -prune \) \
         -not \( -path "$HOME/.Trash" -prune \) \
-        -type d -name .git | while read -r GDIR;
-    do
+        -type d -name .git | while read -r GDIR; do
         REPO_ROOT="$(dirname "$GDIR")"
         run "cd '$REPO_ROOT'"
-        if [[ "$PWD" == "$REPO_ROOT" ]]; then
+        if [[ $PWD == "$REPO_ROOT" ]]; then
             run "git prune"
             run "git gc --auto"
         fi

@@ -31,6 +31,21 @@ export these settings to a remote machine.
 * Re-run [`equip all`](bin/equip) periodically to update applications and configuration.
 * Don't forget to `git pull` any updates!
 
+## Not Automated
+
+There's some things that I would like to have automated but I haven't found a way yet.
+
+- Automatically start up after being installed: Dropbox, Spectacle, Flux
+- Automatically setup launch at startup: Spectacle, Amphetamine
+- Automatically setup iterm2's config location
+- Automatically set up the Dock's icons
+- Automatically install Firefox extensions
+- Disable "Show recent applications in Dock"
+- Enable zoom via <kbd>ctrl</kbd> + mouse wheel scroll
+- Enable zoom follows mouse pointer
+- Change TouchBar settings to be always expanded
+- Enable text to speech for selected text via <kbd>option</kbd> + <kbd>esc</kbd>
+
 ## Environment: `~/env`
 
 * `Solarized Light.itermcolors` and
@@ -87,19 +102,18 @@ with the argument `--help`.
 | [`firefox-tabs`](bin/firefox-tabs) | Attempts to list the currently open urls in your Firefox tabs. |
 | [`flip`](bin/flip) | Flips input upside down. |
 | [`fs`](bin/fs) | Tweak ripgrep to easily search codebases with committed files and f... |
+| [`git-authors`](bin/git-authors) | Git script for discovering who wrote the code at the current workin... |
 | [`git-lg`](bin/git-lg) | Git script for printing beautiful logs. |
 | [`git-name-change`](bin/git-name-change) | Clones a repo then changes the name and email address in entire his... |
 | [`git-parent`](bin/git-parent) | Finds the direct parent of the current branch in git. |
 | [`git-pretty`](bin/git-pretty) | Runs prettier on vue/js/ts files in the most recent N commits. |
 | [`git-pt`](bin/git-pt) | Force updates remote topic branch with local branch. |
-| [`git-reauthor`](bin/git-reauthor) | In git, change the author name and/or email of a single commit. |
 | [`git-recon`](bin/git-recon) | A tool for reconciling your local git repositories. |
 | [`git-run`](bin/git-run) | Runs a command on files that have recently changed. |
 | [`git-sync`](bin/git-sync) | Fetch and fast-forward to the latest for origin/master. |
 | [`git-tidy`](bin/git-tidy) | Tidies up all the junk this repository. |
 | [`git-up`](bin/git-up) | Rebase branch on the latest changes for the remote parent branch. |
 | [`git-what`](bin/git-what) | Build a useful git description of the changes in this branch. |
-| [`git_authors`](bin/git_authors) | Git script for discovering who wrote the code at the current workin... |
 | [`git_ltr`](bin/git_ltr) | Lists (a-la 'ls -ltr') git controlled source files in current direc... |
 | [`golist`](bin/golist) | Lists all user installed go packages. |
 | [`install_odbc`](bin/install_odbc) | Sets up ODBC. |
@@ -109,6 +123,7 @@ with the argument `--help`.
 | [`npm-update`](bin/npm-update) | Tries to update package dependencies to latest using ncu, npm, and ... |
 | [`paystub`](bin/paystub) | Get your latest paystub as PDF from Check's API. |
 | [`prettier`](bin/prettier) | Symbolic link to '/usr/local/bin/prettier' |
+| [`rc`](bin/rc) | Spin or attach to tumx running Check development services. |
 | [`root`](bin/root) | Prints the root of the current repository. |
 | [`set_wallpaper`](bin/set_wallpaper) | Uses Cocoa classes via PyObjC to set a desktop wallpaper on all scr... |
 | [`share`](bin/share) | Easy way to manage temporary web shares. |
@@ -155,52 +170,49 @@ install packages/formulas/casks/whatever, see below for the list of included ite
 | all | Runs all steps |
 
 Homebrew Formulas: adns, aom, asdf, autoconf, automake, avro-c, bash, bat, 
-bdw-gc, cairo, clang-format, cmake, colordiff, coreutils, dav1d, 
+bdw-gc, c-ares, cairo, clang-format, cmake, colordiff, coreutils, dav1d, 
 defaultbrowser, diff-so-fancy, doxygen, duti, entr, exa, exiftool, expect, 
 faac, fasd, flac, flake8, fontconfig, freetype, frei0r, fribidi, fzf, gd, gdbm, 
 geoip, gettext, ghostscript, giflib, gifsicle, git, git-flow, git-lfs, 
-git-secrets, glib, gmp, gnu-sed, gnu-tar, gobject-introspection, 
+git-review, git-secrets, glib, gmp, gnu-sed, gnu-tar, gobject-introspection, 
 graphicsmagick, graphite2, guile, harfbuzz, hub, icu4c, id3lib, imagemagick@6, 
 isl, jansson, jasper, jbig2dec, jemalloc, jez/formulae/pandoc-sidenote, jhead, 
-jo, jpeg, jq, krb5, lame, leptonica, libass, libassuan, libbluray, libev, 
-libevent, libffi, libgcrypt, libgpg-error, libidn2, libksba, libmpc, libogg, 
-libpng, libpthread-stubs, libsamplerate, libserdes, libsndfile, libsodium, 
+jo, jpeg, jq, kafkacat, krb5, lame, leptonica, libass, libassuan, libbluray, 
+libev, libevent, libffi, libgcrypt, libgpg-error, libidn2, libksba, libmpc, 
+libogg, libpng, librdkafka, libsamplerate, libserdes, libsndfile, libsodium, 
 libsoxr, libssh2, libtasn1, libtiff, libtool, libunistring, libusb, 
-libusb-compat, libvidstab, libvo-aacenc, libvorbis, libvpx, libx11, libxau, 
-libxcb, libxdmcp, libxext, libxrender, libyaml, little-cms2, lz4, lzlib, lzo, 
-makedepend, mas, memcached, minio, mpdecimal, mpfr, mtr, mysql, ncftp, ncurses, 
-net-snmp, nettle, nginx, node, npth, nvm, oniguruma, opencore-amr, openjpeg, 
-openssl, opus, ossp-uuid, p11-kit, pandoc, pcre, pcre2, pidof, pinentry, 
-pixman, pkg-config, plotutils, pngquant, postgresql, protobuf, pyenv, 
-pyenv-virtualenv, pyenv-virtualenvwrapper, python, rav1e, re2, readline, redis, 
-ripgrep, rlwrap, rtmpdump, rubberband, runit, sdl2, shellcheck, shfmt, snappy, 
-speex, sqlite, srt, tcl-tk, tesseract, theora, tree, unixodbc, v8, vegeta, 
-vramsteg, watch, wdiff, webp, wget, x264, x265, xorgproto, xvid, xz, yajl, 
+libusb-compat, libvidstab, libvo-aacenc, libvorbis, libvpx, libyaml, 
+little-cms2, lzlib, lzo, makedepend, mas, memcached, minio, mpfr, mtr, mysql, 
+ncftp, ncurses, net-snmp, nettle, nginx, node, npth, nvm, oniguruma, 
+opencore-amr, openjpeg, openssl, opus, ossp-uuid, p11-kit, pandoc, pcre, pcre2, 
+pidof, pinentry, pixman, pkg-config, plotutils, pngquant, postgresql, protobuf, 
+pyenv, pyenv-virtualenv, pyenv-virtualenvwrapper, python, rav1e, re2, readline, 
+redis, ripgrep, rlwrap, rtmpdump, rubberband, runit, sdl2, shellcheck, shfmt, 
+snappy, speex, sqlite, srt, tcl-tk, tesseract, theora, tmux, tree, unixodbc, 
+v8, vegeta, vramsteg, watch, wdiff, webp, wget, x264, x265, xvid, xz, yajl, 
 yaml-cpp, yarn, youtube-dl, zeromq, zimg, zlib, zstd
 
 Homebrew Casks: 1password, atom, atom-beta, chromedriver, clamxav, discord, 
 disk-inventory-x, docker, dropbox, fantastical, firefox, flux, font-fira-code, 
 font-hack-nerd-font, google-chrome, graphiql, iexplorer, istumbler, iterm2, 
-kaleidoscope, lingon-x, mactex, mysqlworkbench, signal, silverlight, slack, 
-snes9x, sourcetree, spectacle, spotify, steam, sublime-text, tableplus, 
-texstudio, the-unarchiver, transmission, vagrant, visual-studio-code, vlc
+kaleidoscope, lingon-x, mactex, signal, slack, snes9x, sourcetree, spectacle, 
+spotify, steam, sublime-text, tableplus, texstudio, the-unarchiver, 
+transmission, vagrant, visual-studio-code, vlc
 
 Atom Packages: atom-notes, auto-update-packages, busy-signal, 
 highlight-selected, intentions, language-markdown, linter, linter-ui-default, 
 minimap, minimap-highlight-selected, minimap-selection, native-ui, 
 pen-paper-coffee-syntax, sort-lines, trailing-spaces, typewriter
 
-Code Packages: BriteSnow.vscode-toggle-quotes, DavidAnson.vscode-markdownlint, 
-GrapeCity.gc-excelviewer, HookyQR.beautify, James-Yu.latex-workshop, 
-PascalReitermann93.vscode-yaml-sort, ban.spellright, be5invis.toml, 
-bibhasdn.unique-lines, bung87.vscode-gemfile, dbaeumer.vscode-eslint, 
-eamodio.gitlens, esbenp.prettier-vscode, exiasr.hadolint, 
-foxundermoon.shell-format, freakypie.code-python-isort, 
-joe-re.sql-language-server, karunamurti.haml, lehni.vscode-titlebar-less-macos, 
-magicstack.MagicPython, mgmcdermott.vscode-language-babel, 
-mike-co.import-sorter, mohsen1.prettify-json, ms-azuretools.vscode-docker, 
-ms-python.python, ms-python.vscode-pylance, ms-toolsai.jupyter, octref.vetur, 
-richie5um2.vscode-sort-json, sianglim.slim, sissel.shopify-liquid, 
+Code Packages: DavidAnson.vscode-markdownlint, HookyQR.beautify, 
+James-Yu.latex-workshop, PascalReitermann93.vscode-yaml-sort, ban.spellright, 
+be5invis.toml, bibhasdn.unique-lines, bung87.vscode-gemfile, 
+dbaeumer.vscode-eslint, eamodio.gitlens, esbenp.prettier-vscode, 
+exiasr.hadolint, foxundermoon.shell-format, freakypie.code-python-isort, 
+joe-re.sql-language-server, karunamurti.haml, magicstack.magicpython, 
+mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
+mohsen1.prettify-json, ms-azuretools.vscode-docker, ms-python.python, 
+ms-python.vscode-pylance, ms-toolsai.jupyter, richie5um2.vscode-sort-json, 
 spywhere.guides, sysoev.language-stylus, timonwong.shellcheck
 
 Pip Packages: git-sweep3k, glances, httpie, inflection, patch, 

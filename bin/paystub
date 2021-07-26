@@ -6,8 +6,8 @@ usage() {
     echo "usage: ${0##*/}" 1>&2
     echo "" 1>&2
     echo "Get your latest paystub as PDF from Check's API." 1>&2
-    echo ""
-    echo "options:"
+    echo "" 1>&2
+    echo "options:" 1>&2
     echo " -h or --help shows usage help" 1>&2
     exit 1
 }
@@ -51,3 +51,38 @@ echo "created $PAYSTUB"
 echo -n $'\e[0m'
 
 open "$PAYSTUB"
+
+# print tax information, assumes federal tax is 2nd and state tax is 4th in list
+FED_IDX="1"
+STATE_IDX="3"
+N_PAYSTUBS="$(jq -r '.results | length' <"$OUTPUT")"
+FED_TAX_LABEL=""
+STATE_TAX_LABEL=""
+for ((i = 0; i < $((N_PAYSTUBS - 1)); i++)); do
+    PAYDAY="$(jq -r ".results[$i].payday" <"$OUTPUT")"
+    EARNINGS="$(jq -r ".results[$i].summary.earnings" <"$OUTPUT")"
+    FED_TAX_AMOUNT="$(jq -r ".results[$i].employee_taxes[$FED_IDX].amount" <"$OUTPUT")"
+    STATE_TAX_AMOUNT="$(jq -r ".results[$i].employee_taxes[$STATE_IDX].amount" <"$OUTPUT")"
+    CUR_FED_TAX_LABEL="$(jq -r ".results[$i].employee_taxes[$FED_IDX].description" <"$OUTPUT")"
+    CUR_STATE_TAX_LABEL="$(jq -r ".results[$i].employee_taxes[$STATE_IDX].description" <"$OUTPUT")"
+    if [[ $i == 0 ]]; then
+        FED_TAX_LABEL="$CUR_FED_TAX_LABEL"
+        STATE_TAX_LABEL="$CUR_STATE_TAX_LABEL"
+        echo "Payday|Earnings|$FED_TAX_LABEL|$STATE_TAX_LABEL"
+    else
+        if [[ $CUR_FED_TAX_LABEL != "$FED_TAX_LABEL" ]]; then
+            echo "error: did not find federal taxes at position $FED_IDX for result $i" >&2
+            exit 1
+        fi
+        if [[ $CUR_FED_TAX_LABEL != "$FED_TAX_LABEL" ]]; then
+            echo "error: did not find state taxes at position $STATE_IDX for result $i" >&2
+            exit 1
+        fi
+    fi
+    echo "$PAYDAY|$EARNINGS|$FED_TAX_AMOUNT|$STATE_TAX_AMOUNT"
+done | column -t -s'|'
+
+if [[ "$(jq -r '.next' <"$OUTPUT")" != "null" ]]; then
+    echo "$(tput bold)warning: older paystubs are truncated$(tput sgr0)" >&2
+    exit 1
+fi

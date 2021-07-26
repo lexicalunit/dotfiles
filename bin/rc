@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# Spin up or attach to tumx running Check development services.
+
+usage() {
+    echo "usage: ${0##*/}" 1>&2
+    echo "" 1>&2
+    echo "Spin or attach to tumx running Check development services." 1>&2
+    echo "" 1>&2
+    echo "options:" 1>&2
+    echo " -h or --help shows usage help" 1>&2
+    exit 1
+}
+
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
+    usage
+fi
+
+SRC="$(basename "$PWD")"
+
+django_runserver_cmd() {
+    echo "python manage.py runserver $1 2>&1 | jq -R -r '. as \$line | try fromjson catch \$line'"
+}
+
+if tmux ls | grep -q "$SRC"; then
+    tmux attach-session -t "$SRC"
+else
+    if [[ $SRC == "check-api" ]]; then
+        tmux new -d -s "$SRC" -x "$(tput cols)" -y "$(tput lines)"
+        tmux send-keys "docker compose up" Enter
+        until psql -h "0.0.0.0" -U "postgres" -p 54320 -c '\q' 2>/dev/null; do
+            echo >&2 "postgres is unavailable - sleeping"
+            sleep 1
+        done
+        tmux split-window -hp 90
+        tmux send-keys "exitconda && entervirtualenv && source env/bin/activate" Enter
+        tmux send-keys "$(django_runserver_cmd localhost:8000)" Enter
+        tmux attach-session -t "$SRC"
+    elif [[ $SRC == "console" ]]; then
+        tmux new -d -s "$SRC" -x "$(tput cols)" -y "$(tput lines)"
+        tmux send-keys 'redis-server /usr/local/etc/redis.conf' Enter
+        until pgrep -f redis 2>/dev/null; do
+            echo >&2 "redis is unavailable - sleeping"
+            sleep 1
+        done
+        tmux split-window -hp 90
+        tmux send-keys "exitconda && entervirtualenv && source env/bin/activate" Enter
+        tmux send-keys "$(django_runserver_cmd localhost:8004)" Enter
+        tmux split-window -v
+        tmux send-keys "yarn run start" Enter
+        tmux attach-session -t "$SRC"
+    elif [[ $SRC == "onboard" ]]; then
+        tmux new -d -s "$SRC" -x "$(tput cols)" -y "$(tput lines)"
+        tmux send-keys "exitconda && entervirtualenv && source env/bin/activate" Enter
+        tmux send-keys "$(django_runserver_cmd localhost:8080)" Enter
+        tmux split-window -v
+        tmux send-keys "yarn run start" Enter
+        tmux attach-session -t "$SRC"
+    fi
+fi

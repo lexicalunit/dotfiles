@@ -191,7 +191,7 @@ yaml-cpp, yarn, youtube-dl, zeromq, zimg, zlib, zstd
 Homebrew Casks: 1password, atom, atom-beta, chromedriver, clamxav, discord, 
 disk-inventory-x, docker, dropbox, fantastical, firefox, flux, font-fira-code, 
 font-hack-nerd-font, google-chrome, graphiql, iexplorer, istumbler, iterm2, 
-kaleidoscope, lingon-x, mactex, signal, slack, snes9x, sourcetree, spectacle, 
+kaleidoscope, lingon-x, mactex, rectangle, signal, slack, snes9x, sourcetree, 
 spotify, steam, sublime-text, tableplus, texstudio, the-unarchiver, 
 transmission, vagrant, visual-studio-code, vlc
 
@@ -913,7 +913,7 @@ Options:
     --no-cache-dir                       Disable filesystem caching
     --rm-cache-dir                       Delete all filesystem cache files
 
-  Thumbnail images:
+  Thumbnail Options:
     --write-thumbnail                    Write thumbnail image to disk
     --write-all-thumbnails               Write all thumbnail image formats to disk
     --list-thumbnails                    Simulate and list all available thumbnail formats

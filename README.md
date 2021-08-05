@@ -35,8 +35,8 @@ export these settings to a remote machine.
 
 There's some things that I would like to have automated but I haven't found a way yet.
 
-- Automatically start up after being installed: Dropbox, Spectacle, Flux
-- Automatically setup launch at startup: Spectacle, Amphetamine
+- Automatically start up after being installed: Dropbox, Rectangle, Flux
+- Automatically setup launch at startup: Rectangle, Amphetamine
 - Automatically setup iterm2's config location
 - Automatically set up the Dock's icons
 - Automatically install Firefox extensions
@@ -123,7 +123,7 @@ with the argument `--help`.
 | [`npm-update`](bin/npm-update) | Tries to update package dependencies to latest using ncu, npm, and ... |
 | [`paystub`](bin/paystub) | Get your latest paystub as PDF from Check's API. |
 | [`prettier`](bin/prettier) | Symbolic link to '/usr/local/bin/prettier' |
-| [`rc`](bin/rc) | Spin or attach to tumx running Check development services. |
+| [`rc`](bin/rc) | Spin up or attach to tumx running Check development services. |
 | [`root`](bin/root) | Prints the root of the current repository. |
 | [`set_wallpaper`](bin/set_wallpaper) | Uses Cocoa classes via PyObjC to set a desktop wallpaper on all scr... |
 | [`share`](bin/share) | Easy way to manage temporary web shares. |
@@ -195,7 +195,7 @@ yaml-cpp, yarn, youtube-dl, zeromq, zimg, zlib, zstd
 Homebrew Casks: 1password, atom, atom-beta, chromedriver, clamxav, discord, 
 disk-inventory-x, docker, dropbox, fantastical, firefox, flux, font-fira-code, 
 font-hack-nerd-font, google-chrome, graphiql, iexplorer, istumbler, iterm2, 
-kaleidoscope, lingon-x, mactex, signal, slack, snes9x, sourcetree, spectacle, 
+kaleidoscope, lingon-x, mactex, rectangle, signal, slack, snes9x, sourcetree, 
 spotify, steam, sublime-text, tableplus, texstudio, the-unarchiver, 
 transmission, vagrant, visual-studio-code, vlc
 

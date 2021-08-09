@@ -27,6 +27,18 @@ release() {
 trap release EXIT
 
 COLOR="${1:-red}"
+COLORS=("$@")
+CLEN="${#COLORS[@]}"
+
+if [[ $CLEN -gt 1 ]]; then
+    C=0
+    while true; do
+        COLOR="${COLORS[$C]}"
+        blink_set_busy "$COLOR"
+        C=$(((C + 1) % CLEN))
+        sleep .5
+    done
+fi
 
 while true; do
     if ! blink_is_busy; then

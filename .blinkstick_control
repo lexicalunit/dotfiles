@@ -31,10 +31,10 @@ blink_is_busy() {
 
 blink_set_color() {
     echo "$1" > "$BLINK_LOCK"
-    eval "$BS --set-color '$1'"
+    eval "$BS --morph --set-color '$1'"
 }
 
 blink_set_busy() {
     echo "busy" > "$BLINK_LOCK"
-    eval "$BS --set-color '$1'"
+    eval "$BS --morph --set-color '$1'"
 }

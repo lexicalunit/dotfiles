@@ -166,27 +166,28 @@ steps:
     all        Runs all steps
 
 Homebrew Formulas: adns, aom, asdf, autoconf, automake, avro-c, bash, bat, 
-bdw-gc, c-ares, cairo, clang-format, cmake, colordiff, coreutils, dav1d, 
-defaultbrowser, diff-so-fancy, doxygen, duti, entr, exa, exiftool, expect, 
-faac, fasd, flac, flake8, fontconfig, freetype, frei0r, fribidi, fzf, gd, gdbm, 
-geoip, gettext, ghostscript, giflib, gifsicle, git, git-flow, git-lfs, 
-git-review, git-secrets, glib, gmp, gnu-sed, gnu-tar, gobject-introspection, 
-graphicsmagick, graphite2, guile, harfbuzz, hub, icu4c, id3lib, imagemagick@6, 
-isl, jansson, jasper, jbig2dec, jemalloc, jez/formulae/pandoc-sidenote, jhead, 
-jo, jpeg, jq, kafkacat, krb5, lame, leptonica, libass, libassuan, libbluray, 
-libev, libevent, libffi, libgcrypt, libgpg-error, libidn2, libksba, libmpc, 
-libogg, libpng, librdkafka, libsamplerate, libserdes, libsndfile, libsodium, 
-libsoxr, libssh2, libtasn1, libtiff, libtool, libunistring, libusb, 
-libusb-compat, libvidstab, libvo-aacenc, libvorbis, libvpx, libyaml, 
-little-cms2, lzlib, lzo, makedepend, mas, memcached, minio, mpfr, mtr, mysql, 
-ncftp, ncurses, net-snmp, nettle, nginx, node, npth, nvm, oniguruma, 
-opencore-amr, openjpeg, openssl, opus, ossp-uuid, p11-kit, pandoc, pcre, pcre2, 
-pidof, pinentry, pixman, pkg-config, plotutils, pngquant, postgresql, protobuf, 
-pyenv, pyenv-virtualenv, pyenv-virtualenvwrapper, python, rav1e, re2, readline, 
-redis, ripgrep, rlwrap, rtmpdump, rubberband, runit, sdl2, shellcheck, shfmt, 
-snappy, speex, sqlite, srt, tcl-tk, tesseract, theora, tmux, tree, unixodbc, 
-v8, vegeta, vramsteg, watch, wdiff, webp, wget, x264, x265, xvid, xz, yajl, 
-yaml-cpp, yarn, youtube-dl, zeromq, zimg, zlib, zstd
+bdw-gc, c-ares, cairo, chrome-cli, clang-format, cmake, colordiff, coreutils, 
+dav1d, defaultbrowser, diff-so-fancy, doxygen, duti, entr, exa, exiftool, 
+expect, faac, fasd, flac, flake8, fontconfig, freetype, frei0r, fribidi, fzf, 
+gd, gdbm, geoip, gettext, ghostscript, giflib, gifsicle, git, git-flow, 
+git-lfs, git-review, git-secrets, glib, gmp, gnu-sed, gnu-tar, 
+gobject-introspection, graphicsmagick, graphite2, guile, harfbuzz, hub, icu4c, 
+id3lib, imagemagick@6, isl, jansson, jasper, jbig2dec, jemalloc, 
+jez/formulae/pandoc-sidenote, jhead, jo, jpeg, jq, kafkacat, krb5, lame, 
+leptonica, libass, libassuan, libbluray, libev, libevent, libffi, libgcrypt, 
+libgpg-error, libidn2, libksba, libmpc, libogg, libpng, librdkafka, 
+libsamplerate, libserdes, libsndfile, libsodium, libsoxr, libssh2, libtasn1, 
+libtiff, libtool, libunistring, libusb, libusb-compat, libvidstab, 
+libvo-aacenc, libvorbis, libvpx, libyaml, little-cms2, lzlib, lzo, makedepend, 
+mas, memcached, minio, mpfr, mtr, mysql, ncftp, ncurses, net-snmp, nettle, 
+nginx, node, npth, nvm, oniguruma, opencore-amr, openjpeg, openssl, opus, 
+ossp-uuid, p11-kit, pandoc, pcre, pcre2, pidof, pinentry, pixman, pkg-config, 
+plotutils, pngquant, postgresql, protobuf, pyenv, pyenv-virtualenv, 
+pyenv-virtualenvwrapper, python, rav1e, re2, readline, redis, ripgrep, rlwrap, 
+rtmpdump, rubberband, runit, sdl2, shellcheck, shfmt, snappy, speex, sqlite, 
+srt, tcl-tk, tesseract, theora, tmux, tree, unixodbc, v8, vegeta, vramsteg, 
+watch, wdiff, webp, wget, x264, x265, xvid, xz, yajl, yaml-cpp, yarn, 
+youtube-dl, zeromq, zimg, zlib, zstd
 
 Homebrew Casks: 1password, atom, atom-beta, chromedriver, clamxav, discord, 
 disk-inventory-x, docker, dropbox, fantastical, firefox, flux, font-fira-code, 
@@ -205,11 +206,12 @@ James-Yu.latex-workshop, PascalReitermann93.vscode-yaml-sort, ban.spellright,
 be5invis.toml, bibhasdn.unique-lines, bung87.vscode-gemfile, 
 dbaeumer.vscode-eslint, eamodio.gitlens, esbenp.prettier-vscode, 
 exiasr.hadolint, foxundermoon.shell-format, freakypie.code-python-isort, 
-joe-re.sql-language-server, karunamurti.haml, magicstack.magicpython, 
-mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
-mohsen1.prettify-json, ms-azuretools.vscode-docker, ms-python.python, 
-ms-python.vscode-pylance, ms-toolsai.jupyter, richie5um2.vscode-sort-json, 
-spywhere.guides, sysoev.language-stylus, timonwong.shellcheck
+hashicorp.terraform, joe-re.sql-language-server, karunamurti.haml, 
+magicstack.magicpython, mgmcdermott.vscode-language-babel, 
+mike-co.import-sorter, mohsen1.prettify-json, ms-azuretools.vscode-docker, 
+ms-python.python, ms-python.vscode-pylance, ms-toolsai.jupyter, 
+richie5um2.vscode-sort-json, spywhere.guides, sysoev.language-stylus, 
+timonwong.shellcheck
 
 Pip Packages: git-sweep3k, glances, httpie, inflection, patch, 
 python-json-logger, pyyaml, termcolor
@@ -517,7 +519,7 @@ Format options:
                            Defaults to false.
   --jsx-single-quote       Use single quotes in JSX.
                            Defaults to false.
-  --parser <flow|babel|babel-flow|babel-ts|typescript|espree|meriyah|css|less|scss|json|json5|json-stringify|graphql|markdown|mdx|vue|yaml|html|angular|lwc>
+  --parser <flow|babel|babel-flow|babel-ts|typescript|espree|meriyah|css|less|scss|json|json5|json-stringify|graphql|markdown|mdx|vue|yaml|glimmer|html|angular|lwc>
                            Which parser to use.
   --print-width <int>      The line length where Prettier will try wrap.
                            Defaults to 80.
@@ -579,6 +581,8 @@ Editor options:
 Other options:
 
   --no-color               Do not colorize error messages.
+  --no-error-on-unmatched-pattern
+                           Prevent errors when pattern is unmatched.
   --file-info <path>       Extract the following info (as JSON) for a given file path. Reported fields:
                            * ignored (boolean) - true if file path is filtered by --ignore-path
                            * inferredParser (string | null) - name of parser inferred from file path

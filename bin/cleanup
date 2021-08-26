@@ -179,7 +179,8 @@ test -e "$HOME/.babel.json" && run "rm -f '$_'"
 
 # brew
 if command -v brew >/dev/null 2>&1; then
-    run "brew cleanup"
+    run "brew autoremove"
+    run "brew cleanup --prune=all"
     run "rm -rf $(brew --cache)"
     run "brew tap --repair"
 fi

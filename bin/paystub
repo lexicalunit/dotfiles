@@ -3,18 +3,31 @@
 # Get your latest paystub as PDF from Check's API.
 
 usage() {
-    echo "usage: ${0##*/}" 1>&2
-    echo "" 1>&2
-    echo "Get your latest paystub as PDF from Check's API." 1>&2
-    echo "" 1>&2
-    echo "options:" 1>&2
-    echo " -h or --help shows usage help" 1>&2
+    (
+        echo "usage: ${0##*/} [-h | --help | -n N]"
+        echo "Get your latest paystub as PDF from Check's API."
+        echo
+        echo "options:"
+        (
+            echo "    -h, --help@ show usage help"
+            echo "    -n N@ generate the last N paysubs (default: 1)"
+        ) | column -ts@
+    ) >&2
     exit 1
 }
 
 if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     usage
 fi
+
+RENDER_COUNT=1
+while getopts "n:" opt; do
+    case "$opt" in
+    n) RENDER_COUNT="$OPTARG" ;;
+    *) usage ;;
+    esac
+done
+shift $((OPTIND - 1))
 
 # In Keychain Access create a "New Password Item" with the following details.
 # - name: "check_api_key_prod"
@@ -36,21 +49,28 @@ curl -sS --location "https://api.checkhq.com/employees/$CHECK_API_EMPLOYEE_ID_PR
 echo "done"
 echo -n $'\e[0m'
 
-PAYDAY="$(jq -r '.results[0].payday' <"$OUTPUT")"
-PAYROLL_ID="$(jq -r '.results[0].payroll' <"$OUTPUT")"
-PAYSTUB="paystub-$PAYDAY.pdf"
+i=0
+while [[ $i -lt $RENDER_COUNT ]]; do
+    PAYDAY="$(jq -r ".results[$i].payday" <"$OUTPUT")"
+    PAYROLL_ID="$(jq -r ".results[$i].payroll" <"$OUTPUT")"
+    PAYSTUB="paystub-$PAYDAY.pdf"
 
-echo -n $'\e[1;34m>\e[0m\e[31m '
-echo -n "rendering latest paystub... "
-curl -sS --location \
-    "https://api.checkhq.com/employees/$CHECK_API_EMPLOYEE_ID_PROD/paystubs/$PAYROLL_ID" \
-    --header "Authorization: Bearer $CHECK_API_KEY_PROD" \
-    --header "Accept: application/pdf" \
-    --output "$PAYSTUB"
-echo "created $PAYSTUB"
-echo -n $'\e[0m'
+    echo -n $'\e[1;34m>\e[0m\e[31m '
+    echo -n "rendering $PAYSTUB... "
+    curl -sS --location \
+        "https://api.checkhq.com/employees/$CHECK_API_EMPLOYEE_ID_PROD/paystubs/$PAYROLL_ID" \
+        --header "Authorization: Bearer $CHECK_API_KEY_PROD" \
+        --header "Accept: application/pdf" \
+        --output "$PAYSTUB"
+    echo "done"
+    echo -n $'\e[0m'
 
-open "$PAYSTUB"
+    i=$((i + 1))
+done
+
+if [[ "$RENDER_COUNT" == "1" ]]; then
+    open "$PAYSTUB"
+fi
 
 # print tax information, assumes federal tax is 2nd and state tax is 4th in list
 FED_IDX="1"
@@ -58,17 +78,17 @@ STATE_IDX="3"
 N_PAYSTUBS="$(jq -r '.results | length' <"$OUTPUT")"
 FED_TAX_LABEL=""
 STATE_TAX_LABEL=""
-for ((i = 0; i < $((N_PAYSTUBS - 1)); i++)); do
+(
+    for ((i = 0; i < $((N_PAYSTUBS - 1)); i++)); do
     PAYDAY="$(jq -r ".results[$i].payday" <"$OUTPUT")"
     EARNINGS="$(jq -r ".results[$i].summary.earnings" <"$OUTPUT")"
     FED_TAX_AMOUNT="$(jq -r ".results[$i].employee_taxes[$FED_IDX].amount" <"$OUTPUT")"
     STATE_TAX_AMOUNT="$(jq -r ".results[$i].employee_taxes[$STATE_IDX].amount" <"$OUTPUT")"
     CUR_FED_TAX_LABEL="$(jq -r ".results[$i].employee_taxes[$FED_IDX].description" <"$OUTPUT")"
     CUR_STATE_TAX_LABEL="$(jq -r ".results[$i].employee_taxes[$STATE_IDX].description" <"$OUTPUT")"
-    if [[ $i == 0 ]]; then
+    if [[ "$i" == "0" ]]; then
         FED_TAX_LABEL="$CUR_FED_TAX_LABEL"
         STATE_TAX_LABEL="$CUR_STATE_TAX_LABEL"
-        echo "Payday|Earnings|$FED_TAX_LABEL|$STATE_TAX_LABEL"
     else
         if [[ $CUR_FED_TAX_LABEL != "$FED_TAX_LABEL" ]]; then
             echo "error: did not find federal taxes at position $FED_IDX for result $i" >&2
@@ -80,7 +100,9 @@ for ((i = 0; i < $((N_PAYSTUBS - 1)); i++)); do
         fi
     fi
     echo "$PAYDAY|$EARNINGS|$FED_TAX_AMOUNT|$STATE_TAX_AMOUNT"
-done | column -t -s'|'
+    done
+    echo "Payday|Earnings|$FED_TAX_LABEL|$STATE_TAX_LABEL"
+) | column -t -s'|' | nl | sort -nr | cut -f 2-
 
 if [[ "$(jq -r '.next' <"$OUTPUT")" != "null" ]]; then
     echo "$(tput bold)warning: older paystubs are truncated$(tput sgr0)" >&2

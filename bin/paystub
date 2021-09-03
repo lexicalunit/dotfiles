@@ -4,13 +4,14 @@
 
 usage() {
     (
-        echo "usage: ${0##*/} [-h | --help | -n N]"
+        echo "usage: ${0##*/} [-h | --help | -n N | -t]"
         echo "Get your latest paystub as PDF from Check's API."
         echo
         echo "options:"
         (
             echo "    -h, --help@ show usage help"
             echo "    -n N@ generate the last N paysubs (default: 1)"
+            echo "    -t@ show historical tax information"
         ) | column -ts@
     ) >&2
     exit 1
@@ -20,10 +21,19 @@ if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     usage
 fi
 
+if [[ -z "$(command -v jq)" ]]; then
+    echo "error: jq not installed; please install jq" >&2
+    exit 1
+fi
+
+
+USER="$(whoami)"
 RENDER_COUNT=1
-while getopts "n:" opt; do
+SHOW_TAXES=0
+while getopts "n:t" opt; do
     case "$opt" in
     n) RENDER_COUNT="$OPTARG" ;;
+    t) SHOW_TAXES=1 ;;
     *) usage ;;
     esac
 done
@@ -31,8 +41,8 @@ shift $((OPTIND - 1))
 
 # In Keychain Access create a "New Password Item" with the following details.
 # - name: "check_api_key_prod"
-# - account: Your $USER name
-# - password: Your Bearer API Key
+# - account: Your macOS user name
+# - password: Your Check API key
 CHECK_API_KEY_PROD="$(security find-generic-password -a "$USER" -s check_api_key_prod -w 2>/dev/null)"
 
 # Do the same as above for your Check employee id.
@@ -56,7 +66,7 @@ while [[ $i -lt $RENDER_COUNT ]]; do
     PAYSTUB="paystub-$PAYDAY.pdf"
 
     echo -n $'\e[1;34m>\e[0m\e[31m '
-    echo -n "rendering $PAYSTUB... "
+    echo -n "rendering $PAYSTUB (payroll: $PAYROLL_ID)... "
     curl -sS --location \
         "https://api.checkhq.com/employees/$CHECK_API_EMPLOYEE_ID_PROD/paystubs/$PAYROLL_ID" \
         --header "Authorization: Bearer $CHECK_API_KEY_PROD" \
@@ -72,36 +82,32 @@ if [[ "$RENDER_COUNT" == "1" ]]; then
     open "$PAYSTUB"
 fi
 
-# print tax information, assumes federal tax is 2nd and state tax is 4th in list
-FED_IDX="1"
-STATE_IDX="3"
+[[ "$SHOW_TAXES" == "1" ]] || exit 0
+
+# show historical tax information including federal and state taxes
+TAXES=("Federal Income Tax" "State Tax")
 N_PAYSTUBS="$(jq -r '.results | length' <"$OUTPUT")"
-FED_TAX_LABEL=""
-STATE_TAX_LABEL=""
 (
-    for ((i = 0; i < $((N_PAYSTUBS - 1)); i++)); do
-    PAYDAY="$(jq -r ".results[$i].payday" <"$OUTPUT")"
-    EARNINGS="$(jq -r ".results[$i].summary.earnings" <"$OUTPUT")"
-    FED_TAX_AMOUNT="$(jq -r ".results[$i].employee_taxes[$FED_IDX].amount" <"$OUTPUT")"
-    STATE_TAX_AMOUNT="$(jq -r ".results[$i].employee_taxes[$STATE_IDX].amount" <"$OUTPUT")"
-    CUR_FED_TAX_LABEL="$(jq -r ".results[$i].employee_taxes[$FED_IDX].description" <"$OUTPUT")"
-    CUR_STATE_TAX_LABEL="$(jq -r ".results[$i].employee_taxes[$STATE_IDX].description" <"$OUTPUT")"
-    if [[ "$i" == "0" ]]; then
-        FED_TAX_LABEL="$CUR_FED_TAX_LABEL"
-        STATE_TAX_LABEL="$CUR_STATE_TAX_LABEL"
-    else
-        if [[ $CUR_FED_TAX_LABEL != "$FED_TAX_LABEL" ]]; then
-            echo "error: did not find federal taxes at position $FED_IDX for result $i" >&2
-            exit 1
-        fi
-        if [[ $CUR_FED_TAX_LABEL != "$FED_TAX_LABEL" ]]; then
-            echo "error: did not find state taxes at position $STATE_IDX for result $i" >&2
-            exit 1
-        fi
-    fi
-    echo "$PAYDAY|$EARNINGS|$FED_TAX_AMOUNT|$STATE_TAX_AMOUNT"
+    # data rows
+    for ((i = 0; i < N_PAYSTUBS; i++)); do
+        PAYROLL="$(jq -r ".results[$i].payroll" <"$OUTPUT")"
+        PAYDAY="$(jq -r ".results[$i].payday" <"$OUTPUT")"
+        EARNINGS="$(jq -r ".results[$i].summary.earnings" <"$OUTPUT")"
+        echo -n "$PAYROLL|$PAYDAY|$EARNINGS"
+        for t in "${TAXES[@]}"; do
+            AMOUNT="$(jq -r ".results[$i].employee_taxes[] | select(.description | contains(\"$t\")) | .amount" <"$OUTPUT")"
+            echo -n "|$AMOUNT"
+        done
+        echo
     done
-    echo "Payday|Earnings|$FED_TAX_LABEL|$STATE_TAX_LABEL"
+
+    # header row
+    echo -n "Payroll|Payday|Earnings"
+    for t in "${TAXES[@]}"; do
+        DESC="$(jq -r ".results[0].employee_taxes[] | select(.description | contains(\"$t\")) | .description" <"$OUTPUT")"
+        echo -n "|$DESC"
+    done
+    echo
 ) | column -t -s'|' | nl | sort -nr | cut -f 2-
 
 if [[ "$(jq -r '.next' <"$OUTPUT")" != "null" ]]; then

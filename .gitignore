@@ -57,6 +57,9 @@
 /.mono/registry/last-btime
 /.config/.mono/keypairs
 
+# 1Pass
+/.config/op/config
+
 # Applications
 /.ammonite
 /.asdf

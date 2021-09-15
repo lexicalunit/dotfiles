@@ -30,18 +30,12 @@ HOMEBREW_FORMULAS="                                                            \
     youtube-dl zeromq zimg zlib zstd"
 
 HOMEBREW_CASKS="                                                               \
-    1password atom atom-beta chromedriver clamxav discord disk-inventory-x     \
-    docker dropbox fantastical firefox flux font-fira-code font-hack-nerd-font \
-    google-chrome graphiql iexplorer istumbler iterm2 kaleidoscope lingon-x    \
-    mactex rectangle signal slack snes9x sourcetree spotify steam sublime-text \
+    1password chromedriver clamxav discord disk-inventory-x docker dropbox     \
+    fantastical firefox flux font-fira-code font-hack-nerd-font google-chrome  \
+    graphiql iexplorer istumbler iterm2 kaleidoscope lingon-x mactex obsidian  \
+    rectangle signal slack snes9x sourcetree spotify steam sublime-text        \
     tableplus texstudio the-unarchiver transmission vagrant visual-studio-code \
     vlc"
-
-ATOM_PACKAGES="                                                                \
-    atom-notes auto-update-packages busy-signal highlight-selected intentions  \
-    language-markdown linter linter-ui-default minimap                         \
-    minimap-highlight-selected minimap-selection native-ui                     \
-    pen-paper-coffee-syntax sort-lines trailing-spaces typewriter"
 
 CODE_PACKAGES="                                                                \
     DavidAnson.vscode-markdownlint HookyQR.beautify James-Yu.latex-workshop    \
@@ -80,7 +74,7 @@ CARGO_PACKAGES="                                                               \
     cargo-update loc"
 # END GENERATED PACKAGE LISTS
 
-ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS ATOM_PACKAGES CODE_PACKAGES
+ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS CODE_PACKAGES
     PIP_PACKAGES CONDA_PACKAGES GEM_PACKAGES NODE_MODULES GO_PACKAGES
     CARGO_PACKAGES)
 
@@ -192,7 +186,6 @@ ensure_no_anaconda() {
     # Anaconda is known to frequently break Homebrew builds, including Vim and
     # MacVim, due to bundling many duplicates of system and Homebrew-available
     # tools. Make sure to exit it before doing anything with Homebrew.
-    # It can also cause build issues for Atom packages with native modules.
 
     if [[ -n $CONDA_DEFAULT_ENV ]]; then
         if command -v deactivate >/dev/null 2>&1; then
@@ -1227,55 +1220,6 @@ step_ext() {
 }
 
 ################################################################################
-# Step atom
-################################################################################
-install_atom_pkg() {
-    local INSTALLED PKG="$1"
-    shift
-    IFS=' ' read -r -a INSTALLED <<<"$@"
-
-    command -v apm-beta >/dev/null 2>&1 && APMCMD="apm-beta" || APMCMD="apm"
-    if ! in_array "$PKG" "${INSTALLED[@]}"; then
-        run "$APMCMD install '$PKG'" || abort "Can not install package '$PKG'"
-    else
-        show "skipping $PKG: already installed"
-    fi
-}
-
-step_atom() {
-    if ! command -v atom >/dev/null 2>&1; then
-        ensure_homebrew_updated
-        install_brew_cask atom || abort "Can't install atom via brew-cask"
-        ensure_homebrew_updated_cleanup
-    fi
-
-    # Anaconda causes build issues for Atom packages with native modules.
-    ensure_no_anaconda
-
-    command -v apm-beta >/dev/null 2>&1 && APMCMD="apm-beta" || APMCMD="apm"
-
-    local INSTALLED
-    INSTALLED=()
-    $APMCMD list --installed --bare | sed "s/@.*$//g" | {
-        while IFS="" read -r line; do INSTALLED+=("$line"); done
-        IFS=' '
-        for I in $ATOM_PACKAGES; do
-            install_atom_pkg "$I" "${INSTALLED[@]}"
-        done
-    }
-
-    run "$APMCMD upgrade --confirm false"
-
-    IFS=$'\n'
-    for I in $($APMCMD list --installed --bare); do
-        name="${I%@*}"
-        if ! echo "$ATOM_PACKAGES" | grep -Eqi " ${name}\\b"; then
-            show -i "$I installed but not managed by equip via $APMCMD"
-        fi
-    done
-}
-
-################################################################################
 # Step code
 ################################################################################
 install_code_pkg() {
@@ -1800,7 +1744,7 @@ fi
 
 # update applications
 if echo "$ARGS" | grep -Eq -- 'apps\b'; then
-    ARGS="$ARGS xcode brew cask ext python node go cargo gem atom code"
+    ARGS="$ARGS xcode brew cask ext python node go cargo gem code"
 fi
 
 # update environment and dotfiles
@@ -1822,11 +1766,10 @@ steps=(
     "go;            Ensure Go packages are installed"
     "cargo;         Ensure Rust packages are installed via cargo"
     "gem;           Upgrade/Install gem packages and rubygems-update package"
-    "atom;          Ensure Atom installed via Homebrew Cask and apm packages are upgraded"
     "code;          Ensure VS Code installed via Homebrew Cask and its packages are installed"
     'osx;           Override macOS "defaults" settings and configuration'
     "dot;           Runs steps: dotfiles zsh env"
-    "apps;          Runs steps: xcode brew cask ext python node go cargo gem atom code"
+    "apps;          Runs steps: xcode brew cask ext python node go cargo gem code"
     "most;          Runs steps: apps dot (basically everything but the osx step)"
     "all;          Runs all steps"
 )

@@ -59,8 +59,7 @@ curl -sS --location "https://api.checkhq.com/employees/$CHECK_API_EMPLOYEE_ID_PR
 echo "done"
 echo -n $'\e[0m'
 
-i=0
-while [[ $i -lt $RENDER_COUNT ]]; do
+for (( i=0; i < RENDER_COUNT; i++ )); do
     PAYDAY="$(jq -r ".results[$i].payday" <"$OUTPUT")"
     PAYROLL_ID="$(jq -r ".results[$i].payroll" <"$OUTPUT")"
     PAYSTUB="paystub-$PAYDAY.pdf"
@@ -74,8 +73,6 @@ while [[ $i -lt $RENDER_COUNT ]]; do
         --output "$PAYSTUB"
     echo "done"
     echo -n $'\e[0m'
-
-    i=$((i + 1))
 done
 
 if [[ "$RENDER_COUNT" == "1" ]]; then

@@ -161,11 +161,10 @@ install packages/formulas/casks/whatever, see below for the list of included ite
 | go | Ensure Go packages are installed |
 | cargo | Ensure Rust packages are installed via cargo |
 | gem | Upgrade/Install gem packages and rubygems-update package |
-| atom | Ensure Atom installed via Homebrew Cask and apm packages are upgraded |
 | code | Ensure VS Code installed via Homebrew Cask and its packages are installed |
 | osx | Override macOS "defaults" settings and configuration |
 | dot | Runs steps: dotfiles zsh env |
-| apps | Runs steps: xcode brew cask ext python node go cargo gem atom code |
+| apps | Runs steps: xcode brew cask ext python node go cargo gem code |
 | most | Runs steps: apps dot (basically everything but the osx step) |
 | all | Runs all steps |
 
@@ -193,17 +192,12 @@ srt, tcl-tk, tesseract, theora, tmux, tree, unixodbc, v8, vegeta, vramsteg,
 watch, wdiff, webp, wget, x264, x265, xvid, xz, yajl, yaml-cpp, yarn, 
 youtube-dl, zeromq, zimg, zlib, zstd
 
-Homebrew Casks: 1password, atom, atom-beta, chromedriver, clamxav, discord, 
-disk-inventory-x, docker, dropbox, fantastical, firefox, flux, font-fira-code, 
+Homebrew Casks: 1password, chromedriver, clamxav, discord, disk-inventory-x, 
+docker, dropbox, fantastical, firefox, flux, font-fira-code, 
 font-hack-nerd-font, google-chrome, graphiql, iexplorer, istumbler, iterm2, 
-kaleidoscope, lingon-x, mactex, rectangle, signal, slack, snes9x, sourcetree, 
-spotify, steam, sublime-text, tableplus, texstudio, the-unarchiver, 
+kaleidoscope, lingon-x, mactex, obsidian, rectangle, signal, slack, snes9x, 
+sourcetree, spotify, steam, sublime-text, tableplus, texstudio, the-unarchiver, 
 transmission, vagrant, visual-studio-code, vlc
-
-Atom Packages: atom-notes, auto-update-packages, busy-signal, 
-highlight-selected, intentions, language-markdown, linter, linter-ui-default, 
-minimap, minimap-highlight-selected, minimap-selection, native-ui, 
-pen-paper-coffee-syntax, sort-lines, trailing-spaces, typewriter
 
 Code Packages: DavidAnson.vscode-markdownlint, HookyQR.beautify, 
 James-Yu.latex-workshop, PascalReitermann93.vscode-yaml-sort, ban.spellright, 

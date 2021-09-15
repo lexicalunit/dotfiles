@@ -214,9 +214,6 @@ command -v npm >/dev/null 2>&1 && run "npm -g cache clean --force"
 # yarn
 command -v yarn >/dev/null 2>&1 && run "yarn cache clean --all --force"
 
-# atom
-command -v apm >/dev/null 2>&1 && run "apm clean"
-
 # git
 if command -v git >/dev/null 2>&1; then
     set +e

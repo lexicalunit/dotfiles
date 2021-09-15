@@ -244,23 +244,10 @@ if $INTERACTIVE; then
         alias e='code -a . '
         alias edit='code '
         ew() { type "$1" >/dev/null 2>&1 && code "$(command -v "$1")"; }
-    elif type atom-beta >/dev/null 2>&1; then
-        alias e='atom-beta -a . '
-        alias edit='atom-beta '
-        ew() { type "$1" >/dev/null 2>&1 && atom-beta "$(command -v "$1")"; }
-    elif type atom >/dev/null 2>&1; then
-        alias e='atom -a . '
-        alias edit='atom '
-        ew() { type "$1" >/dev/null 2>&1 && atom "$(command -v "$1")"; }
     elif type subl >/dev/null 2>&1; then
         alias e='subl -a . '
         alias edit='subl '
         ew() { type "$1" >/dev/null 2>&1 && subl "$(command -v "$1")"; }
-    fi
-
-    if type atom-beta >/dev/null 2>&1; then
-        alias atom='atom-beta '
-        alias apm='apm-beta '
     fi
 
     vman() { man "$@" | col -bx | vim -; }

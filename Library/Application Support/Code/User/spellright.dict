@@ -1,5 +1,4 @@
 artboard
-atomtest
 autocompletes
 autodelete
 Autosave
@@ -39,7 +38,6 @@ npm
 npmjs
 nsp
 nv
-nvatom
 package.json
 PUBLISHING.md
 README.md
@@ -80,7 +78,6 @@ Vertica
 Greenplum
 nanodbc.io
 github.com
-atom.io
 linkedin
 underarmour
 Verilog

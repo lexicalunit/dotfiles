@@ -35,6 +35,9 @@
 /.local/share/desktop-directories
 /.local/share/mime/packages
 
+# glances
+/.local/share/glances/glances.log
+
 # Poetry
 /.local/share/virtualenvs
 

@@ -9,56 +9,47 @@
 HOMEBREW_FORMULAS="                                                            \
     adns aom asdf autoconf automake avro-c bash bat bdw-gc c-ares cairo        \
     chrome-cli clang-format cmake colordiff coreutils dav1d defaultbrowser     \
-    diff-so-fancy doxygen duti entr exa exiftool expect faac fasd flac flake8  \
+    diff-so-fancy doxygen duti entr exa exiftool expect faac fasd flake8       \
     fontconfig freetype frei0r fribidi fzf gd gdbm geoip gettext ghostscript   \
-    giflib gifsicle git git-flow git-lfs git-review git-secrets glib gmp       \
-    gnu-sed gnu-tar gobject-introspection graphicsmagick graphite2 guile       \
+    giflib gifsicle git git-flow git-lfs git-review git-secrets glances glib   \
+    gmp gnu-sed gnu-tar gobject-introspection graphicsmagick graphite2 guile   \
     harfbuzz hub icu4c id3lib imagemagick@6 isl jansson jasper jbig2dec        \
     jemalloc jez/formulae/pandoc-sidenote jhead jo jpeg jq kafkacat krb5 lame  \
     leptonica libass libassuan libbluray libev libevent libffi libgcrypt       \
-    libgpg-error libidn2 libksba libmpc libogg libpng librdkafka libsamplerate \
-    libserdes libsndfile libsodium libsoxr libssh2 libtasn1 libtiff libtool    \
-    libunistring libusb libusb-compat libvidstab libvo-aacenc libvorbis libvpx \
-    libyaml little-cms2 lzlib lzo makedepend mas memcached minio mpfr mtr      \
-    mysql ncftp ncurses net-snmp nettle nginx node npth nvm oniguruma          \
-    opencore-amr openjpeg openssl opus ossp-uuid p11-kit pandoc pcre pcre2     \
-    pidof pinentry pixman pkg-config plotutils pngquant postgresql protobuf    \
-    pyenv pyenv-virtualenv pyenv-virtualenvwrapper python rav1e re2 readline   \
-    redis ripgrep rlwrap rtmpdump rubberband runit sdl2 shellcheck shfmt       \
-    snappy speex sqlite srt tcl-tk tesseract theora tmux tree unixodbc v8      \
-    vegeta vramsteg watch wdiff webp wget x264 x265 xvid xz yajl yaml-cpp yarn \
-    youtube-dl zeromq zimg zlib zstd"
+    libgpg-error libidn2 libksba libmpc libogg libpng librdkafka libserdes     \
+    libsodium libsoxr libssh2 libtasn1 libtiff libtool libunistring libusb     \
+    libusb-compat libvidstab libvo-aacenc libvorbis libvpx libyaml little-cms2 \
+    lzlib lzo makedepend mas memcached minio mpfr mtr mysql ncftp ncurses      \
+    net-snmp nettle nginx node npth nvm oniguruma opencore-amr openjpeg        \
+    openssl opus ossp-uuid p11-kit pandoc pcre pcre2 pidof pinentry pixman     \
+    pkg-config plotutils pngquant postgresql protobuf pyenv pyenv-virtualenv   \
+    pyenv-virtualenvwrapper python rav1e re2 readline redis ripgrep rlwrap     \
+    rtmpdump runit sdl2 shellcheck shfmt snappy speex sqlite srt tcl-tk        \
+    tesseract theora tmux tree v8 vegeta vramsteg watch wdiff webp wget x264   \
+    x265 xvid xz yajl yaml-cpp yarn youtube-dl zeromq zimg zlib zstd"
 
 HOMEBREW_CASKS="                                                               \
-    1password chromedriver clamxav discord disk-inventory-x docker dropbox     \
-    fantastical firefox flux font-fira-code font-hack-nerd-font google-chrome  \
-    graphiql iexplorer istumbler iterm2 kaleidoscope lingon-x mactex obsidian  \
-    rectangle signal slack snes9x sourcetree spotify steam sublime-text        \
-    tableplus texstudio the-unarchiver transmission vagrant visual-studio-code \
-    vlc"
+    1password chromedriver discord disk-inventory-x docker dropbox fantastical \
+    flux font-fira-code font-hack-nerd-font google-chrome iexplorer istumbler  \
+    iterm2 lingon-x mactex obsidian rectangle signal slack snes9x sourcetree   \
+    spotify steam tableplus texstudio the-unarchiver transmission vagrant      \
+    visual-studio-code vlc"
 
 CODE_PACKAGES="                                                                \
     DavidAnson.vscode-markdownlint HookyQR.beautify James-Yu.latex-workshop    \
     PascalReitermann93.vscode-yaml-sort ban.spellright be5invis.toml           \
-    bibhasdn.unique-lines bung87.vscode-gemfile dbaeumer.vscode-eslint         \
-    eamodio.gitlens esbenp.prettier-vscode exiasr.hadolint                     \
-    foxundermoon.shell-format freakypie.code-python-isort hashicorp.terraform  \
-    joe-re.sql-language-server karunamurti.haml magicstack.magicpython         \
-    mgmcdermott.vscode-language-babel mike-co.import-sorter                    \
-    mohsen1.prettify-json ms-azuretools.vscode-docker ms-python.python         \
-    ms-python.vscode-pylance ms-toolsai.jupyter richie5um2.vscode-sort-json    \
-    spywhere.guides sysoev.language-stylus timonwong.shellcheck"
-
-PIP_PACKAGES="                                                                 \
-    git-sweep3k glances httpie inflection patch python-json-logger pyyaml      \
-    termcolor"
+    bibhasdn.unique-lines dbaeumer.vscode-eslint eamodio.gitlens               \
+    esbenp.prettier-vscode exiasr.hadolint foxundermoon.shell-format           \
+    freakypie.code-python-isort hashicorp.terraform joe-re.sql-language-server \
+    karunamurti.haml magicstack.magicpython mgmcdermott.vscode-language-babel  \
+    mike-co.import-sorter mohsen1.prettify-json ms-azuretools.vscode-docker    \
+    ms-python.python ms-python.vscode-pylance ms-toolsai.jupyter               \
+    richie5um2.vscode-sort-json spywhere.guides sysoev.language-stylus         \
+    timonwong.shellcheck"
 
 CONDA_PACKAGES="                                                               \
-    flake8 ipython isort jedi lz4 nose pep8 poetry pygments pylint pytest      \
+    flake8 ipython isort lz4 nose pep8 poetry pygments pylint pytest           \
     python-dateutil pytz readline requests setuptools six"
-
-GEM_PACKAGES="                                                                 \
-    jekyll lolcat rake rdoc rubocop"
 
 NODE_MODULES="                                                                 \
     @ibm/plex JSON all-contributors-cli coffeelint coffeescript                \
@@ -75,7 +66,7 @@ CARGO_PACKAGES="                                                               \
 # END GENERATED PACKAGE LISTS
 
 ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS CODE_PACKAGES
-    PIP_PACKAGES CONDA_PACKAGES GEM_PACKAGES NODE_MODULES GO_PACKAGES
+    CONDA_PACKAGES NODE_MODULES GO_PACKAGES
     CARGO_PACKAGES)
 
 ################################################################################
@@ -1310,21 +1301,7 @@ step_bash() {
 # Step python
 ################################################################################
 step_python() {
-    # PyYAML is required for yaml2json CLI tool, needed outside anaconda environment
-    run "sudo /usr/bin/easy_install --upgrade PyYAML"
-
-    # isort and yapf required for IDE integration, install at the system level
-    run "curl https://bootstrap.pypa.io/2.7/get-pip.py -o /tmp/get-pip.py"
-    run "sudo /usr/bin/python /tmp/get-pip.py"
-    run "sudo /usr/local/bin/pip install isort"
-    run "sudo /usr/local/bin/pip install yapf"
-
-    # lz4 needs to be installed for the system python3 environment for bin/firefox-tabs
-    if [[ -e "/Library/Developer/CommandLineTools/usr/bin/python3" ]]; then
-        run "/Library/Developer/CommandLineTools/usr/bin/python3 -m pip install -U lz4 --user"
-    fi
-
-    # I want to use the blinkstick binary in Automator flows
+    # To use blinkstick in Automator flows it needs to be installed for system
     run "sudo /usr/local/bin/pip install blinkstick"
 
     # setup user symlinks for some tools to make IDE integration easier
@@ -1363,14 +1340,6 @@ step_python() {
     [[ -d "$HOME/Desktop/Launcher.app" ]] && run "rm -rf '$HOME/Desktop/Launcher.app'"
     [[ -d "$HOME/Desktop/Navigator.app" ]] && run "rm -rf '$HOME/Desktop/Navigator.app'"
 
-    # Install python packages that don't come with Anaconda... yet!
-    run "pip install --upgrade pip"
-    IFS=' '
-    for I in $PIP_PACKAGES; do
-        # NOTE: `--ignore-installed` is used here to workaround this issue: https://github.com/pypa/pip/issues/2751
-        run "pip install --ignore-installed -qU $I"
-    done
-
     # Install conda packages that don't come pre-installed with Anaconda
     local CONDA_LIST
     CONDA_LIST="$(conda list -e | cut -f1 -d= | grep -Ev '^#|^_|anaconda')"
@@ -1397,87 +1366,8 @@ step_python() {
     #     if [[ "$name" == "#" || "$name" == "_license" ]]; then
     #         continue
     #     fi
-    #     if ! echo "$PIP_PACKAGES" | grep -Eq "\\b$name\\b" && ! echo "$CONDA_PACKAGES" | grep -Eq "\\b$name\\b"; then
-    #         show -i "$I installed but not managed by equip via pip or anaconda"
-    #     fi
-    # done
-}
-
-################################################################################
-# Step gem
-################################################################################
-ensure_asdf_ruby() {
-    # update or install asdf ruby plugin
-    if asdf plugin-list | grep -q ruby; then
-        run "asdf plugin update --all"
-    else
-        run "asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git" || abort "failed to install asdf ruby plugin"
-    fi
-
-    # ensure asdf is set up correctly for this shell
-    # shellcheck disable=SC1090
-    source "$(brew --prefix asdf)/asdf.sh"
-
-    # Install the version of ruby that's in my .tool-versions
-    RUBY_VERSION="3.0.0"
-
-    if [[ -z "$(asdf list ruby 2>/dev/null)" ]]; then
-        if ! brew ls --formula | grep -q readline; then
-            abort "Please run step brew first, readline not installed via brew"
-        fi
-
-        if ! brew ls --formula | grep -q openssl; then
-            abort "Please run step brew first, openssl not installed via brew"
-        fi
-
-        # workaround issue where ruby won't compile unless you tell it where openssl lives
-        # see https://github.com/rbenv/ruby-build/issues/1409 for more details
-        # shellcheck disable=SC2155
-        export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl)"
-
-        # Install the version of ruby that's in my .tool-versions
-        run "asdf install ruby $RUBY_VERSION" || abort "failed to install latest version of ruby via asdf"
-    fi
-
-    run "asdf local ruby $RUBY_VERSION system"
-}
-
-step_gem() {
-    ensure_homebrew_updated
-    ensure_asdf_ruby
-    ensure_homebrew_updated_cleanup
-
-    show "Note that some gems have dependencies that should be installed by brew first..."
-    run "yes | gem install rubygems-update"
-    run "yes | update_rubygems"
-    run "yes | gem update -q --system"
-
-    declare -a GEM_LIST
-    GEM_LIST=()
-    gem list | {
-        while IFS="" read -r line; do GEM_LIST+=("$line"); done
-        IFS=' '
-        for I in $GEM_PACKAGES; do
-            if ! echo "${GEM_LIST[*]}" | grep -q "$I"; then
-                run "yes | gem install -q $I"
-            fi
-        done
-    }
-
-    IFS=$'\n'
-    for I in $(gem outdated | awk '{print $1}'); do
-        run "yes | gem update -q $I"
-    done
-
-    # Every damn gem has a thousand dependencies that I don't want to enumerate.
-    # IFS=$'\n'
-    # for I in $(gem list -l); do
-    #     name="${I%@*}"
-    #     if [[ "$name" == "*** LOCAL GEMS ***" ]]; then
-    #         continue
-    #     fi
-    #     if ! echo "$GEM_PACKAGES rubygems-update" | grep -Eq "$(echo "\\b$name\\b" | cut -d' ' -f1)"; then
-    #         show -i "$I installed but not managed by equip via gem"
+    #     if ! echo "$CONDA_PACKAGES" | grep -Eq "\\b$name\\b"; then
+    #         show -i "$I installed but not managed by equip via conda"
     #     fi
     # done
 }
@@ -1744,7 +1634,7 @@ fi
 
 # update applications
 if echo "$ARGS" | grep -Eq -- 'apps\b'; then
-    ARGS="$ARGS xcode brew cask ext python node go cargo gem code"
+    ARGS="$ARGS xcode brew cask ext python node go cargo code"
 fi
 
 # update environment and dotfiles
@@ -1761,15 +1651,14 @@ steps=(
     "ext;           Ensure file extension associations are correct"
     "zsh;           Ensure shell is latest version of zsh from Homebrew"
     "env;           Update environment configuration and submodules"
-    "python;        Upgrade/Install Anaconda, pip packages, and conda packages"
+    "python;        Upgrade/Install python and conda packages"
     "node;          Ensure Node modules are installed via npm"
     "go;            Ensure Go packages are installed"
     "cargo;         Ensure Rust packages are installed via cargo"
-    "gem;           Upgrade/Install gem packages and rubygems-update package"
     "code;          Ensure VS Code installed via Homebrew Cask and its packages are installed"
     'osx;           Override macOS "defaults" settings and configuration'
     "dot;           Runs steps: dotfiles zsh env"
-    "apps;          Runs steps: xcode brew cask ext python node go cargo gem code"
+    "apps;          Runs steps: xcode brew cask ext python node go cargo code"
     "most;          Runs steps: apps dot (basically everything but the osx step)"
     "all;          Runs all steps"
 )

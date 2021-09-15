@@ -152,69 +152,59 @@ steps:
     ext        Ensure file extension associations are correct
     zsh        Ensure shell is latest version of zsh from Homebrew
     env        Update environment configuration and submodules
-    python     Upgrade/Install Anaconda, pip packages, and conda packages
+    python     Upgrade/Install python and conda packages
     node       Ensure Node modules are installed via npm
     go         Ensure Go packages are installed
     cargo      Ensure Rust packages are installed via cargo
-    gem        Upgrade/Install gem packages and rubygems-update package
     code       Ensure VS Code installed via Homebrew Cask and its packages are installed
     osx        Override macOS "defaults" settings and configuration
     dot        Runs steps: dotfiles zsh env
-    apps       Runs steps: xcode brew cask ext python node go cargo gem code
+    apps       Runs steps: xcode brew cask ext python node go cargo code
     most       Runs steps: apps dot (basically everything but the osx step)
     all        Runs all steps
 
 Homebrew Formulas: adns, aom, asdf, autoconf, automake, avro-c, bash, bat, 
 bdw-gc, c-ares, cairo, chrome-cli, clang-format, cmake, colordiff, coreutils, 
 dav1d, defaultbrowser, diff-so-fancy, doxygen, duti, entr, exa, exiftool, 
-expect, faac, fasd, flac, flake8, fontconfig, freetype, frei0r, fribidi, fzf, 
-gd, gdbm, geoip, gettext, ghostscript, giflib, gifsicle, git, git-flow, 
-git-lfs, git-review, git-secrets, glib, gmp, gnu-sed, gnu-tar, 
+expect, faac, fasd, flake8, fontconfig, freetype, frei0r, fribidi, fzf, gd, 
+gdbm, geoip, gettext, ghostscript, giflib, gifsicle, git, git-flow, git-lfs, 
+git-review, git-secrets, glances, glib, gmp, gnu-sed, gnu-tar, 
 gobject-introspection, graphicsmagick, graphite2, guile, harfbuzz, hub, icu4c, 
 id3lib, imagemagick@6, isl, jansson, jasper, jbig2dec, jemalloc, 
 jez/formulae/pandoc-sidenote, jhead, jo, jpeg, jq, kafkacat, krb5, lame, 
 leptonica, libass, libassuan, libbluray, libev, libevent, libffi, libgcrypt, 
-libgpg-error, libidn2, libksba, libmpc, libogg, libpng, librdkafka, 
-libsamplerate, libserdes, libsndfile, libsodium, libsoxr, libssh2, libtasn1, 
-libtiff, libtool, libunistring, libusb, libusb-compat, libvidstab, 
-libvo-aacenc, libvorbis, libvpx, libyaml, little-cms2, lzlib, lzo, makedepend, 
-mas, memcached, minio, mpfr, mtr, mysql, ncftp, ncurses, net-snmp, nettle, 
-nginx, node, npth, nvm, oniguruma, opencore-amr, openjpeg, openssl, opus, 
-ossp-uuid, p11-kit, pandoc, pcre, pcre2, pidof, pinentry, pixman, pkg-config, 
-plotutils, pngquant, postgresql, protobuf, pyenv, pyenv-virtualenv, 
-pyenv-virtualenvwrapper, python, rav1e, re2, readline, redis, ripgrep, rlwrap, 
-rtmpdump, rubberband, runit, sdl2, shellcheck, shfmt, snappy, speex, sqlite, 
-srt, tcl-tk, tesseract, theora, tmux, tree, unixodbc, v8, vegeta, vramsteg, 
-watch, wdiff, webp, wget, x264, x265, xvid, xz, yajl, yaml-cpp, yarn, 
+libgpg-error, libidn2, libksba, libmpc, libogg, libpng, librdkafka, libserdes, 
+libsodium, libsoxr, libssh2, libtasn1, libtiff, libtool, libunistring, libusb, 
+libusb-compat, libvidstab, libvo-aacenc, libvorbis, libvpx, libyaml, 
+little-cms2, lzlib, lzo, makedepend, mas, memcached, minio, mpfr, mtr, mysql, 
+ncftp, ncurses, net-snmp, nettle, nginx, node, npth, nvm, oniguruma, 
+opencore-amr, openjpeg, openssl, opus, ossp-uuid, p11-kit, pandoc, pcre, pcre2, 
+pidof, pinentry, pixman, pkg-config, plotutils, pngquant, postgresql, protobuf, 
+pyenv, pyenv-virtualenv, pyenv-virtualenvwrapper, python, rav1e, re2, readline, 
+redis, ripgrep, rlwrap, rtmpdump, runit, sdl2, shellcheck, shfmt, snappy, 
+speex, sqlite, srt, tcl-tk, tesseract, theora, tmux, tree, v8, vegeta, 
+vramsteg, watch, wdiff, webp, wget, x264, x265, xvid, xz, yajl, yaml-cpp, yarn, 
 youtube-dl, zeromq, zimg, zlib, zstd
 
-Homebrew Casks: 1password, chromedriver, clamxav, discord, disk-inventory-x, 
-docker, dropbox, fantastical, firefox, flux, font-fira-code, 
-font-hack-nerd-font, google-chrome, graphiql, iexplorer, istumbler, iterm2, 
-kaleidoscope, lingon-x, mactex, obsidian, rectangle, signal, slack, snes9x, 
-sourcetree, spotify, steam, sublime-text, tableplus, texstudio, the-unarchiver, 
-transmission, vagrant, visual-studio-code, vlc
+Homebrew Casks: 1password, chromedriver, discord, disk-inventory-x, docker, 
+dropbox, fantastical, flux, font-fira-code, font-hack-nerd-font, google-chrome, 
+iexplorer, istumbler, iterm2, lingon-x, mactex, obsidian, rectangle, signal, 
+slack, snes9x, sourcetree, spotify, steam, tableplus, texstudio, 
+the-unarchiver, transmission, vagrant, visual-studio-code, vlc
 
 Code Packages: DavidAnson.vscode-markdownlint, HookyQR.beautify, 
 James-Yu.latex-workshop, PascalReitermann93.vscode-yaml-sort, ban.spellright, 
-be5invis.toml, bibhasdn.unique-lines, bung87.vscode-gemfile, 
-dbaeumer.vscode-eslint, eamodio.gitlens, esbenp.prettier-vscode, 
-exiasr.hadolint, foxundermoon.shell-format, freakypie.code-python-isort, 
-hashicorp.terraform, joe-re.sql-language-server, karunamurti.haml, 
-magicstack.magicpython, mgmcdermott.vscode-language-babel, 
+be5invis.toml, bibhasdn.unique-lines, dbaeumer.vscode-eslint, eamodio.gitlens, 
+esbenp.prettier-vscode, exiasr.hadolint, foxundermoon.shell-format, 
+freakypie.code-python-isort, hashicorp.terraform, joe-re.sql-language-server, 
+karunamurti.haml, magicstack.magicpython, mgmcdermott.vscode-language-babel, 
 mike-co.import-sorter, mohsen1.prettify-json, ms-azuretools.vscode-docker, 
 ms-python.python, ms-python.vscode-pylance, ms-toolsai.jupyter, 
 richie5um2.vscode-sort-json, spywhere.guides, sysoev.language-stylus, 
 timonwong.shellcheck
 
-Pip Packages: git-sweep3k, glances, httpie, inflection, patch, 
-python-json-logger, pyyaml, termcolor
-
-Conda Packages: flake8, ipython, isort, jedi, lz4, nose, pep8, poetry, 
-pygments, pylint, pytest, python-dateutil, pytz, readline, requests, 
-setuptools, six
-
-Gem Packages: jekyll, lolcat, rake, rdoc, rubocop
+Conda Packages: flake8, ipython, isort, lz4, nose, pep8, poetry, pygments, 
+pylint, pytest, python-dateutil, pytz, readline, requests, setuptools, six
 
 Node Modules: @ibm/plex, JSON, all-contributors-cli, coffeelint, coffeescript, 
 create-react-app, cson, decaffeinate, dockerlint, eslint, external-ip, 
@@ -753,13 +743,6 @@ Kills all windows matching REGEX. Use -p for pretend mode.
 ### [`xf`](xf)
 ```
 usage: xf <archive> - extract common file formats
-```
-
-* * *
-### [`yaml2json`](yaml2json)
-```
-usage: yaml2json < file.yaml
-Takes YAML input and pretty prints conversion to JSON format.
 ```
 
 * * *

@@ -57,13 +57,6 @@ if type brew >/dev/null 2>&1; then
     export MANPATH
     export PYTHONPATH
 
-    # asdf setup
-    ASDF_PREFIX="$(brew --prefix asdf 2>/dev/null || true)"
-    if [[ -d $ASDF_PREFIX ]]; then
-        # shellcheck disable=SC1090
-        source "$ASDF_PREFIX/asdf.sh"
-    fi
-
     # ensure that brew installed `expect` functions correctly
     export TCLLIBPATH="$BREW_PREFIX/lib"
 
@@ -83,7 +76,7 @@ if type brew >/dev/null 2>&1; then
     fi
 fi
 
-# Add specific application paths, such as Python, asdf, etc...
+# Add specific application paths, such as Python, etc...
 test -d "$HOME/.cargo/bin" && PATH="$PATH:$_"
 test -d "$HOME/.local/bin" && PATH="$PATH:$_"
 test -d "$HOME/.log-ninja" && PATH="$PATH:$_"

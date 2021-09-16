@@ -403,12 +403,11 @@ options:
 * * *
 ### [`golist`](golist)
 ```
-usage: golist [-h|--help] [-r]
-Uses `go list` to list all user installed go packages that aren't dependencies.
+usage: golist [-h|--help]
+Looks for downloaded go modules in your system go path.
 
 options:
     -h, --help   show usage help
-    -r           show only the top level repos
 ```
 
 * * *

@@ -115,7 +115,7 @@ with the argument `--help`.
 | [`git-up`](bin/git-up) | Rebase branch on the latest changes for the remote parent branch. |
 | [`git-what`](bin/git-what) | Build a useful git description of the changes in this branch. |
 | [`git_ltr`](bin/git_ltr) | Lists (a-la 'ls -ltr') git controlled source files in current direc... |
-| [`golist`](bin/golist) | Lists all user installed go packages. |
+| [`golist`](bin/golist) | Looks for downloaded go modules in your system go path. |
 | [`install_odbc`](bin/install_odbc) | Sets up ODBC. |
 | [`macosver`](bin/macosver) | Prints current macOS version information. |
 | [`nodeula-rasa`](bin/nodeula-rasa) | Gives you a total clean slate in your node project. |

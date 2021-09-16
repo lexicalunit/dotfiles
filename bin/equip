@@ -1436,7 +1436,7 @@ step_go() {
     mkdir -p "$GOPATH"
     export PATH="$PATH:$GOPATH"
 
-    run "go get -u all"
+    run "GO111MODULE=off go get -u all"
 
     if ! command -v golist >/dev/null 2>&1; then
         show -i "Utility golist is not installed in your PATH."
@@ -1450,6 +1450,8 @@ step_go() {
     for I in $GO_PACKAGES; do
         if ! echo "$INSTALLED" | grep -Eq "\\b$I\\b"; then
             run "go get -u $I"
+        else
+            show "go module $I is already installed"
         fi
     done
 

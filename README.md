@@ -122,12 +122,10 @@ with the argument `--help`.
 | [`nopw`](bin/nopw) | Enables password-less ssh TO username@remotehost FROM localhost. |
 | [`npm-update`](bin/npm-update) | Tries to update package dependencies to latest using ncu, npm, and ... |
 | [`paystub`](bin/paystub) | Get your latest paystub as PDF from Check's API. |
-| [`prettier`](bin/prettier) | Symbolic link to '/usr/local/bin/prettier' |
 | [`rc`](bin/rc) | Spin up or attach to tumx running Check development services. |
 | [`root`](bin/root) | Prints the root of the current repository. |
 | [`set_wallpaper`](bin/set_wallpaper) | Uses Cocoa classes via PyObjC to set a desktop wallpaper on all scr... |
 | [`share`](bin/share) | Easy way to manage temporary web shares. |
-| [`shfmt`](bin/shfmt) | Symbolic link to '/usr/local/bin/shfmt' |
 | [`show_dircolors`](bin/show_dircolors) | Shows example output based on current dircolors settings. |
 | [`slept`](bin/slept) | Get time macOS system last went to sleep. |
 | [`smongo`](bin/smongo) | Opens mongo shell to master node. |
@@ -138,7 +136,6 @@ with the argument `--help`.
 | [`woke`](bin/woke) | Get time macOS system last woke from sleep. |
 | [`xdie`](bin/xdie) | Kills processes based on their window title. |
 | [`xf`](bin/xf) | Extract common file formats. |
-| [`youtube2mp3`](bin/youtube2mp3) | Downloads the audio from a youtube video given the URL. |
 | [`zoomwatcher`](bin/zoomwatcher) | A service that watches for zoom and turns a blinkstick red if it is... |
 
 # What does `equip all` install?
@@ -166,28 +163,18 @@ install packages/formulas/casks/whatever, see below for the list of included ite
 | most | Runs steps: apps dot (basically everything but the osx step) |
 | all | Runs all steps |
 
-Homebrew Formulas: adns, aom, asdf, autoconf, automake, avro-c, bash, bat, 
-bdw-gc, c-ares, cairo, chrome-cli, clang-format, cmake, colordiff, coreutils, 
-dav1d, defaultbrowser, diff-so-fancy, doxygen, duti, entr, exa, exiftool, 
-expect, faac, fasd, flake8, fontconfig, freetype, frei0r, fribidi, fzf, gd, 
-gdbm, geoip, gettext, ghostscript, giflib, gifsicle, git, git-flow, git-lfs, 
-git-review, git-secrets, glances, glib, gmp, gnu-sed, gnu-tar, 
-gobject-introspection, graphicsmagick, graphite2, guile, harfbuzz, hub, icu4c, 
-id3lib, imagemagick@6, isl, jansson, jasper, jbig2dec, jemalloc, 
-jez/formulae/pandoc-sidenote, jhead, jo, jpeg, jq, kafkacat, krb5, lame, 
-leptonica, libass, libassuan, libbluray, libev, libevent, libffi, libgcrypt, 
-libgpg-error, libidn2, libksba, libmpc, libogg, libpng, librdkafka, libserdes, 
-libsodium, libsoxr, libssh2, libtasn1, libtiff, libtool, libunistring, libusb, 
-libusb-compat, libvidstab, libvo-aacenc, libvorbis, libvpx, libyaml, 
-little-cms2, lzlib, lzo, makedepend, mas, memcached, minio, mpfr, mtr, mysql, 
-ncftp, ncurses, net-snmp, nettle, nginx, node, npth, nvm, oniguruma, 
-opencore-amr, openjpeg, openssl, opus, ossp-uuid, p11-kit, pandoc, pcre, pcre2, 
-pidof, pinentry, pixman, pkg-config, plotutils, pngquant, postgresql, protobuf, 
-pyenv, pyenv-virtualenv, pyenv-virtualenvwrapper, python, rav1e, re2, readline, 
-redis, ripgrep, rlwrap, rtmpdump, runit, sdl2, shellcheck, shfmt, snappy, 
-speex, sqlite, srt, tcl-tk, tesseract, theora, tmux, tree, v8, vegeta, 
-vramsteg, watch, wdiff, webp, wget, x264, x265, xvid, xz, yajl, yaml-cpp, yarn, 
-youtube-dl, zeromq, zimg, zlib, zstd
+Homebrew Formulas: autoconf, bash, brotli, c-ares, chrome-cli, coreutils, 
+defaultbrowser, diff-so-fancy, duti, exa, exiftool, expect, fasd, flake8, 
+fontconfig, freetype, fzf, gdbm, gettext, ghostscript, git, git-lfs, 
+git-secrets, glances, gnu-sed, gnu-tar, go, icu4c, imagemagick@6, isort, 
+jbig2dec, jemalloc, jez/formulae/pandoc-sidenote, jpeg, jq, krb5, libev, 
+libevent, libffi, libidn, libidn2, libpng, libssh2, libtiff, libtool, 
+libunistring, libusb, libuv, libyaml, little-cms2, m4, mas, mpdecimal, ncurses, 
+nghttp2, node, nvm, oniguruma, openjpeg, openssl@1.1, pandoc, pcre, pcre2, 
+pidof, pkg-config, postgresql, pyenv, pyenv-virtualenv, 
+pyenv-virtualenvwrapper, python@3.8, python@3.9, readline, ripgrep, rlwrap, 
+rust, shellcheck, shfmt, sqlite, tcl-tk, tmux, tree, utf8proc, watch, wdiff, 
+webp, wget, xz, yarn, zsh
 
 Homebrew Casks: 1password, chromedriver, discord, disk-inventory-x, docker, 
 dropbox, fantastical, flux, font-fira-code, font-hack-nerd-font, google-chrome, 
@@ -203,17 +190,27 @@ freakypie.code-python-isort, hashicorp.terraform, joe-re.sql-language-server,
 karunamurti.haml, magicstack.magicpython, mgmcdermott.vscode-language-babel, 
 mike-co.import-sorter, mohsen1.prettify-json, ms-azuretools.vscode-docker, 
 ms-python.python, ms-python.vscode-pylance, ms-toolsai.jupyter, 
-richie5um2.vscode-sort-json, spywhere.guides, sysoev.language-stylus, 
-timonwong.shellcheck
+ms-toolsai.jupyter-keymap, richie5um2.vscode-sort-json, spywhere.guides, 
+sysoev.language-stylus, timonwong.shellcheck
 
-Conda Packages: flake8, ipython, isort, lz4, nose, pep8, poetry, pygments, 
-pylint, pytest, python-dateutil, pytz, readline, requests, setuptools, six
+Conda Packages: appdirs, appnope, attrs, backcall, brotlipy, ca-certificates, 
+cachecontrol, cachy, certifi, cffi, charset-normalizer, cleo, clikit, 
+crashtest, cryptography, decorator, distlib, filelock, html5lib, idna, 
+importlib-metadata, importlib_metadata, iniconfig, ipython, ipython_genutils, 
+jedi, jsonschema, keyring, libcxx, libffi, lockfile, lz4, lz4-c, 
+matplotlib-inline, more-itertools, msgpack-python, ncurses, openssl, packaging, 
+parso, pastel, pexpect, pickleshare, pip, pkginfo, pluggy, poetry, poetry-core, 
+prompt-toolkit, ptyprocess, py, pycosat, pycparser, pygments, pylev, pyopenssl, 
+pyparsing, pyrsistent, pysocks, pytest, readline, requests, requests-toolbelt, 
+ruamel_yaml, setuptools, shellingham, six, sqlite, tk, toml, tomlkit, tqdm, 
+traitlets, urllib3, virtualenv, wcwidth, webencodings, wheel, xz, yaml, zipp, 
+zlib
 
-Node Modules: @ibm/plex, JSON, all-contributors-cli, coffeelint, coffeescript, 
-create-react-app, cson, decaffeinate, dockerlint, eslint, external-ip, 
-generator-code, generator-generator, geoip-lite, js-beautify, 
-json-stable-stringify, moment, nesh, npm-check-updates, npm-remote-ls, npm-why, 
-prettier, raml2html, standard, tmpin, typescript, yo
+Node Modules: @ibm/plex, JSON, all-contributors-cli, create-react-app, cson, 
+dockerlint, eslint, external-ip, generator-code, generator-generator, 
+geoip-lite, js-beautify, json-stable-stringify, moment, nesh, 
+npm-check-updates, npm-remote-ls, npm-why, prettier, raml2html, standard, 
+tmpin, typescript, yo
 
 Go Packages: github.com/BurntSushi/toml
 

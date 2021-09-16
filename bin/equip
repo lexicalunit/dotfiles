@@ -1173,6 +1173,11 @@ step_cask() {
         done
     }
 
+    # Configure Rectangle's default settings
+    run "defaults write com.knollsoft.Rectangle ignoredSnapAreas -int 1"
+    run "defaults write com.knollsoft.Rectangle unsnapRestore -int 2"
+    run "defaults write com.knollsoft.Rectangle launchOnLogin -int 1"
+
     ensure_homebrew_updated_cleanup
 
     IFS=$'\n'

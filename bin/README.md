@@ -163,11 +163,11 @@ steps:
     most       Runs steps: apps dot (basically everything but the osx step)
     all        Runs all steps
 
-Homebrew Formulas: autoconf, bash, brotli, c-ares, chrome-cli, coreutils, 
-defaultbrowser, diff-so-fancy, duti, exa, exiftool, expect, fasd, flake8, 
-fontconfig, freetype, fzf, gdbm, gettext, ghostscript, git, git-lfs, 
-git-secrets, glances, gnu-sed, gnu-tar, go, icu4c, imagemagick@6, isort, 
-jbig2dec, jemalloc, jez/formulae/pandoc-sidenote, jpeg, jq, krb5, libev, 
+Homebrew Formulas: autoconf, bash, brotli, c-ares, cabal-install, chrome-cli, 
+coreutils, defaultbrowser, diff-so-fancy, duti, exa, exiftool, expect, fasd, 
+flake8, fontconfig, freetype, fzf, gdbm, gettext, ghc, ghostscript, git, 
+git-lfs, git-secrets, glances, gnu-sed, gnu-tar, go, icu4c, imagemagick@6, 
+isort, jbig2dec, jemalloc, jez/formulae/pandoc-sidenote, jpeg, jq, krb5, libev, 
 libevent, libffi, libidn, libidn2, libpng, libssh2, libtiff, libtool, 
 libunistring, libusb, libuv, libyaml, little-cms2, m4, mas, mpdecimal, ncurses, 
 nghttp2, node, nvm, oniguruma, openjpeg, openssl@1.1, pandoc, pcre, pcre2, 

@@ -70,9 +70,9 @@ if type brew >/dev/null 2>&1; then
             echo "warning: nvm not installed at $BREW_NVM_PREFIX" >&2
         fi &
     )
-    if [[ -d $BREW_NVM_PREFIX && -s "$NVM_DIR/nvm.sh" ]]; then
+    if [[ -d $BREW_NVM_PREFIX && -s "$BREW_NVM_PREFIX/nvm.sh" ]]; then
         # shellcheck disable=SC1091
-        source "$NVM_DIR/nvm.sh" --no-use
+        source "$BREW_NVM_PREFIX/nvm.sh" --no-use
     fi
 fi
 

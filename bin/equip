@@ -7,24 +7,26 @@
 ################################################################################
 # BEGIN GENERATED PACKAGE LISTS
 HOMEBREW_FORMULAS="                                                            \
-    autoconf bash brotli c-ares cabal-install chrome-cli coreutils             \
+    autoconf awscli bash brotli c-ares cabal-install chrome-cli coreutils      \
     defaultbrowser diff-so-fancy duti exa exiftool expect fasd flake8          \
-    fontconfig freetype fzf gdbm gettext ghc ghostscript git git-lfs           \
-    git-secrets glances gnu-sed gnu-tar go icu4c imagemagick@6 isort jbig2dec  \
-    jemalloc jez/formulae/pandoc-sidenote jpeg jq krb5 libev libevent libffi   \
-    libidn libidn2 libpng libssh2 libtiff libtool libunistring libusb libuv    \
-    libyaml little-cms2 m4 mas mpdecimal ncurses nghttp2 node nvm oniguruma    \
-    openjpeg openssl@1.1 pandoc pcre pcre2 pidof pkg-config postgresql pyenv   \
-    pyenv-virtualenv pyenv-virtualenvwrapper python@3.8 python@3.9 readline    \
-    ripgrep rlwrap rust shellcheck shfmt sqlite tcl-tk tmux tree utf8proc      \
-    watch wdiff webp wget xz yarn zsh"
+    fontconfig freetype fribidi fzf gdbm gettext ghc ghostscript git git-lfs   \
+    git-secrets glances glib gnu-sed gnu-tar go gobject-introspection          \
+    graphite2 harfbuzz icu4c imagemagick@6 isort jbig2dec jemalloc             \
+    jez/formulae/pandoc-sidenote jpeg jq krb5 libev libevent libffi libidn     \
+    libidn2 libpng libpthread-stubs libssh2 libtiff libtool libunistring       \
+    libusb libuv libx11 libxau libxcb libxdmcp libxext libxrender libyaml      \
+    little-cms2 lzo m4 mas mpdecimal ncurses nghttp2 node nvm oniguruma        \
+    openjpeg openssl@1.1 pandoc pango pcre pcre2 pidof pixman pkg-config       \
+    postgresql pyenv pyenv-virtualenv pyenv-virtualenvwrapper python@3.8       \
+    python@3.9 readline ripgrep rlwrap rust shellcheck shfmt six sqlite tcl-tk \
+    tmux tree utf8proc watch wdiff webp wget xorgproto xz yarn zsh"
 
 HOMEBREW_CASKS="                                                               \
     1password chromedriver discord disk-inventory-x docker dropbox fantastical \
     flux font-fira-code font-hack-nerd-font google-chrome iexplorer istumbler  \
-    iterm2 lingon-x mactex obsidian rectangle signal slack snes9x sourcetree   \
-    spotify steam tableplus texstudio the-unarchiver transmission vagrant      \
-    visual-studio-code vlc"
+    iterm2 lingon-x mactex ngrok obsidian rectangle signal slack snes9x        \
+    sourcetree spotify steam tableplus texstudio the-unarchiver transmission   \
+    vagrant visual-studio-code vlc"
 
 CODE_PACKAGES="                                                                \
     DavidAnson.vscode-markdownlint HookyQR.beautify James-Yu.latex-workshop    \

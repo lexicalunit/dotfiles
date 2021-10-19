@@ -28,6 +28,7 @@
     100,
     120
   ],
+  "editor.guides.bracketPairs": true,
   "shellformat.flag": "-s -i 4",
   "files.trimTrailingWhitespace": true,
   "editor.codeLens": false,
@@ -35,7 +36,6 @@
   "explorer.openEditors.visible": 0,
   "editor.wordWrap": "off",
   "editor.multiCursorModifier": "alt",
-  "editor.renderIndentGuides": false,
   "workbench.editor.showTabs": true,
   "[yaml]": {
     "editor.formatOnSave": false
@@ -128,7 +128,7 @@
   "window.openFoldersInNewWindow": "off",
   "workbench.settings.useSplitJSON": true,
   "workbench.settings.editor": "json",
-  "telemetry.enableTelemetry": false,
+  "telemetry.telemetryLevel": "off",
   "window.openWithoutArgumentsInNewWindow": "off",
   "window.closeWhenEmpty": true,
   "spellright.spellContext": "body comments strings",
@@ -142,9 +142,7 @@
   "python.linting.pylintEnabled": false,
   "python.languageServer": "Pylance",
   "python.analysis.typeCheckingMode": "basic",
-  "python.showStartPage": false,
   "extensions.ignoreRecommendations": true,
-  "telemetry.enableCrashReporter": false,
   "gitlens.currentLine.pullRequests.enabled": false,
   "shellcheck.customArgs": [
     "-x"

@@ -174,3 +174,4 @@ dockerignore
 Zendesk
 unlicense
 unverify
+pyright

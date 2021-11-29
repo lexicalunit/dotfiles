@@ -17,9 +17,10 @@ HOMEBREW_FORMULAS="                                                            \
     libusb libuv libx11 libxau libxcb libxdmcp libxext libxrender libyaml      \
     little-cms2 lzo m4 mas mpdecimal ncurses nghttp2 node nvm oniguruma        \
     openjpeg openssl@1.1 pandoc pango pcre pcre2 pidof pixman pkg-config       \
-    postgresql pyenv pyenv-virtualenv pyenv-virtualenvwrapper python@3.8       \
-    python@3.9 readline ripgrep rlwrap rust shellcheck shfmt six sqlite tcl-tk \
-    tmux tree utf8proc watch wdiff webp wget xorgproto xz yarn zsh"
+    postgresql pyenv pyenv-virtualenv pyenv-virtualenvwrapper pylint           \
+    python@3.8 python@3.9 readline ripgrep rlwrap rust shellcheck shfmt six    \
+    sqlite tcl-tk tmux tree utf8proc watch wdiff webp wget xorgproto xz yarn   \
+    zsh"
 
 HOMEBREW_CASKS="                                                               \
     1password chromedriver discord disk-inventory-x docker dropbox fantastical \
@@ -1146,14 +1147,14 @@ install_brew_cask() {
     shift
 
     local FOUND
-    IFS=$'\n' read -r -d '' -a FOUND < <( find /Applications ~/Applications -maxdepth 1 -name "*.app" -exec basename {} \; && printf '\0' )
+    IFS=$'\n' read -r -d '' -a FOUND < <(find /Applications ~/Applications -maxdepth 1 -name "*.app" -exec basename {} \; && printf '\0')
 
     local INSTALLED
     IFS=' ' read -r -a INSTALLED <<<"$@"
     if ! in_array "$FORMULA_NAME" "${INSTALLED[@]}"; then
         APP_NAME="$(brew info --cask --json=v2 "$FORMULA_NAME" | jq -r '.casks[].artifacts[]' | grep '.app' | tr -d '"' | sed 's/^ *//g' | head -n 1)"
         APP_NAME="$(basename "$APP_NAME")"
-        if [[ -n "$APP_NAME" ]] && echo "${FOUND[*]}" | grep -qE "\b$APP_NAME\b"; then
+        if [[ -n $APP_NAME ]] && echo "${FOUND[*]}" | grep -qE "\b$APP_NAME\b"; then
             show "It seems that the $APP_NAME application is already installed."
         else
             run "brew install --cask '$FORMULA'"

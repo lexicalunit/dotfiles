@@ -180,3 +180,7 @@ motd
 patreon
 codeql
 mdash
+bigint
+btree
+pkey
+fkey

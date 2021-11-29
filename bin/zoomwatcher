@@ -59,8 +59,8 @@ in_meeting() {
 
 in_game() {
     ps -efw | grep "Steam" | grep -Eiv "helper|ipcserver|grep" ||
-        echo "$FF_TABS" | /usr/bin/grep -q "spelltable.com" ||
-        echo "$BR_TABS" | /usr/bin/grep -q "spelltable.com"
+        echo "$FF_TABS" | /usr/bin/grep -q "spelltable" ||
+        echo "$BR_TABS" | /usr/bin/grep -q "spelltable"
 }
 
 while true; do

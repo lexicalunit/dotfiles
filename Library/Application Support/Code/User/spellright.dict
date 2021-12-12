@@ -184,3 +184,6 @@ bigint
 btree
 pkey
 fkey
+ddtrace
+datadog
+spellapi

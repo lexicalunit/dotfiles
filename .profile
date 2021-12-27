@@ -318,12 +318,7 @@ if $INTERACTIVE; then
     fi
 
     # git shortcuts
-    alias gits='git s '
-    alias gitsu='git s -u '
-    alias ss='git s -u '
-    alias pt='git push-topic '
-    alias push='git push '
-    alias fetch='git fetch --prune '
+    alias s='git s -u '
 
     # This ipython alias prevents `ipython notebook` from working correctly.
     # alias ipython='ipython --no-banner --no-confirm-exit '

@@ -353,30 +353,10 @@ options:
 ```
 
 * * *
-### [`git-sync`](git-sync)
-```
-usage: git-sync [parent] [-h|--help] [-r]
-Fetch and fast-forward to the latest for origin/master or origin/parent.
-
-options:
-    -h, --help   show usage help
-```
-
-* * *
 ### [`git-tidy`](git-tidy)
 ```
 usage: git-tidy [-h|--help]
 Cleans up all the junk this repository.
-```
-
-* * *
-### [`git-up`](git-up)
-```
-usage: git-up [-h|--help] [-r]
-Rebase branch on the latest changes for the remote parent branch.
-
-options:
-    -h, --help   show usage help
 ```
 
 * * *
@@ -467,6 +447,16 @@ options:
     -h, --help   show usage help
     -n N         generate the last N paysubs (default: 1)
     -t           show historical tax information
+```
+
+* * *
+### [`ppt`](ppt)
+```
+usage: ppt [-h|--help] args
+Runs pipenv-pytest tests locally without xdist and with args passthru.
+
+options:
+    -h, --help   show usage help
 ```
 
 * * *

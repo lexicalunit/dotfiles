@@ -187,3 +187,4 @@ fkey
 ddtrace
 datadog
 spellapi
+pipenv

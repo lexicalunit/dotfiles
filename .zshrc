@@ -53,7 +53,6 @@ if $INTERACTIVE; then
     source "$HOME/.zprezto/modules/fasd/init.zsh"
     unalias j                # undo prezto's weird fasd alias
     alias a='fasd -a'        # any
-    alias s='fasd -si'       # show / search / select
     alias d='fasd -d'        # directory
     alias f='fasd -f'        # file
     alias sd='fasd -sid'     # interactive directory selection

@@ -102,7 +102,7 @@
 /.dropbox
 /.electron
 /.electron-gyp
-/.fasd
+/.fasd*
 /.finda
 /.gem
 /.gemrc

@@ -19,8 +19,8 @@ HOMEBREW_FORMULAS="                                                            \
     openjpeg openssl@1.1 pandoc pango pcre pcre2 pidof pixman pkg-config       \
     postgresql pyenv pyenv-virtualenv pyenv-virtualenvwrapper pylint           \
     python@3.8 python@3.9 readline ripgrep rlwrap rust shellcheck shfmt six    \
-    sqlite tcl-tk tmux tree utf8proc watch wdiff webp wget xorgproto xz yarn   \
-    zsh"
+    sqlite tcl-tk tmux toolbox tree utf8proc watch wdiff webp wget xorgproto   \
+    xz yarn zsh"
 
 HOMEBREW_CASKS="                                                               \
     1password chromedriver discord disk-inventory-x docker dropbox fantastical \
@@ -1093,6 +1093,10 @@ step_brew() {
 
     run "sudo -v"
     run "find '$(brew --prefix)' -mindepth 1 -maxdepth 1 -print0 | xargs -0 -n 1 -P $(sysctl -n hw.ncpu) sudo chown -R '$(whoami)'"
+
+    # shellcheck disable=SC2207
+    TAP=($(brew tap))
+    array_contains 'watermint/toolbox' "${TAP[@]}" || run "brew tap homebrew/cask-versions"
 
     ensure_homebrew_updated
 

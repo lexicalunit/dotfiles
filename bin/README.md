@@ -82,6 +82,18 @@ usage: daemons [-h|--help] [PATTERN|FILE_PATH]
 ```
 
 * * *
+### [`def`](def)
+```
+usage: def [options] <query>
+
+Finds definitions for terms.
+
+options:
+    -h, --help   show usage help
+    -s           case-sensitive
+```
+
+* * *
 ### [`deploy_dotfiles`](deploy_dotfiles)
 ```
 usage: deploy_dotfiles SSH_ARGS
@@ -175,8 +187,8 @@ libxext, libxrender, libyaml, little-cms2, lzo, m4, mas, mpdecimal, ncurses,
 nghttp2, node, nvm, oniguruma, openjpeg, openssl@1.1, pandoc, pango, pcre, 
 pcre2, pidof, pixman, pkg-config, postgresql, pyenv, pyenv-virtualenv, 
 pyenv-virtualenvwrapper, pylint, python@3.8, python@3.9, readline, ripgrep, 
-rlwrap, rust, shellcheck, shfmt, six, sqlite, tcl-tk, tmux, tree, utf8proc, 
-watch, wdiff, webp, wget, xorgproto, xz, yarn, zsh
+rlwrap, rust, shellcheck, shfmt, six, sqlite, tcl-tk, tmux, toolbox, tree, 
+utf8proc, watch, wdiff, webp, wget, xorgproto, xz, yarn, zsh
 
 Homebrew Casks: 1password, chromedriver, discord, disk-inventory-x, docker, 
 dropbox, fantastical, flux, font-fira-code, font-hack-nerd-font, google-chrome, 

@@ -92,6 +92,7 @@ with the argument `--help`.
 | [`codeclimate`](bin/codeclimate) | Runs Code Climate on the current working directory. |
 | [`colortest`](bin/colortest) | Prints out an entire color palette of terminal color codes. |
 | [`daemons`](bin/daemons) | Finds and removes unwanted daemons and agents. |
+| [`def`](bin/def) | Finds definitions for terms. |
 | [`deploy_dotfiles`](bin/deploy_dotfiles) | Installs bin and env from this repository to remote server via ssh. |
 | [`die`](bin/die) | Kills processes based on process name. |
 | [`doc`](bin/doc) | Builds HTML output from Markdown file. |
@@ -174,8 +175,8 @@ libxext, libxrender, libyaml, little-cms2, lzo, m4, mas, mpdecimal, ncurses,
 nghttp2, node, nvm, oniguruma, openjpeg, openssl@1.1, pandoc, pango, pcre, 
 pcre2, pidof, pixman, pkg-config, postgresql, pyenv, pyenv-virtualenv, 
 pyenv-virtualenvwrapper, pylint, python@3.8, python@3.9, readline, ripgrep, 
-rlwrap, rust, shellcheck, shfmt, six, sqlite, tcl-tk, tmux, tree, utf8proc, 
-watch, wdiff, webp, wget, xorgproto, xz, yarn, zsh
+rlwrap, rust, shellcheck, shfmt, six, sqlite, tcl-tk, tmux, toolbox, tree, 
+utf8proc, watch, wdiff, webp, wget, xorgproto, xz, yarn, zsh
 
 Homebrew Casks: 1password, chromedriver, discord, disk-inventory-x, docker, 
 dropbox, fantastical, flux, font-fira-code, font-hack-nerd-font, google-chrome, 
@@ -225,7 +226,7 @@ Copyright 2006 Raph Levien. Released under the SIL Open Font License.
 
 The MIT License (MIT)
 
-Copyright (c) 2021, lexicalunit@lexicalunit.com
+Copyright (c) 2022, lexicalunit@lexicalunit.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

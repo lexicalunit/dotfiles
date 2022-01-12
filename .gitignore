@@ -156,6 +156,7 @@
 /.sqlite_history
 /.ssh
 /.subversion
+/.toolbox
 /.tox
 /.travis/config.yml
 /.travis/travis.sh

@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Run a Check django backend.
+
+usage() {
+    echo "usage: ${0##*/}" 1>&2
+    echo "" 1>&2
+    echo "Run a Check django backend." 1>&2
+    echo "" 1>&2
+    echo "options:" 1>&2
+    echo " -h or --help shows usage help" 1>&2
+    exit 1
+}
+
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
+    usage
+fi
+
+SRC="$(basename "$PWD")"
+
+show() {
+    echo -n $'\e[38;5;40m$\e[38;5;63m '
+    echo -n "$@"
+    echo -n $'\e[0m'
+    echo
+}
+
+run() {
+    show "$@"
+    eval "$@"
+    return $?
+}
+
+django_runserver_cmd() {
+    run "python manage.py runserver $1 2>&1 | jq -R -r '. as \$line | try fromjson catch \$line'"
+}
+
+if [[ $SRC == "check-api" ]]; then
+    django_runserver_cmd localhost:8000
+elif [[ $SRC == "console" ]]; then
+    django_runserver_cmd localhost:8004
+elif [[ $SRC == "onboard" ]]; then
+    django_runserver_cmd localhost:8080
+fi

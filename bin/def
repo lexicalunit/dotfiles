@@ -2,7 +2,7 @@
 
 # Finds definitions for terms.
 
-# List of google sheet ids followed by a : and a sheet name and range.
+# List of google sheet ids followed by a ; and a sheet name and range.
 SHEETS=("1JdgLS3M0P-76Us5Uq6ZMEveJHmHFXX6j7PArLdEE-zg;Terms!B4:C")
 
 usage() {
@@ -15,6 +15,7 @@ usage() {
         (
             echo "    -h, --help@ show usage help"
             echo "    -s@ case-sensitive"
+            echo "    -o@ open source documents"
         ) | column -ts@
     ) >&2
     exit 1
@@ -25,9 +26,11 @@ if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
 fi
 
 INSEN="-i"
-while getopts "i" opt; do
+OPEN="0"
+while getopts "io" opt; do
     case "$opt" in
     i) INSEN="" ;;
+    o) OPEN="1" ;;
     *) usage ;;
     esac
 done
@@ -50,13 +53,17 @@ echo "" >"$TMP"
 # shellcheck disable=SC2068
 for t in ${SHEETS[@]}; do
     IFS=';' read -ra IDS <<<"$t"
-    echo "" >/tmp/terms
-    tbx services google sheets sheet export \
-        --output json \
-        -id "${IDS[0]}" \
-        -range "${IDS[1]}" |
-        jq -rc |
-        sed 's/\["\(.*\)","\(.*\)"\]/\1: \2/g' >>"$TMP"
+    if [[ $OPEN == "1" ]]; then
+        open "https://docs.google.com/spreadsheets/d/${IDS[0]}"
+    else
+        echo "" >/tmp/terms
+        tbx services google sheets sheet export \
+            --output json \
+            -id "${IDS[0]}" \
+            -range "${IDS[1]}" |
+            jq -rc |
+            sed 's/\["\(.*\)","\(.*\)"\]/\1: \2/g' >>"$TMP"
+    fi
 done
 
 # shellcheck disable=SC2086

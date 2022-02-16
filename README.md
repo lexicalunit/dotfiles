@@ -97,6 +97,7 @@ with the argument `--help`.
 | [`die`](bin/die) | Kills processes based on process name. |
 | [`doc`](bin/doc) | Builds HTML output from Markdown file. |
 | [`dogs`](bin/dogs) | Streams system logs for docker containers. |
+| [`drc`](bin/drc) | Run a Check django backend. |
 | [`equip`](bin/equip) | Install applications and development environment on an macOS or Lin... |
 | [`faff`](bin/faff) | Sleeps for the given number of seconds, showing a progress bar. |
 | [`fgdk`](bin/fgdk) | Sometimes GitLab Developer Kit caddywhompus, this script kills it. |
@@ -215,7 +216,7 @@ tmpin, typescript, yo
 
 Go Packages: github.com/BurntSushi/toml
 
-Cargo Packages: cargo-update, loc
+Cargo Packages: cargo-update, jless, loc
 
 # License
 

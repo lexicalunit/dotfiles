@@ -91,6 +91,7 @@ Finds definitions for terms.
 options:
     -h, --help   show usage help
     -s           case-sensitive
+    -o           open source documents
 ```
 
 * * *
@@ -137,6 +138,17 @@ options:
 ```
 usage: dogs [-h|--help]
 Streams system logs for docker containers.
+```
+
+* * *
+### [`drc`](drc)
+```
+usage: drc
+
+Run a Check django backend.
+
+options:
+ -h or --help shows usage help
 ```
 
 * * *
@@ -227,7 +239,7 @@ tmpin, typescript, yo
 
 Go Packages: github.com/BurntSushi/toml
 
-Cargo Packages: cargo-update, loc
+Cargo Packages: cargo-update, jless, loc
 ```
 
 * * *
@@ -469,6 +481,7 @@ Runs pipenv-pytest tests locally without xdist and with args passthru.
 
 options:
     -h, --help   show usage help
+    -u           use unittest instead of pytest
 ```
 
 * * *

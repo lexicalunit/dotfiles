@@ -76,7 +76,9 @@
   "[python]": {
     "editor.detectIndentation": false,
     "editor.tabSize": 4,
-    "editor.rulers": [90],
+    "editor.rulers": [
+      90
+    ],
   },
   "files.associations": {
     ".gitconfig": "ini"

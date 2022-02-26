@@ -22,6 +22,9 @@ else
     test -d /opt/X11/bin && PATH="$PATH:$_"
 fi
 
+# Look for homebrew in /opt/homebrew if it's not in /usr/local.
+test -d /opt/homebrew/bin && PATH="$PATH:$_"
+
 # Export currently built PATH so the rest of this script has access to them.
 if test -e /usr/libexec/path_helper; then
     eval "$($_ -s)"
@@ -42,7 +45,7 @@ if type brew >/dev/null 2>&1; then
     # Note: brew --prefix package is really slow, so just hard code the values.
     # See more: https://github.com/Homebrew/brew/issues/3097
     # BREW_COREUTILS_PREFIX="$(brew --prefix coreutils 2>/dev/null)"
-    BREW_COREUTILS_PREFIX="/usr/local/opt/coreutils"
+    BREW_COREUTILS_PREFIX="/opt/homebrew/opt/coreutils"
     (
         if [[ "$(brew --prefix coreutils)" != "$BREW_COREUTILS_PREFIX" ]]; then
             echo "warning: coreutils not installed at $BREW_COREUTILS_PREFIX" >&2
@@ -64,7 +67,7 @@ if type brew >/dev/null 2>&1; then
     export NVM_DIR="$HOME/.nvm"
     # Note: brew --prefix package is too slow, see above.
     # BREW_NVM_PREFIX="$(brew --prefix nvm 2>/dev/null)"
-    BREW_NVM_PREFIX="/usr/local/opt/nvm"
+    BREW_NVM_PREFIX="/opt/homebrew/opt/nvm"
     (
         if [[ "$(brew --prefix nvm)" != "$BREW_NVM_PREFIX" ]]; then
             echo "warning: nvm not installed at $BREW_NVM_PREFIX" >&2
@@ -81,8 +84,9 @@ test -d "$HOME/.cargo/bin" && PATH="$PATH:$_"
 test -d "$HOME/.local/bin" && PATH="$PATH:$_"
 test -d "$HOME/.log-ninja" && PATH="$PATH:$_"
 test -d /usr/local/lib/svn-python && PYTHONPATH="$_:$PYTHONPATH"
-test -d /opt/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
+test -d /opt/local/lib/svn-python && PYTHONPATH="$_:$PYTHONPATH"
 test -d /usr/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
+test -d /opt/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
 
 # Add npm dev installed dependencies per project
 PATH="node_modules/.bin:$PATH"
@@ -91,7 +95,7 @@ PATH="node_modules/.bin:$PATH"
 test -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" && PATH="$PATH:$_"
 
 # Go's env
-GOPATH="/usr/local/lib/gopath"
+GOPATH="/opt/gopath"
 if [[ ! -d $GOPATH ]]; then
     mkdir -p "$GOPATH"
 fi
@@ -173,7 +177,7 @@ if $INTERACTIVE; then
         exitvirtualenv
 
         # assume anaconda is installed in your home directory unless specified
-        local ANACONDA_DIR_NAME="/usr/local/Caskroom/miniconda/base"
+        local ANACONDA_DIR_NAME="/opt/homebrew/Caskroom/miniconda/base"
         if [[ -z $1 ]]; then
             export ANACONDA_ROOT="$ANACONDA_DIR_NAME"
         else

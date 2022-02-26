@@ -1037,7 +1037,7 @@ ensure_homebrew_updated() {
 
     ensure_no_anaconda
 
-    # unlink keg-only formulas which should not be not symlinked into /usr/local
+    # unlink keg-only formulas which should not be not symlinked into brew path
     KEG_ONLY=(gettext libffi libtool openssl readline sqlite)
     for f in "${KEG_ONLY[@]}"; do
         run "brew unlink $f"
@@ -1082,7 +1082,11 @@ step_brew() {
         show "installing homebrew..."
         # shellcheck disable=SC2016
         run 'ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
-        export PATH="$PATH:/usr/local/bin" # make sure brew is in your PATH before continuing
+
+        # make sure brew is in your PATH before continuing:
+        test -d /usr/local/bin && PATH="$PATH:$_"
+        test -d /opt/homebrew/bin && PATH="$PATH:$_"
+        export PATH
     else
         show "Homebrew already installed"
     fi
@@ -1409,7 +1413,7 @@ step_node() {
     done
 
     # install the @ibm/plex monospace fonts
-    run "cp -uvf '$(npm -g config get prefix)/lib/node_modules/@ibm/plex/IBM-Plex-Mono/fonts/complete/ttf'/*.ttf /Library/Fonts/."
+    run "cp -uvf '$(npm -g config get prefix)/lib/node_modules/@ibm/plex/IBM-Plex-Mono/fonts/complete/woff'/*.woff /Library/Fonts/."
 
     IFS=$'\n'
     for I in $INSTALLED; do
@@ -1438,7 +1442,7 @@ step_go() {
         run "brew upgrade go"
     fi
 
-    export GOPATH="/usr/local/lib/gopath"
+    export GOPATH="/opt/gopath"
     mkdir -p "$GOPATH"
     export PATH="$PATH:$GOPATH"
 

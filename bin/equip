@@ -1096,6 +1096,7 @@ step_brew() {
     fi
 
     run "sudo -v"
+    run "sudo chown '$(whoami)' $(dirname "$BREW_PREFIX")"
     run "find '$(brew --prefix)' -mindepth 1 -maxdepth 1 -print0 | xargs -0 -n 1 -P $(sysctl -n hw.ncpu) sudo chown -R '$(whoami)'"
 
     # shellcheck disable=SC2207

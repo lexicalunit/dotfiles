@@ -1,17 +1,16 @@
 # Setup fzf
 # ---------
 FZF_ROOT=""
-test -d /usr/local/opt/fzf/bin && FZF_ROOT="$_"
-test -d /opt/homebrew/opt/fzf/bin && FZF_ROOT="$_"
+test -d "$BREW_PREFIX/opt/fzf/bin" && FZF_ROOT="$_"
 
 if [[ -n $FZF_ROOT ]]; then
     export PATH="$PATH:$FZF_ROOT"
 
     # Auto-completion
     # ---------------
-    [[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.bash" 2>/dev/null
+    [[ $- == *i* ]] && source "$BREW_PREFIX/opt/fzf/shell/completion.bash" 2>/dev/null
 
     # Key bindings
     # ------------
-    source "/opt/homebrew/opt/fzf/shell/key-bindings.bash"
+    source "$BREW_PREFIX/opt/fzf/shell/key-bindings.bash"
 fi

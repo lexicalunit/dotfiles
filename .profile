@@ -5,6 +5,9 @@ if [[ $- == *i* ]]; then
     INTERACTIVE=true
 fi
 
+ARCH="$(arch)"
+export ARCH
+
 ################################################################################
 # setup paths and env
 ################################################################################
@@ -22,15 +25,19 @@ else
     test -d /opt/X11/bin && PATH="$PATH:$_"
 fi
 
-# Look for homebrew in /opt/homebrew if it's not in /usr/local.
-test -d /opt/homebrew/bin && PATH="$PATH:$_"
-
 # Export currently built PATH so the rest of this script has access to them.
 if test -e /usr/libexec/path_helper; then
     eval "$($_ -s)"
 else
     export PATH
     export MANPATH
+fi
+
+# Homebrew puts i386 binaries in /usr/local and arm64 in /opt/homebrew,
+# So if we're using arm64 we need to make sure that /opt/homebrew/bin
+# comes first in PATH so that the correct binaries are picked up first.
+if [[ $ARCH == "arm64" ]]; then
+    test -d /opt/homebrew/bin && PATH="$_:$PATH"
 fi
 
 # Make sure Homebrew utilities override system utilities.
@@ -42,15 +49,7 @@ if type brew >/dev/null 2>&1; then
     # Don't use brew installed python. Prefer an Anaconda distro instead.
     # test -d "$BREW_PREFIX/lib/python2.7/site-packages" && PYTHONPATH="$PYTHONPATH:$_"
 
-    # Note: brew --prefix package is really slow, so just hard code the values.
-    # See more: https://github.com/Homebrew/brew/issues/3097
-    # BREW_COREUTILS_PREFIX="$(brew --prefix coreutils 2>/dev/null)"
-    BREW_COREUTILS_PREFIX="/opt/homebrew/opt/coreutils"
-    (
-        if [[ "$(brew --prefix coreutils)" != "$BREW_COREUTILS_PREFIX" ]]; then
-            echo "warning: coreutils not installed at $BREW_COREUTILS_PREFIX" >&2
-        fi &
-    )
+    BREW_COREUTILS_PREFIX="$BREW_PREFIX/opt/coreutils"
     if [[ -d $BREW_COREUTILS_PREFIX ]]; then
         test -d "$BREW_COREUTILS_PREFIX/libexec/gnubin" && PATH="$_:$PATH"
         test -d "$BREW_COREUTILS_PREFIX/libexec/gnuman" && MANPATH="$_:$MANPATH"
@@ -59,49 +58,40 @@ if type brew >/dev/null 2>&1; then
     export PATH
     export MANPATH
     export PYTHONPATH
+    export BREW_PREFIX
 
     # ensure that brew installed `expect` functions correctly
     export TCLLIBPATH="$BREW_PREFIX/lib"
 
     # node version manager
     export NVM_DIR="$HOME/.nvm"
-    # Note: brew --prefix package is too slow, see above.
-    # BREW_NVM_PREFIX="$(brew --prefix nvm 2>/dev/null)"
-    BREW_NVM_PREFIX="/opt/homebrew/opt/nvm"
-    (
-        if [[ "$(brew --prefix nvm)" != "$BREW_NVM_PREFIX" ]]; then
-            echo "warning: nvm not installed at $BREW_NVM_PREFIX" >&2
-        fi &
-    )
+    BREW_NVM_PREFIX="$BREW_PREFIX/opt/nvm"
     if [[ -d $BREW_NVM_PREFIX && -s "$BREW_NVM_PREFIX/nvm.sh" ]]; then
         # shellcheck disable=SC1091
         source "$BREW_NVM_PREFIX/nvm.sh" --no-use
     fi
+
+    # go compiler and environment
+    GOPATH="/opt/gopath/$ARCH"
+    if [[ ! -d $GOPATH ]]; then
+        mkdir -p "$GOPATH"
+    fi
+    test -d "$GOPATH/bin" && PATH="$PATH:$_"
+    test -d "$BREW_PREFIX/opt/go/libexec/bin" && PATH="$PATH:$_"
+    export GOPATH
 fi
 
 # Add specific application paths, such as Python, etc...
 test -d "$HOME/.cargo/bin" && PATH="$PATH:$_"
 test -d "$HOME/.local/bin" && PATH="$PATH:$_"
 test -d "$HOME/.log-ninja" && PATH="$PATH:$_"
-test -d /usr/local/lib/svn-python && PYTHONPATH="$_:$PYTHONPATH"
-test -d /opt/local/lib/svn-python && PYTHONPATH="$_:$PYTHONPATH"
 test -d /usr/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
-test -d /opt/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
 
 # Add npm dev installed dependencies per project
 PATH="node_modules/.bin:$PATH"
 
 # Visual Studio Code
 test -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" && PATH="$PATH:$_"
-
-# Go's env
-GOPATH="/opt/gopath"
-if [[ ! -d $GOPATH ]]; then
-    mkdir -p "$GOPATH"
-fi
-test -d "$GOPATH/bin" && PATH="$PATH:$_"
-test -d /usr/local/opt/go/libexec/bin && PATH="$PATH:$_"
-export GOPATH
 
 # User utilities
 test -d "$HOME/bin" && PATH="$_:$PATH"
@@ -177,7 +167,7 @@ if $INTERACTIVE; then
         exitvirtualenv
 
         # assume anaconda is installed in your home directory unless specified
-        local ANACONDA_DIR_NAME="/opt/homebrew/Caskroom/miniconda/base"
+        local ANACONDA_DIR_NAME="$BREW_PREFIX/Caskroom/miniconda/base"
         if [[ -z $1 ]]; then
             export ANACONDA_ROOT="$ANACONDA_DIR_NAME"
         else

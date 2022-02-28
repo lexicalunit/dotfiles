@@ -1101,7 +1101,7 @@ step_brew() {
 
     # shellcheck disable=SC2207
     TAP=($(brew tap))
-    array_contains 'watermint/toolbox' "${TAP[@]}" || run "brew tap homebrew/cask-versions"
+    array_contains 'watermint/toolbox' "${TAP[@]}" || run "brew tap watermint/toolbox"
 
     ensure_homebrew_updated
 
@@ -1443,9 +1443,14 @@ step_go() {
         run "brew upgrade go"
     fi
 
-    export GOPATH="/opt/gopath"
-    mkdir -p "$GOPATH"
-    export PATH="$PATH:$GOPATH"
+    GOPATH="/opt/gopath/$ARCH"
+    if [[ ! -d $GOPATH ]]; then
+        mkdir -p "$GOPATH"
+    fi
+    test -d "$GOPATH/bin" && PATH="$PATH:$_"
+    test -d "$BREW_PREFIX/opt/go/libexec/bin" && PATH="$PATH:$_"
+    export PATH
+    export GOPATH
 
     run "GO111MODULE=off go get -u all"
 

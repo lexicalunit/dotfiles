@@ -16,12 +16,12 @@ if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     usage
 fi
 
-# shellcheck source=.blinkstick_control
+# shellcheck source=.hue_control
 # shellcheck disable=SC1091
-source "$HOME/.blinkstick_control" || echo "$(tput bold)error: ~/.blinkstick_control not installed!$(tput sgr0)" >&2
+source "$HOME/.hue_control" || echo "$(tput bold)error: ~/.hue_control not installed!$(tput sgr0)" >&2
 
 release() {
-    blink_set_color off
+    hue_set_color off
 }
 
 trap release EXIT
@@ -34,15 +34,15 @@ if [[ $CLEN -gt 1 ]]; then
     C=0
     while true; do
         COLOR="${COLORS[$C]}"
-        blink_set_busy "$COLOR"
+        hue_set_busy "$COLOR"
         C=$(((C + 1) % CLEN))
         sleep .5
     done
 fi
 
 while true; do
-    if ! blink_is_busy; then
-        blink_set_busy "$COLOR"
+    if ! hue_is_busy; then
+        hue_set_busy "$COLOR"
     fi
     sleep 10
 done

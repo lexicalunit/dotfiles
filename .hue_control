@@ -1,0 +1,38 @@
+#!.hue_control
+
+HUE_LOCK="/tmp/.hue-toggle"
+touch "$HUE_LOCK"
+
+hue_reset() {
+    rm "$HUE_LOCK"
+}
+
+hue_is_color() {
+    test "$(cat "$HUE_LOCK" 2>/dev/null)" == "$1"
+}
+
+hue_is_red() {
+    hue_is_color red
+}
+
+hue_is_purple() {
+    hue_is_color purple
+}
+
+hue_is_green() {
+    hue_is_color green
+}
+
+hue_is_busy() {
+    hue_is_color busy
+}
+
+hue_set_color() {
+    echo "$1" >"$HUE_LOCK"
+    /opt/homebrew/bin/node /opt/busylight/cli.js set Stick "$1"
+}
+
+hue_set_busy() {
+    echo "busy" >"$HUE_LOCK"
+    /opt/homebrew/bin/node /opt/busylight/cli.js set Stick "$1"
+}

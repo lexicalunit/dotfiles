@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# A service that watches for zoom and turns a blinkstick red if it is running.
+# A service that watches for zoom and turns a hue light red if it is running.
 
 usage() {
     echo "usage: ${0##*/} [options]" 1>&2
     echo "" 1>&2
-    echo "A service that watches for zoom and turns a blinkstick red if it is running." 1>&2
+    echo "A service that watches for zoom and turns a hue light red if it is running." 1>&2
     echo ""
     echo "options:"
     echo " -h or --help shows usage help" 1>&2
@@ -16,9 +16,9 @@ if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     usage
 fi
 
-# shellcheck source=.blinkstick_control
+# shellcheck source=.hue_control
 # shellcheck disable=SC1091
-source "$HOME/.blinkstick_control" || echo "$(tput bold)error: ~/.blinkstick_control not installed!$(tput sgr0)" >&2
+source "$HOME/.hue_control" || echo "$(tput bold)error: ~/.hue_control not installed!$(tput sgr0)" >&2
 
 BR_TABS=""
 brave_tabs() {
@@ -41,9 +41,25 @@ EOF
     fi
 }
 
-FF_TABS=""
-firefox_tabs() {
-    "$HOME"/bin/firefox-tabs
+CH_TABS=""
+chrome_tabs() {
+    CHROME="osascript -e 'tell application \"System Events\" to (name of processes) contains \"Google Chrome\"'"
+    if test "$(eval "$CHROME")" = "true"; then
+        osascript <<EOF
+set titleString to ""
+
+tell application "Google Chrome"
+    set window_list to every window # get the windows
+    repeat with the_window in window_list # for every window
+        set tab_list to every tab in the_window # get the tabs
+        repeat with the_tab in tab_list # for every tab
+            set the_url to the URL of the_tab # grab the URL
+            set titleString to titleString & the_url & "\n"
+        end repeat
+    end repeat
+end tell
+EOF
+    fi
 }
 
 ZOOM="false"
@@ -53,34 +69,34 @@ zoom_running() {
 
 in_meeting() {
     test "$ZOOM" = "true" ||
-        echo "$FF_TABS" | /usr/bin/grep -q "meet.google.com" ||
-        echo "$BR_TABS" | /usr/bin/grep -q "meet.google.com"
+        echo "$BR_TABS" | /usr/bin/grep -q "meet.google.com" ||
+        echo "$CH_TABS" | /usr/bin/grep -q "meet.google.com"
 }
 
 in_game() {
     ps -efw | grep "Steam" | grep -Eiv "helper|ipcserver|grep" ||
-        echo "$FF_TABS" | /usr/bin/grep -q "spelltable" ||
-        echo "$BR_TABS" | /usr/bin/grep -q "spelltable"
+        echo "$BR_TABS" | /usr/bin/grep -q "spelltable" ||
+        echo "$CH_TABS" | /usr/bin/grep -q "spelltable"
 }
 
 while true; do
     ZOOM="$(eval "$ZOOM")"
     BR_TABS="$(eval brave_tabs)"
-    FF_TABS="$(eval firefox_tabs)"
+    CH_TABS="$(eval chrome_tabs)"
     ZOOM="$(eval zoom_running)"
 
-    if ! blink_is_busy; then
+    if ! hue_is_busy; then
         if in_meeting; then
-            if ! blink_is_red; then
-                blink_set_color red
+            if ! hue_is_red; then
+                hue_set_color red
             fi
         elif in_game; then
-            if ! blink_is_purple; then
-                blink_set_color purple
+            if ! hue_is_purple; then
+                hue_set_color purple
             fi
         else
-            if ! blink_is_green; then
-                blink_set_color green
+            if ! hue_is_green; then
+                hue_set_color green
             fi
         fi
     fi

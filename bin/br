@@ -1,11 +1,11 @@
 #!/bin/bash -e
 
-# Reset blinkstick files.
+# Reset hue light files.
 
 usage() {
     echo "usage: ${0##*/} [options]" 1>&2
     echo "" 1>&2
-    echo "Reset blinkstick files." 1>&2
+    echo "Reset hue light files." 1>&2
     echo ""
     echo "options:"
     echo " -h or --help shows usage help" 1>&2
@@ -16,8 +16,8 @@ if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     usage
 fi
 
-# shellcheck source=.blinkstick_control
+# shellcheck source=.hue_control
 # shellcheck disable=SC1091
-source "$HOME/.blinkstick_control" || echo "$(tput bold)error: ~/.blinkstick_control not installed!$(tput sgr0)" >&2
+source "$HOME/.hue_control" || echo "$(tput bold)error: ~/.hue_control not installed!$(tput sgr0)" >&2
 
-blink_reset
+hue_reset

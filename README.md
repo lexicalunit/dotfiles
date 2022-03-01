@@ -85,7 +85,7 @@ with the argument `--help`.
 | --- | --- |
 | [`alert`](bin/alert) | Provides shell level windowed alerting system. |
 | [`backmost`](bin/backmost) | Send the current frontmost windowed macOS application to the back. |
-| [`br`](bin/br) | Reset blinkstick files. |
+| [`br`](bin/br) | Reset hue light files. |
 | [`busy`](bin/busy) | Turn on a busy light. |
 | [`capture_x`](bin/capture_x) | Creates a screenshot of selected window on X11. |
 | [`cleanup`](bin/cleanup) | Cleans system and application caches on macOS. |
@@ -137,7 +137,7 @@ with the argument `--help`.
 | [`woke`](bin/woke) | Get time macOS system last woke from sleep. |
 | [`xdie`](bin/xdie) | Kills processes based on their window title. |
 | [`xf`](bin/xf) | Extract common file formats. |
-| [`zoomwatcher`](bin/zoomwatcher) | A service that watches for zoom and turns a blinkstick red if it is... |
+| [`zoomwatcher`](bin/zoomwatcher) | A service that watches for zoom and turns a hue light red if it is ... |
 
 # What does `equip all` install?
 
@@ -171,10 +171,10 @@ ghostscript, git, git-lfs, git-secrets, glances, glib, gnu-sed, gnu-tar, go,
 gobject-introspection, graphite2, harfbuzz, icu4c, imagemagick@6, isort, 
 jbig2dec, jemalloc, jez/formulae/pandoc-sidenote, jpeg, jq, krb5, libev, 
 libevent, libffi, libidn, libidn2, libpng, libpthread-stubs, libssh2, libtiff, 
-libtool, libunistring, libusb, libuv, libx11, libxau, libxcb, libxdmcp, 
-libxext, libxrender, libyaml, little-cms2, lzo, m4, mas, mpdecimal, ncurses, 
-nghttp2, node, nvm, oniguruma, openjpeg, openssl@1.1, pandoc, pango, pcre, 
-pcre2, pidof, pixman, pkg-config, postgresql, pyenv, pyenv-virtualenv, 
+libtool, libunistring, libuv, libx11, libxau, libxcb, libxdmcp, libxext, 
+libxrender, libyaml, little-cms2, lzo, m4, mas, mpdecimal, ncurses, nghttp2, 
+node, nvm, oniguruma, openjpeg, openssl@1.1, pandoc, pango, pcre, pcre2, pidof, 
+pixman, pkg-config, postgresql, pyenv, pyenv-virtualenv, 
 pyenv-virtualenvwrapper, pylint, python@3.8, python@3.9, readline, ripgrep, 
 rlwrap, rust, shellcheck, shfmt, six, sqlite, tcl-tk, tmux, toolbox, tree, 
 utf8proc, watch, wdiff, webp, wget, xorgproto, xz, yarn, zsh

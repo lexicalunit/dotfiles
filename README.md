@@ -39,11 +39,10 @@ There's some things that I would like to have automated but I haven't found a wa
 - Automatically setup launch at startup: Rectangle, Amphetamine
 - Automatically setup iterm2's config location
 - Automatically set up the Dock's icons
-- Automatically install Firefox extensions
+- Automatically install web browser extensions
 - Disable "Show recent applications in Dock"
 - Enable zoom via <kbd>ctrl</kbd> + mouse wheel scroll
 - Enable zoom follows mouse pointer
-- Change TouchBar settings to be always expanded
 - Enable text to speech for selected text via <kbd>option</kbd> + <kbd>esc</kbd>
 
 ## Environment: `~/env`
@@ -100,10 +99,8 @@ with the argument `--help`.
 | [`drc`](bin/drc) | Run a Check django backend. |
 | [`equip`](bin/equip) | Install applications and development environment on an macOS or Lin... |
 | [`faff`](bin/faff) | Sleeps for the given number of seconds, showing a progress bar. |
-| [`fgdk`](bin/fgdk) | Sometimes GitLab Developer Kit caddywhompus, this script kills it. |
 | [`firefox-tabs`](bin/firefox-tabs) | Attempts to list the currently open urls in your Firefox tabs. |
 | [`flip`](bin/flip) | Flips input upside down. |
-| [`fs`](bin/fs) | Tweak ripgrep to easily search codebases with committed files and f... |
 | [`git-authors`](bin/git-authors) | Git script for discovering who wrote the code at the current workin... |
 | [`git-lg`](bin/git-lg) | Git script for printing beautiful logs. |
 | [`git-name-change`](bin/git-name-change) | Clones a repo then changes the name and email address in entire his... |
@@ -126,10 +123,8 @@ with the argument `--help`.
 | [`rc`](bin/rc) | Spin up or attach to tumx running Check development services. |
 | [`root`](bin/root) | Prints the root of the current repository. |
 | [`set_wallpaper`](bin/set_wallpaper) | Uses Cocoa classes via PyObjC to set a desktop wallpaper on all scr... |
-| [`share`](bin/share) | Easy way to manage temporary web shares. |
 | [`show_dircolors`](bin/show_dircolors) | Shows example output based on current dircolors settings. |
 | [`slept`](bin/slept) | Get time macOS system last went to sleep. |
-| [`smongo`](bin/smongo) | Opens mongo shell to master node. |
 | [`uninstall_homebrew`](bin/uninstall_homebrew) | Uninstalls Homebrew. |
 | [`usages`](bin/usages) | Prints out documentation and usages for utilities. |
 | [`weather`](bin/weather) | Show the current weather directly in your terminal. |

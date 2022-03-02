@@ -250,17 +250,6 @@ Sleeps for the given number of seconds, showing a progress bar.
 ```
 
 * * *
-### [`fgdk`](fgdk)
-```
-usage: fgdk [options]
-
-Sometimes GitLab Developer Kit caddywhompus, this script kills it.
-
-options:
- -h or --help shows usage help
-```
-
-* * *
 ### [`firefox-tabs`](firefox-tabs)
 ```
 usage: firefox-tabs [-h]
@@ -277,18 +266,6 @@ optional arguments:
 usage: echo 'text' | flip
 
 Literally flips input upside down, printing words so they appear to be flipped over.
-```
-
-* * *
-### [`fs`](fs)
-```
-usage: fs [-h|--help] [-z] [-j] [ -- [ripgrep options]] <QUERY>
-Use ripgrep to search a codebase.
-
-options:
-    -h, --help   show usage help
-    -z           Use ripgrep's --no-ignore option
-    -j           Ignore all JavaScript files
 ```
 
 * * *
@@ -515,19 +492,6 @@ optional arguments:
 ```
 
 * * *
-### [`share`](share)
-```
-usage share [<file>|ls|names|ssh|get <name(s)>|put <file(s)>|rm <name>]
-Requires ~/.webshare script be created for your webshare configuration.
-
-The ~/.webshare script must set environment variables:
- * SHARE_USER - user to use when connecting to SHARE_HOST
- * SHARE_HOST - the hostname to connect to
- * SHARE_DEST - the root of the shares directory on SHARE_HOST
- * SHARE_URI  - the base URI for shared files
-```
-
-* * *
 ### [`show_dircolors`](show_dircolors)
 ```
 usage: show_dircolors [-h|--help]
@@ -539,14 +503,6 @@ Shows example output based on current dircolors settings.
 ```
 usage: slept [-h|--help]
 Uses sysctl to discover when the last time macOS slept was.
-```
-
-* * *
-### [`smongo`](smongo)
-```
-usage: smongo HOST
-
-Discovers and then connects mongo shell to the cluster master node.
 ```
 
 * * *

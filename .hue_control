@@ -29,10 +29,10 @@ hue_is_busy() {
 
 hue_set_color() {
     echo "$1" >"$HUE_LOCK"
-    /opt/homebrew/bin/node /opt/busylight/cli.js set Stick "$1"
+    /opt/homebrew/bin/node /opt/busylight/cli.js -l Busy -c "$1"
 }
 
 hue_set_busy() {
     echo "busy" >"$HUE_LOCK"
-    /opt/homebrew/bin/node /opt/busylight/cli.js set Stick "$1"
+    /opt/homebrew/bin/node /opt/busylight/cli.js -l Busy -c "$1"
 }

@@ -200,7 +200,7 @@ node, nvm, oniguruma, openjpeg, openssl@1.1, pandoc, pango, pcre, pcre2, pidof,
 pixman, pkg-config, postgresql, pyenv, pyenv-virtualenv, 
 pyenv-virtualenvwrapper, pylint, python@3.8, python@3.9, readline, ripgrep, 
 rlwrap, rust, shellcheck, shfmt, six, sqlite, tcl-tk, tmux, toolbox, tree, 
-utf8proc, watch, wdiff, webp, wget, xorgproto, xz, yarn, zsh
+utf8proc, vramsteg, watch, wdiff, webp, wget, xorgproto, xz, yarn, zsh
 
 Homebrew Casks: 1password, chromedriver, discord, disk-inventory-x, docker, 
 dropbox, fantastical, flux, font-fira-code, font-hack-nerd-font, google-chrome, 

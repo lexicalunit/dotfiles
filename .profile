@@ -5,9 +5,6 @@ if [[ $- == *i* ]]; then
     INTERACTIVE=true
 fi
 
-ARCH="$(arch)"
-export ARCH
-
 ################################################################################
 # setup paths and env
 ################################################################################
@@ -33,6 +30,9 @@ else
     export MANPATH
 fi
 
+ARCH="$(arch)"
+export ARCH
+
 # Homebrew puts i386 binaries in /usr/local and arm64 in /opt/homebrew,
 # So if we're using arm64 we need to make sure that /opt/homebrew/bin
 # comes first in PATH so that the correct binaries are picked up first.
@@ -45,9 +45,6 @@ if type brew >/dev/null 2>&1; then
     BREW_PREFIX="$(brew --prefix)"
     test -d "$BREW_PREFIX/bin" && PATH="$_:$PATH"
     test -d "$BREW_PREFIX/sbin" && PATH="$_:$PATH"
-
-    # Don't use brew installed python. Prefer an Anaconda distro instead.
-    # test -d "$BREW_PREFIX/lib/python2.7/site-packages" && PYTHONPATH="$PYTHONPATH:$_"
 
     BREW_COREUTILS_PREFIX="$BREW_PREFIX/opt/coreutils"
     if [[ -d $BREW_COREUTILS_PREFIX ]]; then
@@ -100,16 +97,9 @@ export PATH
 export PYTHONPATH
 export PKG_CONFIG_PATH
 
-# Additional application setup
-# shellcheck source=~/.travis/travis.sh
-# shellcheck disable=SC1090
-test -f "$HOME/.travis/travis.sh" && source "$_"
-
 USER="$(whoami)"
-HOST="$(uname -n)"
 PLATFORM="$(uname)"
 export USER
-export HOST
 export PLATFORM
 
 ################################################################################

@@ -26,7 +26,6 @@ if [[ -z "$(command -v jq)" ]]; then
     exit 1
 fi
 
-
 USER="$(whoami)"
 RENDER_COUNT=1
 SHOW_TAXES=0
@@ -43,10 +42,19 @@ shift $((OPTIND - 1))
 # - name: "check_api_key_prod"
 # - account: Your macOS user name
 # - password: Your Check API key
-CHECK_API_KEY_PROD="$(security find-generic-password -a "$USER" -s check_api_key_prod -w 2>/dev/null)"
+CHECK_API_KEY_PROD="$(security find-generic-password -a "$USER" -s check_api_key_prod -w 2>/dev/null || true)"
 
 # Do the same as above for your Check employee id.
-CHECK_API_EMPLOYEE_ID_PROD="$(security find-generic-password -a "$USER" -s check_api_employee_id_prod -w 2>/dev/null)"
+CHECK_API_EMPLOYEE_ID_PROD="$(security find-generic-password -a "$USER" -s check_api_employee_id_prod -w 2>/dev/null || true)"
+
+if [[ -z $CHECK_API_KEY_PROD ]]; then
+    echo "error: no password item found for check_api_key_prod in Keychain Access" >&2
+    exit 1
+fi
+if [[ -z $CHECK_API_EMPLOYEE_ID_PROD ]]; then
+    echo "error: no password item found for check_api_employee_id_prod in Keychain Access" >&2
+    exit 1
+fi
 
 OUTPUT="$(mktemp -t tmp.XXXXXXXXXX)"
 trap 'rm -f $OUTPUT' EXIT
@@ -59,7 +67,7 @@ curl -sS --location "https://api.checkhq.com/employees/$CHECK_API_EMPLOYEE_ID_PR
 echo "done"
 echo -n $'\e[0m'
 
-for (( i=0; i < RENDER_COUNT; i++ )); do
+for ((i = 0; i < RENDER_COUNT; i++)); do
     PAYDAY="$(jq -r ".results[$i].payday" <"$OUTPUT")"
     PAYROLL_ID="$(jq -r ".results[$i].payroll" <"$OUTPUT")"
     PAYSTUB="paystub-$PAYDAY.pdf"
@@ -75,11 +83,11 @@ for (( i=0; i < RENDER_COUNT; i++ )); do
     echo -n $'\e[0m'
 done
 
-if [[ "$RENDER_COUNT" == "1" ]]; then
+if [[ $RENDER_COUNT == "1" ]]; then
     open "$PAYSTUB"
 fi
 
-[[ "$SHOW_TAXES" == "1" ]] || exit 0
+[[ $SHOW_TAXES == "1" ]] || exit 0
 
 # show historical tax information including federal and state taxes
 TAXES=("Federal Income Tax" "State Tax")

@@ -38,7 +38,7 @@ else
         tmux attach-session -t "$SRC"
     elif [[ $SRC == "console" ]]; then
         tmux new -d -s "$SRC" -x "$(tput cols)" -y "$(tput lines)"
-        tmux send-keys 'redis-server /usr/local/etc/redis.conf' Enter
+        tmux send-keys 'redis-server "$(brew --prefix)/etc/redis.conf"' Enter
         until pgrep -f redis 2>/dev/null; do
             echo >&2 "redis is unavailable - sleeping"
             sleep 1
@@ -46,6 +46,19 @@ else
         tmux split-window -hp 90
         tmux send-keys "exitconda && entervirtualenv && source env/bin/activate" Enter
         tmux send-keys "$(django_runserver_cmd localhost:8004)" Enter
+        tmux split-window -v
+        tmux send-keys "yarn run start" Enter
+        tmux attach-session -t "$SRC"
+    elif [[ $SRC == "kyb-ui" ]]; then
+        tmux new -d -s "$SRC" -x "$(tput cols)" -y "$(tput lines)"
+        tmux send-keys 'redis-server "$(brew --prefix)/etc/redis.conf"' Enter
+        until pgrep -f redis 2>/dev/null; do
+            echo >&2 "redis is unavailable - sleeping"
+            sleep 1
+        done
+        tmux split-window -hp 90
+        tmux send-keys "exitconda && entervirtualenv && source env/bin/activate" Enter
+        tmux send-keys "$(django_runserver_cmd localhost:8005)" Enter
         tmux split-window -v
         tmux send-keys "yarn run start" Enter
         tmux attach-session -t "$SRC"

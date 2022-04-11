@@ -482,13 +482,7 @@ Prints the root directory of the current source repository.
 * * *
 ### [`set_wallpaper`](set_wallpaper)
 ```
-usage: set_wallpaper [-h] [--path PATH]
-
-Sets the desktop picture on all screens
-
-optional arguments:
-  -h, --help   show this help message and exit
-  --path PATH  The path of the image
+./usages: ./set_wallpaper: /usr/bin/python: bad interpreter: No such file or directory
 ```
 
 * * *

@@ -248,7 +248,6 @@ if $INTERACTIVE; then
     alias profile='valgrind --tool=callgrind --dump-instr=yes --simulate-cache=yes --collect-jumps=yes '
     alias memcheck='valgrind --tool=memcheck --leak-check=yes -show-reachable=yes -fno-inline --logfile=memcheck.log '
     alias pygmentize='pygmentize -O bg=dark'
-    alias yapf='yapf --style="{based_on_style: pep8, column_limit: 120}" '
     fa() {
         local PARAMS PARAM
         for PARAM in "$@"; do
@@ -260,38 +259,8 @@ if $INTERACTIVE; then
             --sort modified \
             --smart-case \
             --pretty \
+            --hidden \
             --max-columns "$(stty size | cut -d' ' -f2)" "${PARAMS}"
-    }
-    ra() {
-        rg \
-            --type-not csv \
-            --type-not json \
-            --type-not lock \
-            --type-not markdown \
-            --type-not svg \
-            --type-not yaml \
-            -g '!*_spec*' \
-            -g '!*.env' \
-            -g '!*.example' \
-            -g '!*.gitignore' \
-            -g '!*.po' \
-            -g '!*.postgresql' \
-            -g '!*.pot' \
-            -g '!*.rake' \
-            -g '!*.sample' \
-            -g '!*/qa/*' \
-            -g '!*/spec/*' \
-            -g '!qa/*' \
-            -g '!spec/*' \
-            --trim \
-            --sort modified \
-            --smart-case \
-            --pretty \
-            --max-columns "$(stty size | cut -d' ' -f2)" \
-            "$@"
-    }
-    rab() {
-        ra -g '!*.scss' -g '!*.haml' -g '!*.vue' -g '!*.erb' -g '!*.js' "$@"
     }
     alias ltr='ls -l -tmodified -snew '
 

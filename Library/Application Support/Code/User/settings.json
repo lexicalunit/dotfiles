@@ -150,5 +150,6 @@
     "jupyter-notebook": "left"
   },
   "security.workspace.trust.banner": "always",
-  "security.workspace.trust.enabled": false
+  "security.workspace.trust.enabled": false,
+  "redhat.telemetry.enabled": false
 }

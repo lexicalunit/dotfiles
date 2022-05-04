@@ -213,10 +213,11 @@ James-Yu.latex-workshop, PascalReitermann93.vscode-yaml-sort, ban.spellright,
 be5invis.toml, bibhasdn.unique-lines, dbaeumer.vscode-eslint, eamodio.gitlens, 
 esbenp.prettier-vscode, exiasr.hadolint, foxundermoon.shell-format, 
 freakypie.code-python-isort, hashicorp.terraform, joe-re.sql-language-server, 
-karunamurti.haml, magicstack.magicpython, mgmcdermott.vscode-language-babel, 
-mike-co.import-sorter, mohsen1.prettify-json, ms-azuretools.vscode-docker, 
-ms-python.python, ms-python.vscode-pylance, richie5um2.vscode-sort-json, 
-sysoev.language-stylus, timonwong.shellcheck
+karunamurti.haml, magicstack.magicpython, matangover.mypy, 
+mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
+mohsen1.prettify-json, ms-azuretools.vscode-docker, ms-pyright.pyright, 
+ms-python.python, ms-python.vscode-pylance, redhat.vscode-yaml, 
+richie5um2.vscode-sort-json, sysoev.language-stylus, timonwong.shellcheck
 
 Conda Packages: appdirs, appnope, attrs, backcall, brotlipy, ca-certificates, 
 cachecontrol, cachy, certifi, cffi, charset-normalizer, cleo, clikit, 

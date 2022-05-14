@@ -1,5 +1,7 @@
 # .profile_check
 
+export PIPENV_VERBOSITY=-1
+
 check() {
     echo $'\e[34m                                  ..*////*.                               \e[0m'
     echo $'\e[34m                         ,@@@@@@@@@@@@@@@@@@@@@@@@@(.                     \e[0m'

@@ -1,6 +1,7 @@
 # .profile_check
 
 export PIPENV_VERBOSITY=-1
+export DD_TRACE_ENABLED="false"
 
 check() {
     echo $'\e[34m                                  ..*////*.                               \e[0m'

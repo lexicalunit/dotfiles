@@ -151,5 +151,8 @@
   },
   "security.workspace.trust.banner": "always",
   "security.workspace.trust.enabled": false,
-  "redhat.telemetry.enabled": false
+  "redhat.telemetry.enabled": false,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

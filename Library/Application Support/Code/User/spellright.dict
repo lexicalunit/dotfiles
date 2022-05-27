@@ -189,3 +189,9 @@ datadog
 spellapi
 pipenv
 -ue
+cairo
+libjpeg
+pango
+pdftk
+postgresql
+Envs

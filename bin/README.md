@@ -202,11 +202,12 @@ pyenv-virtualenvwrapper, pylint, pyright, python@3.8, python@3.9, readline,
 ripgrep, rlwrap, rust, shellcheck, shfmt, six, sqlite, tcl-tk, tmux, toolbox, 
 tree, utf8proc, vramsteg, watch, wdiff, webp, wget, xorgproto, xz, yarn, zsh
 
-Homebrew Casks: 1password, chromedriver, discord, disk-inventory-x, docker, 
-dropbox, fantastical, flux, font-fira-code, font-hack-nerd-font, google-chrome, 
-iexplorer, istumbler, iterm2, lingon-x, mactex, ngrok, obsidian, rectangle, 
-signal, slack, snes9x, sourcetree, spotify, steam, tableplus, texstudio, 
-the-unarchiver, transmission, vagrant, visual-studio-code, vlc
+Homebrew Casks: 1password, 1password/tap/1password-cli, chromedriver, discord, 
+disk-inventory-x, docker, dropbox, fantastical, flux, font-fira-code, 
+font-hack-nerd-font, google-chrome, iexplorer, istumbler, iterm2, lingon-x, 
+mactex, ngrok, obsidian, rectangle, signal, slack, snes9x, sourcetree, spotify, 
+steam, tableplus, texstudio, the-unarchiver, transmission, vagrant, 
+visual-studio-code, vlc
 
 Code Packages: DavidAnson.vscode-markdownlint, HookyQR.beautify, 
 James-Yu.latex-workshop, PascalReitermann93.vscode-yaml-sort, ban.spellright, 

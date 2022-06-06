@@ -120,6 +120,7 @@ with the argument `--help`.
 | [`npm-update`](bin/npm-update) | Tries to update package dependencies to latest using ncu, npm, and ... |
 | [`paystub`](bin/paystub) | Get your latest paystub as PDF from Check's API. |
 | [`ppt`](bin/ppt) | Runs pipenv-pytest tests locally. |
+| [`python3.10`](bin/python3.10) | Symbolic link to '/opt/homebrew/opt/python@3.10/libexec/bin/python' |
 | [`rc`](bin/rc) | Spin up or attach to tumx running Check development services. |
 | [`root`](bin/root) | Prints the root of the current repository. |
 | [`set_wallpaper`](bin/set_wallpaper) | Uses Cocoa classes via PyObjC to set a desktop wallpaper on all scr... |
@@ -170,9 +171,9 @@ libtool, libunistring, libuv, libx11, libxau, libxcb, libxdmcp, libxext,
 libxrender, libyaml, little-cms2, lzo, m4, mas, mpdecimal, ncurses, nghttp2, 
 node, nvm, oniguruma, openjpeg, openssl@1.1, pandoc, pango, pcre, pcre2, pidof, 
 pixman, pkg-config, postgresql, pyenv, pyenv-virtualenv, 
-pyenv-virtualenvwrapper, pylint, pyright, python@3.8, python@3.9, readline, 
-ripgrep, rlwrap, rust, shellcheck, shfmt, six, sqlite, tcl-tk, tmux, toolbox, 
-tree, utf8proc, vramsteg, watch, wdiff, webp, wget, xorgproto, xz, yarn, zsh
+pyenv-virtualenvwrapper, pyright, python@3.8, python@3.9, readline, ripgrep, 
+rlwrap, rust, shellcheck, shfmt, six, sqlite, tcl-tk, tmux, toolbox, tree, 
+utf8proc, vramsteg, watch, wdiff, webp, wget, xorgproto, xz, yarn, zsh
 
 Homebrew Casks: 1password, 1password/tap/1password-cli, chromedriver, discord, 
 disk-inventory-x, docker, dropbox, fantastical, flux, font-fira-code, 

@@ -71,7 +71,9 @@
   "[python]": {
     "editor.detectIndentation": false,
     "editor.tabSize": 4,
-    "editor.rulers": [90]
+    "editor.rulers": [90],
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
   },
   "files.associations": {
     ".gitconfig": "ini"
@@ -79,7 +81,7 @@
   "[ini]": {
     "editor.formatOnSave": false
   },
-  "python.formatting.provider": "black",
+  "python.formatting.provider": "none",
   "explorer.autoReveal": false,
   "editor.tokenColorCustomizations": {
     "textMateRules": [
@@ -109,7 +111,7 @@
     "typescript",
     "typescriptreact"
   ],
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "spellright.language": ["en"],
   "spellright.documentTypes": ["markdown", "latex", "plaintext", "shellscript"],
   "window.restoreWindows": "none",

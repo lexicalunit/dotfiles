@@ -16,23 +16,23 @@ function +vi-set_novcs_prompt_symbol {
 }
 
 function +vi-set_vcs_prompt_symbol {
-    _prompt_lexical_symbol='±'
+    _prompt_lexical_symbol='➜'
 }
 
 function +vi-git_precmd {
     # Check for untracked files, since vcs_info does not.
-    if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
+    if [[ -n $(git ls-files --other --exclude-standard 2>/dev/null) ]]; then
         hook_com[unstaged]+='%F{green}?%f'
     fi
 }
 
 function prompt_lexical_python_pacman {
     local pac=""
-    if [[ -n "$PYTHON_ENV" ]]; then
+    if [[ -n $PYTHON_ENV ]]; then
         pac="$PYTHON_ENV"
-        if [[ -n "$VIRTUAL_ENV" ]]; then
+        if [[ -n $VIRTUAL_ENV ]]; then
             pac="$pac:$(basename "$VIRTUAL_ENV")"
-        elif [[ -n "$CONDA_DEFAULT_ENV" ]]; then
+        elif [[ -n $CONDA_DEFAULT_ENV ]]; then
             pac="$pac:$CONDA_DEFAULT_ENV"
         fi
         pac="$pac"
@@ -86,14 +86,14 @@ function prompt_lexical_setup {
 
     # Define prompts.
     USER_AT_MACHINE='%F{magenta}%n%f@%F{yellow}%m%f'
-    PROMPT_LAST_CMD_ERROR=$'%(?..%F{red}%B-> [%?]\n%b%f)'
+    PROMPT_LAST_CMD_ERROR=$'%(?..%F{red}%B‼ [%?]\n%b%f)'
     PROMPT_DIR='%F{green}${_prompt_lexical_pwd}%f'
     PROMPT_VCS='${vcs_info_msg_0_}'
-    PROMPT_PYTHON='%F{blue}[${_prompt_lexical_python_pacman}]%f'
-    PROMPT_NVM='%F{green}[${_prompt_lexical_nvm}]%f'
+    PROMPT_PYTHON='%F{blue}[🐍 ${_prompt_lexical_python_pacman}]%f'
+    PROMPT_NVM='%F{green}[⬢ ${_prompt_lexical_nvm}]%f'
     PROMPT_LINE_ONE="$PROMPT_LAST_CMD_ERROR$USER_AT_MACHINE|$PROMPT_DIR$PROMPT_VCS $PROMPT_PYTHON $PROMPT_NVM"
     PROMPT_LINE_TWO='%F{blue}${_prompt_lexical_symbol}%f '
-      PROMPT="$PROMPT_LINE_ONE
+    PROMPT="$PROMPT_LINE_ONE
 $PROMPT_LINE_TWO"
     SPROMPT='zsh: correct %F{magenta}%R%f to %F{green}%r%f [nyae]? '
 }

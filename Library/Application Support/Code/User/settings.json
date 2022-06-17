@@ -72,8 +72,7 @@
     "editor.detectIndentation": false,
     "editor.tabSize": 4,
     "editor.rulers": [90],
-    "editor.defaultFormatter": "ms-python.black-formatter",
-    "editor.formatOnSave": true
+    "editor.defaultFormatter": "ms-python.black-formatter"
   },
   "files.associations": {
     ".gitconfig": "ini"
@@ -111,7 +110,7 @@
     "typescript",
     "typescriptreact"
   ],
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "spellright.language": ["en"],
   "spellright.documentTypes": ["markdown", "latex", "plaintext", "shellscript"],
   "window.restoreWindows": "none",

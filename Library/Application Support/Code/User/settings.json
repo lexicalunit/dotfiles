@@ -72,7 +72,10 @@
     "editor.detectIndentation": false,
     "editor.tabSize": 4,
     "editor.rulers": [90],
-    "editor.defaultFormatter": "ms-python.black-formatter"
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
   },
   "files.associations": {
     ".gitconfig": "ini"

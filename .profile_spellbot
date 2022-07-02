@@ -10,6 +10,7 @@ _enter_virtualenv_for_spellbot() {
         [[ -d env ]] && exitconda
         [[ -d env ]] && entervirtualenv
         [[ -d env ]] && source env/bin/activate
+        [[ -d env ]] && poetry env use env/bin/python
     elif [[ $PWD != *"/spellbot" && $OLDPWD == *"/spellbot" ]]; then
         [[ -d env ]] && type deactivate >/dev/null 2>&1 && deactivate
         [[ -d env ]] && exitvirtualenv

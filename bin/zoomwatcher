@@ -19,6 +19,7 @@ fi
 # shellcheck source=.hue_control
 # shellcheck disable=SC1091
 source "$HOME/.hue_control" || echo "$(tput bold)error: ~/.hue_control not installed!$(tput sgr0)" >&2
+ERRF="/tmp/zoomwatcher.err"
 
 BR_TABS=""
 brave_tabs() {
@@ -86,17 +87,21 @@ while true; do
     ZOOM="$(eval zoom_running)"
 
     if ! hue_is_busy; then
+        NOW="$(date)"
         if in_meeting; then
             if ! hue_is_red; then
-                hue_set_color red
+                echo "$NOW: setting color set to red..." >>"$ERRF"
+                hue_set_color red >>"$ERRF"
             fi
         elif in_game; then
             if ! hue_is_purple; then
-                hue_set_color purple
+                echo "$NOW: setting color set to purple..." >>"$ERRF"
+                hue_set_color purple >>"$ERRF"
             fi
         else
             if ! hue_is_green; then
-                hue_set_color green
+                echo "$NOW: setting color set to green..." >>"$ERRF"
+                hue_set_color green >>"$ERRF"
             fi
         fi
     fi

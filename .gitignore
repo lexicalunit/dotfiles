@@ -71,6 +71,7 @@
 /.bash_history*
 /.bash_sessions
 /.bokeh
+/.bun
 /.bundle/cache
 /.bundle/config
 /.cache/babl

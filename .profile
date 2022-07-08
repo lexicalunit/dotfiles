@@ -90,6 +90,13 @@ PATH="node_modules/.bin:$PATH"
 # Visual Studio Code
 test -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" && PATH="$PATH:$_"
 
+# Bun
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+if [[ -d "$HOME/.bun" ]]; then
+    export BUN_INSTALL="$HOME/.bun"
+    PATH="$BUN_INSTALL/bin:$PATH"
+fi
+
 # User utilities
 test -d "$HOME/bin" && PATH="$_:$PATH"
 

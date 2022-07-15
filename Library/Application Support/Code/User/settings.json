@@ -28,6 +28,7 @@
   "files.trimTrailingWhitespace": true,
   "editor.codeLens": false,
   "files.insertFinalNewline": true,
+  "git.mergeEditor": true,
   "explorer.openEditors.visible": 0,
   "editor.wordWrap": "off",
   "editor.multiCursorModifier": "alt",

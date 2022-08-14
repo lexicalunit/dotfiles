@@ -38,5 +38,5 @@ export PIPENV_QUIET="1"
 if [[ $UNITTEST == "1" ]]; then
     run "pipenv run python -m unittest $*"
 else
-    run "pipenv run pytest --disable-pytest-warnings -vv -x -n0 --dist no --no-header $*"
+    run "pipenv run pytest --reuse-db --disable-pytest-warnings -vv -x -n0 --dist no --no-header $*"
 fi

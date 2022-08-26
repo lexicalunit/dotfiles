@@ -20,10 +20,12 @@ if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     usage
 fi
 
-UNITTEST="0"
-while getopts "u" opt; do
+UNITTEST=0
+INTEGRATION=0
+while getopts "ui" opt; do
     case "$opt" in
-    u) UNITTEST="1" ;;
+    u) UNITTEST=1 ;;
+    i) INTEGRATION=1 ;;
     *) usage ;;
     esac
 done
@@ -37,6 +39,8 @@ export PIPENV_VERBOSITY="-1"
 export PIPENV_QUIET="1"
 if [[ $UNITTEST == "1" ]]; then
     run "pipenv run python -m unittest $*"
+elif [[ $INTEGRATION == "1" ]]; then
+    run "pipenv run pytest -c integration.ini -p no:pytest_django --disable-pytest-warnings -vv -x -n0 --dist no --no-header $*"
 else
     run "pipenv run pytest --reuse-db --disable-pytest-warnings -vv -x -n0 --dist no --no-header $*"
 fi

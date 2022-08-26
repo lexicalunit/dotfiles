@@ -67,13 +67,12 @@ _enter_virtualenv_for_check_projects() {
     if [[ $PWD == *"/check/"* && $OLDPWD != *"/check/"* ]]; then
         exitconda
         entervirtualenv
-        # [[ -d env ]] && source env/bin/activate
-        eval "$(pyenv init -)"
-        eval "$(pyenv virtualenv-init -)"
-        pyenv activate check-api
+        [[ -d env ]] && source env/bin/activate
+        # eval "$(pyenv init -)"
+        # eval "$(pyenv virtualenv-init -)"
+        # pyenv activate check-api
     elif [[ $PWD != *"/check/"* && $OLDPWD == *"/check/"* ]]; then
-        # type deactivate >/dev/null 2>&1 && deactivate
-        deactivate
+        type deactivate >/dev/null 2>&1 && deactivate
         exitvirtualenv
         enterconda
     fi

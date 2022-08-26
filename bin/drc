@@ -32,7 +32,7 @@ run() {
 }
 
 django_runserver_cmd() {
-    run "python manage.py runserver $1 2>&1 | jq -R -r '. as \$line | try fromjson catch \$line'"
+    run "pipenv run python manage.py runserver $1 2>&1 | jq -R -r '. as \$line | try fromjson catch \$line'"
 }
 
 if [[ $SRC == "check-api" ]]; then

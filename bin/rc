@@ -19,7 +19,7 @@ fi
 SRC="$(basename "$PWD")"
 
 django_runserver_cmd() {
-    echo "python manage.py runserver $1 2>&1 | jq -R -r '. as \$line | try fromjson catch \$line'"
+    echo "pipenv run python manage.py runserver $1 2>&1 | jq -R -r '. as \$line | try fromjson catch \$line'"
 }
 
 if tmux ls | grep -q "$SRC"; then

@@ -40,7 +40,7 @@ export PIPENV_QUIET="1"
 if [[ $UNITTEST == "1" ]]; then
     run "pipenv run python -m unittest $*"
 elif [[ $INTEGRATION == "1" ]]; then
-    run "pipenv run pytest -c integration.ini -p no:pytest_django --disable-pytest-warnings -vv -x -n0 --dist no --no-header $*"
+    run "pipenv run pytest -c integration.ini -p no:pytest_django --disable-pytest-warnings -vv -x -n0 --dist no --no-header --show-capture=stdout --capture=tee-sys $*"
 else
-    run "pipenv run pytest --reuse-db --disable-pytest-warnings -vv -x -n0 --dist no --no-header $*"
+    run "pipenv run pytest --reuse-db --disable-pytest-warnings -vv -x -n0 --dist no --no-header --show-capture=stdout --capture=tee-sys $*"
 fi

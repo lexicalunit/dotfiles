@@ -183,8 +183,8 @@ steam, tableplus, texstudio, the-unarchiver, transmission, vagrant,
 visual-studio-code, vlc
 
 Code Packages: DavidAnson.vscode-markdownlint, HookyQR.beautify, 
-James-Yu.latex-workshop, PascalReitermann93.vscode-yaml-sort, ban.spellright, 
-be5invis.toml, bibhasdn.unique-lines, dbaeumer.vscode-eslint, eamodio.gitlens, 
+James-Yu.latex-workshop, PascalReitermann93.vscode-yaml-sort, be5invis.toml, 
+bibhasdn.unique-lines, dbaeumer.vscode-eslint, eamodio.gitlens, 
 esbenp.prettier-vscode, exiasr.hadolint, foxundermoon.shell-format, 
 freakypie.code-python-isort, hashicorp.terraform, joe-re.sql-language-server, 
 karunamurti.haml, mgmcdermott.vscode-language-babel, mike-co.import-sorter, 

@@ -278,10 +278,28 @@ For git, shows who wrote the code found at the current directory.
 ```
 
 * * *
+### [`git-fp`](git-fp)
+```
+usage: git-fp [-h|--help]
+Git script for cleaning up merged tracking branches.
+```
+
+* * *
 ### [`git-lg`](git-lg)
 ```
 usage: git-lg [-h|--help] [ARGS]
 Forwards any additional ARGS to the git log command.
+```
+
+* * *
+### [`git-ltr`](git-ltr)
+```
+usage: git-ltr [-h|--help] [-r]
+Lists (a-la 'ls -ltr') git controlled source files in current directory.
+
+options:
+    -h, --help   show usage help
+    -r           recursive
 ```
 
 * * *
@@ -371,17 +389,6 @@ Build a useful git description of the changes in this branch.
 
 options:
  -h or --help shows usage help
-```
-
-* * *
-### [`git_ltr`](git_ltr)
-```
-usage: git_ltr [-h|--help] [-r]
-Lists (a-la 'ls -ltr') git controlled source files in current directory.
-
-options:
-    -h, --help   show usage help
-    -r           recursive
 ```
 
 * * *

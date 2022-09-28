@@ -1,0 +1,16 @@
+#!/bin/bash -e
+
+# Git script for cleaning up merged tracking branches.
+
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
+    echo "usage: ${0##*/} [-h|--help]" 1>&2
+    echo "Git script for cleaning up merged tracking branches." 1>&2
+    exit 1
+fi
+
+git fetch -p
+git branch -r |
+    awk '{print $1}' |
+    egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) |
+    awk '{print $1}' |
+    xargs git branch -D

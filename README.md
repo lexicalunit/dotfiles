@@ -102,7 +102,9 @@ with the argument `--help`.
 | [`firefox-tabs`](bin/firefox-tabs) | Attempts to list the currently open urls in your Firefox tabs. |
 | [`flip`](bin/flip) | Flips input upside down. |
 | [`git-authors`](bin/git-authors) | Git script for discovering who wrote the code at the current workin... |
+| [`git-fp`](bin/git-fp) | Git script for cleaning up merged tracking branches. |
 | [`git-lg`](bin/git-lg) | Git script for printing beautiful logs. |
+| [`git-ltr`](bin/git-ltr) | Lists (a-la 'ls -ltr') git controlled source files in current direc... |
 | [`git-name-change`](bin/git-name-change) | Clones a repo then changes the name and email address in entire his... |
 | [`git-parent`](bin/git-parent) | Finds the direct parent of the current branch in git. |
 | [`git-pretty`](bin/git-pretty) | Runs prettier on vue/js/ts files in the most recent N commits. |
@@ -111,7 +113,6 @@ with the argument `--help`.
 | [`git-run`](bin/git-run) | Runs a command on files that have recently changed. |
 | [`git-tidy`](bin/git-tidy) | Tidies up all the junk this repository. |
 | [`git-what`](bin/git-what) | Build a useful git description of the changes in this branch. |
-| [`git_ltr`](bin/git_ltr) | Lists (a-la 'ls -ltr') git controlled source files in current direc... |
 | [`golist`](bin/golist) | Looks for downloaded go modules in your system go path. |
 | [`install_odbc`](bin/install_odbc) | Sets up ODBC. |
 | [`macosver`](bin/macosver) | Prints current macOS version information. |

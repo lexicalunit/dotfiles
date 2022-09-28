@@ -24,7 +24,6 @@
 	cp = cherry-pick
 	f = fetch --prune
 	find = "!git ls-files | grep --color -Ei"
-	ltr = !cd ${GIT_PREFIX:-.} && git_ltr
 	ph = push
 	pl = pull
 	r = reset

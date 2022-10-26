@@ -16,4 +16,4 @@ BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 if [[ $BRANCH == "master" || $BRANCH == "develop" || $BRANCH == "main" ]]; then
     abort "$BRANCH is not a topic branch"
 fi
-run "git push $* -fu origin $BRANCH"
+run "git push $* -fu origin '$BRANCH'"

@@ -39,7 +39,8 @@ CODE_PACKAGES="                                                                \
     mohsen1.prettify-json ms-azuretools.vscode-docker                          \
     ms-python.black-formatter ms-python.python ms-python.vscode-pylance        \
     nickmillerdev.pytest-fixtures redhat.vscode-yaml                           \
-    richie5um2.vscode-sort-json sysoev.language-stylus timonwong.shellcheck"
+    richie5um2.vscode-sort-json streetsidesoftware.code-spell-checker          \
+    sysoev.language-stylus timonwong.shellcheck"
 
 CONDA_PACKAGES="                                                               \
     appdirs appnope attrs backcall brotlipy ca-certificates cachecontrol cachy \

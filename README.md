@@ -191,7 +191,8 @@ freakypie.code-python-isort, hashicorp.terraform, joe-re.sql-language-server,
 karunamurti.haml, mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
 mohsen1.prettify-json, ms-azuretools.vscode-docker, ms-python.black-formatter, 
 ms-python.python, ms-python.vscode-pylance, nickmillerdev.pytest-fixtures, 
-redhat.vscode-yaml, richie5um2.vscode-sort-json, sysoev.language-stylus, 
+redhat.vscode-yaml, richie5um2.vscode-sort-json, 
+streetsidesoftware.code-spell-checker, sysoev.language-stylus, 
 timonwong.shellcheck
 
 Conda Packages: appdirs, appnope, attrs, backcall, brotlipy, ca-certificates, 

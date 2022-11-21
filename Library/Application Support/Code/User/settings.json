@@ -131,7 +131,7 @@
   "spellright.notificationClassByParser": {
     "code": "information"
   },
-  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Enabled": false,
   "python.linting.pylintEnabled": false,
   "python.languageServer": "Pylance",
   "python.analysis.typeCheckingMode": "basic",

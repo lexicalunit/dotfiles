@@ -8,7 +8,8 @@
   "editor.renderWhitespace": "boundary",
   "editor.wordWrapColumn": 120,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": false
+    "source.fixAll.eslint": false,
+    "source.fixAll": true
   },
   "window.nativeTabs": false,
   "workbench.colorTheme": "Solarized Light",
@@ -75,7 +76,7 @@
     "editor.rulers": [90],
     "editor.defaultFormatter": "ms-python.black-formatter",
     "editor.codeActionsOnSave": {
-      "source.organizeImports": true
+      "source.organizeImports": false
     }
   },
   "files.associations": {
@@ -115,8 +116,6 @@
     "typescriptreact"
   ],
   "editor.formatOnSave": true,
-  "spellright.language": ["en"],
-  "spellright.documentTypes": ["markdown", "latex", "plaintext", "shellscript"],
   "window.restoreWindows": "none",
   "window.openFoldersInNewWindow": "off",
   "workbench.settings.useSplitJSON": true,
@@ -124,13 +123,6 @@
   "telemetry.telemetryLevel": "off",
   "window.openWithoutArgumentsInNewWindow": "off",
   "window.closeWhenEmpty": true,
-  "spellright.spellContext": "body comments strings",
-  "spellright.spellContextByClass": {
-    "shellscript": "body comments"
-  },
-  "spellright.notificationClassByParser": {
-    "code": "information"
-  },
   "python.linting.flake8Enabled": false,
   "python.linting.pylintEnabled": false,
   "python.languageServer": "Pylance",
@@ -288,6 +280,7 @@
     "npm",
     "npmjs",
     "onboarded",
+    "openapi",
     "osascript",
     "pango",
     "patreon",
@@ -314,9 +307,11 @@
     "redis",
     "reqs",
     "rspec",
+    "schemars",
     "scikit",
     "semver",
     "setuptools",
+    "Sharded",
     "shellcheck",
     "solargraph",
     "spdx",
@@ -355,5 +350,6 @@
     "yml",
     "zendesk"
   ],
-  "ruff.importStrategy": "fromEnvironment"
+  "ruff.importStrategy": "fromEnvironment",
+  "rust-analyzer.diagnostics.disabled": ["unresolved-proc-macro"]
 }

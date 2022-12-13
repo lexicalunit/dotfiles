@@ -149,6 +149,7 @@
 /.python_history
 /.python-eggs
 /.rediscli_history
+/.rustup
 /.sbt
 /.scala_history
 /.sh_history*

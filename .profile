@@ -192,7 +192,7 @@ if $INTERACTIVE; then
         if [[ -n $CONDA_DEFAULT_ENV ]]; then
             if command -v deactivate >/dev/null 2>&1; then
                 # shellcheck disable=SC1091
-                source deactivate
+                conda deactivate
             fi
         fi
 

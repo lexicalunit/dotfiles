@@ -185,7 +185,7 @@ ensure_no_anaconda() {
 
     if [[ -n $CONDA_DEFAULT_ENV ]]; then
         if command -v deactivate >/dev/null 2>&1; then
-            run "source deactivate"
+            run "conda deactivate"
         fi
     fi
 

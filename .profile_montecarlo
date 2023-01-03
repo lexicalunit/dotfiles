@@ -1,0 +1,43 @@
+# .profile_montecarlo
+
+montecarlo() {
+    echo $'\e[48;5;75m\e[1m\e[38;5;231m                                                    \e[0m'
+    echo $'\e[48;5;75m\e[1m\e[38;5;231m                                                    \e[0m'
+    echo $'\e[48;5;75m\e[1m\e[38;5;231m                                                    \e[0m'
+    echo $'\e[48;5;75m\e[1m\e[38;5;231m                                                    \e[0m'
+    echo $'\e[48;5;75m\e[1m\e[38;5;231m                                                    \e[0m'
+    echo $'\e[48;5;75m\e[1m\e[38;5;231m                                                    \e[0m'
+    echo $'\e[48;5;75m\e[1m\e[38;5;231m         (&@@&        &@@&        %@@@@             \e[0m'
+    echo $'\e[48;5;75m\e[1m\e[38;5;231m         (@@@@@      @@@@@     @@@@#  @@@@(         \e[0m'
+    echo $'\e[48;5;75m\e[1m\e[38;5;231m         (@@ @@@    @@@ @@   (@@                    \e[0m'
+    echo $'\e[48;5;75m\e[1m\e[38;5;231m         (@@  @@@  @@@  @@   @@@                    \e[0m'
+    echo $'\e[48;5;75m\e[1m\e[38;5;231m         (@@   @@&&@@   @@   (@@                    \e[0m'
+    echo $'\e[48;5;75m\e[1m\e[38;5;231m         (@@    @@@@    @@     @@@@#  @@@@(         \e[0m'
+    echo $'\e[48;5;75m\e[1m\e[38;5;231m         (&&     &&     &&        %@@@@             \e[0m'
+    echo $'\e[48;5;75m\e[1m\e[38;5;231m                                                    \e[0m'
+    echo $'\e[48;5;75m\e[1m\e[38;5;231m                                                    \e[0m'
+    echo $'\e[48;5;75m\e[1m\e[38;5;231m                                                    \e[0m'
+    echo $'\e[48;5;75m\e[1m\e[38;5;231m                                                    \e[0m'
+    echo $'\e[48;5;75m\e[1m\e[38;5;231m                                                    \e[0m'
+    echo $'\e[48;5;75m\e[1m\e[38;5;231m                                                    \e[0m'
+}
+
+_enter_virtualenv_for_montecarlo() {
+    if [[ $PWD == *"/montecarlo/"* && $OLDPWD != *"/montecarlo/"* ]]; then
+        exitconda
+        entervirtualenv
+        [[ -d env ]] && source env/bin/activate
+        export LIBRARY_PATH="/opt/homebrew/opt/openssl/lib"
+    elif [[ $PWD != *"/montecarlo/"* && $OLDPWD == *"/montecarlo/"* ]]; then
+        type deactivate >/dev/null 2>&1 && deactivate
+        exitvirtualenv
+        enterconda
+        unset LIBRARY_PATH
+    fi
+}
+
+if [[ -n $ZSH_VERSION ]]; then
+    if [[ ${chpwd_functions[*]} != *_enter_virtualenv_for_montecarlo* ]]; then
+        chpwd_functions+=("_enter_virtualenv_for_montecarlo")
+    fi
+fi

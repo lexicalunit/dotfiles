@@ -139,6 +139,8 @@
 /.npm
 /.nvm
 /.odbc.ini
+/.onelogin
+/.aws-onelogin-auth
 /.oracle_jre_usage
 /.pgpass
 /.pry_history

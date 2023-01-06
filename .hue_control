@@ -6,7 +6,7 @@
 #       There's probably a better way to set this up...
 
 BUSYLIGHT_PATH="${BUSYLIGHT_PATH:-/opt/busylight}"
-NODE_PATH="${NODE_PATH:-/usr/local/opt/node/bin/node}"
+NODE_PATH="${NODE_PATH:-/opt/homebrew/bin/node}"
 HUE_LOCK="/tmp/.hue-toggle"
 touch "$HUE_LOCK"
 

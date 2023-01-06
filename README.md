@@ -121,7 +121,6 @@ with the argument `--help`.
 | [`npm-update`](bin/npm-update) | Tries to update package dependencies to latest using ncu, npm, and ... |
 | [`paystub`](bin/paystub) | Get your latest paystub as PDF from Check's API. |
 | [`ppt`](bin/ppt) | Runs pipenv-pytest tests locally. |
-| [`python3.10`](bin/python3.10) | Symbolic link to '/opt/homebrew/opt/python@3.10/libexec/bin/python' |
 | [`rc`](bin/rc) | Spin up or attach to tumx running Check development services. |
 | [`root`](bin/root) | Prints the root of the current repository. |
 | [`set_wallpaper`](bin/set_wallpaper) | Uses Cocoa classes via PyObjC to set a desktop wallpaper on all scr... |
@@ -163,33 +162,32 @@ install packages/formulas/casks/whatever, see below for the list of included ite
 
 Homebrew Formulas: autoconf, awscli, bash, brotli, c-ares, cabal-install, 
 chrome-cli, coreutils, defaultbrowser, diff-so-fancy, duti, exa, exiftool, 
-expect, fasd, flake8, fontconfig, freetype, fribidi, fzf, gdbm, gettext, ghc, 
+expect, fasd, fontconfig, freetype, fribidi, fzf, gdbm, gettext, ghc, 
 ghostscript, git, git-lfs, git-secrets, glances, glib, gnu-sed, gnu-tar, go, 
-gobject-introspection, graphite2, harfbuzz, icu4c, imagemagick@6, isort, 
-jbig2dec, jemalloc, jez/formulae/pandoc-sidenote, jpeg, jq, krb5, libev, 
-libevent, libffi, libidn, libidn2, libpng, libpthread-stubs, libssh2, libtiff, 
-libtool, libunistring, libuv, libx11, libxau, libxcb, libxdmcp, libxext, 
-libxrender, libyaml, little-cms2, lzo, m4, mas, mpdecimal, ncurses, nghttp2, 
-node, nvm, oniguruma, openjpeg, openssl@1.1, pandoc, pango, pcre, pcre2, pidof, 
-pixman, pkg-config, postgresql, pyenv, pyenv-virtualenv, 
-pyenv-virtualenvwrapper, pyright, python@3.8, python@3.9, readline, ripgrep, 
-rlwrap, rust, shellcheck, shfmt, six, sqlite, tcl-tk, tmux, toolbox, tree, 
-utf8proc, vramsteg, watch, wdiff, webp, wget, xorgproto, xz, yarn, zsh
+gobject-introspection, graphite2, harfbuzz, icu4c, imagemagick@6, jbig2dec, 
+jemalloc, jez/formulae/pandoc-sidenote, jpeg, jq, krb5, libev, libevent, 
+libffi, libidn, libidn2, libpng, libpthread-stubs, libssh2, libtiff, libtool, 
+libunistring, libuv, libx11, libxau, libxcb, libxdmcp, libxext, libxrender, 
+libyaml, little-cms2, lzo, m4, mas, mpdecimal, ncurses, nghttp2, node, nvm, 
+oniguruma, openjpeg, openssl@1.1, pandoc, pango, pcre, pcre2, pidof, pixman, 
+pkg-config, postgresql, pyenv, pyenv-virtualenv, pyenv-virtualenvwrapper, 
+pyright, python@3.8, python@3.9, readline, ripgrep, rlwrap, rust, shellcheck, 
+shfmt, six, sqlite, tcl-tk, tmux, toolbox, tree, utf8proc, vramsteg, watch, 
+wdiff, webp, wget, xorgproto, xz, yarn, zsh
 
 Homebrew Casks: 1password, 1password/tap/1password-cli, chromedriver, discord, 
 disk-inventory-x, docker, dropbox, fantastical, flux, font-fira-code, 
-font-hack-nerd-font, google-chrome, iexplorer, istumbler, iterm2, lingon-x, 
-mactex, ngrok, obsidian, rectangle, signal, slack, snes9x, sourcetree, spotify, 
-steam, tableplus, texstudio, the-unarchiver, transmission, vagrant, 
+font-hack-nerd-font, google-chrome, iexplorer, iterm2, lingon-x, mactex, ngrok, 
+obsidian, rectangle, signal, slack, snes9x, sourcetree, spotify, steam, 
+tableplus, texstudio, the-unarchiver, transmission, vagrant, 
 visual-studio-code, vlc
 
 Code Packages: DavidAnson.vscode-markdownlint, HookyQR.beautify, 
 James-Yu.latex-workshop, PascalReitermann93.vscode-yaml-sort, be5invis.toml, 
 bibhasdn.unique-lines, charliermarsh.ruff, dbaeumer.vscode-eslint, 
 eamodio.gitlens, esbenp.prettier-vscode, exiasr.hadolint, 
-foxundermoon.shell-format, freakypie.code-python-isort, hashicorp.terraform, 
-joe-re.sql-language-server, karunamurti.haml, 
-mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
+foxundermoon.shell-format, hashicorp.terraform, joe-re.sql-language-server, 
+karunamurti.haml, mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
 mohsen1.prettify-json, ms-azuretools.vscode-docker, ms-python.black-formatter, 
 ms-python.python, ms-python.vscode-pylance, nickmillerdev.pytest-fixtures, 
 redhat.vscode-yaml, richie5um2.vscode-sort-json, 
@@ -228,7 +226,7 @@ Copyright 2006 Raph Levien. Released under the SIL Open Font License.
 
 The MIT License (MIT)
 
-Copyright (c) 2022, lexicalunit@lexicalunit.com
+Copyright (c) 2023, lexicalunit@lexicalunit.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

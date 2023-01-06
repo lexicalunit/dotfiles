@@ -189,33 +189,32 @@ steps:
 
 Homebrew Formulas: autoconf, awscli, bash, brotli, c-ares, cabal-install, 
 chrome-cli, coreutils, defaultbrowser, diff-so-fancy, duti, exa, exiftool, 
-expect, fasd, flake8, fontconfig, freetype, fribidi, fzf, gdbm, gettext, ghc, 
+expect, fasd, fontconfig, freetype, fribidi, fzf, gdbm, gettext, ghc, 
 ghostscript, git, git-lfs, git-secrets, glances, glib, gnu-sed, gnu-tar, go, 
-gobject-introspection, graphite2, harfbuzz, icu4c, imagemagick@6, isort, 
-jbig2dec, jemalloc, jez/formulae/pandoc-sidenote, jpeg, jq, krb5, libev, 
-libevent, libffi, libidn, libidn2, libpng, libpthread-stubs, libssh2, libtiff, 
-libtool, libunistring, libuv, libx11, libxau, libxcb, libxdmcp, libxext, 
-libxrender, libyaml, little-cms2, lzo, m4, mas, mpdecimal, ncurses, nghttp2, 
-node, nvm, oniguruma, openjpeg, openssl@1.1, pandoc, pango, pcre, pcre2, pidof, 
-pixman, pkg-config, postgresql, pyenv, pyenv-virtualenv, 
-pyenv-virtualenvwrapper, pyright, python@3.8, python@3.9, readline, ripgrep, 
-rlwrap, rust, shellcheck, shfmt, six, sqlite, tcl-tk, tmux, toolbox, tree, 
-utf8proc, vramsteg, watch, wdiff, webp, wget, xorgproto, xz, yarn, zsh
+gobject-introspection, graphite2, harfbuzz, icu4c, imagemagick@6, jbig2dec, 
+jemalloc, jez/formulae/pandoc-sidenote, jpeg, jq, krb5, libev, libevent, 
+libffi, libidn, libidn2, libpng, libpthread-stubs, libssh2, libtiff, libtool, 
+libunistring, libuv, libx11, libxau, libxcb, libxdmcp, libxext, libxrender, 
+libyaml, little-cms2, lzo, m4, mas, mpdecimal, ncurses, nghttp2, node, nvm, 
+oniguruma, openjpeg, openssl@1.1, pandoc, pango, pcre, pcre2, pidof, pixman, 
+pkg-config, postgresql, pyenv, pyenv-virtualenv, pyenv-virtualenvwrapper, 
+pyright, python@3.8, python@3.9, readline, ripgrep, rlwrap, rust, shellcheck, 
+shfmt, six, sqlite, tcl-tk, tmux, toolbox, tree, utf8proc, vramsteg, watch, 
+wdiff, webp, wget, xorgproto, xz, yarn, zsh
 
 Homebrew Casks: 1password, 1password/tap/1password-cli, chromedriver, discord, 
 disk-inventory-x, docker, dropbox, fantastical, flux, font-fira-code, 
-font-hack-nerd-font, google-chrome, iexplorer, istumbler, iterm2, lingon-x, 
-mactex, ngrok, obsidian, rectangle, signal, slack, snes9x, sourcetree, spotify, 
-steam, tableplus, texstudio, the-unarchiver, transmission, vagrant, 
+font-hack-nerd-font, google-chrome, iexplorer, iterm2, lingon-x, mactex, ngrok, 
+obsidian, rectangle, signal, slack, snes9x, sourcetree, spotify, steam, 
+tableplus, texstudio, the-unarchiver, transmission, vagrant, 
 visual-studio-code, vlc
 
 Code Packages: DavidAnson.vscode-markdownlint, HookyQR.beautify, 
 James-Yu.latex-workshop, PascalReitermann93.vscode-yaml-sort, be5invis.toml, 
 bibhasdn.unique-lines, charliermarsh.ruff, dbaeumer.vscode-eslint, 
 eamodio.gitlens, esbenp.prettier-vscode, exiasr.hadolint, 
-foxundermoon.shell-format, freakypie.code-python-isort, hashicorp.terraform, 
-joe-re.sql-language-server, karunamurti.haml, 
-mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
+foxundermoon.shell-format, hashicorp.terraform, joe-re.sql-language-server, 
+karunamurti.haml, mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
 mohsen1.prettify-json, ms-azuretools.vscode-docker, ms-python.black-formatter, 
 ms-python.python, ms-python.vscode-pylance, nickmillerdev.pytest-fixtures, 
 redhat.vscode-yaml, richie5um2.vscode-sort-json, 
@@ -473,13 +472,6 @@ options:
 ```
 
 * * *
-### [`python3.10`](python3.10)
-Symbolic link to '/opt/homebrew/opt/python@3.10/libexec/bin/python'
-```
-./usages: line 74: ./python3.10: No such file or directory
-```
-
-* * *
 ### [`rc`](rc)
 ```
 usage: rc
@@ -500,13 +492,7 @@ Prints the root directory of the current source repository.
 * * *
 ### [`set_wallpaper`](set_wallpaper)
 ```
-usage: set_wallpaper [-h] [--path PATH]
-
-Sets the desktop picture on all screens
-
-optional arguments:
-  -h, --help   show this help message and exit
-  --path PATH  The path of the image
+./usages: ./set_wallpaper: /usr/bin/python: bad interpreter: No such file or directory
 ```
 
 * * *

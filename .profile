@@ -125,9 +125,9 @@ if $INTERACTIVE; then
     # setup base16-shell -- https://github.com/chriskempson/base16-shell
     ################################################################################
     _interactive_log "setting up base16-shell"
-    BASE16_SHELL=$HOME/.config/base16-shell/
-    [ -n "$PS1" ] && [ -s "$BASE16_SHELL/profile_helper.sh" ] && eval "$("$BASE16_SHELL/profile_helper.sh")"
-    type -f _base16 >/dev/null 2>&1 && _base16 "$BASE16_SHELL/scripts/base16-solarized-light.sh" solarized-light
+    BASE16_SHELL="$HOME/.config/base16-shell/"
+    # shellcheck disable=SC1091
+    [ -n "$PS1" ] && [ -s "$BASE16_SHELL/profile_helper.sh" ] && source "$BASE16_SHELL/profile_helper.sh"
 
     ################################################################################
     # python environment control

@@ -464,11 +464,10 @@ options:
 ### [`ppt`](ppt)
 ```
 usage: ppt [-h|--help] args
-Runs pipenv-pytest tests locally without xdist and with args passthru.
+Runs pytest tests locally.
 
 options:
     -h, --help   show usage help
-    -u           use unittest instead of pytest
 ```
 
 * * *

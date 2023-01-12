@@ -120,7 +120,7 @@ with the argument `--help`.
 | [`nopw`](bin/nopw) | Enables password-less ssh TO username@remotehost FROM localhost. |
 | [`npm-update`](bin/npm-update) | Tries to update package dependencies to latest using ncu, npm, and ... |
 | [`paystub`](bin/paystub) | Get your latest paystub as PDF from Check's API. |
-| [`ppt`](bin/ppt) | Runs pipenv-pytest tests locally. |
+| [`ppt`](bin/ppt) | Runs pytest tests locally. |
 | [`rc`](bin/rc) | Spin up or attach to tumx running Check development services. |
 | [`root`](bin/root) | Prints the root of the current repository. |
 | [`set_wallpaper`](bin/set_wallpaper) | Uses Cocoa classes via PyObjC to set a desktop wallpaper on all scr... |

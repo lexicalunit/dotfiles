@@ -154,6 +154,7 @@
 /.rustup
 /.sbt
 /.scala_history
+/.serverlessrc
 /.sh_history*
 /.solargraph
 /.sqlite_history

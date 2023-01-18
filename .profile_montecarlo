@@ -23,16 +23,21 @@ montecarlo() {
 }
 
 _enter_virtualenv_for_montecarlo() {
-    if [[ $PWD == *"/montecarlo/"* && $OLDPWD != *"/montecarlo/"* ]]; then
-        exitconda
-        entervirtualenv
-        [[ -d env ]] && source env/bin/activate
-        export LIBRARY_PATH="/opt/homebrew/opt/openssl/lib"
+    if [[ $PWD == *"/montecarlo/"* && $OLDPWD != *"/montecarlo/"* ]] ||
+        [[ $PWD == *"/montecarlo/saas-serverless/"* && $OLDPWD != *"/montecarlo/saas-serverless/"* ]]; then
+        if [[ -d env ]]; then
+            exitconda
+            entervirtualenv
+            source env/bin/activate
+            export LIBRARY_PATH="/opt/homebrew/opt/openssl@1.1/lib"
+        fi
     elif [[ $PWD != *"/montecarlo/"* && $OLDPWD == *"/montecarlo/"* ]]; then
-        type deactivate >/dev/null 2>&1 && deactivate
-        exitvirtualenv
-        enterconda
-        unset LIBRARY_PATH
+        if type deactivate >/dev/null 2>&1; then
+            deactivate
+            exitvirtualenv
+            enterconda
+            unset LIBRARY_PATH
+        fi
     fi
 }
 

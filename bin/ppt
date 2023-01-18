@@ -46,7 +46,7 @@ COMMAND=""
 if [[ $USE_UNITTEST == "1" ]]; then
     COMMAND="python -m unittest $*"
 elif [[ $USE_PYTEST == "1" ]]; then
-    COMMAND="pytest --reuse-db --disable-pytest-warnings -vv --no-header --show-capture=stdout --capture=tee-sys $*"
+    COMMAND="pytest --disable-pytest-warnings -vv --no-header --show-capture=stdout --capture=tee-sys $*"
 fi
 
 if [[ $USE_PIPENV == "1" ]]; then

@@ -161,9 +161,11 @@
     "autodelete",
     "autosave",
     "autouse",
+    "backoff",
     "basename",
     "bigint",
     "blinkstick",
+    "boto",
     "btree",
     "bugsnag",
     "byteswap",
@@ -269,6 +271,7 @@
     "mindbody",
     "mit",
     "mixins",
+    "montecarlodata",
     "motd",
     "mypy",
     "namespaced",
@@ -303,6 +306,7 @@
     "pyproject",
     "pyright",
     "pytest",
+    "pytz",
     "quickstart",
     "redis",
     "reqs",
@@ -351,5 +355,6 @@
     "zendesk"
   ],
   "ruff.importStrategy": "fromEnvironment",
-  "rust-analyzer.diagnostics.disabled": ["unresolved-proc-macro"]
+  "rust-analyzer.diagnostics.disabled": ["unresolved-proc-macro"],
+  "editor.inlineSuggest.enabled": true
 }

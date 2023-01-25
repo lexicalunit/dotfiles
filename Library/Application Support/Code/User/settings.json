@@ -189,6 +189,8 @@
     "datadog",
     "datetime",
     "ddtrace",
+    "dedupe",
+    "deduped",
     "demisexual",
     "dependabot",
     "deserialized",

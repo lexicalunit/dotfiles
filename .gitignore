@@ -62,6 +62,9 @@
 # 1Pass
 /.config/op/config
 
+# direnv
+/.local/share/direnv
+
 # Applications
 /.ammonite
 /.asdf

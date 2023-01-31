@@ -161,8 +161,8 @@ install packages/formulas/casks/whatever, see below for the list of included ite
 | all | Runs all steps |
 
 Homebrew Formulas: autoconf, awscli, bash, brotli, c-ares, cabal-install, 
-chrome-cli, coreutils, defaultbrowser, diff-so-fancy, duti, exa, exiftool, 
-expect, fasd, fontconfig, freetype, fribidi, fzf, gdbm, gettext, ghc, 
+chrome-cli, coreutils, defaultbrowser, diff-so-fancy, direnv, duti, exa, 
+exiftool, expect, fasd, fontconfig, freetype, fribidi, fzf, gdbm, gettext, ghc, 
 ghostscript, git, git-lfs, git-secrets, glances, glib, gnu-sed, gnu-tar, go, 
 gobject-introspection, graphite2, harfbuzz, icu4c, imagemagick@6, jbig2dec, 
 jemalloc, jez/formulae/pandoc-sidenote, jpeg, jq, krb5, libev, libevent, 

@@ -47,3 +47,5 @@ if [[ -n $ZSH_VERSION ]]; then
         chpwd_functions+=("_enter_virtualenv_for_montecarlo")
     fi
 fi
+
+eval "$(direnv hook zsh)"

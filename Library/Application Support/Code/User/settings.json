@@ -362,6 +362,6 @@
     "zendesk"
   ],
   "ruff.importStrategy": "fromEnvironment",
-  "rust-analyzer.diagnostics.disabled": ["unresolved-proc-macro"],
-  "editor.inlineSuggest.enabled": true
+  "editor.inlineSuggest.enabled": true,
+  "git.openRepositoryInParentFolders": "never"
 }

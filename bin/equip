@@ -64,7 +64,7 @@ GO_PACKAGES="                                                                  \
     github.com/BurntSushi/toml"
 
 CARGO_PACKAGES="                                                               \
-    cargo-update jless loc"
+    cargo-update jless loc porsmo"
 # END GENERATED PACKAGE LISTS
 
 ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS CODE_PACKAGES CONDA_PACKAGES

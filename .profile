@@ -270,6 +270,7 @@ if $INTERACTIVE; then
             --max-columns "$(stty size | cut -d' ' -f2)" "${PARAMS}"
     }
     alias ltr='ls -l -tmodified -snew '
+    alias pm='porsmo '
 
     if type npm >/dev/null 2>&1; then
         linked() {

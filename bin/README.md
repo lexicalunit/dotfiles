@@ -242,7 +242,7 @@ tmpin, typescript, yo
 
 Go Packages: github.com/BurntSushi/toml
 
-Cargo Packages: cargo-update, jless, loc
+Cargo Packages: cargo-update, jless, loc, porsmo
 ```
 
 * * *

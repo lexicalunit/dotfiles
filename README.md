@@ -91,7 +91,6 @@ with the argument `--help`.
 | [`codeclimate`](bin/codeclimate) | Runs Code Climate on the current working directory. |
 | [`colortest`](bin/colortest) | Prints out an entire color palette of terminal color codes. |
 | [`daemons`](bin/daemons) | Finds and removes unwanted daemons and agents. |
-| [`def`](bin/def) | Finds definitions for terms. |
 | [`deploy_dotfiles`](bin/deploy_dotfiles) | Installs bin and env from this repository to remote server via ssh. |
 | [`die`](bin/die) | Kills processes based on process name. |
 | [`doc`](bin/doc) | Builds HTML output from Markdown file. |

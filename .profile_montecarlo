@@ -1,6 +1,6 @@
 # .profile_montecarlo
 
-montecarlo() {
+mc() {
     echo $'\e[48;5;75m\e[1m\e[38;5;231m                                                    \e[0m'
     echo $'\e[48;5;75m\e[1m\e[38;5;231m                                                    \e[0m'
     echo $'\e[48;5;75m\e[1m\e[38;5;231m                                                    \e[0m'
@@ -22,14 +22,22 @@ montecarlo() {
     echo $'\e[48;5;75m\e[1m\e[38;5;231m                                                    \e[0m'
 }
 
+_enter_virtualenv_dir() {
+    local venv_dir="$1"
+    exitconda
+    entervirtualenv
+    # shellcheck disable=SC1091
+    source "$venv_dir/bin/activate"
+    export LIBRARY_PATH="/opt/homebrew/opt/openssl@1.1/lib"
+}
+
 _enter_virtualenv_for_montecarlo() {
     if [[ $PWD == *"/montecarlo/"* && $OLDPWD != *"/montecarlo/"* ]] ||
         [[ $PWD == *"/montecarlo/saas-serverless/"* && $OLDPWD != *"/montecarlo/saas-serverless/"* ]]; then
         if [[ -d env ]]; then
-            exitconda
-            entervirtualenv
-            source env/bin/activate
-            export LIBRARY_PATH="/opt/homebrew/opt/openssl@1.1/lib"
+            _enter_virtualenv_dir env
+        elif [[ -d venv ]]; then
+            _enter_virtualenv_dir venv
         fi
     elif [[ $PWD != *"/montecarlo/"* && $OLDPWD == *"/montecarlo/"* ]] ||
         [[ $PWD != *"/montecarlo/saas-serverless/"* && $OLDPWD == *"/montecarlo/saas-serverless/"* ]]; then

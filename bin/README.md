@@ -82,19 +82,6 @@ usage: daemons [-h|--help] [PATTERN|FILE_PATH]
 ```
 
 * * *
-### [`def`](def)
-```
-usage: def [options] <query>
-
-Finds definitions for terms.
-
-options:
-    -h, --help   show usage help
-    -s           case-sensitive
-    -o           open source documents
-```
-
-* * *
 ### [`deploy_dotfiles`](deploy_dotfiles)
 ```
 usage: deploy_dotfiles SSH_ARGS

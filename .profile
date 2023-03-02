@@ -136,74 +136,23 @@ if $INTERACTIVE; then
 
     export PYTHONSTARTUP
     export VIRTUAL_ENV_DISABLE_PROMPT=1
-    export PYTHON_ENV=""
 
-    entervirtualenv() {
-        exitconda
-
-        if type virtualenvwrapper.sh >/dev/null 2>&1; then
-            # shellcheck source=virtualenvwrapper.sh
-            # shellcheck disable=SC1091
-            source "$(command -v virtualenvwrapper.sh)"
-        fi
-        export PYTHON_ENV="virtualenv"
-    }
-
-    exitvirtualenv() {
-        if [[ -n $VIRTUAL_ENV ]]; then
-            if type deactivate >/dev/null 2>&1; then
-                deactivate
-            fi
-        fi
-        unset PYTHON_ENV
-    }
-
-    # shellcheck disable=SC2120
-    enterconda() {
-        # should be safe to exitvirtualenv just in case we're in a virtualenv
-        exitvirtualenv
-
-        # assume anaconda is installed in your home directory unless specified
-        local ANACONDA_DIR_NAME="$BREW_PREFIX/Caskroom/miniconda/base"
-        if [[ -z $1 ]]; then
-            export ANACONDA_ROOT="$ANACONDA_DIR_NAME"
+    if [[ -d "$HOME/micromamba" ]]; then
+        export MAMBA_EXE="$(brew --prefix micromamba)/bin/micromamba"
+        export MAMBA_ROOT_PREFIX="$HOME/micromamba"
+        __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --prefix "$MAMBA_ROOT_PREFIX" 2>/dev/null)"
+        if [ $? -eq 0 ]; then
+            eval "$__mamba_setup"
         else
-            export ANACONDA_ROOT="$1"
-        fi
-
-        if [[ ! -e $ANACONDA_ROOT ]]; then
-            echo "error: can not enter anaconda env at '$ANACONDA_ROOT', directory does not exist."
-            return 1
-        fi
-
-        test -d "$ANACONDA_ROOT/bin" && PATH="$_:$PATH"
-        test -d "$ANACONDA_ROOT/share/man" && MANPATH="$_:$MANPATH"
-        export PATH
-        export MANPATH
-        export PYTHON_ENV="conda"
-
-        # provide bash completion for conda
-        if [[ $SHELL =~ "bash" ]]; then
-            eval "$(register-python-argcomplete conda)"
-        fi
-    }
-
-    exitconda() {
-        if [[ -n $CONDA_DEFAULT_ENV ]]; then
-            if command -v deactivate >/dev/null 2>&1; then
-                # shellcheck disable=SC1091
-                conda deactivate
+            if [ -f "$HOME/micromamba/etc/profile.d/micromamba.sh" ]; then
+                source "$HOME/micromamba/etc/profile.d/micromamba.sh"
+            else
+                export PATH="$HOME/micromamba/bin:$PATH"
             fi
         fi
-
-        if [[ -n $ANACONDA_ROOT ]]; then
-            PATH="$(echo "$PATH" | sed "s@$ANACONDA_ROOT/bin@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
-            MANPATH="$(echo "$PATH" | sed "s@$ANACONDA_ROOT/share/man@@g;s@::@:@g;s@^:@@;s@:\$@@;")"
-            export PATH
-            export MANPATH
-        fi
-        unset PYTHON_ENV
-    }
+        unset __mamba_setup
+        eval "$(micromamba shell hook --shell=zsh)"
+    fi
 
     HISTFILE="$HOME/.$(basename "$SHELL")_history.$(uname -s)"
     export HISTFILE
@@ -214,6 +163,14 @@ if $INTERACTIVE; then
     export SAVEHIST="$TERMINAL_HISTORY_SIZE"
 
     ################################################################################
+    # direnv setup
+    ################################################################################
+    if command -v direnv >/dev/null 2>&1; then
+        _interactive_log "setting up direnv"
+        eval "$(direnv hook zsh)"
+    fi
+
+    ################################################################################
     # setup terminal colors and editors
     ################################################################################
     # setup editors (default to vim)
@@ -221,6 +178,7 @@ if $INTERACTIVE; then
     export CVSEDITOR=vim
     export XEDITOR=vim
     export IGNOREEOF=0
+    alias mm='micromamba '
     alias e='vim . '
     alias edit='vim '
     ew() { type "$1" >/dev/null 2>&1 && vim "$(command -v "$1")"; }
@@ -369,11 +327,11 @@ if $INTERACTIVE; then
     source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
     ################################################################################
-    # always assume we want our default anaconda environment
+    # always assume we want our default micromamba environment
     ################################################################################
-    _interactive_log "setting up conda environment"
+    _interactive_log "setting up micromamba environment"
     # shellcheck disable=SC2119
-    enterconda || true
+    micromamba activate || true
 
     ################################################################################
     # general environment setup

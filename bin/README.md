@@ -163,7 +163,7 @@ steps:
     ext        Ensure file extension associations are correct
     zsh        Ensure shell is latest version of zsh from Homebrew
     env        Update environment configuration and submodules
-    python     Upgrade/Install python and conda packages
+    python     Upgrade/Install python and mamba packages
     node       Ensure Node modules are installed via npm
     go         Ensure Go packages are installed
     cargo      Ensure Rust packages are installed via cargo
@@ -208,7 +208,7 @@ redhat.vscode-yaml, richie5um2.vscode-sort-json,
 streetsidesoftware.code-spell-checker, sysoev.language-stylus, 
 timonwong.shellcheck
 
-Conda Packages: appdirs, appnope, attrs, backcall, brotlipy, ca-certificates, 
+Mamba Packages: appdirs, appnope, attrs, backcall, brotlipy, ca-certificates, 
 cachecontrol, cachy, certifi, cffi, charset-normalizer, cleo, clikit, 
 crashtest, cryptography, decorator, distlib, filelock, html5lib, idna, 
 importlib-metadata, importlib_metadata, iniconfig, ipython, ipython_genutils, 
@@ -246,7 +246,7 @@ usage: firefox-tabs [-h]
 
 List open urls in Firefox tabs
 
-optional arguments:
+options:
   -h, --help  show this help message and exit
 ```
 

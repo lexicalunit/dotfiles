@@ -25,35 +25,3 @@ gitlab() {
 
   "
 }
-
-# _enter_go_path_for_gitlab_projects() {
-#     if [[ $PWD =~ .*/gitlab/?.* && ! $OLDPWD =~ .*/gitlab/?.* ]]; then
-#         # gotta strip out things setup by .profile...
-#         test -d "$GOPATH/bin" && PATH="$(echo "$PATH" | sed "s@$GOPATH/bin@@g;s@::*@:@g;s@:\$@@g;s@^:@@g")"
-#         GOPATH="/usr/local/lib/gitlab/gopath"
-#         if [[ ! -d $GOPATH ]]; then
-#             mkdir -p "$GOPATH/bin"
-#         fi
-#         test -d "$GOPATH/bin" && PATH="$PATH:$_"
-#         export PATH GOPATH
-#     elif [[ ! $PWD =~ .*/gitlab/?.* && $OLDPWD =~ .*/gitlab/?.* ]]; then
-#         # reverse the above...
-#         test -d "$GOPATH/bin" && PATH="$(echo "$PATH" | sed "s@$GOPATH/bin@@g;s@::*@:@g;s@:\$@@g;s@^:@@g")"
-#         GOPATH="/usr/local/lib/gopath"
-#         if [[ ! -d $GOPATH ]]; then
-#             mkdir -p "$GOPATH/bin"
-#         fi
-#         test -d "$GOPATH/bin" && PATH="$PATH:$_"
-#         export PATH GOPATH
-#     fi
-# }
-
-# if [[ -n $ZSH_VERSION ]]; then
-#     if [[ ${chpwd_functions[*]} != *_enter_go_path_for_gitlab_projects* ]]; then
-#         chpwd_functions+=("_enter_go_path_for_gitlab_projects")
-#     fi
-# fi
-
-# # This should makes our rspec start up times significantly faster,
-# # but spring seems to shit the bed all the time and it's not worth it.
-# export ENABLE_SPRING=0

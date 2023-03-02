@@ -65,6 +65,9 @@
 # direnv
 /.local/share/direnv
 
+# micromamba
+/micromamba
+
 # Applications
 /.ammonite
 /.asdf

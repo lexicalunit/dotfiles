@@ -3,18 +3,16 @@
 export PIPENV_VERBOSITY=-1
 export DD_TRACE_ENABLED="false"
 
-# I typically use conda environments for python,
+# I typically use micromamba environments for python,
 # SpellBot sets up a in-project virtualenv though.
 _enter_virtualenv_for_spellbot() {
     if [[ $PWD == *"/spellbot" && $OLDPWD != *"/spellbot" ]]; then
-        [[ -d env ]] && exitconda
-        [[ -d env ]] && entervirtualenv
+        [[ -d env ]] && micromamba deactivate
         [[ -d env ]] && source env/bin/activate
         [[ -d env ]] && poetry env use env/bin/python
     elif [[ $PWD != *"/spellbot" && $OLDPWD == *"/spellbot" ]]; then
         [[ -d env ]] && type deactivate >/dev/null 2>&1 && deactivate
-        [[ -d env ]] && exitvirtualenv
-        [[ -d env ]] && enterconda
+        [[ -d env ]] && micromamba activate
     fi
 }
 

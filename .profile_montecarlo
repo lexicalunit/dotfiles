@@ -23,12 +23,24 @@ mc() {
 }
 
 _enter_virtualenv_dir() {
+    if [[ -n $CONDA_DEFAULT_ENV ]]; then
+        micromamba deactivate
+    elif [[ -n $VIRTUAL_ENV ]]; then
+        deactivate
+    fi
+
     local venv_dir="$1"
-    exitconda
-    entervirtualenv
     # shellcheck disable=SC1091
     source "$venv_dir/bin/activate"
     export LIBRARY_PATH="/opt/homebrew/opt/openssl@1.1/lib"
+}
+
+_exit_virtualenv_dir() {
+    if type deactivate >/dev/null 2>&1; then
+        deactivate
+        unset LIBRARY_PATH
+        micromamba activate
+    fi
 }
 
 _enter_virtualenv_for_montecarlo() {
@@ -42,10 +54,7 @@ _enter_virtualenv_for_montecarlo() {
     elif [[ $PWD != *"/montecarlo/"* && $OLDPWD == *"/montecarlo/"* ]] ||
         [[ $PWD != *"/montecarlo/saas-serverless/"* && $OLDPWD == *"/montecarlo/saas-serverless/"* ]]; then
         if type deactivate >/dev/null 2>&1; then
-            deactivate
-            exitvirtualenv
-            enterconda
-            unset LIBRARY_PATH
+            _exit_virtualenv_dir
         fi
     fi
 }
@@ -55,5 +64,3 @@ if [[ -n $ZSH_VERSION ]]; then
         chpwd_functions+=("_enter_virtualenv_for_montecarlo")
     fi
 fi
-
-eval "$(direnv hook zsh)"

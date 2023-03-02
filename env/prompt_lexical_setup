@@ -28,14 +28,10 @@ function +vi-git_precmd {
 
 function prompt_lexical_python_pacman {
     local pac=""
-    if [[ -n $PYTHON_ENV ]]; then
-        pac="$PYTHON_ENV"
-        if [[ -n $VIRTUAL_ENV ]]; then
-            pac="$pac:$(basename "$VIRTUAL_ENV")"
-        elif [[ -n $CONDA_DEFAULT_ENV ]]; then
-            pac="$pac:$CONDA_DEFAULT_ENV"
-        fi
-        pac="$pac"
+    if [[ -n $VIRTUAL_ENV ]]; then
+        pac="virtualenv:$(basename "$VIRTUAL_ENV")"
+    elif [[ -n $CONDA_DEFAULT_ENV ]]; then
+        pac="mamba:$CONDA_DEFAULT_ENV"
     else
         pac="system"
     fi

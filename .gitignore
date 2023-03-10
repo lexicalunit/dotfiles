@@ -83,6 +83,7 @@
 /.cache/babl
 /.cache/bower
 /.cache/fontconfig
+/.cache/node
 /.cache/pre-commit
 /.cache/prezto
 /.cargo
@@ -136,6 +137,7 @@
 /.local/share/pry/pry_history
 /.local/share/recently-used.xbel
 /.m2
+/.aws-onelogin-auth
 /.matplotlib
 /.minikube
 /.mysql_history
@@ -147,9 +149,9 @@
 /.nvm
 /.odbc.ini
 /.onelogin
-/.aws-onelogin-auth
 /.oracle_jre_usage
 /.pgpass
+/.pnpm-state/pnpm-state.json
 /.pry_history
 /.psql_history
 /.pyenv

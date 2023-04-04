@@ -372,5 +372,11 @@
   ],
   "ruff.importStrategy": "fromEnvironment",
   "editor.inlineSuggest.enabled": true,
-  "git.openRepositoryInParentFolders": "never"
+  "git.openRepositoryInParentFolders": "never",
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  }
 }

@@ -50,9 +50,9 @@ MAMBA_PACKAGES="                                                               \
     msgpack-python ncurses openssl packaging parso pastel pexpect pickleshare  \
     pip pkginfo pluggy poetry poetry-core prompt-toolkit ptyprocess py pycosat \
     pycparser pygments pylev pyopenssl pyparsing pyrsistent pysocks pytest     \
-    readline requests requests-toolbelt ruamel_yaml setuptools shellingham six \
-    sqlite tk toml tomlkit tqdm traitlets urllib3 virtualenv wcwidth           \
-    webencodings wheel xz yaml zipp zlib"
+    pyyaml readline requests requests-toolbelt ruamel_yaml setuptools          \
+    shellingham six sqlite tk toml tomlkit tqdm traitlets urllib3 virtualenv   \
+    wcwidth webencodings wheel xz yaml zipp zlib"
 
 NODE_MODULES="                                                                 \
     @ibm/plex JSON all-contributors-cli create-react-app cson dockerlint       \

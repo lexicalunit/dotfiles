@@ -201,10 +201,10 @@ jedi, jsonschema, keyring, libcxx, libffi, lockfile, lz4, lz4-c,
 matplotlib-inline, more-itertools, msgpack-python, ncurses, openssl, packaging, 
 parso, pastel, pexpect, pickleshare, pip, pkginfo, pluggy, poetry, poetry-core, 
 prompt-toolkit, ptyprocess, py, pycosat, pycparser, pygments, pylev, pyopenssl, 
-pyparsing, pyrsistent, pysocks, pytest, readline, requests, requests-toolbelt, 
-ruamel_yaml, setuptools, shellingham, six, sqlite, tk, toml, tomlkit, tqdm, 
-traitlets, urllib3, virtualenv, wcwidth, webencodings, wheel, xz, yaml, zipp, 
-zlib
+pyparsing, pyrsistent, pysocks, pytest, pyyaml, readline, requests, 
+requests-toolbelt, ruamel_yaml, setuptools, shellingham, six, sqlite, tk, toml, 
+tomlkit, tqdm, traitlets, urllib3, virtualenv, wcwidth, webencodings, wheel, 
+xz, yaml, zipp, zlib
 
 Node Modules: @ibm/plex, JSON, all-contributors-cli, create-react-app, cson, 
 dockerlint, eslint, external-ip, generator-code, generator-generator, 

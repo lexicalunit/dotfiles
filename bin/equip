@@ -182,7 +182,7 @@ ensure_no_mamba() {
     # MacVim, due to bundling many duplicates of system and Homebrew-available
     # tools. Make sure to exit it before doing anything with Homebrew.
     if [[ -n $CONDA_PREFIX ]]; then
-        run "micromamba deactivate"
+        run "mamba deactivate"
     fi
 }
 
@@ -1196,7 +1196,7 @@ step_cask() {
     for I in $(brew ls --cask -1); do
         name="${I%@*}"
         if ! echo "$HOMEBREW_CASKS" | grep -Eq "$(echo "\\b$name\\b" | sed 's/ (!)//g')"; then
-            if [[ $I != "micromamba" ]]; then
+            if [[ $I != "mamba" ]]; then
                 show -i "$I installed but not managed by equip via brew cask"
             fi
         fi
@@ -1306,25 +1306,30 @@ step_bash() {
 # Step python
 ################################################################################
 step_python() {
-    if run "command -v micromamba >/dev/null 2>&1"; then
-        show "micromamba already installed"
+    if run "command -v mamba >/dev/null 2>&1"; then
+        show "mamba already installed"
     else
         ensure_homebrew_updated
-        install_brew_cask micromamba || abort "Can't install micromamba via brew-cask"
+        cd /tmp && {
+            run "curl -L -O 'https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh'"
+            cd - || exit 1
+        }
+        run "chmod +x /tmp/Mambaforge-$(uname)-$(uname -m).sh"
+        run "/tmp/Mambaforge-$(uname)-$(uname -m).sh -bu"
         ensure_homebrew_updated_cleanup
     fi
 
     if [[ -z $CONDA_PREFIX ]]; then
-        run "micromamba activate"
+        run "mamba activate"
     fi
 
-    # Install mamba packages that don't come pre-installed with micromamba
+    # Install mamba packages that don't come pre-installed with mamba
     local MAMBA_LIST
-    MAMBA_LIST="$(micromamba list --json | jq -r '.[].name' | grep -Ev '^python$')"
+    MAMBA_LIST="$(mamba list --json | jq -r '.[].name' | grep -Ev '^python$')"
     IFS=' '
     for I in $MAMBA_PACKAGES; do
         if ! echo "$MAMBA_LIST" | grep -q "$I"; then
-            run "micromamba install -q -c conda-forge --yes $I"
+            run "mamba install -q -c conda-forge --yes $I"
         fi
     done
 
@@ -1332,7 +1337,7 @@ step_python() {
     for I in $MAMBA_LIST; do
         name="${I%@*}"
         if ! echo "$MAMBA_PACKAGES" | grep -Eq "\\b$name\\b"; then
-            show -i "$I installed but not managed by equip via micromamba"
+            show -i "$I installed but not managed by equip via mamba"
         fi
     done
 }

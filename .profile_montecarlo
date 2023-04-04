@@ -24,7 +24,7 @@ mc() {
 
 _enter_virtualenv_dir() {
     if [[ -n $CONDA_DEFAULT_ENV ]]; then
-        micromamba deactivate
+        mamba deactivate
     elif [[ -n $VIRTUAL_ENV ]]; then
         deactivate
     fi
@@ -39,7 +39,7 @@ _exit_virtualenv_dir() {
     if type deactivate >/dev/null 2>&1; then
         deactivate
         unset LIBRARY_PATH
-        micromamba activate
+        mamba activate
     fi
 }
 

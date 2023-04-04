@@ -65,8 +65,9 @@
 # direnv
 /.local/share/direnv
 
-# micromamba
+# mamba
 /micromamba
+/mambaforge
 
 # Applications
 /.ammonite

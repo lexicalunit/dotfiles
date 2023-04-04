@@ -130,30 +130,8 @@ if $INTERACTIVE; then
     [ -n "$PS1" ] && [ -s "$BASE16_SHELL/profile_helper.sh" ] && source "$BASE16_SHELL/profile_helper.sh"
 
     ################################################################################
-    # python environment control
+    # terminal history
     ################################################################################
-    test -f "$HOME/.pythonrc.py" && PYTHONSTARTUP="$_"
-
-    export PYTHONSTARTUP
-    export VIRTUAL_ENV_DISABLE_PROMPT=1
-
-    if [[ -d "$HOME/micromamba" ]]; then
-        export MAMBA_EXE="$(brew --prefix micromamba)/bin/micromamba"
-        export MAMBA_ROOT_PREFIX="$HOME/micromamba"
-        __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --prefix "$MAMBA_ROOT_PREFIX" 2>/dev/null)"
-        if [ $? -eq 0 ]; then
-            eval "$__mamba_setup"
-        else
-            if [ -f "$HOME/micromamba/etc/profile.d/micromamba.sh" ]; then
-                source "$HOME/micromamba/etc/profile.d/micromamba.sh"
-            else
-                export PATH="$HOME/micromamba/bin:$PATH"
-            fi
-        fi
-        unset __mamba_setup
-        eval "$(micromamba shell hook --shell=zsh)"
-    fi
-
     HISTFILE="$HOME/.$(basename "$SHELL")_history.$(uname -s)"
     export HISTFILE
     export HISTCONTROL=ignoredups:erasedups
@@ -178,7 +156,7 @@ if $INTERACTIVE; then
     export CVSEDITOR=vim
     export XEDITOR=vim
     export IGNOREEOF=0
-    alias mm='micromamba '
+    alias mm='mamba '
     alias e='vim . '
     alias edit='vim '
     ew() { type "$1" >/dev/null 2>&1 && vim "$(command -v "$1")"; }
@@ -327,11 +305,33 @@ if $INTERACTIVE; then
     source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
     ################################################################################
-    # always assume we want our default micromamba environment
+    # always assume we want our default mamba python environment
     ################################################################################
-    _interactive_log "setting up micromamba environment"
-    # shellcheck disable=SC2119
-    micromamba activate || true
+    _interactive_log "setting up python environment"
+    test -f "$HOME/.pythonrc.py" && PYTHONSTARTUP="$_"
+
+    export PYTHONSTARTUP
+    export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+    __conda_setup="$('$HOME/mambaforge/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "$HOME/mambaforge/etc/profile.d/conda.sh" ]; then
+            # shellcheck disable=SC1091
+            source "$HOME/mambaforge/etc/profile.d/conda.sh"
+        else
+            export PATH="$HOME/mambaforge/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+
+    if [ -f "$HOME/mambaforge/etc/profile.d/mamba.sh" ]; then
+        # shellcheck disable=SC1091
+        source "$HOME/mambaforge/etc/profile.d/mamba.sh"
+    fi
+
+    mamba activate || true
 
     ################################################################################
     # general environment setup

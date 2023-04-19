@@ -87,6 +87,7 @@
 /.cache/node
 /.cache/pre-commit
 /.cache/prezto
+/.cache/pyright-python
 /.cargo
 /.ccache
 /.cht.sh/history

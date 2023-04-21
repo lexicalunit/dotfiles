@@ -321,6 +321,7 @@
     "pytz",
     "quickstart",
     "redis",
+    "reloadability",
     "reqs",
     "rollup",
     "rspec",

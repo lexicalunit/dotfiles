@@ -103,6 +103,7 @@
 /.config/iterm2/AppSupport
 /.config/QtProject
 /.config/rq
+/.config/simple-update-notifier
 /.config/texstudio
 /.config/yarn/global
 /.cups/lpoptions

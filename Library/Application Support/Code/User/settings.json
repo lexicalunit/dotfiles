@@ -8,7 +8,7 @@
   "editor.renderWhitespace": "boundary",
   "editor.wordWrapColumn": 120,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": false,
+    "source.fixAll.eslint": true,
     "source.fixAll": true
   },
   "window.nativeTabs": false,
@@ -73,7 +73,7 @@
   "[python]": {
     "editor.detectIndentation": false,
     "editor.tabSize": 4,
-    "editor.rulers": [90],
+    "editor.rulers": [88, 100],
     "editor.defaultFormatter": "ms-python.black-formatter",
     "editor.codeActionsOnSave": {
       "source.organizeImports": false

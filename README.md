@@ -112,6 +112,7 @@ with the argument `--help`.
 | [`git-run`](bin/git-run) | Runs a command on files that have recently changed. |
 | [`git-tidy`](bin/git-tidy) | Tidies up all the junk this repository. |
 | [`git-what`](bin/git-what) | Build a useful git description of the changes in this branch. |
+| [`git-wrote`](bin/git-wrote) | Who wrote the most lines for the files in the current directory. |
 | [`golist`](bin/golist) | Looks for downloaded go modules in your system go path. |
 | [`install_odbc`](bin/install_odbc) | Sets up ODBC. |
 | [`macosver`](bin/macosver) | Prints current macOS version information. |

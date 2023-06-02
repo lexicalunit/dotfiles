@@ -380,6 +380,18 @@ options:
 ```
 
 * * *
+### [`git-wrote`](git-wrote)
+```
+usage: git-wrote [-h|--help] [-n] [-f]
+Who wrote the most lines for the files in the current directory.
+
+options:
+    -h, --help   show usage help
+    -n           sort by name
+    -f           sort by file
+```
+
+* * *
 ### [`golist`](golist)
 ```
 usage: golist [-h|--help]

@@ -1,0 +1,52 @@
+#!/bin/bash -ue
+
+# Who wrote the most lines for the files in the current directory.
+
+usage() {
+    (
+        echo "usage: ${0##*/} [-h|--help] [-n] [-f]"
+        echo "Who wrote the most lines for the files in the current directory."
+        echo
+        echo "options:"
+        (
+            echo "    -h, --help: show usage help"
+            echo "    -n: sort by name"
+            echo "    -f: sort by file"
+        ) | column -ts:
+    ) >&2
+    exit 1
+}
+
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
+    usage
+fi
+
+ONAME=0
+OFILE=0
+while getopts "nf" opt; do
+    case "$opt" in
+    n) ONAME=1 ;;
+    f) OFILE=1 ;;
+    *) usage ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+show_main_author() {
+    for F in $(ls | grep -f <(git ls-files)); do
+        echo -n "$F:"
+        git blame --line-porcelain "$F" | grep '^author ' |
+            sort | uniq -c | sort -nr | head -n1 |
+            awk '{ $1=""; $2=""; print}'
+    done
+}
+
+(
+    if [[ $ONAME -eq 1 ]]; then
+        show_main_author | sort -k2
+    elif [[ $OFILE -eq 1 ]]; then
+        show_main_author | sort -k1
+    else
+        show_main_author
+    fi
+) | column -ts:

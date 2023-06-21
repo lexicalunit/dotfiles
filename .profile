@@ -193,9 +193,17 @@ if $INTERACTIVE; then
     alias pygmentize='pygmentize -O bg=dark'
     fa() {
         local PARAMS PARAM
+        local INCLUDE_TESTS=0
         for PARAM in "$@"; do
-            PARAMS="${PARAMS} \"${PARAM}\""
+            if [[ $PARAM == "--tests" ]]; then
+                INCLUDE_TESTS=1
+            else
+                PARAMS="${PARAMS} \"${PARAM}\""
+            fi
         done
+        if [[ $INCLUDE_TESTS == "0" ]]; then
+            PARAMS="${PARAMS} -g '!**/tests'"
+        fi
         run rg \
             --type-not svg \
             --trim \

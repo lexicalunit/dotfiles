@@ -219,6 +219,7 @@ if command -v git >/dev/null 2>&1; then
     set +e
     find "$HOME" -maxdepth 4 \
         -not \( -path "$HOME/Library" -prune \) \
+        -not \( -path "$HOME/Pictures" -prune \) \
         -not \( -path "$HOME/.Trash" -prune \) \
         -type d -name .git | while read -r GDIR; do
         REPO_ROOT="$(dirname "$GDIR")"

@@ -4,20 +4,24 @@
 
 usage() {
     (
-        echo "usage: ${0##*/} COMMAND [args] [-h|--help]"
+        echo "usage: ${0##*/} [-h] COMMAND [args]"
         echo "Tool for archiving and restoring git branches."
+        echo "options:"
         (
-            echo "    -h, --help@ show usage help"
-            echo "    create BRANCH@ create an archive ref for the given branch"
-            echo "    list@ list archived branches"
-            echo "    delete REF@ delete the archive ref"
-            echo "    restore REF@ restore the given ref"
-        ) | column -ts@
+            echo "    -h: show usage help"
+        ) | column -ts:
+        echo "commands:"
+        (
+            echo "    list: list archived branches"
+            echo "    create BRANCH: create an archive ref for the given BRANCH"
+            echo "    delete REF: delete archive for the given REF"
+            echo "    restore REF: restore the branch for the given REF"
+        ) | column -ts:
     ) >&2
     exit 1
 }
 
-if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
+if echo "$*" | grep -Eq -- '-h\b'; then
     usage
 fi
 

@@ -100,6 +100,7 @@ with the argument `--help`.
 | [`faff`](bin/faff) | Sleeps for the given number of seconds, showing a progress bar. |
 | [`firefox-tabs`](bin/firefox-tabs) | Attempts to list the currently open urls in your Firefox tabs. |
 | [`flip`](bin/flip) | Flips input upside down. |
+| [`git-arc`](bin/git-arc) | Tool for archiving and restoring git branches. |
 | [`git-authors`](bin/git-authors) | Git script for discovering who wrote the code at the current workin... |
 | [`git-fp`](bin/git-fp) | Git script for cleaning up merged tracking branches. |
 | [`git-lg`](bin/git-lg) | Git script for printing beautiful logs. |

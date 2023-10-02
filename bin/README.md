@@ -259,6 +259,20 @@ Literally flips input upside down, printing words so they appear to be flipped o
 ```
 
 * * *
+### [`git-arc`](git-arc)
+```
+usage: git-arc [-h] COMMAND [args]
+Tool for archiving and restoring git branches.
+options:
+    -h   show usage help
+commands:
+    list            list archived branches
+    create BRANCH   create an archive ref for the given BRANCH
+    delete REF      delete archive for the given REF
+    restore REF     restore the branch for the given REF
+```
+
+* * *
 ### [`git-authors`](git-authors)
 ```
 usage: git-authors [-h|--help] PATH

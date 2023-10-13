@@ -117,6 +117,7 @@ with the argument `--help`.
 | [`golist`](bin/golist) | Looks for downloaded go modules in your system go path. |
 | [`install_odbc`](bin/install_odbc) | Sets up ODBC. |
 | [`macosver`](bin/macosver) | Prints current macOS version information. |
+| [`mon`](bin/mon) | Month name to number and vice versa. |
 | [`nodeula-rasa`](bin/nodeula-rasa) | Gives you a total clean slate in your node project. |
 | [`nopw`](bin/nopw) | Enables password-less ssh TO username@remotehost FROM localhost. |
 | [`npm-update`](bin/npm-update) | Tries to update package dependencies to latest using ncu, npm, and ... |

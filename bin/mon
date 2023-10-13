@@ -1,0 +1,43 @@
+#!/bin/bash -ue
+
+# Month name to number and vice versa.
+
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
+    echo "usage: $(basename "$0") [abbr. or number] [-h|--help]" 1>&2
+    echo "Month name to number and vice versa." 1>&2
+    exit 1
+fi
+
+if [[ $1 =~ ^[0-9]+$ ]]; then
+    case $1 in
+    1) echo "January" ;;
+    2) echo "February" ;;
+    3) echo "March" ;;
+    4) echo "April" ;;
+    5) echo "May" ;;
+    6) echo "June" ;;
+    7) echo "July" ;;
+    8) echo "August" ;;
+    9) echo "September" ;;
+    10) echo "October" ;;
+    11) echo "November" ;;
+    12) echo "December" ;;
+    *) exit 1 ;;
+    esac
+else
+    case $1 in
+    jan) echo 1 ;;
+    feb) echo 2 ;;
+    mar) echo 3 ;;
+    apr) echo 4 ;;
+    may) echo 5 ;;
+    jun) echo 6 ;;
+    jul) echo 7 ;;
+    aug) echo 8 ;;
+    sep) echo 9 ;;
+    oct) echo 1 ;;
+    nov) echo 1 ;;
+    dec) echo 1 ;;
+    *) exit 1 ;;
+    esac
+fi

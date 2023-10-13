@@ -433,6 +433,13 @@ Simply prints out the macOS major and minor version.
 ```
 
 * * *
+### [`mon`](mon)
+```
+usage: mon [abbr. or number] [-h|--help]
+Month name to number and vice versa.
+```
+
+* * *
 ### [`nodeula-rasa`](nodeula-rasa)
 ```
 usage: nodeula-rasa [options]

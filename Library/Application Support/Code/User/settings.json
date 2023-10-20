@@ -389,5 +389,6 @@
     "plaintext": false,
     "markdown": false,
     "scminput": false
-  }
+  },
+  "workbench.editor.empty.hint": "hidden"
 }

@@ -33,7 +33,7 @@
   "explorer.openEditors.visible": 0,
   "editor.wordWrap": "off",
   "editor.multiCursorModifier": "alt",
-  "workbench.editor.showTabs": true,
+  "workbench.editor.showTabs": "multiple",
   "[yaml]": {
     "editor.formatOnSave": false
   },
@@ -138,7 +138,6 @@
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },
   "security.workspace.trust.untrustedFiles": "open",
-  "workbench.editor.untitled.hint": "hidden",
   "workbench.editor.restoreViewState": false,
   "window.newWindowDimensions": "inherit",
   "files.hotExit": "off",

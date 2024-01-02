@@ -20,10 +20,11 @@
 /source
 
 # Work
+/.gdk.yml
 /.gitconfig-user-*
+/.mcd
 /.npmrc
 /.openvpn-connect.json
-/.gdk.yml
 
 # Parallels
 /*Parallels*

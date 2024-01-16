@@ -8,8 +8,8 @@
   "editor.renderWhitespace": "boundary",
   "editor.wordWrapColumn": 120,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.fixAll": true
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll": "explicit"
   },
   "window.nativeTabs": false,
   "workbench.colorTheme": "Solarized Light",

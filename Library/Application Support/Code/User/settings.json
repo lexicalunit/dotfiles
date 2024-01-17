@@ -76,7 +76,7 @@
     "editor.rulers": [88, 100],
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.codeActionsOnSave": {
-      "source.organizeImports": false
+      "source.organizeImports": "never"
     }
   },
   "files.associations": {

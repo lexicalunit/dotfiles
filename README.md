@@ -184,16 +184,18 @@ obsidian, rectangle, signal, slack, snes9x, sourcetree, spotify, steam,
 tableplus, texstudio, the-unarchiver, transmission, vagrant, 
 visual-studio-code, vlc
 
-Code Packages: DavidAnson.vscode-markdownlint, HookyQR.beautify, 
-James-Yu.latex-workshop, PascalReitermann93.vscode-yaml-sort, be5invis.toml, 
-bibhasdn.unique-lines, charliermarsh.ruff, dbaeumer.vscode-eslint, 
-eamodio.gitlens, esbenp.prettier-vscode, exiasr.hadolint, 
-foxundermoon.shell-format, hashicorp.terraform, joe-re.sql-language-server, 
-karunamurti.haml, mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
-mohsen1.prettify-json, ms-azuretools.vscode-docker, ms-python.python, 
-ms-python.vscode-pylance, nickmillerdev.pytest-fixtures, redhat.vscode-yaml, 
-richie5um2.vscode-sort-json, streetsidesoftware.code-spell-checker, 
-sysoev.language-stylus, timonwong.shellcheck
+Code Packages: DavidAnson.vscode-markdownlint, GitHub.copilot, 
+GitHub.copilot-chat, HookyQR.beautify, James-Yu.latex-workshop, 
+PascalReitermann93.vscode-yaml-sort, be5invis.toml, bibhasdn.unique-lines, 
+charliermarsh.ruff, dbaeumer.vscode-eslint, eamodio.gitlens, 
+esbenp.prettier-vscode, exiasr.hadolint, foxundermoon.shell-format, 
+hashicorp.terraform, joe-re.sql-language-server, karunamurti.haml, 
+mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
+mohsen1.prettify-json, ms-azuretools.vscode-docker, ms-python.debugpy, 
+ms-python.python, ms-python.vscode-pylance, ms-vscode.live-server, 
+nickmillerdev.pytest-fixtures, redhat.vscode-yaml, richie5um2.vscode-sort-json, 
+streetsidesoftware.code-spell-checker, sysoev.language-stylus, 
+timonwong.shellcheck
 
 Mamba Packages: appdirs, appnope, attrs, backcall, brotlipy, ca-certificates, 
 cachecontrol, cachy, certifi, cffi, charset-normalizer, cleo, clikit, 
@@ -227,7 +229,7 @@ Copyright 2006 Raph Levien. Released under the SIL Open Font License.
 
 The MIT License (MIT)
 
-Copyright (c) 2023, lexicalunit@lexicalunit.com
+Copyright (c) 2024, lexicalunit@lexicalunit.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

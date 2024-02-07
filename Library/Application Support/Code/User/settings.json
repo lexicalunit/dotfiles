@@ -166,6 +166,7 @@
     "bigint",
     "blinkstick",
     "boto",
+    "botocore",
     "btree",
     "bugsnag",
     "byteswap",
@@ -195,6 +196,7 @@
     "deliminated",
     "demisexual",
     "dependabot",
+    "deployables",
     "deserialized",
     "deserializer",
     "deserializers",
@@ -392,5 +394,6 @@
     "markdown": false,
     "scminput": false
   },
-  "workbench.editor.empty.hint": "hidden"
+  "workbench.editor.empty.hint": "hidden",
+  "window.confirmSaveUntitledWorkspace": false
 }

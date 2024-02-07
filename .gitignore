@@ -75,6 +75,7 @@
 /.ammonite
 /.asdf
 /.aws
+/.aws-onelogin-auth
 /.babel.json
 /.base16_theme
 /.bash_history*
@@ -93,6 +94,7 @@
 /.cargo
 /.ccache
 /.cht.sh/history
+/.circleci
 /.cmake
 /.coffee_history
 /.conan
@@ -142,7 +144,6 @@
 /.local/share/pry/pry_history
 /.local/share/recently-used.xbel
 /.m2
-/.aws-onelogin-auth
 /.matplotlib
 /.minikube
 /.mysql_history
@@ -169,6 +170,7 @@
 /.rustup
 /.sbt
 /.scala_history
+/.serverless
 /.serverlessrc
 /.sh_history*
 /.solargraph
@@ -201,5 +203,6 @@
 /.zsh-update
 /Creative\ Cloud\ Files
 /Dropbox*
+/Google\ Drive
 /IdeaProjects
 /VirtualBox*

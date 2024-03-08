@@ -1256,7 +1256,7 @@ step_code() {
         fi
     done
 
-    rm -rf "$HOME"/.vscode/extensions/ms-python.*/dist/bundled/stubs/django-stubs || true
+    rm -rf "$HOME"/.vscode/extensions/ms-python.*/dist/bundled/stubs/* || true
 }
 
 ################################################################################

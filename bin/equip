@@ -234,7 +234,7 @@ step_osx() {
     # show "Disable the over-the-top focus ring animation"
     # run "defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false"
 
-    # (Uncomment if you’re on an older Mac that messes up the animation)
+    # (Uncomment if you're on an older Mac that messes up the animation)
     # show "Disable smooth scrolling"
     # run "defaults write NSGlobalDomain NSScrollAnimationEnabled -bool false"
 
@@ -294,16 +294,16 @@ step_osx() {
     # show "Disable Notification Center and remove the menu bar icon"
     # run "launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2>/dev/null"
 
-    show "Disable automatic capitalization as it’s annoying when typing code"
+    show "Disable automatic capitalization as it's annoying when typing code"
     run "defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false"
 
-    show "Disable smart dashes as they’re annoying when typing code"
+    show "Disable smart dashes as they're annoying when typing code"
     run "defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false"
 
-    show "Disable automatic period substitution as it’s annoying when typing code"
+    show "Disable automatic period substitution as it's annoying when typing code"
     run "defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false"
 
-    show "Disable smart quotes as they’re annoying when typing code"
+    show "Disable smart quotes as they're annoying when typing code"
     run "defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false"
 
     show "Disable auto-correct"
@@ -344,7 +344,7 @@ step_osx() {
     run "sudo rm /private/var/vm/sleepimage"
     show "Create a zero-byte file instead…"
     run "sudo touch /private/var/vm/sleepimage"
-    show "…and make sure it can’t be rewritten"
+    show "…and make sure it can't be rewritten"
     run "sudo chflags uchg /private/var/vm/sleepimage"
 
     ########################################
@@ -526,7 +526,7 @@ step_osx() {
     show "Show the /Volumes folder"
     run "sudo chflags nohidden /Volumes"
 
-    # show "Remove Dropbox’s green checkmark icons in Finder"
+    # show "Remove Dropbox's green checkmark icons in Finder"
     # run "test -e /Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns && mv -f '$_' '$_.bak'"
 
     show 'Expand the following File Info panes: “General”, “Open with”, and “Sharing & Permissions”'
@@ -544,7 +544,7 @@ step_osx() {
     show "Change minimize/maximize window effect"
     run "defaults write com.apple.dock mineffect -string 'scale'"
 
-    show "Minimize windows into their application’s icon"
+    show "Minimize windows into their application's icon"
     run "defaults write com.apple.dock minimize-to-application -bool true"
 
     show "Enable spring loading for all Dock items"
@@ -553,29 +553,29 @@ step_osx() {
     show "Show indicator lights for open applications in the Dock"
     run "defaults write com.apple.dock show-process-indicators -bool true"
 
-    # This is only really useful when setting up a new Mac, or if you don’t use the Dock to launch apps.
+    # This is only really useful when setting up a new Mac, or if you don't use the Dock to launch apps.
     # show "Wipe all (default) app icons from the Dock"
     # run "defaults write com.apple.dock persistent-apps -array"
 
     # show "Show only open applications in the Dock"
     # run "defaults write com.apple.dock static-only -bool true"
 
-    show "Don’t animate opening applications from the Dock"
+    show "Don't animate opening applications from the Dock"
     run "defaults write com.apple.dock launchanim -bool false"
 
     show "Speed up Mission Control animations"
     defaults write com.apple.dock expose-animation-duration -float 0.1
 
-    show "Don’t group windows by application in Mission Control" # (i.e. use the old Exposé behavior instead)
+    show "Don't group windows by application in Mission Control" # (i.e. use the old Exposé behavior instead)
     defaults write com.apple.dock expose-group-by-app -bool false
 
     show "Disable Dashboard"
     run "defaults write com.apple.dashboard mcx-disabled -bool true"
 
-    show "Don’t show Dashboard as a Space"
+    show "Don't show Dashboard as a Space"
     run "defaults write com.apple.dock dashboard-in-overlay -bool true"
 
-    show "Don’t automatically rearrange Spaces based on most recent use"
+    show "Don't automatically rearrange Spaces based on most recent use"
     run "defaults write com.apple.dock mru-spaces -bool false"
 
     show "Remove the auto-hiding Dock delay"
@@ -641,7 +641,7 @@ step_osx() {
     ########################################
     # Safari & WebKit
     ########################################
-    show "Privacy: don’t send search queries to Apple"
+    show "Privacy: don't send search queries to Apple"
     run "defaults write com.apple.Safari UniversalSearchEnabled -bool false"
     run "defaults write com.apple.Safari SuppressSearchSuggestions -bool true"
 
@@ -652,31 +652,31 @@ step_osx() {
     show "Show the full URL in the address bar (note: this still hides the scheme)"
     run "defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true"
 
-    show "Set Safari’s home page to 'about:blank' for faster loading"
+    show "Set Safari's home page to 'about:blank' for faster loading"
     run "defaults write com.apple.Safari HomePage -string 'about:blank'"
 
-    show "Prevent Safari from opening ‘safe’ files automatically after downloading"
+    show "Prevent Safari from opening ‘safe' files automatically after downloading"
     run "defaults write com.apple.Safari AutoOpenSafeDownloads -bool false"
 
     show "Allow hitting the Backspace key to go to the previous page in history"
     run "defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true"
 
-    show "Hide Safari’s bookmarks bar by default"
+    show "Hide Safari's bookmarks bar by default"
     run "defaults write com.apple.Safari ShowFavoritesBar -bool false"
 
-    show "Hide Safari’s sidebar in Top Sites"
+    show "Hide Safari's sidebar in Top Sites"
     run "defaults write com.apple.Safari ShowSidebarInTopSites -bool false"
 
-    show "Disable Safari’s thumbnail cache for History and Top Sites"
+    show "Disable Safari's thumbnail cache for History and Top Sites"
     run "defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2"
 
-    show "Enable Safari’s debug menu"
+    show "Enable Safari's debug menu"
     run "defaults write com.apple.Safari IncludeInternalDebugMenu -bool true"
 
-    show "Make Safari’s search banners default to Contains instead of Starts With"
+    show "Make Safari's search banners default to Contains instead of Starts With"
     run "defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false"
 
-    show "Remove useless icons from Safari’s bookmarks bar"
+    show "Remove useless icons from Safari's bookmarks bar"
     run "defaults write com.apple.Safari ProxiesInBookmarksBar '()'"
 
     show "Enable the Develop menu and the Web Inspector in Safari"
@@ -860,7 +860,7 @@ EOF
     show "Install the Solarized Light theme for iTerm"
     run "open '${HOME}/env/Solarized Light.itermcolors'"
 
-    show "Don’t display the annoying prompt when quitting iTerm"
+    show "Don't display the annoying prompt when quitting iTerm"
     run "defaults write com.googlecode.iterm2 PromptOnQuit -bool false"
 
     ########################################
@@ -955,7 +955,7 @@ EOF
     show "Disable automatic emoji substitution (i.e. use plain text smileys)"
     run "defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add 'automaticEmojiSubstitutionEnablediMessage' -bool false"
 
-    show "Disable smart quotes as it’s annoying for messages that contain code"
+    show "Disable smart quotes as it's annoying for messages that contain code"
     run "defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add 'automaticQuoteSubstitutionEnabled' -bool false"
 
     show "Disable continuous spell checking"

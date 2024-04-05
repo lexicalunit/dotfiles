@@ -128,6 +128,7 @@ with the argument `--help`.
 | [`set_wallpaper`](bin/set_wallpaper) | Uses Cocoa classes via PyObjC to set a desktop wallpaper on all scr... |
 | [`show_dircolors`](bin/show_dircolors) | Shows example output based on current dircolors settings. |
 | [`slept`](bin/slept) | Get time macOS system last went to sleep. |
+| [`snake`](bin/snake) | Convert camelCase to snake_case. |
 | [`uninstall_homebrew`](bin/uninstall_homebrew) | Uninstalls Homebrew. |
 | [`usages`](bin/usages) | Prints out documentation and usages for utilities. |
 | [`weather`](bin/weather) | Show the current weather directly in your terminal. |

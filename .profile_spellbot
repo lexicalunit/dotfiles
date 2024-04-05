@@ -1,18 +1,17 @@
 # .profile_spellbot
 
-export PIPENV_VERBOSITY=-1
 export DD_TRACE_ENABLED="false"
 
 # I typically use mamba environments for python,
 # SpellBot sets up a in-project virtualenv though.
 _enter_virtualenv_for_spellbot() {
     if [[ $PWD == *"/spellbot" && $OLDPWD != *"/spellbot" ]]; then
-        [[ -d env ]] && mamba deactivate
-        [[ -d env ]] && source env/bin/activate
-        [[ -d env ]] && poetry env use env/bin/python
+        [[ -d .venv ]] && mamba deactivate
+        [[ -d .venv ]] && source .venv/bin/activate
+        [[ -d .venv ]] && poetry env use .venv/bin/python
     elif [[ $PWD != *"/spellbot" && $OLDPWD == *"/spellbot" ]]; then
-        [[ -d env ]] && type deactivate >/dev/null 2>&1 && deactivate
-        [[ -d env ]] && mamba activate
+        [[ -d .venv ]] && type deactivate >/dev/null 2>&1 && deactivate
+        [[ -d .venv ]] && mamba activate
     fi
 }
 

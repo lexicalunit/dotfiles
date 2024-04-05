@@ -231,6 +231,7 @@
     "eslint",
     "fein",
     "fieldqualityrule",
+    "finalizer",
     "finatra",
     "fkey",
     "flexbox",
@@ -285,6 +286,7 @@
     "librato",
     "linkedin",
     "linting",
+    "localstack",
     "locustfile",
     "locustfiles",
     "LOOKBACK",
@@ -297,6 +299,7 @@
     "mcons",
     "md",
     "mdash",
+    "Messageable",
     "metaprogramming",
     "microservice",
     "microservices",
@@ -408,6 +411,7 @@
     "vertica",
     "virtualenv",
     "virtualenvwrapper",
+    "vitrualenv",
     "voltron",
     "webhook",
     "webpack",
@@ -427,6 +431,5 @@
     "scminput": false
   },
   "workbench.editor.empty.hint": "hidden",
-  "window.confirmSaveUntitledWorkspace": false,
-  "python.defaultInterpreterPath": "/Users/atroschinetz/source/montecarlo/monolith-django/venv"
+  "window.confirmSaveUntitledWorkspace": false
 }

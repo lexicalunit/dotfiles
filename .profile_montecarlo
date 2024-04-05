@@ -45,6 +45,8 @@ _enter_virtualenv_for_montecarlo() {
             _enter_virtualenv_dir env
         elif [[ -d venv ]]; then
             _enter_virtualenv_dir venv
+        elif [[ -d .venv ]]; then
+            _enter_virtualenv_dir .venv
         fi
     elif [[ $PWD != *"/montecarlo/"* && $OLDPWD == *"/montecarlo/"* ]] ||
         [[ $PWD != *"/montecarlo/saas-serverless/"* && $OLDPWD == *"/montecarlo/saas-serverless/"* ]]; then

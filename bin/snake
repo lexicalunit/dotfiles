@@ -1,0 +1,23 @@
+#!/bin/bash -ue
+
+# Convert camelCase to snake_case.
+
+usage() {
+    (
+        echo "usage: ${0##*/} [-h|--help] [file]"
+        echo "Convert camelCase to snake_case."
+        echo
+        echo "For example:"
+        echo " - echo fooBar | snake"
+        echo " - snake file.txt"
+    ) >&2
+    exit 1
+}
+
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
+    usage
+fi
+
+while read line; do
+    echo "$line" | perl -pe 's/([a-z0-9])([A-Z])/$1_\L$2/g'
+done <"${1:-/dev/stdin}"

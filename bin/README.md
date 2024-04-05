@@ -530,6 +530,17 @@ Uses sysctl to discover when the last time macOS slept was.
 ```
 
 * * *
+### [`snake`](snake)
+```
+usage: snake [-h|--help] [file]
+Convert camelCase to snake_case.
+
+For example:
+ - echo fooBar | snake
+ - snake file.txt
+```
+
+* * *
 ### [`uninstall_homebrew`](uninstall_homebrew)
 ```
 usage: uninstall_homebrew [-h|--help]

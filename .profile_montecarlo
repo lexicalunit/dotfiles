@@ -17,6 +17,10 @@ mc() {
     echo $'\e[48;5;75m\e[1m\e[38;5;231m                                     \e[0m'
 }
 
+fql() {
+    fa "$(echo "$1" | snake)"
+}
+
 _enter_virtualenv_dir() {
     if [[ -n $CONDA_DEFAULT_ENV ]]; then
         mamba deactivate

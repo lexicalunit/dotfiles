@@ -169,6 +169,7 @@
     "basename",
     "bigint",
     "blinkstick",
+    "blocklist",
     "boto",
     "botocore",
     "btree",

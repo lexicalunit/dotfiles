@@ -241,6 +241,7 @@
     "freezegun",
     "freshnessrule",
     "fuzzaldrin",
+    "gameplay",
     "gdk",
     "gen",
     "genderfluid",
@@ -278,6 +279,7 @@
     "jira",
     "jsonfield",
     "jsx",
+    "Katana",
     "kibana",
     "kofi",
     "kube",
@@ -333,6 +335,7 @@
     "openapi",
     "Opsgenie",
     "osascript",
+    "overworld",
     "Pagerduty",
     "pango",
     "patreon",
@@ -341,6 +344,8 @@
     "pgpass",
     "pipenv",
     "pkey",
+    "platformer",
+    "platformers",
     "popd",
     "postalcode",
     "postgresql",
@@ -365,7 +370,9 @@
     "quickstart",
     "redis",
     "reloadability",
+    "replayability",
     "reqs",
+    "roguelike",
     "rollup",
     "rspec",
     "Runbook",
@@ -442,5 +449,6 @@
     "scminput": false
   },
   "workbench.editor.empty.hint": "hidden",
-  "window.confirmSaveUntitledWorkspace": false
+  "window.confirmSaveUntitledWorkspace": false,
+  "python.defaultInterpreterPath": "/Users/atroschinetz/source/lexicalunit/spellbot/.venv"
 }

@@ -1,0 +1,29 @@
+#!/bin/bash -ue
+
+# Pip installs any requirements files in the current directory.
+
+usage() {
+    (
+        echo "usage: ${0##*/} [options]"
+        echo
+        echo "options:"
+        (
+            echo "    -h, --help@ show usage help"
+        ) | column -ts@
+    ) 1>&2
+    exit 1
+}
+
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
+    usage
+fi
+
+# shellcheck source=../.shell_control
+# shellcheck disable=SC1091
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
+INSTALL_CMD="pip install"
+for REQ_FILE in requirements.txt requirements-dev.txt requirements-local.txt; do
+    test -f "$REQ_FILE" && INSTALL_CMD="$INSTALL_CMD -r $_"
+done
+run "$INSTALL_CMD"

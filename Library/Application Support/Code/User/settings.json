@@ -192,6 +192,7 @@
     "composability",
     "conda",
     "conftest",
+    "congnito",
     "coreutils",
     "CPPFLAGS",
     "cronitor",
@@ -296,6 +297,7 @@
     "localstack",
     "locustfile",
     "locustfiles",
+    "loggable",
     "LOOKBACK",
     "lssl",
     "lunr",
@@ -350,8 +352,10 @@
     "postalcode",
     "postgresql",
     "prezto",
+    "promotability",
     "promptable",
     "proto",
+    "proxied",
     "psql",
     "pushd",
     "py",
@@ -450,5 +454,7 @@
   },
   "workbench.editor.empty.hint": "hidden",
   "window.confirmSaveUntitledWorkspace": false,
-  "python.defaultInterpreterPath": "/Users/atroschinetz/source/lexicalunit/spellbot/.venv"
+  "cSpell.enableFiletypes": ["markdown"],
+  "cSpell.enabled": true,
+  "cSpell.useGitignore": false
 }

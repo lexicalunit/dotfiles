@@ -165,6 +165,7 @@
 /.pylint.d
 /.python_history
 /.python-eggs
+/.rbenv
 /.rediscli_history
 /.redisinsight*
 /.rustup

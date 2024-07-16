@@ -454,7 +454,9 @@
   },
   "workbench.editor.empty.hint": "hidden",
   "window.confirmSaveUntitledWorkspace": false,
-  "cSpell.enableFiletypes": ["markdown"],
+  "cSpell.enableFiletypes": ["*"],
   "cSpell.enabled": true,
-  "cSpell.useGitignore": false
+  "cSpell.useGitignore": false,
+  "cSpell.ignorePaths": [],
+  "cSpell.blockCheckingWhenTextChunkSizeGreaterThan": 100000
 }

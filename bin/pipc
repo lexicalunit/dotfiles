@@ -1,11 +1,11 @@
 #!/bin/bash -ue
 
-# Pip installs any requirements files in the current directory.
+# Pip compiles any requirement*.in files in the current directory.
 
 usage() {
     (
         echo "usage: ${0##*/} [options]"
-        echo "Pip installs any requirements files in the current directory."
+        echo "Pip compiles any requirement*.in files in the current directory."
         echo
         echo "options:"
         (
@@ -23,9 +23,7 @@ fi
 # shellcheck disable=SC1091
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
-run "pip install --upgrade pip"
-INSTALL_CMD="pip install"
-for REQ_FILE in requirements.txt requirements-dev.txt requirements-local.txt; do
-    test -f "$REQ_FILE" && INSTALL_CMD="$INSTALL_CMD -r $_"
+run "pip install --upgrade pip pip-tools"
+for REQ_FILE in requirements.in requirements-dev.in requirements-local.in; do
+    test -f "$REQ_FILE" && run "pip-compile --strip-extras '$REQ_FILE'"
 done
-run "$INSTALL_CMD"

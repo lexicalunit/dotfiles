@@ -1,5 +1,24 @@
 #!/bin/bash -ue
 
+# Fetches a card image from Scryfall and converts it to a PNG.
+
+usage() {
+    (
+        echo "usage: ${0##*/} [options] CARD"
+        echo "Fetches a card image from Scryfall and converts it to a PNG."
+        echo
+        echo "options:"
+        (
+            echo "    -h, --help@ show usage help"
+        ) | column -ts@
+    ) 1>&2
+    exit 1
+}
+
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
+    usage
+fi
+
 CARD="$1"
 QSARG="$(perl -MURI::Escape -e 'print uri_escape($ARGV[0]);' "$CARD")"
 

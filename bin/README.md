@@ -48,11 +48,11 @@ Creates a screenshot of selected window on X11.
 * * *
 ### [`card`](card)
 ```
---2024-07-16 10:25:00--  https://api.scryfall.com/cards/named?format=image&exact=%0AUsage:%20perl%20[switches]%20[--]%20[programfile]%20[arguments]%0A%20%20-0[octal/hexadecimal]%20specify%20record%20separator%20(%5C0,%20if%20no%20argument)%0A%20%20-a%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20autosplit%20mode%20with%20-n%20or%20-p%20(splits%20$_%20into%20@F)%0A%20%20-C[number/list]%20%20%20%20%20%20%20enables%20the%20listed%20Unicode%20features%0A%20%20-c%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20check%20syntax%20only%20(runs%20BEGIN%20and%20CHECK%20blocks)%0A%20%20-d[t][:MOD]%20%20%20%20%20%20%20%20%20%20%20run%20program%20under%20debugger%20or%20module%20Devel::MOD%0A%20%20-D[number/letters]%20%20%20%20set%20debugging%20flags%20(argument%20is%20a%20bit%20mask%20or%20alphabets)%0A%20%20-e%20commandline%20%20%20%20%20%20%20%20one%20line%20of%20program%20(several%20-e's%20allowed,%20omit%20programfile)%0A%20%20-E%20commandline%20%20%20%20%20%20%20%20like%20-e,%20but%20enables%20all%20optional%20features%0A%20%20-f%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20don't%20do%20$sitelib/sitecustomize.pl%20at%20startup%0A%20%20-F/pattern/%20%20%20%20%20%20%20%20%20%20%20split()%20pattern%20for%20-a%20switch%20(//'s%20are%20optional)%0A%20%20-i[extension]%20%20%20%20%20%20%20%20%20edit%20%3C%3E%20files%20in%20place%20(makes%20backup%20if%20extension%20supplied)%0A%20%20-Idirectory%20%20%20%20%20%20%20%20%20%20%20specify%20@INC/
-Resolving api.scryfall.com (api.scryfall.com)... 104.26.8.230, 104.26.9.230, 172.67.73.77
-Connecting to api.scryfall.com (api.scryfall.com)|104.26.8.230|:443... connected.
+--2024-07-16 11:34:00--  https://api.scryfall.com/cards/named?format=image&exact=%0AUsage:%20perl%20[switches]%20[--]%20[programfile]%20[arguments]%0A%20%20-0[octal/hexadecimal]%20specify%20record%20separator%20(%5C0,%20if%20no%20argument)%0A%20%20-a%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20autosplit%20mode%20with%20-n%20or%20-p%20(splits%20$_%20into%20@F)%0A%20%20-C[number/list]%20%20%20%20%20%20%20enables%20the%20listed%20Unicode%20features%0A%20%20-c%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20check%20syntax%20only%20(runs%20BEGIN%20and%20CHECK%20blocks)%0A%20%20-d[t][:MOD]%20%20%20%20%20%20%20%20%20%20%20run%20program%20under%20debugger%20or%20module%20Devel::MOD%0A%20%20-D[number/letters]%20%20%20%20set%20debugging%20flags%20(argument%20is%20a%20bit%20mask%20or%20alphabets)%0A%20%20-e%20commandline%20%20%20%20%20%20%20%20one%20line%20of%20program%20(several%20-e's%20allowed,%20omit%20programfile)%0A%20%20-E%20commandline%20%20%20%20%20%20%20%20like%20-e,%20but%20enables%20all%20optional%20features%0A%20%20-f%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20don't%20do%20$sitelib/sitecustomize.pl%20at%20startup%0A%20%20-F/pattern/%20%20%20%20%20%20%20%20%20%20%20split()%20pattern%20for%20-a%20switch%20(//'s%20are%20optional)%0A%20%20-i[extension]%20%20%20%20%20%20%20%20%20edit%20%3C%3E%20files%20in%20place%20(makes%20backup%20if%20extension%20supplied)%0A%20%20-Idirectory%20%20%20%20%20%20%20%20%20%20%20specify%20@INC/
+Resolving api.scryfall.com (api.scryfall.com)... 172.67.73.77, 104.26.9.230, 104.26.8.230
+Connecting to api.scryfall.com (api.scryfall.com)|172.67.73.77|:443... connected.
 HTTP request sent, awaiting response... 404 Not Found
-2024-07-16 10:25:00 ERROR 404: Not Found.
+2024-07-16 11:34:00 ERROR 404: Not Found.
 ```
 
 * * *
@@ -185,19 +185,19 @@ steps:
     all        Runs all steps
 
 Homebrew Formulas: autoconf, awscli, bash, brotli, c-ares, cabal-install, 
-chrome-cli, coreutils, defaultbrowser, diff-so-fancy, direnv, duti, exa, 
-exiftool, expect, fasd, fontconfig, freetype, fribidi, fzf, gdbm, gettext, ghc, 
+chrome-cli, coreutils, defaultbrowser, diff-so-fancy, direnv, duti, exiftool, 
+expect, fasd, fontconfig, freetype, fribidi, fzf, gdbm, gettext, ghc, 
 ghostscript, git, git-lfs, git-secrets, glances, glib, gnu-sed, gnu-tar, go, 
 gobject-introspection, graphite2, harfbuzz, icu4c, imagemagick@6, jbig2dec, 
 jemalloc, jez/formulae/pandoc-sidenote, jpeg, jq, krb5, libev, libevent, 
 libffi, libidn, libidn2, libpng, libpthread-stubs, libssh2, libtiff, libtool, 
 libunistring, libuv, libx11, libxau, libxcb, libxdmcp, libxext, libxrender, 
-libyaml, little-cms2, lzo, m4, mas, mpdecimal, ncurses, nghttp2, node, nvm, 
-oniguruma, openjpeg, openssl@1.1, pandoc, pango, pcre, pcre2, pidof, pixman, 
-pkg-config, postgresql, pyenv, pyenv-virtualenv, pyenv-virtualenvwrapper, 
-pyright, python@3.8, python@3.9, readline, ripgrep, rlwrap, rust, shellcheck, 
-shfmt, six, sqlite, tcl-tk, tmux, toolbox, tree, utf8proc, vramsteg, watch, 
-wdiff, webp, wget, xorgproto, xz, yarn, zsh
+libyaml, little-cms2, lsd, lzo, m4, mas, mpdecimal, ncurses, nghttp2, node, 
+nvm, oniguruma, openjpeg, openssl@1.1, pandoc, pango, pcre, pcre2, pidof, 
+pixman, pkg-config, postgresql, pyenv, pyenv-virtualenv, 
+pyenv-virtualenvwrapper, pyright, python@3.8, python@3.9, readline, ripgrep, 
+rlwrap, rust, shellcheck, shfmt, six, sqlite, tcl-tk, tmux, toolbox, tree, 
+utf8proc, vramsteg, watch, wdiff, webp, wget, xorgproto, xz, yarn, zsh
 
 Homebrew Casks: 1password, 1password/tap/1password-cli, chromedriver, discord, 
 disk-inventory-x, docker, dropbox, fantastical, flux, font-fira-code, 
@@ -238,7 +238,7 @@ geoip-lite, js-beautify, json-stable-stringify, moment, nesh,
 npm-check-updates, npm-remote-ls, npm-why, prettier, raml2html, standard, 
 tmpin, typescript, yo
 
-Go Packages: github.com/BurntSushi/toml
+Go Packages: github.com/BurntSushi/toml/cmd/tomlv
 
 Cargo Packages: cargo-update, jless, loc, porsmo
 ```

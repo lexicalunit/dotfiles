@@ -8,18 +8,18 @@
 # BEGIN GENERATED PACKAGE LISTS
 HOMEBREW_FORMULAS="                                                            \
     autoconf awscli bash brotli c-ares cabal-install chrome-cli coreutils      \
-    defaultbrowser diff-so-fancy direnv duti exa exiftool expect fasd          \
-    fontconfig freetype fribidi fzf gdbm gettext ghc ghostscript git git-lfs   \
-    git-secrets glances glib gnu-sed gnu-tar go gobject-introspection          \
-    graphite2 harfbuzz icu4c imagemagick@6 jbig2dec jemalloc                   \
-    jez/formulae/pandoc-sidenote jpeg jq krb5 libev libevent libffi libidn     \
-    libidn2 libpng libpthread-stubs libssh2 libtiff libtool libunistring libuv \
-    libx11 libxau libxcb libxdmcp libxext libxrender libyaml little-cms2 lzo   \
-    m4 mas mpdecimal ncurses nghttp2 node nvm oniguruma openjpeg openssl@1.1   \
-    pandoc pango pcre pcre2 pidof pixman pkg-config postgresql pyenv           \
-    pyenv-virtualenv pyenv-virtualenvwrapper pyright python@3.8 python@3.9     \
-    readline ripgrep rlwrap rust shellcheck shfmt six sqlite tcl-tk tmux       \
-    toolbox tree utf8proc vramsteg watch wdiff webp wget xorgproto xz yarn zsh"
+    defaultbrowser diff-so-fancy direnv duti exiftool expect fasd fontconfig   \
+    freetype fribidi fzf gdbm gettext ghc ghostscript git git-lfs git-secrets  \
+    glances glib gnu-sed gnu-tar go gobject-introspection graphite2 harfbuzz   \
+    icu4c imagemagick@6 jbig2dec jemalloc jez/formulae/pandoc-sidenote jpeg jq \
+    krb5 libev libevent libffi libidn libidn2 libpng libpthread-stubs libssh2  \
+    libtiff libtool libunistring libuv libx11 libxau libxcb libxdmcp libxext   \
+    libxrender libyaml little-cms2 lsd lzo m4 mas mpdecimal ncurses nghttp2    \
+    node nvm oniguruma openjpeg openssl@1.1 pandoc pango pcre pcre2 pidof      \
+    pixman pkg-config postgresql pyenv pyenv-virtualenv                        \
+    pyenv-virtualenvwrapper pyright python@3.8 python@3.9 readline ripgrep     \
+    rlwrap rust shellcheck shfmt six sqlite tcl-tk tmux toolbox tree utf8proc  \
+    vramsteg watch wdiff webp wget xorgproto xz yarn zsh"
 
 HOMEBREW_CASKS="                                                               \
     1password 1password/tap/1password-cli chromedriver discord                 \
@@ -62,7 +62,7 @@ NODE_MODULES="                                                                 \
     npm-remote-ls npm-why prettier raml2html standard tmpin typescript yo"
 
 GO_PACKAGES="                                                                  \
-    github.com/BurntSushi/toml"
+    github.com/BurntSushi/toml/cmd/tomlv"
 
 CARGO_PACKAGES="                                                               \
     cargo-update jless loc porsmo"
@@ -1418,7 +1418,7 @@ step_go() {
     export PATH
     export GOPATH
 
-    run "GO111MODULE=off go get -u all"
+    run "GO111MODULE=off go install all"
 
     if ! command -v golist >/dev/null 2>&1; then
         show -i "Utility golist is not installed in your PATH."
@@ -1431,7 +1431,7 @@ step_go() {
     IFS=' '
     for I in $GO_PACKAGES; do
         if ! echo "$INSTALLED" | grep -Eq "\\b$I\\b"; then
-            run "go get -u $I"
+            run "go install ${I}@latest"
         else
             show "go module $I is already installed"
         fi

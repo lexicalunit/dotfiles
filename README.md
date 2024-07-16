@@ -167,19 +167,19 @@ install packages/formulas/casks/whatever, see below for the list of included ite
 | all | Runs all steps |
 
 Homebrew Formulas: autoconf, awscli, bash, brotli, c-ares, cabal-install, 
-chrome-cli, coreutils, defaultbrowser, diff-so-fancy, direnv, duti, exa, 
-exiftool, expect, fasd, fontconfig, freetype, fribidi, fzf, gdbm, gettext, ghc, 
+chrome-cli, coreutils, defaultbrowser, diff-so-fancy, direnv, duti, exiftool, 
+expect, fasd, fontconfig, freetype, fribidi, fzf, gdbm, gettext, ghc, 
 ghostscript, git, git-lfs, git-secrets, glances, glib, gnu-sed, gnu-tar, go, 
 gobject-introspection, graphite2, harfbuzz, icu4c, imagemagick@6, jbig2dec, 
 jemalloc, jez/formulae/pandoc-sidenote, jpeg, jq, krb5, libev, libevent, 
 libffi, libidn, libidn2, libpng, libpthread-stubs, libssh2, libtiff, libtool, 
 libunistring, libuv, libx11, libxau, libxcb, libxdmcp, libxext, libxrender, 
-libyaml, little-cms2, lzo, m4, mas, mpdecimal, ncurses, nghttp2, node, nvm, 
-oniguruma, openjpeg, openssl@1.1, pandoc, pango, pcre, pcre2, pidof, pixman, 
-pkg-config, postgresql, pyenv, pyenv-virtualenv, pyenv-virtualenvwrapper, 
-pyright, python@3.8, python@3.9, readline, ripgrep, rlwrap, rust, shellcheck, 
-shfmt, six, sqlite, tcl-tk, tmux, toolbox, tree, utf8proc, vramsteg, watch, 
-wdiff, webp, wget, xorgproto, xz, yarn, zsh
+libyaml, little-cms2, lsd, lzo, m4, mas, mpdecimal, ncurses, nghttp2, node, 
+nvm, oniguruma, openjpeg, openssl@1.1, pandoc, pango, pcre, pcre2, pidof, 
+pixman, pkg-config, postgresql, pyenv, pyenv-virtualenv, 
+pyenv-virtualenvwrapper, pyright, python@3.8, python@3.9, readline, ripgrep, 
+rlwrap, rust, shellcheck, shfmt, six, sqlite, tcl-tk, tmux, toolbox, tree, 
+utf8proc, vramsteg, watch, wdiff, webp, wget, xorgproto, xz, yarn, zsh
 
 Homebrew Casks: 1password, 1password/tap/1password-cli, chromedriver, discord, 
 disk-inventory-x, docker, dropbox, fantastical, flux, font-fira-code, 
@@ -220,7 +220,7 @@ geoip-lite, js-beautify, json-stable-stringify, moment, nesh,
 npm-check-updates, npm-remote-ls, npm-why, prettier, raml2html, standard, 
 tmpin, typescript, yo
 
-Go Packages: github.com/BurntSushi/toml
+Go Packages: github.com/BurntSushi/toml/cmd/tomlv
 
 Cargo Packages: cargo-update, jless, loc, porsmo
 

@@ -1,12 +1,9 @@
 #!.hue_control
 
-# TODO: For this to work you have to have busylight installed into a root
-#       owned directory and have the path to where node is installed for
-#       root. For zoomwatcher to work we can't call `brew` here either.
-#       There's probably a better way to set this up...
+# TODO: For this to work you have to have openhue installed into a root
+#       owned directory. There's probably a better way to set this up...
+OPENHUE_PATH="/opt/homebrew/bin"
 
-BUSYLIGHT_PATH="${BUSYLIGHT_PATH:-/opt/busylight}"
-NODE_PATH="${NODE_PATH:-/opt/homebrew/bin/node}"
 HUE_LOCK="/tmp/.hue-toggle"
 touch "$HUE_LOCK"
 
@@ -36,10 +33,10 @@ hue_is_busy() {
 
 hue_set_color() {
     echo "$1" >"$HUE_LOCK"
-    $NODE_PATH "$BUSYLIGHT_PATH" -l Busy -c "$1"
+    $OPENHUE_PATH/openhue set light Busy --on --brightness 40 --color "$1"
 }
 
 hue_set_busy() {
     echo "busy" >"$HUE_LOCK"
-    $NODE_PATH "$BUSYLIGHT_PATH" -l Busy -c "$1"
+    $OPENHUE_PATH/openhue set light Busy --on --brightness 40 --color "$1"
 }

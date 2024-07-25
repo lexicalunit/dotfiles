@@ -155,6 +155,7 @@
 /.nvm
 /.odbc.ini
 /.onelogin
+/.openhue
 /.oracle_jre_usage
 /.pgpass
 /.pnpm-state/pnpm-state.json

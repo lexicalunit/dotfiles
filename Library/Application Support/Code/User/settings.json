@@ -175,6 +175,7 @@
     "btree",
     "bugsnag",
     "byteswap",
+    "cacheability",
     "cairo",
     "caplog",
     "ccache",

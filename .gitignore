@@ -25,6 +25,7 @@
 /.gitconfig-user-*
 /.mcd
 /.npmrc
+/.local/state/pnpm/pnpm-state.json
 /.openvpn-connect.json
 
 # Parallels

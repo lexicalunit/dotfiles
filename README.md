@@ -123,6 +123,7 @@ with the argument `--help`.
 | [`nopw`](bin/nopw) | Enables password-less ssh TO username@remotehost FROM localhost. |
 | [`npm-update`](bin/npm-update) | Tries to update package dependencies to latest using ncu, npm, and ... |
 | [`paystub`](bin/paystub) | Get your latest paystub as PDF from Check's API. |
+| [`pc`](bin/pc) | Blow away and reinstall all pre-commit hooks. |
 | [`pipc`](bin/pipc) | Pip compiles any requirement*.in files in the current directory. |
 | [`pipi`](bin/pipi) | Pip installs any requirements files in the current directory. |
 | [`ppt`](bin/ppt) | Runs pytest tests locally. |

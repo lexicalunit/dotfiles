@@ -492,6 +492,16 @@ options:
 ```
 
 * * *
+### [`pc`](pc)
+```
+usage: pc [options]
+Blow away and reinstall all pre-commit hooks.
+
+options:
+    -h, --help   show usage help
+```
+
+* * *
 ### [`pipc`](pipc)
 ```
 usage: pipc [options]

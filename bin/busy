@@ -21,7 +21,7 @@ fi
 source "$HOME/.hue_control" || echo "$(tput bold)error: ~/.hue_control not installed!$(tput sgr0)" >&2
 
 release() {
-    hue_set_color off
+    hue_set_color green
 }
 
 trap release EXIT

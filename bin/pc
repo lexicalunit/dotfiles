@@ -1,0 +1,29 @@
+#!/bin/bash -ue
+
+# Blow away and reinstall all pre-commit hooks.
+
+usage() {
+    (
+        echo "usage: ${0##*/} [options]"
+        echo "Blow away and reinstall all pre-commit hooks."
+        echo
+        echo "options:"
+        (
+            echo "    -h, --help@ show usage help"
+        ) | column -ts@
+    ) 1>&2
+    exit 1
+}
+
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
+    usage
+fi
+
+# shellcheck source=../.shell_control
+# shellcheck disable=SC1091
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
+run "rm -rf ~/.cache/pre-commit"
+run "pre-commit install --install-hooks"
+run "pre-commit autoupdate"
+run "pre-commit run -a"

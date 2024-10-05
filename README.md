@@ -221,7 +221,7 @@ geoip-lite, js-beautify, json-stable-stringify, moment, nesh,
 npm-check-updates, npm-remote-ls, npm-why, prettier, raml2html, standard, 
 tmpin, typescript, yo
 
-Go Packages: github.com/BurntSushi/toml/cmd/tomlv
+Go Packages: github.com/BurntSushi/toml, github.com/BurntSushi/toml/cmd/tomlv
 
 Cargo Packages: cargo-update, jless, loc, porsmo
 

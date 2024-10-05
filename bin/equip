@@ -63,7 +63,7 @@ NODE_MODULES="                                                                 \
     npm-remote-ls npm-why prettier raml2html standard tmpin typescript yo"
 
 GO_PACKAGES="                                                                  \
-    github.com/BurntSushi/toml/cmd/tomlv"
+    github.com/BurntSushi/toml github.com/BurntSushi/toml/cmd/tomlv"
 
 CARGO_PACKAGES="                                                               \
     cargo-update jless loc porsmo"

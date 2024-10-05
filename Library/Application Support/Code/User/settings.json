@@ -201,6 +201,7 @@
     "cust",
     "cypher",
     "dataclass",
+    "datacollector",
     "datadog",
     "datetime",
     "ddtrace",

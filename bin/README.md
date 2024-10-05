@@ -168,7 +168,7 @@ options:
 steps:
     xcode      Ensure that Xcode Command Line Tools are installed
     dotfiles   Ensure home directory is a git repository for dotfiles
-    brew       Ensure Homebrew installed, formulas upgraded, and Amphetamine installed
+    brew       Ensure Homebrew installed, formulas upgraded, and Theine installed
     cask       Ensure Homebrew Casks are installed
     ext        Ensure file extension associations are correct
     zsh        Ensure shell is latest version of zsh from Homebrew
@@ -202,8 +202,8 @@ utf8proc, vramsteg, watch, wdiff, webp, wget, xorgproto, xz, yarn, zsh
 Homebrew Casks: 1password, 1password/tap/1password-cli, chromedriver, discord, 
 disk-inventory-x, docker, dropbox, fantastical, flux, font-fira-code, 
 font-hack-nerd-font, google-chrome, iexplorer, iterm2, lingon-x, mactex, ngrok, 
-obsidian, rectangle, signal, slack, snes9x, sourcetree, spotify, steam, 
-tableplus, texstudio, the-unarchiver, transmission, vagrant, 
+obsidian, omnifocus, rectangle, signal, slack, snes9x, sourcetree, spotify, 
+steam, tableplus, texstudio, the-unarchiver, transmission, vagrant, 
 visual-studio-code, vlc
 
 Code Packages: DavidAnson.vscode-markdownlint, GitHub.copilot, 

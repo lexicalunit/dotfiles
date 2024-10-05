@@ -25,8 +25,9 @@ HOMEBREW_CASKS="                                                               \
     1password 1password/tap/1password-cli chromedriver discord                 \
     disk-inventory-x docker dropbox fantastical flux font-fira-code            \
     font-hack-nerd-font google-chrome iexplorer iterm2 lingon-x mactex ngrok   \
-    obsidian rectangle signal slack snes9x sourcetree spotify steam tableplus  \
-    texstudio the-unarchiver transmission vagrant visual-studio-code vlc"
+    obsidian omnifocus rectangle signal slack snes9x sourcetree spotify steam  \
+    tableplus texstudio the-unarchiver transmission vagrant visual-studio-code \
+    vlc"
 
 CODE_PACKAGES="                                                                \
     DavidAnson.vscode-markdownlint GitHub.copilot GitHub.copilot-chat          \

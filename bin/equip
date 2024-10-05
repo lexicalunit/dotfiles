@@ -72,7 +72,7 @@ ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS CODE_PACKAGES MAMBA_PACKAGES
     NODE_MODULES GO_PACKAGES CARGO_PACKAGES)
 
 # Speeds things up when running homebrew commands
-export HOMEBREW_NO_ANALYTICS=0
+export HOMEBREW_NO_ANALYTICS=1
 
 ################################################################################
 # Script Utilities
@@ -1034,6 +1034,7 @@ ensure_homebrew_updated() {
         run "brew unlink $f"
     done
 
+    run "brew analytics off"
     run "brew update"
     run "brew upgrade"
 }
@@ -1112,11 +1113,11 @@ step_brew() {
     run "chmod +w /usr/local/Cellar/freetds/*/lib/*.dylib 2>/dev/null"
     run "chmod +w /usr/local/Cellar/pcre/*/lib/*.dylib 2>/dev/null"
 
-    # install Amphetamine via Mac Apple Store CLI
-    if [[ ! -e "/Applications/Amphetamine.app" ]]; then
-        show -i "Attempting to install Amphetamine via the Mac App Store CLI..."
-        run "mas lucky Amphetamine"
-        run "open /Applications/Amphetamine.app"
+    # install Theine via Mac Apple Store CLI
+    if [[ ! -e "/Applications/Theine.app" ]]; then
+        show -i "Attempting to install Theine via the Mac App Store CLI..."
+        run "mas lucky Theine"
+        run "open /Applications/Theine.app"
     fi
 
     run "mkdir -p $HOME/bin"
@@ -1627,7 +1628,7 @@ fi
 steps=(
     "xcode;         Ensure that Xcode Command Line Tools are installed"
     "dotfiles;      Ensure home directory is a git repository for dotfiles"
-    "brew;          Ensure Homebrew installed, formulas upgraded, and Amphetamine installed"
+    "brew;          Ensure Homebrew installed, formulas upgraded, and Theine installed"
     "cask;          Ensure Homebrew Casks are installed"
     "ext;           Ensure file extension associations are correct"
     "zsh;           Ensure shell is latest version of zsh from Homebrew"

@@ -63,7 +63,7 @@ run() {
 }
 
 # check if gatekeeper is enabled
-GATEKEEPER="$(spctl --status)"
+# GATEKEEPER="$(spctl --status)"
 
 DONE=0
 BEFORE="$(df -B1 --output=avail "$HOME" | grep -iv avail)"
@@ -73,9 +73,9 @@ show "disk space available before cleanup: $(numfmt --to=iec-i --suffix=B -- "$B
 run "cd"
 
 report() {
-    if [[ $GATEKEEPER == "assessments enabled" ]]; then
-        run "sudo spctl --master-enable"
-    fi
+    # if [[ $GATEKEEPER == "assessments enabled" ]]; then
+    #     run "sudo spctl --master-enable"
+    # fi
     if [[ $DONE == 0 ]]; then
         show -i "clean up ended prematurely because a command failed!"
     fi
@@ -97,9 +97,9 @@ while true; do
 done 2>/dev/null &
 
 # disable gatekeeper
-if [[ $GATEKEEPER == "assessments enabled" ]]; then
-    run "sudo spctl --master-disable"
-fi
+# if [[ $GATEKEEPER == "assessments enabled" ]]; then
+#     run "sudo spctl --master-disable"
+# fi
 
 # trash
 run "sudo rm -rf /Volumes/*/.Trashes/*"

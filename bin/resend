@@ -1,0 +1,50 @@
+#!/bin/bash -e
+
+# Resend an incident notification.
+
+usage() {
+    (
+        echo "usage: ${0##*/} [-h|--help] [options] INCIDENT_UUID"
+        echo "Resend an incident notification."
+        echo
+        echo "options:"
+        (
+            echo "    -h, --help@ show usage help"
+            echo "    -t@ set trigger to true"
+        ) | column -ts@
+    ) >&2
+    exit 1
+}
+
+if echo "$*" | grep -Eq -- '--help\b|-h\b' || [[ -z $1 ]]; then
+    usage
+fi
+
+TRIGGER="false"
+while getopts "t" opt; do
+    case "$opt" in
+    t) TRIGGER="true" ;;
+    *) usage ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+ENV="${ENV:-dev}"
+INCIDENT_UUID="$1"
+
+PROXY="https://cli.$ENV.mcinfra.io"
+ROUTE="notifications/resend"
+METHOD="method=POST"
+awscurl --profile "$ENV" \
+    -XPOST "$PROXY/$ROUTE?$METHOD" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d "$(
+        cat <<EOF | jq -c
+{
+    "incident_uuid": "$INCIDENT_UUID",
+    "trigger": $TRIGGER
+}
+EOF
+    )"
+echo

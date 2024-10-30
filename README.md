@@ -128,6 +128,7 @@ with the argument `--help`.
 | [`pipi`](bin/pipi) | Pip installs any requirements files in the current directory. |
 | [`ppt`](bin/ppt) | Runs pytest tests locally. |
 | [`rc`](bin/rc) | Spin up or attach to tumx running Check development services. |
+| [`resend`](bin/resend) | Resend an incident notification. |
 | [`root`](bin/root) | Prints the root of the current repository. |
 | [`set_wallpaper`](bin/set_wallpaper) | Uses Cocoa classes via PyObjC to set a desktop wallpaper on all scr... |
 | [`show_dircolors`](bin/show_dircolors) | Shows example output based on current dircolors settings. |

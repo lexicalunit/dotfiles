@@ -543,6 +543,17 @@ options:
 ```
 
 * * *
+### [`resend`](resend)
+```
+usage: resend [-h|--help] [options] INCIDENT_UUID
+Resend an incident notification.
+
+options:
+    -h, --help   show usage help
+    -t           set trigger to true
+```
+
+* * *
 ### [`root`](root)
 ```
 usage: root [-h|--help]

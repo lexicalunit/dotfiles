@@ -167,6 +167,7 @@
     "backoff",
     "baseclass",
     "basename",
+    "Battlecruiser",
     "bigint",
     "blinkstick",
     "blocklist",
@@ -179,6 +180,7 @@
     "cairo",
     "caplog",
     "ccache",
+    "CEDH",
     "cerebro",
     "changelog",
     "clearanced",
@@ -204,6 +206,7 @@
     "datacollector",
     "datadog",
     "datetime",
+    "dateutil",
     "ddtrace",
     "dedupe",
     "deduped",
@@ -274,6 +277,7 @@
     "homebrew",
     "hrc",
     "hvac",
+    "idempotency",
     "img",
     "invision",
     "invisionapp",
@@ -296,6 +300,7 @@
     "LDFLAGS",
     "lerna",
     "lfg",
+    "LGBTQ",
     "libjpeg",
     "librato",
     "linkedin",
@@ -354,11 +359,13 @@
     "pgpass",
     "pipenv",
     "pkey",
+    "PLANECHASE",
     "platformer",
     "platformers",
     "popd",
     "postalcode",
     "postgresql",
+    "Precons",
     "prezto",
     "promotability",
     "promptable",
@@ -399,6 +406,7 @@
     "Snoozeable",
     "Snowpipe",
     "solargraph",
+    "spammy",
     "spdx",
     "spellapi",
     "spellbot",
@@ -409,6 +417,7 @@
     "substep",
     "substeps",
     "svg",
+    "tablestream",
     "tagname",
     "teradata",
     "threadlocal",
@@ -466,5 +475,66 @@
   "cSpell.enabled": true,
   "cSpell.useGitignore": false,
   "cSpell.ignorePaths": [],
-  "cSpell.blockCheckingWhenTextChunkSizeGreaterThan": 100000
+  "cSpell.blockCheckingWhenTextChunkSizeGreaterThan": 100000,
+  "gitlens.menus": {
+    "editor": {
+      "blame": true,
+      "clipboard": true,
+      "compare": true,
+      "history": true,
+      "remote": true
+    },
+    "editorGroup": {
+      "blame": true,
+      "compare": true
+    },
+    "editorGutter": {
+      "compare": true,
+      "remote": true,
+      "share": true
+    },
+    "editorTab": {
+      "clipboard": true,
+      "compare": true,
+      "history": true,
+      "remote": true
+    },
+    "ghpr": {
+      "worktree": true
+    },
+    "scm": {
+      "graph": true
+    },
+    "scmRepositoryInline": {
+      "graph": true,
+      "stash": false
+    },
+    "scmRepository": {
+      "authors": true,
+      "generateCommitMessage": true,
+      "patch": true,
+      "graph": false
+    },
+    "scmGroupInline": {
+      "stash": true
+    },
+    "scmGroup": {
+      "compare": true,
+      "openClose": true,
+      "patch": true,
+      "stash": true
+    },
+    "scmItemInline": {
+      "stash": false
+    },
+    "scmItem": {
+      "clipboard": true,
+      "compare": true,
+      "history": true,
+      "remote": true,
+      "share": true,
+      "stash": true
+    }
+  },
+  "files.trimFinalNewlines": true
 }

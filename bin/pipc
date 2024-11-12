@@ -23,7 +23,19 @@ fi
 # shellcheck disable=SC1091
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+cd "$REPO_ROOT"
+
 run "pip install --upgrade pip pip-tools"
 for REQ_FILE in requirements.in requirements-dev.in requirements-ci.in requirements-local.in; do
     test -f "$REQ_FILE" && run "pip-compile --strip-extras '$REQ_FILE'"
 done
+
+# Workaround for a bug in pip-tools: https://github.com/jazzband/pip-tools/issues/2131
+(
+    set +x
+    test -f requirements.txt && perl -pi -e "s@$REPO_ROOT/@@g" "$_"
+    test -f requirements-dev.txt && perl -pi -e "s@$REPO_ROOT/@@g" "$_"
+    test -f requirements-ci.txt && perl -pi -e "s@$REPO_ROOT/@@g" "$_"
+    test -f requirements-local.txt && perl -pi -e "s@$REPO_ROOT/@@g" "$_"
+)

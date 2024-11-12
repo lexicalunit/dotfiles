@@ -67,6 +67,9 @@ if $INTERACTIVE; then
     # stop asking me twice
     setopt rm_star_silent
 
+    # I hate `!` for history expansion, use the builtin `r` instead.
+    setopt NO_BANG_HIST
+
     # setup fzf
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

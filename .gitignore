@@ -137,6 +137,7 @@
 /.jline-jython.history
 /.jpm/settings.json
 /.jupyter/migrated
+/.keras/keras.json
 /.kube
 /.lesshst
 /.local/share/gem

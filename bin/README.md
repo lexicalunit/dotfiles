@@ -444,6 +444,28 @@ Simply prints out the macOS major and minor version.
 ```
 
 * * *
+### [`mc_support`](mc_support)
+```
+usage: mc_support [options] ENDPOINT [<<EOF ... post body ... EOF]
+Hit a backend support endpoint.
+
+Note: Ensure that you've authenticated with onelogin-aws and are on the VPN.
+
+options:
+    -h, --help   show usage help
+    -e ENV       environment to query (default: dev)
+    -X METHOD    HTTP method to use (default: POST)
+
+Example:
+
+mc_support "/support/endpoint?q=whatever" <<EOF
+{
+    "key": "value"
+}
+EOF
+```
+
+* * *
 ### [`mon`](mon)
 ```
 usage: mon [abbr. or number] [-h|--help]

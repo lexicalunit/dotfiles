@@ -1,0 +1,78 @@
+#!/bin/bash -ue
+
+# Hit a backend support endpoint.
+
+usage() {
+    (
+        echo "usage: ${0##*/} [options] ENDPOINT [<<EOF ... post body ... EOF]"
+        echo "Hit a backend support endpoint."
+        echo
+        echo "Note: Ensure that you've authenticated with onelogin-aws and are on the VPN."
+        echo
+        echo "options:"
+        (
+            echo "    -h, --help@ show usage help"
+            echo "    -e ENV@ environment to query (default: dev)"
+            echo "    -X METHOD@ HTTP method to use (default: POST)"
+        ) | column -ts@
+        echo
+        echo "Example:"
+        echo
+        echo 'mc_support "/support/endpoint?q=whatever" <<EOF'
+        echo "{"
+        echo '    "key": "value"'
+        echo "}"
+        echo "EOF"
+    ) 1>&2
+    exit 1
+}
+
+if echo "$*" | grep -Eq -- '--help\b|-h\b' || [[ -z $1 ]]; then
+    usage
+fi
+
+# shellcheck source=../.shell_control
+# shellcheck disable=SC1091
+source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
+
+ENV=${ENV:-dev}
+METHOD="POST"
+while getopts "he:X:" opt; do
+    case "$opt" in
+    h) usage ;;
+    e) ENV="$OPTARG" ;;
+    X) METHOD="$OPTARG" ;;
+    *) usage ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+PROXY_URL="https://cli.$ENV.mcinfra.io"
+ENDPOINT="$1"
+
+if [[ $METHOD == "POST" ]]; then
+    POST_BODY=""
+    if [[ ! -t 0 ]]; then
+        while read -r line; do
+            POST_BODY="${POST_BODY}${line}"
+        done
+    fi
+    echo "Using POST Body: $POST_BODY"
+fi
+
+CURL_CMD="awscurl --profile '$ENV'"
+CURL_CMD="$CURL_CMD -XPOST '${PROXY_URL}${ENDPOINT}"
+if [[ "?" =~ $ENDPOINT ]]; then
+    CURL_CMD="$CURL_CMD&method=${METHOD}'"
+else
+    CURL_CMD="$CURL_CMD?method=${METHOD}'"
+fi
+CURL_CMD="$CURL_CMD -H 'Accept: application/json'"
+CURL_CMD="$CURL_CMD -H 'Content-Type: application/json'"
+if [[ $METHOD == "POST" && -n $POST_BODY ]]; then
+    CURL_CMD="$CURL_CMD -H 'Content-Type: application/json'"
+    CURL_CMD="$CURL_CMD -d '$(echo "$POST_BODY" | jq -c)'"
+fi
+CURL_CMD="$CURL_CMD; echo"
+
+run "$CURL_CMD"

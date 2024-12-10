@@ -455,10 +455,11 @@ options:
     -h, --help   show usage help
     -e ENV       environment to query (default: dev)
     -X METHOD    HTTP method to use (default: POST)
+    -d           dry run; show the curl command that would be run
 
 Example:
 
-mc_support "/support/endpoint?q=whatever" <<EOF
+mc_support -e dev -XPOST "/support/endpoint?q=whatever" <<EOF
 {
     "key": "value"
 }

@@ -14,11 +14,12 @@ usage() {
             echo "    -h, --help@ show usage help"
             echo "    -e ENV@ environment to query (default: dev)"
             echo "    -X METHOD@ HTTP method to use (default: POST)"
+            echo "    -d@ dry run; show the curl command that would be run"
         ) | column -ts@
         echo
         echo "Example:"
         echo
-        echo 'mc_support "/support/endpoint?q=whatever" <<EOF'
+        echo 'mc_support -e dev -XPOST "/support/endpoint?q=whatever" <<EOF'
         echo "{"
         echo '    "key": "value"'
         echo "}"
@@ -37,11 +38,13 @@ source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not i
 
 ENV=${ENV:-dev}
 METHOD="POST"
-while getopts "he:X:" opt; do
+DRYRUN=0
+while getopts "he:X:d" opt; do
     case "$opt" in
     h) usage ;;
     e) ENV="$OPTARG" ;;
     X) METHOD="$OPTARG" ;;
+    d) DRYRUN=1 ;;
     *) usage ;;
     esac
 done
@@ -57,7 +60,9 @@ if [[ $METHOD == "POST" ]]; then
             POST_BODY="${POST_BODY}${line}"
         done
     fi
-    echo "Using POST Body: $POST_BODY"
+    if [[ $METHOD == "POST" && -n $POST_BODY ]]; then
+        show "Using POST Body: $POST_BODY"
+    fi
 fi
 
 CURL_CMD="awscurl --profile '$ENV'"
@@ -75,4 +80,7 @@ if [[ $METHOD == "POST" && -n $POST_BODY ]]; then
 fi
 CURL_CMD="$CURL_CMD; echo"
 
-run "$CURL_CMD"
+show "$CURL_CMD"
+if [[ $DRYRUN -eq 0 ]]; then
+    run "$CURL_CMD"
+fi

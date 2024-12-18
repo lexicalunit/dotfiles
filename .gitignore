@@ -31,6 +31,9 @@
 # Parallels
 /*Parallels*
 
+# VMWare
+/Virtual\ Machines.localized
+
 # Wine
 /.config/menus/applications-merged/
 /.local/share/applications/wine/Programs

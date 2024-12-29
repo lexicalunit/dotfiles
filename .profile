@@ -321,22 +321,22 @@ if $INTERACTIVE; then
     export PYTHONSTARTUP
     export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-    __conda_setup="$('$HOME/mambaforge/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
+    __conda_setup="$('$HOME/miniforge3/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
     else
-        if [ -f "$HOME/mambaforge/etc/profile.d/conda.sh" ]; then
+        if [ -f "$HOME/miniforge3/etc/profile.d/conda.sh" ]; then
             # shellcheck disable=SC1091
-            source "$HOME/mambaforge/etc/profile.d/conda.sh"
+            source "$HOME/miniforge3/etc/profile.d/conda.sh"
         else
-            export PATH="$HOME/mambaforge/bin:$PATH"
+            export PATH="$HOME/miniforge3/bin:$PATH"
         fi
     fi
     unset __conda_setup
 
-    if [ -f "$HOME/mambaforge/etc/profile.d/mamba.sh" ]; then
+    if [ -f "$HOME/miniforge3/etc/profile.d/mamba.sh" ]; then
         # shellcheck disable=SC1091
-        source "$HOME/mambaforge/etc/profile.d/mamba.sh"
+        source "$HOME/miniforge3/etc/profile.d/mamba.sh"
     fi
 
     mamba activate || true

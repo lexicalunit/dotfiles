@@ -74,6 +74,7 @@
 # mamba
 /micromamba
 /mambaforge
+/miniforge*
 
 # Applications
 /.ammonite

@@ -43,7 +43,7 @@ CODE_PACKAGES="                                                                \
     richie5um2.vscode-sort-json streetsidesoftware.code-spell-checker          \
     sysoev.language-stylus timonwong.shellcheck"
 
-MAMBA_PACKAGES="                                                               \
+CONDA_PACKAGES="                                                               \
     appdirs appnope attrs backcall brotlipy ca-certificates cachecontrol cachy \
     certifi cffi charset-normalizer cleo clikit crashtest cryptography         \
     decorator distlib filelock html5lib idna importlib-metadata                \
@@ -69,7 +69,7 @@ CARGO_PACKAGES="                                                               \
     cargo-update jless loc porsmo"
 # END GENERATED PACKAGE LISTS
 
-ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS CODE_PACKAGES MAMBA_PACKAGES
+ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS CODE_PACKAGES CONDA_PACKAGES
     NODE_MODULES GO_PACKAGES CARGO_PACKAGES)
 
 # Speeds things up when running homebrew commands
@@ -179,12 +179,12 @@ array_contains() {
     return $in
 }
 
-ensure_no_mamba() {
-    # Mamba is known to frequently break Homebrew builds, including Vim and
+ensure_no_conda() {
+    # Conda is known to frequently break Homebrew builds, including Vim and
     # MacVim, due to bundling many duplicates of system and Homebrew-available
     # tools. Make sure to exit it before doing anything with Homebrew.
     if [[ -n $CONDA_PREFIX ]]; then
-        run "mamba deactivate"
+        run "conda deactivate"
     fi
 }
 
@@ -1027,7 +1027,7 @@ ensure_homebrew_updated() {
         abort "Please run step brew first"
     fi
 
-    ensure_no_mamba
+    ensure_no_conda
 
     # unlink keg-only formulas which should not be not symlinked into brew path
     KEG_ONLY=(gettext libffi libtool openssl readline sqlite)
@@ -1069,7 +1069,7 @@ install_brew_formula() {
 }
 
 step_brew() {
-    ensure_no_mamba
+    ensure_no_conda
 
     if [[ -z "$(command -v brew)" ]]; then
         show "installing homebrew..."
@@ -1200,7 +1200,7 @@ step_cask() {
     for I in $(brew ls --cask -1); do
         name="${I%@*}"
         if ! echo "$HOMEBREW_CASKS" | grep -Eq "$(echo "\\b$name\\b" | sed 's/ (!)//g')"; then
-            if [[ $I != "mamba" ]]; then
+            if [[ $I != "conda" ]]; then
                 show -i "$I installed but not managed by equip via brew cask"
             fi
         fi
@@ -1312,38 +1312,41 @@ step_bash() {
 # Step python
 ################################################################################
 step_python() {
-    if run "command -v mamba >/dev/null 2>&1"; then
-        show "mamba already installed"
+    CONDA_CLI="mamba"
+
+    if run "command -v $CONDA_CLI >/dev/null 2>&1"; then
+        show "conda already installed"
     else
         ensure_homebrew_updated
+        ART="Miniforge3-$(uname)-$(uname -m).sh"
         cd /tmp && {
-            run "curl -L -O 'https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-$(uname)-$(uname -m).sh'"
+            run "curl -L -O 'https://github.com/conda-forge/miniforge/releases/latest/download/$ART'"
             cd - || exit 1
         }
-        run "chmod +x /tmp/Mambaforge-$(uname)-$(uname -m).sh"
-        run "/tmp/Mambaforge-$(uname)-$(uname -m).sh -bu"
+        run "chmod +x /tmp/$ART"
+        run "/tmp/$ART -bu"
         ensure_homebrew_updated_cleanup
     fi
 
     if [[ -z $CONDA_PREFIX ]]; then
-        run "mamba activate"
+        run "$CONDA_CLI activate"
     fi
 
-    # Install mamba packages that don't come pre-installed with mamba
-    local MAMBA_LIST
-    MAMBA_LIST="$(mamba list --json | jq -r '.[].name' | grep -Ev '^python$')"
+    # Install conda packages that don't come pre-installed with conda
+    local CONDA_LIST
+    CONDA_LIST="$($CONDA_CLI list --json | jq -r '.[].name' | grep -Ev '^python$')"
     IFS=' '
-    for I in $MAMBA_PACKAGES; do
-        if ! echo "$MAMBA_LIST" | grep -q "$I"; then
-            run "mamba install -q -c conda-forge --yes $I"
+    for I in $CONDA_PACKAGES; do
+        if ! echo "$CONDA_LIST" | grep -q "$I"; then
+            run "$CONDA_CLI install -q -c conda-forge --yes $I"
         fi
     done
 
     IFS=$'\n'
-    for I in $MAMBA_LIST; do
+    for I in $CONDA_LIST; do
         name="${I%@*}"
-        if ! echo "$MAMBA_PACKAGES" | grep -Eq "\\b$name\\b"; then
-            show -i "$I installed but not managed by equip via mamba"
+        if ! echo "$CONDA_PACKAGES" | grep -Eq "\\b$name\\b"; then
+            show -i "$I installed but not managed by equip via conda"
         fi
     done
 }
@@ -1634,7 +1637,7 @@ steps=(
     "ext;           Ensure file extension associations are correct"
     "zsh;           Ensure shell is latest version of zsh from Homebrew"
     "env;           Update environment configuration and submodules"
-    "python;        Upgrade/Install python and mamba packages"
+    "python;        Upgrade/Install python and conda packages"
     "node;          Ensure Node modules are installed via npm"
     "go;            Ensure Go packages are installed"
     "cargo;         Ensure Rust packages are installed via cargo"

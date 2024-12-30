@@ -158,7 +158,7 @@ install packages/formulas/casks/whatever, see below for the list of included ite
 | ext | Ensure file extension associations are correct |
 | zsh | Ensure shell is latest version of zsh from Homebrew |
 | env | Update environment configuration and submodules |
-| python | Upgrade/Install python and mamba packages |
+| python | Upgrade/Install python and conda packages |
 | node | Ensure Node modules are installed via npm |
 | go | Ensure Go packages are installed |
 | cargo | Ensure Rust packages are installed via cargo |
@@ -180,9 +180,9 @@ libunistring, libuv, libx11, libxau, libxcb, libxdmcp, libxext, libxrender,
 libyaml, little-cms2, lsd, lzo, m4, mas, mpdecimal, ncurses, nghttp2, node, 
 nvm, oniguruma, openhue-cli, openjpeg, openssl@1.1, pandoc, pango, pcre, pcre2, 
 pidof, pixman, pkg-config, postgresql, pyenv, pyenv-virtualenv, 
-pyenv-virtualenvwrapper, pyright, python@3.8, python@3.9, readline, ripgrep, 
-rlwrap, rust, shellcheck, shfmt, six, sqlite, tcl-tk, tmux, toolbox, tree, 
-utf8proc, vramsteg, watch, wdiff, webp, wget, xorgproto, xz, yarn, zsh
+pyenv-virtualenvwrapper, pyright, readline, ripgrep, rlwrap, rust, shellcheck, 
+shfmt, six, sqlite, tcl-tk, tmux, toolbox, tree, utf8proc, vramsteg, watch, 
+wdiff, webp, wget, xorgproto, xz, yarn, zsh
 
 Homebrew Casks: 1password, 1password/tap/1password-cli, chromedriver, discord, 
 disk-inventory-x, docker, dropbox, fantastical, flux, font-fira-code, 
@@ -204,7 +204,7 @@ nickmillerdev.pytest-fixtures, redhat.vscode-yaml, richie5um2.vscode-sort-json,
 streetsidesoftware.code-spell-checker, sysoev.language-stylus, 
 timonwong.shellcheck
 
-Mamba Packages: appdirs, appnope, attrs, backcall, brotlipy, ca-certificates, 
+Conda Packages: appdirs, appnope, attrs, backcall, brotlipy, ca-certificates, 
 cachecontrol, cachy, certifi, cffi, charset-normalizer, cleo, clikit, 
 crashtest, cryptography, decorator, distlib, filelock, html5lib, idna, 
 importlib-metadata, importlib_metadata, iniconfig, ipython, ipython_genutils, 

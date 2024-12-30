@@ -17,9 +17,9 @@ HOMEBREW_FORMULAS="                                                            \
     libxrender libyaml little-cms2 lsd lzo m4 mas mpdecimal ncurses nghttp2    \
     node nvm oniguruma openhue-cli openjpeg openssl@1.1 pandoc pango pcre      \
     pcre2 pidof pixman pkg-config postgresql pyenv pyenv-virtualenv            \
-    pyenv-virtualenvwrapper pyright python@3.8 python@3.9 readline ripgrep     \
-    rlwrap rust shellcheck shfmt six sqlite tcl-tk tmux toolbox tree utf8proc  \
-    vramsteg watch wdiff webp wget xorgproto xz yarn zsh"
+    pyenv-virtualenvwrapper pyright readline ripgrep rlwrap rust shellcheck    \
+    shfmt six sqlite tcl-tk tmux toolbox tree utf8proc vramsteg watch wdiff    \
+    webp wget xorgproto xz yarn zsh"
 
 HOMEBREW_CASKS="                                                               \
     1password 1password/tap/1password-cli chromedriver discord                 \
@@ -1122,8 +1122,6 @@ step_brew() {
     fi
 
     run "mkdir -p $HOME/bin"
-    run "ln -sf '$(brew --prefix python@3.9)/libexec/bin/python' '$HOME/bin/python3.9'"
-    run "ln -sf '$(brew --prefix python@3.8)/libexec/bin/python' '$HOME/bin/python3.8'"
     run "ln -sf '$(brew --prefix shfmt)/bin/shfmt' '$HOME/bin/.'"
     run "ln -sf '$(brew --prefix shellcheck)/bin/shellcheck' '$HOME/bin/.'"
 

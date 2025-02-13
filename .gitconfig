@@ -35,6 +35,7 @@
 	jest = run 'jest --config jest.config.js --' '_spec\\.js$|_spec\\.ts$'
 	pytest = run 'pytest -vv -x' 'test_.*\\.py'
 	potest = run 'poetry run pytest -vv -x' 'test_.*\\.py'
+	def = "!f() { test -n \"$1\" && r=\"$1\" || r=origin; basename \"$(git rev-parse --abbrev-ref \"$r\"/HEAD)\"; }; f"
 [color]
 	ui = true
 [color "branch"]

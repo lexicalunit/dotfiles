@@ -1,5 +1,8 @@
 # .profile_montecarlo
 
+# tailscale_tunnel_path
+export PATH="/usr/local/bin:$PATH"
+
 mc() {
     echo $'\e[48;5;75m\e[1m\e[38;5;231m                                     \e[0m'
     echo $'\e[48;5;75m\e[1m\e[38;5;231m                                     \e[0m'

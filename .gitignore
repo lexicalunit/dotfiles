@@ -28,6 +28,7 @@
 /.local/state/pnpm/pnpm-state.json
 /.openvpn-connect.json
 /.tailscale*
+/.duckdb
 
 # Parallels
 /*Parallels*

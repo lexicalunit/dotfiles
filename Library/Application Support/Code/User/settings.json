@@ -332,6 +332,7 @@
     "mindbody",
     "mit",
     "mixins",
+    "mktime",
     "montecarlo",
     "montecarlodata",
     "motd",
@@ -470,6 +471,7 @@
     "zendesk"
   ],
   "ruff.importStrategy": "fromEnvironment",
+  "ruff.nativeServer": "on",
   "editor.inlineSuggest.enabled": true,
   "git.openRepositoryInParentFolders": "never",
   "github.copilot.enable": {

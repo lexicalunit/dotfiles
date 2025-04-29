@@ -191,35 +191,35 @@ obsidian, omnifocus, rectangle, signal, slack, snes9x, sourcetree, spotify,
 steam, tableplus, texstudio, the-unarchiver, transmission, vagrant, 
 visual-studio-code, vlc
 
-Code Packages: DavidAnson.vscode-markdownlint, GitHub.copilot, 
-GitHub.copilot-chat, HookyQR.beautify, James-Yu.latex-workshop, 
-PascalReitermann93.vscode-yaml-sort, be5invis.toml, bibhasdn.unique-lines, 
-charliermarsh.ruff, dbaeumer.vscode-eslint, eamodio.gitlens, 
+Code Packages: be5invis.toml, bibhasdn.unique-lines, charliermarsh.ruff, 
+DavidAnson.vscode-markdownlint, dbaeumer.vscode-eslint, eamodio.gitlens, 
 esbenp.prettier-vscode, exiasr.hadolint, foxundermoon.shell-format, 
-hashicorp.terraform, joe-re.sql-language-server, karunamurti.haml, 
+GitHub.copilot, GitHub.copilot-chat, hashicorp.terraform, HookyQR.beautify, 
+James-Yu.latex-workshop, joe-re.sql-language-server, karunamurti.haml, 
 mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
 mohsen1.prettify-json, ms-azuretools.vscode-docker, ms-python.debugpy, 
 ms-python.python, ms-python.vscode-pylance, ms-vscode.live-server, 
-nickmillerdev.pytest-fixtures, redhat.vscode-yaml, richie5um2.vscode-sort-json, 
+nickmillerdev.pytest-fixtures, PascalReitermann93.vscode-yaml-sort, 
+redhat.vscode-yaml, richie5um2.vscode-sort-json, 
 streetsidesoftware.code-spell-checker, sysoev.language-stylus, 
 timonwong.shellcheck
 
 Conda Packages: appdirs, appnope, attrs, backcall, brotlipy, ca-certificates, 
 cachecontrol, cachy, certifi, cffi, charset-normalizer, cleo, clikit, 
 crashtest, cryptography, decorator, distlib, filelock, html5lib, idna, 
-importlib-metadata, importlib_metadata, iniconfig, ipython, ipython_genutils, 
+importlib_metadata, importlib-metadata, iniconfig, ipython, ipython_genutils, 
 jedi, jsonschema, keyring, libcxx, libffi, lockfile, lz4, lz4-c, 
 matplotlib-inline, more-itertools, msgpack-python, ncurses, openssl, packaging, 
 parso, pastel, pexpect, pickleshare, pip, pkginfo, pluggy, poetry, poetry-core, 
 prompt-toolkit, ptyprocess, py, pycosat, pycparser, pygments, pylev, pyopenssl, 
 pyparsing, pyrsistent, pysocks, pytest, pyyaml, readline, requests, 
 requests-toolbelt, ruamel_yaml, setuptools, shellingham, six, sqlite, tk, toml, 
-tomlkit, tqdm, traitlets, urllib3, virtualenv, wcwidth, webencodings, wheel, 
-xz, yaml, zipp, zlib
+tomlkit, tqdm, traitlets, urllib3, uv, virtualenv, wcwidth, webencodings, 
+wheel, xz, yaml, zipp, zlib
 
-Node Modules: @ibm/plex, JSON, all-contributors-cli, create-react-app, cson, 
+Node Modules: @ibm/plex, all-contributors-cli, create-react-app, cson, 
 dockerlint, eslint, external-ip, generator-code, generator-generator, 
-geoip-lite, js-beautify, json-stable-stringify, moment, nesh, 
+geoip-lite, js-beautify, JSON, json-stable-stringify, moment, nesh, 
 npm-check-updates, npm-remote-ls, npm-why, prettier, raml2html, standard, 
 tmpin, typescript, yo
 
@@ -236,7 +236,7 @@ Copyright 2006 Raph Levien. Released under the SIL Open Font License.
 
 The MIT License (MIT)
 
-Copyright (c) 2024, lexicalunit@lexicalunit.com
+Copyright (c) 2025, lexicalunit@lexicalunit.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

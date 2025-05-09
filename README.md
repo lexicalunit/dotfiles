@@ -181,7 +181,7 @@ libyaml, little-cms2, lsd, lzo, m4, mas, mpdecimal, ncurses, nghttp2, node,
 nvm, oniguruma, openhue-cli, openjpeg, openssl@1.1, pandoc, pango, pcre, pcre2, 
 pidof, pixman, pkg-config, postgresql, pyenv, pyenv-virtualenv, 
 pyenv-virtualenvwrapper, pyright, readline, ripgrep, rlwrap, rust, shellcheck, 
-shfmt, six, sqlite, tcl-tk, tmux, toolbox, tree, utf8proc, vramsteg, watch, 
+shfmt, six, sqlite, tcl-tk, tmux, toolbox, tree, utf8proc, uv, vramsteg, watch, 
 wdiff, webp, wget, xorgproto, xz, yarn, zsh
 
 Homebrew Casks: 1password, 1password/tap/1password-cli, chromedriver, discord, 
@@ -214,8 +214,8 @@ parso, pastel, pexpect, pickleshare, pip, pkginfo, pluggy, poetry, poetry-core,
 prompt-toolkit, ptyprocess, py, pycosat, pycparser, pygments, pylev, pyopenssl, 
 pyparsing, pyrsistent, pysocks, pytest, pyyaml, readline, requests, 
 requests-toolbelt, ruamel_yaml, setuptools, shellingham, six, sqlite, tk, toml, 
-tomlkit, tqdm, traitlets, urllib3, uv, virtualenv, wcwidth, webencodings, 
-wheel, xz, yaml, zipp, zlib
+tomlkit, tqdm, traitlets, urllib3, virtualenv, wcwidth, webencodings, wheel, 
+xz, yaml, zipp, zlib
 
 Node Modules: @ibm/plex, all-contributors-cli, create-react-app, cson, 
 dockerlint, eslint, external-ip, generator-code, generator-generator, 

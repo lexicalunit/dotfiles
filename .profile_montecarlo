@@ -68,3 +68,74 @@ if [[ -n $ZSH_VERSION ]]; then
         chpwd_functions+=("_enter_virtualenv_for_montecarlo")
     fi
 fi
+
+# Okta profile variables (profiles are defined in ~/.okta-aws) needed for scripts
+export OKTA_PROFILE_AUDIT=audit
+export OKTA_PROFILE_CUST_1=cust-1
+export OKTA_PROFILE_CUST_2=cust-2
+export OKTA_PROFILE_DEV=dev
+export OKTA_PROFILE_DEV_CAAS_1=dev-caas-1
+export OKTA_PROFILE_DEV_COLLECTOR_1=dev-collector-1
+export OKTA_PROFILE_DEV_SECURITY=dev-security
+export OKTA_PROFILE_LOG_ARCHIVE=log-archive
+export OKTA_PROFILE_MARKETPLACE=marketplace
+export OKTA_PROFILE_MR_SANDBOX=mr-sandbox
+export OKTA_PROFILE_PROD=prod
+export OKTA_PROFILE_PROD_CAAS_1=prod-caas-1
+export OKTA_PROFILE_PROD_COLLECTOR_1=prod-collector-1
+export OKTA_PROFILE_ROOT=root
+export OKTA_PROFILE_SANDBOX=sandbox
+export OKTA_PROFILE_TADATA=tadata
+
+generateCredentials() {
+    profile_name=$1
+
+    cache_path="$HOME/.aws/cli/cache"
+    cache_file=$(ls -t "$cache_path" | head -n 1 | tr -d "\n")
+
+    aws_access_key_id=$(cat "$cache_path"/"$cache_file" | jq -r '.Credentials.AccessKeyId')
+    aws_secret_access_key=$(cat "$cache_path"/"$cache_file" | jq -r '.Credentials.SecretAccessKey')
+    aws_session_token=$(cat "$cache_path"/"$cache_file" | jq -r '.Credentials.SessionToken')
+
+    echo -e "[${profile_name}]\naws_access_key_id = $aws_access_key_id\naws_secret_access_key = $aws_secret_access_key\naws_session_token = $aws_session_token" >~/.aws/credentials
+}
+
+function aws-profile-switch() {
+    unset AWS_PROFILE
+    aws sts get-caller-identity --profile "$1" >/dev/null 2>&1
+
+    if [ $? -eq 0 ]; then
+        export AWS_PROFILE=$1
+    else
+        aws sso login --sso-session mc-okta && export AWS_PROFILE=$1
+    fi
+
+    if [ $? -ne 0 ]; then
+        echo -e "AWS SSO login failed, please try again"
+    else
+        # hack to generate ~/.aws/cli/cache/*.json
+        aws sts get-caller-identity --profile "$1" >/dev/null 2>&1
+
+        generateCredentials "$AWS_PROFILE"
+    fi
+}
+
+# Okta AWS Admin aliases
+alias audit="aws-profile-switch ${OKTA_PROFILE_AUDIT}"
+alias cust-1="aws-profile-switch ${OKTA_PROFILE_CUST_1}"
+alias cust-2="aws-profile-switch ${OKTA_PROFILE_CUST_2}"
+alias dev="aws-profile-switch ${OKTA_PROFILE_DEV}"
+alias dev-caas-1="aws-profile-switch ${OKTA_PROFILE_DEV_CAAS_1}"
+alias dev-collector-1="aws-profile-switch ${OKTA_PROFILE_DEV_COLLECTOR_1}"
+alias dev-security="aws-profile-switch ${OKTA_PROFILE_DEV_SECURITY}"
+alias log-archive="aws-profile-switch ${OKTA_PROFILE_LOG_ARCHIVE}"
+alias marketplace="aws-profile-switch ${OKTA_PROFILE_MARKETPLACE}"
+alias mr-sandbox="aws-profile-switch ${OKTA_PROFILE_MR_SANDBOX}"
+alias prod="aws-profile-switch ${OKTA_PROFILE_PROD}"
+alias prod-caas-1="aws-profile-switch ${OKTA_PROFILE_PROD_CAAS_1}"
+alias prod-collector-1="aws-profile-switch ${OKTA_PROFILE_PROD_COLLECTOR_1}"
+alias root="aws-profile-switch ${OKTA_PROFILE_ROOT}"
+alias sandbox="aws-profile-switch ${OKTA_PROFILE_SANDBOX}"
+alias tadata="aws-profile-switch ${OKTA_PROFILE_TADATA}"
+
+alias aws-refresh-token="aws sso logout && aws sso login"

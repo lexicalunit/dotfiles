@@ -168,6 +168,7 @@
 /.oracle_jre_usage
 /.pgpass
 /.pnpm-state/pnpm-state.json
+/.presto_history
 /.pry_history
 /.psql_history
 /.pyenv

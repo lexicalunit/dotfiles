@@ -478,10 +478,7 @@
   "editor.inlineSuggest.enabled": true,
   "git.openRepositoryInParentFolders": "never",
   "github.copilot.enable": {
-    "*": true,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false
+    "*": false
   },
   "workbench.editor.empty.hint": "hidden",
   "window.confirmSaveUntitledWorkspace": false,
@@ -550,5 +547,6 @@
       "stash": true
     }
   },
-  "files.trimFinalNewlines": true
+  "files.trimFinalNewlines": true,
+  "docker.extension.enableComposeLanguageServer": false
 }

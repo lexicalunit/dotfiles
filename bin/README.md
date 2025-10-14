@@ -48,8 +48,8 @@ Creates a screenshot of selected window on X11.
 * * *
 ### [`card`](card)
 ```
-usage: card [options] CARD
-Fetches a card image from Scryfall and converts it to a PNG.
+usage: card [options] [CARDS]
+Fetches card images from Scryfall and converts them to proxies sheets.
 
 options:
     -h, --help   show usage help

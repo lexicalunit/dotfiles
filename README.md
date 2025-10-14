@@ -87,7 +87,7 @@ with the argument `--help`.
 | [`br`](bin/br) | Reset hue light files. |
 | [`busy`](bin/busy) | Turn on a busy light. |
 | [`capture_x`](bin/capture_x) | Creates a screenshot of selected window on X11. |
-| [`card`](bin/card) | Fetches a card image from Scryfall and converts it to a PNG. |
+| [`card`](bin/card) | Fetches card images from Scryfall and converts them to proxies sheets. |
 | [`cleanup`](bin/cleanup) | Cleans system and application caches on macOS. |
 | [`codeclimate`](bin/codeclimate) | Runs Code Climate on the current working directory. |
 | [`colortest`](bin/colortest) | Prints out an entire color palette of terminal color codes. |

@@ -1,11 +1,11 @@
 #!/bin/bash -ue
 
-# Fetches a card image from Scryfall and converts it to a PNG.
+# Fetches card images from Scryfall and converts them to proxies sheets.
 
 usage() {
     (
-        echo "usage: ${0##*/} [options] CARD"
-        echo "Fetches a card image from Scryfall and converts it to a PNG."
+        echo "usage: ${0##*/} [options] [CARDS]"
+        echo "Fetches card images from Scryfall and converts them to proxies sheets."
         echo
         echo "options:"
         (
@@ -19,19 +19,55 @@ if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     usage
 fi
 
-CARD="$1"
-QSARG="$(perl -MURI::Escape -e 'print uri_escape($ARGV[0]);' "$CARD")"
 
-WORKSPACE="$(mktemp -d)"
-cleanup() {
-    rm -rf "$WORKSPACE"
-}
-trap cleanup EXIT
+CARD_WIDTH_IN="2.5"
+CARD_HEIGHT_IN="3.5"
+DPI="300"
+CARD_WIDTH_PX="$(echo "scale=0; $CARD_WIDTH_IN * $DPI / 1" | bc -l)"
+CARD_HEIGHT_PX="$(echo "scale=0; $CARD_HEIGHT_IN * $DPI / 1" | bc -l)"
+NUM_FILES="$#"
+GROUP_SIZE=9
+FILES=()
 
-wget "https://api.scryfall.com/cards/named?format=image&exact=$QSARG" \
-    -O "$WORKSPACE/$CARD.jpg"
+for CARD in "$@"; do
+    FILES+=("$CARD.png")
+    QSARG="$(perl -MURI::Escape -e 'print uri_escape($ARGV[0]);' "$CARD")"
+    if [[ ! -f "$CARD.jpg" ]]; then
+        echo "Fetching $CARD.jpg"
+        wget "https://api.scryfall.com/cards/named?format=image&exact=$QSARG" -O "$CARD.jpg"
+    fi
+    if [[ ! -f "$CARD.png" ]]; then
+        echo "Converting $CARD.jpg to $CARD.png"
+        convert "$CARD.jpg" \
+            -resize "${CARD_WIDTH_PX}"x"${CARD_HEIGHT_PX}" \
+            -gravity center \
+            -background white \
+            -extent "${CARD_WIDTH_PX}"x"${CARD_HEIGHT_PX}" \
+            -set units PixelsPerInch \
+            -set density $DPI \
+            "$CARD.png"
+    fi
+done
 
-convert "$WORKSPACE/$CARD.jpg" \
-    -set -units PixelsPerInch \
-    -resize 750x1050 \
-    "$CARD.png"
+PAGE=1
+for (( i=0; i<NUM_FILES; i+=GROUP_SIZE )); do
+    current_group=("${FILES[@]:i:GROUP_SIZE}")
+    echo -n "Processing group starting with: ${current_group[0]} ... "
+    OUT="grid-${PAGE}.png"
+    if [[ ! -f "$OUT" ]]; then
+        montage -density $DPI \
+            -units PixelsPerInch \
+            "${current_group[@]}" \
+            -tile 3x3 \
+            -geometry +3+3 \
+            -background none \
+            "$OUT"
+    fi
+    echo "Done."
+    PAGE=$((PAGE+1))
+done
+
+echo "Created the following files:"
+for (( i=1; i<PAGE; i+=1 )); do
+    echo "grid-${i}.png"
+done

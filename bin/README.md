@@ -184,24 +184,27 @@ steps:
     most       Runs steps: apps dot (basically everything but the osx step)
     all        Runs all steps
 
-Homebrew Formulas: autoconf, awscli, bash, brotli, c-ares, cabal-install, 
-chrome-cli, coreutils, defaultbrowser, diff-so-fancy, direnv, duti, exiftool, 
-expect, fasd, fontconfig, freetype, fribidi, fzf, gdbm, gettext, ghc, 
-ghostscript, git, git-lfs, git-secrets, glances, glib, gnu-sed, gnu-tar, go, 
-gobject-introspection, graphite2, harfbuzz, icu4c, imagemagick@6, jbig2dec, 
-jemalloc, jez/formulae/pandoc-sidenote, jpeg, jq, krb5, libev, libevent, 
-libffi, libidn, libidn2, libpng, libpthread-stubs, libssh2, libtiff, libtool, 
-libunistring, libuv, libx11, libxau, libxcb, libxdmcp, libxext, libxrender, 
-libyaml, little-cms2, lsd, lzo, m4, mas, mpdecimal, ncurses, nghttp2, node, 
-nvm, oniguruma, openhue-cli, openjpeg, openssl@1.1, pandoc, pango, pcre, pcre2, 
-pidof, pixman, pkg-config, postgresql, pyenv, pyenv-virtualenv, 
-pyenv-virtualenvwrapper, pyright, readline, ripgrep, rlwrap, rust, shellcheck, 
-shfmt, six, sqlite, tcl-tk, tmux, toolbox, tree, utf8proc, uv, vramsteg, watch, 
-wdiff, webp, wget, xorgproto, xz, yarn, zsh
+Homebrew Formulas: autoconf, awscli, bash, brotli, c-ares, ca-certificates, 
+cabal-install, cairo, chrome-cli, clang-format, coreutils, defaultbrowser, 
+direnv, duti, exiftool, expect, fontconfig, freetype, fribidi, fzf, gdbm, 
+gettext, ghc, ghostscript, giflib, git, git-lfs, git-secrets, glib, gmp, 
+gnu-sed, gnu-tar, go, gobject-introspection, graphite2, harfbuzz, icu4c@77, 
+imagemagick@6, jbig2dec, jemalloc, jez/formulae/pandoc-sidenote, jpeg, 
+jpeg-turbo, jq, krb5, leptonica, libarchive, libb2, libev, libevent, libffi, 
+libgit2, libidn, libidn2, libnghttp2, libnghttp3, libngtcp2, libpng, 
+libpthread-stubs, libssh2, libtiff, libtommath, libtool, libunistring, libusb, 
+libuv, libx11, libxau, libxcb, libxdmcp, libxext, libxrender, libyaml, 
+little-cms2, llvm, lsd, lz4, lzo, m4, mas, mpdecimal, ncurses, nghttp2, node, 
+nvm, oniguruma, openhue-cli, openjpeg, openssl@3, pandoc, pango, pcre, pcre2, 
+pidof, pixman, pkg-config, pkgconf, postgresql@15, pyenv, pyenv-virtualenv, 
+pyenv-virtualenvwrapper, pyright, python@3.13, readline, ripgrep, rlwrap, rust, 
+rustup, shellcheck, shfmt, simdjson, six, sqlite, tcl-tk, tcl-tk@8, tesseract, 
+tmux, tree, utf8proc, uv, uvwasi, vramsteg, watch, wdiff, webp, wget, 
+xorgproto, xz, yarn, z3, zsh, zstd
 
 Homebrew Casks: 1password, 1password/tap/1password-cli, chromedriver, discord, 
-disk-inventory-x, docker, dropbox, fantastical, flux, font-fira-code, 
-font-hack-nerd-font, google-chrome, iexplorer, iterm2, lingon-x, mactex, ngrok, 
+docker, docker-desktop, dropbox, fantastical, flux-app, font-fira-code, 
+font-hack-nerd-font, google-chrome, iexplorer, iterm2, lingon-x, ngrok, 
 obsidian, omnifocus, rectangle, signal, slack, snes9x, sourcetree, spotify, 
 steam, tableplus, texstudio, the-unarchiver, transmission, vagrant, 
 visual-studio-code, vlc
@@ -228,7 +231,7 @@ matplotlib-inline, more-itertools, msgpack-python, ncurses, openssl, packaging,
 parso, pastel, pexpect, pickleshare, pip, pkginfo, pluggy, poetry, poetry-core, 
 prompt-toolkit, ptyprocess, py, pycosat, pycparser, pygments, pylev, pyopenssl, 
 pyparsing, pyrsistent, pysocks, pytest, pyyaml, readline, requests, 
-requests-toolbelt, ruamel_yaml, setuptools, shellingham, six, sqlite, tk, toml, 
+requests-toolbelt, ruamel_yaml, setuptools, shellingham, six, tk, toml, 
 tomlkit, tqdm, traitlets, urllib3, virtualenv, wcwidth, webencodings, wheel, 
 xz, yaml, zipp, zlib
 
@@ -253,12 +256,10 @@ Sleeps for the given number of seconds, showing a progress bar.
 * * *
 ### [`firefox-tabs`](firefox-tabs)
 ```
-usage: firefox-tabs [-h]
-
-List open urls in Firefox tabs
-
-options:
-  -h, --help  show this help message and exit
+Traceback (most recent call last):
+  File "/Users/amytroschinetz/bin/./firefox-tabs", line 9, in <module>
+    import lz4.block
+ModuleNotFoundError: No module named 'lz4'
 ```
 
 * * *

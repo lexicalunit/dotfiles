@@ -7,27 +7,29 @@
 ################################################################################
 # BEGIN GENERATED PACKAGE LISTS
 HOMEBREW_FORMULAS="                                                            \
-    autoconf awscli bash brotli c-ares cabal-install chrome-cli coreutils      \
-    defaultbrowser diff-so-fancy direnv duti exiftool expect fasd fontconfig   \
-    freetype fribidi fzf gdbm gettext ghc ghostscript git git-lfs git-secrets  \
-    glances glib gnu-sed gnu-tar go gobject-introspection graphite2 harfbuzz   \
-    icu4c imagemagick@6 jbig2dec jemalloc jez/formulae/pandoc-sidenote jpeg jq \
-    krb5 libev libevent libffi libidn libidn2 libpng libpthread-stubs libssh2  \
-    libtiff libtool libunistring libuv libx11 libxau libxcb libxdmcp libxext   \
-    libxrender libyaml little-cms2 lsd lzo m4 mas mpdecimal ncurses nghttp2    \
-    node nvm oniguruma openhue-cli openjpeg openssl@1.1 pandoc pango pcre      \
-    pcre2 pidof pixman pkg-config postgresql pyenv pyenv-virtualenv            \
-    pyenv-virtualenvwrapper pyright readline ripgrep rlwrap rust shellcheck    \
-    shfmt six sqlite tcl-tk tmux toolbox tree utf8proc uv vramsteg watch wdiff \
-    webp wget xorgproto xz yarn zsh"
+    autoconf awscli bash brotli c-ares ca-certificates cabal-install cairo     \
+    chrome-cli clang-format coreutils defaultbrowser direnv duti exiftool      \
+    expect fontconfig freetype fribidi fzf gdbm gettext ghc ghostscript giflib \
+    git git-lfs git-secrets glib gmp gnu-sed gnu-tar go gobject-introspection  \
+    graphite2 harfbuzz icu4c@77 imagemagick@6 jbig2dec jemalloc                \
+    jez/formulae/pandoc-sidenote jpeg jpeg-turbo jq krb5 leptonica libarchive  \
+    libb2 libev libevent libffi libgit2 libidn libidn2 libnghttp2 libnghttp3   \
+    libngtcp2 libpng libpthread-stubs libssh2 libtiff libtommath libtool       \
+    libunistring libusb libuv libx11 libxau libxcb libxdmcp libxext libxrender \
+    libyaml little-cms2 llvm lsd lz4 lzo m4 mas mpdecimal ncurses nghttp2 node \
+    nvm oniguruma openhue-cli openjpeg openssl@3 pandoc pango pcre pcre2 pidof \
+    pixman pkg-config pkgconf postgresql@15 pyenv pyenv-virtualenv             \
+    pyenv-virtualenvwrapper pyright python@3.13 readline ripgrep rlwrap rust   \
+    rustup shellcheck shfmt simdjson six sqlite tcl-tk tcl-tk@8 tesseract tmux \
+    tree utf8proc uv uvwasi vramsteg watch wdiff webp wget xorgproto xz yarn   \
+    z3 zsh zstd"
 
 HOMEBREW_CASKS="                                                               \
-    1password 1password/tap/1password-cli chromedriver discord                 \
-    disk-inventory-x docker dropbox fantastical flux font-fira-code            \
-    font-hack-nerd-font google-chrome iexplorer iterm2 lingon-x mactex ngrok   \
-    obsidian omnifocus rectangle signal slack snes9x sourcetree spotify steam  \
-    tableplus texstudio the-unarchiver transmission vagrant visual-studio-code \
-    vlc"
+    1password 1password/tap/1password-cli chromedriver discord docker          \
+    docker-desktop dropbox fantastical flux-app font-fira-code                 \
+    font-hack-nerd-font google-chrome iexplorer iterm2 lingon-x ngrok obsidian \
+    omnifocus rectangle signal slack snes9x sourcetree spotify steam tableplus \
+    texstudio the-unarchiver transmission vagrant visual-studio-code vlc"
 
 CODE_PACKAGES="                                                                \
     be5invis.toml bibhasdn.unique-lines charliermarsh.ruff                     \
@@ -53,8 +55,8 @@ CONDA_PACKAGES="                                                               \
     pip pkginfo pluggy poetry poetry-core prompt-toolkit ptyprocess py pycosat \
     pycparser pygments pylev pyopenssl pyparsing pyrsistent pysocks pytest     \
     pyyaml readline requests requests-toolbelt ruamel_yaml setuptools          \
-    shellingham six sqlite tk toml tomlkit tqdm traitlets urllib3 virtualenv   \
-    wcwidth webencodings wheel xz yaml zipp zlib"
+    shellingham six tk toml tomlkit tqdm traitlets urllib3 virtualenv wcwidth  \
+    webencodings wheel xz yaml zipp zlib"
 
 NODE_MODULES="                                                                 \
     @ibm/plex all-contributors-cli create-react-app cson dockerlint eslint     \
@@ -1030,7 +1032,7 @@ ensure_homebrew_updated() {
     ensure_no_conda
 
     # unlink keg-only formulas which should not be not symlinked into brew path
-    KEG_ONLY=(gettext libffi libtool openssl readline sqlite)
+    KEG_ONLY=(gettext libffi libtool openssl readline)
     for f in "${KEG_ONLY[@]}"; do
         run "brew unlink $f"
     done
@@ -1044,7 +1046,7 @@ ensure_homebrew_updated_cleanup() {
     # Force link these keg-only formulas to override outdated system versions.
     # Must be called sometime after ensure_homebrew_updated() has been called,
     # and after any other brew commands such as install have also been called.
-    run "brew link --force --overwrite sqlite imagemagick@6"
+    run "brew link --force --overwrite imagemagick@6"
 
     # Spotify has started forcing itself to be started at login like some kind
     # of fucking malware. Nuke that shit from orbit.
@@ -1093,9 +1095,9 @@ step_brew() {
     run "find '$(brew --prefix)' -mindepth 1 -maxdepth 1 -print0 | xargs -0 -n 1 -P $(sysctl -n hw.ncpu) sudo chown -R '$(whoami)'"
 
     # shellcheck disable=SC2207
-    TAP=($(brew tap))
-    array_contains 'watermint/toolbox' "${TAP[@]}" || run "brew tap watermint/toolbox"
-    array_contains 'openhue/cli' "${TAP[@]}" || run "brew tap openhue/cli"
+    # TAP=($(brew tap))
+    # array_contains 'watermint/toolbox' "${TAP[@]}" || run "brew tap watermint/toolbox"
+    # array_contains 'openhue/cli' "${TAP[@]}" || run "brew tap openhue/cli"
 
     ensure_homebrew_updated
 
@@ -1174,9 +1176,9 @@ step_cask() {
     ensure_homebrew_updated
 
     # shellcheck disable=SC2207
-    TAP=($(brew tap))
-    array_contains 'homebrew/cask-fonts' "${TAP[@]}" || run "brew tap homebrew/cask-fonts"
-    array_contains 'homebrew/cask-versions' "${TAP[@]}" || run "brew tap homebrew/cask-versions"
+    # TAP=($(brew tap))
+    # array_contains 'homebrew/cask-fonts' "${TAP[@]}" || run "brew tap homebrew/cask-fonts"
+    # array_contains 'homebrew/cask-versions' "${TAP[@]}" || run "brew tap homebrew/cask-versions"
 
     local INSTALLED
     brew ls --cask -1 | {

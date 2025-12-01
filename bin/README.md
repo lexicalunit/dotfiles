@@ -212,7 +212,7 @@ visual-studio-code, vlc
 Code Packages: be5invis.toml, bibhasdn.unique-lines, charliermarsh.ruff, 
 DavidAnson.vscode-markdownlint, dbaeumer.vscode-eslint, eamodio.gitlens, 
 esbenp.prettier-vscode, exiasr.hadolint, foxundermoon.shell-format, 
-GitHub.copilot, GitHub.copilot-chat, hashicorp.terraform, HookyQR.beautify, 
+GitHub.copilot, GitHub.copilot-chat, hashicorp.terraform, 
 James-Yu.latex-workshop, joe-re.sql-language-server, karunamurti.haml, 
 mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
 mohsen1.prettify-json, ms-azuretools.vscode-docker, ms-python.debugpy, 
@@ -256,10 +256,12 @@ Sleeps for the given number of seconds, showing a progress bar.
 * * *
 ### [`firefox-tabs`](firefox-tabs)
 ```
-Traceback (most recent call last):
-  File "/Users/amytroschinetz/bin/./firefox-tabs", line 9, in <module>
-    import lz4.block
-ModuleNotFoundError: No module named 'lz4'
+usage: firefox-tabs [-h]
+
+List open urls in Firefox tabs
+
+options:
+  -h, --help  show this help message and exit
 ```
 
 * * *

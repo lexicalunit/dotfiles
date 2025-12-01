@@ -85,7 +85,6 @@
   "[ini]": {
     "editor.formatOnSave": false
   },
-  "python.formatting.provider": "none",
   "explorer.autoReveal": false,
   "editor.tokenColorCustomizations": {
     "textMateRules": [
@@ -123,10 +122,7 @@
   "telemetry.telemetryLevel": "off",
   "window.openWithoutArgumentsInNewWindow": "off",
   "window.closeWhenEmpty": true,
-  "python.linting.flake8Enabled": false,
-  "python.linting.pylintEnabled": false,
   "python.languageServer": "Pylance",
-  "python.analysis.typeCheckingMode": "basic",
   "extensions.ignoreRecommendations": true,
   "gitlens.currentLine.pullRequests.enabled": false,
   "shellcheck.customArgs": ["-x"],

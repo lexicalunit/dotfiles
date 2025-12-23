@@ -544,5 +544,6 @@
     }
   },
   "files.trimFinalNewlines": true,
-  "docker.extension.enableComposeLanguageServer": false
+  "docker.extension.enableComposeLanguageServer": false,
+  "github.copilot.nextEditSuggestions.enabled": true
 }

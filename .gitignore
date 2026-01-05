@@ -29,6 +29,7 @@
 /.openvpn-connect.json
 /.tailscale*
 /.duckdb
+/.augment/config.yaml
 
 # Parallels
 /*Parallels*

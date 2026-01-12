@@ -21,6 +21,8 @@
 	civ = commit --verify
 	cl = clone
 	co = checkout
+	com = "!git checkout $(git rev-parse --abbrev-ref origin/HEAD | sed 's@^origin/@@')"
+	pm = "!echo $(git rev-parse --abbrev-ref origin/HEAD | sed 's@^origin/@@')"
 	cp = cherry-pick
 	f = fetch --prune
 	find = "!git ls-files | grep --color -Ei"

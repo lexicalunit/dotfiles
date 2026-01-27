@@ -9,7 +9,7 @@
   "editor.wordWrapColumn": 120,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
-    "source.fixAll": "explicit"
+    "source.fixAll": "explicit",
   },
   "window.nativeTabs": false,
   "workbench.colorTheme": "Solarized Light",
@@ -20,8 +20,8 @@
     "[Solarized Light]": {
       "editor.selectionHighlightBackground": "#eee8d5",
       "editor.selectionHighlightBorder": "#76736a",
-      "editor.lineHighlightBackground": "#f9f2df"
-    }
+      "editor.lineHighlightBackground": "#f9f2df",
+    },
   },
   "editor.rulers": [72, 80, 100, 120],
   "editor.guides.bracketPairs": true,
@@ -35,40 +35,40 @@
   "editor.multiCursorModifier": "alt",
   "workbench.editor.showTabs": "multiple",
   "[yaml]": {
-    "editor.formatOnSave": false
+    "editor.formatOnSave": false,
   },
   "[css]": {
     "editor.tabSize": 2,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[ruby]": {
     "editor.detectIndentation": false,
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
   },
   "[typescript]": {
     "editor.detectIndentation": false,
     "editor.tabSize": 2,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[javascript]": {
     "editor.detectIndentation": false,
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
   },
   "[javascriptreact]": {
     "editor.detectIndentation": false,
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
   },
   "[typescriptreact]": {
     "editor.tabSize": 2,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "[json]": {
     "editor.detectIndentation": false,
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
   },
   "[shellscript]": {
     "editor.detectIndentation": false,
-    "editor.tabSize": 4
+    "editor.tabSize": 4,
   },
   "[python]": {
     "editor.detectIndentation": false,
@@ -76,14 +76,14 @@
     "editor.rulers": [88, 100],
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.codeActionsOnSave": {
-      "source.organizeImports": "never"
-    }
+      "source.organizeImports": "never",
+    },
   },
   "files.associations": {
-    ".gitconfig": "ini"
+    ".gitconfig": "ini",
   },
   "[ini]": {
-    "editor.formatOnSave": false
+    "editor.formatOnSave": false,
   },
   "explorer.autoReveal": false,
   "editor.tokenColorCustomizations": {
@@ -94,13 +94,13 @@
           "comment.block",
           "comment.block.documentation",
           "comment.line",
-          "markup.italic"
+          "markup.italic",
         ],
         "settings": {
           // "fontStyle": ""
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
   "importSorter.importStringConfiguration.trailingComma": "multiLine",
   "importSorter.importStringConfiguration.tabSize": 2,
@@ -112,7 +112,7 @@
     "javascript",
     "javascriptreact",
     "typescript",
-    "typescriptreact"
+    "typescriptreact",
   ],
   "editor.formatOnSave": true,
   "window.restoreWindows": "none",
@@ -128,10 +128,10 @@
   "shellcheck.customArgs": ["-x"],
   "terminal.integrated.inheritEnv": false,
   "workbench.editorAssociations": {
-    "*.ipynb": "jupyter-notebook"
+    "*.ipynb": "jupyter-notebook",
   },
   "[dockerfile]": {
-    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker",
   },
   "security.workspace.trust.untrustedFiles": "open",
   "workbench.editor.restoreViewState": false,
@@ -139,13 +139,13 @@
   "files.hotExit": "off",
   "notebook.cellToolbarLocation": {
     "default": "right",
-    "jupyter-notebook": "left"
+    "jupyter-notebook": "left",
   },
   "security.workspace.trust.banner": "always",
   "security.workspace.trust.enabled": false,
   "redhat.telemetry.enabled": false,
   "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "cSpell.userWords": [
     "addfinalizer",
@@ -321,6 +321,7 @@
     "mcons",
     "md",
     "mdash",
+    "merfolk",
     "Messageable",
     "metaprogramming",
     "microservice",
@@ -470,14 +471,14 @@
     "xlib",
     "yaml",
     "yml",
-    "zendesk"
+    "zendesk",
   ],
   "ruff.importStrategy": "fromEnvironment",
   "ruff.nativeServer": "on",
   "editor.inlineSuggest.enabled": true,
   "git.openRepositoryInParentFolders": "never",
   "github.copilot.enable": {
-    "*": false
+    "*": false,
   },
   "workbench.editor.empty.hint": "hidden",
   "window.confirmSaveUntitledWorkspace": false,
@@ -492,50 +493,50 @@
       "clipboard": true,
       "compare": true,
       "history": true,
-      "remote": true
+      "remote": true,
     },
     "editorGroup": {
       "blame": true,
-      "compare": true
+      "compare": true,
     },
     "editorGutter": {
       "compare": true,
       "remote": true,
-      "share": true
+      "share": true,
     },
     "editorTab": {
       "clipboard": true,
       "compare": true,
       "history": true,
-      "remote": true
+      "remote": true,
     },
     "ghpr": {
-      "worktree": true
+      "worktree": true,
     },
     "scm": {
-      "graph": true
+      "graph": true,
     },
     "scmRepositoryInline": {
       "graph": true,
-      "stash": false
+      "stash": false,
     },
     "scmRepository": {
       "authors": true,
       "generateCommitMessage": true,
       "patch": true,
-      "graph": false
+      "graph": false,
     },
     "scmGroupInline": {
-      "stash": true
+      "stash": true,
     },
     "scmGroup": {
       "compare": true,
       "openClose": true,
       "patch": true,
-      "stash": true
+      "stash": true,
     },
     "scmItemInline": {
-      "stash": false
+      "stash": false,
     },
     "scmItem": {
       "clipboard": true,
@@ -543,10 +544,10 @@
       "history": true,
       "remote": true,
       "share": true,
-      "stash": true
-    }
+      "stash": true,
+    },
   },
   "files.trimFinalNewlines": true,
   "docker.extension.enableComposeLanguageServer": false,
-  "github.copilot.nextEditSuggestions.enabled": true
+  "github.copilot.nextEditSuggestions.enabled": true,
 }

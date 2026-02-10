@@ -62,6 +62,10 @@
 /env/bin
 /env/pyvenv.cfg
 
+# cagent
+/.config/cagent
+/.cagent/store
+
 # Minecraft
 /Twitch
 /.mputils/settings.dat

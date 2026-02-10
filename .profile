@@ -320,6 +320,7 @@ if $INTERACTIVE; then
 
     export PYTHONSTARTUP
     export VIRTUAL_ENV_DISABLE_PROMPT=1
+    export MAMBA_ROOT_PREFIX="$HOME/miniforge3"
 
     __conda_setup="$("$HOME/miniforge3/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then

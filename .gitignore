@@ -75,8 +75,9 @@
 /.local/share/direnv
 
 # mamba
-/micromamba
+/.mamba/pkgs/pkgs.lock
 /mambaforge
+/micromamba
 /miniforge*
 
 # Applications
@@ -94,6 +95,7 @@
 /.bundle/config
 /.cache/babl
 /.cache/bower
+/.cache/fasd
 /.cache/fontconfig
 /.cache/node
 /.cache/pre-commit

@@ -180,19 +180,18 @@ libgit2, libidn, libidn2, libnghttp2, libnghttp3, libngtcp2, libpng,
 libpthread-stubs, libssh2, libtiff, libtommath, libtool, libunistring, libusb, 
 libuv, libx11, libxau, libxcb, libxdmcp, libxext, libxrender, libyaml, 
 little-cms2, llvm, lsd, lz4, lzo, m4, mas, mpdecimal, ncurses, nghttp2, node, 
-nvm, oniguruma, openhue-cli, openjpeg, openssl@3, pandoc, pango, pcre, pcre2, 
-pidof, pixman, pkg-config, pkgconf, postgresql@15, pyenv, pyenv-virtualenv, 
+nvm, oniguruma, openjpeg, openssl@3, pandoc, pango, pcre, pcre2, pidof, pixman, 
+pkg-config, pkgconf, postgresql@15, pyenv, pyenv-virtualenv, 
 pyenv-virtualenvwrapper, pyright, python@3.13, readline, ripgrep, rlwrap, rust, 
-rustup, shellcheck, shfmt, simdjson, six, sqlite, tcl-tk, tcl-tk@8, tesseract, 
-tmux, tree, utf8proc, uv, uvwasi, vramsteg, watch, wdiff, webp, wget, 
-xorgproto, xz, yarn, z3, zsh, zstd
+rustup, shellcheck, shfmt, simdjson, sqlite, tcl-tk, tcl-tk@8, tesseract, tmux, 
+tree, utf8proc, uv, uvwasi, vramsteg, watch, wdiff, webp, wget, xorgproto, xz, 
+yarn, z3, zsh, zstd
 
 Homebrew Casks: 1password, 1password/tap/1password-cli, chromedriver, discord, 
 docker, docker-desktop, dropbox, fantastical, flux-app, font-fira-code, 
 font-hack-nerd-font, google-chrome, iexplorer, iterm2, lingon-x, ngrok, 
 obsidian, omnifocus, rectangle, signal, slack, snes9x, sourcetree, spotify, 
-steam, tableplus, texstudio, the-unarchiver, transmission, vagrant, 
-visual-studio-code, vlc
+steam, tableplus, the-unarchiver, transmission, vagrant, visual-studio-code, vlc
 
 Code Packages: be5invis.toml, bibhasdn.unique-lines, charliermarsh.ruff, 
 DavidAnson.vscode-markdownlint, dbaeumer.vscode-eslint, eamodio.gitlens, 
@@ -220,11 +219,9 @@ requests-toolbelt, ruamel_yaml, setuptools, shellingham, six, tk, toml,
 tomlkit, tqdm, traitlets, urllib3, virtualenv, wcwidth, webencodings, wheel, 
 xz, yaml, zipp, zlib
 
-Node Modules: @ibm/plex, all-contributors-cli, create-react-app, cson, 
-dockerlint, eslint, external-ip, generator-code, generator-generator, 
-geoip-lite, js-beautify, JSON, json-stable-stringify, moment, nesh, 
-npm-check-updates, npm-remote-ls, npm-why, prettier, raml2html, standard, 
-tmpin, typescript, yo
+Node Modules: @ibm/plex, cson, dockerlint, eslint, external-ip, JSON, 
+json-stable-stringify, moment, npm-check-updates, npm-remote-ls, npm-why, 
+prettier, standard, tmpin, typescript
 
 Go Packages: github.com/BurntSushi/toml, github.com/BurntSushi/toml/cmd/tomlv
 
@@ -239,7 +236,7 @@ Copyright 2006 Raph Levien. Released under the SIL Open Font License.
 
 The MIT License (MIT)
 
-Copyright (c) 2025, lexicalunit@lexicalunit.com
+Copyright (c) 2026, lexicalunit@lexicalunit.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -102,6 +102,7 @@
 /.cache/fasd
 /.cache/fontconfig
 /.cache/node
+/.cache/pkg
 /.cache/pre-commit
 /.cache/prezto
 /.cache/pyright-python
@@ -124,6 +125,7 @@
 /.config/simple-update-notifier
 /.config/texstudio
 /.config/yarn/global
+/.copilot
 /.cups/lpoptions
 /.dbvis
 /.docker

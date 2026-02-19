@@ -11,18 +11,18 @@ HOMEBREW_FORMULAS="                                                            \
     chrome-cli clang-format coreutils defaultbrowser diff-so-fancy direnv duti \
     exiftool expect fontconfig freetype fribidi fzf gdbm gettext ghc           \
     ghostscript giflib git git-lfs git-secrets glib gmp gnu-sed gnu-tar go     \
-    gobject-introspection graphite2 harfbuzz icu4c@77 imagemagick@6 jbig2dec   \
-    jemalloc jez/formulae/pandoc-sidenote jpeg jpeg-turbo jq krb5 leptonica    \
-    libarchive libb2 libev libevent libffi libgit2 libidn libidn2 libnghttp2   \
-    libnghttp3 libngtcp2 libpng libpthread-stubs libssh2 libtiff libtommath    \
-    libtool libunistring libusb libuv libx11 libxau libxcb libxdmcp libxext    \
-    libxrender libyaml little-cms2 llvm lsd lz4 lzo m4 mas mpdecimal ncurses   \
-    nghttp2 node nvm oniguruma openjpeg openssl@3 pandoc pango pcre pcre2      \
-    pidof pixman pkg-config pkgconf postgresql@15 pyenv pyenv-virtualenv       \
-    pyenv-virtualenvwrapper pyright python@3.13 readline ripgrep rlwrap rust   \
-    rustup shellcheck shfmt simdjson sqlite tcl-tk tcl-tk@8 tesseract tmux     \
-    tree utf8proc uv uvwasi vramsteg watch wdiff webp wget xorgproto xz yarn   \
-    z3 zsh zstd"
+    gobject-introspection graphite2 harfbuzz hashicorp/tap/terraform icu4c@77  \
+    imagemagick@6 jbig2dec jemalloc jez/formulae/pandoc-sidenote jpeg          \
+    jpeg-turbo jq krb5 leptonica libarchive libb2 libev libevent libffi        \
+    libgit2 libidn libidn2 libnghttp2 libnghttp3 libngtcp2 libpng              \
+    libpthread-stubs libssh2 libtiff libtommath libtool libunistring libusb    \
+    libuv libx11 libxau libxcb libxdmcp libxext libxrender libyaml little-cms2 \
+    llvm lsd lz4 lzo m4 mas mpdecimal ncurses nghttp2 node nvm oniguruma       \
+    openjpeg openssl@3 pandoc pango pcre pcre2 pidof pixman pkg-config pkgconf \
+    postgresql@15 pyenv pyenv-virtualenv pyenv-virtualenvwrapper pyright       \
+    python@3.13 readline ripgrep rlwrap rust rustup shellcheck shfmt simdjson  \
+    sqlite tcl-tk tcl-tk@8 tesseract tflint tmux tree utf8proc uv uvwasi       \
+    vramsteg watch wdiff webp wget xorgproto xz yarn z3 zsh zstd"
 
 HOMEBREW_CASKS="                                                               \
     1password 1password/tap/1password-cli chromedriver discord docker          \
@@ -1094,9 +1094,9 @@ step_brew() {
     run "find '$(brew --prefix)' -mindepth 1 -maxdepth 1 -print0 | xargs -0 -n 1 -P $(sysctl -n hw.ncpu) sudo chown -R '$(whoami)'"
 
     # shellcheck disable=SC2207
-    # TAP=($(brew tap))
-    # array_contains 'watermint/toolbox' "${TAP[@]}" || run "brew tap watermint/toolbox"
-    # array_contains 'openhue/cli' "${TAP[@]}" || run "brew tap openhue/cli"
+    TAP=($(brew tap))
+    array_contains 'openhue/cli' "${TAP[@]}" || run "brew tap openhue/cli"
+    array_contains 'hashicorp/tap/terraform' "${TAP[@]}" || run "brew tap hashicorp/tap/terraform"
 
     ensure_homebrew_updated
 

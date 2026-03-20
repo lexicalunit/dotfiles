@@ -1,92 +1,7 @@
-# Mac OS
 .DS_Store
-/.Trash
-/Applications
-/Desktop
-/Documents
-/Downloads
-/Library
-/Movies
-/Music
-/Pictures
-/Public
-
-# Personal
-/.commit
-/bin/ignore
-/Games
-/Private
-/projects
-/source
-
-# Work
-/.databrickscfg
-/.gdk.yml
-/.gitconfig-user-*
-/.mcd
-/.npmrc
-/.local/state/pnpm/pnpm-state.json
-/.openvpn-connect.json
-/.tailscale*
-/.duckdb
-/.augment/config.yaml
-
-# Parallels
-/*Parallels*
-
-# VMWare
-/Virtual\ Machines.localized
-
-# Wine
-/.config/menus/applications-merged/
-/.local/share/applications/wine/Programs
-/.local/share/desktop-directories
-/.local/share/mime/packages
-
-# glances
-/.local/share/glances/glances.log
-
-# Poetry
-/.local/share/virtualenvs
-
-# Python pip/pipx user local
-/.local/bin
-/.local/lib
-/.local/pipx/logs
-/.local/pipx/shared
-/.local/pipx/venvs
-
-# Pyenv
-/env/lib
-/env/share
-/env/bin
-/env/pyvenv.cfg
-
-# cagent
-/.config/cagent
-/.cagent/store
-
-# Minecraft
-/Twitch
-/.mputils/settings.dat
-/.mono/registry/last-btime
-/.config/.mono/keypairs
-
-# 1Pass
-/.config/op/config
-
-# direnv
-/.local/share/direnv
-
-# mamba
-/.mamba/pkgs/pkgs.lock
-/mambaforge
-/micromamba
-/miniforge*
-
-# Applications
 /.ammonite
 /.asdf
+/.augment/config.yaml
 /.aws
 /.aws-onelogin-auth
 /.babel.json
@@ -106,20 +21,26 @@
 /.cache/pre-commit
 /.cache/prezto
 /.cache/pyright-python
+/.cagent/store
 /.cargo
 /.ccache
 /.cht.sh/history
 /.circleci
 /.cmake
 /.coffee_history
+/.commit
 /.conan
 /.conda/environments.txt
 /.conda/pkgs/urls
 /.conda/pkgs/urls.txt
 /.config/.mono/certs/Trust/
+/.config/.mono/keypairs
+/.config/cagent
 /.config/configstore
 /.config/gtk-2.0/
 /.config/iterm2/AppSupport
+/.config/menus/applications-merged/
+/.config/op/config
 /.config/QtProject
 /.config/rq
 /.config/simple-update-notifier
@@ -127,16 +48,20 @@
 /.config/yarn/global
 /.copilot
 /.cups/lpoptions
+/.databrickscfg
 /.dbvis
 /.docker
 /.dropbox
+/.duckdb
 /.eclipse
 /.electron
 /.electron-gyp
 /.fasd*
 /.finda
+/.gdk.yml
 /.gem
 /.gemrc
+/.gitconfig-user-*
 /.gitflow_export
 /.gk
 /.gnupg
@@ -155,25 +80,43 @@
 /.keras/keras.json
 /.kube
 /.lesshst
+/.local/bin
+/.local/lib
+/.local/pipx/logs
+/.local/pipx/shared
+/.local/pipx/venvs
+/.local/share/applications/wine/Programs
+/.local/share/desktop-directories
+/.local/share/direnv
 /.local/share/gem
+/.local/share/glances/glances.log
 /.local/share/heroku
 /.local/share/IsolatedStorage
+/.local/share/mime/packages
 /.local/share/nvim/shada/main.shada
 /.local/share/pry/pry_history
 /.local/share/recently-used.xbel
+/.local/share/virtualenvs
+/.local/state/pnpm/pnpm-state.json
 /.m2
+/.mamba/pkgs/pkgs.lock
 /.matplotlib
+/.mcd
 /.minikube
+/.mono/registry/last-btime
+/.mputils/settings.dat
 /.mysql_history
 /.ncftp
 /.netrc
 /.node_repl_history
 /.node-gyp
 /.npm
+/.npmrc
 /.nvm
 /.odbc.ini
 /.onelogin
 /.openhue
+/.openvpn-connect.json
 /.oracle_jre_usage
 /.pgpass
 /.pnpm-state/pnpm-state.json
@@ -199,9 +142,11 @@
 /.ssh
 /.subversion
 /.swiftpm
+/.tailscale*
 /.terraform.d
 /.toolbox
 /.tox
+/.Trash
 /.travis/config.yml
 /.travis/travis.sh
 /.v8flags*
@@ -222,8 +167,32 @@
 /.zsh_history*
 /.zsh_sessions
 /.zsh-update
+/*Parallels*
+/Applications
+/bin/ignore
 /Creative\ Cloud\ Files
+/Desktop
+/Documents
+/Downloads
 /Dropbox*
+/env/bin
+/env/lib
+/env/pyvenv.cfg
+/env/share
+/Games
 /Google*Drive
 /IdeaProjects
+/Library
+/mambaforge
+/micromamba
+/miniforge*
+/Movies
+/Music
+/Pictures
+/Private
+/projects
+/Public
+/source
+/Twitch
+/Virtual\ Machines.localized
 /VirtualBox*

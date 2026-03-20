@@ -316,6 +316,7 @@
     "lunr",
     "luqum",
     "macos",
+    "MANAPOOL",
     "mastertax",
     "mcon",
     "mcons",
@@ -548,6 +549,6 @@
     },
   },
   "files.trimFinalNewlines": true,
-  "docker.extension.enableComposeLanguageServer": false,
   "github.copilot.nextEditSuggestions.enabled": true,
+  "latex-workshop.formatting.latex": "tex-fmt",
 }

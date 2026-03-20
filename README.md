@@ -184,9 +184,9 @@ lzo, m4, mas, mpdecimal, ncurses, nghttp2, node, nvm, oniguruma, openjpeg,
 openssl@3, pandoc, pango, pcre, pcre2, pidof, pixman, pkg-config, pkgconf, 
 postgresql@15, pyenv, pyenv-virtualenv, pyenv-virtualenvwrapper, pyright, 
 python@3.13, readline, ripgrep, rlwrap, rust, rustup, shellcheck, shfmt, 
-simdjson, sqlite, tcl-tk, tcl-tk@8, tesseract, tex-fmt, tmux, tree, utf8proc, 
-uv, uvwasi, vramsteg, watch, wdiff, webp, wget, xorgproto, xz, yarn, z3, zsh, 
-zstd
+simdjson, sqlite, tcl-tk, tcl-tk@8, tesseract, tex-fmt, tflint, tmux, tree, 
+utf8proc, uv, uvwasi, vramsteg, watch, wdiff, webp, wget, xorgproto, xz, yarn, 
+z3, zsh, zstd
 
 Homebrew Casks: 1password, 1password/tap/1password-cli, chromedriver, discord, 
 docker, docker-desktop, dropbox, fantastical, flux-app, font-fira-code, 

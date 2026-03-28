@@ -142,8 +142,7 @@ with the argument `--help`.
 | [`woke`](bin/woke) | Get time macOS system last woke from sleep. |
 | [`xdie`](bin/xdie) | Kills processes based on their window title. |
 | [`xf`](bin/xf) | Extract common file formats. |
-| [`yeti-no-thru`](bin/yeti-no-thru) |  |
-| [`yeti-no-thru.swift`](bin/yeti-no-thru.swift) |  |
+| [`yeti-no-thru`](bin/yeti-no-thru) | Disables the "Thru" (playthrough) setting on Blue Yeti microphones. |
 | [`zoomwatcher`](bin/zoomwatcher) | A service that watches for zoom and turns a hue light red if it is ... |
 
 # What does `equip all` install?

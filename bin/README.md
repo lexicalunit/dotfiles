@@ -185,12 +185,12 @@ steps:
     all        Runs all steps
 
 Homebrew Formulas: autoconf, awscli, bash, basictex, brotli, c-ares, 
-ca-certificates, cabal-install, cairo, chrome-cli, clang-format, coreutils, 
-defaultbrowser, diff-so-fancy, direnv, duti, exiftool, expect, fontconfig, 
-freetype, fribidi, fzf, gdbm, gettext, ghc, ghostscript, giflib, git, git-lfs, 
-git-secrets, glib, gmp, gnu-sed, gnu-tar, go, gobject-introspection, graphite2, 
-harfbuzz, icu4c@77, imagemagick@6, jbig2dec, jemalloc, 
-jez/formulae/pandoc-sidenote, jpeg, jpeg-turbo, jq, krb5, leptonica, 
+ca-certificates, cabal-install, cairo, chrome-cli, clang-format, corepack, 
+coreutils, defaultbrowser, diff-so-fancy, direnv, duti, exiftool, expect, 
+fontconfig, freetype, fribidi, fzf, gdbm, gettext, ghc, ghostscript, giflib, 
+git, git-lfs, git-secrets, glib, gmp, gnu-sed, gnu-tar, go, 
+gobject-introspection, graphite2, harfbuzz, icu4c@77, imagemagick@6, jbig2dec, 
+jemalloc, jez/formulae/pandoc-sidenote, jpeg, jpeg-turbo, jq, krb5, leptonica, 
 libarchive, libb2, libev, libevent, libffi, libgit2, libidn, libidn2, 
 libnghttp2, libnghttp3, libngtcp2, libpng, libpq, libpthread-stubs, libssh2, 
 libtiff, libtommath, libtool, libunistring, libusb, libuv, libx11, libxau, 
@@ -200,8 +200,8 @@ openssl@3, pandoc, pango, pcre, pcre2, pidof, pixman, pkg-config, pkgconf,
 postgresql@15, pyenv, pyenv-virtualenv, pyenv-virtualenvwrapper, pyright, 
 python@3.13, readline, ripgrep, rlwrap, rust, rustup, shellcheck, shfmt, 
 simdjson, sqlite, tcl-tk, tcl-tk@8, tesseract, tex-fmt, tflint, tmux, tree, 
-utf8proc, uv, uvwasi, vramsteg, watch, wdiff, webp, wget, xorgproto, xz, yarn, 
-z3, zsh, zstd
+utf8proc, uv, uvwasi, vramsteg, watch, wdiff, webp, wget, xorgproto, xz, z3, 
+zsh, zstd
 
 Homebrew Casks: 1password, 1password/tap/1password-cli, chromedriver, discord, 
 docker, docker-desktop, dropbox, fantastical, flux-app, font-fira-code, 
@@ -665,6 +665,17 @@ Kills all windows matching REGEX. Use -p for pretend mode.
 ### [`xf`](xf)
 ```
 usage: xf <archive> - extract common file formats
+```
+
+* * *
+### [`yeti-no-thru`](yeti-no-thru)
+```
+Usage: disable-yeti-thru [options]
+
+Disables the "Thru" (playthrough) setting on Blue Yeti microphones.
+
+Options:
+    -h, --help    Show this help message and exit
 ```
 
 * * *

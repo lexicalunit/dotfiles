@@ -63,6 +63,7 @@
 /.gemrc
 /.gitconfig-user-*
 /.gitflow_export
+/.gitkraken/
 /.gk
 /.gnupg
 /.gradle

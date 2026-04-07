@@ -186,6 +186,7 @@ if $INTERACTIVE; then
     ################################################################################
     # setup aliases and functions
     ################################################################################
+    alias g='open -na "GitKraken" --args -p $(pwd) '
     alias st='stree '
     alias bc='bc -l '
     alias profile='valgrind --tool=callgrind --dump-instr=yes --simulate-cache=yes --collect-jumps=yes '

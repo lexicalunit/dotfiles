@@ -195,23 +195,23 @@ font-hack-nerd-font, google-chrome, iexplorer, iterm2, lingon-x, ngrok,
 obsidian, omnifocus, rectangle, signal, slack, snes9x, sourcetree, spotify, 
 steam, tableplus, the-unarchiver, transmission, vagrant, visual-studio-code, vlc
 
-Code Packages: be5invis.toml, bibhasdn.unique-lines, charliermarsh.ruff, 
-DavidAnson.vscode-markdownlint, dbaeumer.vscode-eslint, eamodio.gitlens, 
+Code Packages: DavidAnson.vscode-markdownlint, GitHub.copilot, 
+GitHub.copilot-chat, James-Yu.latex-workshop, 
+PascalReitermann93.vscode-yaml-sort, be5invis.toml, bibhasdn.unique-lines, 
+charliermarsh.ruff, dbaeumer.vscode-eslint, eamodio.gitlens, 
 esbenp.prettier-vscode, exiasr.hadolint, foxundermoon.shell-format, 
-GitHub.copilot, GitHub.copilot-chat, hashicorp.terraform, 
-James-Yu.latex-workshop, joe-re.sql-language-server, karunamurti.haml, 
+hashicorp.terraform, joe-re.sql-language-server, karunamurti.haml, 
 mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
 mohsen1.prettify-json, ms-azuretools.vscode-docker, ms-python.debugpy, 
 ms-python.python, ms-python.vscode-pylance, ms-vscode.live-server, 
-nickmillerdev.pytest-fixtures, PascalReitermann93.vscode-yaml-sort, 
-redhat.vscode-yaml, richie5um2.vscode-sort-json, 
+nickmillerdev.pytest-fixtures, redhat.vscode-yaml, richie5um2.vscode-sort-json, 
 streetsidesoftware.code-spell-checker, sysoev.language-stylus, 
 timonwong.shellcheck
 
 Conda Packages: appdirs, appnope, attrs, backcall, brotlipy, ca-certificates, 
 cachecontrol, cachy, certifi, cffi, charset-normalizer, cleo, clikit, 
 crashtest, cryptography, decorator, distlib, filelock, html5lib, idna, 
-importlib_metadata, importlib-metadata, iniconfig, ipython, ipython_genutils, 
+importlib-metadata, importlib_metadata, iniconfig, ipython, ipython_genutils, 
 jedi, jsonschema, keyring, libcxx, libffi, lockfile, lz4, lz4-c, 
 matplotlib-inline, more-itertools, msgpack-python, ncurses, openssl, packaging, 
 parso, pastel, pexpect, pickleshare, pip, pkginfo, pluggy, poetry, poetry-core, 
@@ -221,7 +221,7 @@ requests-toolbelt, ruamel_yaml, setuptools, shellingham, six, tk, toml,
 tomlkit, tqdm, traitlets, urllib3, virtualenv, wcwidth, webencodings, wheel, 
 xz, yaml, zipp, zlib
 
-Node Modules: @ibm/plex, cson, dockerlint, eslint, external-ip, JSON, 
+Node Modules: @ibm/plex, JSON, cson, dockerlint, eslint, external-ip, 
 json-stable-stringify, moment, npm-check-updates, npm-remote-ls, npm-why, 
 prettier, standard, tmpin, typescript
 

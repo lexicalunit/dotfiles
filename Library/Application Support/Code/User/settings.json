@@ -374,6 +374,7 @@
     "popd",
     "postalcode",
     "postgresql",
+    "Precon",
     "Precons",
     "prezto",
     "promotability",
@@ -482,6 +483,9 @@
   "git.openRepositoryInParentFolders": "never",
   "github.copilot.enable": {
     "*": false,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false,
   },
   "workbench.editor.empty.hint": "hidden",
   "window.confirmSaveUntitledWorkspace": false,

@@ -20,6 +20,7 @@
 /.cache/pkg
 /.cache/pre-commit
 /.cache/prezto
+/.cache/prisma
 /.cache/pyright-python
 /.cagent/store
 /.cargo

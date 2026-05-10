@@ -99,6 +99,7 @@
 /.local/share/pry/pry_history
 /.local/share/recently-used.xbel
 /.local/share/virtualenvs
+/.local/state
 /.local/state/pnpm/pnpm-state.json
 /.m2
 /.mamba/pkgs/pkgs.lock
@@ -156,6 +157,7 @@
 /.vim/.netrwhist
 /.viminfo
 /.virtualenvs
+/.vscode-shared
 /.vscode/argv.json
 /.vscode/extensions
 /.wget-hsts

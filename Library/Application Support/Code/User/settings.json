@@ -73,7 +73,7 @@
   "[python]": {
     "editor.detectIndentation": false,
     "editor.tabSize": 4,
-    "editor.rulers": [88, 100],
+    "editor.rulers": [100, 120],
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.codeActionsOnSave": {
       "source.organizeImports": "never",

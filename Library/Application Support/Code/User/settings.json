@@ -73,7 +73,7 @@
   "[python]": {
     "editor.detectIndentation": false,
     "editor.tabSize": 4,
-    "editor.rulers": [100, 120],
+    "editor.rulers": [88, 100, 120],
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.codeActionsOnSave": {
       "source.organizeImports": "never",
@@ -425,6 +425,7 @@
     "SCAL",
     "schemars",
     "scikit",
+    "Scry",
     "scryfall",
     "semver",
     "setuptools",
@@ -578,4 +579,5 @@
   "files.trimFinalNewlines": true,
   "github.copilot.nextEditSuggestions.enabled": true,
   "latex-workshop.formatting.latex": "tex-fmt",
+  "C_Cpp.clang_format_path": "/opt/homebrew/bin/clang-format",
 }

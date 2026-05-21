@@ -106,6 +106,7 @@
 /.matplotlib
 /.mcd
 /.minikube
+/.mongodb
 /.mono/registry/last-btime
 /.mputils/settings.dat
 /.mysql_history

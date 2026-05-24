@@ -1,4 +1,5 @@
 .DS_Store
+.mamba/pkgs/urls.txt
 /.ammonite
 /.asdf
 /.augment/config.yaml
@@ -14,6 +15,7 @@
 /.bundle/config
 /.cache/babl
 /.cache/bower
+/.cache/conda
 /.cache/fasd
 /.cache/fontconfig
 /.cache/node

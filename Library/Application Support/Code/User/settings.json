@@ -251,6 +251,7 @@
     "exitstatus",
     "fargate",
     "fein",
+    "Fernet",
     "fieldqualityrule",
     "finalizer",
     "finatra",

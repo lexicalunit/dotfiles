@@ -109,6 +109,10 @@ PLATFORM="$(uname)"
 export USER
 export PLATFORM
 
+# Ensure utilites are running
+eval "$(fasd --init auto)"
+eval "$(~/.local/bin/mise activate zsh)"
+
 ################################################################################
 # interactive settings
 ################################################################################

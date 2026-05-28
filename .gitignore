@@ -101,6 +101,7 @@
 /.local/share/heroku
 /.local/share/IsolatedStorage
 /.local/share/mime/packages
+/.local/share/mise
 /.local/share/nvim/shada/main.shada
 /.local/share/pry/pry_history
 /.local/share/recently-used.xbel

@@ -996,6 +996,19 @@ EOF
     ########################################
     show "Remap 'caps lock' to 'esc'"
     run "hidutil property --set '{\"UserKeyMapping\":[{\"HIDKeyboardModifierMappingSrc\":0x700000039,\"HIDKeyboardModifierMappingDst\":0x700000029}]}'"
+    # This change does not persist to future logins, we'll use `~/Library/LaunchAgents/local.capsescape.plist`
+    # to have this command run at each login:
+    test -f ~/Library/LaunchAgents/local.capsescape.plist && launchctl load $_
+
+    ########################################
+    # Various Accessibility Settings
+    ########################################
+    defaults write com.apple.speech.recognition.AppleSpeechRecognition.prefs DictationIMMasterDictationEnabled -bool true 2>/dev/null || true
+    defaults write com.apple.Accessibility SpokenUIUseSpeakingHotKey -bool true
+    defaults write com.apple.Accessibility SpeakThisKeyCombo -string "~\U001B"
+    defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
+    defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 2
+    defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 
     ########################################
     # Kill affected applications

@@ -44,6 +44,7 @@
 /.config/.mono/keypairs
 /.config/cagent
 /.config/configstore
+/.config/gcloud
 /.config/gtk-2.0/
 /.config/iterm2/AppSupport
 /.config/menus/applications-merged/

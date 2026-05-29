@@ -1,0 +1,5 @@
+[env]
+PYTHON = "/opt/homebrew/bin/python3.9"
+
+[settings]
+idiomatic_version_file_enable_tools = ["node", "yarn"]

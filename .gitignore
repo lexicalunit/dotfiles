@@ -10,6 +10,9 @@
 /.bash_history*
 /.bash_sessions
 /.bokeh
+/.builder/config
+/.builder/history
+/.builder/temp-workspaces
 /.bun
 /.bundle/cache
 /.bundle/config
@@ -40,6 +43,7 @@
 /.conda/environments.txt
 /.conda/pkgs/urls
 /.conda/pkgs/urls.txt
+/.config/.bin/mise
 /.config/.mono/certs/Trust/
 /.config/.mono/keypairs
 /.config/cagent
@@ -54,6 +58,8 @@
 /.config/simple-update-notifier
 /.config/texstudio
 /.config/yarn/global
+/.context/mcp-codebase-snapshot.json
+/.context/merkle
 /.copilot
 /.cups/lpoptions
 /.databrickscfg
@@ -95,6 +101,7 @@
 /.local/pipx/shared
 /.local/pipx/venvs
 /.local/share/applications/wine/Programs
+/.local/share/claude
 /.local/share/desktop-directories
 /.local/share/direnv
 /.local/share/gem

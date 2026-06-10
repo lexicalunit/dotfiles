@@ -34,7 +34,8 @@ git clone "$REPO_URL" "$REPO_DIR"
 cd "$REPO_DIR" || exit 1
 
 # Checkout all the remote branches as local tracking branches
-git branch --list -r origin/* | cut -c10- | xargs -n1 git checkout
+# Exclude the origin/HEAD symbolic ref, which is not a real branch name.
+git branch --list -r origin/* | grep -v 'origin/HEAD' | cut -c10- | xargs -n1 git checkout
 
 # Rewrite the history, use a system that will preserve the eol
 # (or lack of in commit messages) - preferably Linux not OSX

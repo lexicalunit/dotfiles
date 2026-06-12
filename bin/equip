@@ -10,7 +10,7 @@ HOMEBREW_FORMULAS="                                                            \
     autoconf awscli bash basictex brotli c-ares ca-certificates cabal-install  \
     cairo chrome-cli clang-format corepack coreutils defaultbrowser            \
     diff-so-fancy direnv duti exiftool expect fontconfig freetype fribidi fzf  \
-    gdbm gettext ghc ghostscript giflib git git-lfs git-secrets glib gmp       \
+    gdbm gettext gh ghc ghostscript giflib git git-lfs git-secrets glib gmp    \
     gnu-sed gnu-tar go gobject-introspection graphite2 harfbuzz                \
     hashicorp/tap/terraform icu4c@77 imagemagick@6 jbig2dec jemalloc           \
     jez/formulae/pandoc-sidenote jpeg jpeg-turbo jq krb5 leptonica libarchive  \

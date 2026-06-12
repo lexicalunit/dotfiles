@@ -369,6 +369,9 @@ if $INTERACTIVE; then
     alias l='ls '
     export CLICOLOR=1
 
+    ### Trying to replace SourceTree with GitKraken, but muscle memory is strong
+    alias st='g '
+
 fi # if $INTERACTIVE
 
 # Make sure user utilities always take precedence

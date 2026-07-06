@@ -234,9 +234,7 @@ pyrsistent, pysocks, pytest, pyyaml, readline, requests, requests-toolbelt,
 ruamel_yaml, setuptools, shellingham, six, tk, toml, tomlkit, tqdm, traitlets, 
 urllib3, virtualenv, wcwidth, webencodings, wheel, xz, yaml, zipp, zlib
 
-Node Modules: @ibm/plex, cson, dockerlint, eslint, external-ip, JSON, 
-json-stable-stringify, moment, npm-check-updates, npm-remote-ls, npm-why, 
-prettier, standard, tmpin, typescript
+Node Modules: @ibm/plex, dockerlint, tmpin, typescript
 
 Go Packages: github.com/BurntSushi/toml, github.com/BurntSushi/toml/cmd/tomlv
 
@@ -292,7 +290,7 @@ For git, shows who wrote the code found at the current directory.
 ### [`git-fp`](git-fp)
 ```
 usage: git-fp [-h|--help]
-Git script for cleaning up merged tracking branches.
+Clean up merged tracking branches and merged agent worktree branches.
 ```
 
 * * *

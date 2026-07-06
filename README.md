@@ -103,7 +103,7 @@ with the argument `--help`.
 | [`flip`](bin/flip) | Flips input upside down. |
 | [`git-arc`](bin/git-arc) | Tool for archiving and restoring git branches. |
 | [`git-authors`](bin/git-authors) | Git script for discovering who wrote the code at the current workin... |
-| [`git-fp`](bin/git-fp) | Git script for cleaning up merged tracking branches. |
+| [`git-fp`](bin/git-fp) | Git script for cleaning up stale local branches. |
 | [`git-lg`](bin/git-lg) | Git script for printing beautiful logs. |
 | [`git-ltr`](bin/git-ltr) | Lists (a-la 'ls -ltr') git controlled source files in current direc... |
 | [`git-name-change`](bin/git-name-change) | Clones a repo then changes the name and email address in entire his... |
@@ -220,9 +220,7 @@ pyrsistent, pysocks, pytest, pyyaml, readline, requests, requests-toolbelt,
 ruamel_yaml, setuptools, shellingham, six, tk, toml, tomlkit, tqdm, traitlets, 
 urllib3, virtualenv, wcwidth, webencodings, wheel, xz, yaml, zipp, zlib
 
-Node Modules: @ibm/plex, cson, dockerlint, eslint, external-ip, JSON, 
-json-stable-stringify, moment, npm-check-updates, npm-remote-ls, npm-why, 
-prettier, standard, tmpin, typescript
+Node Modules: @ibm/plex, dockerlint, tmpin, typescript
 
 Go Packages: github.com/BurntSushi/toml, github.com/BurntSushi/toml/cmd/tomlv
 

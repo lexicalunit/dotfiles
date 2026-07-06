@@ -60,9 +60,7 @@ CONDA_PACKAGES="                                                               \
     yaml zipp zlib"
 
 NODE_MODULES="                                                                 \
-    @ibm/plex cson dockerlint eslint external-ip JSON json-stable-stringify    \
-    moment npm-check-updates npm-remote-ls npm-why prettier standard tmpin     \
-    typescript"
+    @ibm/plex dockerlint tmpin typescript"
 
 GO_PACKAGES="                                                                  \
     github.com/BurntSushi/toml github.com/BurntSushi/toml/cmd/tomlv"

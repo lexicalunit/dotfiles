@@ -20,7 +20,9 @@
 /.cache/bower
 /.cache/conda
 /.cache/fasd
+/.cache/firebase/emulators
 /.cache/fontconfig
+/.cache/gh
 /.cache/node
 /.cache/pkg
 /.cache/pre-commit

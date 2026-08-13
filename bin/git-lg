@@ -14,54 +14,97 @@ AUTHOR='%C(bold blue)<%an>%C(reset)'
 REFS='%C(yellow)%d%C(reset)'
 MESSAGE='%s'
 
-TERM_WIDTH="$(tput cols)"
+# Unit separator: can't appear in a hash, date, author name, ref name or subject,
+# so it never collides with the content it delimits.
+DELIM=$'\037'
+
+# tput fails when stdout isn't a tty, which -e would turn into an early exit.
+TERM_WIDTH="$(tput cols 2>/dev/null || echo 80)"
 MAX_HASH_WIDTH="$((TERM_WIDTH / 4))"
 
-make_format() {
-    local delim="$1"
-    echo "$HASH$delim$DATE$delim$AUTHOR$delim$REFS $MESSAGE"
-}
-
 make_log() {
-    local format="$1"
-    shift
     git log \
         --date=relative \
         --graph \
-        --pretty="tformat:$format" \
+        --pretty="tformat:$HASH$DELIM$DATE$DELIM$AUTHOR$DELIM$REFS $MESSAGE" \
         "$@"
 }
 
-max_hash_width() {
-    make_log "$HASH" "$@" | awk '{ if (length > L) { L = length } }END{ print L }'
+# Align the leading columns, padding to the widest value in each one.
+#
+# This replaces column(1), which on macOS refuses any line longer than 2048
+# bytes ("line too long") and then mangles the rest of the table along with it.
+# A single commit carrying a lot of tags is enough to blow past that.
+#
+# Widths are measured with the ANSI escapes stripped, so columns line up by what
+# is actually on screen rather than by escape-sequence bytes.
+#
+# If the first column comes out wider than MAX_HASH_WIDTH -- a deep --graph
+# prefix, say -- fall back to single-space separation rather than aligning.
+columnize() {
+    awk -v delim="$DELIM" -v max_width="$MAX_HASH_WIDTH" '
+        function visible_width(s) {
+            gsub(/\033\[[0-9;]*m/, "", s)
+            return length(s)
+        }
+
+        # Split on at most the first FIELDS-1 delimiters, so that a delimiter in
+        # the trailing field is left alone rather than becoming a new column.
+        function split_fields(s, out,    n, p) {
+            n = 0
+            while (n < FIELDS - 1) {
+                p = index(s, delim)
+                if (p == 0) break
+                out[++n] = substr(s, 1, p - 1)
+                s = substr(s, p + length(delim))
+            }
+            out[++n] = s
+            return n
+        }
+
+        BEGIN {
+            FIELDS = 4  # hash, date, author, then refs and subject together
+            GAP = 2
+            BLANKS = sprintf("%256s", "")
+        }
+
+        {
+            lines[NR] = $0
+            n = split_fields($0, field)
+            # The trailing field is never padded, so it needs no width.
+            for (i = 1; i < n; i++) {
+                w = visible_width(field[i])
+                if (w > width[i]) width[i] = w
+            }
+        }
+
+        END {
+            aligned = (width[1] <= max_width)
+            for (r = 1; r <= NR; r++) {
+                n = split_fields(lines[r], field)
+                line = field[1]
+                for (i = 2; i <= n; i++) {
+                    pad = aligned ? width[i - 1] - visible_width(field[i - 1]) + GAP : 1
+                    line = line substr(BLANKS, 1, pad) field[i]
+                }
+                print line
+            }
+        }
+    '
 }
 
 git_pretty_log() {
-    local columnize
-    if [[ "$(max_hash_width "$@")" -le $MAX_HASH_WIDTH ]]; then
-        columnize=true
-    else
-        columnize=false
-    fi
-
     # 1. Replace (2 years, 5 months) with (2 years)
     # 2. Replace (2 years ago) with (2 years)
     # 3. Color merge commits specially
-    # 4. Page only if we're asked to (GIT_NO_PAGER)
-    # 5. Page only if needed
-    if [[ $columnize == true ]]; then
-        make_log "$(make_format '}')" "$@"
-    else
-        make_log "$(make_format ' ')" "$@"
-    fi |
+    # 4. Align the columns
+    # 5. Page only if we're asked to (GIT_NO_PAGER)
+    # 6. Page only if needed
+    make_log "$@" |
         sed -Ee 's/([[:digit:]]+ [[:alpha:]]+), [[:digit:]]+ months? ago/\1/' |
         sed -Ee 's/([[:digit:]]+ [[:alpha:]]+) ago/\1/' |
         sed -Ee "s/(Merge (branch|remote-tracking branch|pull request) .*$)/$(printf '\033[31m')\\1$(printf '\033[0m')/" |
-        if [[ $columnize == true ]]; then
-            column -ts '}'
-        else
-            cat
-        fi |
+        columnize |
         if [ -n "$GIT_NO_PAGER" ]; then
             cat
         else

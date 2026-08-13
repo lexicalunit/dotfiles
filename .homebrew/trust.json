@@ -3,7 +3,8 @@
     "hashicorp/tap/terraform",
     "jez/formulae/pandoc-sidenote",
     "openhue/cli/openhue-cli",
-    "rbenv/tap/openssl@1.1"
+    "rbenv/tap/openssl@1.1",
+    "shopify/shopify/ejson"
   ],
   "trustedcasks": [
     "1password/tap/1password-cli"

@@ -1108,7 +1108,7 @@ step_brew() {
     # shellcheck disable=SC2207
     TAP=($(brew tap))
     array_contains 'openhue/cli' "${TAP[@]}" || run "brew tap openhue/cli"
-    array_contains 'hashicorp/tap/terraform' "${TAP[@]}" || run "brew tap hashicorp/tap/terraform"
+    array_contains 'hashicorp/tap' "${TAP[@]}" || run "brew tap hashicorp/tap"
 
     ensure_homebrew_updated
 

@@ -1,5 +1,6 @@
 .DS_Store
 .mamba/pkgs/urls.txt
+/.agent-native
 /.ammonite
 /.asdf
 /.augment/config.yaml

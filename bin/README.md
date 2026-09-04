@@ -664,13 +664,15 @@ usage: xf <archive> - extract common file formats
 ```
 
 * * *
-### [`yeti-no-thru`](yeti-no-thru)
+### [`yeti-mute`](yeti-mute)
 ```
-Usage: disable-yeti-thru [options]
+Usage: yeti-mute [options]
 
-Disables the "Thru" (playthrough) setting on Blue Yeti microphones.
+Disables the "Thru" (headphone passthru) setting on Blue Yeti microphones.
 
 Options:
+    --watch       Stay running and re-disable passthru whenever the audio
+                  device list changes (i.e. on every plug-in / KVM switch)
     -h, --help    Show this help message and exit
 ```
 

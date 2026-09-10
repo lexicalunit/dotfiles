@@ -47,6 +47,7 @@
 /.conda/pkgs/urls
 /.conda/pkgs/urls.txt
 /.config/.bin/mise
+/.config/.jira/.config.yml
 /.config/.mono/certs/Trust/
 /.config/.mono/keypairs
 /.config/cagent
@@ -57,6 +58,7 @@
 /.config/ldcli/config.yml
 /.config/lexicalunit/studio.json
 /.config/menus/applications-merged/
+/.config/neon/credentials.json
 /.config/op/config
 /.config/QtProject
 /.config/rq

@@ -582,4 +582,5 @@
   "github.copilot.nextEditSuggestions.enabled": true,
   "latex-workshop.formatting.latex": "tex-fmt",
   "C_Cpp.clang_format_path": "/opt/homebrew/bin/clang-format",
+  "claudeCode.hideOnboarding": true,
 }

@@ -1,5 +1,6 @@
 {
   "trustedformulae": [
+    "datadog-labs/pack/pup",
     "hashicorp/tap/terraform",
     "jez/formulae/pandoc-sidenote",
     "openhue/cli/openhue-cli",

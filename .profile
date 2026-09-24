@@ -100,6 +100,9 @@ fi
 # User utilities
 test -d "$HOME/bin" && PATH="$_:$PATH"
 
+# Docker
+export PATH="$PATH:$HOME/.docker/bin"
+
 export PATH
 export PYTHONPATH
 export PKG_CONFIG_PATH

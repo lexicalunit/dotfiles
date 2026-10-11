@@ -23,8 +23,10 @@
 /.cache/fasd
 /.cache/firebase/emulators
 /.cache/fontconfig
+/.cache/gcx/
 /.cache/gh
 /.cache/node
+/.cache/notion/public-api
 /.cache/pkg
 /.cache/pre-commit
 /.cache/prezto
@@ -53,12 +55,14 @@
 /.config/cagent
 /.config/configstore
 /.config/gcloud
+/.config/gcx/config.yaml
 /.config/gtk-2.0/
 /.config/iterm2/AppSupport
 /.config/ldcli/config.yml
 /.config/lexicalunit/studio.json
 /.config/menus/applications-merged/
 /.config/neon/credentials.json
+/.config/notion/
 /.config/op/config
 /.config/QtProject
 /.config/rq

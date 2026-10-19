@@ -68,7 +68,9 @@ install packages/formulas/casks/whatever, see below for the list of included ite
 | --- | --- |
 $(./equip -l | sed 's/^\([^ ]*\) *\(.*\)$/| \1 | \2 |/g')
 
-$(./equip -h 2>&1 | grep -A5000 'Homebrew Formulas:')
+Homebrew formulas, casks, Mac App Store apps, and Go and Cargo packages are listed in [\`.homebrew/Brewfile\`](.homebrew/Brewfile). Python, Node, Ruby, Java, and npm CLI tools are managed by [mise](https://mise.jdx.dev) and listed in [\`.config/mise/config.toml\`](.config/mise/config.toml).
+
+$(./equip -h 2>&1 | grep -A5000 'Code Packages:')
 EOF
 
 #########################################################################

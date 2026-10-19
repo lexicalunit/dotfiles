@@ -25,9 +25,7 @@ fql() {
 }
 
 _enter_virtualenv_dir() {
-    if [[ -n $CONDA_DEFAULT_ENV ]]; then
-        mamba deactivate
-    elif [[ -n $VIRTUAL_ENV ]]; then
+    if type deactivate >/dev/null 2>&1; then
         deactivate
     fi
 
@@ -41,7 +39,6 @@ _exit_virtualenv_dir() {
     if type deactivate >/dev/null 2>&1; then
         deactivate
         unset LIBRARY_PATH
-        mamba activate
     fi
 }
 

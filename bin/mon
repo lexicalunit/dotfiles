@@ -35,9 +35,9 @@ else
     jul) echo 7 ;;
     aug) echo 8 ;;
     sep) echo 9 ;;
-    oct) echo 1 ;;
-    nov) echo 1 ;;
-    dec) echo 1 ;;
+    oct) echo 10 ;;
+    nov) echo 11 ;;
+    dec) echo 12 ;;
     *) exit 1 ;;
     esac
 fi

@@ -6,32 +6,6 @@
 # Settings
 ################################################################################
 # BEGIN GENERATED PACKAGE LISTS
-HOMEBREW_FORMULAS="                                                            \
-    autoconf awscli bash basictex brotli c-ares ca-certificates cabal-install  \
-    cairo chrome-cli clang-format corepack coreutils defaultbrowser            \
-    diff-so-fancy direnv duti exiftool expect fontconfig freetype fribidi fzf  \
-    gdbm gettext gh ghc ghostscript giflib git git-lfs git-secrets glib gmp    \
-    gnu-sed gnu-tar go gobject-introspection graphite2 harfbuzz                \
-    hashicorp/tap/terraform icu4c@77 imagemagick@6 jbig2dec jemalloc           \
-    jez/formulae/pandoc-sidenote jpeg jpeg-turbo jq krb5 leptonica libarchive  \
-    libb2 libev libevent libffi libgit2 libidn libidn2 libnghttp2 libnghttp3   \
-    libngtcp2 libpng libpq libpthread-stubs libssh2 libtiff libtommath libtool \
-    libunistring libusb libuv libx11 libxau libxcb libxdmcp libxext libxrender \
-    libyaml little-cms2 llvm lsd lz4 lzo m4 mas mpdecimal ncurses nghttp2 node \
-    nvm oniguruma openhue/cli/openhue-cli openjpeg openssl@3 pandoc pango pcre \
-    pcre2 pidof pixman pkg-config pkgconf postgresql@15 pyenv pyenv-virtualenv \
-    pyenv-virtualenvwrapper pyright python@3.13 readline ripgrep rlwrap rust   \
-    rustup shellcheck shfmt simdjson sqlite tcl-tk tcl-tk@8                    \
-    terraform-linters/tap/tflint tesseract tex-fmt tflint tmux tree utf8proc   \
-    uv uvwasi vramsteg watch wdiff webp wget xorgproto xz z3 zsh zstd"
-
-HOMEBREW_CASKS="                                                               \
-    1password 1password/tap/1password-cli chromedriver discord docker          \
-    docker-desktop dropbox fantastical flux-app font-fira-code                 \
-    font-hack-nerd-font ghostty google-chrome iexplorer iterm2 lingon-x ngrok  \
-    obsidian omnifocus rectangle signal slack snes9x sourcetree spotify steam  \
-    tableplus the-unarchiver transmission vagrant visual-studio-code vlc"
-
 CODE_PACKAGES="                                                                \
     be5invis.toml bibhasdn.unique-lines charliermarsh.ruff                     \
     DavidAnson.vscode-markdownlint dbaeumer.vscode-eslint eamodio.gitlens      \
@@ -46,31 +20,25 @@ CODE_PACKAGES="                                                                \
     streetsidesoftware.code-spell-checker sysoev.language-stylus               \
     timonwong.shellcheck"
 
-CONDA_PACKAGES="                                                               \
-    appdirs appnope attrs backcall brotlipy ca-certificates cachecontrol cachy \
-    certifi cffi charset-normalizer cleo clikit crashtest cryptography         \
-    decorator distlib filelock html5lib idna importlib_metadata                \
-    importlib-metadata iniconfig ipython ipython_genutils jedi jsonschema      \
-    keyring libcxx libffi lockfile lz4 lz4-c matplotlib-inline more-itertools  \
-    msgpack-python ncurses openssl packaging parso pastel pexpect pickleshare  \
-    pip pkginfo pluggy prompt-toolkit ptyprocess py pycosat pycparser pygments \
-    pylev pyopenssl pyparsing pyrsistent pysocks pytest pyyaml readline        \
-    requests requests-toolbelt ruamel_yaml setuptools shellingham six tk toml  \
-    tomlkit tqdm traitlets urllib3 virtualenv wcwidth webencodings wheel xz    \
-    yaml zipp zlib"
+PYTHON_PACKAGES="                                                              \
+    attrs cryptography ipython jsonschema keyring pip pygments pytest pyyaml   \
+    requests setuptools toml tomlkit tqdm wheel"
 
-NODE_MODULES="                                                                 \
-    @ibm/plex dockerlint tmpin typescript"
+PYTHON_TOOLS="                                                                 \
+    pipenv pre-commit"
 
-GO_PACKAGES="                                                                  \
-    github.com/BurntSushi/toml github.com/BurntSushi/toml/cmd/tomlv"
-
-CARGO_PACKAGES="                                                               \
-    cargo-update jless loc porsmo"
+TEX_PACKAGES="                                                                 \
+    latexmk"
 # END GENERATED PACKAGE LISTS
 
-ITEM_LISTS=(HOMEBREW_FORMULAS HOMEBREW_CASKS CODE_PACKAGES CONDA_PACKAGES
-    NODE_MODULES GO_PACKAGES CARGO_PACKAGES)
+ITEM_LISTS=(CODE_PACKAGES PYTHON_PACKAGES PYTHON_TOOLS TEX_PACKAGES)
+
+# Homebrew formulas, casks, Mac App Store apps, and Go and Cargo packages are
+# listed in this Brewfile
+BREWFILE="$HOME/.homebrew/Brewfile"
+
+# Python, Node, Ruby, Java, and npm CLI tools are listed in this mise config
+MISE_CONFIG="$HOME/.config/mise/config.toml"
 
 # Speeds things up when running homebrew commands
 export HOMEBREW_NO_ANALYTICS=1
@@ -150,6 +118,11 @@ usage() {
         echo "steps:"
         "$0" -l | sed 's/^/    /g'
         echo
+        # shellcheck disable=SC2088
+        echo "Homebrew formulas, casks, Mac App Store apps, and Go and Cargo packages: see ~${BREWFILE#"$HOME"}"
+        # shellcheck disable=SC2088
+        echo "Python, Node, Ruby, Java, and npm CLI tools: see ~${MISE_CONFIG#"$HOME"}"
+        echo
         IFS=' '
         for I in "${ITEM_LISTS[@]}"; do
             show_items "$I"
@@ -177,15 +150,6 @@ array_contains() {
         fi
     done
     return $in
-}
-
-ensure_no_conda() {
-    # Conda is known to frequently break Homebrew builds, including Vim and
-    # MacVim, due to bundling many duplicates of system and Homebrew-available
-    # tools. Make sure to exit it before doing anything with Homebrew.
-    if [[ -n $CONDA_PREFIX ]]; then
-        run "conda deactivate"
-    fi
 }
 
 # Usage: in_array "$element" "${array[@]}"
@@ -1045,24 +1009,13 @@ ensure_homebrew_updated() {
         abort "Please run step brew first"
     fi
 
-    ensure_no_conda
-
-    # unlink keg-only formulas which should not be not symlinked into brew path
-    KEG_ONLY=(gettext libffi libtool openssl readline)
-    for f in "${KEG_ONLY[@]}"; do
-        run "brew unlink $f"
-    done
-
     run "brew analytics off"
     run "brew update"
-    run "brew upgrade"
 }
 
 ensure_homebrew_updated_cleanup() {
-    # Force link these keg-only formulas to override outdated system versions.
     # Must be called sometime after ensure_homebrew_updated() has been called,
     # and after any other brew commands such as install have also been called.
-    run "brew link --force --overwrite imagemagick@6"
 
     # Spotify has started forcing itself to be started at login like some kind
     # of fucking malware. Nuke that shit from orbit.
@@ -1087,17 +1040,15 @@ install_brew_formula() {
 }
 
 step_brew() {
-    ensure_no_conda
-
     if [[ -z "$(command -v brew)" ]]; then
         show "installing homebrew..."
         # shellcheck disable=SC2016
-        run 'ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
+        run '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
 
         # make sure brew is in your PATH before continuing:
-        test -d /usr/local/bin && PATH="$PATH:$_"
-        test -d /opt/homebrew/bin && PATH="$PATH:$_"
-        export PATH
+        for BREW_BIN in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+            test -x "$BREW_BIN" && eval "$("$BREW_BIN" shellenv)" && break
+        done
     else
         show "Homebrew already installed"
     fi
@@ -1106,92 +1057,24 @@ step_brew() {
         abort "Failed to install Homebrew"
     fi
 
-    run "sudo -v"
-    run "sudo chown '$(whoami)' $(dirname "$BREW_PREFIX")"
-    run "find '$(brew --prefix)' -mindepth 1 -maxdepth 1 -print0 | xargs -0 -n 1 -P $(sysctl -n hw.ncpu) sudo chown -R '$(whoami)'"
+    # Homebrew should already own its prefix, so only fix up anything that it
+    # doesn't. Use a single sudo invocation; running sudo in parallel makes
+    # every instance prompt for a password at the same time.
+    local ME PREFIX
+    ME="$(whoami)"
+    PREFIX="$(brew --prefix)"
+    if [[ -n "$(find "$PREFIX" -mindepth 1 -maxdepth 1 ! -user "$ME")" ]]; then
+        run "sudo -v"
+        run "find '$PREFIX' -mindepth 1 -maxdepth 1 ! -user '$ME' -print0 | xargs -0 sudo chown -R '$ME'"
+    fi
 
-    # shellcheck disable=SC2207
-    TAP=($(brew tap))
-    array_contains 'openhue/cli' "${TAP[@]}" || run "brew tap openhue/cli"
-    array_contains 'hashicorp/tap' "${TAP[@]}" || run "brew tap hashicorp/tap"
+    # Steam and other x86_64 casks need Rosetta on Apple Silicon.
+    if [[ "$(uname -m)" == "arm64" ]] && ! /usr/bin/arch -x86_64 /usr/bin/true 2>/dev/null; then
+        run "softwareupdate --install-rosetta --agree-to-license"
+    fi
 
     ensure_homebrew_updated
 
-    local INSTALLED
-    brew ls --formula -1 | {
-        while IFS="" read -r line; do INSTALLED+=("$line"); done
-        IFS=' '
-        for I in $HOMEBREW_FORMULAS; do
-            install_brew_formula "$I" "${INSTALLED[@]}"
-        done
-    }
-
-    # Steps for installing latexmk:
-    # TODO: sudo tlmgr update --self
-    # TODO: sudo tlmgr install latexmk
-
-    ensure_homebrew_updated_cleanup
-
-    # cmake's bundling utility fails in completely reasonable cases, the following steps are necessary
-    run "chmod +w /usr/local/Cellar/freetds/*/lib/*.dylib 2>/dev/null"
-    run "chmod +w /usr/local/Cellar/pcre/*/lib/*.dylib 2>/dev/null"
-
-    # install Theine via Mac Apple Store CLI
-    if [[ ! -e "/Applications/Theine.app" ]]; then
-        show -i "Attempting to install Theine via the Mac App Store CLI..."
-        run "mas lucky Theine"
-        run "open /Applications/Theine.app"
-    fi
-
-    run "mkdir -p $HOME/bin"
-    run "ln -sf '$(brew --prefix shfmt)/bin/shfmt' '$HOME/bin/.'"
-    run "ln -sf '$(brew --prefix shellcheck)/bin/shellcheck' '$HOME/bin/.'"
-
-    local arr=()
-    echo "$HOMEBREW_FORMULAS" | tr ' ' '\n' | {
-        while IFS="" read -r line; do arr+=("$line"); done
-        for name in $(brew ls --formula -l | tail -n +2 | awk '{print $NF}'); do
-            [[ $name == "pandoc-sidenote" ]] && name="jez/formulae/$name"
-            if ! in_array "$name" "${arr[@]}"; then
-                show -i "$name installed but not managed by equip via brew"
-            fi
-        done
-    }
-}
-
-################################################################################
-# Step cask
-################################################################################
-install_brew_cask() {
-    local FORMULA_NAME FORMULA="$1"
-    FORMULA_NAME="$(basename "$1" "/")"
-    shift
-
-    local FOUND
-    SEARCH_DIRS="/Applications"
-    test -e ~/Applications && SEARCH_DIRS="$SEARCH_DIRS $_"
-    # shellcheck disable=SC2086
-    IFS=$'\n' read -r -d '' -a FOUND < <(find $SEARCH_DIRS -maxdepth 1 -name "*.app" -exec basename {} \; && printf '\0')
-
-    local INSTALLED
-    IFS=' ' read -r -a INSTALLED <<<"$@"
-    if ! in_array "$FORMULA_NAME" "${INSTALLED[@]}"; then
-        APP_NAME="$(brew info --cask --json=v2 "$FORMULA_NAME" | jq -r '.casks[].artifacts[]' | grep '.app' | tr -d '"' | sed 's/^ *//g' | head -n 1)"
-        APP_NAME="$(basename "$APP_NAME")"
-        if [[ $APP_NAME == "steam" ]]; then
-            softwareupdate --install-rosetta --agree-to-license
-        fi
-        if [[ -n $APP_NAME ]] && echo "${FOUND[*]}" | grep -qE "\b$APP_NAME\b"; then
-            show "It seems that the $APP_NAME application is already installed."
-        else
-            run "brew install --cask '$FORMULA'"
-        fi
-    else
-        show "brew cask formula '$FORMULA' already installed"
-    fi
-}
-
-step_cask() {
     echo
     show -i "================================================================================"
     show -i "= Installing Casks is ESPECIALLY interactive, you WILL need to babysit this!   ="
@@ -1199,38 +1082,33 @@ step_cask() {
     show -i "================================================================================"
     echo
 
-    ensure_homebrew_updated
+    # Installs and upgrades all taps, formulas, casks, and Mac App Store apps.
+    run "brew bundle install --file '$BREWFILE'"
 
-    # shellcheck disable=SC2207
-    # TAP=($(brew tap))
-    # array_contains 'homebrew/cask-fonts' "${TAP[@]}" || run "brew tap homebrew/cask-fonts"
-    # array_contains 'homebrew/cask-versions' "${TAP[@]}" || run "brew tap homebrew/cask-versions"
-
-    local INSTALLED
-    brew ls --cask -1 | {
-        while IFS="" read -r line; do INSTALLED+=("$line"); done
-        IFS=' '
-        for I in $HOMEBREW_CASKS; do
-            install_brew_cask "$I" "${INSTALLED[@]}"
-        done
-    }
+    ensure_homebrew_updated_cleanup
 
     # Configure Rectangle's default settings
     run "defaults write com.knollsoft.Rectangle ignoredSnapAreas -int 1"
     run "defaults write com.knollsoft.Rectangle unsnapRestore -int 2"
     run "defaults write com.knollsoft.Rectangle launchOnLogin -int 1"
 
-    ensure_homebrew_updated_cleanup
+    run "mkdir -p $HOME/bin"
+    run "ln -sf '$(brew --prefix shfmt)/bin/shfmt' '$HOME/bin/.'"
+    run "ln -sf '$(brew --prefix shellcheck)/bin/shellcheck' '$HOME/bin/.'"
 
-    IFS=$'\n'
-    for I in $(brew ls --cask -1); do
-        name="${I%@*}"
-        if ! echo "$HOMEBREW_CASKS" | grep -Eq "$(echo "\\b$name\\b" | sed 's/ (!)//g')"; then
-            if [[ $I != "conda" ]]; then
-                show -i "$I installed but not managed by equip via brew cask"
-            fi
-        fi
+    # brew bundle only installs missing Go and Cargo packages, it never upgrades them.
+    local PKG IFS=$'\n'
+    for PKG in $(brew bundle list --file "$BREWFILE" --go 2>/dev/null); do
+        # Match brew bundle, which always uses the default GOPATH (~/go).
+        run "env -u GOPATH go install '$PKG@latest'"
     done
+    if [[ -x "$HOME/.cargo/bin/cargo-install-update" ]]; then
+        run "cargo install-update -a"
+    fi
+
+    # Without --force this only lists what isn't in the Brewfile; it removes nothing.
+    show "The following are installed but not managed by equip via $BREWFILE:"
+    run "brew bundle cleanup --file '$BREWFILE' --formula --cask --go --cargo" || true
 }
 
 ################################################################################
@@ -1243,6 +1121,40 @@ step_ext() {
         ensure_homebrew_updated_cleanup
     fi
     run "duti -v '$HOME/env/extensions.duti'"
+}
+
+################################################################################
+# Step tex
+################################################################################
+step_tex() {
+    # BasicTeX (installed by the Brewfile) is a minimal TeX Live distribution, so
+    # extra packages have to be installed with its package manager, tlmgr. TeX
+    # Live is owned by root, so tlmgr has to be run with sudo.
+    local TLMGR="/Library/TeX/texbin/tlmgr"
+
+    if [[ ! -x $TLMGR ]]; then
+        ensure_homebrew_updated
+        run "brew install --cask basictex" || abort "Can't install BasicTeX via brew-cask"
+        ensure_homebrew_updated_cleanup
+    fi
+
+    run "sudo -v"
+
+    # This fails once a new yearly TeX Live release is out, as tlmgr can't update
+    # across releases; upgrade the basictex cask to get the new release instead.
+    run "sudo '$TLMGR' update --self" || abort "tlmgr can't update itself, try: brew upgrade --cask basictex"
+    run "sudo '$TLMGR' update --all"
+
+    local INSTALLED
+    INSTALLED="$("$TLMGR" info --only-installed --data name 2>/dev/null)"
+    IFS=' '
+    for I in $TEX_PACKAGES; do
+        if ! echo "$INSTALLED" | grep -qx "$I"; then
+            run "sudo '$TLMGR' install '$I'"
+        else
+            show "TeX package $I is already installed"
+        fi
+    done
 }
 
 ################################################################################
@@ -1263,7 +1175,7 @@ install_code_pkg() {
 step_code() {
     if ! command -v code >/dev/null 2>&1; then
         ensure_homebrew_updated
-        install_brew_cask visual-studio-code || abort "Can't install VS Code via brew-cask"
+        run "brew install --cask visual-studio-code" || abort "Can't install VS Code via brew-cask"
         ensure_homebrew_updated_cleanup
     fi
 
@@ -1335,194 +1247,61 @@ step_bash() {
 }
 
 ################################################################################
-# Step python
+# Step mise
 ################################################################################
-step_python() {
-    CONDA_CLI="mamba"
+step_mise() {
+    # mise provides the default Python, Node, Ruby, and Java along with global npm
+    # CLI tools, see ~/.config/mise/config.toml. It also creates the global
+    # virtualenv at ~/.venv with uv. Python packages are installed into that venv
+    # with uv, and standalone Python CLI tools are installed with uv.
+    local VENV="$HOME/.venv"
 
-    if run "command -v $CONDA_CLI >/dev/null 2>&1"; then
-        show "conda already installed"
-    else
+    if ! command -v mise >/dev/null 2>&1 || ! command -v uv >/dev/null 2>&1; then
         ensure_homebrew_updated
-        ART="Miniforge3-$(uname)-$(uname -m).sh"
-        cd /tmp && {
-            run "curl -L -O 'https://github.com/conda-forge/miniforge/releases/latest/download/$ART'"
-            cd - || exit 1
-        }
-        run "chmod +x /tmp/$ART"
-        run "/tmp/$ART -bu"
+        install_brew_formula mise
+        install_brew_formula uv
         ensure_homebrew_updated_cleanup
     fi
 
-    if [[ -z $CONDA_PREFIX ]]; then
-        run "$CONDA_CLI activate"
+    run "mise install" || abort "Failed to install mise tools"
+    run "mise upgrade"
+
+    # Running anything through mise creates the venv if it doesn't exist yet.
+    run "mise -C '$HOME' exec -- python --version" || abort "Failed to setup mise python"
+    if [[ ! -x "$VENV/bin/python" ]]; then
+        abort "Global virtualenv $VENV was not created by mise"
     fi
 
-    # Install conda packages that don't come pre-installed with conda
-    local CONDA_LIST
-    CONDA_LIST="$($CONDA_CLI list --json | jq -r '.[].name' | grep -Ev '^python$')"
+    run "uv pip install --python '$VENV/bin/python' --upgrade $(echo "$PYTHON_PACKAGES" | xargs)"
+
+    local INSTALLED_TOOLS
+    INSTALLED_TOOLS="$(uv tool list 2>/dev/null | grep -Ev '^-|^No tools' | cut -d' ' -f1)"
     IFS=' '
-    for I in $CONDA_PACKAGES; do
-        if ! echo "$CONDA_LIST" | grep -q "$I"; then
-            run "$CONDA_CLI install -q -c conda-forge --yes $I"
+    for I in $PYTHON_TOOLS; do
+        if ! echo "$INSTALLED_TOOLS" | grep -Eqx "$I"; then
+            run "uv tool install '$I'"
         fi
     done
+    run "uv tool upgrade --all"
 
+    # Only top level packages are reported, not their dependencies.
     IFS=$'\n'
-    for I in $CONDA_LIST; do
-        name="${I%@*}"
-        if ! echo "$CONDA_PACKAGES" | grep -Eq "\\b$name\\b"; then
-            show -i "$I installed but not managed by equip via conda"
+    for I in $(uv pip tree --python "$VENV/bin/python" --depth 0 2>/dev/null | cut -d' ' -f1); do
+        if ! echo "$PYTHON_PACKAGES" | grep -Eqi "(^| )$I( |$)"; then
+            show -i "$I installed but not managed by equip via uv pip"
         fi
     done
-}
-
-################################################################################
-# Step node
-################################################################################
-step_node() {
-    if ! command -v node >/dev/null 2>&1; then
-        ensure_homebrew_updated
-        install_brew_formula node
-        ensure_homebrew_updated_cleanup
-    elif command -v brew >/dev/null 2>&1; then
-        run "brew upgrade node"
-    fi
-
-    # Ensure that we're installing to the system's Node
-    if command -v nvm >/dev/null 2>&1; then
-        run "nvm alias default system"
-        run "nvm use system"
-    fi
-
-    # Homebrew Caveat
-    # If you update npm itself, do NOT use the npm update command.
-    # The upstream-recommended way to update npm is:
-    run "npm install -g npm@latest"
-    run "npm update -g"
-
-    local INSTALLED
-    INSTALLED="$(npm list -g --depth 0 2>/dev/null | sed 's/^.*UNMET PEER DEPENDENCY \([^@]*\)@\([^ ]*\).*$/├── UNMET-\1@\2/g' | grep @ | cut -d' ' -f2 | cut -d@ -f1)"
-
-    IFS=' '
-    for I in $NODE_MODULES; do
-        if ! echo "$INSTALLED" | grep -Eq "\\b$I\\b"; then
-            run "npm install -g $I"
+    for I in $INSTALLED_TOOLS; do
+        if ! echo "$PYTHON_TOOLS" | grep -Eqi "(^| )$I( |$)"; then
+            show -i "$I installed but not managed by equip via uv tool"
         fi
     done
 
-    # install the @ibm/plex monospace fonts
-    run "cp -uvf '$(npm -g config get prefix)/lib/node_modules/@ibm/plex/IBM-Plex-Mono/fonts/complete/woff'/*.woff /Library/Fonts/."
-
-    IFS=$'\n'
-    for I in $INSTALLED; do
-        name="${I%@*}"
-        if [[ $name == "npm" ]]; then
-            continue
-        fi
-        if [[ $name == "UNMET-"* ]]; then
-            UNMET="${name#*-}"
-            show -i "UNMET PEER DEPENDENCY: $UNMET; you should probably npm install it"
-        elif ! echo "$NODE_MODULES" | grep -Eq "\\b$name\\b"; then
-            show -i "$I installed but not managed by equip via npm"
-        fi
-    done
-}
-
-################################################################################
-# Step go
-################################################################################
-step_go() {
-    if ! command -v go >/dev/null 2>&1; then
-        ensure_homebrew_updated
-        install_brew_formula go
-        ensure_homebrew_updated_cleanup
-    elif command -v brew >/dev/null 2>&1; then
-        run "brew upgrade go"
-    fi
-
-    GOPATH="/opt/gopath/$ARCH"
-    if [[ ! -d $GOPATH ]]; then
-        mkdir -p "$GOPATH"
-    fi
-    test -d "$GOPATH/bin" && PATH="$PATH:$_"
-    test -d "$BREW_PREFIX/opt/go/libexec/bin" && PATH="$PATH:$_"
-    export PATH
-    export GOPATH
-
-    run "GO111MODULE=off go install all"
-
-    if ! command -v golist >/dev/null 2>&1; then
-        show -i "Utility golist is not installed in your PATH."
-        show -i "Please install it from https://github.com/lexicalunit/dotfiles/blob/master/bin/golist"
-        return 1
-    fi
-
-    INSTALLED="$(golist -r | tr '\n' ' ')"
-
-    IFS=' '
-    for I in $GO_PACKAGES; do
-        if ! echo "$INSTALLED" | grep -Eq "\\b$I\\b"; then
-            run "go install ${I}@latest"
-        else
-            show "go module $I is already installed"
-        fi
-    done
-
-    IFS=' '
-    for install_name in $INSTALLED; do
-        FOUND="false"
-        for pkg in $GO_PACKAGES; do
-            if echo "$install_name" | grep -Eq "\\b$pkg\\b"; then
-                FOUND="true"
-                break
-            fi
-        done
-        if [[ $FOUND != "true" ]]; then
-            show -i "$install_name installed but not managed by equip via go get"
-        fi
-    done
-}
-
-################################################################################
-# Step cargo
-################################################################################
-step_cargo() {
-    if ! command -v rustc >/dev/null 2>&1; then
-        ensure_homebrew_updated
-        install_brew_formula rust
-        ensure_homebrew_updated_cleanup
-    elif command -v brew >/dev/null 2>&1; then
-        run "brew upgrade rust"
-    fi
-
-    declare -a INSTALLED
-    INSTALLED=()
-    cargo install --list | grep -v "^ " | sed 's/ v.*//g' | {
-        while IFS="" read -r line; do INSTALLED+=("$line"); done
-        IFS=' '
-        for I in $CARGO_PACKAGES; do
-            if ! echo "${INSTALLED[*]}" | grep -Eq "\\b$I\\b"; then
-                run "cargo install $I"
-            fi
-        done
-    }
-
-    run "cargo install-update -a"
-
-    IFS=' '
-    for install_name in $(cargo install --list | grep -v "^ " | sed 's/ v.*//g'); do
-        echo ") $install_name"
-        FOUND="false"
-        for pkg in $CARGO_PACKAGES; do
-            echo "  - $pkg"
-            if echo "$install_name" | grep -Eq "\\b$pkg\\b"; then
-                FOUND="true"
-                break
-            fi
-        done
-        if [[ $FOUND != "true" ]]; then
-            show -i "$install_name installed but not managed by equip via cargo"
+    # Leftovers from the version managers that mise replaced.
+    local OLD
+    for OLD in "$HOME/miniforge3" "$HOME/.nvm" "$HOME/.rbenv" "$HOME/.local/bin/mise" /opt/gopath; do
+        if [[ -e $OLD ]]; then
+            show -i "$OLD is no longer used by equip, you can remove it with: rm -rf $OLD"
         fi
     done
 }
@@ -1646,7 +1425,7 @@ fi
 
 # update applications
 if echo "$ARGS" | grep -Eq -- 'apps\b'; then
-    ARGS="$ARGS xcode brew cask ext python node go cargo code"
+    ARGS="$ARGS xcode brew ext tex mise code"
 fi
 
 # update environment and dotfiles
@@ -1658,19 +1437,16 @@ fi
 steps=(
     "xcode;         Ensure that Xcode Command Line Tools are installed"
     "dotfiles;      Ensure home directory is a git repository for dotfiles"
-    "brew;          Ensure Homebrew installed, formulas upgraded, and Theine installed"
-    "cask;          Ensure Homebrew Casks are installed"
+    "brew;          Ensure Homebrew installed and everything in the Brewfile is installed and upgraded"
     "ext;           Ensure file extension associations are correct"
     "zsh;           Ensure shell is latest version of zsh from Homebrew"
     "env;           Update environment configuration and submodules"
-    "python;        Upgrade/Install python and conda packages"
-    "node;          Ensure Node modules are installed via npm"
-    "go;            Ensure Go packages are installed"
-    "cargo;         Ensure Rust packages are installed via cargo"
+    "tex;           Ensure TeX Live is updated and extra TeX packages are installed via tlmgr"
+    "mise;          Ensure mise and mise managed tools are installed"
     "code;          Ensure VS Code installed via Homebrew Cask and its packages are installed"
     'osx;           Override macOS "defaults" settings and configuration'
     "dot;           Runs steps: dotfiles zsh env"
-    "apps;          Runs steps: xcode brew cask ext python node go cargo code"
+    "apps;          Runs steps: xcode brew ext tex mise code"
     "most;          Runs steps: apps dot (basically everything but the osx step)"
     "all;          Runs all steps"
 )

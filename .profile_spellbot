@@ -4,11 +4,9 @@ export DD_TRACE_ENABLED="false"
 
 _enter_virtualenv_for_spellbot() {
     if [[ $PWD == *"/spellbot" && $OLDPWD != *"/spellbot" ]]; then
-        [[ -d .venv ]] && mamba deactivate
         [[ -d .venv ]] && source .venv/bin/activate
     elif [[ $PWD != *"/spellbot" && $OLDPWD == *"/spellbot" ]]; then
         [[ -d .venv ]] && type deactivate >/dev/null 2>&1 && deactivate
-        [[ -d .venv ]] && mamba activate
     fi
 }
 

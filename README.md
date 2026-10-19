@@ -16,10 +16,72 @@ bin/equip -f all
 
 ## Usage
 
-1. Clone this repository into your home directory.
+1. Clone this repository into your home directory, see [Cloning with SSH](#cloning-with-ssh).
 1. Source your new environment by opening a new terminal or running [`. ~/.profile`](.profile).
-1. Execute the command [`equip all`](bin/equip) to step through configuration of system settings,
-   installation of applications, and creation of your complete developer environment.
+1. Execute the command [`equip all`](bin/equip) to step through configuration of system settings, installation of applications, and creation of your complete developer environment.
+
+## Cloning with SSH
+
+Clone over SSH rather than HTTPS so that you can push changes back without entering credentials. The `equip dotfiles` step also expects `origin` to be `git@github.com:lexicalunit/dotfiles.git`. If you're using your own fork, substitute its URL below.
+
+### 1. Create an SSH key
+
+```bash
+ssh-keygen -t ed25519 -C "you@example.com"
+```
+
+Accept the default location (`~/.ssh/id_ed25519`) and choose a passphrase.
+
+### 2. Keep the passphrase in the macOS keychain
+
+Add the following to `~/.ssh/config`, creating the file if it doesn't exist:
+
+```text
+Host github.com
+    AddKeysToAgent yes
+    UseKeychain yes
+    IdentityFile ~/.ssh/id_ed25519
+```
+
+Then add the key to the ssh agent and the keychain:
+
+```bash
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+```
+
+### 3. Add the public key to GitHub
+
+Copy the public key with `pbcopy < ~/.ssh/id_ed25519.pub` and paste it into a new key at <https://github.com/settings/ssh/new>. Or, if you have the GitHub CLI:
+
+```bash
+gh auth refresh -s admin:public_key
+gh ssh-key add ~/.ssh/id_ed25519.pub --title "$(hostname)"
+```
+
+Check that it works; you should see `Hi <username>! You've successfully authenticated`:
+
+```bash
+ssh -T git@github.com
+```
+
+### 4. Clone into your home directory
+
+`git clone` refuses to clone into a directory that isn't empty, and your home directory never is, so create the repository in place instead. Note that `checkout -f` overwrites any existing files that are also in this repository, such as `~/.zshrc`, so back up anything you want to keep first.
+
+```bash
+cd ~
+git init
+git remote add origin git@github.com:lexicalunit/dotfiles.git
+git fetch origin master
+git checkout -f -B master origin/master
+git submodule update --init --recursive
+```
+
+If you used the tarball from [Do everything](#do-everything), running `equip dotfiles` does this step for you once your SSH key is set up. If you already have an HTTPS clone, switch it to SSH with:
+
+```bash
+git remote set-url origin git@github.com:lexicalunit/dotfiles.git
+```
 
 You can also use the tool [`bin/deploy_dotfiles`](bin/deploy_dotfiles) to automatically
 export these settings to a remote machine.

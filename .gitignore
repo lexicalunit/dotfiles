@@ -17,6 +17,7 @@
 /.bun
 /.bundle/cache
 /.bundle/config
+/.cache/aube
 /.cache/babl
 /.cache/bower
 /.cache/conda
@@ -125,6 +126,7 @@
 /.local/share/pry/pry_history
 /.local/share/recently-used.xbel
 /.local/share/virtualenvs
+/.local/share/uv
 /.local/state
 /.local/state/pnpm/pnpm-state.json
 /.m2
@@ -182,6 +184,7 @@
 /.travis/travis.sh
 /.v8flags*
 /.vagrant*
+/.venv
 /.vim/.netrwhist
 /.viminfo
 /.virtualenvs
@@ -216,6 +219,7 @@
 /Google*Drive
 /IdeaProjects
 /Library
+/go
 /mambaforge
 /micromamba
 /miniforge*

@@ -197,8 +197,11 @@ fi
 # go
 command -v go >/dev/null 2>&1 && run "go clean -cache -modcache -testcache"
 
-# conda
-command -v conda >/dev/null 2>&1 && run "conda clean -a --yes"
+# uv
+command -v uv >/dev/null 2>&1 && run "uv cache clean"
+
+# mise
+command -v mise >/dev/null 2>&1 && run "mise prune --yes"
 
 # pip
 test -d "$HOME/Library/Caches/pip" && run "rm -rf '$_'"

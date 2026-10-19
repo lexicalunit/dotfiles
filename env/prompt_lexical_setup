@@ -28,25 +28,39 @@ function +vi-git_precmd {
 
 function prompt_lexical_python_pacman {
     local pac=""
-    if [[ -n $VIRTUAL_ENV ]]; then
-        pac="virtualenv:$(basename "$VIRTUAL_ENV")"
-    elif [[ -n $CONDA_DEFAULT_ENV ]]; then
-        pac="mamba:$CONDA_DEFAULT_ENV"
+    if [[ $VIRTUAL_ENV == "$HOME/.venv" ]]; then
+        pac="global"
+    elif [[ -n $VIRTUAL_ENV ]]; then
+        # Project venvs are usually named .venv, venv, or env, so name them after
+        # the project directory that contains them instead.
+        local venv_name="${VIRTUAL_ENV:t}"
+        if [[ $venv_name == (.venv|venv|env) ]]; then
+            venv_name="${VIRTUAL_ENV:h:t}"
+        fi
+        pac="virtualenv:$venv_name"
     else
         pac="system"
     fi
     _prompt_lexical_python_pacman="$pac"
 }
 
-function prompt_lexical_nvm {
-    _prompt_lexical_nvm="$(nvm current)"
+function prompt_lexical_node {
+    # Read the node version from the mise install dir in PATH rather than running
+    # a command on every prompt. The dir can be an alias like `lts` or `22`, so
+    # resolve symlinks (:A) to get the actual version.
+    local node_bin="${path[(r)*/mise/installs/node/*]}"
+    if [[ -n $node_bin ]]; then
+        _prompt_lexical_node="${node_bin:h:A:t}"
+    else
+        _prompt_lexical_node="system"
+    fi
 }
 
 function prompt_lexical_precmd {
     _prompt_lexical_pwd="${PWD/#$HOME/~}"
     vcs_info
     prompt_lexical_python_pacman
-    prompt_lexical_nvm
+    prompt_lexical_node
     printf "\e]1;%s\a" "$(print -P '%~')"
 }
 
@@ -86,8 +100,8 @@ function prompt_lexical_setup {
     PROMPT_DIR='%F{green}${_prompt_lexical_pwd}%f'
     PROMPT_VCS='${vcs_info_msg_0_}'
     PROMPT_PYTHON='%F{blue}[🐍 ${_prompt_lexical_python_pacman}]%f'
-    PROMPT_NVM='%F{green}[⬢ ${_prompt_lexical_nvm}]%f'
-    PROMPT_LINE_ONE="$PROMPT_LAST_CMD_ERROR$PROMPT_DIR$PROMPT_VCS $PROMPT_PYTHON $PROMPT_NVM"
+    PROMPT_NODE='%F{green}[⬢ ${_prompt_lexical_node}]%f'
+    PROMPT_LINE_ONE="$PROMPT_LAST_CMD_ERROR$PROMPT_DIR$PROMPT_VCS $PROMPT_PYTHON $PROMPT_NODE"
     PROMPT_LINE_TWO='%F{blue}${_prompt_lexical_symbol}%f '
     PROMPT="$PROMPT_LINE_ONE
 $PROMPT_LINE_TWO"

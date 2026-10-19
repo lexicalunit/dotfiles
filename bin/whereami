@@ -1,20 +1,11 @@
-#!/usr/bin/env node
+#!/bin/bash
 
-// Prints your current city name using your geoip location.
+# Prints your current city name using your geoip location.
 
-const path = require('path')
+if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
+    echo "usage: ${0##*/}" 1>&2
+    echo "Prints your current city name using your geoip location." 1>&2
+    exit 1
+fi
 
-if (process.argv.includes('--help') || process.argv.includes('-h')) {
-  console.log('usage: ' + path.basename(process.argv[1]))
-  console.log('Prints your current city name using your geoip location.')
-  process.exit(1)
-}
-
-let geoip = require('/usr/local/lib/node_modules/geoip-lite')
-const extip = require('/usr/local/lib/node_modules/external-ip')();
-
-extip((err, ip) => {
-  if (err) throw err
-  var geo = geoip.lookup(ip)
-  console.log(geo['city'])
-})
+curl -fsS --max-time 5 https://ipinfo.io/city

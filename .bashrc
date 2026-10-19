@@ -111,8 +111,17 @@ if $INTERACTIVE; then
         if [[ -n $PYTHON_ENV ]]; then
             PROMPT_PYTHON_ENV=" # [$PYTHON_ENV"
 
-            if [[ -n $VIRTUAL_ENV ]]; then
-                PROMPT_PYTHON_ENV="$PROMPT_PYTHON_ENV:$(basename "$VIRTUAL_ENV")"
+            if [[ $VIRTUAL_ENV == "$HOME/.venv" ]]; then
+                PROMPT_PYTHON_ENV="$PROMPT_PYTHON_ENV:global"
+            elif [[ -n $VIRTUAL_ENV ]]; then
+                local VENV_NAME
+                VENV_NAME="$(basename "$VIRTUAL_ENV")"
+                # Project venvs are usually named .venv, venv, or env, so name them
+                # after the project directory that contains them instead.
+                if [[ $VENV_NAME == ".venv" || $VENV_NAME == "venv" || $VENV_NAME == "env" ]]; then
+                    VENV_NAME="$(basename "$(dirname "$VIRTUAL_ENV")")"
+                fi
+                PROMPT_PYTHON_ENV="$PROMPT_PYTHON_ENV:$VENV_NAME"
             elif [[ -n $CONDA_DEFAULT_ENV ]]; then
                 PROMPT_PYTHON_ENV="$PROMPT_PYTHON_ENV:$CONDA_DEFAULT_ENV"
             fi

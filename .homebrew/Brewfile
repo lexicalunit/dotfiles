@@ -1,0 +1,129 @@
+# Brewfile used by `equip brew` via `brew bundle --global`.
+#
+# Only list things you actually want; dependencies are installed automatically.
+# Run `brew bundle cleanup --global` to see what's installed but not listed here.
+
+# Casks for apps that were installed by hand get adopted into Homebrew rather
+# than failing because the .app already exists.
+cask_args adopt: true
+
+################################################################################
+# Taps
+################################################################################
+tap "1password/tap"
+tap "hashicorp/tap"
+tap "jez/formulae"
+tap "openhue/cli"
+
+################################################################################
+# Formulas
+################################################################################
+brew "awscli"
+brew "bash"
+brew "cabal-install"
+brew "chrome-cli"
+brew "clang-format"
+brew "coreutils"
+brew "corepack"
+brew "defaultbrowser"
+brew "diff-so-fancy"
+brew "direnv"
+brew "duti"
+brew "exiftool"
+brew "expect"
+brew "fzf"
+brew "gh"
+brew "ghc"
+brew "ghostscript"
+brew "git"
+brew "git-lfs"
+brew "git-secrets"
+brew "gnu-sed"
+brew "gnu-tar"
+brew "go"
+brew "hashicorp/tap/terraform"
+brew "imagemagick@6", link: true
+brew "jez/formulae/pandoc-sidenote"
+brew "jq"
+brew "libpq"
+brew "llvm"
+brew "lsd"
+brew "mas"
+brew "mise"
+brew "openhue/cli/openhue-cli"
+brew "pandoc"
+brew "pkgconf"
+brew "postgresql@15"
+brew "pyright"
+brew "ripgrep"
+brew "rlwrap"
+brew "rust"
+brew "rustup"
+brew "shellcheck"
+brew "shfmt"
+brew "sqlite"
+brew "tesseract"
+brew "tex-fmt"
+brew "tflint"
+brew "tmux"
+brew "tree"
+brew "uv"
+brew "vramsteg"
+brew "watch"
+brew "wdiff"
+brew "wget"
+brew "zsh"
+
+################################################################################
+# Casks
+################################################################################
+cask "1password"
+cask "1password/tap/1password-cli"
+cask "basictex"
+cask "discord"
+cask "docker-desktop"
+cask "dropbox"
+cask "fantastical"
+cask "flux-app"
+cask "font-fira-code"
+cask "font-hack-nerd-font"
+cask "font-ibm-plex-mono"
+cask "ghostty"
+cask "google-chrome"
+cask "iexplorer"
+cask "iterm2"
+cask "lingon-x"
+cask "ngrok"
+cask "obsidian"
+cask "omnifocus"
+cask "rectangle"
+cask "signal"
+cask "slack"
+cask "snes9x"
+cask "sourcetree"
+cask "spotify"
+cask "steam"
+cask "tableplus"
+cask "the-unarchiver"
+cask "transmission"
+cask "vagrant"
+cask "visual-studio-code"
+cask "vlc"
+
+################################################################################
+# Mac App Store
+################################################################################
+mas "Theine", id: 955848755
+
+################################################################################
+# Go packages (installed into ~/go/bin; `equip brew` upgrades them)
+################################################################################
+go "github.com/BurntSushi/toml/cmd/tomlv"
+
+################################################################################
+# Cargo packages (installed into ~/.cargo/bin; `equip brew` upgrades them)
+################################################################################
+cargo "cargo-update"
+cargo "jless"
+cargo "loc"
+cargo "porsmo"

@@ -4,25 +4,11 @@
 
 if echo "$*" | grep -Eq -- '--help\b|-h\b'; then
     echo "usage: ${0##*/} [-h|--help]" 1>&2
-    echo "See https://gist.github.com/1173223 for details." 1>&2
+    echo "Runs the official Homebrew uninstall script, which asks for confirmation first." 1>&2
+    echo "See https://github.com/Homebrew/install#uninstall-homebrew for details." 1>&2
     exit 1
 fi
 
 set -e
 
-/usr/bin/which -s git
-test -d /usr/local/.git
-
-cd "$(brew --prefix)"
-git checkout master
-git ls-files -z | pbcopy
-rm -rf Cellar
-bin/brew prune
-pbpaste | xargs -0 rm
-rm -r Library/Homebrew Library/Aliases Library/Formula Library/Contributions
-test -d Library/LinkedKegs && rm -r Library/LinkedKegs
-rmdir -p bin Library share/man/man1 2>/dev/null
-rm -rf .git
-rm -rf "$HOME/Library/Caches/Homebrew"
-rm -rf "$HOME/Library/Logs/Homebrew"
-rm -rf /Library/Caches/Homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"

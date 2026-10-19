@@ -60,23 +60,10 @@ if type brew >/dev/null 2>&1; then
     # ensure that brew installed `expect` functions correctly
     export TCLLIBPATH="$BREW_PREFIX/lib"
 
-    # node version manager
-    export NVM_DIR="$HOME/.nvm"
-    BREW_NVM_PREFIX="$BREW_PREFIX/opt/nvm"
-    if [[ -d $BREW_NVM_PREFIX && -s "$BREW_NVM_PREFIX/nvm.sh" ]]; then
-        # shellcheck disable=SC1091
-        source "$BREW_NVM_PREFIX/nvm.sh" --no-use
-    fi
-
-    # go compiler and environment
-    GOPATH="/opt/gopath/$ARCH"
-    if [[ ! -d $GOPATH ]]; then
-        mkdir -p "$GOPATH"
-    fi
-    test -d "$GOPATH/bin" && PATH="$PATH:$_"
+    # go compiler, packages installed by `brew bundle` go into the default GOPATH (~/go)
     test -d "$BREW_PREFIX/opt/go/libexec/bin" && PATH="$PATH:$_"
-    export GOPATH
 fi
+test -d "$HOME/go/bin" && PATH="$PATH:$_"
 
 # Add specific application paths, such as Python, etc...
 test -d "$HOME/.cargo/bin" && PATH="$PATH:$_"
@@ -114,7 +101,7 @@ export PLATFORM
 
 # Ensure utilities are running
 eval "$(fasd --init auto)"
-test -f ~/.local/bin/mise && eval "$(~/.local/bin/mise activate zsh)"
+command -v mise >/dev/null 2>&1 && eval "$(mise activate "${ZSH_VERSION:+zsh}${BASH_VERSION:+bash}")"
 
 ################################################################################
 # interactive settings
@@ -163,7 +150,6 @@ if $INTERACTIVE; then
     export CVSEDITOR=vim
     export XEDITOR=vim
     export IGNOREEOF=0
-    alias mm='mamba '
     alias e='vim . '
     alias edit='vim '
     ew() { type "$1" >/dev/null 2>&1 && vim "$(command -v "$1")"; }
@@ -242,7 +228,7 @@ if $INTERACTIVE; then
 
     export RSYNC_RSH=rsh                                               # use ssh over rsync
     alias ssh='ssh -Y -C '                                             # use compression over ssh connections
-    test -f "$HOME/.ssh/id_rsa" && /usr/bin/ssh-add -K >/dev/null 2>&1 # use keychain for ssh keys
+    /usr/bin/ssh-add --apple-load-keychain >/dev/null 2>&1           # load ssh keys from keychain
 
     fuck() {
         if die "$1"; then
@@ -321,30 +307,15 @@ if $INTERACTIVE; then
     source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
     ################################################################################
-    # always assume we want our default mamba python environment
+    # python environment
     ################################################################################
+    # The default python and global virtualenv (~/.venv) are provided by mise,
+    # see ~/.config/mise/config.toml and the `equip python` step.
     _interactive_log "setting up python environment"
     test -f "$HOME/.pythonrc.py" && PYTHONSTARTUP="$_"
 
     export PYTHONSTARTUP
     export VIRTUAL_ENV_DISABLE_PROMPT=1
-    export MAMBA_ROOT_PREFIX="$HOME/miniforge3"
-
-    __conda_setup="$("$HOME/miniforge3/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "$HOME/miniforge3/etc/profile.d/conda.sh" ]; then
-            . "$HOME/miniforge3/etc/profile.d/conda.sh"
-        else
-            export PATH="$HOME/miniforge3/bin:$PATH"
-        fi
-    fi
-    unset __conda_setup
-
-    if [ -f "$HOME/miniforge3/etc/profile.d/mamba.sh" ]; then
-        . "$HOME/miniforge3/etc/profile.d/mamba.sh"
-    fi
 
     ################################################################################
     # general environment setup

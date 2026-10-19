@@ -1,8 +1,23 @@
 [env]
 PYTHON = "/opt/homebrew/bin/python3.9"
+# Global default Python environment; created by mise with uv and managed by `equip mise`.
+# Projects override this with their own `_.python.venv` or by activating their own venv.
+_.python.venv = { path = "{{env.HOME}}/.venv", create = true, uv_create_args = ["--seed"] }
 
 [settings]
-idiomatic_version_file_enable_tools = ["node", "yarn"]
+# Also respect version files like .nvmrc, .node-version, and .ruby-version in projects.
+idiomatic_version_file_enable_tools = ["node", "ruby", "yarn"]
 
 [tools]
 java = "temurin-21"
+node = "lts"
+python = "3.14"
+ruby = "4.0"
+
+# Global npm CLI tools; these survive node upgrades, unlike `npm install -g`.
+"npm:dockerlint" = "latest"
+"npm:npm-check-updates" = "latest"
+# mise refuses tmpin because it has very few weekly downloads; to use it, verify the package
+# and then replace this with: "npm:tmpin" = { version = "latest", allow_low_downloads = true }
+# "npm:tmpin" = "latest"
+"npm:typescript" = "latest"

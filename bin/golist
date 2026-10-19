@@ -20,4 +20,4 @@ if ! command -v go >/dev/null 2>&1; then
     exit 1
 fi
 
-find "$GOPATH" -name "*.mod" -exec head -n 1 {} \; | sort -u | sed 's/^module //g'
+find "${GOPATH:-$(go env GOPATH)}" -name "*.mod" -exec head -n 1 {} \; | sort -u | sed 's/^module //g'

@@ -30,7 +30,7 @@ on run argv
             end if
 
             if not ignore_flag and arg = "-q" then
-                set quiet_flag to false
+                set quiet_flag to true
                 exit repeat -- continue
             end if
 

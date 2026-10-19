@@ -13,8 +13,10 @@ function abort_root() {
     exit 1
 }
 
-if [[ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]]; then
-    source /usr/local/etc/bash_completion.d/git-prompt.sh
+GIT_PROMPT="$(brew --prefix 2>/dev/null)/etc/bash_completion.d/git-prompt.sh"
+if [[ -f $GIT_PROMPT ]]; then
+    # shellcheck disable=SC1090
+    source "$GIT_PROMPT"
 else
     abort_root
 fi

@@ -54,15 +54,19 @@ GENERATEDBEGIN="| Tool | Usage |"
 # grab everything up to generated cutoff
 READMECONTENT="$(sed -n "/$GENERATEDBEGIN/q;p" ../README.md)"
 
+# equip -h wraps the package lists for the terminal, join each one back into a
+# single line for markdown
+PACKAGE_LISTS="$(./equip -h 2>&1 | grep -A5000 'Code Packages:' |
+    awk 'BEGIN { RS = ""; ORS = "\n\n" } { gsub(/ *\n/, " "); print }')"
+
 cat >../README.md <<EOF
 $READMECONTENT
 
 $(./usages -t)
 
-# What does \`equip all\` install?
+## What does \`equip all\` install?
 
-Glad you asked! \`equip all\` will go through the following steps one by one. For the steps that
-install packages/formulas/casks/whatever, see below for the list of included items.
+Glad you asked! \`equip all\` will go through the following steps one by one. For the steps that install packages/formulas/casks/whatever, see below for the list of included items.
 
 | Step | Description |
 | --- | --- |
@@ -70,7 +74,7 @@ $(./equip -l | sed 's/^\([^ ]*\) *\(.*\)$/| \1 | \2 |/g')
 
 Homebrew formulas, casks, Mac App Store apps, and Go and Cargo packages are listed in [\`.homebrew/Brewfile\`](.homebrew/Brewfile). Python, Node, Ruby, Java, and npm CLI tools are managed by [mise](https://mise.jdx.dev) and listed in [\`.config/mise/config.toml\`](.config/mise/config.toml).
 
-$(./equip -h 2>&1 | grep -A5000 'Code Packages:')
+$PACKAGE_LISTS
 EOF
 
 #########################################################################
@@ -106,10 +110,9 @@ EOF
 
 cat >>../README.md <<EOF
 
-# License
+## License
 
 \`\`\`
 $(cat ../LICENSE)
 \`\`\`
-
 EOF

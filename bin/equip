@@ -335,13 +335,6 @@ step_osx() {
     show "Enable full keyboard access for all controls" # (e.g. enable Tab in modal dialogs)
     run "defaults write NSGlobalDomain AppleKeyboardUIMode -int 3"
 
-    show "Use scroll gesture with the Ctrl (^) modifier key to zoom"
-    run "sudo defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true"
-    run "sudo defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144"
-
-    show "Follow the keyboard focus while zoomed in"
-    run "sudo defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true"
-
     show "Disable press-and-hold for keys in favor of key repeat"
     run "defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false"
 
@@ -517,6 +510,47 @@ step_osx() {
 
     show "Show indicator lights for open applications in the Dock"
     run "defaults write com.apple.dock show-process-indicators -bool true"
+
+    show "Don't show recent applications in the Dock"
+    run "defaults write com.apple.dock show-recents -bool false"
+
+    # Apps to keep in the Dock, in order; apps that aren't installed are skipped.
+    local DOCK_APPS=(
+        "$HOME/Applications/Yeti Mute.app"
+        "/System/Applications/App Store.app"
+        "/Applications/Fantastical.app"
+        "/System/Applications/Messages.app"
+        "/System/Applications/Mail.app"
+        "/Applications/Slack.app"
+        "/Applications/Google Chrome.app"
+        "/Applications/Visual Studio Code.app"
+        "/Applications/Spotify.app"
+        "/Applications/foobar2000.app"
+        "/Applications/Obsidian.app"
+        "/Applications/Signal.app"
+        "/Applications/Discord.app"
+        "/Applications/Notion.app"
+        "/Applications/Builder.io.app"
+        "/Applications/Figma.app"
+        "/Applications/Ghostty.app"
+        "/Applications/Docker.app"
+        "/Applications/OBS.app"
+    )
+    if command -v dockutil >/dev/null 2>&1; then
+        show "Set up the Dock's icons"
+        run "dockutil --remove all --no-restart >/dev/null"
+        local DOCK_APP
+        for DOCK_APP in "${DOCK_APPS[@]}"; do
+            if [[ -d $DOCK_APP ]]; then
+                run "dockutil --add '$DOCK_APP' --no-restart >/dev/null"
+            else
+                show -i "Not adding $DOCK_APP to the Dock because it isn't installed"
+            fi
+        done
+        run "dockutil --add '$HOME/Downloads' --section others --no-restart >/dev/null"
+    else
+        show -i "Can't set up the Dock's icons: dockutil isn't installed, run 'equip brew' first"
+    fi
 
     # This is only really useful when setting up a new Mac, or if you don't use the Dock to launch apps.
     # show "Wipe all (default) app icons from the Dock"
@@ -760,7 +794,7 @@ step_osx() {
     run "sudo mdutil -E / >/dev/null"
 
     ########################################
-    # Terminal & iTerm 2
+    # Terminal & Ghostty
     ########################################
     show "Only use UTF-8 in Terminal.app"
     run "defaults write com.apple.terminal StringEncodings -array 4"
@@ -821,12 +855,6 @@ EOF
 
     show "Disable the annoying line marks"
     run "defaults write com.apple.Terminal ShowLineMarks -int 0"
-
-    show "Install the Solarized Light theme for iTerm"
-    run "open '${HOME}/env/Solarized Light.itermcolors'"
-
-    show "Don't display the annoying prompt when quitting iTerm"
-    run "defaults write com.googlecode.iterm2 PromptOnQuit -bool false"
 
     show "Install the Ghostty config and color themes"
     run "mkdir -p '$HOME/Library/Application Support/com.mitchellh.ghostty' '$HOME/.config/ghostty/themes'"
@@ -954,8 +982,9 @@ EOF
     # Default Web Browser
     ########################################
     if command -v defaultbrowser >/dev/null 2>&1; then
-        show "Attempting to set Firefox as default Web Browser..."
-        run "defaultbrowser firefox"
+        # macOS asks to confirm the change with a dialog.
+        show "Attempting to set Google Chrome as default Web Browser..."
+        run "defaultbrowser chrome"
     fi
 
     ########################################
@@ -971,11 +1000,29 @@ EOF
     # Various Accessibility Settings
     ########################################
     defaults write com.apple.speech.recognition.AppleSpeechRecognition.prefs DictationIMMasterDictationEnabled -bool true 2>/dev/null || true
-    defaults write com.apple.Accessibility SpokenUIUseSpeakingHotKey -bool true
-    defaults write com.apple.Accessibility SpeakThisKeyCombo -string "~\U001B"
-    defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
-    defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 2
-    defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
+
+    show "Speak selected text with option + esc"
+    run "defaults write com.apple.Accessibility SpeakThisEnabled -bool true"
+    run "defaults write com.apple.speech.synthesis.general.prefs SpokenUIUseSpeakingHotKeyFlag -bool true"
+    # The combo is the modifier flags plus the key code: option (2048) + esc (53).
+    run "defaults write com.apple.speech.synthesis.general.prefs SpokenUIUseSpeakingHotKeyCombo -int 2101"
+
+    # Only apps with Full Disk Access can change the zoom settings, any other
+    # writes to com.apple.universalaccess fail with "Could not write domain".
+    if [[ $SC_DRYRUN == 1 ]] || defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true 2>/dev/null; then
+        show "Use scroll gesture with the Ctrl (^) modifier key to zoom"
+        run "defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true"
+        run "defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144"
+
+        show "When zoomed in, move the zoomed image continuously with the pointer"
+        run "defaults write com.apple.universalaccess closeViewPanningMode -int 0"
+
+        show "Follow the keyboard focus while zoomed in"
+        run "defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true"
+    else
+        show -i "Can't change zoom settings: give your terminal app Full Disk Access, then run 'equip osx' again"
+        run "open 'x-apple.systempreferences:com.apple.preference.security?Privacy_AllFiles'"
+    fi
 
     ########################################
     # Kill affected applications
@@ -1091,6 +1138,22 @@ step_brew() {
     run "defaults write com.knollsoft.Rectangle ignoredSnapAreas -int 1"
     run "defaults write com.knollsoft.Rectangle unsnapRestore -int 2"
     run "defaults write com.knollsoft.Rectangle launchOnLogin -int 1"
+
+    # Start these apps now and at every login.
+    local APP LOGIN_ITEMS
+    LOGIN_ITEMS="$(osascript -e 'tell application "System Events" to get the name of every login item' 2>/dev/null)"
+    for APP in Dropbox Flux Rectangle Theine; do
+        if [[ ! -d "/Applications/$APP.app" ]]; then
+            show -i "Can't start $APP because it isn't installed"
+            continue
+        fi
+        if ! echo ", $LOGIN_ITEMS," | grep -q ", $APP,"; then
+            run "osascript -e 'tell application \"System Events\" to make login item at end with properties {path:\"/Applications/$APP.app\", hidden:true}' >/dev/null"
+        fi
+        if ! pgrep -xq "$APP"; then
+            run "open -ga '$APP'"
+        fi
+    done
 
     run "mkdir -p $HOME/bin"
     run "ln -sf '$(brew --prefix shfmt)/bin/shfmt' '$HOME/bin/.'"

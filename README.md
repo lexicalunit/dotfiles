@@ -1,12 +1,10 @@
 # Synopsis
 
-I hate installing, configuring, and updating software on my computer. For example when I'm using a
-new machine, or sshing into a remote system. I've automated as much of that process as I can,
-keeping everything as lightweight as possible.
+I hate installing, configuring, and updating software on my computer. For example when I'm using a new machine, or sshing into a remote system. I've automated as much of that process as I can, keeping everything as lightweight as possible.
 
 ## Do everything
 
-Configure and install everything:
+First set up an SSH key for GitHub, see steps 1 to 3 of [Cloning with SSH](#cloning-with-ssh), because the `dotfiles` step fetches this repository over SSH. Then configure and install everything:
 
 ```bash
 cd && curl -LOks https://github.com/lexicalunit/dotfiles/tarball/master
@@ -19,6 +17,8 @@ bin/equip -f all
 1. Clone this repository into your home directory, see [Cloning with SSH](#cloning-with-ssh).
 1. Source your new environment by opening a new terminal or running [`. ~/.profile`](.profile).
 1. Execute the command [`equip all`](bin/equip) to step through configuration of system settings, installation of applications, and creation of your complete developer environment.
+
+You can also use the tool [`bin/deploy_dotfiles`](bin/deploy_dotfiles) to automatically export these settings to a remote machine.
 
 ## Cloning with SSH
 
@@ -83,64 +83,41 @@ If you used the tarball from [Do everything](#do-everything), running `equip dot
 git remote set-url origin git@github.com:lexicalunit/dotfiles.git
 ```
 
-You can also use the tool [`bin/deploy_dotfiles`](bin/deploy_dotfiles) to automatically
-export these settings to a remote machine.
-
 ## Maintenance
 
 * Your home directory is a git repository now! Track changes and commit updates as needed.
-* There are some git hooks in [`env`](env) that generate certain files for you.
-* Re-run [`equip all`](bin/equip) periodically to update applications and configuration.
+* There are some git hooks in [`env`](env) that generate certain files for you, including parts of this README.
+* Re-run [`equip most`](bin/equip) periodically to update applications and configuration. Unlike `equip all` it skips the `osx` step, which resets system settings and the Dock.
+* Add Homebrew formulas, casks, Mac App Store apps, and Go and Cargo packages to [`.homebrew/Brewfile`](.homebrew/Brewfile).
+* Add Python, Node, Ruby, and Java versions and npm CLI tools to [`.config/mise/config.toml`](.config/mise/config.toml). The global Python virtualenv lives at `~/.venv`, and its packages are listed in [`bin/equip`](bin/equip).
 * Don't forget to `git pull` any updates!
 
-## Not Automated
+## Manual steps
 
-There's some things that I would like to have automated but I haven't found a way yet.
+Some things can't be automated, usually because macOS requires you to approve them yourself.
 
-- Automatically start up after being installed: Dropbox, Rectangle, Flux
-- Automatically setup launch at startup: Rectangle, Amphetamine
-- Automatically setup iterm2's config location
-- Automatically set up the Dock's icons
-- Automatically install web browser extensions
-- Disable "Show recent applications in Dock"
-- Enable zoom via <kbd>ctrl</kbd> + mouse wheel scroll
-- Enable zoom follows mouse pointer
-- Enable text to speech for selected text via <kbd>option</kbd> + <kbd>esc</kbd>
+* Give your terminal app Full Disk Access in System Settings → Privacy & Security, then re-run `equip osx`. Without it the zoom settings (zoom with <kbd>ctrl</kbd> + scroll wheel and zoom follows the pointer) can't be changed; `equip osx` opens the right settings pane for you.
+* Allow your terminal app to control System Events when asked. `equip brew` uses this to add Dropbox, Flux, Rectangle, and Theine as login items, and `bin/set_wallpaper` uses it to set the Desktop picture.
+* Confirm the dialog when `equip osx` makes Google Chrome the default web browser.
 
 ## Environment: `~/env`
 
-* `Solarized Light.itermcolors` and
-  `Solarized Light xterm-256color.terminal`
-  themes to use in `Terminal.app` or [`iTerm.app`](http://iterm2.com/).
-* `com.googlecode.iterm2.plist` are my settings for [`iTerm.app`](http://iterm2.com/).
-* [`Rio.jpg`](env/Rio.jpg) is my favorite Desktop image.
-* [`Inconsolata.otf`](env/Inconsolata.otf) is my favorite font for writing code,
-  it's automatically installed during the `bin/equip env` step.
-* The [`post-commit`](env/post-commit) and [`pre-commit`](env/pre-commit) files are git hooks
-  use to maintain this repository. They're also installed as part of the `bin/equip env` step.
-* [`prompt_lexical_setup`](env/prompt_lexical_setup) is my
-  [prezto](https://github.com/sorin-ionescu/prezto) prompt theme, installed as part of the
-  `bin/equip env` step.
+* [`ghostty`](env/ghostty) is my config and color themes for [Ghostty](https://ghostty.org), converted from my old iTerm2 profile [`iterm2-profile.json`](env/iterm2-profile.json). It's installed during the `bin/equip osx` step.
+* `Solarized Light xterm-256color.terminal` is the theme to use in `Terminal.app`, installed during the `bin/equip osx` step.
+* [`Rio Sunrise.jpg`](env/Rio%20Sunrise.jpg) is my favorite Desktop image, set during the `bin/equip osx` step. The other `Rio` images are alternates.
+* [`Inconsolata.otf`](env/Inconsolata.otf) is a font for writing code, it's automatically installed during the `bin/equip env` step. Ghostty uses Fira Code, which is installed from the Brewfile.
+* [`extensions.duti`](env/extensions.duti) sets which apps open which file extensions, applied during the `bin/equip ext` step.
+* The [`post-commit`](env/post-commit) and [`pre-commit`](env/pre-commit) files are git hooks used to maintain this repository. They're also installed as part of the `bin/equip env` step.
+* [`prompt_lexical_setup`](env/prompt_lexical_setup) is my [prezto](https://github.com/sorin-ionescu/prezto) prompt theme, installed as part of the `bin/equip env` step. It shows the current Python environment (`global` for `~/.venv`) and Node version.
+* [`install-zooomwatcher.sh`](env/install-zooomwatcher.sh) installs a launch agent that keeps [`bin/zoomwatcher`](bin/zoomwatcher) running in the background.
 * [`nice.css`](env/nice.css) is a nice style sheet useful for overriding annoying websites.
-* [`dircolors_examples.tgz`](env/dircolors_examples.tgz) is used by
-  [`bin/show_dircolors`](bin/show_dircolors).
+* [`dircolors_examples.tgz`](env/dircolors_examples.tgz) is used by [`bin/show_dircolors`](bin/show_dircolors).
 
 ## Utilities: `~/bin`
 
-Installed into your [`~/bin`](bin) directory, these tools will be on your `PATH`. For detailed usage
-documentation see the [`README.md` for `~/bin`](bin/README.md), or of course run any of the tools
-with the argument `--help`.
+Installed into your [`~/bin`](bin) directory, these tools will be on your `PATH`. For detailed usage documentation see the [`README.md` for `~/bin`](bin/README.md), or of course run any of the tools with the argument `--help`.
 
-> **Note:** Some scripts in this repository are written assuming that you're using
-> [zsh](http://www.zsh.org/) as your shell. As of
-> [macOS Catalina](https://support.apple.com/en-us/HT208050) the default shell is `zsh`.
-> However, most scripts in `~/bin` are written with a `/bin/bash`
-> [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) because I like to use
-> [shellcheck](https://github.com/koalaman/shellcheck) to ensure code quality. Where possible I've
-> tried to maintain backwards compatibility with `bash`, but I make no guarantees. You should start
-> using `zsh` as soon as possible. It's so much better. In the future there will hopefully be
-> [direct support](https://github.com/koalaman/shellcheck/issues/809)
-> for `#!/usr/bin/env zsh` in `shellcheck`.
+> **Note:** Some scripts in this repository are written assuming that you're using [zsh](http://www.zsh.org/) as your shell, which has been the default shell on macOS since [Catalina](https://support.apple.com/en-us/HT208050). However, most scripts in `~/bin` are written with a `/bin/bash` [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) because I like to use [shellcheck](https://github.com/koalaman/shellcheck) to ensure code quality, and shellcheck [doesn't support zsh](https://github.com/koalaman/shellcheck/issues/809). Where possible I've tried to maintain backwards compatibility with `bash`, but I make no guarantees.
 
 | Tool | Usage |
 | --- | --- |
@@ -161,7 +138,6 @@ with the argument `--help`.
 | [`drc`](bin/drc) | Run a Check django backend. |
 | [`equip`](bin/equip) | Install applications and development environment on an macOS or Lin... |
 | [`faff`](bin/faff) | Sleeps for the given number of seconds, showing a progress bar. |
-| [`firefox-tabs`](bin/firefox-tabs) | Attempts to list the currently open urls in your Firefox tabs. |
 | [`flip`](bin/flip) | Flips input upside down. |
 | [`git-arc`](bin/git-arc) | Tool for archiving and restoring git branches. |
 | [`git-authors`](bin/git-authors) | Git script for discovering who wrote the code at the current workin... |
@@ -193,7 +169,7 @@ with the argument `--help`.
 | [`rc`](bin/rc) | Spin up or attach to tumx running Check development services. |
 | [`resend`](bin/resend) | Resend an incident notification. |
 | [`root`](bin/root) | Prints the root of the current repository. |
-| [`set_wallpaper`](bin/set_wallpaper) | Uses Cocoa classes via PyObjC to set a desktop wallpaper on all scr... |
+| [`set_wallpaper`](bin/set_wallpaper) | Sets the desktop wallpaper on all screens. |
 | [`show_dircolors`](bin/show_dircolors) | Shows example output based on current dircolors settings. |
 | [`slept`](bin/slept) | Get time macOS system last went to sleep. |
 | [`snake`](bin/snake) | Convert camelCase to snake_case. |
@@ -207,92 +183,40 @@ with the argument `--help`.
 | [`yeti-mute`](bin/yeti-mute) | Disables the "Thru" (headphone passthru) setting on Blue Yeti micro... |
 | [`zoomwatcher`](bin/zoomwatcher) | A service that watches for zoom and turns a hue light red if it is ... |
 
-# What does `equip all` install?
+## What does `equip all` install?
 
-Glad you asked! `equip all` will go through the following steps one by one. For the steps that
-install packages/formulas/casks/whatever, see below for the list of included items.
+Glad you asked! `equip all` will go through the following steps one by one. For the steps that install packages/formulas/casks/whatever, see below for the list of included items.
 
 | Step | Description |
 | --- | --- |
 | xcode | Ensure that Xcode Command Line Tools are installed |
 | dotfiles | Ensure home directory is a git repository for dotfiles |
-| brew | Ensure Homebrew installed, formulas upgraded, and Theine installed |
-| cask | Ensure Homebrew Casks are installed |
+| brew | Ensure Homebrew installed and everything in the Brewfile is installed and upgraded |
 | ext | Ensure file extension associations are correct |
 | zsh | Ensure shell is latest version of zsh from Homebrew |
 | env | Update environment configuration and submodules |
-| python | Upgrade/Install python and conda packages |
-| node | Ensure Node modules are installed via npm |
-| go | Ensure Go packages are installed |
-| cargo | Ensure Rust packages are installed via cargo |
+| tex | Ensure TeX Live is updated and extra TeX packages are installed via tlmgr |
+| mise | Ensure mise and mise managed tools are installed |
 | code | Ensure VS Code installed via Homebrew Cask and its packages are installed |
 | osx | Override macOS "defaults" settings and configuration |
 | dot | Runs steps: dotfiles zsh env |
-| apps | Runs steps: xcode brew cask ext python node go cargo code |
+| apps | Runs steps: xcode brew ext tex mise code |
 | most | Runs steps: apps dot (basically everything but the osx step) |
 | all | Runs all steps |
 
-Homebrew Formulas: autoconf, awscli, bash, basictex, brotli, c-ares, 
-ca-certificates, cabal-install, cairo, chrome-cli, clang-format, corepack, 
-coreutils, defaultbrowser, diff-so-fancy, direnv, duti, exiftool, expect, 
-fontconfig, freetype, fribidi, fzf, gdbm, gettext, gh, ghc, ghostscript, 
-giflib, git, git-lfs, git-secrets, glib, gmp, gnu-sed, gnu-tar, go, 
-gobject-introspection, graphite2, harfbuzz, hashicorp/tap/terraform, icu4c@77, 
-imagemagick@6, jbig2dec, jemalloc, jez/formulae/pandoc-sidenote, jpeg, 
-jpeg-turbo, jq, krb5, leptonica, libarchive, libb2, libev, libevent, libffi, 
-libgit2, libidn, libidn2, libnghttp2, libnghttp3, libngtcp2, libpng, libpq, 
-libpthread-stubs, libssh2, libtiff, libtommath, libtool, libunistring, libusb, 
-libuv, libx11, libxau, libxcb, libxdmcp, libxext, libxrender, libyaml, 
-little-cms2, llvm, lsd, lz4, lzo, m4, mas, mpdecimal, ncurses, nghttp2, node, 
-nvm, oniguruma, openhue/cli/openhue-cli, openjpeg, openssl@3, pandoc, pango, 
-pcre, pcre2, pidof, pixman, pkg-config, pkgconf, postgresql@15, pyenv, 
-pyenv-virtualenv, pyenv-virtualenvwrapper, pyright, python@3.13, readline, 
-ripgrep, rlwrap, rust, rustup, shellcheck, shfmt, simdjson, sqlite, tcl-tk, 
-tcl-tk@8, terraform-linters/tap/tflint, tesseract, tex-fmt, tflint, tmux, tree, 
-utf8proc, uv, uvwasi, vramsteg, watch, wdiff, webp, wget, xorgproto, xz, z3, 
-zsh, zstd
+Homebrew formulas, casks, Mac App Store apps, and Go and Cargo packages are listed in [`.homebrew/Brewfile`](.homebrew/Brewfile). Python, Node, Ruby, Java, and npm CLI tools are managed by [mise](https://mise.jdx.dev) and listed in [`.config/mise/config.toml`](.config/mise/config.toml).
 
-Homebrew Casks: 1password, 1password/tap/1password-cli, chromedriver, discord, 
-docker, docker-desktop, dropbox, fantastical, flux-app, font-fira-code, 
-font-hack-nerd-font, ghostty, google-chrome, iexplorer, iterm2, lingon-x, 
-ngrok, obsidian, omnifocus, rectangle, signal, slack, snes9x, sourcetree, 
-spotify, steam, tableplus, the-unarchiver, transmission, vagrant, 
-visual-studio-code, vlc
+Code Packages: be5invis.toml, bibhasdn.unique-lines, charliermarsh.ruff, DavidAnson.vscode-markdownlint, dbaeumer.vscode-eslint, eamodio.gitlens, esbenp.prettier-vscode, exiasr.hadolint, foxundermoon.shell-format, GitHub.copilot, GitHub.copilot-chat, hashicorp.terraform, James-Yu.latex-workshop, joe-re.sql-language-server, karunamurti.haml, mgmcdermott.vscode-language-babel, mike-co.import-sorter, mohsen1.prettify-json, ms-azuretools.vscode-docker, ms-python.debugpy, ms-python.python, ms-python.vscode-pylance, ms-vscode.live-server, nickmillerdev.pytest-fixtures, PascalReitermann93.vscode-yaml-sort, redhat.vscode-yaml, richie5um2.vscode-sort-json, streetsidesoftware.code-spell-checker, sysoev.language-stylus, timonwong.shellcheck
 
-Code Packages: be5invis.toml, bibhasdn.unique-lines, charliermarsh.ruff, 
-DavidAnson.vscode-markdownlint, dbaeumer.vscode-eslint, eamodio.gitlens, 
-esbenp.prettier-vscode, exiasr.hadolint, foxundermoon.shell-format, 
-GitHub.copilot, GitHub.copilot-chat, hashicorp.terraform, 
-James-Yu.latex-workshop, joe-re.sql-language-server, karunamurti.haml, 
-mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
-mohsen1.prettify-json, ms-azuretools.vscode-docker, ms-python.debugpy, 
-ms-python.python, ms-python.vscode-pylance, ms-vscode.live-server, 
-nickmillerdev.pytest-fixtures, PascalReitermann93.vscode-yaml-sort, 
-redhat.vscode-yaml, richie5um2.vscode-sort-json, 
-streetsidesoftware.code-spell-checker, sysoev.language-stylus, 
-timonwong.shellcheck
+Python Packages: attrs, cryptography, ipython, jsonschema, keyring, pip, pygments, pytest, pyyaml, requests, setuptools, toml, tomlkit, tqdm, wheel
 
-Conda Packages: appdirs, appnope, attrs, backcall, brotlipy, ca-certificates, 
-cachecontrol, cachy, certifi, cffi, charset-normalizer, cleo, clikit, 
-crashtest, cryptography, decorator, distlib, filelock, html5lib, idna, 
-importlib_metadata, importlib-metadata, iniconfig, ipython, ipython_genutils, 
-jedi, jsonschema, keyring, libcxx, libffi, lockfile, lz4, lz4-c, 
-matplotlib-inline, more-itertools, msgpack-python, ncurses, openssl, packaging, 
-parso, pastel, pexpect, pickleshare, pip, pkginfo, pluggy, prompt-toolkit, 
-ptyprocess, py, pycosat, pycparser, pygments, pylev, pyopenssl, pyparsing, 
-pyrsistent, pysocks, pytest, pyyaml, readline, requests, requests-toolbelt, 
-ruamel_yaml, setuptools, shellingham, six, tk, toml, tomlkit, tqdm, traitlets, 
-urllib3, virtualenv, wcwidth, webencodings, wheel, xz, yaml, zipp, zlib
+Python Tools: pipenv, pre-commit
 
-Node Modules: @ibm/plex, dockerlint, tmpin, typescript
+Tex Packages: latexmk
 
-Go Packages: github.com/BurntSushi/toml, github.com/BurntSushi/toml/cmd/tomlv
+## License
 
-Cargo Packages: cargo-update, jless, loc, porsmo
-
-# License
-
-```
+```text
 Inconsolata font Created by Raph Levien using his own tools and FontForge.
 Copyright 2006 Raph Levien. Released under the SIL Open Font License.
 
@@ -319,4 +243,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ```
-

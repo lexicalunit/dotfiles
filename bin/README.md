@@ -168,48 +168,21 @@ options:
 steps:
     xcode      Ensure that Xcode Command Line Tools are installed
     dotfiles   Ensure home directory is a git repository for dotfiles
-    brew       Ensure Homebrew installed, formulas upgraded, and Theine installed
-    cask       Ensure Homebrew Casks are installed
+    brew       Ensure Homebrew installed and everything in the Brewfile is installed and upgraded
     ext        Ensure file extension associations are correct
     zsh        Ensure shell is latest version of zsh from Homebrew
     env        Update environment configuration and submodules
-    python     Upgrade/Install python and conda packages
-    node       Ensure Node modules are installed via npm
-    go         Ensure Go packages are installed
-    cargo      Ensure Rust packages are installed via cargo
+    tex        Ensure TeX Live is updated and extra TeX packages are installed via tlmgr
+    mise       Ensure mise and mise managed tools are installed
     code       Ensure VS Code installed via Homebrew Cask and its packages are installed
     osx        Override macOS "defaults" settings and configuration
     dot        Runs steps: dotfiles zsh env
-    apps       Runs steps: xcode brew cask ext python node go cargo code
+    apps       Runs steps: xcode brew ext tex mise code
     most       Runs steps: apps dot (basically everything but the osx step)
     all        Runs all steps
 
-Homebrew Formulas: autoconf, awscli, bash, basictex, brotli, c-ares, 
-ca-certificates, cabal-install, cairo, chrome-cli, clang-format, corepack, 
-coreutils, defaultbrowser, diff-so-fancy, direnv, duti, exiftool, expect, 
-fontconfig, freetype, fribidi, fzf, gdbm, gettext, gh, ghc, ghostscript, 
-giflib, git, git-lfs, git-secrets, glib, gmp, gnu-sed, gnu-tar, go, 
-gobject-introspection, graphite2, harfbuzz, hashicorp/tap/terraform, icu4c@77, 
-imagemagick@6, jbig2dec, jemalloc, jez/formulae/pandoc-sidenote, jpeg, 
-jpeg-turbo, jq, krb5, leptonica, libarchive, libb2, libev, libevent, libffi, 
-libgit2, libidn, libidn2, libnghttp2, libnghttp3, libngtcp2, libpng, libpq, 
-libpthread-stubs, libssh2, libtiff, libtommath, libtool, libunistring, libusb, 
-libuv, libx11, libxau, libxcb, libxdmcp, libxext, libxrender, libyaml, 
-little-cms2, llvm, lsd, lz4, lzo, m4, mas, mpdecimal, ncurses, nghttp2, node, 
-nvm, oniguruma, openhue/cli/openhue-cli, openjpeg, openssl@3, pandoc, pango, 
-pcre, pcre2, pidof, pixman, pkg-config, pkgconf, postgresql@15, pyenv, 
-pyenv-virtualenv, pyenv-virtualenvwrapper, pyright, python@3.13, readline, 
-ripgrep, rlwrap, rust, rustup, shellcheck, shfmt, simdjson, sqlite, tcl-tk, 
-tcl-tk@8, terraform-linters/tap/tflint, tesseract, tex-fmt, tflint, tmux, tree, 
-utf8proc, uv, uvwasi, vramsteg, watch, wdiff, webp, wget, xorgproto, xz, z3, 
-zsh, zstd
-
-Homebrew Casks: 1password, 1password/tap/1password-cli, chromedriver, discord, 
-docker, docker-desktop, dropbox, fantastical, flux-app, font-fira-code, 
-font-hack-nerd-font, ghostty, google-chrome, iexplorer, iterm2, lingon-x, 
-ngrok, obsidian, omnifocus, rectangle, signal, slack, snes9x, sourcetree, 
-spotify, steam, tableplus, the-unarchiver, transmission, vagrant, 
-visual-studio-code, vlc
+Homebrew formulas, casks, Mac App Store apps, and Go and Cargo packages: see ~/.homebrew/Brewfile
+Python, Node, Ruby, Java, and npm CLI tools: see ~/.config/mise/config.toml
 
 Code Packages: be5invis.toml, bibhasdn.unique-lines, charliermarsh.ruff, 
 DavidAnson.vscode-markdownlint, dbaeumer.vscode-eslint, eamodio.gitlens, 
@@ -224,23 +197,12 @@ redhat.vscode-yaml, richie5um2.vscode-sort-json,
 streetsidesoftware.code-spell-checker, sysoev.language-stylus, 
 timonwong.shellcheck
 
-Conda Packages: appdirs, appnope, attrs, backcall, brotlipy, ca-certificates, 
-cachecontrol, cachy, certifi, cffi, charset-normalizer, cleo, clikit, 
-crashtest, cryptography, decorator, distlib, filelock, html5lib, idna, 
-importlib_metadata, importlib-metadata, iniconfig, ipython, ipython_genutils, 
-jedi, jsonschema, keyring, libcxx, libffi, lockfile, lz4, lz4-c, 
-matplotlib-inline, more-itertools, msgpack-python, ncurses, openssl, packaging, 
-parso, pastel, pexpect, pickleshare, pip, pkginfo, pluggy, prompt-toolkit, 
-ptyprocess, py, pycosat, pycparser, pygments, pylev, pyopenssl, pyparsing, 
-pyrsistent, pysocks, pytest, pyyaml, readline, requests, requests-toolbelt, 
-ruamel_yaml, setuptools, shellingham, six, tk, toml, tomlkit, tqdm, traitlets, 
-urllib3, virtualenv, wcwidth, webencodings, wheel, xz, yaml, zipp, zlib
+Python Packages: attrs, cryptography, ipython, jsonschema, keyring, pip, 
+pygments, pytest, pyyaml, requests, setuptools, toml, tomlkit, tqdm, wheel
 
-Node Modules: @ibm/plex, dockerlint, tmpin, typescript
+Python Tools: pipenv, pre-commit
 
-Go Packages: github.com/BurntSushi/toml, github.com/BurntSushi/toml/cmd/tomlv
-
-Cargo Packages: cargo-update, jless, loc, porsmo
+Tex Packages: latexmk
 ```
 
 * * *
@@ -248,15 +210,6 @@ Cargo Packages: cargo-update, jless, loc, porsmo
 ```
 usage: faff SECONDS [-h|--help]
 Sleeps for the given number of seconds, showing a progress bar.
-```
-
-* * *
-### [`firefox-tabs`](firefox-tabs)
-```
-Traceback (most recent call last):
-  File "/Users/amy/bin/./firefox-tabs", line 9, in <module>
-    import lz4.block
-ModuleNotFoundError: No module named 'lz4'
 ```
 
 * * *
@@ -584,7 +537,12 @@ Prints the root directory of the current source repository.
 * * *
 ### [`set_wallpaper`](set_wallpaper)
 ```
-./usages: ./set_wallpaper: /usr/bin/python: bad interpreter: No such file or directory
+usage: set_wallpaper [-h|--help] --path IMAGE
+Sets the desktop wallpaper on all screens.
+
+options:
+    -h, --help     show usage help
+    --path IMAGE   the path of the image
 ```
 
 * * *
@@ -616,7 +574,8 @@ For example:
 ### [`uninstall_homebrew`](uninstall_homebrew)
 ```
 usage: uninstall_homebrew [-h|--help]
-See https://gist.github.com/1173223 for details.
+Runs the official Homebrew uninstall script, which asks for confirmation first.
+See https://github.com/Homebrew/install#uninstall-homebrew for details.
 ```
 
 * * *

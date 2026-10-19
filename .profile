@@ -362,12 +362,11 @@ if $INTERACTIVE; then
     if type exa >/dev/null 2>&1; then
         alias ls='exa '
         alias ll='ls -lg --git --header --group-directories-first --git-ignore --time-style="long-iso" '
-    elif command ls --hyperlink=auto -d . >/dev/null 2>&1; then
-        # GNU ls: emit OSC 8 hyperlinks so filenames are cmd+clickable
-        alias ls='ls -hF --color=auto --hyperlink=auto'
+    elif command gls >/dev/null 2>&1; then
+        alias ls='gls -hF --color=auto --hyperlink=auto '
         alias ll='ls -l '
     else
-        alias ls='ls -hF --color=auto'
+        alias ls='ls -hF --color=auto '
         alias ll='ls -l '
     fi
     if type dircolors >/dev/null 2>&1; then

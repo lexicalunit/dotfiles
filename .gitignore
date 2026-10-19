@@ -1,4 +1,3 @@
-.DS_Store
 /.agent-native
 /.aws
 /.bash_history*
@@ -33,6 +32,7 @@
 /.cups/lpoptions
 /.docker
 /.dropbox
+.DS_Store
 /.gem
 /.gemrc
 /.ghcup
@@ -42,6 +42,7 @@
 /.gk
 /.gnupg
 /.gradle
+/.homebrew/trust.json*
 /.ipython
 /.irb_history
 /.kube
@@ -50,8 +51,8 @@
 /.m2
 /.mongodb
 /.netrc
-/.node_repl_history
 /.node-gyp
+/.node_repl_history
 /.npm
 /.npmrc
 /.odbc.ini

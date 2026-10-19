@@ -10,11 +10,13 @@ cask_args adopt: true
 ################################################################################
 # Taps
 ################################################################################
-tap "1password/tap"
-tap "datadog-labs/pack"
-tap "jez/formulae"
-tap "openhue/cli"
-tap "shopify/shopify"
+# Third-party taps have to be trusted before Homebrew will load from them; brew
+# bundle records these in ~/.homebrew/trust.json, which isn't tracked.
+tap "1password/tap", trusted: true
+tap "datadog-labs/pack", trusted: true
+tap "jez/formulae", trusted: true
+tap "openhue/cli", trusted: true
+tap "shopify/shopify", trusted: true
 
 ################################################################################
 # Formulas

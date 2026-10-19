@@ -10,5 +10,12 @@
   "trustedcasks": [
     "1password/tap/1password-cli",
     "terraform-linters/tap/tflint"
+  ],
+  "trustedtaps": [
+    "1password/tap",
+    "hashicorp/tap",
+    "jez/formulae",
+    "openhue/cli",
+    "rbenv/tap"
   ]
 }

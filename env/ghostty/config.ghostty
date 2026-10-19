@@ -6,7 +6,7 @@ bold-is-bright = true
 
 # Font
 font-family = Fira Code
-font-size = 16
+font-size = 17
 
 # Cursor
 cursor-style = block

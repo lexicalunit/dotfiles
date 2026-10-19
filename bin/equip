@@ -957,7 +957,7 @@ step_brew() {
     fi
 
     # Installs and upgrades everything in the Brewfile.
-    run "brew bundle install --file '$BREWFILE'"
+    run "brew bundle install --verbose --file '$BREWFILE'"
 
     # ghcup (from the Brewfile) manages GHC and cabal.
     if command -v ghcup >/dev/null 2>&1; then

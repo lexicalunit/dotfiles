@@ -3,24 +3,27 @@
 # Builds HTML output from Markdown file.
 
 KEEP="no"
+PDF="no"
 
 usage() {
     (
-        echo "usage: ${0##*/} [-h|--help|-k] FILE.md"
-        echo "Opens FILE.md as FILE.html in your default web browser."
+        echo "usage: ${0##*/} [-h|--help|-k|-p] FILE.md"
+        echo "Opens FILE.md as FILE.html in your default web browser, or as FILE.pdf with -p."
         echo
-        echo "$(tput bold)Requires pandoc, pandoc-sidenote, tufte-css, and tufte-pandoc-css:$(tput sgr0)"
+        echo "$(tput bold)Requires pandoc, pandoc-sidenote, tufte-css, and tufte-pandoc-css (and typst for -p):$(tput sgr0)"
         echo
         echo "    $ cd ~"
         echo "    $ brew install pandoc"
         echo "    $ brew install jez/formulae/pandoc-sidenote"
+        echo "    $ brew install typst"
         echo "    $ git clone https://github.com/edwardtufte/tufte-css.git .tufte-css"
         echo "    $ git clone https://github.com/jez/tufte-pandoc-css.git .tufte-pandoc-css"
         echo
         echo "options:"
         (
             echo "    -h, --help@ show usage help"
-            echo "    -k@ keep .html artifact (default: $KEEP)"
+            echo "    -k@ keep .html or .pdf artifact (default: $KEEP)"
+            echo "    -p@ render a PDF with typst instead of HTML (default: $PDF)"
         ) | column -ts@
     ) >&2
     exit 1
@@ -34,31 +37,38 @@ fi
 # shellcheck disable=SC1091
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
-while getopts "k" opt; do
+while getopts "kp" opt; do
     case "$opt" in
     k) KEEP="yes" ;;
+    p) PDF="yes" ;;
     *) usage ;;
     esac
 done
 shift $((OPTIND - 1))
 
 SRC="$(realpath "$1")"
-TGT="$(dirname "$SRC")/$(basename "$1" .md).html"
 
-run "cd '$HOME/.tufte-pandoc-css'" || usage
+if [[ $PDF == "yes" ]]; then
+    TGT="$(dirname "$SRC")/$(basename "$1" .md).pdf"
+    CMD="pandoc '$SRC' --pdf-engine=typst --output '$TGT'"
+else
+    TGT="$(dirname "$SRC")/$(basename "$1" .md).html"
 
-CMD="pandoc '$SRC'"
-CMD="$CMD --katex"
-CMD="$CMD --section-divs"
-CMD="$CMD --from markdown+tex_math_single_backslash"
-CMD="$CMD --filter pandoc-sidenote"
-CMD="$CMD --to html5"
-CMD="$CMD --template=tufte"
-CMD="$CMD --css ~/.tufte-css/tufte.css"
-CMD="$CMD --css ~/.tufte-pandoc-css/pandoc.css"
-CMD="$CMD --css ~/.tufte-pandoc-css/pandoc-solarized.css"
-CMD="$CMD --css ~/.tufte-pandoc-css/tufte-extra.css"
-CMD="$CMD --output '$TGT'"
+    run "cd '$HOME/.tufte-pandoc-css'" || usage
+
+    CMD="pandoc '$SRC'"
+    CMD="$CMD --katex"
+    CMD="$CMD --section-divs"
+    CMD="$CMD --from markdown+tex_math_single_backslash"
+    CMD="$CMD --filter pandoc-sidenote"
+    CMD="$CMD --to html5"
+    CMD="$CMD --template=tufte"
+    CMD="$CMD --css ~/.tufte-css/tufte.css"
+    CMD="$CMD --css ~/.tufte-pandoc-css/pandoc.css"
+    CMD="$CMD --css ~/.tufte-pandoc-css/pandoc-solarized.css"
+    CMD="$CMD --css ~/.tufte-pandoc-css/tufte-extra.css"
+    CMD="$CMD --output '$TGT'"
+fi
 run "$CMD" || usage
 
 open "$TGT"
@@ -66,5 +76,5 @@ open "$TGT"
 if [[ $KEEP == "no" ]]; then
     run "sleep 1"
     run "rm '$TGT'"
-    show -i "use -k to keep .html file"
+    show -i "use -k to keep the ${TGT##*.} file"
 fi

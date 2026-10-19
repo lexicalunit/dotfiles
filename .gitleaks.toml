@@ -1,0 +1,8 @@
+# Gitleaks configuration, see https://github.com/gitleaks/gitleaks#configuration
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "VS Code keybindings use \"key\" for keyboard shortcuts, not API keys"
+paths = ['''Library/Application Support/Code/User/keybindings\.json''']

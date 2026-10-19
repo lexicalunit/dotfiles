@@ -23,12 +23,9 @@ else
 fi
 
 # Export currently built PATH so the rest of this script has access to them.
-if test -e /usr/libexec/path_helper; then
-    eval "$($_ -s)"
-else
-    export PATH
-    export MANPATH
-fi
+# (path_helper already exported them above, running it again changes nothing.)
+export PATH
+export MANPATH
 
 ARCH="$(arch)"
 export ARCH

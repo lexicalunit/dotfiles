@@ -3,6 +3,11 @@
 #shellcheck source=.shell_control
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
+#########################################################################
+# checks from .pre-commit-config.yaml, such as gitleaks
+#########################################################################
+run "prek run"
+
 run "touch .commit"
 
 #########################################################################

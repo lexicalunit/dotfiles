@@ -103,20 +103,22 @@ options:
 * * *
 ### [`doc`](doc)
 ```
-usage: doc [-h|--help|-k] FILE.md
-Opens FILE.md as FILE.html in your default web browser.
+usage: doc [-h|--help|-k|-p] FILE.md
+Opens FILE.md as FILE.html in your default web browser, or as FILE.pdf with -p.
 
-[1mRequires pandoc, pandoc-sidenote, tufte-css, and tufte-pandoc-css:(B[m
+[1mRequires pandoc, pandoc-sidenote, tufte-css, and tufte-pandoc-css (and typst for -p):(B[m
 
     $ cd ~
     $ brew install pandoc
     $ brew install jez/formulae/pandoc-sidenote
+    $ brew install typst
     $ git clone https://github.com/edwardtufte/tufte-css.git .tufte-css
     $ git clone https://github.com/jez/tufte-pandoc-css.git .tufte-pandoc-css
 
 options:
     -h, --help   show usage help
-    -k           keep .html artifact (default: no)
+    -k           keep .html or .pdf artifact (default: no)
+    -p           render a PDF with typst instead of HTML (default: no)
 ```
 
 * * *

@@ -1,0 +1,12 @@
+# Checks run by prek from the env/pre-commit git hook.
+#
+# Don't run `prek install` here: it would replace env/pre-commit, which also
+# regenerates the READMEs. Run the checks by hand with `prek run --all-files`.
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.1
+    hooks:
+      # Uses the gitleaks installed by the Brewfile instead of building it.
+      # It scans the staged changes itself, so it mustn't be given file names.
+      - id: gitleaks-system
+        pass_filenames: false

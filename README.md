@@ -192,9 +192,10 @@ zsh, zstd
 
 Homebrew Casks: 1password, 1password/tap/1password-cli, chromedriver, discord, 
 docker, docker-desktop, dropbox, fantastical, flux-app, font-fira-code, 
-font-hack-nerd-font, google-chrome, iexplorer, iterm2, lingon-x, ngrok, 
-obsidian, omnifocus, rectangle, signal, slack, snes9x, sourcetree, spotify, 
-steam, tableplus, the-unarchiver, transmission, vagrant, visual-studio-code, vlc
+font-hack-nerd-font, ghostty, google-chrome, iexplorer, iterm2, lingon-x, 
+ngrok, obsidian, omnifocus, rectangle, signal, slack, snes9x, sourcetree, 
+spotify, steam, tableplus, the-unarchiver, transmission, vagrant, 
+visual-studio-code, vlc
 
 Code Packages: be5invis.toml, bibhasdn.unique-lines, charliermarsh.ruff, 
 DavidAnson.vscode-markdownlint, dbaeumer.vscode-eslint, eamodio.gitlens, 

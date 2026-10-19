@@ -164,6 +164,7 @@
 /.rustup
 /.sbt
 /.scala_history
+/.sentryclirc
 /.serverless
 /.serverlessrc
 /.sh_history*

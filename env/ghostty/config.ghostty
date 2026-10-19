@@ -1,0 +1,31 @@
+# Converted from iTerm2 profile at ~/env/iterm2-profile.json
+
+# Colors: iTerm2 profile uses separate light/dark mode colors
+theme = light:iterm2-light,dark:iterm2-dark
+bold-is-bright = true
+
+# Font
+font-family = Fira Code
+font-size = 16
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+
+# Window
+window-width = 80
+window-height = 25
+background-opacity = 1
+confirm-close-surface = false
+
+# Scrollback (iTerm2 was unlimited; Ghostty limit is in bytes)
+scrollback-limit = 1000000000
+
+# Bell: iTerm2 had the audible bell silenced
+bell-features = no-system,no-audio
+
+# Option keys act as normal macOS Option (iTerm2 "Normal")
+macos-option-as-alt = false
+
+# Keybindings: Cmd+. sends Ctrl-C (0x03)
+keybind = cmd+period=text:\x03

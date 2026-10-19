@@ -1,3 +1,4 @@
+!/.config/tinted-theming/tinted-shell
 .DS_Store
 /.agent-native
 /.ammonite
@@ -53,8 +54,6 @@
 /.config/gcx/config.yaml
 /.config/gtk-2.0/
 /.config/iterm2/AppSupport
-/.config/tinted-theming/*
-!/.config/tinted-theming/tinted-shell
 /.config/ldcli/config.yml
 /.config/lexicalunit/studio.json
 /.config/menus/applications-merged/
@@ -65,6 +64,7 @@
 /.config/rq
 /.config/simple-update-notifier
 /.config/texstudio
+/.config/tinted-theming/*
 /.config/yarn/global
 /.context/mcp-codebase-snapshot.json
 /.context/merkle
@@ -111,6 +111,7 @@
 /.local/pipx/venvs
 /.local/share/applications/wine/Programs
 /.local/share/claude
+/.local/share/delta/lesshst
 /.local/share/desktop-directories
 /.local/share/direnv
 /.local/share/gem
@@ -122,8 +123,8 @@
 /.local/share/nvim/shada/main.shada
 /.local/share/pry/pry_history
 /.local/share/recently-used.xbel
-/.local/share/virtualenvs
 /.local/share/uv
+/.local/share/virtualenvs
 /.local/state
 /.local/state/pnpm/pnpm-state.json
 /.m2
@@ -213,10 +214,10 @@
 /env/pyvenv.cfg
 /env/share
 /Games
+/go
 /Google*Drive
 /IdeaProjects
 /Library
-/go
 /Movies
 /Music
 /Pictures

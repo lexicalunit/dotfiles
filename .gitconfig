@@ -4,7 +4,7 @@
 [core]
 	autocrlf = false
 	excludesfile = ~/.gitignore_global
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = delta
 	whitespace = trailing-space,space-before-tab
 [push]
 	default = tracking
@@ -36,7 +36,6 @@
 	rspec = run 'bin/rspec' '_spec\\.rb$'
 	jest = run 'jest --config jest.config.js --' '_spec\\.js$|_spec\\.ts$'
 	pytest = run 'pytest -vv -x' 'test_.*\\.py'
-	potest = run 'poetry run pytest -vv -x' 'test_.*\\.py'
 	def = "!f() { test -n \"$1\" && r=\"$1\" || r=origin; basename \"$(git rev-parse --abbrev-ref \"$r\"/HEAD)\"; }; f"
 [color]
 	ui = true
@@ -59,12 +58,6 @@
 	pushNonFastForward = false
 [branch]
 	autosetuprebase = always
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [user]
 	useconfigonly = true
 [credential]
@@ -80,3 +73,9 @@
 	required = true
 [init]
 	defaultBranch = main
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+[merge]
+	conflictStyle = zdiff3

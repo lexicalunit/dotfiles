@@ -203,8 +203,8 @@ ${PROMPT_LINE_2} "
     # shellcheck disable=SC2016
     export PROMPT_COMMAND='_bash_history_append; _prompt_command'"${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
 
-    # setup fzf
+    # setup fzf key bindings and completion
     # shellcheck disable=SC1090
-    [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+    command -v fzf >/dev/null 2>&1 && source <(fzf --bash)
 
 fi # if $INTERACTIVE

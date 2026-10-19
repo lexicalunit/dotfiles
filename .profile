@@ -72,7 +72,6 @@ test -d "$HOME/go/bin" && PATH="$PATH:$_"
 test -d "$HOME/.cargo/bin" && PATH="$PATH:$_"
 test -d "$HOME/.ghcup/bin" && PATH="$PATH:$_"
 test -d "$HOME/.local/bin" && PATH="$PATH:$_"
-test -d "$HOME/.log-ninja" && PATH="$PATH:$_"
 test -d /usr/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
 
 # Add npm dev installed dependencies per project
@@ -325,12 +324,16 @@ if $INTERACTIVE; then
     ################################################################################
     _interactive_log "setting up envrionment"
 
-    # Override prezto's grep configuration
-    alias grep='nocorrect grep --color=auto'
+    # Override prezto's grep configuration; nocorrect only exists in zsh.
+    if [[ -n $ZSH_VERSION ]]; then
+        alias grep='nocorrect grep --color=auto'
+    else
+        alias grep='grep --color=auto'
+    fi
     export GREP_COLOR='1;35;40'
 
     # I hate autocorrection in CLI, disable it because prezto enables it.
-    alias cd='nocorrect cd'
+    [[ -n $ZSH_VERSION ]] && alias cd='nocorrect cd'
 
     # Finally setup ls to ensure we override any aliases, like from prezto.
     if command gls >/dev/null 2>&1; then

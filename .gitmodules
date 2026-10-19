@@ -1,7 +1,3 @@
-[submodule ".log-ninja"]
-	path = .log-ninja
-	url = https://github.com/lexicalunit/log-ninja.git
-	branch = lexicalunit/deploy
 [submodule ".tufte-pandoc-css"]
 	path = .tufte-pandoc-css
 	url = https://github.com/jez/tufte-pandoc-css.git

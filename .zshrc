@@ -57,8 +57,8 @@ if $INTERACTIVE; then
     # I hate `!` for history expansion, use the builtin `r` instead.
     setopt NO_BANG_HIST
 
-    # setup fzf
-    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+    # setup fzf key bindings and completion
+    command -v fzf >/dev/null 2>&1 && source <(fzf --zsh)
 
     # Disable autotitle
     DISABLE_AUTO_TITLE="true"

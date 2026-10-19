@@ -112,7 +112,7 @@ cat >>../README.md <<EOF
 
 ## License
 
-\`\`\`
+\`\`\`text
 $(cat ../LICENSE)
 \`\`\`
 EOF

@@ -1,11 +1,11 @@
 #!/bin/bash -ue
 
-# Blow away and reinstall all pre-commit hooks.
+# Blow away and reinstall all pre-commit hooks with prek.
 
 usage() {
     (
         echo "usage: ${0##*/} [options]"
-        echo "Blow away and reinstall all pre-commit hooks."
+        echo "Blow away and reinstall all pre-commit hooks with prek."
         echo
         echo "options:"
         (
@@ -23,7 +23,7 @@ fi
 # shellcheck disable=SC1091
 source "$HOME/.shell_control" || echo "$(tput bold)error: ~/.shell_control not installed!$(tput sgr0)" >&2
 
-run "rm -rf ~/.cache/pre-commit"
-run "pre-commit install --install-hooks"
-run "pre-commit autoupdate"
-run "pre-commit run -a"
+run "prek cache clean"
+run "prek install --prepare-hooks"
+run "prek update"
+run "prek run --all-files"

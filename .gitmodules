@@ -2,9 +2,6 @@
 	path = .log-ninja
 	url = https://github.com/lexicalunit/log-ninja.git
 	branch = lexicalunit/deploy
-[submodule ".config/base16-shell"]
-	path = .config/base16-shell
-	url = https://github.com/chriskempson/base16-shell.git
 [submodule ".tufte-pandoc-css"]
 	path = .tufte-pandoc-css
 	url = https://github.com/jez/tufte-pandoc-css.git
@@ -17,3 +14,6 @@
 	path = .zprezto
 	url = https://github.com/sorin-ionescu/prezto.git
 	ignore = dirty
+[submodule ".config/tinted-theming/tinted-shell"]
+	path = .config/tinted-theming/tinted-shell
+	url = https://github.com/tinted-theming/tinted-shell.git

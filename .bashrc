@@ -199,12 +199,9 @@ ${PROMPT_LINE_2} "
         PS4="$0:$LINENO: "
     }
 
-    export PROMPT_COMMAND='_bash_history_append; _prompt_command ' # single quotes to avoid variable expansion
-
-    # setup fasd
-    if type fasd >/dev/null 2>&1; then
-        eval "$(fasd --init auto)"
-    fi
+    # Run these first and keep the hooks that .profile added (mise, direnv, zoxide).
+    # shellcheck disable=SC2016
+    export PROMPT_COMMAND='_bash_history_append; _prompt_command'"${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
 
     # setup fzf
     # shellcheck disable=SC1090

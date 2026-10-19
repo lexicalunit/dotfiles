@@ -67,17 +67,6 @@ options:
 ```
 
 * * *
-### [`codeclimate`](codeclimate)
-```
-usage: codeclimate [-h|--help] [-v]
-Runs Code Climate on the current working directory.
-
-options:
-    -h, --help   show usage help
-    -v           verbose, show docker command
-```
-
-* * *
 ### [`colortest`](colortest)
 ```
 usage: colortest
@@ -138,17 +127,6 @@ Streams system logs for docker containers.
 ```
 
 * * *
-### [`drc`](drc)
-```
-usage: drc
-
-Run a Check django backend.
-
-options:
- -h or --help shows usage help
-```
-
-* * *
 ### [`equip`](equip)
 ```
 usage: equip [-l|-d|-f|-h|--help] [all|step-name(s)]
@@ -174,33 +152,17 @@ steps:
     env        Update environment configuration and submodules
     tex        Ensure TeX Live is updated and extra TeX packages are installed via tlmgr
     mise       Ensure mise and mise managed tools are installed
-    code       Ensure VS Code installed via Homebrew Cask and its packages are installed
     osx        Override macOS "defaults" settings and configuration
     dot        Runs steps: dotfiles zsh env
-    apps       Runs steps: xcode brew ext tex mise code
+    apps       Runs steps: xcode brew ext tex mise
     most       Runs steps: apps dot (basically everything but the osx step)
     all        Runs all steps
 
-Homebrew formulas, casks, Mac App Store apps, and Go and Cargo packages: see ~/.homebrew/Brewfile
+Homebrew formulas, casks, Mac App Store apps, Go and Cargo packages, and VS Code extensions: see ~/.homebrew/Brewfile
 Python, Node, Ruby, Java, and npm CLI tools: see ~/.config/mise/config.toml
-
-Code Packages: be5invis.toml, bibhasdn.unique-lines, charliermarsh.ruff, 
-DavidAnson.vscode-markdownlint, dbaeumer.vscode-eslint, eamodio.gitlens, 
-esbenp.prettier-vscode, exiasr.hadolint, foxundermoon.shell-format, 
-GitHub.copilot, GitHub.copilot-chat, hashicorp.terraform, 
-James-Yu.latex-workshop, joe-re.sql-language-server, karunamurti.haml, 
-mgmcdermott.vscode-language-babel, mike-co.import-sorter, 
-mohsen1.prettify-json, ms-azuretools.vscode-docker, ms-python.debugpy, 
-ms-python.python, ms-python.vscode-pylance, ms-vscode.live-server, 
-nickmillerdev.pytest-fixtures, PascalReitermann93.vscode-yaml-sort, 
-redhat.vscode-yaml, richie5um2.vscode-sort-json, 
-streetsidesoftware.code-spell-checker, sysoev.language-stylus, 
-timonwong.shellcheck
 
 Python Packages: attrs, cryptography, ipython, jsonschema, keyring, pip, 
 pygments, pytest, pyyaml, requests, setuptools, toml, tomlkit, tqdm, wheel
-
-Python Tools: pipenv, pre-commit
 
 Tex Packages: latexmk
 ```
@@ -368,53 +330,11 @@ options:
 ```
 
 * * *
-### [`golist`](golist)
-```
-usage: golist [-h|--help]
-Looks for downloaded go modules in your system go path.
-
-options:
-    -h, --help   show usage help
-```
-
-* * *
-### [`install_odbc`](install_odbc)
-```
-usage: install_odbc [-h|--help]
-Attempts to install a working ODBC configuration to macOS.
-Uses unixODBC with FreeTDS from Homebrew.
-Requires hand editing to support your specific installation.
-```
-
-* * *
 ### [`macosver`](macosver)
 ```
 usage: macosver
 
 Simply prints out the macOS major and minor version.
-```
-
-* * *
-### [`mc_support`](mc_support)
-```
-usage: mc_support [options] ENDPOINT [<<EOF ... post body ... EOF]
-Hit a backend support endpoint.
-
-Note: Ensure that you've authenticated with onelogin-aws and are on the VPN.
-
-options:
-    -h, --help   show usage help
-    -e ENV       environment to query (default: dev)
-    -X METHOD    HTTP method to use (default: POST)
-    -d           dry run; show the curl command that would be run
-
-Example:
-
-mc_support -e dev -XPOST "/support/endpoint?q=whatever" <<EOF
-{
-    "key": "value"
-}
-EOF
 ```
 
 * * *
@@ -469,62 +389,10 @@ options:
 ### [`pc`](pc)
 ```
 usage: pc [options]
-Blow away and reinstall all pre-commit hooks.
+Blow away and reinstall all pre-commit hooks with prek.
 
 options:
     -h, --help   show usage help
-```
-
-* * *
-### [`pipc`](pipc)
-```
-usage: pipc [options]
-Pip compiles any requirement*.in files in the current directory.
-
-options:
-    -h, --help   show usage help
-```
-
-* * *
-### [`pipi`](pipi)
-```
-usage: pipi [options]
-Pip installs any requirements files in the current directory.
-
-options:
-    -h, --help   show usage help
-```
-
-* * *
-### [`ppt`](ppt)
-```
-usage: ppt [-h|--help] args
-Runs pytest tests locally.
-
-options:
-    -h, --help   show usage help
-```
-
-* * *
-### [`rc`](rc)
-```
-usage: rc
-
-Spin or attach to tumx running Check development services.
-
-options:
- -h or --help shows usage help
-```
-
-* * *
-### [`resend`](resend)
-```
-usage: resend [-h|--help] [options] INCIDENT_UUID
-Resend an incident notification.
-
-options:
-    -h, --help   show usage help
-    -t           set trigger to true
 ```
 
 * * *

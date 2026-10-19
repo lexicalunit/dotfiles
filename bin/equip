@@ -6,35 +6,18 @@
 # Settings
 ################################################################################
 # BEGIN GENERATED PACKAGE LISTS
-CODE_PACKAGES="                                                                \
-    be5invis.toml bibhasdn.unique-lines charliermarsh.ruff                     \
-    DavidAnson.vscode-markdownlint dbaeumer.vscode-eslint eamodio.gitlens      \
-    esbenp.prettier-vscode exiasr.hadolint foxundermoon.shell-format           \
-    GitHub.copilot GitHub.copilot-chat hashicorp.terraform                     \
-    James-Yu.latex-workshop joe-re.sql-language-server karunamurti.haml        \
-    mgmcdermott.vscode-language-babel mike-co.import-sorter                    \
-    mohsen1.prettify-json ms-azuretools.vscode-docker ms-python.debugpy        \
-    ms-python.python ms-python.vscode-pylance ms-vscode.live-server            \
-    nickmillerdev.pytest-fixtures PascalReitermann93.vscode-yaml-sort          \
-    redhat.vscode-yaml richie5um2.vscode-sort-json                             \
-    streetsidesoftware.code-spell-checker sysoev.language-stylus               \
-    timonwong.shellcheck"
-
 PYTHON_PACKAGES="                                                              \
     attrs cryptography ipython jsonschema keyring pip pygments pytest pyyaml   \
     requests setuptools toml tomlkit tqdm wheel"
-
-PYTHON_TOOLS="                                                                 \
-    pipenv pre-commit"
 
 TEX_PACKAGES="                                                                 \
     latexmk"
 # END GENERATED PACKAGE LISTS
 
-ITEM_LISTS=(CODE_PACKAGES PYTHON_PACKAGES PYTHON_TOOLS TEX_PACKAGES)
+ITEM_LISTS=(PYTHON_PACKAGES TEX_PACKAGES)
 
-# Homebrew formulas, casks, Mac App Store apps, and Go and Cargo packages are
-# listed in this Brewfile
+# Homebrew formulas, casks, Mac App Store apps, Go and Cargo packages, and VS Code
+# extensions are listed in this Brewfile
 BREWFILE="$HOME/.homebrew/Brewfile"
 
 # Python, Node, Ruby, Java, and npm CLI tools are listed in this mise config
@@ -119,7 +102,7 @@ usage() {
         "$0" -l | sed 's/^/    /g'
         echo
         # shellcheck disable=SC2088
-        echo "Homebrew formulas, casks, Mac App Store apps, and Go and Cargo packages: see ~${BREWFILE#"$HOME"}"
+        echo "Homebrew formulas, casks, Mac App Store apps, Go and Cargo packages, and VS Code extensions: see ~${BREWFILE#"$HOME"}"
         # shellcheck disable=SC2088
         echo "Python, Node, Ruby, Java, and npm CLI tools: see ~${MISE_CONFIG#"$HOME"}"
         echo
@@ -169,7 +152,7 @@ step_osx() {
     ########################################
     # General UI/UX
     ########################################
-    osascript -e 'tell application "System Preferences" to quit'
+    osascript -e 'tell application "System Settings" to quit'
 
     HOST="$(uname -n)"
     query "Set hostname [$HOST]" "$HOST"
@@ -177,11 +160,8 @@ step_osx() {
         run "sudo scutil --set HostName '$REPLY'"
     fi
 
-    show "Set standby delay to 24 hours (default is 1 hour)"
-    run "sudo pmset -a standbydelay 86400"
-
     show "Disable the sound effects on boot"
-    run "sudo nvram SystemAudioVolume=' '"
+    run "sudo nvram StartupMute=%01"
 
     # show "Disable transparency in the menu bar and elsewhere on Yosemite"
     # run "defaults write com.apple.universalaccess reduceTransparency -bool true"
@@ -239,9 +219,6 @@ step_osx() {
     # show "Disable the crash reporter"
     # run "defaults write com.apple.CrashReporter DialogType -string 'none'"
 
-    show "Set Help Viewer windows to non-floating mode"
-    run "defaults write com.apple.helpviewer DevMode -bool true"
-
     # Commented out, as this is known to cause problems in various Adobe apps :(
     # See https://github.com/mathiasbynens/dotfiles/issues/237
     # show "Fix for the ancient UTF-8 bug in QuickLook" # See: https://mths.be/bbo
@@ -275,42 +252,10 @@ step_osx() {
     run "defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false"
 
     DESKTOP_WALLPAPER="$HOME/env/Rio Sunrise.jpg"
-    if [[ -e $DESKTOP_WALLPAPER ]]; then
+    if [[ -e $DESKTOP_WALLPAPER ]] && command -v set_wallpaper >/dev/null 2>&1; then
         show "Set wallpaper to $DESKTOP_WALLPAPER"
-
-        # NOTE: Doesn't seem to work on BigSur
-        run "sudo chown root:wheel '$DESKTOP_WALLPAPER'"
-        run "sudo cp -uvf '$DESKTOP_WALLPAPER' /System/Library/CoreServices/DefaultDesktop.jpg"
-
-        run "sudo mkdir -p /Users/Shared/Background"
-        run "sudo cp -uvf '$DESKTOP_WALLPAPER' /Users/Shared/Background/custombg.jpeg"
-        run "sudo chown -R root:wheel /Users/Shared/Background"
-
-        MINOR_MACOS_VERSION="$(sw_vers | grep ProductVersion: | cut -f2 | cut -f2 -d.)"
-        if [[ $MINOR_MACOS_VERSION -ge 9 ]]; then
-            run "sqlite3 '$HOME/Library/Application Support/Dock/desktoppicture.db' 'delete from data;'"
-            run "sqlite3 '$HOME/Library/Application Support/Dock/desktoppicture.db' 'insert into data values (\"$DESKTOP_WALLPAPER\");'"
-        else
-            run "defaults write com.apple.desktop Background '{default = {ImageFilePath = \"/Users/Shared/Background/custombg.jpeg\"; };}'"
-        fi
-
-        if command -v set_wallpaper >/dev/null 2>&1; then
-            run "set_wallpaper --path '$DESKTOP_WALLPAPER'"
-        fi
+        run "set_wallpaper --path '$DESKTOP_WALLPAPER'"
     fi
-
-    ########################################
-    # SSD-specific tweaks
-    ########################################
-    show "Disable hibernation (speeds up entering sleep mode)"
-    run "sudo pmset -a hibernatemode 0"
-
-    show "Remove the sleep image file to save disk space"
-    run "sudo rm /private/var/vm/sleepimage"
-    show "Create a zero-byte file instead…"
-    run "sudo touch /private/var/vm/sleepimage"
-    show "…and make sure it can't be rewritten"
-    run "sudo chflags uchg /private/var/vm/sleepimage"
 
     ########################################
     # Trackpad, mouse, keyboard, Bluetooth accessories, and input
@@ -328,9 +273,6 @@ step_osx() {
 
     show 'Disable “natural” (Lion-style) scrolling'
     run "defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false"
-
-    show "Increase sound quality for Bluetooth headphones/headsets"
-    run "defaults write com.apple.BluetoothAudioAgent 'Apple Bitpool Min (editable)' -int 40"
 
     show "Enable full keyboard access for all controls" # (e.g. enable Tab in modal dialogs)
     run "defaults write NSGlobalDomain AppleKeyboardUIMode -int 3"
@@ -355,8 +297,6 @@ step_osx() {
     show "Set the timezone to America/Chicago"
     run "sudo systemsetup -settimezone 'America/Chicago' >/dev/null"
 
-    show "Stop iTunes from responding to the keyboard media keys"
-    run "launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2>/dev/null"
 
     ########################################
     # Screen
@@ -374,12 +314,6 @@ step_osx() {
     show "Disable shadow in screenshots"
     run "defaults write com.apple.screencapture disable-shadow -bool true"
 
-    # Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
-    show "Enable subpixel font rendering on non-Apple LCDs"
-    run "defaults write NSGlobalDomain AppleFontSmoothing -int 1"
-
-    show "Enable HiDPI display modes (requires restart)"
-    run "sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true"
 
     ########################################
     # Finder
@@ -475,9 +409,6 @@ step_osx() {
     show "Disable the warning before emptying the Trash"
     run "defaults write com.apple.finder WarnOnEmptyTrash -bool false"
 
-    show "Enable AirDrop over Ethernet and on unsupported Macs running Lion"
-    run "defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true"
-
     show "Show the ~/Library folder"
     run "chflags nohidden '$HOME/Library'"
 
@@ -530,7 +461,6 @@ step_osx() {
         "/Applications/Signal.app"
         "/Applications/Discord.app"
         "/Applications/Notion.app"
-        "/Applications/Builder.io.app"
         "/Applications/Figma.app"
         "/Applications/Ghostty.app"
         "/Applications/Docker.app"
@@ -568,12 +498,6 @@ step_osx() {
     show "Don't group windows by application in Mission Control" # (i.e. use the old Exposé behavior instead)
     defaults write com.apple.dock expose-group-by-app -bool false
 
-    show "Disable Dashboard"
-    run "defaults write com.apple.dashboard mcx-disabled -bool true"
-
-    show "Don't show Dashboard as a Space"
-    run "defaults write com.apple.dock dashboard-in-overlay -bool true"
-
     show "Don't automatically rearrange Spaces based on most recent use"
     run "defaults write com.apple.dock mru-spaces -bool false"
 
@@ -591,13 +515,6 @@ step_osx() {
 
     # show "Disable the Launchpad gesture (pinch with thumb and three fingers)"
     # run "defaults write com.apple.dock showLaunchpadGestureEnabled -int 0"
-
-    show "Reset Launchpad, but keep the desktop wallpaper intact"
-    run "find '${HOME}/Library/Application Support/Dock' -name '*-*.db' -maxdepth 1 -delete"
-
-    show "Add iOS & Watch Simulator to Launchpad"
-    run "sudo ln -sf '/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app' '/Applications/Simulator.app'"
-    run "sudo ln -sf '/Applications/Xcode.app/Contents/Developer/Applications/Simulator (Watch).app' '/Applications/Simulator (Watch).app'"
 
     # show "Add a spacer to the left side of the Dock (where the applications are)"
     # run "defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type=\"spacer-tile\";}'"
@@ -636,162 +553,6 @@ step_osx() {
     show "Disable Ctrl+Down Mission Control shortcut"
     run "defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 33 \"{enabled = 0; value = { parameters = (65535, 125, 8650752); type = 'standard'; }; }\""
     run "defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 35 \"{enabled = 0; value = { parameters = (65535, 125, 8781824); type = 'standard'; }; }\""
-
-    ########################################
-    # Safari & WebKit
-    ########################################
-    show "Privacy: don't send search queries to Apple"
-    run "defaults write com.apple.Safari UniversalSearchEnabled -bool false"
-    run "defaults write com.apple.Safari SuppressSearchSuggestions -bool true"
-
-    show "Press Tab to highlight each item on a web page"
-    run "defaults write com.apple.Safari WebKitTabToLinksPreferenceKey -bool true"
-    run "defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks -bool true"
-
-    show "Show the full URL in the address bar (note: this still hides the scheme)"
-    run "defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true"
-
-    show "Set Safari's home page to 'about:blank' for faster loading"
-    run "defaults write com.apple.Safari HomePage -string 'about:blank'"
-
-    show "Prevent Safari from opening ‘safe' files automatically after downloading"
-    run "defaults write com.apple.Safari AutoOpenSafeDownloads -bool false"
-
-    show "Allow hitting the Backspace key to go to the previous page in history"
-    run "defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true"
-
-    show "Hide Safari's bookmarks bar by default"
-    run "defaults write com.apple.Safari ShowFavoritesBar -bool false"
-
-    show "Hide Safari's sidebar in Top Sites"
-    run "defaults write com.apple.Safari ShowSidebarInTopSites -bool false"
-
-    show "Disable Safari's thumbnail cache for History and Top Sites"
-    run "defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2"
-
-    show "Enable Safari's debug menu"
-    run "defaults write com.apple.Safari IncludeInternalDebugMenu -bool true"
-
-    show "Make Safari's search banners default to Contains instead of Starts With"
-    run "defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false"
-
-    show "Remove useless icons from Safari's bookmarks bar"
-    run "defaults write com.apple.Safari ProxiesInBookmarksBar '()'"
-
-    show "Enable the Develop menu and the Web Inspector in Safari"
-    run "defaults write com.apple.Safari IncludeDevelopMenu -bool true"
-    run "defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true"
-    run "defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true"
-
-    show "Add a context menu item for showing the Web Inspector in web views"
-    run "defaults write NSGlobalDomain WebKitDeveloperExtras -bool true"
-
-    show "Enable continuous spellchecking"
-    run "defaults write com.apple.Safari WebContinuousSpellCheckingEnabled -bool true"
-    show "Disable auto-correct"
-    run "defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool false"
-
-    show "Disable AutoFill"
-    run "defaults write com.apple.Safari AutoFillFromAddressBook -bool false"
-    run "defaults write com.apple.Safari AutoFillPasswords -bool false"
-    run "defaults write com.apple.Safari AutoFillCreditCardData -bool false"
-    run "defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false"
-
-    show "Warn about fraudulent websites"
-    run "defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true"
-
-    show "Disable plug-ins"
-    run "defaults write com.apple.Safari WebKitPluginsEnabled -bool false"
-    run "defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2PluginsEnabled -bool false"
-
-    show "Disable Java"
-    run "defaults write com.apple.Safari WebKitJavaEnabled -bool false"
-    run "defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabled -bool false"
-
-    show "Block pop-up windows"
-    run "defaults write com.apple.Safari WebKitJavaScriptCanOpenWindowsAutomatically -bool false"
-    run "defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically -bool false"
-
-    show "Disable auto-playing video"
-    run "defaults write com.apple.Safari WebKitMediaPlaybackAllowsInline -bool false"
-    run "defaults write com.apple.SafariTechnologyPreview WebKitMediaPlaybackAllowsInline -bool false"
-    run "defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowsInlineMediaPlayback -bool false"
-    run "defaults write com.apple.SafariTechnologyPreview com.apple.Safari.ContentPageGroupIdentifier.WebKit2AllowsInlineMediaPlayback -bool false"
-
-    show 'Enable “Do Not Track”'
-    run "defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true"
-
-    show "Update extensions automatically"
-    run "defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true"
-
-    ########################################
-    # Mail
-    ########################################
-    show "Disable send and reply animations in Mail.app"
-    run "defaults write com.apple.mail DisableReplyAnimations -bool true"
-    run "defaults write com.apple.mail DisableSendAnimations -bool true"
-
-    # shellcheck disable=SC2016
-    show 'Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app'
-    run "defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false"
-
-    show "Display emails in threaded mode, sorted by date (oldest at the top)"
-    run "defaults write com.apple.mail DraftsViewerAttributes -dict-add 'DisplayInThreadedMode' -string 'yes'"
-    run "defaults write com.apple.mail DraftsViewerAttributes -dict-add 'SortedDescending' -string 'yes'"
-    run "defaults write com.apple.mail DraftsViewerAttributes -dict-add 'SortOrder' -string 'received-date'"
-
-    show "Disable inline attachments (just show the icons)"
-    run "defaults write com.apple.mail DisableInlineAttachmentViewing -bool true"
-
-    show "Disable automatic spell checking"
-    run "defaults write com.apple.mail SpellCheckingBehavior -string 'NoSpellCheckingEnabled'"
-
-    ########################################
-    # Spotlight
-    ########################################
-    # show "Hide Spotlight tray-icon (and subsequent helper)"
-    # run "sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search"
-
-    # Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
-    # show "Disable Spotlight indexing for any volume that gets mounted and has not yet been indexed before."
-    # run "sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array '/Volumes'"
-
-    # Yosemite-specific search results (remove them if you are using macOS 10.9 or older):
-    #   MENU_DEFINITION
-    #   MENU_CONVERSION
-    #   MENU_EXPRESSION
-    #   MENU_SPOTLIGHT_SUGGESTIONS (send search queries to Apple)
-    #   MENU_WEBSEARCH             (send search queries to Apple)
-    #   MENU_OTHER
-    show "Change indexing order and disable some search results..."
-    defaults write com.apple.spotlight orderedItems -array \
-        '{"enabled" = 1;"name" = "APPLICATIONS";}' \
-        '{"enabled" = 1;"name" = "SYSTEM_PREFS";}' \
-        '{"enabled" = 1;"name" = "DIRECTORIES";}' \
-        '{"enabled" = 1;"name" = "PDF";}' \
-        '{"enabled" = 1;"name" = "FONTS";}' \
-        '{"enabled" = 0;"name" = "DOCUMENTS";}' \
-        '{"enabled" = 0;"name" = "MESSAGES";}' \
-        '{"enabled" = 0;"name" = "CONTACT";}' \
-        '{"enabled" = 0;"name" = "EVENT_TODO";}' \
-        '{"enabled" = 0;"name" = "IMAGES";}' \
-        '{"enabled" = 0;"name" = "BOOKMARKS";}' \
-        '{"enabled" = 0;"name" = "MUSIC";}' \
-        '{"enabled" = 0;"name" = "MOVIES";}' \
-        '{"enabled" = 0;"name" = "PRESENTATIONS";}' \
-        '{"enabled" = 0;"name" = "SPREADSHEETS";}' \
-        '{"enabled" = 0;"name" = "SOURCE";}' \
-        '{"enabled" = 0;"name" = "MENU_DEFINITION";}' \
-        '{"enabled" = 0;"name" = "MENU_OTHER";}' \
-        '{"enabled" = 0;"name" = "MENU_CONVERSION";}' \
-        '{"enabled" = 0;"name" = "MENU_EXPRESSION";}' \
-        '{"enabled" = 0;"name" = "MENU_WEBSEARCH";}' \
-        '{"enabled" = 0;"name" = "MENU_SPOTLIGHT_SUGGESTIONS";}'
-    show "Load new settings before rebuilding the index"
-    show "Make sure indexing is enabled for the main volume"
-    run "sudo mdutil -i on / >/dev/null"
-    show "Rebuild the index from scratch"
-    run "sudo mdutil -E / >/dev/null"
 
     ########################################
     # Terminal & Ghostty
@@ -887,26 +648,13 @@ EOF
     run "defaults write com.apple.ActivityMonitor SortDirection -int 0"
 
     ########################################
-    # Address Book, Dashboard, iCal, TextEdit, and Disk Utility
+    # TextEdit and QuickTime
     ########################################
-    show "Enable the debug menu in Address Book"
-    run "defaults write com.apple.addressbook ABShowDebugMenu -bool true"
-
-    show "Enable Dashboard dev mode (allows keeping widgets on the desktop)"
-    run "defaults write com.apple.dashboard devmode -bool true"
-
-    show "Enable the debug menu in iCal (pre-10.8)"
-    run "defaults write com.apple.iCal IncludeDebugMenu -bool true"
-
     show "Use plain text mode for new TextEdit documents"
     run "defaults write com.apple.TextEdit RichText -int 0"
     show "Open and save files as UTF-8 in TextEdit"
     run "defaults write com.apple.TextEdit PlainTextEncoding -int 4"
     run "defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4"
-
-    show "Enable the debug menu in Disk Utility"
-    run "defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true"
-    run "defaults write com.apple.DiskUtility advanced-image-options -bool true"
 
     show "Auto-play videos when opened with QuickTime Player"
     run "defaults write com.apple.QuickTimePlayerX MGPlayMovieOnOpen -bool true"
@@ -914,50 +662,28 @@ EOF
     ########################################
     # Mac App Store
     ########################################
-    show "Enable the WebKit Developer Tools in the Mac App Store"
-    run "defaults write com.apple.appstore WebKitDeveloperExtras -bool true"
-
-    show "Enable Debug Menu in the Mac App Store"
-    run "defaults write com.apple.appstore ShowDebugMenu -bool true"
-
+    # Software update settings are system wide, so they live in /Library/Preferences.
     show "Enable the automatic update check"
-    run "defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true"
-
-    show "Check for software updates daily, not just once per week"
-    run "defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1"
+    run "sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true"
 
     show "Download newly available updates in background"
-    run "defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1"
+    run "sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticDownload -bool true"
 
-    show "Install System data files & security updates"
-    run "defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1"
+    show "Install security responses and system data files"
+    run "sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate CriticalUpdateInstall -bool true"
+    run "sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate ConfigDataInstall -bool true"
 
-    show "Automatically download apps purchased on other Macs"
-    run "defaults write com.apple.SoftwareUpdate ConfigDataInstall -int 1"
+    show "Install macOS updates automatically"
+    run "sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticallyInstallMacOSUpdates -bool true"
 
     show "Turn on app auto-update"
-    run "defaults write com.apple.commerce AutoUpdate -bool true"
-
-    show "Allow the App Store to reboot machine on macOS updates"
-    run "defaults write com.apple.commerce AutoUpdateRestartRequired -bool true"
+    run "sudo defaults write /Library/Preferences/com.apple.commerce AutoUpdate -bool true"
 
     ########################################
     # Photos
     ########################################
     show "Prevent Photos from opening automatically when devices are plugged in"
     run "defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true"
-
-    ########################################
-    # Messages
-    ########################################
-    show "Disable automatic emoji substitution (i.e. use plain text smileys)"
-    run "defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add 'automaticEmojiSubstitutionEnablediMessage' -bool false"
-
-    show "Disable smart quotes as it's annoying for messages that contain code"
-    run "defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add 'automaticQuoteSubstitutionEnabled' -bool false"
-
-    show "Disable continuous spell checking"
-    run "defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add 'continuousSpellCheckingEnabled' -bool false"
 
     ########################################
     # Google Chrome & Google Chrome Canary
@@ -994,7 +720,7 @@ EOF
     run "hidutil property --set '{\"UserKeyMapping\":[{\"HIDKeyboardModifierMappingSrc\":0x700000039,\"HIDKeyboardModifierMappingDst\":0x700000029}]}'"
     # This change does not persist to future logins, we'll use `~/Library/LaunchAgents/local.capsescape.plist`
     # to have this command run at each login:
-    test -f ~/Library/LaunchAgents/local.capsescape.plist && launchctl load $_
+    test -f ~/Library/LaunchAgents/local.capsescape.plist && launchctl load "$_"
 
     ########################################
     # Various Accessibility Settings
@@ -1007,8 +733,11 @@ EOF
     # The combo is the modifier flags plus the key code: option (2048) + esc (53).
     run "defaults write com.apple.speech.synthesis.general.prefs SpokenUIUseSpeakingHotKeyCombo -int 2101"
 
-    # Only apps with Full Disk Access can change the zoom settings, any other
-    # writes to com.apple.universalaccess fail with "Could not write domain".
+    ########################################
+    # Settings that need Full Disk Access
+    ########################################
+    # Only apps with Full Disk Access can change the zoom, Safari, and Mail settings,
+    # any other writes to them fail with "Could not write domain".
     if [[ $SC_DRYRUN == 1 ]] || defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true 2>/dev/null; then
         show "Use scroll gesture with the Ctrl (^) modifier key to zoom"
         run "defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true"
@@ -1019,8 +748,87 @@ EOF
 
         show "Follow the keyboard focus while zoomed in"
         run "defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true"
+
+        ########################################
+        # Safari & WebKit
+        ########################################
+        show "Privacy: don't send search queries to Apple"
+        run "defaults write com.apple.Safari UniversalSearchEnabled -bool false"
+        run "defaults write com.apple.Safari SuppressSearchSuggestions -bool true"
+
+        show "Press Tab to highlight each item on a web page"
+        run "defaults write com.apple.Safari WebKitTabToLinksPreferenceKey -bool true"
+        run "defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2TabsToLinks -bool true"
+
+        show "Show the full URL in the address bar (note: this still hides the scheme)"
+        run "defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true"
+
+        show "Set Safari's home page to 'about:blank' for faster loading"
+        run "defaults write com.apple.Safari HomePage -string 'about:blank'"
+
+        show "Prevent Safari from opening ‘safe' files automatically after downloading"
+        run "defaults write com.apple.Safari AutoOpenSafeDownloads -bool false"
+
+        show "Allow hitting the Backspace key to go to the previous page in history"
+        run "defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool true"
+
+        show "Hide Safari's bookmarks bar by default"
+        run "defaults write com.apple.Safari ShowFavoritesBar -bool false"
+
+        show "Enable Safari's debug menu"
+        run "defaults write com.apple.Safari IncludeInternalDebugMenu -bool true"
+
+        show "Make Safari's search banners default to Contains instead of Starts With"
+        run "defaults write com.apple.Safari FindOnPageMatchesWordStartsOnly -bool false"
+
+        show "Enable the Develop menu and the Web Inspector in Safari"
+        run "defaults write com.apple.Safari IncludeDevelopMenu -bool true"
+        run "defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true"
+        run "defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true"
+
+        show "Add a context menu item for showing the Web Inspector in web views"
+        run "defaults write NSGlobalDomain WebKitDeveloperExtras -bool true"
+
+        show "Enable continuous spellchecking"
+        run "defaults write com.apple.Safari WebContinuousSpellCheckingEnabled -bool true"
+        show "Disable auto-correct"
+        run "defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool false"
+
+        show "Disable AutoFill"
+        run "defaults write com.apple.Safari AutoFillFromAddressBook -bool false"
+        run "defaults write com.apple.Safari AutoFillPasswords -bool false"
+        run "defaults write com.apple.Safari AutoFillCreditCardData -bool false"
+        run "defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false"
+
+        show "Warn about fraudulent websites"
+        run "defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true"
+
+        show "Block pop-up windows"
+        run "defaults write com.apple.Safari WebKitJavaScriptCanOpenWindowsAutomatically -bool false"
+        run "defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically -bool false"
+
+        show "Update extensions automatically"
+        run "defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true"
+
+        ########################################
+        # Mail
+        ########################################
+        # shellcheck disable=SC2016
+        show 'Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app'
+        run "defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false"
+
+        show "Display emails in threaded mode, sorted by date (oldest at the top)"
+        run "defaults write com.apple.mail DraftsViewerAttributes -dict-add 'DisplayInThreadedMode' -string 'yes'"
+        run "defaults write com.apple.mail DraftsViewerAttributes -dict-add 'SortedDescending' -string 'yes'"
+        run "defaults write com.apple.mail DraftsViewerAttributes -dict-add 'SortOrder' -string 'received-date'"
+
+        show "Disable inline attachments (just show the icons)"
+        run "defaults write com.apple.mail DisableInlineAttachmentViewing -bool true"
+
+        show "Disable automatic spell checking"
+        run "defaults write com.apple.mail SpellCheckingBehavior -string 'NoSpellCheckingEnabled'"
     else
-        show -i "Can't change zoom settings: give your terminal app Full Disk Access, then run 'equip osx' again"
+        show -i "Can't change zoom, Safari, and Mail settings: give your terminal app Full Disk Access, then run 'equip osx' again"
         run "open 'x-apple.systempreferences:com.apple.preference.security?Privacy_AllFiles'"
     fi
 
@@ -1028,7 +836,7 @@ EOF
     # Kill affected applications
     ########################################
     run "nohup killall Calendar cfprefsd Contacts Mail mds Messages Photos Safari >/dev/null 2>&1" &
-    run "nohup killall 'Activity Monitor' 'Address Book' 'Google Chrome Canary' 'Google Chrome' >/dev/null 2>&1" &
+    run "nohup killall 'Activity Monitor' 'Google Chrome' >/dev/null 2>&1" &
     run "nohup killall Dock Finder >/dev/null 2>&1" &
     run "nohup killall SystemUIServer >/dev/null 2>&1" &
     show -i "Done. Note that some of these changes require a logout/restart to take effect."
@@ -1129,8 +937,32 @@ step_brew() {
     show -i "================================================================================"
     echo
 
-    # Installs and upgrades all taps, formulas, casks, and Mac App Store apps.
+    # rustup is keg-only, so put its cargo and rustc on PATH, and make sure there's
+    # a default toolchain before brew bundle installs the Cargo packages. Otherwise
+    # brew bundle would install the rust formula to get a cargo.
+    if ! brew list --formula rustup >/dev/null 2>&1; then
+        run "brew install rustup"
+    fi
+    PATH="$(brew --prefix rustup)/bin:$PATH"
+    export PATH
+    if rustup default >/dev/null 2>&1; then
+        run "rustup update"
+    else
+        run "rustup default stable"
+    fi
+
+    # Installs and upgrades everything in the Brewfile.
     run "brew bundle install --file '$BREWFILE'"
+
+    # ghcup (from the Brewfile) manages GHC and cabal.
+    if command -v ghcup >/dev/null 2>&1; then
+        run "ghcup install ghc recommended --set"
+        run "ghcup install cabal recommended --set"
+    fi
+
+    # Remove type stubs bundled with the Python extension so they don't shadow the
+    # ones installed in projects.
+    rm -rf "$HOME"/.vscode/extensions/ms-python.*/dist/bundled/stubs/* || true
 
     ensure_homebrew_updated_cleanup
 
@@ -1171,7 +1003,7 @@ step_brew() {
 
     # Without --force this only lists what isn't in the Brewfile; it removes nothing.
     show "The following are installed but not managed by equip via $BREWFILE:"
-    run "brew bundle cleanup --file '$BREWFILE' --formula --cask --go --cargo" || true
+    run "brew bundle cleanup --file '$BREWFILE' --formula --cask --go --cargo --vscode" || true
 }
 
 ################################################################################
@@ -1218,49 +1050,6 @@ step_tex() {
             show "TeX package $I is already installed"
         fi
     done
-}
-
-################################################################################
-# Step code
-################################################################################
-install_code_pkg() {
-    local INSTALLED PKG="$1"
-    shift
-    IFS=' ' read -r -a INSTALLED <<<"$@"
-
-    if ! in_array "$PKG" "${INSTALLED[@]}"; then
-        run "code --force --install-extension '$PKG'" || abort "Can not install package '$PKG'"
-    else
-        show "skipping $PKG: already installed"
-    fi
-}
-
-step_code() {
-    if ! command -v code >/dev/null 2>&1; then
-        ensure_homebrew_updated
-        run "brew install --cask visual-studio-code" || abort "Can't install VS Code via brew-cask"
-        ensure_homebrew_updated_cleanup
-    fi
-
-    local INSTALLED
-    INSTALLED=()
-    code --list-extensions | {
-        while IFS="" read -r line; do INSTALLED+=("$line"); done
-        IFS=' '
-        for I in $CODE_PACKAGES; do
-            install_code_pkg "$I" "${INSTALLED[@]}"
-        done
-    }
-
-    IFS=$'\n'
-    for I in $(code --list-extensions); do
-        name="${I%@*}"
-        if ! echo "$CODE_PACKAGES" | grep -Eqi "\\b${name}\\b"; then
-            show -i "$I installed but not managed by equip via code"
-        fi
-    done
-
-    rm -rf "$HOME"/.vscode/extensions/ms-python.*/dist/bundled/stubs/* || true
 }
 
 ################################################################################
@@ -1316,7 +1105,7 @@ step_mise() {
     # mise provides the default Python, Node, Ruby, and Java along with global npm
     # CLI tools, see ~/.config/mise/config.toml. It also creates the global
     # virtualenv at ~/.venv with uv. Python packages are installed into that venv
-    # with uv, and standalone Python CLI tools are installed with uv.
+    # with uv.
     local VENV="$HOME/.venv"
 
     if ! command -v mise >/dev/null 2>&1 || ! command -v uv >/dev/null 2>&1; then
@@ -1337,26 +1126,11 @@ step_mise() {
 
     run "uv pip install --python '$VENV/bin/python' --upgrade $(echo "$PYTHON_PACKAGES" | xargs)"
 
-    local INSTALLED_TOOLS
-    INSTALLED_TOOLS="$(uv tool list 2>/dev/null | grep -Ev '^-|^No tools' | cut -d' ' -f1)"
-    IFS=' '
-    for I in $PYTHON_TOOLS; do
-        if ! echo "$INSTALLED_TOOLS" | grep -Eqx "$I"; then
-            run "uv tool install '$I'"
-        fi
-    done
-    run "uv tool upgrade --all"
-
     # Only top level packages are reported, not their dependencies.
     IFS=$'\n'
     for I in $(uv pip tree --python "$VENV/bin/python" --depth 0 2>/dev/null | cut -d' ' -f1); do
         if ! echo "$PYTHON_PACKAGES" | grep -Eqi "(^| )$I( |$)"; then
             show -i "$I installed but not managed by equip via uv pip"
-        fi
-    done
-    for I in $INSTALLED_TOOLS; do
-        if ! echo "$PYTHON_TOOLS" | grep -Eqi "(^| )$I( |$)"; then
-            show -i "$I installed but not managed by equip via uv tool"
         fi
     done
 
@@ -1488,7 +1262,7 @@ fi
 
 # update applications
 if echo "$ARGS" | grep -Eq -- 'apps\b'; then
-    ARGS="$ARGS xcode brew ext tex mise code"
+    ARGS="$ARGS xcode brew ext tex mise"
 fi
 
 # update environment and dotfiles
@@ -1506,10 +1280,9 @@ steps=(
     "env;           Update environment configuration and submodules"
     "tex;           Ensure TeX Live is updated and extra TeX packages are installed via tlmgr"
     "mise;          Ensure mise and mise managed tools are installed"
-    "code;          Ensure VS Code installed via Homebrew Cask and its packages are installed"
     'osx;           Override macOS "defaults" settings and configuration'
     "dot;           Runs steps: dotfiles zsh env"
-    "apps;          Runs steps: xcode brew ext tex mise code"
+    "apps;          Runs steps: xcode brew ext tex mise"
     "most;          Runs steps: apps dot (basically everything but the osx step)"
     "all;          Runs all steps"
 )

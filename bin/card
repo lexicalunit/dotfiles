@@ -38,7 +38,7 @@ for CARD in "$@"; do
     fi
     if [[ ! -f "$CARD.png" ]]; then
         echo "Converting $CARD.jpg to $CARD.png"
-        convert "$CARD.jpg" \
+        magick "$CARD.jpg" \
             -resize "${CARD_WIDTH_PX}"x"${CARD_HEIGHT_PX}" \
             -gravity center \
             -background white \
@@ -55,7 +55,7 @@ for (( i=0; i<NUM_FILES; i+=GROUP_SIZE )); do
     echo -n "Processing group starting with: ${current_group[0]} ... "
     OUT="grid-${PAGE}.png"
     if [[ ! -f "$OUT" ]]; then
-        montage -density $DPI \
+        magick montage -density $DPI \
             -units PixelsPerInch \
             "${current_group[@]}" \
             -tile 3x3 \

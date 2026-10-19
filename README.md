@@ -88,17 +88,18 @@ git remote set-url origin git@github.com:lexicalunit/dotfiles.git
 * Your home directory is a git repository now! Track changes and commit updates as needed.
 * There are some git hooks in [`env`](env) that generate certain files for you, including parts of this README.
 * Re-run [`equip most`](bin/equip) periodically to update applications and configuration. Unlike `equip all` it skips the `osx` step, which resets system settings and the Dock.
-* Add Homebrew formulas, casks, Mac App Store apps, and Go and Cargo packages to [`.homebrew/Brewfile`](.homebrew/Brewfile).
-* Add Python, Node, Ruby, and Java versions and npm CLI tools to [`.config/mise/config.toml`](.config/mise/config.toml). The global Python virtualenv lives at `~/.venv`, and its packages are listed in [`bin/equip`](bin/equip).
+* Add Homebrew formulas, casks, Mac App Store apps, Go and Cargo packages, and VS Code extensions to [`.homebrew/Brewfile`](.homebrew/Brewfile). Rust comes from rustup and Haskell from ghcup, both installed by the Brewfile and set up by `equip brew`.
+* Add Python, Node, Ruby, Java, and Terraform versions and npm CLI tools to [`.config/mise/config.toml`](.config/mise/config.toml). The global Python virtualenv lives at `~/.venv`, and its packages are listed in [`bin/equip`](bin/equip).
 * Don't forget to `git pull` any updates!
 
 ## Manual steps
 
 Some things can't be automated, usually because macOS requires you to approve them yourself.
 
-* Give your terminal app Full Disk Access in System Settings → Privacy & Security, then re-run `equip osx`. Without it the zoom settings (zoom with <kbd>ctrl</kbd> + scroll wheel and zoom follows the pointer) can't be changed; `equip osx` opens the right settings pane for you.
+* Give your terminal app Full Disk Access in System Settings → Privacy & Security, then re-run `equip osx`. Without it the zoom settings (zoom with <kbd>ctrl</kbd> + scroll wheel and zoom follows the pointer) and the Safari and Mail settings can't be changed; `equip osx` opens the right settings pane for you.
 * Allow your terminal app to control System Events when asked. `equip brew` uses this to add Dropbox, Flux, Rectangle, and Theine as login items, and `bin/set_wallpaper` uses it to set the Desktop picture.
 * Confirm the dialog when `equip osx` makes Google Chrome the default web browser.
+* Enter your password when `equip brew` asks; some casks need `sudo` to install, uninstall, or adopt an app you installed by hand.
 
 ## Environment: `~/env`
 
@@ -128,14 +129,12 @@ Installed into your [`~/bin`](bin) directory, these tools will be on your `PATH`
 | [`capture_x`](bin/capture_x) | Creates a screenshot of selected window on X11. |
 | [`card`](bin/card) | Fetches card images from Scryfall and converts them to proxies sheets. |
 | [`cleanup`](bin/cleanup) | Cleans system and application caches on macOS. |
-| [`codeclimate`](bin/codeclimate) | Runs Code Climate on the current working directory. |
 | [`colortest`](bin/colortest) | Prints out an entire color palette of terminal color codes. |
 | [`daemons`](bin/daemons) | Finds and removes unwanted daemons and agents. |
 | [`deploy_dotfiles`](bin/deploy_dotfiles) | Installs bin and env from this repository to remote server via ssh. |
 | [`die`](bin/die) | Kills processes based on process name. |
 | [`doc`](bin/doc) | Builds HTML output from Markdown file. |
 | [`dogs`](bin/dogs) | Streams system logs for docker containers. |
-| [`drc`](bin/drc) | Run a Check django backend. |
 | [`equip`](bin/equip) | Install applications and development environment on an macOS or Lin... |
 | [`faff`](bin/faff) | Sleeps for the given number of seconds, showing a progress bar. |
 | [`flip`](bin/flip) | Flips input upside down. |
@@ -153,21 +152,13 @@ Installed into your [`~/bin`](bin) directory, these tools will be on your `PATH`
 | [`git-tidy`](bin/git-tidy) | Tidies up all the junk this repository. |
 | [`git-what`](bin/git-what) | Build a useful git description of the changes in this branch. |
 | [`git-wrote`](bin/git-wrote) | Who wrote the most lines for the files in the current directory. |
-| [`golist`](bin/golist) | Looks for downloaded go modules in your system go path. |
-| [`install_odbc`](bin/install_odbc) | Sets up ODBC. |
 | [`macosver`](bin/macosver) | Prints current macOS version information. |
-| [`mc_support`](bin/mc_support) | Hit a backend support endpoint. |
 | [`mon`](bin/mon) | Month name to number and vice versa. |
 | [`nodeula-rasa`](bin/nodeula-rasa) | Gives you a total clean slate in your node project. |
 | [`nopw`](bin/nopw) | Enables password-less ssh TO username@remotehost FROM localhost. |
 | [`npm-update`](bin/npm-update) | Tries to update package dependencies to latest using ncu, npm, and ... |
 | [`paystub`](bin/paystub) | Get your latest paystub as PDF from Check's API. |
-| [`pc`](bin/pc) | Blow away and reinstall all pre-commit hooks. |
-| [`pipc`](bin/pipc) | Pip compiles any requirement*.in files in the current directory. |
-| [`pipi`](bin/pipi) | Pip installs any requirements files in the current directory. |
-| [`ppt`](bin/ppt) | Runs pytest tests locally. |
-| [`rc`](bin/rc) | Spin up or attach to tumx running Check development services. |
-| [`resend`](bin/resend) | Resend an incident notification. |
+| [`pc`](bin/pc) | Blow away and reinstall all pre-commit hooks with prek. |
 | [`root`](bin/root) | Prints the root of the current repository. |
 | [`set_wallpaper`](bin/set_wallpaper) | Sets the desktop wallpaper on all screens. |
 | [`show_dircolors`](bin/show_dircolors) | Shows example output based on current dircolors settings. |
@@ -197,22 +188,15 @@ Glad you asked! `equip all` will go through the following steps one by one. For 
 | env | Update environment configuration and submodules |
 | tex | Ensure TeX Live is updated and extra TeX packages are installed via tlmgr |
 | mise | Ensure mise and mise managed tools are installed |
-| code | Ensure VS Code installed via Homebrew Cask and its packages are installed |
 | osx | Override macOS "defaults" settings and configuration |
 | dot | Runs steps: dotfiles zsh env |
-| apps | Runs steps: xcode brew ext tex mise code |
+| apps | Runs steps: xcode brew ext tex mise |
 | most | Runs steps: apps dot (basically everything but the osx step) |
 | all | Runs all steps |
 
 Homebrew formulas, casks, Mac App Store apps, and Go and Cargo packages are listed in [`.homebrew/Brewfile`](.homebrew/Brewfile). Python, Node, Ruby, Java, and npm CLI tools are managed by [mise](https://mise.jdx.dev) and listed in [`.config/mise/config.toml`](.config/mise/config.toml).
 
-Code Packages: be5invis.toml, bibhasdn.unique-lines, charliermarsh.ruff, DavidAnson.vscode-markdownlint, dbaeumer.vscode-eslint, eamodio.gitlens, esbenp.prettier-vscode, exiasr.hadolint, foxundermoon.shell-format, GitHub.copilot, GitHub.copilot-chat, hashicorp.terraform, James-Yu.latex-workshop, joe-re.sql-language-server, karunamurti.haml, mgmcdermott.vscode-language-babel, mike-co.import-sorter, mohsen1.prettify-json, ms-azuretools.vscode-docker, ms-python.debugpy, ms-python.python, ms-python.vscode-pylance, ms-vscode.live-server, nickmillerdev.pytest-fixtures, PascalReitermann93.vscode-yaml-sort, redhat.vscode-yaml, richie5um2.vscode-sort-json, streetsidesoftware.code-spell-checker, sysoev.language-stylus, timonwong.shellcheck
 
-Python Packages: attrs, cryptography, ipython, jsonschema, keyring, pip, pygments, pytest, pyyaml, requests, setuptools, toml, tomlkit, tqdm, wheel
-
-Python Tools: pipenv, pre-commit
-
-Tex Packages: latexmk
 
 ## License
 

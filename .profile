@@ -60,6 +60,9 @@ if type brew >/dev/null 2>&1; then
     # ensure that brew installed `expect` functions correctly
     export TCLLIBPATH="$BREW_PREFIX/lib"
 
+    # rustup is keg-only, its cargo and rustc have to be put on PATH explicitly
+    test -d "$BREW_PREFIX/opt/rustup/bin" && PATH="$_:$PATH"
+
     # go compiler, packages installed by `brew bundle` go into the default GOPATH (~/go)
     test -d "$BREW_PREFIX/opt/go/libexec/bin" && PATH="$PATH:$_"
 fi
@@ -67,6 +70,7 @@ test -d "$HOME/go/bin" && PATH="$PATH:$_"
 
 # Add specific application paths, such as Python, etc...
 test -d "$HOME/.cargo/bin" && PATH="$PATH:$_"
+test -d "$HOME/.ghcup/bin" && PATH="$PATH:$_"
 test -d "$HOME/.local/bin" && PATH="$PATH:$_"
 test -d "$HOME/.log-ninja" && PATH="$PATH:$_"
 test -d /usr/local/lib/pkgconfig && PKG_CONFIG_PATH="$_:$PKG_CONFIG_PATH"
@@ -100,7 +104,6 @@ export USER
 export PLATFORM
 
 # Ensure utilities are running
-eval "$(fasd --init auto)"
 command -v mise >/dev/null 2>&1 && eval "$(mise activate "${ZSH_VERSION:+zsh}${BASH_VERSION:+bash}")"
 
 ################################################################################
@@ -116,12 +119,14 @@ if $INTERACTIVE; then
     set -o emacs
 
     ################################################################################
-    # setup base16-shell -- https://github.com/chriskempson/base16-shell
+    # setup tinted-shell -- https://github.com/tinted-theming/tinted-shell
     ################################################################################
-    _interactive_log "setting up base16-shell"
-    BASE16_SHELL="$HOME/.config/base16-shell/"
+    # The theme is remembered in ~/.config/tinted-theming, change it with set_theme.
+    _interactive_log "setting up tinted-shell"
+    BASE16_SHELL_PATH="$HOME/.config/tinted-theming/tinted-shell"
+    BASE16_THEME_DEFAULT="solarized-light"
     # shellcheck disable=SC1091
-    [ -n "$PS1" ] && [ -s "$BASE16_SHELL/profile_helper.sh" ] && source "$BASE16_SHELL/profile_helper.sh"
+    [ -n "$PS1" ] && [ -s "$BASE16_SHELL_PATH/profile_helper.sh" ] && source "$BASE16_SHELL_PATH/profile_helper.sh"
 
     ################################################################################
     # terminal history
@@ -139,7 +144,7 @@ if $INTERACTIVE; then
     ################################################################################
     if command -v direnv >/dev/null 2>&1; then
         _interactive_log "setting up direnv"
-        eval "$(direnv hook zsh)"
+        eval "$(direnv hook "${ZSH_VERSION:+zsh}${BASH_VERSION:+bash}")"
     fi
 
     ################################################################################
@@ -180,7 +185,6 @@ if $INTERACTIVE; then
     # setup aliases and functions
     ################################################################################
     alias g='open -na "GitKraken" --args -p $(pwd) '
-    alias st='stree '
     alias bc='bc -l '
     alias profile='valgrind --tool=callgrind --dump-instr=yes --simulate-cache=yes --collect-jumps=yes '
     alias memcheck='valgrind --tool=memcheck --leak-check=yes -show-reachable=yes -fno-inline --logfile=memcheck.log '
@@ -226,8 +230,7 @@ if $INTERACTIVE; then
     if type share >/dev/null 2>&1; then alias shares='share '; fi
     if type htop >/dev/null 2>&1; then alias top='htop '; fi
 
-    export RSYNC_RSH=rsh                                               # use ssh over rsync
-    alias ssh='ssh -Y -C '                                             # use compression over ssh connections
+    alias ssh='ssh -C '                                                # use compression over ssh connections
     /usr/bin/ssh-add --apple-load-keychain >/dev/null 2>&1           # load ssh keys from keychain
 
     fuck() {
@@ -289,14 +292,14 @@ if $INTERACTIVE; then
     # source any local configuration files
     ################################################################################
     IFS=$'\n'
-    [[ $SHELL =~ "zsh" ]] && unsetopt nomatch
+    [[ -n $ZSH_VERSION ]] && unsetopt nomatch
     for I in $(/bin/ls -1 ~/.profile_* 2>/dev/null); do
         _interactive_log "sourcing $(basename "$I")"
         # shellcheck source=$I
         # shellcheck disable=SC1091
         source "$I"
     done
-    [[ $SHELL =~ "zsh" ]] && setopt nomatch
+    [[ -n $ZSH_VERSION ]] && setopt nomatch
     IFS=' '
 
     ################################################################################
@@ -330,10 +333,7 @@ if $INTERACTIVE; then
     alias cd='nocorrect cd'
 
     # Finally setup ls to ensure we override any aliases, like from prezto.
-    if type exa >/dev/null 2>&1; then
-        alias ls='exa '
-        alias ll='ls -lg --git --header --group-directories-first --git-ignore --time-style="long-iso" '
-    elif command gls >/dev/null 2>&1; then
+    if command gls >/dev/null 2>&1; then
         alias ls='gls -hF --color=auto --hyperlink=auto '
         alias ll='ls -l '
     else
@@ -343,10 +343,18 @@ if $INTERACTIVE; then
     if type dircolors >/dev/null 2>&1; then
         eval "$(dircolors -b "$HOME/.dircolors" 2>/dev/null)" # sets LS_COLORS
     fi
+
+    # zoxide jumps to frequently used directories; it replaces fasd.
+    if command -v zoxide >/dev/null 2>&1; then
+        eval "$(zoxide init "${ZSH_VERSION:+zsh}${BASH_VERSION:+bash}")"
+        alias zz='zi'                       # cd with interactive selection
+        alias d='zoxide query --list'       # list directories by frecency
+        alias sd='zoxide query --interactive' # interactive directory selection
+    fi
     alias l='ls '
     export CLICOLOR=1
 
-    ### Trying to replace SourceTree with GitKraken, but muscle memory is strong
+    # st was SourceTree, muscle memory is strong
     alias st='g '
 
 fi # if $INTERACTIVE

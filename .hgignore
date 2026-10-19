@@ -1,6 +1,0 @@
-syntax: glob
-*.oirg
-*.DS_Store
-*.orig
-*.pyc
-*.pickle

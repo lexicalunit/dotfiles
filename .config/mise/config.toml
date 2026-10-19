@@ -14,6 +14,7 @@ node = "lts"
 python = "3.14"
 ruby = "4.0"
 terraform = "latest"
+tflint = "latest"
 
 # Global npm CLI tools; these survive node upgrades, unlike `npm install -g`.
 # corepack provides the yarn and pnpm versions that projects pin in package.json, since

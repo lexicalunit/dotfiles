@@ -285,7 +285,7 @@ step_osx() {
     run "defaults write NSGlobalDomain InitialKeyRepeat -int 10"
 
     show "Set language and text formats"
-    run "defaults write NSGlobalDomain AppleLanguages -array 'en' 'nl'"
+    run "defaults write NSGlobalDomain AppleLanguages -array 'en'"
     run "defaults write NSGlobalDomain AppleLocale -string 'en_US@currency=USD'"
     run "defaults write NSGlobalDomain AppleMeasurementUnits -string 'Inches'"
     run "defaults write NSGlobalDomain AppleMetricUnits -bool false"
@@ -293,9 +293,10 @@ step_osx() {
     show "Show language menu in the top right corner of the boot screen"
     run "sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true"
 
-    # See `sudo systemsetup -listtimezones` for other values
-    show "Set the timezone to America/Chicago"
-    run "sudo systemsetup -settimezone 'America/Chicago' >/dev/null"
+    # This needs Location Services, which macOS asks you to turn on yourself.
+    show "Set the timezone automatically using your current location"
+    run "sudo defaults write /Library/Preferences/com.apple.timezone.auto Active -bool true"
+    run "sudo systemsetup -setusingnetworktime on >/dev/null"
 
 
     ########################################
@@ -720,7 +721,11 @@ EOF
     run "hidutil property --set '{\"UserKeyMapping\":[{\"HIDKeyboardModifierMappingSrc\":0x700000039,\"HIDKeyboardModifierMappingDst\":0x700000029}]}'"
     # This change does not persist to future logins, we'll use `~/Library/LaunchAgents/local.capsescape.plist`
     # to have this command run at each login:
-    test -f ~/Library/LaunchAgents/local.capsescape.plist && launchctl load "$_"
+    # Loading an agent that's already loaded fails, so only load it when it isn't.
+    local CAPSESCAPE="$HOME/Library/LaunchAgents/local.capsescape.plist"
+    if [[ -f $CAPSESCAPE ]] && ! launchctl print "gui/$(id -u)/local.capsescape" >/dev/null 2>&1; then
+        run "launchctl bootstrap 'gui/$(id -u)' '$CAPSESCAPE'"
+    fi
 
     ########################################
     # Various Accessibility Settings

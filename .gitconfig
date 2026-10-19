@@ -79,3 +79,5 @@
 	navigate = true
 [merge]
 	conflictStyle = zdiff3
+[include]
+	path = ~/.config/tinted-theming/delta.gitconfig

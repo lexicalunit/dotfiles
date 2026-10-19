@@ -124,6 +124,8 @@ if $INTERACTIVE; then
     _interactive_log "setting up tinted-shell"
     BASE16_SHELL_PATH="$HOME/.config/tinted-theming/tinted-shell"
     BASE16_THEME_DEFAULT="solarized-light"
+    # Export the theme's colors so the hooks can theme delta and fzf to match.
+    BASE16_SHELL_ENABLE_VARS=1
     # shellcheck disable=SC1091
     [ -n "$PS1" ] && [ -s "$BASE16_SHELL_PATH/profile_helper.sh" ] && source "$BASE16_SHELL_PATH/profile_helper.sh"
 

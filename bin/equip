@@ -618,9 +618,8 @@ EOF
     show "Disable the annoying line marks"
     run "defaults write com.apple.Terminal ShowLineMarks -int 0"
 
-    show "Install the Ghostty config and color themes"
-    run "mkdir -p '$HOME/Library/Application Support/com.mitchellh.ghostty' '$HOME/.config/ghostty/themes'"
-    run "cp -vf '$HOME/env/ghostty/config.ghostty' '$HOME/Library/Application Support/com.mitchellh.ghostty/config.ghostty'"
+    show "Install the Ghostty color themes"
+    run "mkdir -p '$HOME/.config/ghostty/themes'"
     run "cp -vf '$HOME'/env/ghostty/themes/* '$HOME/.config/ghostty/themes/.'"
 
     ########################################

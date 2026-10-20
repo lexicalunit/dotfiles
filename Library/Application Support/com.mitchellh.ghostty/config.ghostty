@@ -11,6 +11,7 @@ font-size = 17
 # Cursor
 cursor-style = block
 cursor-style-blink = false
+shell-integration-features = no-cursor
 
 # Window
 window-width = 80

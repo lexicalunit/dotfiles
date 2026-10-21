@@ -30,3 +30,6 @@ macos-option-as-alt = false
 
 # Keybindings: Cmd+. sends Ctrl-C (0x03)
 keybind = cmd+period=text:\x03
+
+# New tabs open in the home directory instead of the current tab's directory
+tab-inherit-working-directory = false

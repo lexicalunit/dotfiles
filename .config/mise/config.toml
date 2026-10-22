@@ -10,6 +10,8 @@ idiomatic_version_file_enable_tools = ["node", "ruby", "terraform", "yarn"]
 
 [tools]
 java = "temurin-21"
+# Listed before node so its npm shadows the one bundled with node on PATH.
+"npm:npm" = "latest"
 node = "lts"
 python = "3.14"
 ruby = "4.0"

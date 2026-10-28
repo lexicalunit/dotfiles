@@ -29,3 +29,6 @@ builder.io() {
     echo $'        \e[48;5;232m                                \e[49m        \e[0m'
     echo
 }
+
+alias claude-work='CLAUDE_CONFIG_DIR=$HOME/.claude claude'
+alias claude-personal='CLAUDE_CONFIG_DIR=$HOME/.claude-personal claude'

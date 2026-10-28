@@ -1,3 +1,4 @@
+.DS_Store
 /.agent-native
 /.aws
 /.bash_history*
@@ -11,6 +12,7 @@
 /.cagent/store
 /.cargo
 /.claude
+/.claude-*
 /.claude.json
 /.commit
 /.config/.bin/mise
@@ -25,6 +27,7 @@
 /.config/neon/credentials.json
 /.config/notion/
 /.config/op/config
+/.config/pup/sessions.json
 /.config/tinted-theming/*
 /.context/mcp-codebase-snapshot.json
 /.context/merkle
@@ -32,7 +35,6 @@
 /.cups/lpoptions
 /.docker
 /.dropbox
-.DS_Store
 /.gem
 /.gemrc
 /.ghcup
@@ -51,8 +53,8 @@
 /.m2
 /.mongodb
 /.netrc
-/.node-gyp
 /.node_repl_history
+/.node-gyp
 /.npm
 /.npmrc
 /.odbc.ini

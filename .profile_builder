@@ -30,5 +30,5 @@ builder.io() {
     echo
 }
 
-alias claude-work='CLAUDE_CONFIG_DIR=$HOME/.claude claude'
-alias claude-personal='CLAUDE_CONFIG_DIR=$HOME/.claude-personal claude'
+alias clw='CLAUDE_CONFIG_DIR=$HOME/.claude '
+alias clp='CLAUDE_CONFIG_DIR=$HOME/.claude-personal '

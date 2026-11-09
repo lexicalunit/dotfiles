@@ -63,6 +63,7 @@
 /.psql_history
 /.pyhistory
 /.python_history
+/.rbenv
 /.rustup
 /.sentryclirc
 /.sh_history*
